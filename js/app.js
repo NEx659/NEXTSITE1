@@ -2408,25 +2408,38 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     const cleanBodyLower = cleanBodyWithoutTags.toLowerCase();
 
     // -------------------------------------------------------------
-    // ตรวจจับโพสต์ขายแบบ / โพสต์การตลาดโปรโมชั่น (Catalog / 3D Render Ads)
-    // เช่น "เริ่มต้นเพียง 3.29 ล้าน", "แถมฟรีเสาเข็มตอก", "โปรโมชั่นพิเศษ"
-    // ถ้าเป็นโพสต์ขายแบบและไม่มีการอัปเดตหน้างานจริง ให้ตัดทิ้งทันที
+    // ตรวจจับโพสต์โฆษณา / ขายแบบ 3D / ภาพเรนเดอร์ / โปรโมชั่น (ไม่ใช่หน้างานจริง)
     // -------------------------------------------------------------
-    const marketingAdIndicators = [
+    const marketingCatalogPatterns = [
       'เริ่มต้นเพียง', 'ราคาเริ่มต้น', 'โปรโมชั่น', 'แถมฟรี', 'แถมฟรีเสาเข็ม',
       'ปรึกษาฟรี', 'จองวันนี้', 'รับส่วนลด', 'แจกฟรี', 'ผ่อนเริ่มต้น', 'กู้ได้เต็ม',
       'โปรโมชั่นพิเศษ', 'แบบบ้านยอดนิยม', 'แบบบ้านแนะนำ', 'แบบบ้านขายดี',
-      'พร้อมให้คุณเป็นเจ้าของ', 'แพ็กเกจสร้างบ้าน', 'จองโปรโมชั่น', 'แบบบ้าน modern'
+      'พร้อมให้คุณเป็นเจ้าของ', 'แพ็กเกจสร้างบ้าน', 'จองโปรโมชั่น', 'แบบบ้าน modern',
+      'แบบบ้าน', '3d', 'perspective', 'ภาพ 3d', 'ภาพสามมิติ', 'ภาพจำลอง',
+      'ฟังก์ชันครบ', 'พื้นที่ใช้สอย', 'ห้องนอน', 'ห้องน้ำ', 'โรงจอดรถ',
+      'md-', 'ซีรีส์', 'เปิดตัวแบบบ้าน', 'สไตล์ luxury', 'ออกแบบบ้าน'
     ];
 
-    const isMarketingAd = marketingAdIndicators.some(ad => cleanBodyLower.includes(ad));
-    const hasExplicitSiteUpdate = [
-      'อัพเดทหน้างาน', 'อัปเดตหน้างาน', 'site update', 'ความคืบหน้าหน้างาน',
-      'บ้านคุณ', 'owner :', 'owner:'
-    ].some(s => cleanBodyLower.includes(s));
+    // สัญญาณยืนยันหน้างานจริงที่ต้องมี (Real Construction Evidence)
+    const realSiteEvidence = [
+      'อัพเดทหน้างาน', 'อัปเดตหน้างาน', 'site update', 'update หน้างาน',
+      'ความคืบหน้าหน้างาน', 'รายงานความคืบหน้า', 'เข้าตรวจหน้างาน', 'เข้าตรวจไซต์งาน',
+      'บ้านคุณ', 'owner :', 'owner:', 'เจ้าของบ้าน', 'ส่งมอบบ้าน', 'ส่งมอบงาน',
+      'พิธียกเสาเอก', 'พิธีลงเสาเอก', 'ยกเสาเอก', 'ยกเสาโท', 'บวงสรวง', 'วางผัง',
+      'เทคอนกรีต', 'เทพื้น', 'คานคอดิน', 'ผูกเหล็ก', 'ฉาบผนัง', 'ก่ออิฐ',
+      'ปูกระเบื้องหน้างาน', 'ติดตั้ง builtin', 'ตรวจรับบ้าน'
+    ];
 
-    if (isMarketingAd && !hasExplicitSiteUpdate) {
-      // โพสต์นี้เป็นเพียงการโฆษณาขายแบบบ้านหรือโปรโมชั่น ไม่ใช่ไซต์งานจริง
+    const hasRealSiteEvidence = realSiteEvidence.some(sig => cleanBodyLower.includes(sig));
+    const isCatalogAd = marketingCatalogPatterns.some(ad => cleanBodyLower.includes(ad));
+
+    // ถ้าเป็นโพสต์ขายแบบ/โฆษณา 3D และไม่มีหลักฐานหน้างานก่อสร้างจริง ให้ตัดทิ้งทันที
+    if (isCatalogAd && !hasRealSiteEvidence) {
+      return;
+    }
+
+    // ถ้าไม่มีหลักฐานหน้างานก่อสร้างจริงเลย (เป็นแค่ข้อความประชาสัมพันธ์ทั่วไป) ให้ตัดทิ้ง
+    if (!hasRealSiteEvidence) {
       return;
     }
 
@@ -2448,19 +2461,20 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     // ตรวจจับว่าในเนื้อหาหน้างาน มีการระบุหน้างานจังหวัดอื่นหรือไม่
     const hasOtherProvinceInSite = otherProvincesKeywords.some(op => {
       if (!cleanBodyLower.includes(op)) return false;
-      // ตรวจว่าคำนี้อยู่คู่กับ 📍, หน้างาน, พิกัด, สถานที่, อ., จ. หรือไม่
       const regex = new RegExp('(?:📍|หน้างาน|พิกัด|สถานที่|ส่งมอบ|ก่อสร้าง|ไซต์งาน|สร้างที่|โครงการที่|จ\\.|อ\\.).{0,35}' + op, 'i');
       return regex.test(cleanBodyLower);
     });
 
     if (hasOtherProvinceInSite) {
-      // หน้างานจริงอยู่ในจังหวัดอื่น (เช่น 📍 อ.ภูเขียว จ.ชัยภูมิ) ให้ข้ามทันที
       return;
     }
 
     // 1. ตรวจสอบว่าในเนื้อหาหน้างานมีคำว่า "อุดร" หรือ "อุดรธานี"
     const hasProvince = provinceKeywords.some(pKw => cleanBodyLower.includes(pKw.toLowerCase()));
-    
+    if (!hasProvince) {
+      return;
+    }
+
     // 2. ตรวจหา 1 ใน 20 อำเภอ ของ จ.อุดรธานี ในเนื้อหาหน้างาน
     let matchedDistrictObj = null;
     for (const d of districtList) {
@@ -2470,37 +2484,28 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       }
     }
 
-    // สัญญาณยืนยันว่าเป็นโพสต์หน้างานก่อสร้างจริง
-    const constructionSignals = [
-      'อัพเดทหน้างาน', 'อัปเดตหน้างาน', 'site update', 'location', 'owner', 'หน้างาน',
-      'งานฉาบ', 'ฉาบผนัง', 'งานโครงสร้าง', 'งานฐานราก', 'ตอกเสาเข็ม', 'เสาเอก', 'เสาโท',
-      'ปูกระเบื้อง', 'มุงหลังคา', 'เทคอนกรีต', 'เทพื้น', 'คานคอดิน', 'ก่ออิฐ', 'ส่งมอบบ้าน',
-      'ความคืบหน้า', 'กำลังก่อสร้าง', 'สร้างบ้าน', 'ส่งงาน', 'บ้านคุณ'
-    ];
-    const hasConstructionSignal = constructionSignals.some(sig => cleanBodyLower.includes(sig));
-
-    // เงื่อนไขการยอมรับโครงการ:
-    // ข้อ A: มีทั้งคำว่า "อุดร" + ระบุ 1 ใน 20 อำเภอ ชัดเจน
-    // ข้อ B: ระบุ "จังหวัดอุดรธานี / อุดรธานี" โดยตรง + มีสัญญาณไซต์งานก่อสร้างจริงชัดเจน (แม้ไม่ได้พิมพ์ชื่ออำเภอ เช่น Location : จังหวัดอุดรธานี)
-    if (!hasProvince) {
-      return;
-    }
-
-    if (!matchedDistrictObj && !hasConstructionSignal) {
-      return;
-    }
-
     const matchedDistrictName = matchedDistrictObj ? matchedDistrictObj.district : (matchedComp.district || 'เมืองอุดรธานี');
 
-    // 2. วิเคราะห์สเตจก่อสร้างตามคีย์เวิร์ดที่มีอยู่จริงในโพสต์
-    let matchedStage = stageRules[3]; // default: finishing/general
-    let foundStage = false;
+    // 3. วิเคราะห์สเตจก่อสร้างตามคีย์เวิร์ดที่มีอยู่จริงในโพสต์
+    let matchedStage = null;
     for (const rule of stageRules) {
       const foundKeyword = rule.terms.some(t => text.includes(t));
       if (foundKeyword) {
         matchedStage = rule;
-        foundStage = true;
         break;
+      }
+    }
+
+    // ถ้าไม่มีสเตจที่ตรงกับงานก่อสร้างจริง ให้ใช้สเตจตามความคืบหน้าที่ตรวจพบ
+    if (!matchedStage) {
+      if (cleanBodyLower.includes('ยกเสาเอก') || cleanBodyLower.includes('เสาเอก') || cleanBodyLower.includes('เสาเข็ม')) {
+        matchedStage = stageRules[0]; // groundbreak
+      } else if (cleanBodyLower.includes('ฐานราก') || cleanBodyLower.includes('ตอม่อ') || cleanBodyLower.includes('เทคาน')) {
+        matchedStage = stageRules[1]; // foundation
+      } else if (cleanBodyLower.includes('โครงสร้าง') || cleanBodyLower.includes('มุงหลังคา') || cleanBodyLower.includes('ก่ออิฐ')) {
+        matchedStage = stageRules[2]; // structure
+      } else {
+        matchedStage = stageRules[3]; // finishing
       }
     }
 

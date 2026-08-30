@@ -113,17 +113,36 @@ def check_strict_udon_location(raw_text):
     body_text_no_tags = re.sub(r"#\S+", " ", body_text)
     text_lower = body_text_no_tags.lower()
 
-    # ตรวจจับโพสต์ขายแบบ / โฆษณาการตลาดโปรโมชั่น (ไม่ใช่ไซต์งานจริง)
-    marketing_ads = [
+    # ตรวจจับโพสต์โฆษณา / ขายแบบ 3D / ภาพเรนเดอร์ / โปรโมชั่น (ไม่ใช่หน้างานจริง)
+    marketing_catalog_patterns = [
         "เริ่มต้นเพียง", "ราคาเริ่มต้น", "โปรโมชั่น", "แถมฟรี", "แถมฟรีเสาเข็ม",
         "ปรึกษาฟรี", "จองวันนี้", "รับส่วนลด", "แจกฟรี", "ผ่อนเริ่มต้น", "กู้ได้เต็ม",
         "โปรโมชั่นพิเศษ", "แบบบ้านยอดนิยม", "แบบบ้านแนะนำ", "แบบบ้านขายดี",
-        "พร้อมให้คุณเป็นเจ้าของ", "แพ็กเกจสร้างบ้าน", "จองโปรโมชั่น", "แบบบ้าน modern"
+        "พร้อมให้คุณเป็นเจ้าของ", "แพ็กเกจสร้างบ้าน", "จองโปรโมชั่น", "แบบบ้าน modern",
+        "แบบบ้าน", "3d", "perspective", "ภาพ 3d", "ภาพสามมิติ", "ภาพจำลอง",
+        "ฟังก์ชันครบ", "พื้นที่ใช้สอย", "ห้องนอน", "ห้องน้ำ", "โรงจอดรถ",
+        "md-", "ซีรีส์", "เปิดตัวแบบบ้าน", "สไตล์ luxury", "ออกแบบบ้าน"
     ]
-    is_marketing = any(ad in text_lower for ad in marketing_ads)
-    has_site_update = any(s in text_lower for s in ["อัพเดทหน้างาน", "อัปเดตหน้างาน", "site update", "ความคืบหน้าหน้างาน", "บ้านคุณ", "owner :", "owner:"])
-    
-    if is_marketing and not has_site_update:
+
+    # สัญญาณยืนยันหน้างานจริงที่ต้องมี (Real Construction Evidence)
+    real_site_evidence = [
+        "อัพเดทหน้างาน", "อัปเดตหน้างาน", "site update", "update หน้างาน",
+        "ความคืบหน้าหน้างาน", "รายงานความคืบหน้า", "เข้าตรวจหน้างาน", "เข้าตรวจไซต์งาน",
+        "บ้านคุณ", "owner :", "owner:", "เจ้าของบ้าน", "ส่งมอบบ้าน", "ส่งมอบงาน",
+        "พิธียกเสาเอก", "พิธีลงเสาเอก", "ยกเสาเอก", "ยกเสาโท", "บวงสรวง", "วางผัง",
+        "เทคอนกรีต", "เทพื้น", "คานคอดิน", "ผูกเหล็ก", "ฉาบผนัง", "ก่ออิฐ",
+        "ปูกระเบื้องหน้างาน", "ติดตั้ง builtin", "ตรวจรับบ้าน"
+    ]
+
+    has_real_evidence = any(sig in text_lower for sig in real_site_evidence)
+    is_catalog_ad = any(ad in text_lower for ad in marketing_catalog_patterns)
+
+    # ถ้าเป็นโพสต์ขายแบบ/โฆษณา 3D และไม่มีหลักฐานหน้างานก่อสร้างจริง ให้ตัดทิ้ง
+    if is_catalog_ad and not has_real_evidence:
+        return False, None, []
+
+    # ถ้าไม่มีหลักฐานหน้างานก่อสร้างจริงเลย ให้ตัดทิ้ง
+    if not has_real_evidence:
         return False, None, []
 
     # เช็ก Negative list (จังหวัดอื่น)
@@ -160,22 +179,10 @@ def check_strict_udon_location(raw_text):
                 break
         if matched_district:
             break
-
-    # สัญญาณยืนยันว่าเป็นโพสต์หน้างานก่อสร้างจริง
-    construction_signals = [
-        "อัพเดทหน้างาน", "อัปเดตหน้างาน", "site update", "location", "owner", "หน้างาน",
-        "งานฉาบ", "ฉาบผนัง", "งานโครงสร้าง", "งานฐานราก", "ตอกเสาเข็ม", "เสาเอก", "เสาโท",
-        "ปูกระเบื้อง", "มุงหลังคา", "เทคอนกรีต", "เทพื้น", "คานคอดิน", "ก่ออิฐ", "ส่งมอบบ้าน",
-        "ความคืบหน้า", "กำลังก่อสร้าง", "สร้างบ้าน", "ส่งงาน", "บ้านคุณ"
-    ]
-    has_construction_signal = any(sig in text_lower for sig in construction_signals)
             
     if not matched_district:
-        if has_construction_signal:
-            matched_district = "เมืองอุดรธานี"
-            found_terms = ["จังหวัดอุดรธานี", "หน้างานจริง"]
-        else:
-            return False, None, []
+        matched_district = "เมืองอุดรธานี"
+        found_terms = ["อุดรธานี", "หน้างานจริง"]
         
     return True, matched_district, found_terms
 
