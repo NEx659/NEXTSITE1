@@ -2386,8 +2386,13 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       'ขอนแก่น |',
       '| อุดรธานี',
       '| สกลนคร',
+      '📍 facebook',
+      'facebook :',
+      'facebook:',
+      'เพจ :',
       '#รับสร้างบ้าน',
-      '#สร้างบ้าน'
+      '#สร้างบ้าน',
+      '#syhouse'
     ];
 
     let projectBodyText = rawText;
@@ -2401,6 +2406,29 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     // ตัดแฮชแท็กท้ายโพสต์ออกเพื่อไม่ให้ชื่อจังหวัดทำการตลาด (#สร้างบ้านหนองคาย ฯลฯ) มากวนการตรวจหน้างานจริง
     const cleanBodyWithoutTags = projectBodyText.replace(/#\S+/g, ' ');
     const cleanBodyLower = cleanBodyWithoutTags.toLowerCase();
+
+    // -------------------------------------------------------------
+    // ตรวจจับโพสต์ขายแบบ / โพสต์การตลาดโปรโมชั่น (Catalog / 3D Render Ads)
+    // เช่น "เริ่มต้นเพียง 3.29 ล้าน", "แถมฟรีเสาเข็มตอก", "โปรโมชั่นพิเศษ"
+    // ถ้าเป็นโพสต์ขายแบบและไม่มีการอัปเดตหน้างานจริง ให้ตัดทิ้งทันที
+    // -------------------------------------------------------------
+    const marketingAdIndicators = [
+      'เริ่มต้นเพียง', 'ราคาเริ่มต้น', 'โปรโมชั่น', 'แถมฟรี', 'แถมฟรีเสาเข็ม',
+      'ปรึกษาฟรี', 'จองวันนี้', 'รับส่วนลด', 'แจกฟรี', 'ผ่อนเริ่มต้น', 'กู้ได้เต็ม',
+      'โปรโมชั่นพิเศษ', 'แบบบ้านยอดนิยม', 'แบบบ้านแนะนำ', 'แบบบ้านขายดี',
+      'พร้อมให้คุณเป็นเจ้าของ', 'แพ็กเกจสร้างบ้าน', 'จองโปรโมชั่น', 'แบบบ้าน modern'
+    ];
+
+    const isMarketingAd = marketingAdIndicators.some(ad => cleanBodyLower.includes(ad));
+    const hasExplicitSiteUpdate = [
+      'อัพเดทหน้างาน', 'อัปเดตหน้างาน', 'site update', 'ความคืบหน้าหน้างาน',
+      'บ้านคุณ', 'owner :', 'owner:'
+    ].some(s => cleanBodyLower.includes(s));
+
+    if (isMarketingAd && !hasExplicitSiteUpdate) {
+      // โพสต์นี้เป็นเพียงการโฆษณาขายแบบบ้านหรือโปรโมชั่น ไม่ใช่ไซต์งานจริง
+      return;
+    }
 
     // -------------------------------------------------------------
     // ตรวจสอบ Negative List ทันที (ถ้าพบหน้างานระบุจังหวัด/อำเภออื่น เช่น ภูเขียว, ชัยภูมิ, ขอนแก่น, สกลนคร ให้ตัดทิ้งทันที)
