@@ -1222,9 +1222,9 @@ var UDON_COMPANIES = [
   },
   {
     "id": "udon-comp-33",
-    "name": "หจก. เอกชัย รุ่งเรือง รับสร้างบ้าน",
-    "engName": "Ekachai Rungruang Ltd., Part.",
-    "category": "รับเหมาก่อสร้างและสร้างบ้าน เพจ Facebook: เอกชัย รุ่งเรือง",
+    "name": "หจก. เอกชัย รุ่งเรือง การช่าง",
+    "engName": "Ekachai Rungruang Construction & Engineering",
+    "category": "รับเหมาก่อสร้างและสร้างบ้าน เพจ Facebook: เอกชัย รุ่งเรือง การช่าง",
     "province": "อุดรธานี",
     "district": "เมืองอุดรธานี",
     "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
@@ -1234,7 +1234,7 @@ var UDON_COMPANIES = [
     "newProjectsThisMonth": 0,
     "totalValueMillion": 0.0,
     "growthRate": 35,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุมภวาปี",
+    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.กุมภวาปี, อ.หนองหาน",
     "verificationStatus": {
       "isVerified": true,
       "confidence": "100%",
@@ -1249,7 +1249,7 @@ var UDON_COMPANIES = [
     "facebookUrl": "https://www.facebook.com/profile.php?id=100078939424242",
     "facebookSignal": {
       "postDate": "รอสแกน Apify",
-      "pageName": "หจก.เอกชัย รุ่งเรือง",
+      "pageName": "หจก.เอกชัย รุ่งเรือง การช่าง",
       "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
       "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
     },

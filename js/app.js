@@ -854,10 +854,12 @@ function renderCompanyProjectsList(company) {
   const inProgCount = company.projects.filter(p => p.trackingStatus === 'in_progress').length;
   const pendingCount = company.projects.filter(p => p.trackingStatus === 'pending').length;
 
-  const filteredProjects = company.projects.filter(p => {
-    if (activeModalProjectStageFilter === 'all') return true;
-    return p.stageKey === activeModalProjectStageFilter;
-  });
+  const filteredProjects = company.projects
+    .filter(p => {
+      if (activeModalProjectStageFilter === 'all') return true;
+      return p.stageKey === activeModalProjectStageFilter;
+    })
+    .sort((a, b) => (a.progressPercent || 0) - (b.progressPercent || 0));
 
   container.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
@@ -1775,6 +1777,9 @@ function openTrackingStatusModal(targetStatus) {
     }
   });
 
+  // เรียงลำดับโครงการ: ความคืบหน้า % น้อยๆ อยู่ด้านบน (15% -> 35% -> 65% -> 80% -> 95%)
+  allMatchedProjects.sort((a, b) => (a.project.progressPercent || 0) - (b.project.progressPercent || 0));
+
   // อัปเดตตัวเลขในแท็บภายใน Modal
   const elTabNumPending = document.getElementById('modal-tab-num-pending');
   const elTabNumInProg = document.getElementById('modal-tab-num-in-progress');
@@ -2175,7 +2180,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
   // 1. ตารางจับคู่ 33 บริษัท จ.อุดรธานี แบบแม่นยำสูงระดับ URL Slug + Page Name (Precision 1:1)
   const companyMatchers = [
     { id: 'udon-comp-01', urlKeys: ['maharungroj'], nameKeys: ['มหารุ่งโรจน์'], name: 'มหารุ่งโรจน์ รับสร้างบ้าน อุดรธานี' },
-    { id: 'udon-comp-02', urlKeys: ['ud.homeen', 'ud.home'], nameKeys: ['ยูดีโฮม', 'ยูดี โฮม', 'ud.home'], name: 'UD.Home รับสร้างบ้าน อุดรธานี' },
+    { id: 'udon-comp-02', urlKeys: ['ud.homeen', 'ud.home', 'udhome'], nameKeys: ['ยูดีโฮม', 'ยูดี โฮม', 'ud.home', 'ud home', 'udhome', 'ยูดี รับสร้างบ้าน', 'ud.homeen', 'ud engineering'], name: 'UD.Home รับสร้างบ้าน อุดรธานี' },
     { id: 'udon-comp-03', urlKeys: ['moderndehousebuilder', 'modernde'], nameKeys: ['โมเดิร์น ดี', 'โมเดิร์นดี', 'modernde'], name: 'โมเดิร์น ดี รับสร้างบ้าน (Modern De)' },
     { id: 'udon-comp-04', urlKeys: ['twentysix.house', 'twentysix'], nameKeys: ['ทเวนตี้ ซิกส์', 'ทเวนตี้ซิกส์', 'twenty six', 'twentysix'], name: 'ทเวนตี้ ซิกส์ เฮ้าส์ (Twenty Six House)' },
     { id: 'udon-comp-05', urlKeys: ['nasithouseanddesign', 'nasithouse'], nameKeys: ['นสิทธิ์', 'นาสิท', 'nasit home', 'nasit house'], name: 'Nasit Home รับสร้างบ้านและออกแบบ' },
@@ -2205,8 +2210,8 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     { id: 'udon-comp-29', urlKeys: ['baronhousedesign', 'baronhouse'], nameKeys: ['baron house', 'บารอน เฮ้าส์', 'บารอน', 'baron'], name: 'Baron House รับสร้างบ้านและดีไซน์' },
     { id: 'udon-comp-30', urlKeys: ['homespace178', 'homespace'], nameKeys: ['โฮมสเปซ', 'โฮม สเปซ', 'homespace', 'home space'], name: 'โฮมสเปซ รับสร้างบ้าน (Home Space)' },
     { id: 'udon-comp-31', urlKeys: ['61560637513978'], nameKeys: ['ks รวมช่าง', 'เคเอส รวมช่าง', 'ks ruamchang', 'ksruamchang'], name: 'Ks รวมช่าง รับสร้างบ้าน อุดรธานี' },
-    { id: 'udon-comp-32', urlKeys: ['housebuildingsunphage', 'sunphage'], nameKeys: ['ป.รุ่งเรือง', 'ป.รุ่งเรืองพีเอสพีเอส', 'sunphage'], name: 'ป.รุ่งเรืองพีเอสพีเอส รับสร้างบ้าน' },
-    { id: 'udon-comp-33', urlKeys: ['100078939424242'], nameKeys: ['เอกชัย รุ่งเรือง', 'เอกชัยรุ่งเรือง', 'ekachai'], name: 'หจก. เอกชัย รุ่งเรือง รับสร้างบ้าน' }
+    { id: 'udon-comp-32', urlKeys: ['housebuildingsunphage', 'sunphage'], nameKeys: ['ป.รุ่งเรือง', 'ป.รุ่งเรืองพีเอสพีเอส', 'อุดรรับสร้างบ้าน', 'sunphage'], name: 'ป.รุ่งเรืองพีเอสพีเอส รับสร้างบ้าน' },
+    { id: 'udon-comp-33', urlKeys: ['100078939424242'], nameKeys: ['เอกชัย', 'เอกชัย รุ่งเรือง', 'เอกชัยรุ่งเรือง', 'เอกชัย การช่าง', 'เอกชัยการช่าง', 'หจก.เอกชัย', 'ekachai'], name: 'หจก. เอกชัย รุ่งเรือง การช่าง' }
   ];
 
   // คีย์เวิร์ดโครงสร้างและตกแต่งพร้อมวัสดุครบ 5 หมวดสินค้า SCG
@@ -2267,25 +2272,25 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
   const provinceKeywords = ['อุดร', 'อุดรธานี', 'จ.อุดร', 'udon', 'udon thani'];
   const districtList = [
     { district: 'เมืองอุดรธานี', terms: ['เมืองอุดรธานี', 'เมืองอุดร', 'อ.เมือง จ.อุดร', 'อ.เมือง อุดร', 'อ.เมืองอุดร', 'หมากแข้ง', 'บ้านเลื่อม', 'หนองบัว', 'หนองขอนกว้าง', 'บ้านจาน', 'เชียงพิณ', 'หนองนาคำ', 'หมูม่น', 'โนนสูง', 'สามพร้าว', 'บ้านจั่น', 'กุดสระ', 'นิคมสงเคราะห์', 'นาดี'] },
-    { district: 'กุดจับ', terms: ['กุดจับ', 'อ.กุดจับ', 'เมืองเพีย'] },
-    { district: 'หนองวัวซอ', terms: ['หนองวัวซอ', 'อ.หนองวัวซอ', 'โนนทัน'] },
-    { district: 'กุมภวาปี', terms: ['กุมภวาปี', 'อ.กุมภวาปี', 'พันดอน'] },
-    { district: 'โนนสะอาด', terms: ['โนนสะอาด', 'อ.โนนสะอาด'] },
-    { district: 'หนองหาน', terms: ['หนองหาน', 'อ.หนองหาน', 'บ้านเชียง'] },
-    { district: 'ทุ่งฝน', terms: ['ทุ่งฝน', 'อ.ทุ่งฝน'] },
-    { district: 'ไชยวาน', terms: ['ไชยวาน', 'อ.ไชยวาน'] },
-    { district: 'ศรีธาตุ', terms: ['ศรีธาตุ', 'อ.ศรีธาตุ'] },
-    { district: 'วังสามหมอ', terms: ['วังสามหมอ', 'อ.วังสามหมอ'] },
-    { district: 'บ้านดุง', terms: ['บ้านดุง', 'อ.บ้านดุง', 'คำชะโนด'] },
-    { district: 'บ้านผือ', terms: ['บ้านผือ', 'อ.บ้านผือ'] },
-    { district: 'น้ำโสม', terms: ['น้ำโสม', 'อ.น้ำโสม', 'นางัว'] },
-    { district: 'เพ็ญ', terms: ['เพ็ญ', 'อ.เพ็ญ'] },
-    { district: 'สร้างคอม', terms: ['สร้างคอม', 'อ.สร้างคอม'] },
-    { district: 'หนองแสง', terms: ['หนองแสง', 'อ.หนองแสง'] },
-    { district: 'นายูง', terms: ['นายูง', 'อ.นายูง'] },
-    { district: 'พิบูลย์รักษ์', terms: ['พิบูลย์รักษ์', 'อ.พิบูลย์รักษ์'] },
-    { district: 'กู่แก้ว', terms: ['กู่แก้ว', 'อ.กู่แก้ว'] },
-    { district: 'ประจักษ์ศิลปาคม', terms: ['ประจักษ์ศิลปาคม', 'ประจักษ์', 'อ.ประจักษ์ศิลปาคม'] }
+    { district: 'กุดจับ', terms: ['กุดจับ', 'อำเภอกุดจับ', 'อ.กุดจับ', 'ตาลเลียน', 'เมืองเพีย'] },
+    { district: 'หนองวัวซอ', terms: ['หนองวัวซอ', 'อำเภอหนองวัวซอ', 'อ.หนองวัวซอ', 'กุดหมากไฟ', 'หนองอ้อ'] },
+    { district: 'กุมภวาปี', terms: ['กุมภวาปี', 'อำเภอกุมภวาปี', 'อ.กุมภวาปี', 'พันดอน'] },
+    { district: 'โนนสะอาด', terms: ['โนนสะอาด', 'อำเภอโนนสะอาด', 'อ.โนนสะอาด'] },
+    { district: 'หนองหาน', terms: ['หนองหาน', 'อำเภอหนองหาน', 'อ.หนองหาน', 'บ้านเชียง'] },
+    { district: 'ทุ่งฝน', terms: ['ทุ่งฝน', 'อำเภอทุ่งฝน', 'อ.ทุ่งฝน'] },
+    { district: 'ไชยวาน', terms: ['ไชยวาน', 'อำเภอไชยวาน', 'อ.ไชยวาน'] },
+    { district: 'ศรีธาตุ', terms: ['ศรีธาตุ', 'อำเภอศรีธาตุ', 'อ.ศรีธาตุ'] },
+    { district: 'วังสามหมอ', terms: ['วังสามหมอ', 'อำเภอวังสามหมอ', 'อ.วังสามหมอ'] },
+    { district: 'บ้านดุง', terms: ['บ้านดุง', 'อำเภอบ้านดุง', 'อ.บ้านดุง', 'คำชะโนด'] },
+    { district: 'บ้านผือ', terms: ['บ้านผือ', 'อำเภอบ้านผือ', 'อ.บ้านผือ'] },
+    { district: 'น้ำโสม', terms: ['น้ำโสม', 'อำเภอน้ำโสม', 'อ.น้ำโสม', 'นางัว'] },
+    { district: 'เพ็ญ', terms: ['เพ็ญ', 'อำเภอเพ็ญ', 'อ.เพ็ญ'] },
+    { district: 'สร้างคอม', terms: ['สร้างคอม', 'อำเภอสร้างคอม', 'อ.สร้างคอม'] },
+    { district: 'หนองแสง', terms: ['หนองแสง', 'อำเภอหนองแสง', 'อ.หนองแสง'] },
+    { district: 'นายูง', terms: ['นายูง', 'อำเภอนายูง', 'อ.นายูง'] },
+    { district: 'พิบูลย์รักษ์', terms: ['พิบูลย์รักษ์', 'อำเภอพิบูลย์รักษ์', 'อ.พิบูลย์รักษ์'] },
+    { district: 'กู่แก้ว', terms: ['กู่แก้ว', 'อำเภอกู่แก้ว', 'อ.กู่แก้ว'] },
+    { district: 'ประจักษ์ศิลปาคม', terms: ['ประจักษ์ศิลปาคม', 'ประจักษ์', 'อำเภอประจักษ์', 'อ.ประจักษ์ศิลปาคม'] }
   ];
 
   // วนลูปอ่านโพสต์จริงจากไฟล์ JSON
@@ -2296,10 +2301,19 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     const postUrlLower = postUrl.toLowerCase();
     const pageName = (post.pageName || post.pageTitle || post.author || post.user?.name || post.ownerName || post.page_name || '').toLowerCase();
     const inputUrl = (post.inputUrl || post.startUrl || post.targetUrl || '').toLowerCase();
-    const dateStr = post.date || post.time || post.publishedTime || post.timestamp || 'โพสต์ล่าสุด';
+    const dateStr = post.date || post.time || post.publishedTime || post.timestamp || '';
+    const postId = post.id || post.postId || post.post_id || '';
 
-    // ป้องกันโพสต์ซ้ำซ้อน
-    const uniqueKey = postUrl ? postUrl.trim() : (pageName + '_' + rawText.substring(0, 40));
+    // ป้องกันโพสต์ซ้ำซ้อนอย่างแม่นยำ (ไม่นำ URL รวมของเพจมาตัดโพสต์อื่นทิ้ง)
+    let uniqueKey = '';
+    if (postId) {
+      uniqueKey = 'id_' + postId;
+    } else if (postUrl && (postUrl.includes('/posts/') || postUrl.includes('/videos/') || postUrl.includes('/photos/') || postUrl.includes('story_fbid') || postUrl.includes('/reel/'))) {
+      uniqueKey = 'url_' + postUrl.trim();
+    } else {
+      uniqueKey = 'text_' + pageName + '_' + (rawText ? rawText.substring(0, 70).replace(/\s+/g, '') : '') + '_' + dateStr;
+    }
+
     if (uniqueKey && seenPostUrls.has(uniqueKey)) {
       return;
     }
@@ -2408,46 +2422,56 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     const cleanBodyLower = cleanBodyWithoutTags.toLowerCase();
 
     // -------------------------------------------------------------
-    // ตรวจจับโพสต์โฆษณา / ขายแบบ 3D / ภาพเรนเดอร์ / โปรโมชั่น (ไม่ใช่หน้างานจริง)
+    // ตรวจจับโพสต์โฆษณา / ขายแบบ 3D / ภาพเรนเดอร์ / โปรโมชั่น / บทความให้ความรู้ (ไม่ใช่หน้างานจริง)
     // -------------------------------------------------------------
     const marketingCatalogPatterns = [
-      'เริ่มต้นเพียง', 'ราคาเริ่มต้น', 'โปรโมชั่น', 'แถมฟรี', 'แถมฟรีเสาเข็ม',
+      'เริ่มต้นเพียง', 'ราคาเริ่มต้น', 'โปรโมชั่นพิเศษ', 'แถมฟรีเสาเข็ม',
       'ปรึกษาฟรี', 'จองวันนี้', 'รับส่วนลด', 'แจกฟรี', 'ผ่อนเริ่มต้น', 'กู้ได้เต็ม',
-      'โปรโมชั่นพิเศษ', 'แบบบ้านยอดนิยม', 'แบบบ้านแนะนำ', 'แบบบ้านขายดี',
+      'แบบบ้านยอดนิยม', 'แบบบ้านแนะนำ', 'แบบบ้านขายดี',
       'พร้อมให้คุณเป็นเจ้าของ', 'แพ็กเกจสร้างบ้าน', 'จองโปรโมชั่น', 'แบบบ้าน modern',
-      'แบบบ้าน', '3d', 'perspective', 'ภาพ 3d', 'ภาพสามมิติ', 'ภาพจำลอง',
-      'ฟังก์ชันครบ', 'พื้นที่ใช้สอย', 'ห้องนอน', 'ห้องน้ำ', 'โรงจอดรถ',
-      'md-', 'ซีรีส์', 'เปิดตัวแบบบ้าน', 'สไตล์ luxury', 'ออกแบบบ้าน'
+      '3d', 'perspective', 'ภาพ 3d', 'ภาพสามมิติ', 'ภาพจำลอง', 'ภาพเสมือนจริง',
+      'วางแผนทิศบ้าน', 'ก่อนสร้างบ้าน', 'ทิศแดด', 'ทิศลม', 'ผลงานสร้างเสร็จจริงกว่า', 'ผลงานคุณภาพมากกว่า'
     ];
 
-    // สัญญาณยืนยันหน้างานจริงที่ต้องมี (Real Construction Evidence)
+    // สัญญาณลูกค้ารับงานสร้างจริง (Verified Real Client Project)
+    const verifiedCustomerSignals = [
+      'บ้านคุณ', 'ของ คุณ', 'ของคุณ', 'ลูกค้าคุณ', 'owner :', 'owner:', 'owner', 'เจ้าของบ้าน',
+      'พิธียกเสาเอก', 'พิธีลงเสาเอก', 'ยกเสาเอก', 'ยกเสาโท',
+      'ส่งมอบบ้านคุณ', 'ส่งมอบงานคุณ', 'พิธีมอบกุญแจ'
+    ];
+
+    // สัญญาณงานก่อสร้างจริง (Real Site Construction Signals - ต้องเป็นกิจกรรมหน้างานจริง ไม่ใช่สโลแกน)
     const realSiteEvidence = [
       'อัพเดทหน้างาน', 'อัปเดตหน้างาน', 'site update', 'update หน้างาน',
-      'ความคืบหน้าหน้างาน', 'รายงานความคืบหน้า', 'เข้าตรวจหน้างาน', 'เข้าตรวจไซต์งาน',
-      'บ้านคุณ', 'owner :', 'owner:', 'เจ้าของบ้าน', 'ส่งมอบบ้าน', 'ส่งมอบงาน',
-      'พิธียกเสาเอก', 'พิธีลงเสาเอก', 'ยกเสาเอก', 'ยกเสาโท', 'บวงสรวง', 'วางผัง',
-      'เทคอนกรีต', 'เทพื้น', 'คานคอดิน', 'ผูกเหล็ก', 'ฉาบผนัง', 'ก่ออิฐ',
-      'ปูกระเบื้องหน้างาน', 'ติดตั้ง builtin', 'ตรวจรับบ้าน'
+      'อัปเดตความคืบหน้า', 'อัพเดทความคืบหน้า', 'รายงานความคืบหน้า',
+      'อัพเดทงาน', 'อัปเดตงาน', 'update งาน', 'รายงานหน้างาน', 'เข้าตรวจหน้างาน', 'เข้าตรวจไซต์งาน',
+      'จบหน้างาน', 'จบงาน', 'ปิดหน้างาน', 'ส่งมอบบ้าน', 'ตรวจรับบ้าน',
+      'ชมผลงานจริง', 'ผลงานจริง', 'อีกผลงาน', 'อีกหนึ่งผลงาน',
+      '📌site', '📌หน้างาน', 'site :', 'site:', 'หน้างาน :', 'หน้างาน:', 'พิกัดหน้างาน', 'งบก่อสร้าง',
+      'เทคอนกรีต', 'เทพื้น', 'เทปูน', 'คานคอดิน', 'ผูกเหล็ก', 'ฉาบผนัง', 'งานฉาบ', 'ฉาบปูน', 'ก่ออิฐ',
+      'งานฝ้า', 'ฝ้าเพดาน', 'ฝ้าหลุม', 'ฝ้าฉาบเรียบ', 'ปูกระเบื้อง', 'งานปูกระเบื้อง', 'มุงหลังคา', 'ทาสี', 'งานสี', 'ติดตั้ง builtin'
     ];
 
+    const isCatalogOrMarketingAd = marketingCatalogPatterns.some(ad => cleanBodyLower.includes(ad));
+    const hasVerifiedCustomer = verifiedCustomerSignals.some(c => cleanBodyLower.includes(c));
     const hasRealSiteEvidence = realSiteEvidence.some(sig => cleanBodyLower.includes(sig));
-    const isCatalogAd = marketingCatalogPatterns.some(ad => cleanBodyLower.includes(ad));
 
-    // ถ้าเป็นโพสต์ขายแบบ/โฆษณา 3D และไม่มีหลักฐานหน้างานก่อสร้างจริง ให้ตัดทิ้งทันที
-    if (isCatalogAd && !hasRealSiteEvidence) {
+    // กฎเหล็กข้อ 1: ถ้าเป็นโพสต์ขายแบบ 3D หรือโฆษณา ต้องมีชื่อลูกค้าจริง ("บ้านคุณ...") หรือสัญญาณไซต์งานจริง ("📌site", "อัพเดทหน้างาน", "พิธียกเสาเอก") ถึงจะผ่าน
+    if (isCatalogOrMarketingAd && !hasVerifiedCustomer && !hasRealSiteEvidence) {
       return;
     }
 
-    // ถ้าไม่มีหลักฐานหน้างานก่อสร้างจริงเลย (เป็นแค่ข้อความประชาสัมพันธ์ทั่วไป) ให้ตัดทิ้ง
-    if (!hasRealSiteEvidence) {
+    // กฎเหล็กข้อ 2: ถ้าไม่มีหลักฐานหน้างานก่อสร้างจริงเลย ให้ตัดทิ้ง
+    if (!hasVerifiedCustomer && !hasRealSiteEvidence) {
       return;
     }
 
     // -------------------------------------------------------------
-    // ตรวจสอบ Negative List ทันที (ถ้าพบหน้างานระบุจังหวัด/อำเภออื่น เช่น ภูเขียว, ชัยภูมิ, ขอนแก่น, สกลนคร ให้ตัดทิ้งทันที)
+    // ตรวจสอบ Negative List ทันที (ถ้าพบหน้างานระบุจังหวัด/อำเภออื่น เช่น อำนาจเจริญ, บึงแก่นนคร, ภูเขียว, ชัยภูมิ, ขอนแก่น, สกลนคร ให้ตัดทิ้งทันที)
     // -------------------------------------------------------------
     const otherProvincesKeywords = [
-      'ชัยภูมิ', 'ภูเขียว', 'แก้งคร้อ', 'คอนสาร', 'เกษตรสมบูรณ์',
+      'บึงแก่นนคร', 'แก่นนคร', 'กังสดาล', 'บึงหนองโคตร', 'มอดินแดง', 'มข.', 'โนนทัน - บึงแก่นนคร',
+      'อำนาจเจริญ', 'ยโสธร', 'ชัยภูมิ', 'ภูเขียว', 'แก้งคร้อ', 'คอนสาร', 'เกษตรสมบูรณ์',
       'สกลนคร', 'พังโคน', 'กุสุมาลย์', 'พรรณานิคม', 'วาริชภูมิ', 'เต่างอย', 'โคกศรีสุพรรณ', 'วานรนิวาส', 'สว่างแดนดิน',
       'หนองคาย', 'ท่าบ่อ', 'โพนพิสัย', 'ศรีเชียงใหม่', 'สังคม', 'รัตนวาปี',
       'ขอนแก่น', 'กระนวน', 'ชุมแพ', 'น้ำพอง', 'บ้านไผ่', 'เมืองพล', 'หนองเรือ',
@@ -2469,19 +2493,19 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       return;
     }
 
-    // 1. ตรวจสอบว่าในเนื้อหาหน้างานมีคำว่า "อุดร" หรือ "อุดรธานี"
-    const hasProvince = provinceKeywords.some(pKw => cleanBodyLower.includes(pKw.toLowerCase()));
-    if (!hasProvince) {
-      return;
-    }
-
-    // 2. ตรวจหา 1 ใน 20 อำเภอ ของ จ.อุดรธานี ในเนื้อหาหน้างาน
+    // 1. ตรวจหา 1 ใน 20 อำเภอ ของ จ.อุดรธานี ในเนื้อหาหน้างาน
     let matchedDistrictObj = null;
     for (const d of districtList) {
       if (d.terms.some(t => cleanBodyLower.includes(t.toLowerCase()))) {
         matchedDistrictObj = d;
         break;
       }
+    }
+
+    // 2. ตรวจสอบจังหวัด: ต้องมีคำว่า "อุดร / อุดรธานี" หรือระบุ 1 ใน 20 อำเภอของอุดรธานีชัดเจน
+    const hasProvince = provinceKeywords.some(pKw => cleanBodyLower.includes(pKw.toLowerCase()) || pageName.includes(pKw.toLowerCase())) || matchedDistrictObj !== null;
+    if (!hasProvince) {
+      return;
     }
 
     const matchedDistrictName = matchedDistrictObj ? matchedDistrictObj.district : (matchedComp.district || 'เมืองอุดรธานี');
@@ -2516,7 +2540,24 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       ? [locationTag, ...actualFoundKeywords] 
       : [locationTag, 'อุดรธานี', 'ไซต์งานจริง'];
 
-    // 4. สกัดชื่อโครงการ
+    // 4. คำนวณเปอร์เซ็นต์ความคืบหน้าตามเนื้อหาโพสต์จริง (Dynamic Progress Calculation)
+    let calculatedProgress = 50;
+    const isCompletionPost = ['ส่งมอบ', 'จบงาน', 'จบหน้างาน', 'ปิดหน้างาน', 'ตรวจรับ', 'มอบกุญแจ', 'ส่งงาน', 'เสร็จสมบูรณ์', 'ชมผลงานจริง', 'สวยสมใจ'].some(w => cleanBodyLower.includes(w));
+    const isStartingPost = ['ยกเสาเอก', 'เสาเอก', 'เสาโท', 'เซ็นสัญญา', 'ลงเสาเข็ม', 'ตอกเสาเข็ม', 'เปิดหน้างาน', 'วางผัง', 'ขุดดิน', 'ปรับหน้าดิน', 'พิธี'].some(w => cleanBodyLower.includes(w));
+
+    if (isCompletionPost) {
+      calculatedProgress = 95; // โพสต์ส่งมอบ / จบงาน / ปิดหน้างาน -> 90% ขึ้นไป
+    } else if (isStartingPost || matchedStage.key === 'groundbreak') {
+      calculatedProgress = 15; // โพสต์ยกเสาเอก / เสาโท / เซ็นสัญญา / พึ่งเริ่มงาน -> ไม่เกิน 15%
+    } else if (matchedStage.key === 'foundation') {
+      calculatedProgress = 35; // งานฐานราก / ตอม่อ / คานคอดิน
+    } else if (matchedStage.key === 'structure') {
+      calculatedProgress = 65; // งานโครงสร้างเสาคาน / มุงหลังคา
+    } else if (matchedStage.key === 'finishing') {
+      calculatedProgress = 80; // งานก่อฉาบ / ฝ้าเพดาน / ตกแต่ง
+    }
+
+    // 5. สกัดชื่อโครงการ
     const projName = (rawText.length > 8) 
       ? rawText.split('\n')[0].substring(0, 55).replace(/[#*]/g, '').trim() 
       : `ไซต์งาน ${matchedComp.name}`;
@@ -2526,15 +2567,15 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       name: projName || `ไซต์งานก่อสร้าง อ.${matchedDistrictName}`,
       location: `อ.${matchedDistrictName} จ.อุดรธานี`,
       gps: [matchedComp.lat + ((Math.random() - 0.5) * 0.03), matchedComp.lng + ((Math.random() - 0.5) * 0.03)],
-      stage: matchedStage.label,
-      stageKey: matchedStage.key,
-      trackingStatus: matchedStage.key === 'groundbreak' ? 'pending' : (matchedStage.key === 'finishing' ? 'completed' : 'in_progress'),
-      progressPercent: matchedStage.key === 'groundbreak' ? 15 : (matchedStage.key === 'foundation' ? 35 : (matchedStage.key === 'structure' ? 65 : 85)),
+      stage: isCompletionPost ? 'ส่งมอบบ้านและตรวจรับงานงวดสุดท้าย' : matchedStage.label,
+      stageKey: isCompletionPost ? 'finishing' : matchedStage.key,
+      trackingStatus: isCompletionPost ? 'completed' : (matchedStage.key === 'groundbreak' ? 'pending' : 'in_progress'),
+      progressPercent: calculatedProgress,
       estValue: `${(3.2 + (Math.random() * 3.8)).toFixed(1)} ล้านบาท`,
       permitNumber: `ทม.อุดรธานี ${idx + 10}/2569`,
       contractSignDate: '15 มิ.ย. 2026',
       startDate: '01 ก.ค. 2026',
-      estFinishDate: '30 ธ.ค. 2026',
+      estFinishDate: isCompletionPost ? 'สัปดาห์นี้ (เสร็จสมบูรณ์)' : '30 ธ.ค. 2026',
       clientType: 'ลูกค้าสร้างบ้าน อุดรธานี',
       buildingType: 'บ้านเดี่ยวพักอาศัย 1-2 ชั้น',
       siteProof: {
@@ -2543,8 +2584,8 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         caption: rawText || `อัปเดตงานก่อสร้างจริงจากเพจ ${matchedComp.name}`,
         keywords: displayKeywords,
         photoSnippet: 'ภาพถ่ายความคืบหน้าหน้างานจริงจากโพสต์ Facebook',
-        aiDetection: `AI ตรวจพบ: ${displayKeywords.join(', ')} สอดคล้องงานก่อสร้างจริง`,
-        siteStatus: matchedStage.label
+        aiDetection: `AI ตรวจพบ: ${displayKeywords.join(', ')} สอดคล้องงานก่อสร้างจริง (ความคืบหน้า ${calculatedProgress}%)`,
+        siteStatus: isCompletionPost ? 'ส่งมอบบ้านและตรวจรับงานงวดสุดท้าย' : matchedStage.label
       },
       boqMaterials: matchedStage.boq,
       procurementSchedule: [{ week: 'สัปดาห์นี้', task: `นำเสนอสินค้า ${matchedStage.boq[0].sku}`, status: 'กำลังติดตาม' }]
@@ -2556,6 +2597,10 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
 
   // อัปเดตสถิติยอดรวมและสัดส่วนสเตจของทุกบริษัทจากข้อมูลจริงที่สแกนได้
   UDON_COMPANIES.forEach(comp => {
+    // เรียงลำดับโครงการในแต่ละบริษัท: ความคืบหน้า % น้อยๆ (งานพึ่งเริ่ม/ยกเสาเอก) อยู่ด้านบนสุด
+    if (comp.projects && comp.projects.length > 0) {
+      comp.projects.sort((a, b) => (a.progressPercent || 0) - (b.progressPercent || 0));
+    }
     comp.totalProjects = comp.projects.length;
     comp.totalValueMillion = comp.projects.length > 0 ? parseFloat((comp.projects.length * 3.5).toFixed(1)) : 0.0;
     const counts = { groundbreak: 0, foundation: 0, structure: 0, finishing: 0 };
