@@ -2442,12 +2442,27 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       }
     }
 
-    // ต้องผ่านเงื่อนไขทั้ง 2 ข้อพร้อมกัน (มีคำว่าอุดร + มี 1 ใน 20 อำเภอ ของ จ.อุดรธานี)
-    if (!hasProvince || !matchedDistrictObj) {
+    // สัญญาณยืนยันว่าเป็นโพสต์หน้างานก่อสร้างจริง
+    const constructionSignals = [
+      'อัพเดทหน้างาน', 'อัปเดตหน้างาน', 'site update', 'location', 'owner', 'หน้างาน',
+      'งานฉาบ', 'ฉาบผนัง', 'งานโครงสร้าง', 'งานฐานราก', 'ตอกเสาเข็ม', 'เสาเอก', 'เสาโท',
+      'ปูกระเบื้อง', 'มุงหลังคา', 'เทคอนกรีต', 'เทพื้น', 'คานคอดิน', 'ก่ออิฐ', 'ส่งมอบบ้าน',
+      'ความคืบหน้า', 'กำลังก่อสร้าง', 'สร้างบ้าน', 'ส่งงาน', 'บ้านคุณ'
+    ];
+    const hasConstructionSignal = constructionSignals.some(sig => cleanBodyLower.includes(sig));
+
+    // เงื่อนไขการยอมรับโครงการ:
+    // ข้อ A: มีทั้งคำว่า "อุดร" + ระบุ 1 ใน 20 อำเภอ ชัดเจน
+    // ข้อ B: ระบุ "จังหวัดอุดรธานี / อุดรธานี" โดยตรง + มีสัญญาณไซต์งานก่อสร้างจริงชัดเจน (แม้ไม่ได้พิมพ์ชื่ออำเภอ เช่น Location : จังหวัดอุดรธานี)
+    if (!hasProvince) {
       return;
     }
 
-    const matchedDistrictName = matchedDistrictObj.district;
+    if (!matchedDistrictObj && !hasConstructionSignal) {
+      return;
+    }
+
+    const matchedDistrictName = matchedDistrictObj ? matchedDistrictObj.district : (matchedComp.district || 'เมืองอุดรธานี');
 
     // 2. วิเคราะห์สเตจก่อสร้างตามคีย์เวิร์ดที่มีอยู่จริงในโพสต์
     let matchedStage = stageRules[3]; // default: finishing/general

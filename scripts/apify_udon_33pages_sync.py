@@ -147,9 +147,22 @@ def check_strict_udon_location(raw_text):
                 break
         if matched_district:
             break
+
+    # สัญญาณยืนยันว่าเป็นโพสต์หน้างานก่อสร้างจริง
+    construction_signals = [
+        "อัพเดทหน้างาน", "อัปเดตหน้างาน", "site update", "location", "owner", "หน้างาน",
+        "งานฉาบ", "ฉาบผนัง", "งานโครงสร้าง", "งานฐานราก", "ตอกเสาเข็ม", "เสาเอก", "เสาโท",
+        "ปูกระเบื้อง", "มุงหลังคา", "เทคอนกรีต", "เทพื้น", "คานคอดิน", "ก่ออิฐ", "ส่งมอบบ้าน",
+        "ความคืบหน้า", "กำลังก่อสร้าง", "สร้างบ้าน", "ส่งงาน", "บ้านคุณ"
+    ]
+    has_construction_signal = any(sig in text_lower for sig in construction_signals)
             
     if not matched_district:
-        return False, None, []
+        if has_construction_signal:
+            matched_district = "เมืองอุดรธานี"
+            found_terms = ["จังหวัดอุดรธานี", "หน้างานจริง"]
+        else:
+            return False, None, []
         
     return True, matched_district, found_terms
 
