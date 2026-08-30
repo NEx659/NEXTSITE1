@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXTSITE AI — Construction Sales & Opportunity Dashboard | Sakon Nakhon (จ.สกลนคร)</title>
+  <title>NEXTSITE AI — Construction Sales & Opportunity Dashboard | Udon Thani (จ.อุดรธานี)</title>
   <meta name="description"
-    content="ระบบ AI ค้นหาและจัดลำดับความสำคัญของบริษัทรับสร้างบ้านและผู้รับเหมา จ.สกลนคร สำหรับทีมขาย SCG พร้อมหลักฐานงานก่อสร้างจริง">
+    content="ระบบ AI ค้นหาและจัดลำดับความสำคัญของบริษัทรับสร้างบ้านและผู้รับเหมา จ.อุดรธานี สำหรับทีมขาย SCG พร้อมหลักฐานงานก่อสร้างจริง">
 
   <!-- Google Fonts: Prompt & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,7 +97,7 @@
 
         <!-- Blue Action Button: Apify Scraper -->
         <button onclick="document.getElementById('apify-integration-modal').style.display='flex'" style="background: #0284C7; color: #FFFFFF; border: 1px solid #0369A1; border-radius: 8px; padding: 6px 14px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(2,132,199,0.35); transition: all 0.2s ease;">
-          <span>🤖 Apify Scraper (19 เพจ)</span>
+          <span>🤖 Apify Scraper (33 เพจ)</span>
         </button>
 
         <div style="width: 1px; height: 22px; background: rgba(255,255,255,0.2); margin: 0 4px;"></div>
@@ -134,7 +134,7 @@
   <!-- Main Container -->
   <main class="main-wrapper">
 
-    <!-- Live Facebook Crawler Signal Ticker (Real-Time Sakon Nakhon Feeds) -->
+    <!-- Live Facebook Crawler Signal Ticker (Real-Time Udon Thani Feeds) -->
     <div class="fb-ticker-container" id="fb-ticker-wrapper" style="display: flex; align-items: center; gap: 12px; overflow: hidden;">
       <div class="fb-ticker-left" style="display: flex; align-items: center; gap: 8px; width: 100%; min-width: 0; overflow: hidden;">
         <span class="fb-badge" style="flex-shrink: 0;">
@@ -148,7 +148,7 @@
           <span class="live-dot"></span> LIVE
         </div>
         <div id="fb-ticker-text" class="fb-ticker-content" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0;">
-          <strong>ตรวจพบล่าสุด:</strong> กำลังเชื่อมต่อ Real-Time Stream เพจรับสร้างบ้าน จ.สกลนคร...
+          <strong>ตรวจพบล่าสุด:</strong> กำลังเชื่อมต่อ Real-Time Stream เพจรับสร้างบ้าน จ.อุดรธานี...
         </div>
       </div>
     </div>
@@ -157,7 +157,7 @@
     <section class="kpi-grid">
       <!-- KPI 1: Total Companies Detected -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('total')"
-        title="คลิกเพื่อดูสรุปภาพรวม 19 บริษัท จ.สกลนคร"
+        title="คลิกเพื่อดูสรุปภาพรวม 33 บริษัท จ.อุดรธานี"
         style="border-left: 4px solid #D71920;">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทที่ตรวจพบทั้งหมด</span>
@@ -173,7 +173,7 @@
           <span class="kpi-unit">บริษัท</span>
         </div>
         <div class="kpi-subtext">
-          <span class="trend-up">↑ 100% ยืนยันเพจจริง</span> ครอบคลุมทั่ว จ.สกลนคร
+          <span class="trend-up">↑ 100% ยืนยันเพจจริง</span> ครอบคลุมทั่ว จ.อุดรธานี
         </div>
         <div class="kpi-click-hint">กดดูรายละเอียดสรุปย่อ →</div>
       </div>
@@ -304,7 +304,7 @@
           <span class="kw-icon">🌐</span>
           <div class="kw-text-group">
             <span class="kw-main">ทั้งหมด (All Signals)</span>
-            <span class="kw-meaning">19 บริษัท 64 โครงการ</span>
+            <span class="kw-meaning">33 บริษัท 64 โครงการ</span>
           </div>
         </button>
 
@@ -479,7 +479,7 @@
     <div id="map-view-container" class="map-view-container">
       <div
         style="margin-bottom: 0.75rem; font-weight: 700; color: #334155; display: flex; justify-content: space-between; align-items: center;">
-        <span>📍 พิกัดที่ตั้งสำนักงานและไซต์งานก่อสร้าง จ.สกลนคร</span>
+        <span>📍 พิกัดที่ตั้งสำนักงานและไซต์งานก่อสร้าง จ.อุดรธานี</span>
         <span style="font-size: 0.75rem; color: #64748B;">คลิกที่หมุดเพื่อเปิดข้อมูลเจาะลึกบริษัท</span>
       </div>
       <div id="udonMap"></div>
@@ -498,10 +498,10 @@
             COMPANY DEEP ANALYSIS & SALES PLAYBOOK • UDON THANI
           </div>
           <h2 id="modal-company-name" style="font-size: 1.4rem; font-weight: 800; color: #0F172A; margin: 2px 0;">
-            บริษัท สกลนคร โฮมบิลเดอร์ แอนด์ คอนสตรัคชั่น จำกัด
+            บริษัท อุดรธานี โฮมบิลเดอร์ แอนด์ คอนสตรัคชั่น จำกัด
           </h2>
           <div id="modal-company-category" style="font-size: 0.8rem; color: #64748B;">
-            บริษัทรับสร้างบ้านพรีเมียม • เมืองสกลนคร จ.สกลนคร
+            บริษัทรับสร้างบ้านพรีเมียม • เมืองอุดรธานี จ.อุดรธานี
           </div>
         </div>
         <button class="modal-close-btn" onclick="closeCompanyModal()">
@@ -635,7 +635,7 @@
               <path d="M9 11l3 3L22 4" />
               <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
             </svg>
-            <span>Action Plan & Sales Playbook สำหรับทีมขาย SCG โซนสกลนคร</span>
+            <span>Action Plan & Sales Playbook สำหรับทีมขาย SCG โซนอุดรธานี</span>
           </div>
           <div id="modal-action-plan-list" class="action-steps-list">
             <!-- Steps Injected via JS -->
@@ -663,13 +663,13 @@
       <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
         <div>
           <div style="font-size: 0.72rem; color: var(--primary-red); font-weight: 700; text-transform: uppercase;">
-            PROJECT DEEP-DIVE & MATERIAL BOQ SPECIFICATION • SAKON NAKHON
+            PROJECT DEEP-DIVE & MATERIAL BOQ SPECIFICATION • UDON NAKHON
           </div>
           <h2 id="projmodal-title" style="font-size: 1.3rem; font-weight: 800; color: #0F172A; margin: 2px 0;">
             คฤหาสน์หรู The Lakefront Nong Han (ริมหนองหาร)
           </h2>
           <div id="projmodal-subtitle" style="font-size: 0.78rem; color: #64748B;">
-            ถ.รอบหนองหาร อ.เมือง จ.สกลนคร • มูลค่า 19.5 ล้านบาท
+            ถ.รอบหนองหาร อ.เมือง จ.อุดรธานี • มูลค่า 19.5 ล้านบาท
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -709,7 +709,7 @@
           <div
             style="background: #F8FAFC; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
             <div style="font-size: 0.7rem; color: #64748B;">เลขที่ใบอนุญาต</div>
-            <div id="projmodal-permit" style="font-weight: 700; color: #0F172A; font-size: 0.82rem;">ทม.สกลนคร 74/2569
+            <div id="projmodal-permit" style="font-weight: 700; color: #0F172A; font-size: 0.82rem;">ทม.อุดรธานี 74/2569
             </div>
           </div>
           <div
@@ -736,7 +736,7 @@
                 <path
                   d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
-              <span>หลักฐานการยืนยันหน้างานจริงจาก Facebook (AI Verified Source • สกลนคร)</span>
+              <span>หลักฐานการยืนยันหน้างานจริงจาก Facebook (AI Verified Source • อุดรธานี)</span>
             </div>
             <div style="display: flex; align-items: center; gap: 0.65rem;">
               <span id="projmodal-postedtime" style="font-size: 0.72rem; color: #64748B;">โพสต์เมื่อ 1
@@ -830,14 +830,14 @@
           <div>
             <div
               style="font-size: 0.75rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; letter-spacing: 0.5px;">
-              SCG Product Demand Intelligence • จ.สกลนคร
+              SCG Product Demand Intelligence • จ.อุดรธานี
             </div>
             <h2 id="prodmodal-title"
               style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-top: 2px;">
               ปูนซีเมนต์ SCG & คอนกรีต CPAC
             </h2>
             <div id="prodmodal-subtitle" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 3px;">
-              มูลค่าความต้องการรวมทั่วสกลนคร: <strong>฿5.14M</strong> (สัดส่วน 56.2% ของวัสดุทั้งหมด)
+              มูลค่าความต้องการรวมทั่วอุดรธานี: <strong>฿5.14M</strong> (สัดส่วน 56.2% ของวัสดุทั้งหมด)
             </div>
           </div>
           <div id="prodmodal-badge-container">
@@ -873,12 +873,12 @@
           </div>
         </div>
 
-        <!-- Matching Target Projects in Sakon Nakhon -->
+        <!-- Matching Target Projects in Udon Thani -->
         <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
             <div>
               <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);">
-                🏗️ ไซต์งานใน จ.สกลนคร ที่มีความต้องการสินค้านี้ด่วนที่สุด
+                🏗️ ไซต์งานใน จ.อุดรธานี ที่มีความต้องการสินค้านี้ด่วนที่สุด
               </h3>
               <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 1px;">
                 คลิกรายการเพื่อเปิดดู BOQ และหลักฐานภาพถ่ายหน้างานจริง
@@ -905,14 +905,14 @@
           <div>
             <div id="kpimodal-tag"
               style="font-size: 0.72rem; color: var(--primary-red); font-weight: 700; text-transform: uppercase;">
-              EXECUTIVE KPI DRILL-DOWN • จ.สกลนคร
+              EXECUTIVE KPI DRILL-DOWN • จ.อุดรธานี
             </div>
             <h2 id="kpimodal-title"
               style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 2px 0;">
-              สรุปภาพรวมบริษัทที่ตรวจพบใน จ.สกลนคร
+              สรุปภาพรวมบริษัทที่ตรวจพบใน จ.อุดรธานี
             </h2>
             <div id="kpimodal-subtitle" style="font-size: 0.78rem; color: var(--text-secondary);">
-              ข้อมูลวิเคราะห์เชิงกลยุทธ์สำหรับทีมขาย SCG สกลนคร
+              ข้อมูลวิเคราะห์เชิงกลยุทธ์สำหรับทีมขาย SCG อุดรธานี
             </div>
           </div>
           <button class="modal-close-btn" onclick="closeKpiModal()">
@@ -937,13 +937,13 @@
         <div class="modal-header" style="background: #1E293B; color: #FFFFFF; padding: 1.1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
           <div>
             <div id="crmmodal-tag" style="font-size: 0.72rem; color: #94A3B8; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
-              SCG CRM PROJECT PIPELINE • จ.สกลนคร
+              SCG CRM PROJECT PIPELINE • จ.อุดรธานี
             </div>
             <h2 id="crmmodal-title" style="font-size: 1.3rem; font-weight: 800; margin: 3px 0 0 0; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
               ⚡ รายชื่อโครงการที่สถานะ: กำลังติดตาม
             </h2>
             <div id="crmmodal-subtitle" style="font-size: 0.8rem; color: #CBD5E1; margin-top: 3px;">
-              พบทั้งหมด 21 โครงการจาก 19 บริษัทรับสร้างบ้านในสารบบ
+              พบทั้งหมด 21 โครงการจาก 33 บริษัทรับสร้างบ้านในสารบบ
             </div>
           </div>
           <button class="modal-close-btn" onclick="closeCrmStatusModal()" style="background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; cursor: pointer;">
@@ -991,7 +991,7 @@
               AUTOMATED REAL-TIME FACEBOOK INTELLIGENCE PIPELINE
             </div>
             <h2 style="font-size: 1.25rem; font-weight: 800; margin: 4px 0 0 0; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
-              <span>🤖 ศูนย์เชื่อมต่อ Apify Scraper & Webhook (19 บริษัท จ.สกลนคร)</span>
+              <span>🤖 ศูนย์เชื่อมต่อ Apify Scraper & Webhook (33 บริษัท จ.อุดรธานี)</span>
             </h2>
           </div>
           <button class="modal-close-btn" onclick="closeApifyModal()" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: none; font-size: 1.2rem; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -1013,7 +1013,7 @@
             </div>
 
             <p style="font-size: 0.78rem; color: #475569; line-height: 1.5; margin-bottom: 8px;">
-              ตั้งค่าให้ Apify สแกน 19 เพจในสกลนครอัตโนมัติ <strong>ทุกๆ 4 ชั่วโมง</strong> (00:00, 04:00, 08:00, 12:00, 16:00, 20:00 น.) ตลอด 24 ชม. แม้ปิดหน้าจอคอมพิวเตอร์
+              ตั้งค่าให้ Apify สแกน 33 เพจในอุดรธานีอัตโนมัติ <strong>ทุกๆ 4 ชั่วโมง</strong> (00:00, 04:00, 08:00, 12:00, 16:00, 20:00 น.) ตลอด 24 ชม. แม้ปิดหน้าจอคอมพิวเตอร์
             </p>
 
             <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #334155; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
@@ -1037,7 +1037,7 @@
             </div>
 
             <p style="font-size: 0.78rem; color: #475569; line-height: 1.5; margin-bottom: 10px;">
-              เมื่อบอทบน Apify สแกน 19 เพจเสร็จ (เช่น สแกนทุกเช้า 08:00 น.) Apify จะยิงส่งข้อมูลโพสต์ (Payload) ตรงเข้าสู่ Webhook URL นี้โดยอัตโนมัติทันที
+              เมื่อบอทบน Apify สแกน 33 เพจเสร็จ (เช่น สแกนทุกเช้า 08:00 น.) Apify จะยิงส่งข้อมูลโพสต์ (Payload) ตรงเข้าสู่ Webhook URL นี้โดยอัตโนมัติทันที
             </p>
 
             <div style="background: #0F172A; color: #38BDF8; padding: 10px 12px; border-radius: 6px; font-family: monospace; font-size: 0.78rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1055,7 +1055,7 @@
           <!-- Target Pages List Box -->
           <div style="background: #FFFFFF; border: 1px solid #E2D9C8; border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <strong style="font-size: 0.85rem; color: #0F172A;">📋 รายชื่อ 19 บริษัทเป้าหมายใน Actor Config:</strong>
+              <strong style="font-size: 0.85rem; color: #0F172A;">📋 รายชื่อ 33 บริษัทเป้าหมายใน Actor Config:</strong>
               <span style="font-size: 0.72rem; color: #64748B; background: #F1ECE0; padding: 2px 8px; border-radius: 4px;">scripts/apify_actor_config.json</span>
             </div>
             <div style="max-height: 110px; overflow-y: auto; background: #FAF8F2; border: 1px solid #E5E0D0; border-radius: 6px; padding: 8px; font-size: 0.72rem; font-family: monospace; color: #334155;">
@@ -1063,14 +1063,14 @@
               <div>2. https://www.facebook.com/338builderSakonnakhon/ (338 รับสร้างบ้าน)</div>
               <div>3. https://www.facebook.com/p/NATCHA-HOME-100083457546393/ (NATCHA HOME)</div>
               <div>4. https://www.facebook.com/smartdesingarchitect (สมาร์ทดีไซน์ เชียงเครือ)</div>
-              <div>5. https://www.facebook.com/Aonsarawut420/ (JS HOME สกลนคร)</div>
+              <div>5. https://www.facebook.com/Aonsarawut420/ (JS HOME อุดรธานี)</div>
               <div>6. https://www.facebook.com/HD22homebuilder/ (เฮ็ดดี22 รับสร้างบ้าน พรรณานิคม)</div>
               <div>7. https://www.facebook.com/profile.php?id=100063864682531 (WS Design)</div>
               <div>8. https://www.facebook.com/p/บริษัท-สีหราช-คอนสตรัคชั่น-จำกัด-100091362115925/ (สีหราช คอนสตรัคชั่น)</div>
-              <div>9. https://www.facebook.com/p/KLM-รับสร้างบ้านสกลนคร-61553624623287/ (KLM รับสร้างบ้าน)</div>
+              <div>9. https://www.facebook.com/p/KLM-รับสร้างบ้านอุดรธานี-61553624623287/ (KLM รับสร้างบ้าน)</div>
               <div>10. https://www.facebook.com/b.srang.ban.sklnkhr.xes.khe.bi.lding.hom.cakad/ (SK Building Home)</div>
               <div>11. https://www.facebook.com/natureestatethailand/ (เนเจอร์ เอ็ซเทท)</div>
-              <div>12. https://www.facebook.com/p/เสริมสุดารับสร้างบ้านสกลนคร-100076394798854/ (เสริมสุดาการช่าง)</div>
+              <div>12. https://www.facebook.com/p/เสริมสุดารับสร้างบ้านอุดรธานี-100076394798854/ (เสริมสุดาการช่าง)</div>
               <div>13. https://www.facebook.com/Apinya.Hut/ (อภิญญาคอนสตรัคชั่น)</div>
               <div>14. https://www.facebook.com/HIRUNSAPESAN/ (หิรัญทรัพย์คอนสตรัคชั่น)</div>
               <div>15. https://www.facebook.com/HomeEsanNorth/ (ธนเสฏฐ์ รับสร้างบ้าน)</div>
@@ -1113,13 +1113,13 @@
             </div>
             <div id="apify-console-logs" style="font-family: monospace; font-size: 0.72rem; line-height: 1.45; color: #94A3B8; min-height: 90px; max-height: 140px; overflow-y: auto; background: #020617; padding: 8px; border-radius: 6px; border: 1px solid #334155;">
               > Apify Integration Ready.<br>
-              > 19 Sakon Nakhon Home Builder URLs loaded.<br>
+              > 19 Udon Thani Home Builder URLs loaded.<br>
               > กดปุ่ม "⚡ ทดสอบยิง Webhook Push สด" หรือ "🚀 รัน Apify Scraper" เพื่อเริ่มประมวลผล...
             </div>
 
             <div style="display: flex; gap: 8px; margin-top: 10px;">
               <button onclick="runApifyLiveScrape()" id="btn-run-apify" style="flex: 1.5; background: #0284C7; color: #FFFFFF; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(2,132,199,0.4);">
-                <span>🚀 รัน Apify Scraper สแกน 19 บริษัทสด</span>
+                <span>🚀 รัน Apify Scraper สแกน 33 บริษัทสด</span>
               </button>
               <button onclick="resetToInitialVerifiedData()" style="flex: 0.8; background: #475569; color: #FFFFFF; border: none; padding: 10px 12px; border-radius: 8px; font-weight: 800; font-size: 0.78rem; cursor: pointer;">
                 🔄 รีเซ็ตค่าเริ่มต้น

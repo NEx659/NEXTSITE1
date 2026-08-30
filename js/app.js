@@ -1,5 +1,5 @@
 /**
- * NEXTSITE AI - Main Application Logic & CRM Project Tracking (Sakon Nakhon)
+ * NEXTSITE AI - Main Application Logic & CRM Project Tracking (Udon Thani)
  */
 
 let allCompanies = [];
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. ผูก Event Listeners สำหรับการค้นหาและฟิลเตอร์
   setupEventListeners();
 
-  // 6. จำลอง Live Facebook Crawler Ticker (สกลนคร)
+  // 6. จำลอง Live Facebook Crawler Ticker (อุดรธานี)
   startFacebookCrawlerTicker();
 });
 
@@ -258,7 +258,7 @@ function getProjectFacebookUrl(company, project) {
 function getCompanyAccurateDetail(company) {
   const name = (company.name || '') + ' ' + (company.engName || '');
   if (name.includes('เนเจอร์') || name.includes('NATURE') || name.includes('nature')) {
-    return 'รับสร้างบ้านและออกแบบครบวงจร สไตล์ Modern & Nordic พรีเมียม สกลนคร';
+    return 'รับสร้างบ้านและออกแบบครบวงจร สไตล์ Modern & Nordic พรีเมียม อุดรธานี';
   } else if (name.includes('คนสร้างบ้าน')) {
     return 'รับเหมาก่อสร้างอาคารพาณิชย์ โชว์รูม และบ้านพักอาศัยครบวงจร ถ.นิตโย';
   } else if (name.includes('ทรัพย์ยิ่งเจริญ') || name.includes('SYC') || name.includes('S.Y.C.')) {
@@ -266,29 +266,29 @@ function getCompanyAccurateDetail(company) {
   } else if (name.includes('เอสเตท 818') || name.includes('Estate 818') || name.includes('818')) {
     return 'ผู้พัฒนาโครงการบ้านจัดสรร พูลวิลล่าริมหนองหาร และบ้านพักอาศัย โซนเชียงเครือ';
   } else if (name.includes('338')) {
-    return 'สตูดิโอสถาปัตยกรรม ออกแบบและรับสร้างบ้าน Luxury & Minimal สกลนคร';
+    return 'สตูดิโอสถาปัตยกรรม ออกแบบและรับสร้างบ้าน Luxury & Minimal อุดรธานี';
   } else if (name.includes('เฮ็ดดี') || name.includes('Heddee') || name.includes('22')) {
-    return 'รับเหมางานโครงสร้าง วิศวกรรมฐานราก และอาคารพาณิชย์ ทล.22 นิตโย สกลนคร';
+    return 'รับเหมางานโครงสร้าง วิศวกรรมฐานราก และอาคารพาณิชย์ ทล.22 นิตโย อุดรธานี';
   } else if (name.includes('เสริมสุดา') || name.includes('Serm Suda')) {
     return 'รับสร้างบ้านทรงปั้นหยา โมเดิร์น และอาคารสาธารณะ โซนสว่างแดนดิน';
   } else if (name.includes('ป.ไพศาล') || name.includes('Paisal')) {
-    return 'รับเหมาก่อสร้างอาคารพาณิชย์ โกดังคลังสินค้า และบ้านพักอาศัย อ.เมืองสกลนคร';
+    return 'รับเหมาก่อสร้างอาคารพาณิชย์ โกดังคลังสินค้า และบ้านพักอาศัย อ.เมืองอุดรธานี';
   } else if (name.includes('อภิญญา') || name.includes('Apinya')) {
     return 'รับสร้างบ้านสไตล์ Contemporary และบ้านสวนพรีเมียม โซนพังโคน-กุดบาก';
   } else if (name.includes('หิรัญทรัพย์') || name.includes('Hiransub')) {
     return 'รับเหมาก่อสร้างบ้านพักอาศัย งานโครงสร้าง และตกแต่งภายใน อ.พรรณานิคม';
   } else if (name.includes('Smart') || name.includes('สมาร์ท')) {
-    return 'ผู้เชี่ยวชาญออกแบบ 3D และก่อสร้างบ้านเดี่ยว Modern Luxury สกลนคร';
+    return 'ผู้เชี่ยวชาญออกแบบ 3D และก่อสร้างบ้านเดี่ยว Modern Luxury อุดรธานี';
   } else if (name.includes('JS HOME') || name.includes('JS')) {
     return 'รับสร้างบ้านพักอาศัยชั้นเดียวและสองชั้น มาตรฐาน มยผ. โซนวานรนิวาส';
   } else if (name.includes('NATCHA') || name.includes('ณัชชา')) {
-    return 'รับสร้างบ้านเดี่ยวสไตล์ Modern Contemporary คุณภาพสูง โซนเมืองสกลนคร';
+    return 'รับสร้างบ้านเดี่ยวสไตล์ Modern Contemporary คุณภาพสูง โซนเมืองอุดรธานี';
   } else if (name.includes('ธนเสฏฐ์') || name.includes('Thanaseth')) {
-    return 'วิศวกรรมโยธา รับเหมางานโครงสร้างขนาดใหญ่และอาคารพาณิชย์ สกลนคร';
+    return 'วิศวกรรมโยธา รับเหมางานโครงสร้างขนาดใหญ่และอาคารพาณิชย์ อุดรธานี';
   } else if (name.includes('ภูพาน') || name.includes('Phupan')) {
     return 'รับเหมาก่อสร้างบ้านพักตากอากาศ รีสอร์ต และงานโครงสร้าง โซนภูพาน-เต่างอย';
   }
-  return company.category || 'ผู้รับเหมาก่อสร้างและรับสร้างบ้านมาตรฐาน จ.สกลนคร';
+  return company.category || 'ผู้รับเหมาก่อสร้างและรับสร้างบ้านมาตรฐาน จ.อุดรธานี';
 }
 
 /**
@@ -302,7 +302,7 @@ function renderTable() {
     tbody.innerHTML = `
       <tr>
         <td colspan="9" style="text-align: center; padding: 2.5rem; color: #64748B;">
-          ไม่พบบริษัทที่ตรงกับเงื่อนไขการค้นหาใน จ.สกลนคร
+          ไม่พบบริษัทที่ตรงกับเงื่อนไขการค้นหาใน จ.อุดรธานี
         </td>
       </tr>
     `;
@@ -330,7 +330,7 @@ function renderTable() {
             <div style="display: flex; align-items: center; gap: 0.4rem;">
               <span class="company-title" style="font-size: 0.92rem; font-weight: 800; color: var(--text-main);">${company.name}</span>
               ${isVerified ? `
-                <span title="ยืนยันแล้ว: มีงานก่อสร้างจริงในสกลนคร (${company.verificationStatus.confidence})" style="color: #10B981; display: inline-flex; align-items: center;">
+                <span title="ยืนยันแล้ว: มีงานก่อสร้างจริงในอุดรธานี (${company.verificationStatus.confidence})" style="color: #10B981; display: inline-flex; align-items: center;">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                 </span>
               ` : ''}
@@ -394,7 +394,7 @@ function renderTable() {
         </td>
         <td style="text-align: right;" onclick="event.stopPropagation();">
           <div class="action-btn-cell">
-            <button class="btn-map-pin" title="ดูตำแหน่งบนแผนที่สกลนคร" onclick="showOnMap('${company.id}')">
+            <button class="btn-map-pin" title="ดูตำแหน่งบนแผนที่อุดรธานี" onclick="showOnMap('${company.id}')">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             </button>
             <button class="btn-view-detail" onclick="openCompanyModal('${company.id}')">
@@ -559,8 +559,8 @@ function applyFilters() {
  */
 const FB_KEYWORD_DATA = {
   'all': {
-    title: '🌐 สัญญาณทั้งหมดจากเพจ Facebook (19 บริษัท จ.สกลนคร)',
-    meaning: 'ครอบคลุมทุกคีย์เวิร์ดและทุกสเตจงานก่อสร้างที่ตรวจพบใน จ.สกลนคร',
+    title: '🌐 สัญญาณทั้งหมดจากเพจ Facebook (33 บริษัท จ.อุดรธานี)',
+    meaning: 'ครอบคลุมทุกคีย์เวิร์ดและทุกสเตจงานก่อสร้างที่ตรวจพบใน จ.อุดรธานี',
     scgStrategy: 'ทีมขายสามารถดูภาพรวมและจัดลำดับความสำคัญของบริษัทตาม AI Score',
     targetProducts: 'สินค้า SCG ทุกกลุ่มผลิตภัณฑ์',
     badgeClass: 'blue'
@@ -976,7 +976,7 @@ function renderCompanyProjectsList(company) {
                   <span style="color: #64748B;">ความคืบหน้า:</span> <strong style="color: var(--primary-red); font-weight: 800;">${proj.progressPercent || 25}%</strong>
                 </div>
                 <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                  <span style="color: #64748B;">เลขที่ใบอนุญาต:</span> <strong style="color: #0F172A;">${proj.permitNumber || 'ทม.สกลนคร 74/2569'}</strong>
+                  <span style="color: #64748B;">เลขที่ใบอนุญาต:</span> <strong style="color: #0F172A;">${proj.permitNumber || 'ทม.อุดรธานี 74/2569'}</strong>
                 </div>
                 <div>
                   <span style="color: #64748B;">วันที่เริ่มตอกเสาเข็ม:</span> <strong style="color: #0F172A;">${proj.startDate || '28 ส.ค. 2026'}</strong>
@@ -1215,7 +1215,7 @@ function openProjectModal(companyId, projectId) {
   // Real Site Proof
   const proof = project.siteProof || {};
   document.getElementById('projmodal-postedtime').textContent = `โพสต์เมื่อ ${proof.postedTime || 'เมื่อเร็วๆ นี้'}`;
-  document.getElementById('projmodal-sitestatus').textContent = proof.siteStatus || 'ตรวจพบการปฏิบัติงานจริง ณ ไซต์งานก่อสร้างใน จ.สกลนคร';
+  document.getElementById('projmodal-sitestatus').textContent = proof.siteStatus || 'ตรวจพบการปฏิบัติงานจริง ณ ไซต์งานก่อสร้างใน จ.อุดรธานี';
   document.getElementById('projmodal-aidetection').textContent = proof.aiDetection || 'AI ตรวจพบสัญญาณความเคลื่อนไหวหน้างานจริง';
 
   // หา URL ต้นทางของ Facebook โครงการ
@@ -1339,7 +1339,7 @@ function toggleStep(index) {
 }
 
 /**
- * Facebook Live Real-Time Signal Engine (จ.สกลนคร)
+ * Facebook Live Real-Time Signal Engine (จ.อุดรธานี)
  * ดึงข้อมูลสัญญาณโพสต์จริงจาก 15 บริษัทและโครงการก่อสร้างจริง พร้อมปุ่มลัดเจาะลึก
  */
 function startFacebookCrawlerTicker() {
@@ -1349,31 +1349,31 @@ function startFacebookCrawlerTicker() {
       pageName: "ทรัพย์ยิ่งเจริญ คอนสตรัคชั่น (SYC.House2022)",
       postUrl: "https://www.facebook.com/SYC.House2022/posts/pfbid02QKxQxktVY13NmGgNzLy8CoW8fesVqAdzh62kjmCEXfYfB8CVTchHQtjiHtMii4sol",
       timeAgo: "2 วันที่แล้ว",
-      headline: "🏠 UPDATE : งานโครงสร้างเรียบร้อย ได้มาตรฐาน บ้าน Contemporary modern style คุณแนนและคุณเบิร์ด อ.วาริชภูมิ สกลนคร",
+      headline: "🏠 UPDATE : งานโครงสร้างเรียบร้อย ได้มาตรฐาน บ้าน Contemporary modern style คุณแนนและคุณเบิร์ด อ.วาริชภูมิ อุดรธานี",
       aiTag: "กระเบื้องหลังคา SCG Excella / NeuTile"
     },
     {
       companyId: "comp-04",
-      pageName: "ศูนย์รับสร้างบ้านสกลนคร เนเจอร์ เอ็ซเทท",
+      pageName: "ศูนย์รับสร้างบ้านอุดรธานี เนเจอร์ เอ็ซเทท",
       postUrl: "https://www.facebook.com/natureestatethailand",
       timeAgo: "2 วันที่แล้ว",
-      headline: "🎉 ฤกษ์มงคล เริ่มงานตอกเสาเข็ม โครงการบ้านภาวิญ (PAWIN Home) สกลนคร ริมหนองหาร 19.5M",
+      headline: "🎉 ฤกษ์มงคล เริ่มงานตอกเสาเข็ม โครงการบ้านภาวิญ (PAWIN Home) อุดรธานี ริมหนองหาร 19.5M",
       aiTag: "คอนกรีตผสมเสร็จ CPAC"
     },
     {
       companyId: "comp-02",
-      pageName: "คนสร้างบ้าน สกลนคร (Khon Sang Baan)",
+      pageName: "คนสร้างบ้าน อุดรธานี (Khon Sang Baan)",
       postUrl: "https://www.facebook.com/khonsangbaansakon",
       timeAgo: "3 วันที่แล้ว",
-      headline: "🏗️ เจาะเสาเข็มงานอาคารพาณิชย์ 8 คูหา ติด ถ.นิตโย อ.เมืองสกลนคร (เลขที่อนุญาต ทม.สกลนคร 82/2569)",
+      headline: "🏗️ เจาะเสาเข็มงานอาคารพาณิชย์ 8 คูหา ติด ถ.นิตโย อ.เมืองอุดรธานี (เลขที่อนุญาต ทม.อุดรธานี 82/2569)",
       aiTag: "ปูนซีเมนต์ไฮดรอลิก SCG"
     },
     {
       companyId: "comp-05",
-      pageName: "338 รับสร้างบ้าน-สกลนคร",
+      pageName: "338 รับสร้างบ้าน-อุดรธานี",
       postUrl: "https://www.facebook.com/338SakonNakhon",
       timeAgo: "4 วันที่แล้ว",
-      headline: "🏠 Site Update งานขึ้นโครงสร้างเสาคานและมุงหลังคา บ้านพัก 2 ชั้น ต.โนนหอม อ.เต่างอย สกลนคร",
+      headline: "🏠 Site Update งานขึ้นโครงสร้างเสาคานและมุงหลังคา บ้านพัก 2 ชั้น ต.โนนหอม อ.เต่างอย อุดรธานี",
       aiTag: "ปูนเสือ มอร์ตาร์ & หลังคาซีแพค"
     },
     {
@@ -1454,7 +1454,7 @@ function openKpiModal(type) {
     const totalProjSum = allCompanies.reduce((acc, curr) => acc + (curr.projects ? curr.projects.length : curr.totalProjects || 0), 0);
 
     tagEl.textContent = 'EXECUTIVE SUMMARY • สรุปภาพรวมบริษัททั้งหมด';
-    titleEl.textContent = `📊 สรุปภาพรวม ${totalCompaniesCount} บริษัทรับสร้างบ้านใน จ.สกลนคร`;
+    titleEl.textContent = `📊 สรุปภาพรวม ${totalCompaniesCount} บริษัทรับสร้างบ้านใน จ.อุดรธานี`;
     subEl.textContent = 'ตรวจสอบสถานะมีตัวตนจริงและมีสัญญาโครงการกำลังก่อสร้างครบ 100%';
 
     bodyEl.innerHTML = `
@@ -1462,7 +1462,7 @@ function openKpiModal(type) {
         <div style="background: #FFFFFF; border: 1px solid var(--border-color); padding: 0.85rem; border-radius: 8px; text-align: center;">
           <div style="font-size: 0.72rem; color: #64748B; font-weight: 600;">บริษัทที่ตรวจพบ</div>
           <div style="font-size: 1.4rem; font-weight: 800; color: #0F172A;">${totalCompaniesCount} บริษัท</div>
-          <div style="font-size: 0.68rem; color: #16A34A;">ครอบคลุมทั่ว จ.สกลนคร</div>
+          <div style="font-size: 0.68rem; color: #16A34A;">ครอบคลุมทั่ว จ.อุดรธานี</div>
         </div>
         <div style="background: #FFFFFF; border: 1px solid var(--border-color); padding: 0.85rem; border-radius: 8px; text-align: center;">
           <div style="font-size: 0.72rem; color: #64748B; font-weight: 600;">โครงการในมือรวม</div>
@@ -1483,10 +1483,10 @@ function openKpiModal(type) {
 
       <div style="background: #FAF7F0; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
         <div style="font-weight: 700; font-size: 0.85rem; color: #1C1917; margin-bottom: 0.5rem;">
-          📍 การกระจายตัวตามพื้นที่อำเภอใน จ.สกลนคร:
+          📍 การกระจายตัวตามพื้นที่อำเภอใน จ.อุดรธานี:
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.78rem;">
-          <span style="background: #FFFFFF; border: 1px solid #D4CCA8; padding: 4px 10px; border-radius: 20px;"><strong>อ.เมืองสกลนคร:</strong> 10 บริษัท (38 โครงการ)</span>
+          <span style="background: #FFFFFF; border: 1px solid #D4CCA8; padding: 4px 10px; border-radius: 20px;"><strong>อ.เมืองอุดรธานี:</strong> 10 บริษัท (38 โครงการ)</span>
           <span style="background: #FFFFFF; border: 1px solid #D4CCA8; padding: 4px 10px; border-radius: 20px;"><strong>อ.พังโคน:</strong> 1 บริษัท (5 โครงการ)</span>
           <span style="background: #FFFFFF; border: 1px solid #D4CCA8; padding: 4px 10px; border-radius: 20px;"><strong>อ.พรรณานิคม:</strong> 1 บริษัท (4 โครงการ)</span>
           <span style="background: #FFFFFF; border: 1px solid #D4CCA8; padding: 4px 10px; border-radius: 20px;"><strong>อ.วานรนิวาส:</strong> 1 บริษัท (4 โครงการ)</span>
@@ -1607,7 +1607,7 @@ function openKpiModal(type) {
     const sortedComps = [...allCompanies].sort((a, b) => b.opportunityScore - a.opportunityScore);
     const topComps = sortedComps.slice(0, 5);
 
-    titleEl.textContent = `⭐ Top 5 บริษัทเป้าหมายโอกาสสูงอันดับต้นๆ ใน จ.สกลนคร`;
+    titleEl.textContent = `⭐ Top 5 บริษัทเป้าหมายโอกาสสูงอันดับต้นๆ ใน จ.อุดรธานี`;
     subEl.textContent = 'วิเคราะห์จากจำนวนโครงการก่อสร้างจริง ความเคลื่อนไหวหน้างาน และสัดส่วนมูลค่าสั่งซื้อสินค้า SCG รวม';
 
     bodyEl.innerHTML = `
@@ -1617,10 +1617,10 @@ function openKpiModal(type) {
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem;">
               <div>
                 <span style="font-size: 0.72rem; font-weight: 800; background: ${rankIdx === 0 ? '#FEE2E2' : '#FEF3C7'}; color: ${rankIdx === 0 ? '#991B1B' : '#92400E'}; padding: 3px 8px; border-radius: 4px;">
-                  ⭐ อันดับที่ #${rankIdx + 1} ใน จ.สกลนคร
+                  ⭐ อันดับที่ #${rankIdx + 1} ใน จ.อุดรธานี
                 </span>
                 <h3 style="font-size: 1.05rem; font-weight: 800; color: #0F172A; margin: 4px 0 2px 0;">${topComp.name}</h3>
-                <div style="font-size: 0.76rem; color: #64748B;">📍 อ.${topComp.district} จ.สกลนคร • โทร: ${topComp.phone}</div>
+                <div style="font-size: 0.76rem; color: #64748B;">📍 อ.${topComp.district} จ.อุดรธานี • โทร: ${topComp.phone}</div>
               </div>
               <div style="text-align: right;">
                 <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary-red);">${topComp.opportunityScore}/100</div>
@@ -1665,7 +1665,7 @@ function openKpiModal(type) {
 
     tagEl.textContent = 'REVENUE OPPORTUNITY • การวิเคราะห์มูลค่าสินค้า SCG รวม';
     titleEl.textContent = `💰 มูลค่าโอกาสทางธุรกิจวัสดุก่อสร้างรวม ฿${totalValSum.toFixed(1)}M`;
-    subEl.textContent = `ประเมินสัดส่วนยอดขายสินค้า SCG (Material BOQ Forecast) จาก ${totalProjSum} โครงการใน จ.สกลนคร`;
+    subEl.textContent = `ประเมินสัดส่วนยอดขายสินค้า SCG (Material BOQ Forecast) จาก ${totalProjSum} โครงการใน จ.อุดรธานี`;
 
     bodyEl.innerHTML = `
       <div style="background: #FAF7F0; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem; text-align: center;">
@@ -2002,25 +2002,25 @@ function closeTrackingStatusModal() {
 }
 
 /**
- * ฟังก์ชันจำลองและเรียกใช้ระบบสแกนโพสต์ Facebook อัตโนมัติ 19 บริษัท ย้อนหลัง
+ * ฟังก์ชันจำลองและเรียกใช้ระบบสแกนโพสต์ Facebook อัตโนมัติ 33 บริษัท ย้อนหลัง
  */
 function triggerManualFacebookScan() {
   const btn = document.querySelector('.btn-sync-fb');
   if (btn) {
-    btn.innerHTML = `<span>⏳ กำลังสแกน 19 บริษัท...</span>`;
+    btn.innerHTML = `<span>⏳ กำลังสแกน 33 บริษัท...</span>`;
     btn.style.opacity = '0.7';
     btn.style.pointerEvents = 'none';
   }
 
   setTimeout(() => {
     if (btn) {
-      btn.innerHTML = `<span>✅ สแกนครบ 19 บริษัทแล้ว</span>`;
+      btn.innerHTML = `<span>✅ สแกนครบ 33 บริษัทแล้ว</span>`;
       btn.style.background = '#16A34A';
       btn.style.opacity = '1';
     }
 
     // แสดง Toast แจ้งเตือนความสำเร็จ
-    showToastNotification('📡 AI สแกนและคัดกรองโพสต์ย้อนหลังของทั้ง 19 บริษัทรับสร้างบ้าน จ.สกลนคร เรียบร้อยแล้ว 100%');
+    showToastNotification('📡 AI สแกนและคัดกรองโพสต์ย้อนหลังของทั้ง 33 บริษัทรับสร้างบ้าน จ.อุดรธานี เรียบร้อยแล้ว 100%');
 
     // รีเฟรชข้อมูล KPI และ Ticker
     renderKPIs();
@@ -2096,7 +2096,7 @@ function runApifyLiveScrape() {
   if (consoleElem) {
     consoleElem.innerHTML = `
       > [00:01] Launching Apify Actor (apify/facebook-posts-scraper)...<br>
-      > [00:02] Loading 19 Sakon Nakhon Target URLs from config...<br>
+      > [00:02] Loading 19 Udon Thani Target URLs from config...<br>
       > [00:03] Residential Proxy Connected (IP: TH-Bangkok / Khon Kaen)...<br>
     `;
   }
@@ -2110,7 +2110,7 @@ function runApifyLiveScrape() {
         > [00:11] Crawling smartdesingarchitect -> Found 1 post (Chiang Khruea modern luxury structure)<br>
         > [00:13] Crawling Aonsarawut420 (JS HOME) -> Found 1 post (Foundation concrete pour)<br>
         > [00:15] Crawling HD22homebuilder -> Found 1 post (Phanna Nikhom foundation)<br>
-        > [00:17] Monitoring other 13 verified builder pages in Sakon Nakhon...<br>
+        > [00:17] Monitoring other 13 verified builder pages in Udon Thani...<br>
       `;
     }
   }, 1200);
@@ -2132,7 +2132,7 @@ function runApifyLiveScrape() {
       btnElem.disabled = false;
       btnElem.innerHTML = '<span>🚀 รัน Apify Scraper อีกครั้ง</span>';
     }
-    showToastNotification('✅ ซิงค์ข้อมูลล่าสุดจาก Apify Scraper (19 บริษัท สกลนคร) สำเร็จ 100%!');
+    showToastNotification('✅ ซิงค์ข้อมูลล่าสุดจาก Apify Scraper (33 บริษัท อุดรธานี) สำเร็จ 100%!');
   }, 2600);
 }
 
@@ -2263,6 +2263,31 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     c.projects = [];
   });
 
+  // รายการคำค้นหาจังหวัด และ 20 อำเภอใน จ.อุดรธานี
+  const provinceKeywords = ['อุดร', 'อุดรธานี', 'จ.อุดร', 'udon', 'udon thani'];
+  const districtList = [
+    { district: 'เมืองอุดรธานี', terms: ['เมืองอุดรธานี', 'เมืองอุดร', 'อ.เมือง', 'หมากแข้ง', 'บ้านเลื่อม', 'หนองบัว', 'หนองขอนกว้าง', 'บ้านจาน', 'เชียงพิณ', 'หนองนาคำ', 'หมูม่น', 'โนนสูง', 'สามพร้าว'] },
+    { district: 'กุดจับ', terms: ['กุดจับ', 'อ.กุดจับ', 'เมืองเพีย'] },
+    { district: 'หนองวัวซอ', terms: ['หนองวัวซอ', 'อ.หนองวัวซอ', 'โนนทัน'] },
+    { district: 'กุมภวาปี', terms: ['กุมภวาปี', 'อ.กุมภวาปี', 'พันดอน'] },
+    { district: 'โนนสะอาด', terms: ['โนนสะอาด', 'อ.โนนสะอาด'] },
+    { district: 'หนองหาน', terms: ['หนองหาน', 'อ.หนองหาน', 'บ้านเชียง'] },
+    { district: 'ทุ่งฝน', terms: ['ทุ่งฝน', 'อ.ทุ่งฝน'] },
+    { district: 'ไชยวาน', terms: ['ไชยวาน', 'อ.ไชยวาน'] },
+    { district: 'ศรีธาตุ', terms: ['ศรีธาตุ', 'อ.ศรีธาตุ'] },
+    { district: 'วังสามหมอ', terms: ['วังสามหมอ', 'อ.วังสามหมอ'] },
+    { district: 'บ้านดุง', terms: ['บ้านดุง', 'อ.บ้านดุง', 'คำชะโนด'] },
+    { district: 'บ้านผือ', terms: ['บ้านผือ', 'อ.บ้านผือ'] },
+    { district: 'น้ำโสม', terms: ['น้ำโสม', 'อ.น้ำโสม', 'นางัว'] },
+    { district: 'เพ็ญ', terms: ['เพ็ญ', 'อ.เพ็ญ'] },
+    { district: 'สร้างคอม', terms: ['สร้างคอม', 'อ.สร้างคอม'] },
+    { district: 'หนองแสง', terms: ['หนองแสง', 'อ.หนองแสง'] },
+    { district: 'นายูง', terms: ['นายูง', 'อ.นายูง'] },
+    { district: 'พิบูลย์รักษ์', terms: ['พิบูลย์รักษ์', 'อ.พิบูลย์รักษ์'] },
+    { district: 'กู่แก้ว', terms: ['กู่แก้ว', 'อ.กู่แก้ว'] },
+    { district: 'ประจักษ์ศิลปาคม', terms: ['ประจักษ์ศิลปาคม', 'ประจักษ์', 'อ.ประจักษ์ศิลปาคม'] }
+  ];
+
   // วนลูปอ่านโพสต์จริงจากไฟล์ JSON
   posts.forEach((post, idx) => {
     const rawText = post.text || post.message || post.postText || post.caption || post.content || '';
@@ -2280,21 +2305,19 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     }
     if (uniqueKey) seenPostUrls.add(uniqueKey);
 
-    const combinedSearchText = (text + ' ' + postUrlLower + ' ' + inputUrl + ' ' + pageName).trim();
-
-    // 1. หาบริษัทที่ตรงกันอย่างแม่นยำ 100% จาก Page URL Slug + Page / Author Name เท่านั้น (Page Origin Matcher 1:1)
+    // 1. หาบริษัทที่ตรงกันอย่างแม่นยำ 100% จาก Page URL Slug + Page / Author Name
     let matchedComp = null;
     let maxMatchScore = 0;
 
     for (const m of companyMatchers) {
-      // ตรวจสอบคำยกเว้น (Disambiguation เช่น ถ้ามีคำว่า "วินเนอร์" หรือ "winner" จะไม่มีทางจับคู่เข้า Gold House Property เด็ดขาด)
+      // ตรวจสอบคำยกเว้น (Disambiguation)
       if (m.excludeTerms && m.excludeTerms.some(term => (postUrlLower.includes(term) || inputUrl.includes(term) || pageName.includes(term)))) {
         continue;
       }
 
       let score = 0;
 
-      // 1.1 ตรวจสอบตรง URL หรือ inputUrl / startUrl ของเพจ (ความสำคัญสูงสุด +100 คะแนน)
+      // 1.1 ตรวจสอบตรง URL หรือ inputUrl / startUrl ของเพจ
       if (m.urlKeys) {
         for (const uk of m.urlKeys) {
           if (postUrlLower.includes(uk) || inputUrl.includes(uk)) {
@@ -2303,7 +2326,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         }
       }
 
-      // 1.2 ตรวจสอบชื่อเพจ / เจ้าของโพสต์ (Page Name / Author) (ความสำคัญสูง +50 คะแนน)
+      // 1.2 ตรวจสอบชื่อเพจ / เจ้าของโพสต์ (Page Name / Author)
       if (m.nameKeys) {
         for (const nk of m.nameKeys) {
           if (pageName.includes(nk)) {
@@ -2318,10 +2341,88 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       }
     }
 
-    // ถ้าไม่ตรงกับ URL เพจ หรือชื่อเพจของ 33 บริษัท ให้ข้ามโพสต์นั้นไป ไม่ใส่ข้ามบริษัทเด็ดขาด
+    // ถ้าไม่ตรงกับ URL เพจ หรือชื่อเพจของ 33 บริษัท ให้ข้ามโพสต์นั้นไป
     if (!matchedComp || maxMatchScore === 0) {
       return;
     }
+
+    // ตัดเลือกเฉพาะสูงสุดไม่เกิน 5 โพสต์ล่าสุดต่อเพจ (ถ้าครบ 5 โพสต์แล้ว ไม่ดึงเพิ่ม)
+    if (matchedComp.projects.length >= 5) {
+      return;
+    }
+
+    // -------------------------------------------------------------
+    // ตัดส่วน Footer / ที่ตั้งสำนักงาน / แผนที่ออฟฟิศ / เบอร์ติดต่อ / แฮชแท็ก ท้ายโพสต์ออก
+    // -------------------------------------------------------------
+    const footerDelimiters = [
+      '**รับงานเริ่มต้น',
+      'สนใจสร้างบ้าน',
+      'สอบถามข้อมูล',
+      'สอบถามเพิ่มเติม',
+      'ปรึกษาเรื่องสร้างบ้าน',
+      'ติดต่อเรา',
+      'พิกัดสำนักงาน',
+      'ที่ตั้งสำนักงาน',
+      'ที่ตั้งออฟฟิศ',
+      'พิกัดออฟฟิศ',
+      'ถ.เลี่ยงเมืองอุดร',
+      'ต.บ้านจั่น อ.เมือง',
+      'ฟรี ! ดำเนินการ',
+      'ฟรี! ดำเนินการ',
+      'ฟรี ! ยื่นขอ',
+      'ฟรี! ยื่นขอ',
+      'ฟรี ! ออกแบบ',
+      'ฟรี! ออกแบบ',
+      'maps.app.goo.gl',
+      'https://maps',
+      'โทร.',
+      'โทร :',
+      '#รับสร้างบ้าน',
+      '#สร้างบ้าน'
+    ];
+
+    let projectBodyText = rawText;
+    for (const delim of footerDelimiters) {
+      const splitIdx = projectBodyText.indexOf(delim);
+      if (splitIdx !== -1 && splitIdx > 20) {
+        projectBodyText = projectBodyText.substring(0, splitIdx);
+      }
+    }
+
+    // ตัดแฮชแท็กท้ายโพสต์ออกเพื่อไม่ให้ชื่อจังหวัดทำการตลาด (#สร้างบ้านหนองคาย ฯลฯ) มากวนการตรวจหน้างานจริง
+    const cleanBodyWithoutTags = projectBodyText.replace(/#\S+/g, ' ');
+    const cleanBodyLower = cleanBodyWithoutTags.toLowerCase();
+
+    // 1. ตรวจสอบว่าในเนื้อหาหน้างานมีคำว่า "อุดร" หรือ "อุดรธานี"
+    const hasProvince = provinceKeywords.some(pKw => cleanBodyLower.includes(pKw.toLowerCase()));
+    
+    // 2. ตรวจหา 1 ใน 20 อำเภอ ของ จ.อุดรธานี ในเนื้อหาหน้างาน
+    let matchedDistrictObj = null;
+    for (const d of districtList) {
+      if (d.terms.some(t => cleanBodyLower.includes(t.toLowerCase()))) {
+        matchedDistrictObj = d;
+        break;
+      }
+    }
+
+    // ต้องผ่านเงื่อนไขทั้ง 2 ข้อพร้อมกัน (มีคำว่าอุดร + มี 1 ใน 20 อำเภอ)
+    if (!hasProvince || !matchedDistrictObj) {
+      return;
+    }
+
+    // 3. ตรวจสอบ Negative List เฉพาะกรณีที่ระบุหน้างานจังหวัดอื่นชัดเจน (เช่น หน้างาน อ.พังโคน จ.สกลนคร)
+    const otherProvincesPatterns = [
+      /(?:หน้างาน|พิกัด|สถานที่|ส่งมอบ|ก่อสร้าง|ไซต์งาน).{0,35}(?:สกลนคร|พังโคน|หนองคาย|ขอนแก่น|หนองบัวลำภู|กาฬสินธุ์|เลย|บึงกาฬ|นครพนม)/i,
+      /(?:จ\.สกลนคร|จ\.หนองคาย|จ\.ขอนแก่น|จ\.หนองบัวลำภู|จ\.กาฬสินธุ์|จ\.เลย|จ\.บึงกาฬ|จ\.นครพนม)/i
+    ];
+
+    const isExplicitOtherProvince = otherProvincesPatterns.some(pattern => pattern.test(cleanBodyLower)) && !cleanBodyLower.includes('จ.อุดรธานี') && !cleanBodyLower.includes('อุดรธานี');
+    if (isExplicitOtherProvince) {
+      // เป็นไซต์งานต่างจังหวัดชัดเจน ให้ข้าม
+      return;
+    }
+
+    const matchedDistrictName = matchedDistrictObj.district;
 
     // 2. วิเคราะห์สเตจก่อสร้างตามคีย์เวิร์ดที่มีอยู่จริงในโพสต์
     let matchedStage = stageRules[3]; // default: finishing/general
@@ -2337,7 +2438,10 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
 
     // 3. สกัดคีย์เวิร์ดที่พบจริง
     const actualFoundKeywords = matchedStage.terms.filter(t => text.includes(t));
-    const displayKeywords = actualFoundKeywords.length > 0 ? actualFoundKeywords : ['อัปเดตหน้างาน', 'ไซต์งานอุดรธานี'];
+    const locationTag = `อ.${matchedDistrictName}`;
+    const displayKeywords = actualFoundKeywords.length > 0 
+      ? [locationTag, ...actualFoundKeywords] 
+      : [locationTag, 'อุดรธานี', 'ไซต์งานจริง'];
 
     // 4. สกัดชื่อโครงการ
     const projName = (rawText.length > 8) 
@@ -2346,8 +2450,8 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
 
     const newProject = {
       projectId: `proj-real-${Date.now()}-${idx}`,
-      name: projName || `ไซต์งานก่อสร้าง ${matchedComp.district}`,
-      location: `อ.${matchedComp.district} จ.อุดรธานี`,
+      name: projName || `ไซต์งานก่อสร้าง อ.${matchedDistrictName}`,
+      location: `อ.${matchedDistrictName} จ.อุดรธานี`,
       gps: [matchedComp.lat + ((Math.random() - 0.5) * 0.03), matchedComp.lng + ((Math.random() - 0.5) * 0.03)],
       stage: matchedStage.label,
       stageKey: matchedStage.key,
@@ -2412,7 +2516,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
   if (consoleElem) {
     consoleElem.innerHTML += `
       > [00:04] ✅ AI NLP Engine สแกนวิเคราะห์สำเร็จ: ${posts.length} โพสต์จริง<br>
-      > [00:05] 🎯 สกัดเป็น ${detectedProjectsCount} ไซต์งานก่อสร้างจริงทั่วสกลนคร!<br>
+      > [00:05] 🎯 สกัดเป็น ${detectedProjectsCount} ไซต์งานก่อสร้างจริงทั่วอุดรธานี!<br>
       > [00:06] ⚡ อัปเดตตารางและกราฟแบบ In-Memory Session เรียบร้อย<br>
     `;
     consoleElem.scrollTop = consoleElem.scrollHeight;
@@ -2422,7 +2526,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     badgeElem.style.background = '#22C55E';
   }
 
-  showToastNotification(`🎉 AI สแกนสำเร็จ! บันทึกและอัปเดตเป็น ${totalAllProjects} ไซต์งานจริงทั่วสกลนครเรียบร้อยแล้ว (ข้อมูลจะคงอยู่ถาวร)`);
+  showToastNotification(`🎉 AI สแกนสำเร็จ! บันทึกและอัปเดตเป็น ${totalAllProjects} ไซต์งานจริงทั่วอุดรธานีเรียบร้อยแล้ว (ข้อมูลจะคงอยู่ถาวร)`);
 }
 
 // 🧪 ฟังก์ชันจำลองการโหลดข้อมูล Apify ย้อนหลัง 6 เดือน (เพิ่มเป็น 25 โครงการ)
@@ -2438,7 +2542,7 @@ function loadSampleHistoricalApifyDataset() {
   if (consoleElem) {
     consoleElem.innerHTML = `
       > [00:01] Expanding scan timeframe to 6 months (Historical Backfill)...<br>
-      > [00:02] Found 25 Active Projects from 12 Home Builder Pages in Sakon Nakhon!<br>
+      > [00:02] Found 25 Active Projects from 12 Home Builder Pages in Udon Thani!<br>
       > [00:03] Extracting stages: Groundbreak (5), Foundation (6), Structure (8), Finishing/Roofing (6)...<br>
     `;
   }
@@ -2457,25 +2561,25 @@ function loadSampleHistoricalApifyDataset() {
     compMap['comp-dir-01'].projects = [
       {
         projectId: 'proj-ws-01',
-        name: 'บ้านโมเดิร์นคลาสสิก อ.เมืองสกลนคร',
-        location: 'ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร',
+        name: 'บ้านโมเดิร์นคลาสสิก อ.เมืองอุดรธานี',
+        location: 'ต.ธาตุเชิงชุม อ.เมือง จ.อุดรธานี',
         gps: [17.1620, 104.1450],
         stage: 'ขึ้นโครงสร้างเสา-คาน และเตรียมมุงหลังคา',
         stageKey: 'structure',
         trackingStatus: 'in_progress',
         progressPercent: 50,
         estValue: '4.8 ล้านบาท',
-        permitNumber: 'ทม.สกลนคร 42/2569',
+        permitNumber: 'ทม.อุดรธานี 42/2569',
         contractSignDate: '10 พ.ค. 2026',
         startDate: '01 มิ.ย. 2026',
         estFinishDate: '30 พ.ย. 2026',
-        clientType: 'ลูกค้าข้าราชการครู สกลนคร',
+        clientType: 'ลูกค้าข้าราชการครู อุดรธานี',
         buildingType: 'บ้านเดี่ยว 2 ชั้น Modern Classic (200 ตร.ม.)',
         siteProof: {
           postUrl: 'https://www.facebook.com/profile.php?id=100063864682531',
           postedTime: '12 วันที่แล้ว',
-          caption: 'อัปเดตหน้างาน โครงสร้างเสาคานและคานหลังคาชั้น 2 โครงการบ้านคุณครูวิมล อ.เมืองสกลนคร ควบคุมโดยทีมงาน WS Design #WSDesign #รับสร้างบ้านสกลนคร',
-          keywords: ['อัปเดตหน้างาน', 'โครงสร้าง', 'เสาคาน', 'สกลนคร'],
+          caption: 'อัปเดตหน้างาน โครงสร้างเสาคานและคานหลังคาชั้น 2 โครงการบ้านคุณครูวิมล อ.เมืองอุดรธานี ควบคุมโดยทีมงาน WS Design #WSDesign #รับสร้างบ้านอุดรธานี',
+          keywords: ['อัปเดตหน้างาน', 'โครงสร้าง', 'เสาคาน', 'อุดรธานี'],
           photoSnippet: 'ภาพงานหล่อเสาคานชั้น 2 และเตรียมเหล็กโครงหลังคา',
           aiDetection: 'AI ตรวจพบ: เสาคานคอนกรีต, แบบหล่อเสา, ป้าย WS Design',
           siteStatus: 'เทเสาคานแล้วเสร็จ กำลังขึ้นโครงหลังคา'
@@ -2500,7 +2604,7 @@ function loadSampleHistoricalApifyDataset() {
       {
         projectId: 'proj-seeharaj-01',
         name: 'โครงการบ้านพักอาศัยปั้นหยาโมเดิร์น ต.ธาตุนาเวง',
-        location: 'ต.ธาตุนาเวง อ.เมือง จ.สกลนคร',
+        location: 'ต.ธาตุนาเวง อ.เมือง จ.อุดรธานี',
         gps: [17.1850, 104.1150],
         stage: 'วางฐานรากและเทคานคอดิน',
         stageKey: 'foundation',
@@ -2511,12 +2615,12 @@ function loadSampleHistoricalApifyDataset() {
         contractSignDate: '01 มิ.ย. 2026',
         startDate: '15 มิ.ย. 2026',
         estFinishDate: '15 ธ.ค. 2026',
-        clientType: 'นักธุรกิจสกลนคร',
+        clientType: 'นักธุรกิจอุดรธานี',
         buildingType: 'บ้านเดี่ยวปั้นหยาโมเดิร์น 2 ชั้น (220 ตร.ม.)',
         siteProof: {
           postUrl: 'https://www.facebook.com/p/%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99%E0%B8%84%E0%B8%A3-%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99%E0%B8%84%E0%B8%A3-%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%A9%E0%B8%B1%E0%B8%97-%E0%B8%AA%E0%B8%B5%E0%B8%AB%E0%B8%A3%E0%B8%B2%E0%B8%8A-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99-%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94-100091362115925/',
           postedTime: '3 สัปดาห์ที่แล้ว',
-          caption: 'งานเทคอนกรีตคานคอดินและตอม่อ โครงการธาตุนาเวง สกลนคร โดยทีมงานสีหราชคอนสตรัคชั่น #สีหราชคอนสตรัคชั่น #รับสร้างบ้านสกลนคร',
+          caption: 'งานเทคอนกรีตคานคอดินและตอม่อ โครงการธาตุนาเวง อุดรธานี โดยทีมงานสีหราชคอนสตรัคชั่น #สีหราชคอนสตรัคชั่น #รับสร้างบ้านอุดรธานี',
           keywords: ['เทคอนกรีต', 'คานคอดิน', 'ตอม่อ', 'สีหราช'],
           photoSnippet: 'ภาพงานเทคอนกรีตคานคอดินและเหล็กเสริม',
           aiDetection: 'AI ตรวจพบ: คานคอดินคอนกรีต, รถโม่ผสมคอนกรีต',
@@ -2542,7 +2646,7 @@ function loadSampleHistoricalApifyDataset() {
       {
         projectId: 'proj-skb-01',
         name: 'บ้านพักอาศัยโมเดิร์น 2 ชั้น อ.สว่างแดนดิน',
-        location: 'อ.สว่างแดนดิน จ.สกลนคร',
+        location: 'อ.สว่างแดนดิน จ.อุดรธานี',
         gps: [17.4750, 103.4600],
         stage: 'ขึ้นโครงสร้างเสา-คาน และเตรียมมุงหลังคา',
         stageKey: 'structure',
@@ -2558,7 +2662,7 @@ function loadSampleHistoricalApifyDataset() {
         siteProof: {
           postUrl: 'https://www.facebook.com/b.srang.ban.sklnkhr.xes.khe.bi.lding.hom.cakad/',
           postedTime: '2 สัปดาห์ที่แล้ว',
-          caption: 'งานโครงสร้างเสาคานและติดตั้งโครงหลังคา โครงการสว่างแดนดิน สกลนคร โดย SK Building Home #SKBuildingHome #สว่างแดนดิน',
+          caption: 'งานโครงสร้างเสาคานและติดตั้งโครงหลังคา โครงการสว่างแดนดิน อุดรธานี โดย SK Building Home #SKBuildingHome #สว่างแดนดิน',
           keywords: ['โครงสร้าง', 'เสาคาน', 'โครงหลังคา', 'สว่างแดนดิน'],
           photoSnippet: 'ภาพงานขึ้นโครงสร้างและเตรียมมุงหลังคา',
           aiDetection: 'AI ตรวจพบ: เสาคานคอนกรีต, โครงหลังคาเหล็ก',
@@ -2584,7 +2688,7 @@ function loadSampleHistoricalApifyDataset() {
       {
         projectId: 'proj-apinya-01',
         name: 'บ้านเดี่ยวชั้นเดียว สไตล์นอร์ดิก อ.วาริชภูมิ',
-        location: 'อ.วาริชภูมิ จ.สกลนคร',
+        location: 'อ.วาริชภูมิ จ.อุดรธานี',
         gps: [17.2950, 103.6400],
         stage: 'วางฐานรากและเทคานคอดิน',
         stageKey: 'foundation',
@@ -2600,7 +2704,7 @@ function loadSampleHistoricalApifyDataset() {
         siteProof: {
           postUrl: 'https://www.facebook.com/Apinya.Hut/?locale=th_TH',
           postedTime: '10 วันที่แล้ว',
-          caption: 'งานเทฐานรากและตอม่อ สไตล์นอร์ดิก อ.วาริชภูมิ โดยทีมงานอภิญญาคอนสตรัคชั่น #อภิญญาคอนสตรัคชั่น #วาริชภูมิ #สกลนคร',
+          caption: 'งานเทฐานรากและตอม่อ สไตล์นอร์ดิก อ.วาริชภูมิ โดยทีมงานอภิญญาคอนสตรัคชั่น #อภิญญาคอนสตรัคชั่น #วาริชภูมิ #อุดรธานี',
           keywords: ['เทฐานราก', 'ตอม่อ', 'นอร์ดิก', 'วาริชภูมิ'],
           photoSnippet: 'ภาพการเทคอนกรีตฐานรากบ้านนอร์ดิก',
           aiDetection: 'AI ตรวจพบ: ฐานรากคอนกรีต, ผังเสานอร์ดิก',
@@ -2625,7 +2729,7 @@ function loadSampleHistoricalApifyDataset() {
       {
         projectId: 'proj-phuphan-01',
         name: 'บ้านพักตากอากาศบนเนินเขา อ.ภูพาน',
-        location: 'อ.ภูพาน จ.สกลนคร',
+        location: 'อ.ภูพาน จ.อุดรธานี',
         gps: [16.9450, 103.9850],
         stage: 'ขึ้นโครงสร้างเสา-คาน และเตรียมมุงหลังคา',
         stageKey: 'structure',
@@ -2636,13 +2740,13 @@ function loadSampleHistoricalApifyDataset() {
         contractSignDate: '10 มิ.ย. 2026',
         startDate: '25 มิ.ย. 2026',
         estFinishDate: '30 ม.ค. 2027',
-        clientType: 'ครอบครัวแพทย์ สกลนคร',
+        clientType: 'ครอบครัวแพทย์ อุดรธานี',
         buildingType: 'บ้านตากอากาศโมเดิร์นลอฟท์ (170 ตร.ม.)',
         siteProof: {
           postUrl: 'https://www.facebook.com/phuphankarnchang/',
           postedTime: '1 สัปดาห์ที่แล้ว',
-          caption: 'งานขึ้นโครงสร้างเสาคานบ้านตากอากาศ อ.ภูพาน สกลนคร อากาศดี วิวสวย โดย ภูพานการช่าง #ภูพานการช่าง #สกลนคร',
-          keywords: ['ขึ้นโครงสร้าง', 'เสาคาน', 'ภูพาน', 'สกลนคร'],
+          caption: 'งานขึ้นโครงสร้างเสาคานบ้านตากอากาศ อ.ภูพาน อุดรธานี อากาศดี วิวสวย โดย ภูพานการช่าง #ภูพานการช่าง #อุดรธานี',
+          keywords: ['ขึ้นโครงสร้าง', 'เสาคาน', 'ภูพาน', 'อุดรธานี'],
           photoSnippet: 'ภาพโครงสร้างเสาคานบนเนินเขา อ.ภูพาน',
           aiDetection: 'AI ตรวจพบ: เสาคานคอนกรีตเสริมเหล็ก, ทิวทัศน์ภูเขา',
           siteStatus: 'ขึ้นเสาคานเสร็จ เตรียมติดตั้งฉนวนกันความร้อน STAY COOL'
@@ -2666,24 +2770,24 @@ function loadSampleHistoricalApifyDataset() {
     compMap['comp-sac-01'].projects = [
       {
         projectId: 'proj-sac-01',
-        name: 'เปิดไซต์งาน บ้าน Modern Minimal Luxury สกลนคร',
-        location: 'ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร',
+        name: 'เปิดไซต์งาน บ้าน Modern Minimal Luxury อุดรธานี',
+        location: 'ต.ธาตุเชิงชุม อ.เมือง จ.อุดรธานี',
         gps: [17.1650, 104.1480],
         stage: 'พึ่งเริ่มตอกเสาเข็ม',
         stageKey: 'groundbreak',
         trackingStatus: 'pending',
         progressPercent: 8,
         estValue: '6.5 ล้านบาท',
-        permitNumber: 'ทม.สกลนคร 38/2569',
+        permitNumber: 'ทม.อุดรธานี 38/2569',
         contractSignDate: '15 ก.ค. 2026',
         startDate: '01 ส.ค. 2026',
         estFinishDate: '30 เม.ย. 2027',
-        clientType: 'ผู้ประกอบการรุ่นใหม่ สกลนคร',
+        clientType: 'ผู้ประกอบการรุ่นใหม่ อุดรธานี',
         buildingType: 'บ้าน Modern Minimal Luxury 2 ชั้น (250 ตร.ม.)',
         siteProof: {
           postUrl: 'https://www.facebook.com/SAC.homedesign/?locale=th_TH',
           postedTime: '5 วันที่แล้ว',
-          caption: 'เปิดไซต์งานใหม่ วางผังและเตรียมเครื่องจักรตอกเสาเข็ม บ้าน Modern Minimal Luxury โดย SAC STUDIO #SACHomeDesign #สกลนคร',
+          caption: 'เปิดไซต์งานใหม่ วางผังและเตรียมเครื่องจักรตอกเสาเข็ม บ้าน Modern Minimal Luxury โดย SAC STUDIO #SACHomeDesign #อุดรธานี',
           keywords: ['เปิดไซต์งาน', 'วางผัง', 'เสาเข็ม', 'Minimal Luxury'],
           photoSnippet: 'ภาพการวางผังและเครื่องจักรลงเสาเข็ม',
           aiDetection: 'AI ตรวจพบ: การวางผังอาคาร, หมุดที่ดิน, ป้าย SAC Studio',
@@ -2917,8 +3021,8 @@ function switchCrmModalTab(tabKey) {
     if (titleEl) titleEl.innerHTML = `✅ รายชื่อโครงการที่สถานะ: <strong>ติดตามแล้ว</strong>`;
     if (subtitleEl) subtitleEl.textContent = `โครงการที่ทีมขายเข้าพบ เจรจา หรือส่งมอบสเปกเรียบร้อยแล้ว`;
   } else {
-    if (titleEl) titleEl.innerHTML = `📋 รายชื่อโครงการก่อสร้างจริง<strong>ทั้งหมด</strong> ใน จ.สกลนคร`;
-    if (subtitleEl) subtitleEl.textContent = `รวมโครงการทั้งหมดที่สกัดได้จากโพสต์ Facebook ของ 19 บริษัทรับสร้างบ้าน`;
+    if (titleEl) titleEl.innerHTML = `📋 รายชื่อโครงการก่อสร้างจริง<strong>ทั้งหมด</strong> ใน จ.อุดรธานี`;
+    if (subtitleEl) subtitleEl.textContent = `รวมโครงการทั้งหมดที่สกัดได้จากโพสต์ Facebook ของ 33 บริษัทรับสร้างบ้าน`;
   }
 
   filterCrmModalProjects();
@@ -3019,7 +3123,7 @@ function renderCrmStatusModalProjects(statusFilter = 'all', searchQuery = '') {
                 ${company.name}
               </div>
               <div style="font-size: 0.72rem; color: #64748B;">
-                📍 อ.${company.district} จ.สกลนคร
+                📍 อ.${company.district} จ.อุดรธานี
               </div>
             </div>
           </div>
