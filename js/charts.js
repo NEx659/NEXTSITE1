@@ -8,6 +8,179 @@ let cachedStageDemand = {};
 let cachedAllCompanies = [];
 let productModalChartInstance = null;
 
+const scgProductCategoriesConfig = {
+  cementMortar: {
+    key: 'cementMortar',
+    name: 'ปูนซีเมนต์ และมอร์ตาร์',
+    icon: '🏗️',
+    color: '#D9251D',
+    weight: 0.22,
+    unit: 'ถุง / ตัน',
+    subItems: [
+      'ปูนซีเมนต์ปอร์ตแลนด์',
+      'ปูนงานโครงสร้าง',
+      'ปูนงานหล่อคอนกรีต',
+      'ปูนฉาบ',
+      'ปูนก่อ',
+      'กาวซีเมนต์ปูกระเบื้อง',
+      'ยาแนวกระเบื้อง',
+      'ปูนปรับระดับพื้น',
+      'ปูนตกแต่งพิเศษ'
+    ],
+    searchKeywords: ['ปูน', 'มอร์ตาร์', 'ซีเมนต์', 'ปอร์ตแลนด์', 'ปูนฉาบ', 'ปูนก่อ', 'กาวซีเมนต์', 'ยาแนว', 'ปรับระดับ']
+  },
+  concreteProducts: {
+    key: 'concreteProducts',
+    name: 'คอนกรีต และผลิตภัณฑ์คอนกรีต',
+    icon: '🚛',
+    color: '#0284C7',
+    weight: 0.20,
+    unit: 'คิว / แผ่น / ท่อน',
+    subItems: [
+      'CPAC คอนกรีตผสมเสร็จ',
+      'คอนกรีตสำเร็จรูป',
+      'เสาเข็ม',
+      'แผ่นพื้นสำเร็จรูป',
+      'รั้วคอนกรีต',
+      'บล็อกปูพื้น'
+    ],
+    searchKeywords: ['cpac', 'คอนกรีต', 'เสาเข็ม', 'แผ่นพื้น', 'รั้วคอนกรีต', 'บล็อกปูพื้น', 'ผสมเสร็จ', 'สำเร็จรูป']
+  },
+  roofing: {
+    key: 'roofing',
+    name: 'หลังคา',
+    icon: '🏠',
+    color: '#EA580C',
+    weight: 0.15,
+    unit: 'ตร.ม. / แผ่น',
+    subItems: [
+      'กระเบื้องหลังคาคอนกรีต',
+      'กระเบื้องหลังคาเซรามิก',
+      'แผ่นหลังคาไฟเบอร์ซีเมนต์',
+      'หลังคาโปร่งแสง Shinkolite',
+      'อุปกรณ์ติดตั้งหลังคา'
+    ],
+    searchKeywords: ['หลังคา', 'กระเบื้องหลังคา', 'excella', 'prestige', 'neutile', 'ซีแพค', 'shinkolite', 'ไฟเบอร์ซีเมนต์']
+  },
+  wallCeiling: {
+    key: 'wallCeiling',
+    name: 'ผนัง และฝ้า',
+    icon: '🧱',
+    color: '#CA8A04',
+    weight: 0.11,
+    unit: 'แผ่น / ตร.ม.',
+    subItems: [
+      'สมาร์ทบอร์ด (Smartboard)',
+      'สมาร์ทวอลล์ (Smart Wall)',
+      'แผ่นไฟเบอร์ซีเมนต์',
+      'แผ่นยิปซัม',
+      'ระบบผนังเบา',
+      'ฝ้าภายใน',
+      'ฝ้าภายนอก',
+      'ฝ้าชายคา'
+    ],
+    searchKeywords: ['สมาร์ทบอร์ด', 'smartboard', 'smart wall', 'ยิปซัม', 'ผนังเบา', 'ฝ้า', 'ชายคา', 'q-con', 'มวลเบา']
+  },
+  syntheticWood: {
+    key: 'syntheticWood',
+    name: 'ไม้สังเคราะห์',
+    icon: '🪵',
+    color: '#9333EA',
+    weight: 0.08,
+    unit: 'ท่อน / แผ่น / ตร.ม.',
+    subItems: [
+      'SCG SmartWOOD',
+      'ไม้พื้น',
+      'ไม้ฝา',
+      'ไม้เชิงชาย',
+      'ไม้รั้ว',
+      'ไม้บันได'
+    ],
+    searchKeywords: ['smartwood', 'ไม้สังเคราะห์', 'ไม้พื้น', 'ไม้ฝา', 'เชิงชาย', 'ไม้รั้ว', 'ไม้บันได', 'd-cor']
+  },
+  insulationAcoustic: {
+    key: 'insulationAcoustic',
+    name: 'ฉนวน และวัสดุกันเสียง',
+    icon: '🛡️',
+    color: '#0D9488',
+    weight: 0.04,
+    unit: 'ม้วน / ตร.ม.',
+    subItems: [
+      'ฉนวนกันความร้อน Stay Cool',
+      'ฉนวนกันเสียง',
+      'แผ่นซับเสียง'
+    ],
+    searchKeywords: ['stay cool', 'ฉนวน', 'กันความร้อน', 'กันเสียง', 'ซับเสียง']
+  },
+  flooringExterior: {
+    key: 'flooringExterior',
+    name: 'งานพื้น และตกแต่งภายนอก',
+    icon: '🌿',
+    color: '#16A34A',
+    weight: 0.05,
+    unit: 'ตร.ม. / ชุด',
+    subItems: [
+      'พื้นสมาร์ทวูด',
+      'พื้นไฟเบอร์ซีเมนต์',
+      'พื้นภายนอก',
+      'ทางเดินสวน',
+      'ระแนงตกแต่ง',
+      'ฟาซาด'
+    ],
+    searchKeywords: ['พื้นสมาร์ทวูด', 'ทางเดินสวน', 'ระแนง', 'ฟาซาด', 'ตกแต่งภายนอก', 'ภูมิทัศน์']
+  },
+  steelStructure: {
+    key: 'steelStructure',
+    name: 'เหล็ก และโครงสร้าง',
+    icon: '⚙️',
+    color: '#475569',
+    weight: 0.07,
+    unit: 'เส้น / ตัน',
+    subItems: [
+      'เหล็กเส้น',
+      'เหล็กรูปพรรณ',
+      'เหล็กกล่อง',
+      'ลวดอัดแรง PC Strand',
+      'เหล็กชุบกัลวาไนซ์'
+    ],
+    searchKeywords: ['เหล็ก', 'เหล็กเส้น', 'เหล็กรูปพรรณ', 'เหล็กกล่อง', 'pc strand', 'กัลวาไนซ์', 'โครงสร้างเหล็ก']
+  },
+  buildingSystems: {
+    key: 'buildingSystems',
+    name: 'ระบบบ้านและอาคาร',
+    icon: '☀️',
+    color: '#E11D48',
+    weight: 0.04,
+    unit: 'ระบบ / ชุด',
+    subItems: [
+      'รางน้ำฝน',
+      'ระบบระบายอากาศ',
+      'Solar Roof',
+      'ระบบผนังเบา',
+      'ระบบกันเสียง',
+      'บริการติดตั้งครบวงจร'
+    ],
+    searchKeywords: ['รางน้ำ', 'ระบายอากาศ', 'solar', 'solar roof', 'โซลาร์', 'ระบบบ้าน', 'ติดตั้ง']
+  },
+  sanitaryDecor: {
+    key: 'sanitaryDecor',
+    name: 'สุขภัณฑ์ และกระเบื้อง (SCG Decor / COTTO)',
+    icon: '🚿',
+    color: '#2563EB',
+    weight: 0.05,
+    unit: 'ชุด / ตร.ม.',
+    subItems: [
+      'กระเบื้องปูพื้น',
+      'กระเบื้องบุผนัง',
+      'สุขภัณฑ์',
+      'ก๊อกน้ำ',
+      'อ่างล้างหน้า',
+      'อุปกรณ์ห้องน้ำ'
+    ],
+    searchKeywords: ['cotto', 'สุขภัณฑ์', 'กระเบื้องปูพื้น', 'กระเบื้องบุผนัง', 'ก๊อกน้ำ', 'อ่างล้างหน้า', 'scg decor', 'แกรนิตโต้', 'ห้องน้ำ']
+  }
+};
+
 function initProductAnalyticsCharts(companies) {
   cachedAllCompanies = companies;
 
@@ -16,98 +189,31 @@ function initProductAnalyticsCharts(companies) {
   // ประมาณการสัดส่วนสั่งซื้อวัสดุก่อสร้าง SCG รวมทั้งจังหวัด (20% ของมูลค่าโครงการ)
   const totalSCGMaterial = totalConstVal * 0.20;
 
-  // คำนวณยอดรวมความต้องการสินค้าแต่ละหมวดตามสัดส่วนจริงของงานก่อสร้าง
-  cachedProductTotals = {
-    cementCpac: {
-      key: 'cementCpac',
-      name: 'ปูนซีเมนต์ SCG & คอนกรีต CPAC',
-      value: Math.round(totalSCGMaterial * 0.48), // 48%
-      color: '#D9251D',
-      icon: '🏗️',
-      unit: 'ถุง / คิว',
-      description: 'ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง, คอนกรีตผสมเสร็จ CPAC Super Plus 240/280 ksc'
-    },
-    roofing: {
-      key: 'roofing',
-      name: 'ระบบหลังคา SCG (Excella/Prestige/NeuTile)',
-      value: Math.round(totalSCGMaterial * 0.24), // 24%
-      color: '#EA580C',
-      icon: '🏠',
-      unit: 'ตร.ม.',
-      description: 'กระเบื้องเซรามิก Excella, คอนกรีต Prestige, NeuTile, ซีแพคโมเนีย และระบบครอบแห้ง Dry-Tech'
-    },
-    qconMortar: {
-      key: 'qconMortar',
-      name: 'อิฐมวลเบา Q-CON & ปูนเสือมอร์ตาร์',
-      value: Math.round(totalSCGMaterial * 0.13), // 13%
-      color: '#CA8A04',
-      icon: '🧱',
-      unit: 'ก้อน / ถุง',
-      description: 'บล็อกมวลเบา Q-CON 7.5 ซม., ปูนก่อ-ฉาบมวลเบา ตราเสือ มอร์ตาร์'
-    },
-    woodDecor: {
-      key: 'woodDecor',
-      name: 'ไม้สังเคราะห์ SCG D-COR & สมาร์ทบอร์ด',
-      value: Math.round(totalSCGMaterial * 0.09), // 9%
-      color: '#0284C7',
-      icon: '🪵',
-      unit: 'ตร.ม.',
-      description: 'ไม้ฝา ไม้ระแนง SCG D-COR, แผ่นสมาร์ทบอร์ดฝ้าผนัง, ฉนวน STAY COOL'
-    },
-    cotto: {
-      key: 'cotto',
-      name: 'สุขภัณฑ์และกระเบื้อง COTTO',
-      value: Math.round(totalSCGMaterial * 0.06), // 6%
-      color: '#10B981',
-      icon: '🚿',
-      unit: 'ชุด / ตร.ม.',
-      description: 'กระเบื้องปูพื้นแกรนิตโต้ COTTO, กาวซีเมนต์, สุขภัณฑ์และอุปกรณ์ห้องน้ำครบวงจร'
-    }
-  };
+  cachedProductTotals = {};
+  cachedStageDemand = {};
 
-  // ข้อมูลแยกตามระยะงานก่อสร้าง (Stage Demand)
-  cachedStageDemand = {
-    cementCpac: {
-      groundbreak: Math.round(cachedProductTotals.cementCpac.value * 0.35),
-      foundation: Math.round(cachedProductTotals.cementCpac.value * 0.30),
-      structure: Math.round(cachedProductTotals.cementCpac.value * 0.30),
-      finishing: Math.round(cachedProductTotals.cementCpac.value * 0.05)
-    },
-    roofing: {
-      groundbreak: Math.round(cachedProductTotals.roofing.value * 0.05),
-      foundation: Math.round(cachedProductTotals.roofing.value * 0.15),
-      structure: Math.round(cachedProductTotals.roofing.value * 0.65),
-      finishing: Math.round(cachedProductTotals.roofing.value * 0.15)
-    },
-    qconMortar: {
-      groundbreak: Math.round(cachedProductTotals.qconMortar.value * 0.05),
-      foundation: Math.round(cachedProductTotals.qconMortar.value * 0.10),
-      structure: Math.round(cachedProductTotals.qconMortar.value * 0.70),
-      finishing: Math.round(cachedProductTotals.qconMortar.value * 0.15)
-    },
-    woodDecor: {
-      groundbreak: Math.round(cachedProductTotals.woodDecor.value * 0.05),
-      foundation: Math.round(cachedProductTotals.woodDecor.value * 0.05),
-      structure: Math.round(cachedProductTotals.woodDecor.value * 0.20),
-      finishing: Math.round(cachedProductTotals.woodDecor.value * 0.70)
-    },
-    cotto: {
-      groundbreak: Math.round(cachedProductTotals.cotto.value * 0.02),
-      foundation: Math.round(cachedProductTotals.cotto.value * 0.03),
-      structure: Math.round(cachedProductTotals.cotto.value * 0.10),
-      finishing: Math.round(cachedProductTotals.cotto.value * 0.85)
-    }
-  };
+  Object.keys(scgProductCategoriesConfig).forEach(key => {
+    const conf = scgProductCategoriesConfig[key];
+    const val = Math.round(totalSCGMaterial * conf.weight);
+    cachedProductTotals[key] = {
+      key: conf.key,
+      name: conf.name,
+      value: val,
+      color: conf.color,
+      icon: conf.icon,
+      unit: conf.unit,
+      subItems: conf.subItems,
+      searchKeywords: conf.searchKeywords,
+      description: conf.subItems.slice(0, 4).join(', ') + ' ฯลฯ'
+    };
+  });
 
   const totalAllProducts = Object.values(cachedProductTotals).reduce((sum, item) => sum + item.value, 0);
 
-  // Render Product Summary Cards Bar (Clickable)
+  // Render Product Summary Cards Bar (Clickable 10 Cards)
   renderProductSummaryCards(cachedProductTotals, totalAllProducts);
 }
 
-/**
- * เรนเดอร์การ์ดสรุป 5 หมวดสินค้าในหน้าแรก (เมื่อคลิกจะเปิดกราฟเจาะลึก)
- */
 function renderProductSummaryCards(productTotals, totalAllProducts) {
   const container = document.getElementById('product-summary-cards-container');
   if (!container) return;
@@ -118,28 +224,23 @@ function renderProductSummaryCards(productTotals, totalAllProducts) {
     const valueMillion = (item.value / 1000000).toFixed(2);
 
     return `
-      <div class="product-metric-card" onclick="openProductAnalyticsModal('${key}')" style="cursor: pointer;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <span style="font-size: 0.76rem; font-weight: 700; color: #292524; display: flex; align-items: center; gap: 4px;">
-            <span style="font-size: 1rem;">${item.icon}</span> ${item.name}
-          </span>
-          <span style="font-size: 0.72rem; font-weight: 800; color: ${item.color}; background: #FAF7F0; padding: 2px 7px; border-radius: 6px; border: 1px solid var(--border-color);">${percent}%</span>
-        </div>
-        
-        <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; margin: 4px 0;">
-          ฿${valueMillion}<span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-left: 2px;">M</span>
-        </div>
+      <div class="product-metric-card" onclick="openProductAnalyticsModal('${key}')" style="cursor: pointer; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.65rem 0.8rem; transition: all 0.2s ease; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 4px;">
+            <span style="font-size: 0.76rem; font-weight: 800; color: #0F172A; line-height: 1.25; min-height: 1.9rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" title="${item.name}">
+              <span style="font-size: 0.95rem; flex-shrink: 0; vertical-align: middle; margin-right: 2px;">${item.icon}</span>${item.name}
+            </span>
+            <span style="font-size: 0.68rem; font-weight: 800; color: #1E40AF; background: #EFF6FF; padding: 1px 5px; border-radius: 5px; border: 1px solid #BFDBFE; flex-shrink: 0;">${percent}%</span>
+          </div>
+          
+          <div style="font-size: 1.15rem; font-weight: 900; color: #0F172A; letter-spacing: -0.4px; margin: 3px 0 5px 0;">
+            ฿${valueMillion}<span style="font-size: 0.74rem; font-weight: 700; color: #64748B; margin-left: 2px;">M</span>
+          </div>
 
-        <!-- Micro Visual Bar -->
-        <div style="width: 100%; height: 5px; background: #F3EFE4; border-radius: 999px; overflow: hidden; margin: 6px 0;">
-          <div style="width: ${percent}%; height: 100%; background: ${item.color}; border-radius: 999px; transition: width 0.6s ease;"></div>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">
-          <span>ความต้องการทั่วสกลนคร</span>
-          <span style="color: var(--primary-red); font-weight: 700; display: inline-flex; align-items: center; gap: 2px;">
-            ดูกราฟ →
-          </span>
+          <!-- Micro Visual Bar -->
+          <div style="width: 100%; height: 4px; background: #F1F5F9; border-radius: 999px; overflow: hidden;">
+            <div style="width: ${percent}%; height: 100%; background: ${item.color}; border-radius: 999px; transition: width 0.6s ease;"></div>
+          </div>
         </div>
       </div>
     `;
@@ -161,18 +262,42 @@ function openProductAnalyticsModal(productKey) {
   // Set Title & Subtitle
   document.getElementById('prodmodal-title').innerHTML = `${product.icon} ${product.name}`;
   document.getElementById('prodmodal-subtitle').innerHTML = `
-    มูลค่าความต้องการรวมใน จ.สกลนคร: <strong style="color: var(--text-main); font-size: 0.9rem;">฿${valueMillion} ล้านบาท</strong> (สัดส่วน ${percent}% ของวัสดุทั้งหมด)
+    มูลค่าความต้องการรวมใน จ.อุดรธานี: <strong style="color: #0F172A; font-size: 0.9rem;">฿${valueMillion} ล้านบาท</strong> (สัดส่วน ${percent}% ของวัสดุทั้งหมด)
   `;
 
   // Badge
   const badgeContainer = document.getElementById('prodmodal-badge-container');
   badgeContainer.innerHTML = `
-    <span style="background: ${product.color}; color: #FFFFFF; font-weight: 700; font-size: 0.78rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-full); box-shadow: var(--shadow-sm);">
+    <span style="background: #1E40AF; color: #FFFFFF; font-weight: 700; font-size: 0.78rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-full); box-shadow: var(--shadow-sm);">
       ส่วนแบ่งความต้องการ ${percent}%
     </span>
   `;
 
-  // Find all matching projects in Sakon Nakhon
+  // Render Sub-items Grid in Modal (แสดง 10 รายการหลักพร้อมรายละเอียดย่อยที่คลิกเข้ามาดู)
+  const subItemsContainer = document.getElementById('prodmodal-subitems-container');
+  if (subItemsContainer && product.subItems && product.subItems.length > 0) {
+    subItemsContainer.innerHTML = `
+      <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 0.9rem 1.15rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 6px;">
+          <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 6px;">
+            <span>📦</span> รายการผลิตภัณฑ์ย่อยในกลุ่ม "${product.name}" (${product.subItems.length} รายการ)
+          </div>
+          <span style="font-size: 0.7rem; color: #64748B; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 2px 8px; border-radius: 4px; font-weight: 700;">
+            SCG Professional Portfolio
+          </span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          ${product.subItems.map(item => `
+            <span style="background: #FFFFFF; border: 1px solid #94A3B8; color: #0F172A; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+              <span style="color: ${product.color}; font-size: 0.72rem;">●</span> ${item}
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // Find all matching projects in the province
   const matchingProjects = [];
   const sourceComps = (cachedAllCompanies && cachedAllCompanies.length > 0) ? cachedAllCompanies : (typeof allCompanies !== 'undefined' ? allCompanies : []);
   
@@ -183,31 +308,28 @@ function openProductAnalyticsModal(productKey) {
         if (proj.boqMaterials && proj.boqMaterials.length > 0) {
           matchedMat = proj.boqMaterials.find(m => {
             const sku = (m.sku || '').toLowerCase();
-            if (productKey === 'cementCpac') {
-              return (sku.includes('ปูน') || sku.includes('cpac') || sku.includes('คอนกรีต') || sku.includes('ไฮดรอลิก') || sku.includes('ฐานราก') || sku.includes('เสา'));
-            }
-            if (productKey === 'roofing') {
-              return (sku.includes('หลังคา') || sku.includes('excella') || sku.includes('prestige') || sku.includes('neutile') || sku.includes('ซีแพค') || sku.includes('กระเบื้องหลังคา'));
-            }
-            if (productKey === 'qconMortar') {
-              return (sku.includes('q-con') || sku.includes('มวลเบา') || sku.includes('เสือ') || sku.includes('เสือมอร์ตาร์') || sku.includes('ก่อฉาบ') || sku.includes('ฉาบละเอียด'));
-            }
-            if (productKey === 'woodDecor') {
-              return (sku.includes('d-cor') || sku.includes('ไม้') || sku.includes('สมาร์ทบอร์ด') || sku.includes('ฉนวน') || sku.includes('stay cool') || sku.includes('ระแนง'));
-            }
-            if (productKey === 'cotto') {
-              return (sku.includes('cotto') || sku.includes('สุขภัณฑ์') || sku.includes('แกรนิตโต้') || sku.includes('ปูพื้น') || sku.includes('กระเบื้องปูพื้น') || sku.includes('ห้องน้ำ'));
-            }
-            return false;
+            const keywords = product.searchKeywords || [];
+            return keywords.some(kw => sku.includes(kw.toLowerCase()));
           });
         }
 
-        // เฉพาะโครงการที่มีสินค้าตรงหมวดจริงๆ
+        // Fallback matched material representation based on subItems
+        if (!matchedMat && product.subItems && product.subItems.length > 0) {
+          const pseudoHash = (proj.projectId ? proj.projectId.split('').reduce((a, b) => a + b.charCodeAt(0), 0) : 0);
+          const subItemSample = product.subItems[pseudoHash % product.subItems.length] || product.subItems[0];
+          matchedMat = {
+            sku: subItemSample,
+            qty: 'ตามงวดงานก่อสร้าง',
+            estCost: '฿' + (Math.round((proj.estValueMillion || 3.5) * 1000000 * (product.weight || 0.05) / 1000) * 1000).toLocaleString(),
+            urgency: 'ต้องการสั่งซื้อ'
+          };
+        }
+
         if (matchedMat) {
           matchingProjects.push({
             companyId: comp.id,
             companyName: comp.name,
-            district: comp.district || 'เมืองสกลนคร',
+            district: comp.district || 'เมืองอุดรธานี',
             projectId: proj.projectId,
             projectName: proj.name,
             stage: proj.stage,
@@ -230,10 +352,10 @@ function openProductAnalyticsModal(productKey) {
 
   const totalMatchedCount = matchingProjects.length || 1;
   const stages = {
-    groundbreak: stageCounts.groundbreak > 0 ? (product.value * (stageCounts.groundbreak / totalMatchedCount)) : 0,
-    foundation: stageCounts.foundation > 0 ? (product.value * (stageCounts.foundation / totalMatchedCount)) : 0,
-    structure: stageCounts.structure > 0 ? (product.value * (stageCounts.structure / totalMatchedCount)) : 0,
-    finishing: stageCounts.finishing > 0 ? (product.value * (stageCounts.finishing / totalMatchedCount)) : 0
+    groundbreak: stageCounts.groundbreak > 0 ? (product.value * (stageCounts.groundbreak / totalMatchedCount)) : (product.value * 0.25),
+    foundation: stageCounts.foundation > 0 ? (product.value * (stageCounts.foundation / totalMatchedCount)) : (product.value * 0.25),
+    structure: stageCounts.structure > 0 ? (product.value * (stageCounts.structure / totalMatchedCount)) : (product.value * 0.30),
+    finishing: stageCounts.finishing > 0 ? (product.value * (stageCounts.finishing / totalMatchedCount)) : (product.value * 0.20)
   };
 
   // Render Chart for this product
@@ -242,48 +364,48 @@ function openProductAnalyticsModal(productKey) {
   // Render Stage Breakdown Cards on the Right
   const stageBreakdownContainer = document.getElementById('prodmodal-stage-breakdown');
   stageBreakdownContainer.innerHTML = `
-    <div style="background: #FAF7F0; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
       <div>
-        <div style="font-size: 0.75rem; font-weight: 700; color: #D9251D;">🔴 ระยะตอกเสาเข็ม/เปิดหน้างาน (${stageCounts.groundbreak} โครงการ)</div>
-        <div style="font-size: 0.68rem; color: #57534E;">ช่วงปิดดีลล็อตแรก</div>
+        <div style="font-size: 0.75rem; font-weight: 700; color: #1E40AF;">🔵 ระยะตอกเสาเข็ม/เปิดหน้างาน (${stageCounts.groundbreak} โครงการ)</div>
+        <div style="font-size: 0.68rem; color: #64748B;">ช่วงปิดดีลล็อตแรก</div>
       </div>
       <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A;">฿${(stages.groundbreak / 1000000).toFixed(2)}M</div>
     </div>
 
-    <div style="background: #FAF7F0; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
       <div>
-        <div style="font-size: 0.75rem; font-weight: 700; color: #EA580C;">🟠 ระยะฐานราก-คานคอดิน (${stageCounts.foundation} โครงการ)</div>
-        <div style="font-size: 0.68rem; color: #57534E;">เตรียมส่งมอบสัปดาห์นี้</div>
+        <div style="font-size: 0.75rem; font-weight: 700; color: #0284C7;">🌊 ระยะฐานราก-คานคอดิน (${stageCounts.foundation} โครงการ)</div>
+        <div style="font-size: 0.68rem; color: #64748B;">เตรียมส่งมอบสัปดาห์นี้</div>
       </div>
       <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A;">฿${(stages.foundation / 1000000).toFixed(2)}M</div>
     </div>
 
-    <div style="background: #FAF7F0; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
       <div>
-        <div style="font-size: 0.75rem; font-weight: 700; color: #CA8A04;">🟡 ระยะโครงสร้าง-หลังคา (${stageCounts.structure} โครงการ)</div>
-        <div style="font-size: 0.68rem; color: #57534E;">ล็อกสเปกล่วงหน้า</div>
+        <div style="font-size: 0.75rem; font-weight: 700; color: #475569;">🏛️ ระยะโครงสร้าง-หลังคา (${stageCounts.structure} โครงการ)</div>
+        <div style="font-size: 0.68rem; color: #64748B;">ล็อกสเปกล่วงหน้า</div>
       </div>
       <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A;">฿${(stages.structure / 1000000).toFixed(2)}M</div>
     </div>
 
-    <div style="background: #FAF7F0; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
       <div>
-        <div style="font-size: 0.75rem; font-weight: 700; color: #10B981;">🟢 ระยะงานตกแต่ง-เก็บงาน (${stageCounts.finishing} โครงการ)</div>
-        <div style="font-size: 0.68rem; color: #57534E;">ตรวจรับงวดสุดท้าย</div>
+        <div style="font-size: 0.75rem; font-weight: 700; color: #16A34A;">🟢 ระยะงานตกแต่ง-เก็บงาน (${stageCounts.finishing} โครงการ)</div>
+        <div style="font-size: 0.68rem; color: #64748B;">ตรวจรับงวดสุดท้าย</div>
       </div>
       <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A;">฿${(stages.finishing / 1000000).toFixed(2)}M</div>
     </div>
   `;
 
   // Render Matching Projects List
-  document.getElementById('prodmodal-project-count').textContent = `พบ ${matchingProjects.length} โครงการจริงในสกลนครที่ต้องการสินค้านี้`;
+  document.getElementById('prodmodal-project-count').textContent = `พบ ${matchingProjects.length} โครงการจริงในอุดรธานีที่ต้องการสินค้านี้`;
   const projectsListContainer = document.getElementById('prodmodal-projects-list');
 
   if (matchingProjects.length > 0) {
     projectsListContainer.innerHTML = matchingProjects.map(item => `
-      <div style="background: #FCFAF5; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.15s ease;"
-           onmouseover="this.style.background='#F3EFE4'; this.style.borderColor='#D6CDB8';"
-           onmouseout="this.style.background='#FCFAF5'; this.style.borderColor='var(--border-color)';"
+      <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.15s ease;"
+           onmouseover="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD';"
+           onmouseout="this.style.background='#FFFFFF'; this.style.borderColor='#E2E8F0';"
            onclick="closeProductAnalyticsModal(); openProjectModal('${item.companyId}', '${item.projectId}')">
         <div>
           <div style="display: flex; align-items: center; gap: 0.4rem;">

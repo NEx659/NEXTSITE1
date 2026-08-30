@@ -9,11 +9,11 @@
  */
 
 const SCORING_WEIGHTS = {
-  projectVolume: 0.25,      // 25% จำนวนโครงการ & โครงการใหม่ที่พึ่งเริ่ม
+  projectVolume: 0.35,      // 35% จำนวนโครงการ & โครงการใหม่
   projectValue: 0.25,       // 25% มูลค่าโครงการรวม
-  companyGrowth: 0.15,      // 15% การเติบโตของบริษัท
-  areaExpansion: 0.15,      // 15% การขยายพื้นที่ดำเนินงาน
-  scgProductFit: 0.20       // 20% ความเหมาะสมกับสินค้าของ SCG
+  companyGrowth: 0.10,      // 10% การเติบโตของบริษัท
+  areaExpansion: 0.10,      // 10% การขยายพื้นที่ดำเนินงาน
+  scgProductFit: 0.20       // 20% ความเหมาะสมกับสินค้า SCG
 };
 
 /**
@@ -22,16 +22,73 @@ const SCORING_WEIGHTS = {
  * @returns {Object} ผลการคำนวณและรายละเอียด
  */
 function calculateOpportunityScore(company) {
-  // 1. คะแนนจำนวนโครงการ (0-100) -> ให้น้ำหนักสูงเป็นพิเศษกับโครงการที่พึ่งเริ่มตอกเสาเข็ม
-  let volumeScore = 0;
-  const newProjects = company.newProjectsThisMonth || 0;
-  const groundbreakCount = (company.stageBreakdown && company.stageBreakdown.groundbreak) || 0;
-  const totalProj = company.totalProjects || 1;
+  // 1. ตรวจสอบข้อความโพสต์ Facebook, แคปชั่น และโครงการ เพื่อสกรีนคีย์เวิร์ด "ตอกเสาเข็ม", "ยกเสาเอก", "ยกเสาโท"
+  const earlyKeywordsList = ['ตอกเสาเข็ม', 'ยกเสาเอก', 'ยกเสาโท', 'เสาเอก', 'เสาโท', 'ลงเสาเข็ม', 'เสาเข็ม', 'เปิดหน้างาน', 'วางผัง', 'ขุดหลุมเสา'];
+  
+  let allTextCorpus = '';
+  if (company.facebookSignal && company.facebookSignal.caption) {
+    allTextCorpus += ' ' + company.facebookSignal.caption;
+  }
+  if (company.facebookSignal && Array.isArray(company.facebookSignal.detectedKeywords)) {
+    allTextCorpus += ' ' + company.facebookSignal.detectedKeywords.join(' ');
+  }
+  if (company.verificationStatus && company.verificationStatus.evidenceSource) {
+    allTextCorpus += ' ' + company.verificationStatus.evidenceSource;
+  }
+  if (company.projects && company.projects.length > 0) {
+    company.projects.forEach(p => {
+      allTextCorpus += ' ' + (p.name || '') + ' ' + (p.caption || '') + ' ' + (p.stage || '') + ' ' + (p.fbPostText || '');
+    });
+  }
 
-  volumeScore = Math.min(100, (totalProj * 8) + (newProjects * 18) + (groundbreakCount * 20));
+  // ค้นหาคีย์เวิร์ดที่พบในโพสต์
+  const matchedEarlyKeywords = [];
+  earlyKeywordsList.forEach(kw => {
+    if (allTextCorpus.includes(kw)) {
+      matchedEarlyKeywords.push(kw);
+    }
+  });
+
+  const hasEarlyKeywords = matchedEarlyKeywords.length > 0;
+  const newProjects = company.newProjectsThisMonth || 0;
+  const groundbreakCount = (company.stageBreakdown && company.stageBreakdown.groundbreak) || (hasEarlyKeywords ? 1 : 0);
+  const totalProj = (company.projects && company.projects.length) ? company.projects.length : (company.totalProjects || 0);
+
+  // คำนวณคะแนนจำนวนโครงการ & โครงการใหม่ (35%):
+  // ถ้าพบคำว่า "ตอกเสาเข็ม / ยกเสาเอก / ยกเสาโท" ให้คะแนนทันทีเป็นโครงการใหม่ที่เพิ่งเริ่ม
+  let volumeScore = 0;
+  if (hasEarlyKeywords) {
+    volumeScore = Math.min(100, 85 + (matchedEarlyKeywords.length * 5) + (totalProj * 2));
+  } else if (groundbreakCount > 0 || newProjects > 0) {
+    volumeScore = Math.min(100, 75 + (groundbreakCount * 15) + (newProjects * 10) + (totalProj * 3));
+  } else if (totalProj > 0) {
+    volumeScore = Math.min(100, Math.max(40, totalProj * 15));
+  } else {
+    volumeScore = 20;
+  }
+
+  let volumeDesc = '';
+  const breakdownParts = [];
+  if (company.stageBreakdown) {
+    if (company.stageBreakdown.groundbreak > 0) breakdownParts.push(`ตอกเสาเข็ม ${company.stageBreakdown.groundbreak} หลัง`);
+    if (company.stageBreakdown.foundation > 0) breakdownParts.push(`ฐานราก ${company.stageBreakdown.foundation} หลัง`);
+    if (company.stageBreakdown.structure > 0) breakdownParts.push(`โครงสร้าง ${company.stageBreakdown.structure} หลัง`);
+    if (company.stageBreakdown.finishing > 0) breakdownParts.push(`ตกแต่ง ${company.stageBreakdown.finishing} หลัง`);
+  }
+
+  if (hasEarlyKeywords) {
+    volumeDesc = `${totalProj} โครงการ (พบสัญญาณโพสต์ใหม่: ${matchedEarlyKeywords.slice(0, 3).join(', ')})`;
+  } else if (newProjects > 0) {
+    volumeDesc = `${totalProj} โครงการ (${newProjects} โครงการใหม่ในเดือนนี้)`;
+  } else if (breakdownParts.length > 0) {
+    volumeDesc = `${totalProj} โครงการ (${breakdownParts.join(', ')})`;
+  } else if (totalProj > 0) {
+    volumeDesc = `${totalProj} โครงการ (มีไซต์งานก่อสร้างจริงในพื้นที่)`;
+  } else {
+    volumeDesc = `0 โครงการ (พร้อมรับข้อมูลสแกนโครงการใหม่จาก Facebook)`;
+  }
 
   // 2. คะแนนมูลค่าโครงการรวม (0-100)
-  // อิงจากมูลค่าโครงการ 5M - 70M ใน จ.อุดรธานี
   const valueMil = company.totalValueMillion || 10;
   let valueScore = Math.min(100, Math.round((valueMil / 65) * 100));
 
@@ -41,9 +98,9 @@ function calculateOpportunityScore(company) {
 
   // 4. คะแนนการขยายพื้นที่ดำเนินงาน (0-100)
   let areaScore = 60;
-  if (company.areaExpansion.includes("3") || company.areaExpansion.includes("ครอบคลุม") || company.areaExpansion.split(",").length >= 3) {
+  if (company.areaExpansion && (company.areaExpansion.includes("3") || company.areaExpansion.includes("ครอบคลุม") || company.areaExpansion.split(",").length >= 3)) {
     areaScore = 95;
-  } else if (company.areaExpansion.split(",").length >= 2 || company.areaExpansion.includes("สู่อำเภอ")) {
+  } else if (company.areaExpansion && (company.areaExpansion.split(",").length >= 2 || company.areaExpansion.includes("สู่อำเภอ"))) {
     areaScore = 82;
   } else {
     areaScore = 65;
@@ -52,7 +109,7 @@ function calculateOpportunityScore(company) {
   // 5. ความเหมาะสมกับสินค้า SCG (0-100)
   // ถ้ามีโครงการพึ่งเริ่มตอกเสาเข็ม/ฐานราก จะสอดคล้องกับปูนซีเมนต์ไฮดรอลิก & คอนกรีต CPAC สูงสุด (100)
   let scgFitScore = 70;
-  if (groundbreakCount >= 2) {
+  if (hasEarlyKeywords || groundbreakCount >= 2) {
     scgFitScore = 98;
   } else if (groundbreakCount >= 1 || (company.stageBreakdown && company.stageBreakdown.foundation >= 2)) {
     scgFitScore = 88;
@@ -62,7 +119,7 @@ function calculateOpportunityScore(company) {
     scgFitScore = 60;
   }
 
-  // คำนวณคะแนนรวมถ่วงน้ำหนัก
+  // คำนวณคะแนนรวมถ่วงน้ำหนักตามสัดส่วนใหม่ (35%, 25%, 10%, 10%, 20%)
   const finalScore = Math.round(
     (volumeScore * SCORING_WEIGHTS.projectVolume) +
     (valueScore * SCORING_WEIGHTS.projectValue) +
@@ -91,7 +148,9 @@ function calculateOpportunityScore(company) {
 
   // สร้างเหตุผลประกอบคะแนน
   const reasons = [];
-  if (groundbreakCount > 0) {
+  if (hasEarlyKeywords) {
+    reasons.push(`ตรวจพบโพสต์ Facebook สัญญาณงานเริ่มสร้างใหม่: ${matchedEarlyKeywords.join(', ')}`);
+  } else if (groundbreakCount > 0) {
     reasons.push(`ตรวจพบงานตอกเสาเข็มใหม่ ${groundbreakCount} โครงการ (ซื้อปูน/คอนกรีตล็อตแรก)`);
   }
   if (valueMil >= 40) {
@@ -104,6 +163,15 @@ function calculateOpportunityScore(company) {
     reasons.push(`ความเข้ากันได้กับกลุ่มสินค้า SCG Structure & CPAC อยู่ในเกณฑ์สูงมาก`);
   }
 
+  let scgProductDesc = 'ตรงกับสินค้าหลังคา/ตกแต่ง';
+  if (hasEarlyKeywords || groundbreakCount > 0) {
+    scgProductDesc = 'ตรงกับปูนไฮดรอลิก & คอนกรีต CPAC 100%';
+  } else if (company.stageBreakdown && company.stageBreakdown.foundation > 0) {
+    scgProductDesc = 'ตรงกับคอนกรีตผสมเสร็จ CPAC & ปูนฐานราก';
+  } else if (company.stageBreakdown && company.stageBreakdown.structure > 0) {
+    scgProductDesc = 'ตรงกับกระเบื้องหลังคา SCG & อิฐมวลเบา Q-CON';
+  }
+
   return {
     score: finalScore,
     tier,
@@ -112,11 +180,11 @@ function calculateOpportunityScore(company) {
     urgency,
     reasons,
     dimensions: [
-      { name: "จำนวนโครงการ & โครงการใหม่", score: volumeScore, weight: "25%", desc: `${company.totalProjects} โครงการ (${newProjects} โครงการใหม่)` },
-      { name: "มูลค่าโครงการรวม", score: valueScore, weight: "25%", desc: `฿${valueMil} ล้านบาท` },
-      { name: "การเติบโตของบริษัท", score: growthScore, weight: "15%", desc: `+${growthRate}% YoY` },
-      { name: "การขยายพื้นที่ดำเนินงาน", score: areaScore, weight: "15%", desc: company.areaExpansion },
-      { name: "ความเหมาะสมกับสินค้า SCG", score: scgFitScore, weight: "20%", desc: groundbreakCount > 0 ? "ตรงกับปูนไฮดรอลิก/CPAC 100%" : "ตรงกับสินค้าหลังคา/ตกแต่ง" }
+      { name: "จำนวนโครงการ & โครงการใหม่", score: volumeScore, weight: "35%", desc: volumeDesc },
+      { name: "มูลค่าโครงการรวม", score: valueScore, weight: "25%", desc: `฿${valueMil} ล้านบาท (ประมาณการซื้อวัสดุ SCG ~฿${(valueMil * 0.2).toFixed(1)}M)` },
+      { name: "การเติบโตของบริษัท", score: growthScore, weight: "10%", desc: `+${growthRate}% YoY (มีกำลังซื้อต่อเนื่อง)` },
+      { name: "การขยายพื้นที่ดำเนินงาน", score: areaScore, weight: "10%", desc: company.areaExpansion || "ครอบคลุมพื้นที่ จ.อุดรธานี" },
+      { name: "ความเหมาะสมกับสินค้า SCG", score: scgFitScore, weight: "20%", desc: scgProductDesc }
     ]
   };
 }

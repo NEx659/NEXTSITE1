@@ -309,18 +309,19 @@ function renderTable() {
     return;
   }
 
-  tbody.innerHTML = filteredCompanies.map(company => {
+  tbody.innerHTML = filteredCompanies.map((company, idx) => {
     const score = company.opportunityScore;
     let badgeClass = 'yellow';
     if (score >= 90) badgeClass = 'red';
     else if (score >= 70) badgeClass = 'orange';
 
-    const rankClass = company.rank <= 3 ? `rank-${company.rank}` : '';
+    // สีอันดับแต่ละบริษัท: น้ำเงินเข้ม สลับกับ ฟ้าอ่อน
+    const rankClass = (idx % 2 === 0) ? 'rank-dark-blue' : 'rank-light-blue';
     const hasGroundbreak = (company.stageBreakdown && company.stageBreakdown.groundbreak > 0);
     const isVerified = company.verificationStatus && company.verificationStatus.isVerified;
 
     return `
-      <tr onclick="openCompanyModal('${company.id}')">
+      <tr class="${(idx % 2 === 0) ? 'row-dark-tint' : 'row-light-tint'}" onclick="openCompanyModal('${company.id}')">
         <td style="width: 50px;">
           <div class="rank-badge ${rankClass}">#${company.rank}</div>
         </td>
@@ -703,11 +704,18 @@ function openCompanyModal(companyOrId) {
   }
   if (!company) return;
 
+  if (typeof closeAllModals === 'function') closeAllModals();
+
+  const modal = document.getElementById('company-detail-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+
   activeSelectedCompany = company;
   activeModalProjectStageFilter = 'all';
 
-  const modal = document.getElementById('company-detail-modal');
-  const details = company.scoreDetails;
+  const details = (typeof calculateOpportunityScore === 'function') ? calculateOpportunityScore(company) : (company.scoreDetails || {});
+  company.scoreDetails = details;
 
   // Header
   document.getElementById('modal-company-name').textContent = company.name;
@@ -744,20 +752,23 @@ function openCompanyModal(companyOrId) {
   document.getElementById('modal-score-badge').innerHTML = `● ${details.tierLabel}`;
   document.getElementById('modal-score-urgency').textContent = details.urgency;
 
-  // Dimension Bars
+  // Dimension Bars (Updated 35%, 25%, 10%, 10%, 20%)
   const dimContainer = document.getElementById('modal-dimensions-list');
-  dimContainer.innerHTML = details.dimensions.map(dim => `
-    <div class="dimension-row">
-      <div class="dimension-meta">
-        <span>${dim.name} (${dim.weight})</span>
-        <strong style="color: #0F172A;">${dim.score}/100</strong>
+  dimContainer.innerHTML = (details.dimensions || []).map(dim => {
+    const cleanWeight = (dim.weight || '').replace(/[()]/g, '');
+    return `
+      <div class="dimension-row">
+        <div class="dimension-meta">
+          <span>${dim.name} (${cleanWeight})</span>
+          <strong style="color: #0F172A;">${dim.score}/100</strong>
+        </div>
+        <div class="dim-bar-bg">
+          <div class="dim-bar-fill" style="width: ${dim.score}%; background: ${dim.score >= 85 ? 'var(--primary-red)' : dim.score >= 70 ? '#EA580C' : '#CA8A04'};"></div>
+        </div>
+        <div style="font-size: 0.7rem; color: #64748B;">${dim.desc}</div>
       </div>
-      <div class="dim-bar-bg">
-        <div class="dim-bar-fill" style="width: ${dim.score}%; background: ${dim.score >= 85 ? 'var(--primary-red)' : dim.score >= 70 ? '#EA580C' : '#CA8A04'};"></div>
-      </div>
-      <div style="font-size: 0.7rem; color: #64748B;">${dim.desc}</div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   // Company Overview info
   document.getElementById('modal-contact-person').textContent = company.contactPerson;
@@ -942,11 +953,8 @@ function renderCompanyProjectsList(company) {
                 ${proj.name}
               </h3>
               
-              <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 0.76rem; color: #475569; min-height: 22px;">
+              <div style="font-size: 0.76rem; color: #475569; min-height: 22px; display: flex; align-items: center;">
                 <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📍 <strong>ที่ตั้ง:</strong> ${proj.location}</span>
-                <a href="${mapsLink}" target="_blank" rel="noopener noreferrer" style="color: #0284C7; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; flex-shrink: 0;">
-                  🗺️ พิกัด GPS ↗
-                </a>
               </div>
 
               <!-- Stage & Value Row (Aligned side-by-side) -->
@@ -1079,10 +1087,10 @@ function renderCompanyProjectsList(company) {
               </table>
             </div>
 
-            <!-- Bottom CRM Tracking & Button (Aligned at bottom) -->
+            <!-- Bottom CRM Tracking (Aligned at bottom) -->
             <div style="margin-top: auto;">
               <!-- CRM Tracking Status Buttons -->
-              <div style="margin-bottom: 0.65rem;" onclick="event.stopPropagation();">
+              <div style="margin-bottom: 0;" onclick="event.stopPropagation();">
                 <div style="font-size: 0.70rem; font-weight: 700; color: #475569; margin-bottom: 2px;">
                   สถานะการติดตามของทีมขาย SCG:
                 </div>
@@ -1098,11 +1106,6 @@ function renderCompanyProjectsList(company) {
                   </button>
                 </div>
               </div>
-
-              <!-- 5. ปุ่มเปิดดู Project Deep-Dive รายหลังเต็มจอ -->
-              <button onclick="openProjectModal('${company.id}', '${proj.projectId}')" style="width: 100%; padding: 0.65rem 0.85rem; background: var(--primary-red); color: #FFFFFF; border: none; border-radius: 8px; font-weight: 800; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 6px rgba(217,37,29,0.25); transition: all 0.2s ease;">
-                <span>🔘 ดูเจาะลึกสเปกวัสดุ BOQ & ไทม์ไลน์สั่งซื้อ SCG (Project Deep-Dive) →</span>
-              </button>
             </div>
 
           </div>
@@ -1390,14 +1393,15 @@ function startFacebookCrawlerTicker() {
   function renderCurrentSignal() {
     const item = liveSignals[currentIdx];
     tickerEl.innerHTML = `
-      <span style="font-weight: 800; color: #1877F2; margin-right: 4px;">[${item.pageName}]</span>
-      <span style="color: #64748B; font-size: 0.72rem; margin-right: 6px;">(${item.timeAgo}):</span>
-      <span style="color: #0F172A; font-weight: 600;">${item.headline}</span>
-      <span style="background: #FEF2F2; color: #DC2626; font-size: 0.68rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin: 0 6px;">🎯 ${item.aiTag}</span>
-      <button class="fb-ticker-btn-jump" onclick="event.stopPropagation(); openCompanyModal('${item.companyId}')" title="กดเพื่อดูข้อมูลโครงการของบริษัทนี้">
+      <span style="font-weight: 800; color: #60A5FA; margin-right: 4px;">[${item.pageName}]</span>
+      <span style="color: #94A3B8; font-size: 0.72rem; margin-right: 6px;">(${item.timeAgo}):</span>
+      <span style="color: #F1F5F9; font-weight: 600;">${item.headline}</span>
+      <span style="background: rgba(220,38,38,0.25); color: #FCA5A5; font-size: 0.68rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin: 0 6px; border: 1px solid rgba(220,38,38,0.4);">🎯 ${item.aiTag}</span>
+      <button class="fb-ticker-btn-jump" onclick="event.stopPropagation(); openCompanyModal('${item.companyId}')" title="กดเพื่อดูข้อมูลโครงการของบริษัทนี้"
+        style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #E2E8F0;">
         เจาะลึกหน้างาน →
       </button>
-      <a href="${item.postUrl}" target="_blank" rel="noopener noreferrer" class="fb-ticker-btn-jump" style="background: #1877F2; color: white; margin-left: 4px;" onclick="event.stopPropagation()">
+      <a href="${item.postUrl}" target="_blank" rel="noopener noreferrer" class="fb-ticker-btn-jump" style="background: #1877F2; color: white; margin-left: 4px; border: none;" onclick="event.stopPropagation()">
         เปิดดูโพสต์ FB ↗
       </a>
     `;
@@ -1883,11 +1887,8 @@ function openTrackingStatusModal(targetStatus) {
                   ${project.name}
                 </h3>
                 
-                <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 0.76rem; color: #475569; min-height: 22px;">
+                <div style="font-size: 0.76rem; color: #475569; min-height: 22px; display: flex; align-items: center;">
                   <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📍 <strong>ที่ตั้ง:</strong> ${project.location}</span>
-                  <a href="${mapsLink}" target="_blank" rel="noopener noreferrer" style="color: #0284C7; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; flex-shrink: 0;">
-                    🗺️ พิกัด GPS ↗
-                  </a>
                 </div>
 
                 <!-- Stage & Value Row -->

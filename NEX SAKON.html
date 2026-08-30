@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 
 <head>
@@ -50,52 +50,80 @@
 <body>
 
   <!-- Top App Header -->
-  <header class="app-header" style="background: rgba(250, 247, 240, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #E2D9C8; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
-    <div class="header-container" style="max-width: 1440px; margin: 0 auto; padding: 0.65rem 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <!-- Top App Header (Exact match with reference image) -->
+  <header class="app-header" style="background: linear-gradient(90deg, #D9251D 0%, #C41B14 110px, #07194A 135px, #082166 45%, #071A4E 100%); border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.45); overflow: hidden;">
+    <div class="header-container" style="max-width: 1540px; margin: 0 auto; padding: 0.5rem 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
       
-      <!-- Left: Logo & Title -->
-      <div class="brand-section" style="display: flex; align-items: center; gap: 0.75rem;">
-        <a href="#" class="logo-badge" style="display: flex; align-items: center; gap: 0.65rem; text-decoration: none;">
-          <div class="scg-logo-icon" style="background: #D9251D; color: #FFFFFF; font-weight: 800; font-size: 0.82rem; padding: 4px 8px; border-radius: 6px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(217,37,29,0.3);">SCG</div>
-          <div class="brand-text">
-            <h1 style="font-size: 1.15rem; font-weight: 800; color: #1E293B; margin: 0; line-height: 1.2; display: flex; align-items: center; gap: 6px;">
-              NEXTSITE <span class="ai-tag" style="background: #D9251D; color: #FFFFFF; font-size: 0.62rem; padding: 1px 5px; border-radius: 4px; font-weight: 800;">AI</span>
-            </h1>
-            <p style="font-size: 0.72rem; color: #64748B; margin: 0; font-weight: 500;">
-              วิเคราะห์ & จัดอันดับโอกาสการขาย จ.สกลนคร
-            </p>
-          </div>
+      <!-- Left: SCG Red Block + Brand Section -->
+      <div class="brand-section" style="display: flex; align-items: center; gap: 1rem;">
+        
+        <!-- SCG Official Red Hexagon Logo Block -->
+        <a href="#" style="text-decoration: none; display: flex; align-items: center; gap: 0.65rem; padding-right: 0.75rem; border-right: 1px solid rgba(255,255,255,0.25);">
+          <!-- SCG Hexagon Elephant Vector -->
+          <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,5 89,27.5 89,72.5 50,95 11,72.5 11,27.5" stroke="#FFFFFF" stroke-width="4.5" fill="none"/>
+            <path d="M38 70 V46 C38 35 48 33 55 33 C63 33 68 38 68 46 V53 C68 57 64 59 60 59 C56 59 54 55 54 51 V47 C54 44 51 43 49 43 C46 43 44 45 44 49 V70 H38 Z" fill="#FFFFFF"/>
+            <circle cx="48" cy="39" r="2.8" fill="#D9251D"/>
+            <line x1="50" y1="5" x2="50" y2="28" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="11" y1="27.5" x2="33" y2="40" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="89" y1="27.5" x2="67" y2="40" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="11" y1="72.5" x2="34" y2="60" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="89" y1="72.5" x2="66" y2="60" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="50" y1="95" x2="50" y2="72" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span style="color: #FFFFFF; font-weight: 900; font-size: 1.45rem; letter-spacing: 0.5px; font-family: 'Inter', sans-serif; line-height: 1;">SCG</span>
         </a>
+
+        <!-- NEXTSITE AI Title & Subtitle -->
+        <div class="brand-text">
+          <h1 style="font-size: 1.25rem; font-weight: 900; color: #FFFFFF; margin: 0; line-height: 1.15; display: flex; align-items: center; gap: 7px; letter-spacing: -0.3px;">
+            NEXTSITE <span class="ai-tag" style="background: #D9251D; color: #FFFFFF; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 900; letter-spacing: 0.5px;">AI</span>
+          </h1>
+          <p style="font-size: 0.72rem; color: #93C5FD; margin: 2px 0 0 0; font-weight: 600; letter-spacing: 0.2px;">
+            Construction Intelligence Platform
+          </p>
+        </div>
       </div>
 
-      <!-- Right: Action Buttons & Compact CRM Tracking Badges in One Harmonious Group -->
-      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <!-- Actions -->
+      <!-- Right: Action Buttons & Dark Glass CRM Tracking Badges -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <!-- Hidden file input for Apify JSON upload -->
         <input type="file" id="direct-apify-file-input" accept=".json" style="display: none;" onchange="handleApifyFileUpload(event)">
         
-        <button onclick="document.getElementById('direct-apify-file-input').click()" style="background: #16A34A; color: #FFFFFF; border: none; border-radius: 6px; padding: 5px 12px; font-size: 0.76rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; box-shadow: 0 1px 4px rgba(22,163,74,0.25); transition: all 0.2s ease;" title="คลิกเพื่อเลือกไฟล์ Apify JSON ที่บันทึกไว้">
+        <!-- Red Action Button: Upload Apify JSON -->
+        <button onclick="document.getElementById('direct-apify-file-input').click()" style="background: #D9251D; color: #FFFFFF; border: none; border-radius: 8px; padding: 6px 14px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(217,37,29,0.4); transition: all 0.2s ease;" title="คลิกเพื่อเลือกไฟล์ Apify JSON ที่บันทึกไว้">
           <span>📥 อัปโหลด Apify JSON</span>
         </button>
 
-        <button onclick="document.getElementById('apify-integration-modal').style.display='flex'" style="background: #0284C7; color: #FFFFFF; border: none; border-radius: 6px; padding: 5px 12px; font-size: 0.76rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; box-shadow: 0 1px 4px rgba(2,132,199,0.25); transition: all 0.2s ease;">
+        <!-- Blue Action Button: Apify Scraper -->
+        <button onclick="document.getElementById('apify-integration-modal').style.display='flex'" style="background: #0284C7; color: #FFFFFF; border: 1px solid #0369A1; border-radius: 8px; padding: 6px 14px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(2,132,199,0.35); transition: all 0.2s ease;">
           <span>🤖 Apify Scraper (19 เพจ)</span>
         </button>
 
-        <div style="width: 1px; height: 20px; background: #CBD5E1; margin: 0 2px;"></div>
+        <div style="width: 1px; height: 22px; background: rgba(255,255,255,0.2); margin: 0 4px;"></div>
 
-        <!-- Compact CRM Status Pills -->
+        <!-- Dark Glass CRM Status Pills Matching Reference Image -->
         <div style="display: inline-flex; align-items: center; gap: 6px;">
-          <div onclick="openCrmStatusModal('pending')" class="crm-header-clickable-pill" style="background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.15s ease;" title="คลิกเพื่อดูรายละเอียดโครงการที่ยังไม่ได้ติดตาม">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; display: inline-block;"></span>
-            ยังไม่ติดตาม <b id="header-count-pending" style="font-size: 0.78rem; color: #78350F;">0</b> ↗
+          <!-- Pending Pill -->
+          <div onclick="openCrmStatusModal('pending')" class="crm-header-clickable-pill" style="background: rgba(15, 23, 42, 0.55); color: #F1F5F9; border: 1px solid rgba(255, 255, 255, 0.2); padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s ease; backdrop-filter: blur(8px);" title="คลิกเพื่อดูโครงการที่ยังไม่ได้ติดตาม">
+            <span style="color: #F59E0B; font-size: 0.82rem;">📍</span>
+            <span>ยังไม่ได้ติดตาม</span>
+            <b id="header-count-pending" style="font-size: 0.8rem; color: #FBBF24; margin-left: 2px;">0</b>
           </div>
-          <div onclick="openCrmStatusModal('in_progress')" class="crm-header-clickable-pill" style="background: #E0F2FE; color: #075985; border: 1px solid #7DD3FC; padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.15s ease;" title="คลิกเพื่อดูรายละเอียดโครงการที่กำลังติดตาม">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: #0284C7; display: inline-block;"></span>
-            กำลังติดตาม <b id="header-count-in-progress" style="font-size: 0.78rem; color: #0C4A6E;">0</b> ↗
+
+          <!-- In-progress Pill -->
+          <div onclick="openCrmStatusModal('in_progress')" class="crm-header-clickable-pill" style="background: rgba(15, 23, 42, 0.55); color: #F1F5F9; border: 1px solid rgba(255, 255, 255, 0.2); padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s ease; backdrop-filter: blur(8px);" title="คลิกเพื่อดูโครงการที่กำลังติดตาม">
+            <span style="background: #0284C7; color: #FFFFFF; width: 14px; height: 14px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 900;">⬇</span>
+            <span>กำลังติดตาม</span>
+            <b id="header-count-in-progress" style="font-size: 0.8rem; color: #38BDF8; margin-left: 2px;">0</b>
           </div>
-          <div onclick="openCrmStatusModal('completed')" class="crm-header-clickable-pill" style="background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.15s ease;" title="คลิกเพื่อดูรายละเอียดโครงการที่ติดตามแล้ว">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: #22C55E; display: inline-block;"></span>
-            ติดตามแล้ว <b id="header-count-completed" style="font-size: 0.78rem; color: #14532D;">0</b> ↗
+
+          <!-- Completed Pill -->
+          <div onclick="openCrmStatusModal('completed')" class="crm-header-clickable-pill" style="background: rgba(15, 23, 42, 0.55); color: #F1F5F9; border: 1px solid rgba(255, 255, 255, 0.2); padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s ease; backdrop-filter: blur(8px);" title="คลิกเพื่อดูโครงการที่ติดตามแล้ว">
+            <span style="background: #16A34A; color: #FFFFFF; width: 14px; height: 14px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 900;">✓</span>
+            <span>ติดตามแล้ว</span>
+            <b id="header-count-completed" style="font-size: 0.8rem; color: #4ADE80; margin-left: 2px;">0</b>
+            <span style="color: #94A3B8; font-size: 0.7rem; margin-left: 2px;">›</span>
           </div>
         </div>
       </div>
@@ -129,10 +157,11 @@
     <section class="kpi-grid">
       <!-- KPI 1: Total Companies Detected -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('total')"
-        title="คลิกเพื่อดูสรุปภาพรวม 19 บริษัท จ.สกลนคร">
+        title="คลิกเพื่อดูสรุปภาพรวม 19 บริษัท จ.สกลนคร"
+        style="border-left: 4px solid #D71920;">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทที่ตรวจพบทั้งหมด</span>
-          <div class="kpi-icon-wrap">
+          <div class="kpi-icon-wrap" style="background: #FEE2E2; color: #D71920; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path
                 d="M3 21h18M3 7v14M21 7v14M6 11h2M6 15h2M16 11h2M16 15h2M10 7V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4" />
@@ -151,10 +180,11 @@
 
       <!-- KPI 2: New Companies This Month -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('new')"
-        title="คลิกเพื่อดูบริษัทที่มีโครงการเปิดหน้างานใหม่สัปดาห์นี้">
+        title="คลิกเพื่อดูบริษัทที่มีโครงการเปิดหน้างานใหม่สัปดาห์นี้"
+        style="border-left: 4px solid #16A34A;">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทใหม่ในเดือนนี้</span>
-          <div class="kpi-icon-wrap">
+          <div class="kpi-icon-wrap" style="background: #DCFCE7; color: #16A34A; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
               <circle cx="9" cy="7" r="4" />
@@ -174,10 +204,11 @@
 
       <!-- KPI 3: High Opportunity Companies -->
       <div class="kpi-card highlight clickable-card" onclick="openKpiModal('high')"
-        title="คลิกเพื่อดู Top 5 บริษัทเร่งด่วนอันดับต้นๆ">
+        title="คลิกเพื่อดู Top 5 บริษัทเร่งด่วนอันดับต้นๆ"
+        style="border-left: 4px solid #F59E0B;">
         <div class="kpi-header">
           <span class="kpi-title">บริษัทที่มีโอกาสสูง (Top Priority)</span>
-          <div class="kpi-icon-wrap red">
+          <div class="kpi-icon-wrap" style="background: #FEF3C7; color: #D97706; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon
                 points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -185,34 +216,41 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-high-opp" class="kpi-value" style="color: var(--primary-red);">5</span>
+          <span id="kpi-high-opp" class="kpi-value" style="color: #D97706;">5</span>
           <span class="kpi-unit">บริษัทเร่งด่วน</span>
         </div>
         <div class="kpi-subtext">
-          <strong style="color: var(--primary-red);">มีสัญญาณหน้างานสดใหม่</strong> เซลส์ควรเข้าพบด่วน
+          <strong style="color: #D97706;">มีสัญญาณหน้างานสดใหม่</strong> เซลส์ควรเข้าพบด่วน
         </div>
-        <div class="kpi-click-hint" style="color: var(--primary-red);">กดดูแผนเข้าพบด่วน →</div>
+        <div class="kpi-click-hint" style="color: #D97706;">กดดูแผนเข้าพบด่วน →</div>
       </div>
 
       <!-- KPI 4: Total Opportunity Revenue -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('value')"
-        title="คลิกเพื่อดูการวิเคราะห์มูลค่าสินค้า SCG รวม">
-        <div class="kpi-header">
-          <span class="kpi-title">มูลค่าโอกาสทางธุรกิจรวม (สกลนคร)</span>
-          <div class="kpi-icon-wrap">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="1" x2="12" y2="23" />
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
+        title="คลิกเพื่อดูการวิเคราะห์มูลค่าสินค้า SCG รวม"
+        style="border-left: 4px solid #0284C7; position: relative; overflow: hidden; padding-right: 0;">
+        <!-- Content Left -->
+        <div style="position: relative; z-index: 2; padding-right: 1rem;">
+          <div class="kpi-header">
+            <span class="kpi-title">มูลค่าโอกาสทางธุรกิจรวม (อุดรธานี)</span>
+            <div class="kpi-icon-wrap" style="background: #E0F2FE; color: #0284C7; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span id="kpi-total-value" class="kpi-value">฿252.5M</span>
+            <span class="kpi-unit">บาท</span>
+          </div>
+          <div class="kpi-subtext">
+            <span id="kpi-total-projects-subtext">รวม 64 โครงการที่กำลังก่อสร้าง</span>
           </div>
         </div>
-        <div class="kpi-value-row">
-          <span id="kpi-total-value" class="kpi-value">฿252.5M</span>
-          <span class="kpi-unit">บาท</span>
-        </div>
-        <div class="kpi-subtext">
-          <span id="kpi-total-projects-subtext">รวม 64 โครงการที่กำลังก่อสร้าง</span>
-        </div>
+        <!-- City Skyline Illustration (right side) -->
+        <img src="images/kpi_city_skyline.jpg" alt="construction skyline"
+          style="position: absolute; right: 0; bottom: 0; height: 85%; width: 55%; object-fit: cover; object-position: left bottom; opacity: 0.22; pointer-events: none; border-radius: 0 var(--radius-lg) var(--radius-lg) 0;">
       </div>
     </section>
 
@@ -221,16 +259,16 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
         <div>
           <h2
-            style="font-size: 1.05rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--primary-red);">📊</span> สรุปยอดความต้องการสินค้า SCG รวม (Product Demand
+            style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: #FCA5A5;">📊</span> สรุปยอดความต้องการสินค้า SCG รวม (Product Demand
             Intelligence)
           </h2>
-          <p style="font-size: 0.76rem; color: var(--text-secondary); margin-top: 2px;">
+          <p style="font-size: 0.76rem; color: #FECDD3; margin-top: 2px;">
             คลิกที่การ์ดสินค้าแต่ละกลุ่ม เพื่อดูกราฟวิเคราะห์ความต้องการและรายชื่อโครงการที่กำลังต้องการสั่งซื้อ
           </p>
         </div>
         <div
-          style="font-size: 0.72rem; color: var(--text-secondary); background: #F1ECE0; padding: 0.3rem 0.7rem; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color);">
+          style="font-size: 0.72rem; color: #FFFFFF; background: #D71920; padding: 0.3rem 0.7rem; border-radius: 6px; font-weight: 700; border: 1px solid #B91218; box-shadow: 0 2px 6px rgba(215,25,32,0.35);">
           💡 คลิกการ์ดเพื่อเปิดกราฟเจาะลึก
         </div>
       </div>
@@ -401,15 +439,15 @@
       <span>เกณฑ์คะแนน AI Opportunity Score:</span>
       <div class="legend-item">
         <div class="legend-badge red"></div>
-        <span><strong>สีแดง (>90)</strong> : โอกาสสูงสุด เซลส์ควรเข้าพบด่วน (โครงการพึ่งเริ่มตอกเสาเข็ม)</span>
+        <span><strong>สีฟ้า (>90)</strong> : โอกาสสูงสุด เซลส์ควรเข้าพบด่วน (โครงการพึ่งเริ่มตอกเสาเข็ม)</span>
       </div>
       <div class="legend-item">
         <div class="legend-badge orange"></div>
-        <span><strong>สีส้ม (70-89)</strong> : โอกาสระดับสูง (ช่วงวางรากฐานและขึ้นโครงสร้าง)</span>
+        <span><strong>สีเขียว (70-89)</strong> : โอกาสระดับสูง (ช่วงวางรากฐานและขึ้นโครงสร้าง)</span>
       </div>
       <div class="legend-item">
         <div class="legend-badge yellow"></div>
-        <span><strong>สีเหลือง (50-69)</strong> : โอกาสปานกลาง</span>
+        <span><strong>สีเทา (50-69)</strong> : โอกาสปานกลาง</span>
       </div>
     </div>
 
@@ -810,6 +848,11 @@
 
       <!-- Product Modal Content -->
       <div style="padding: 1.5rem 1.75rem;">
+        <!-- Sub-items List (10 Categories & Their Specific Sub-items) -->
+        <div id="prodmodal-subitems-container">
+          <!-- Injected via JS -->
+        </div>
+
         <!-- Two Columns: Left Chart, Right Stage Metrics -->
         <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.25rem; margin-bottom: 1.5rem;">
           <!-- Specific Product Stage Chart -->
@@ -982,7 +1025,7 @@
           </div>
 
           <!-- Webhook Direct Push Mode (วิธีที่ 3) -->
-          <div style="background: #FFFFFF; border: 1.5px solid #0284C7; border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem;">
+          <div style="background: #FFFFFF; border: 1.5px solid var(--primary-blue); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span style="font-size: 1.2rem;">📡</span>
@@ -1040,7 +1083,7 @@
 
           <!-- Apify JSON File Upload & Live Importer (Drag & Drop Supported) -->
           <div id="apify-dropzone" 
-               ondragover="event.preventDefault(); this.style.borderColor='#0284C7'; this.style.background='#F0F9FF';" 
+               ondragover="event.preventDefault(); this.style.borderColor='var(--primary-blue)'; this.style.background='#F0F9FF';" 
                ondragleave="this.style.borderColor='#94A3B8'; this.style.background='#FFFFFF';" 
                ondrop="handleApifyDrop(event)" 
                style="background: #FFFFFF; border: 2px dashed #94A3B8; border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; text-align: center; transition: all 0.2s ease;">
@@ -1097,7 +1140,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-                                                    <!-- Embedded Full 64 Projects Master Dataset -->
+                                                        <!-- Embedded Full 64 Projects Master Dataset -->
     <script>
 /**
  * NEXTSITE AI - 33 VERIFIED CONTRACTORS จ.อุดรธานี (UDON THANI MASTER DATASET)
@@ -2374,6 +2417,7 @@ if (typeof window !== 'undefined') {
 </body>
 
 </html>
+
 
 
 

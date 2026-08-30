@@ -74,7 +74,7 @@ function renderMapMarkers(companies, onMarkerClick) {
 
     const popupContent = `
       <div style="font-family: 'Prompt', sans-serif; min-width: 240px; padding: 4px;">
-        <div style="font-size: 11px; color: #64748B; font-weight: 600;">อันดับที่ #${company.rank} • ${company.district} จ.สกลนคร</div>
+        <div style="font-size: 11px; color: #64748B; font-weight: 600;">อันดับที่ #${company.rank} • ${company.district} จ.อุดรธานี</div>
         <div style="font-size: 13px; font-weight: 800; color: #0F172A; margin: 2px 0 4px 0;">${company.name}</div>
         <div style="font-size: 11px; color: #57534E; margin-bottom: 6px;">
           📍 <strong>พิกัด GPS:</strong> ${company.coordinates[0].toFixed(4)}, ${company.coordinates[1].toFixed(4)}
