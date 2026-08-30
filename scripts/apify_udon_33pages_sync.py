@@ -153,9 +153,9 @@ def check_strict_udon_location(raw_text):
         
     return True, matched_district, found_terms
 
-def run_apify_scraper_33_pages(max_posts_per_page=5):
+def run_apify_scraper_33_pages(max_posts_per_page=10):
     """
-    รัน Apify Scraper สำหรับ 33 เพจ และดึงผลลัพธ์มาคัดกรอง 5 โพสต์ล่าสุดต่อเพจ
+    รัน Apify Scraper สำหรับ 33 เพจ และดึงผลลัพธ์มาคัดกรอง 10 โพสต์ล่าสุดต่อเพจ
     """
     try:
         from apify_client import ApifyClient
@@ -175,8 +175,8 @@ def run_apify_scraper_33_pages(max_posts_per_page=5):
     
     run_input = {
         "startUrls": start_urls,
-        "resultsLimit": 15,          # ดึงมา 15 โพสต์ล่าสุดต่อเพจเพื่อนำมาคัดกรอง
-        "maxPosts": len(TARGET_33_PAGES) * 15,
+        "resultsLimit": 25,          # ดึงมา 25 โพสต์ล่าสุดต่อเพจเพื่อนำมาคัดกรอง
+        "maxPosts": len(TARGET_33_PAGES) * 25,
         "commentsMode": "NONE",
         "proxy": {
             "useApifyProxy": True,
@@ -233,4 +233,4 @@ def run_apify_scraper_33_pages(max_posts_per_page=5):
     return filtered_results
 
 if __name__ == "__main__":
-    run_apify_scraper_33_pages(max_posts_per_page=5)
+    run_apify_scraper_33_pages(max_posts_per_page=10)

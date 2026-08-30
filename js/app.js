@@ -2346,8 +2346,8 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       return;
     }
 
-    // ตัดเลือกเฉพาะสูงสุดไม่เกิน 5 โพสต์ล่าสุดต่อเพจ (ถ้าครบ 5 โพสต์แล้ว ไม่ดึงเพิ่ม)
-    if (matchedComp.projects.length >= 5) {
+    // ตัดเลือกเฉพาะสูงสุดไม่เกิน 10 โพสต์ล่าสุดต่อเพจ (ถ้าครบ 10 โพสต์แล้ว ไม่ดึงเพิ่ม)
+    if (matchedComp.projects.length >= 10) {
       return;
     }
 

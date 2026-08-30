@@ -34,7 +34,7 @@
     { "url": "https://www.facebook.com/housebuildingsunphage" },
     { "url": "https://www.facebook.com/profile.php?id=100078939424242" }
   ],
-  "resultsLimit": 5,
-  "maxPosts": 165,
+  "resultsLimit": 20,
+  "maxPosts": 660,
   "commentsMode": "NONE"
 }
