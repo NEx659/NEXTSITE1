@@ -72,6 +72,35 @@ DISTRICT_LIST = [
     {"district": "ประจักษ์ศิลปาคม", "terms": ["ประจักษ์ศิลปาคม", "ประจักษ์", "อำเภอประจักษ์", "อ.ประจักษ์ศิลปาคม"]}
 ]
 
+KHONKAEN_DISTRICTS = [
+    {"district": "เมืองขอนแก่น", "terms": ["เมืองขอนแก่น", "อำเภอเมืองขอนแก่น", "อ.เมืองขอนแก่น", "อ.เมือง ขอนแก่น", "เมือง ขอนแก่น", "กังสดาล", "บึงแก่นนคร", "โนนทัน", "ศิลา", "บ้านเป็ด", "ในเมืองขอนแก่น", "มอดินแดง", "บึงหนองโคตร", "มข.", "มหาวิทยาลัยขอนแก่น", "โนนทัน - บึงแก่นนคร"]},
+    {"district": "บ้านฝาง", "terms": ["บ้านฝาง", "อำเภอบ้านฝาง", "อ.บ้านฝาง"]},
+    {"district": "พระยืน", "terms": ["พระยืน", "อำเภอพระยืน", "อ.พระยืน"]},
+    {"district": "หนองเรือ", "terms": ["หนองเรือ", "อำเภอหนองเรือ", "อ.หนองเรือ", "ดอนโมง"]},
+    {"district": "ชุมแพ", "terms": ["ชุมแพ", "อำเภอชุมแพ", "อ.ชุมแพ", "โนนหัน"]},
+    {"district": "สีชมพู", "terms": ["สีชมพู", "อำเภอสีชมพู", "อ.สีชมพู"]},
+    {"district": "น้ำพอง", "terms": ["น้ำพอง", "อำเภอน้ำพอง", "อ.น้ำพอง", "น้ำพองพัฒนา"]},
+    {"district": "อุบลรัตน์", "terms": ["อุบลรัตน์", "อำเภออุบลรัตน์", "อ.อุบลรัตน์", "เขื่อนอุบลรัตน์"]},
+    {"district": "กระนวน", "terms": ["กระนวน", "อำเภอกระนวน", "อ.กระนวน"]},
+    {"district": "บ้านไผ่", "terms": ["บ้านไผ่", "อำเภอบ้านไผ่", "อ.บ้านไผ่"]},
+    {"district": "เปือยน้อย", "terms": ["เปือยน้อย", "อำเภอเปือยน้อย", "อ.เปือยน้อย"]},
+    {"district": "พล", "terms": ["เมืองพล", "อำเภอพล", "อ.พล", "เทศบาลเมืองพล"]},
+    {"district": "แวงใหญ่", "terms": ["แวงใหญ่", "อำเภอแวงใหญ่", "อ.แวงใหญ่"]},
+    {"district": "แวงน้อย", "terms": ["แวงน้อย", "อำเภอแวงน้อย", "อ.แวงน้อย"]},
+    {"district": "หนองสองห้อง", "terms": ["หนองสองห้อง", "อำเภอหนองสองห้อง", "อ.หนองสองห้อง"]},
+    {"district": "ภูเวียง", "terms": ["ภูเวียง", "อำเภอภูเวียง", "อ.ภูเวียง"]},
+    {"district": "มัญจาคีรี", "terms": ["มัญจาคีรี", "อำเภอมัญจาคีรี", "อ.มัญจาคีรี"]},
+    {"district": "ชนบท", "terms": ["ชนบท", "อำเภอชนบท", "อ.ชนบท"]},
+    {"district": "เขาสวนกวาง", "terms": ["เขาสวนกวาง", "อำเภอเขาสวนกวาง", "อ.เขาสวนกวาง"]},
+    {"district": "ภูผาม่าน", "terms": ["ภูผาม่าน", "อำเภอภูผาม่าน", "อ.ภูผาม่าน"]},
+    {"district": "ซำสูง", "terms": ["ซำสูง", "อำเภอซำสูง", "อ.ซำสูง"]},
+    {"district": "โคกโพธิ์ไชย", "terms": ["โคกโพธิ์ไชย", "อำเภอโคกโพธิ์ไชย", "อ.โคกโพธิ์ไชย"]},
+    {"district": "หนองนาคำ", "terms": ["หนองนาคำ", "อำเภอหนองนาคำ", "อ.หนองนาคำ"]},
+    {"district": "บ้านแฮด", "terms": ["บ้านแฮด", "อำเภอบ้านแฮด", "อ.บ้านแฮด"]},
+    {"district": "โนนศิลา", "terms": ["โนนศิลา", "อำเภอโนนศิลา", "อ.โนนศิลา"]},
+    {"district": "เวียงเก่า", "terms": ["เวียงเก่า", "อำเภอเวียงเก่า", "อ.เวียงเก่า"]}
+]
+
 def check_strict_udon_location(raw_text):
     if not raw_text:
         return False, None, []
@@ -83,7 +112,7 @@ def check_strict_udon_location(raw_text):
         "ครอบคลุมพื้นที่", "โซนให้บริการ", "พิกัดสำนักงาน", "ที่ตั้งสำนักงาน", "ที่ตั้งออฟฟิศ", "พิกัดออฟฟิศ",
         "ถ.เลี่ยงเมืองอุดร", "ต.บ้านจั่น อ.เมือง", "ฟรี ! ดำเนินการ", "ฟรี! ดำเนินการ", "ฟรี ! ยื่นขอ", "ฟรี! ยื่นขอ",
         "ฟรี ! ออกแบบ", "ฟรี! ออกแบบ", "maps.app.goo.gl", "https://maps", "โทร.", "โทร :",
-        "ขอนแก่น |", "| อุดรธานี", "| สกลนคร", "📍 facebook", "facebook :", "#รับสร้างบ้าน", "#สร้างบ้าน", "#syhouse"
+        "| อุดรธานี", "| สกลนคร", "📍 facebook", "facebook :", "#รับสร้างบ้าน", "#สร้างบ้าน", "#syhouse"
     ]
     
     body_text = raw_text
@@ -128,17 +157,15 @@ def check_strict_udon_location(raw_text):
     has_real_evidence = any(sig in text_lower for sig in real_site_evidence)
 
     if is_catalog_or_marketing and not has_verified_customer and not has_real_evidence:
-        return False, None, []
+        return False, None, [], "อุดรธานี"
 
     if not has_verified_customer and not has_real_evidence:
-        return False, None, []
+        return False, None, [], "อุดรธานี"
 
     other_provinces = [
-        "บึงแก่นนคร", "แก่นนคร", "กังสดาล", "บึงหนองโคตร", "มอดินแดง", "มข.", "โนนทัน - บึงแก่นนคร",
         "อำนาจเจริญ", "ยโสธร", "ชัยภูมิ", "ภูเขียว", "แก้งคร้อ", "คอนสาร", "เกษตรสมบูรณ์",
         "สกลนคร", "พังโคน", "กุสุมาลย์", "พรรณานิคม", "วาริชภูมิ", "เต่างอย", "โคกศรีสุพรรณ", "วานรนิวาส", "สว่างแดนดิน",
         "หนองคาย", "ท่าบ่อ", "โพนพิสัย", "ศรีเชียงใหม่", "สังคม", "รัตนวาปี",
-        "ขอนแก่น", "กระนวน", "ชุมแพ", "น้ำพอง", "บ้านไผ่", "เมืองพล", "หนองเรือ",
         "หนองบัวลำภู", "นากลาง", "ศรีบุญเรือง", "โนนสัง", "สุวรรณคูหา", "นาวัง",
         "กาฬสินธุ์", "สมเด็จ", "ยางตลาด", "กมลาไสย", "กุฉินารายณ์",
         "เลย", "วังสะพุง", "เชียงคาน", "ภูเรือ", "ด่านซ้าย", "ภูกระดึง",
@@ -149,30 +176,42 @@ def check_strict_udon_location(raw_text):
     for op in other_provinces:
         if op in text_lower:
             if re.search(r"(?:📍|หน้างาน|พิกัด|สถานที่|ส่งมอบ|ก่อสร้าง|ไซต์งาน|สร้างที่|โครงการที่|จ\.|อ\.).{0,35}" + op, text_lower):
-                return False, None, []
+                return False, None, [], "อุดรธานี"
     
-    # 1. เช็กชื่อ 1 ใน 20 อำเภอ
-    matched_district = None
+    # 1. เช็กขอนแก่น (26 อำเภอ)
+    matched_khon_kaen = None
     found_terms = []
+    for kd in KHONKAEN_DISTRICTS:
+        for t in kd["terms"]:
+            if t.lower() in text_lower:
+                matched_khon_kaen = kd["district"]
+                found_terms.append(t)
+                break
+        if matched_khon_kaen:
+            break
+            
+    has_khon_kaen = any(kw in text_lower for kw in ["ขอนแก่น", "จ.ขอนแก่น", "khon kaen"]) or matched_khon_kaen is not None
+
+    # 2. เช็กอุดรธานี (20 อำเภอ)
+    matched_udon = None
     for d in DISTRICT_LIST:
         for t in d["terms"]:
             if t.lower() in text_lower:
-                matched_district = d["district"]
+                matched_udon = d["district"]
                 found_terms.append(t)
                 break
-        if matched_district:
+        if matched_udon:
             break
             
-    # 2. เช็กคำว่า อุดร หรือมีอำเภอในอุดร
-    has_province = any(kw in text_lower for kw in PROVINCE_KEYWORDS) or matched_district is not None
-    if not has_province:
-        return False, None, []
-        
-    if not matched_district:
-        matched_district = "เมืองอุดรธานี"
-        found_terms = ["อุดรธานี", "หน้างานจริง"]
-        
-    return True, matched_district, found_terms
+    has_udon = any(kw in text_lower for kw in PROVINCE_KEYWORDS) or matched_udon is not None
+
+    if not has_khon_kaen and not has_udon:
+        return False, None, [], "อุดรธานี"
+
+    if has_khon_kaen and (not has_udon or matched_khon_kaen is not None):
+        return True, matched_khon_kaen or "เมืองขอนแก่น", found_terms or ["ขอนแก่น"], "ขอนแก่น"
+    else:
+        return True, matched_udon or "เมืองอุดรธานี", found_terms or ["อุดรธานี"], "อุดรธานี"
 
 def run_apify_scraper_33_pages(max_posts_per_page=10):
     """
@@ -226,7 +265,7 @@ def run_apify_scraper_33_pages(max_posts_per_page=10):
         page_url = item.get("pageUrl") or item.get("facebookUrl") or ""
         post_text = item.get("text") or item.get("postText") or item.get("caption") or ""
         
-        is_match, district_name, matched_kws = check_strict_udon_location(post_text)
+        is_match, district_name, matched_kws, prov_name = check_strict_udon_location(post_text)
         if is_match:
             # จับคู่กับเพจเป้าหมาย
             for target_url, group in filtered_results.items():
@@ -236,6 +275,7 @@ def run_apify_scraper_33_pages(max_posts_per_page=10):
                             "postId": item.get("id"),
                             "postUrl": item.get("url") or item.get("postUrl"),
                             "postedTime": item.get("time") or item.get("timestamp"),
+                            "province": prov_name,
                             "district": district_name,
                             "matchedKeywords": matched_kws,
                             "text": post_text.strip(),
