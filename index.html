@@ -20,7 +20,7 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- App Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=58.0">
+  <link rel="stylesheet" href="css/styles.css?v=59.0">
 
   <style>
     /* Tag Filter Buttons - High Specificity Styling */
@@ -456,7 +456,7 @@
     <section class="kpi-grid">
       <!-- KPI 1: Total Companies Detected -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('total')"
-        title="คลิกเพื่อดูสรุปภาพรวม 54 บริษัท จ.อุดรธานี">
+        title="คลิกเพื่อดูสรุปภาพรวม 56 บริษัท จ.อุดรธานี">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทที่ตรวจพบทั้งหมด</span>
           <div class="kpi-icon-wrap">
@@ -467,7 +467,7 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-total-companies" class="kpi-value">54</span>
+          <span id="kpi-total-companies" class="kpi-value">56</span>
           <span class="kpi-unit">บริษัท</span>
         </div>
         <div class="kpi-subtext">
@@ -476,9 +476,9 @@
         <div class="kpi-click-hint">กดดูรายละเอียดสรุปย่อ →</div>
       </div>
 
-      <!-- KPI 2: New Companies This Month -->
+      <!-- KPI 2: New Companies This Month (ตามแท็ก New) -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('new')"
-        title="คลิกเพื่อดูบริษัทที่มีโครงการเปิดหน้างานใหม่สัปดาห์นี้">
+        title="คลิกเพื่อกรองดูบริษัทในกลุ่มสถานะ New">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทใหม่ในเดือนนี้</span>
           <div class="kpi-icon-wrap">
@@ -494,9 +494,9 @@
           <span class="kpi-unit">บริษัทใหม่</span>
         </div>
         <div class="kpi-subtext">
-          <span class="trend-up">🔥 มีสัญญาณเปิดหน้างาน</span> สัปดาห์นี้
+          <span class="trend-up">✨ สถานะกลุ่ม New</span> รอดำเนินการ
         </div>
-        <div class="kpi-click-hint">กดดูรายชื่อไซต์ใหม่ →</div>
+        <div class="kpi-click-hint">กดดูรายชื่อกลุ่ม New →</div>
       </div>
 
       <!-- KPI 3: High Opportunity Companies -->
@@ -784,7 +784,7 @@
               <th style="width: 55px; text-align: center;">อันดับ</th>
               <th>ชื่อบริษัท / สถานะยืนยัน</th>
               <th id="th-province-column">พื้นที่ (อุดรธานี)</th>
-              <th>จำนวนโครงการ (ไซต์จริงจาก FB)</th>
+              <th>ความน่าจะเป็นโครงการ <span style="font-size: 0.72rem; font-weight: 600; color: #64748B; display: block; margin-top: 1px;">(สัญญาณย้อนหลัง 8 โพสต์ล่าสุด)</span></th>
               <th class="col-sales-2025" style="text-align: right; min-width: 130px;">ประวัติซื้อขาย 2025</th>
               <th class="col-sales-2026" style="text-align: right; min-width: 130px;">ประวัติซื้อขาย 2026</th>
               <th style="text-align: center;">Opportunity Score</th>
@@ -828,12 +828,18 @@
             บริษัทรับสร้างบ้านพรีเมียม • เมืองอุดรธานี จ.อุดรธานี
           </div>
         </div>
-        <button class="modal-close-btn" onclick="closeCompanyModal()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button id="btn-export-company-pdf" type="button" onclick="exportCompanyPdfReport()" class="btn-export-pdf" style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #0B2E83; color: #FFFFFF; border: none; border-radius: 8px; font-weight: 800; font-size: 0.8rem; cursor: pointer; box-shadow: 0 2px 6px rgba(11, 46, 131, 0.25); transition: all 0.2s ease;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>ดาวน์โหลดรายงาน PDF</span>
+          </button>
+          <button class="modal-close-btn" onclick="closeCompanyModal()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Modal Body -->
@@ -1587,15 +1593,16 @@
       </div>
     </div>
 
-    <!-- Chart.js CDN -->
+    <!-- Chart.js & html2pdf CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <!-- Leaflet Map JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <!-- Master Dataset -->
-    <script src="js/data.js?v=61.0"></script>
+    <script src="js/data.js?v=62.0"></script>
     <!-- Global Full-Screen Drag & Drop Overlay -->
     <div id="global-drag-drop-overlay" style="display: none; position: fixed; inset: 0; z-index: 2147483647; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(10px); flex-direction: column; align-items: center; justify-content: center; color: #FFFFFF; border: 4px dashed #38BDF8; pointer-events: none;">
       <div style="font-size: 3.5rem; margin-bottom: 12px; animation: pulse 1.5s infinite;">📥</div>
@@ -1608,10 +1615,10 @@
     </div>
 
     <!-- App JS modules -->
-    <script src="js/scoring.js?v=63.0"></script>
-    <script src="js/charts.js?v=63.0"></script>
-    <script src="js/map.js?v=63.0"></script>
-    <script src="js/app.js?v=63.0"></script>
+    <script src="js/scoring.js?v=64.0"></script>
+    <script src="js/charts.js?v=64.0"></script>
+    <script src="js/map.js?v=64.0"></script>
+    <script src="js/app.js?v=73.0"></script>
 </body>
 
 </html>
