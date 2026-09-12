@@ -20,7 +20,91 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- App Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=58.0">
+
+  <style>
+    /* Tag Filter Buttons - High Specificity Styling */
+    .tag-filter-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      padding: 6px 14px !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      font-family: 'Prompt', 'Inter', sans-serif !important;
+      border-radius: 9999px !important;
+      border: 1.5px solid #CBD5E1 !important;
+      background: #FFFFFF !important;
+      color: #475569 !important;
+      cursor: pointer !important;
+      outline: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+      user-select: none !important;
+    }
+
+    .tag-filter-btn:hover {
+      border-color: #94A3B8 !important;
+      background: #F8FAFC !important;
+      transform: translateY(-1px);
+    }
+
+    /* Active State: Bold Red Border + Soft Red Background + Red Text */
+    .tag-filter-btn.active {
+      border: 2px solid #DC2626 !important;
+      background: #FEF2F2 !important;
+      color: #DC2626 !important;
+      font-weight: 800 !important;
+      box-shadow: 0 3px 10px rgba(220, 38, 38, 0.22) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Highlight SCG Sales History (2025 & 2026) Columns */
+    .data-table th.col-sales-2025 {
+      background: #1D4ED8 !important;
+      color: #FFFFFF !important;
+      font-weight: 800 !important;
+      border-left: 2px solid #1E40AF !important;
+      border-top: 3px solid #60A5FA !important;
+      border-bottom: 2px solid #1E40AF !important;
+    }
+    .data-table th.col-sales-2026 {
+      background: #1D4ED8 !important;
+      color: #FFFFFF !important;
+      font-weight: 800 !important;
+      border-right: 2px solid #1E40AF !important;
+      border-top: 3px solid #60A5FA !important;
+      border-bottom: 2px solid #1E40AF !important;
+    }
+    .data-table td.col-sales-2025 {
+      background-color: #EFF6FF !important;
+      border-left: 1.5px solid #BFDBFE !important;
+    }
+    .data-table td.col-sales-2026 {
+      background-color: #EFF6FF !important;
+      border-right: 1.5px solid #BFDBFE !important;
+    }
+    .data-table tbody tr:hover td.col-sales-2025,
+    .data-table tbody tr:hover td.col-sales-2026 {
+      background-color: #DBEAFE !important;
+    }
+
+    .tag-filter-btn .count-badge {
+      font-size: 0.72rem !important;
+      font-weight: 800 !important;
+      padding: 1px 7px !important;
+      border-radius: 9999px !important;
+      background: #F1F5F9 !important;
+      color: #475569 !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .tag-filter-btn.active .count-badge {
+      background: #FEE2E2 !important;
+      color: #DC2626 !important;
+      border: 1px solid #FECACA !important;
+    }
+  </style>
 
   <script>
     function openApifyModal() {
@@ -35,6 +119,9 @@
       var modal = document.getElementById('crm-status-projects-modal');
       if (modal) {
         modal.style.display = 'flex';
+        if (typeof updateCrmModalTabCounts === 'function') {
+          updateCrmModalTabCounts();
+        }
         if (typeof switchCrmModalTab === 'function') {
           switchCrmModalTab(statusFilter || 'all');
         }
@@ -43,6 +130,218 @@
     function closeCrmStatusModal() {
       var modal = document.getElementById('crm-status-projects-modal');
       if (modal) modal.style.display = 'none';
+    }
+
+    function quickSetCompanyCrmStatus(companyId, newStatus, event) {
+      if (event && event.stopPropagation) event.stopPropagation();
+      var crmLog = { status: 'pending', note: '', nextDate: '', salesRep: '', products: [] };
+      try {
+        var raw = localStorage.getItem('nextsite_crm_followup_logs');
+        var logs = raw ? JSON.parse(raw) : {};
+        crmLog = logs[companyId] || crmLog;
+        crmLog.status = newStatus;
+        crmLog.updatedAt = new Date().toISOString();
+        logs[companyId] = crmLog;
+        localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+      } catch(e) {}
+      if (typeof renderTable === 'function') renderTable();
+      var statusLabels = {
+        'pending': '📍 ยังไม่เข้าพบ',
+        'scheduled': '🏃 นัดหมายแล้ว',
+        'visited': '🤝 เข้าพบแล้ว',
+        'quoting': '📑 เสนอราคา/สเปก',
+        'won': '✅ ปิดการขาย'
+      };
+      if (typeof showToastNotification === 'function') {
+        showToastNotification('✅ อัปเดตสถานะเป็น "' + (statusLabels[newStatus] || newStatus) + '" เรียบร้อยแล้ว');
+      }
+    }
+
+    var inlineCrmDebounceTimer = null;
+
+    function handleInlineCrmInput(companyId, noteText) {
+      var indicator = document.getElementById('inline-crm-indicator-' + companyId);
+      if (indicator) {
+        indicator.style.display = 'inline-flex';
+        indicator.textContent = '✏️ กำลังบันทึก...';
+        indicator.style.color = '#0284C7';
+      }
+      clearTimeout(inlineCrmDebounceTimer);
+      inlineCrmDebounceTimer = setTimeout(function() {
+        quickSaveInlineCrmNote(companyId, noteText, false);
+      }, 500);
+    }
+
+    function quickSaveInlineCrmNote(companyId, noteText, showToast) {
+      if (!companyId) return;
+      try {
+        var raw = localStorage.getItem('nextsite_crm_followup_logs');
+        var logs = raw ? JSON.parse(raw) : {};
+        var cur = logs[companyId] || { status: 'pending', note: '', nextDate: '', salesRep: '', products: [] };
+        cur.note = (noteText || '').trim();
+        cur.updatedAt = new Date().toISOString();
+        logs[companyId] = cur;
+        localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+      } catch(e) {}
+
+      var indicator = document.getElementById('inline-crm-indicator-' + companyId);
+      if (indicator) {
+        indicator.style.display = 'inline-flex';
+        indicator.textContent = '✓ บันทึกโน้ตอัตโนมัติแล้ว';
+        indicator.style.color = '#16A34A';
+        setTimeout(function() {
+          if (indicator) indicator.style.display = 'none';
+        }, 2500);
+      }
+      if (showToast && typeof showToastNotification === 'function') {
+        showToastNotification('💾 บันทึกโน้ตการติดตามเรียบร้อยแล้ว!');
+      }
+    }
+
+    function openFollowUpModal(companyId, focusNote, event) {
+      if (event && event.stopPropagation) event.stopPropagation();
+      var modal = document.getElementById('company-followup-modal');
+      if (!modal) return;
+      
+      var compList = (typeof allCompanies !== 'undefined' && allCompanies && allCompanies.length) ? allCompanies : (typeof UDON_COMPANIES !== 'undefined' ? UDON_COMPANIES : []);
+      var company = compList.find(function(c) { return c.id === companyId; }) || { id: companyId, name: 'บริษัทรับสร้างบ้าน', district: 'เมือง', province: 'อุดรธานี' };
+
+      var idEl = document.getElementById('followup-company-id');
+      if (idEl) idEl.value = company.id;
+
+      var nameEl = document.getElementById('followup-modal-company-name');
+      if (nameEl) nameEl.textContent = (company.name || '') + ' (' + (company.district || 'เมืองอุดรธานี') + ', ' + (company.province || 'อุดรธานี') + ')';
+
+      var contactEl = document.getElementById('followup-contact-person');
+      if (contactEl) contactEl.textContent = company.contactPerson || 'ฝ่ายบริหาร / เจ้าของ';
+
+      var phoneEl = document.getElementById('followup-phone');
+      if (phoneEl) phoneEl.textContent = company.phone || '-';
+
+      var distEl = document.getElementById('followup-district');
+      if (distEl) distEl.textContent = (company.district || 'เมือง') + ', จ.' + (company.province || 'อุดรธานี');
+
+      var crmLog = { status: 'pending', note: '', nextDate: '', salesRep: '', products: [] };
+      try {
+        var raw = localStorage.getItem('nextsite_crm_followup_logs');
+        if (raw) {
+          var logs = JSON.parse(raw);
+          if (logs && logs[company.id]) {
+            crmLog = logs[company.id];
+          }
+        }
+      } catch(e) {}
+
+      selectCrmStatus(crmLog.status || 'pending');
+
+      var noteInput = document.getElementById('followup-note-input');
+      if (noteInput) noteInput.value = crmLog.note || '';
+
+      var dateInput = document.getElementById('followup-next-date');
+      if (dateInput) dateInput.value = crmLog.nextDate || '';
+
+      var repInput = document.getElementById('followup-sales-rep');
+      if (repInput) repInput.value = crmLog.salesRep || 'ทีมขาย SCG อุดรธานี';
+
+      var prodCheckboxes = document.querySelectorAll('input[name="followup-prod"]');
+      prodCheckboxes.forEach(function(cb) {
+        cb.checked = (crmLog.products || []).indexOf(cb.value) !== -1;
+      });
+
+      modal.style.display = 'flex';
+      modal.style.visibility = 'visible';
+      modal.style.opacity = '1';
+      modal.style.zIndex = '2147483647';
+
+      if (focusNote !== false && noteInput) {
+        setTimeout(function() {
+          noteInput.focus();
+          noteInput.selectionStart = noteInput.selectionEnd = noteInput.value.length;
+        }, 100);
+      }
+    }
+
+    function closeFollowUpModal() {
+      var modal = document.getElementById('company-followup-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function selectCrmStatus(statusVal) {
+      var hiddenInput = document.getElementById('followup-selected-status');
+      if (hiddenInput) {
+        hiddenInput.value = statusVal;
+      }
+      var statusColors = {
+        'pending': { bg: '#F1F5F9', border: '#0F172A', shadow: '0 0 0 2px #0F172A', color: '#0F172A' },
+        'scheduled': { bg: '#EFF6FF', border: '#0284C7', shadow: '0 0 0 2px #0284C7', color: '#0284C7' },
+        'visited': { bg: '#F0FDF4', border: '#16A34A', shadow: '0 0 0 2px #16A34A', color: '#16A34A' },
+        'quoting': { bg: '#FAF5FF', border: '#9333EA', shadow: '0 0 0 2px #9333EA', color: '#9333EA' },
+        'won': { bg: '#ECFDF5', border: '#059669', shadow: '0 0 0 2px #059669', color: '#059669' }
+      };
+
+      document.querySelectorAll('.crm-status-box').forEach(function(box) {
+        var val = box.getAttribute('data-status');
+        if (val === statusVal) {
+          var c = statusColors[val] || statusColors['pending'];
+          box.style.borderColor = c.border;
+          box.style.boxShadow = c.shadow;
+          box.style.background = c.bg;
+          box.style.color = c.color;
+          box.style.fontWeight = '800';
+        } else {
+          box.style.borderColor = '#E2E8F0';
+          box.style.boxShadow = 'none';
+          box.style.background = '#FFFFFF';
+          box.style.color = '#64748B';
+          box.style.fontWeight = '600';
+        }
+      });
+    }
+
+    function saveFollowUpLog() {
+      var idEl = document.getElementById('followup-company-id');
+      var companyId = idEl ? idEl.value : '';
+      if (!companyId) return;
+
+      var statusInput = document.getElementById('followup-selected-status');
+      var status = statusInput ? statusInput.value : 'pending';
+      var note = (document.getElementById('followup-note-input') ? document.getElementById('followup-note-input').value : '').trim();
+      var nextDate = document.getElementById('followup-next-date') ? document.getElementById('followup-next-date').value : '';
+      var salesRep = (document.getElementById('followup-sales-rep') ? document.getElementById('followup-sales-rep').value : '').trim();
+
+      var selectedProds = [];
+      document.querySelectorAll('input[name="followup-prod"]:checked').forEach(function(cb) {
+        selectedProds.push(cb.value);
+      });
+
+      try {
+        var raw = localStorage.getItem('nextsite_crm_followup_logs');
+        var logs = raw ? JSON.parse(raw) : {};
+        logs[companyId] = {
+          status: status,
+          note: note,
+          nextDate: nextDate,
+          salesRep: salesRep,
+          products: selectedProds,
+          updatedAt: new Date().toISOString()
+        };
+        localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+      } catch(e) {}
+
+      var inlineTextarea = document.getElementById('inline-crm-note-' + companyId);
+      if (inlineTextarea) {
+        inlineTextarea.value = note;
+        inlineTextarea.style.background = note ? '#FFFFFF' : '#F8FAFC';
+        inlineTextarea.style.borderColor = note ? '#94A3B8' : '#CBD5E1';
+      }
+
+      closeFollowUpModal();
+      if (typeof renderTable === 'function') {
+        renderTable();
+      }
+      if (typeof showToastNotification === 'function') {
+        showToastNotification('💾 บันทึกข้อมูลการติดตาม & โน้ตการเข้าพบเรียบร้อยแล้ว!');
+      }
     }
   </script>
 </head>
@@ -157,7 +456,7 @@
     <section class="kpi-grid">
       <!-- KPI 1: Total Companies Detected -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('total')"
-        title="คลิกเพื่อดูสรุปภาพรวม 33 บริษัท จ.อุดรธานี">
+        title="คลิกเพื่อดูสรุปภาพรวม 54 บริษัท จ.อุดรธานี">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทที่ตรวจพบทั้งหมด</span>
           <div class="kpi-icon-wrap">
@@ -168,7 +467,7 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-total-companies" class="kpi-value">19</span>
+          <span id="kpi-total-companies" class="kpi-value">54</span>
           <span class="kpi-unit">บริษัท</span>
         </div>
         <div class="kpi-subtext">
@@ -191,7 +490,7 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-new-companies" class="kpi-value">4</span>
+          <span id="kpi-new-companies" class="kpi-value">0</span>
           <span class="kpi-unit">บริษัทใหม่</span>
         </div>
         <div class="kpi-subtext">
@@ -213,7 +512,7 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-high-opp" class="kpi-value" style="color: var(--primary-red);">5</span>
+          <span id="kpi-high-opp" class="kpi-value" style="color: var(--primary-red);">0</span>
           <span class="kpi-unit">บริษัทเร่งด่วน</span>
         </div>
         <div class="kpi-subtext">
@@ -235,11 +534,11 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-total-value" class="kpi-value">฿252.5M</span>
+          <span id="kpi-total-value" class="kpi-value">฿0.0M</span>
           <span class="kpi-unit">บาท</span>
         </div>
         <div class="kpi-subtext">
-          <span id="kpi-total-projects-subtext">รวม 64 โครงการที่กำลังก่อสร้าง</span>
+          <span id="kpi-total-projects-subtext">รวม 0 โครงการที่กำลังก่อสร้าง</span>
         </div>
       </div>
     </section>
@@ -250,16 +549,15 @@
         <div>
           <h2
             style="font-size: 1.05rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--primary-red);">📊</span> สรุปยอดความต้องการสินค้า SCG รวม (Product Demand
-            Intelligence)
+            <span style="color: var(--primary-red);">📊</span> สรุปความต้องการสินค้า SCG ตามสเตจงานจริง (Product Demand Intelligence)
           </h2>
           <p style="font-size: 0.76rem; color: var(--text-secondary); margin-top: 2px;">
-            คลิกที่การ์ดสินค้าแต่ละกลุ่ม เพื่อดูกราฟวิเคราะห์ความต้องการและรายชื่อโครงการที่กำลังต้องการสั่งซื้อ
+            คลิกที่การ์ดสินค้าแต่ละกลุ่ม เพื่อดูรายชื่อไซต์งานจริงใน จ.อุดรธานี และสเตจก่อสร้างที่ตรงกับความต้องการใช้วัสดุ
           </p>
         </div>
         <div
           style="font-size: 0.72rem; color: var(--text-secondary); background: #F1ECE0; padding: 0.3rem 0.7rem; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color);">
-          💡 คลิกการ์ดเพื่อเปิดกราฟเจาะลึก
+          💡 คลิกการ์ดเพื่อเปิดรายชื่อไซต์งาน
         </div>
       </div>
 
@@ -269,97 +567,6 @@
       </div>
     </section>
 
-    <!-- Facebook AI Keyword Intelligence Scanner (7 Priority Keywords สำหรับ SCG) -->
-    <section class="fb-keyword-intelligence-card">
-      <div class="fb-keyword-header">
-        <div class="fb-keyword-title-wrap">
-          <div class="fb-keyword-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-            Facebook AI Keyword Intelligence
-          </div>
-          <h3 class="fb-keyword-title">คัดกรองไซต์งานจริงจากคีย์เวิร์ด Facebook (Priority Keywords ที่ดีที่สุดสำหรับ
-            SCG)</h3>
-        </div>
-        <div id="fb-keyword-active-desc" class="fb-keyword-active-desc">
-          💡 คลิกปุ่ม Keyword เพื่อคัดกรองไซต์งานจริงและดูความหมายเชิงกลยุทธ์สำหรับทีมขาย SCG
-        </div>
-      </div>
-
-      <!-- 7 Priority Keywords Buttons Grid -->
-      <div class="fb-keyword-buttons-grid">
-        <button class="fb-kw-btn active" id="kw-btn-all" onclick="selectFacebookKeyword('all')">
-          <span class="kw-icon">🌐</span>
-          <div class="kw-text-group">
-            <span class="kw-main">ทั้งหมด (All Signals)</span>
-            <span class="kw-meaning">33 บริษัท 64 โครงการ</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn" id="kw-btn-kw-1" onclick="selectFacebookKeyword('kw-1')">
-          <span class="kw-icon">🥇</span>
-          <div class="kw-text-group">
-            <span class="kw-main">หน้างาน / อัปเดตหน้างาน</span>
-            <span class="kw-meaning">มีไซต์จริง & กำลังก่อสร้าง</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn" id="kw-btn-kw-2" onclick="selectFacebookKeyword('kw-2')">
-          <span class="kw-icon">🥈</span>
-          <div class="kw-text-group">
-            <span class="kw-main">ไซต์งาน / UPDATE</span>
-            <span class="kw-meaning">ระบุ Project ชัด เก็บ Lead</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn highlight-gold" id="kw-btn-kw-3" onclick="selectFacebookKeyword('kw-3')">
-          <span class="kw-icon">🥉</span>
-          <div class="kw-text-group">
-            <span class="kw-main">ยกเสาเอก / เสาโท / ตอกเสาเข็ม</span>
-            <span class="kw-meaning">🔥 จังหวะทองเปิดสินค้า</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn" id="kw-btn-kw-4" onclick="selectFacebookKeyword('kw-4')">
-          <span class="kw-icon">4️⃣</span>
-          <div class="kw-text-group">
-            <span class="kw-main">งานโครงสร้าง / เทคอนกรีต</span>
-            <span class="kw-meaning">🏗️ ปูน SCG & CPAC</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn" id="kw-btn-kw-5" onclick="selectFacebookKeyword('kw-5')">
-          <span class="kw-icon">5️⃣</span>
-          <div class="kw-text-group">
-            <span class="kw-main">งานก่ออิฐ / งานฉาบ</span>
-            <span class="kw-meaning">🧱 Q-CON & ปูนเสือมอร์ตาร์</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn" id="kw-btn-kw-6" onclick="selectFacebookKeyword('kw-6')">
-          <span class="kw-icon">6️⃣</span>
-          <div class="kw-text-group">
-            <span class="kw-main">งานระบบ / งานฝ้า / หลังคา</span>
-            <span class="kw-meaning">🏠 กระเบื้อง & ฝ้าสมาร์ทบอร์ด</span>
-          </div>
-        </button>
-
-        <button class="fb-kw-btn" id="kw-btn-kw-7" onclick="selectFacebookKeyword('kw-7')">
-          <span class="kw-icon">7️⃣</span>
-          <div class="kw-text-group">
-            <span class="kw-main">ส่งมอบ Project / งวดจบ</span>
-            <span class="kw-meaning">🚿 สุขภัณฑ์ COTTO & D-COR</span>
-          </div>
-        </button>
-      </div>
-
-      <!-- Strategy Banner that updates dynamically -->
-      <div id="fb-keyword-strategy-box" class="fb-keyword-strategy-box" style="display: none;">
-        <!-- Injected via JS -->
-      </div>
-    </section>
 
     <!-- Toolbar & Filter Controls -->
     <div class="toolbar-container">
@@ -376,31 +583,128 @@
       <!-- Filters -->
       <div class="filter-group">
         <!-- Score Level Filter -->
-        <div class="score-pills">
+        <div class="score-pills" style="display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap;">
           <button class="score-pill-btn active" data-filter="all">ทั้งหมด</button>
-          <button class="score-pill-btn red-filter" data-filter="red">
-            <span style="color: var(--score-red-text);">●</span> โอกาสสูงสุด (>90)
+          <button class="score-pill-btn red-filter" data-filter="red" style="font-weight: 700;">
+            <span style="color: #DC2626;">●</span> 92 (สูงสุด)
           </button>
-          <button class="score-pill-btn orange-filter" data-filter="orange">
-            <span style="color: var(--score-orange-text);">●</span> โอกาสสูง (70-89)
+          <button class="score-pill-btn green-filter" data-filter="green" style="font-weight: 700;">
+            <span style="color: #16A34A;">●</span> 80 (สูงมาก)
           </button>
-          <button class="score-pill-btn yellow-filter" data-filter="yellow">
-            <span style="color: var(--score-yellow-text);">●</span> ปานกลาง (50-69)
+          <button class="score-pill-btn orange-filter" data-filter="orange" style="font-weight: 700;">
+            <span style="color: #EA580C;">●</span> 70 (สูง)
+          </button>
+          <button class="score-pill-btn yellow-filter" data-filter="yellow" style="font-weight: 700;">
+            <span style="color: #CA8A04;">●</span> 35 (เริ่มต้น)
+          </button>
+          <button class="score-pill-btn gray-filter" data-filter="gray" style="font-weight: 700;">
+            <span style="color: #64748B;">●</span> 15 (รอไซต์)
           </button>
         </div>
 
-        <!-- District Filter -->
-        <select id="district-filter" class="district-select">
-          <option value="all">ทุกอำเภอใน จ.อุดรธานี</option>
-          <option value="เมืองอุดรธานี">อ.เมืองอุดรธานี</option>
-          <option value="กุมภวาปี">อ.กุมภวาปี</option>
-          <option value="หนองหาน">อ.หนองหาน</option>
-          <option value="บ้านผือ">อ.บ้านผือ</option>
-          <option value="กุดจับ">อ.กุดจับ</option>
-          <option value="เพ็ญ">อ.เพ็ญ</option>
-          <option value="โนนสะอาด">อ.โนนสะอาด</option>
-          <option value="หนองวัวซอ">อ.หนองวัวซอ</option>
-          <option value="บ้านดุง">อ.บ้านดุง</option>
+        <!-- Province Filter (77 Provinces of Thailand) -->
+        <select id="district-filter" class="district-select" style="font-weight: 700; color: #0F172A; min-width: 180px;">
+          <option value="all">ทุกจังหวัด</option>
+          
+          <optgroup label="📍 ภาคตะวันออกเฉียงเหนือ (20 จังหวัด)">
+            <option value="อุดรธานี">อุดรธานี</option>
+            <option value="ขอนแก่น">ขอนแก่น</option>
+            <option value="นครราชสีมา">นครราชสีมา</option>
+            <option value="อุบลราชธานี">อุบลราชธานี</option>
+            <option value="สกลนคร">สกลนคร</option>
+            <option value="หนองคาย">หนองคาย</option>
+            <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+            <option value="เลย">เลย</option>
+            <option value="บึงกาฬ">บึงกาฬ</option>
+            <option value="นครพนม">นครพนม</option>
+            <option value="มุกดาหาร">มุกดาหาร</option>
+            <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+            <option value="มหาสารคาม">มหาสารคาม</option>
+            <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+            <option value="ยโสธร">ยโสธร</option>
+            <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+            <option value="บุรีรัมย์">บุรีรัมย์</option>
+            <option value="สุรินทร์">สุรินทร์</option>
+            <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+            <option value="ชัยภูมิ">ชัยภูมิ</option>
+          </optgroup>
+
+          <optgroup label="📍 ภาคกลาง & กรุงเทพฯ (22 จังหวัด)">
+            <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+            <option value="นนทบุรี">นนทบุรี</option>
+            <option value="ปทุมธานี">ปทุมธานี</option>
+            <option value="สมุทรปราการ">สมุทรปราการ</option>
+            <option value="สมุทรสาคร">สมุทรสาคร</option>
+            <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+            <option value="นครปฐม">นครปฐม</option>
+            <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+            <option value="สระบุรี">สระบุรี</option>
+            <option value="ลพบุรี">ลพบุรี</option>
+            <option value="ชัยนาท">ชัยนาท</option>
+            <option value="สิงห์บุรี">สิงห์บุรี</option>
+            <option value="อ่างทอง">อ่างทอง</option>
+            <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+            <option value="นครนายก">นครนายก</option>
+            <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+            <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+            <option value="สระแก้ว">สระแก้ว</option>
+            <option value="พิษณุโลก">พิษณุโลก</option>
+            <option value="นครสวรรค์">นครสวรรค์</option>
+            <option value="พิจิตร">พิจิตร</option>
+            <option value="กำแพงเพชร">กำแพงเพชร</option>
+          </optgroup>
+
+          <optgroup label="📍 ภาคเหนือ (9 จังหวัด)">
+            <option value="เชียงใหม่">เชียงใหม่</option>
+            <option value="เชียงราย">เชียงราย</option>
+            <option value="ลำปาง">ลำปาง</option>
+            <option value="ลำพูน">ลำพูน</option>
+            <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+            <option value="พะเยา">พะเยา</option>
+            <option value="แพร่">แพร่</option>
+            <option value="น่าน">น่าน</option>
+            <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+            <option value="สุโขทัย">สุโขทัย</option>
+            <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+            <option value="ตาก">ตาก</option>
+            <option value="อุทัยธานี">อุทัยธานี</option>
+          </optgroup>
+
+          <optgroup label="📍 ภาคตะวันออก (7 จังหวัด)">
+            <option value="ชลบุรี">ชลบุรี</option>
+            <option value="ระยอง">ระยอง</option>
+            <option value="จันทบุรี">จันทบุรี</option>
+            <option value="ตราด">ตราด</option>
+          </optgroup>
+
+          <optgroup label="📍 ภาคตะวันตก (5 จังหวัด)">
+            <option value="กาญจนบุรี">กาญจนบุรี</option>
+            <option value="ราชบุรี">ราชบุรี</option>
+            <option value="เพชรบุรี">เพชรบุรี</option>
+            <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+          </optgroup>
+
+          <optgroup label="📍 ภาคใต้ (14 จังหวัด)">
+            <option value="ภูเก็ต">ภูเก็ต</option>
+            <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+            <option value="สงขลา">สงขลา</option>
+            <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+            <option value="กระบี่">กระบี่</option>
+            <option value="พังงา">พังงา</option>
+            <option value="ตรัง">ตรัง</option>
+            <option value="พัทลุง">พัทลุง</option>
+            <option value="ชุมพร">ชุมพร</option>
+            <option value="ระนอง">ระนอง</option>
+            <option value="สตูล">สตูล</option>
+            <option value="ปัตตานี">ปัตตานี</option>
+            <option value="ยะลา">ยะลา</option>
+            <option value="นราธิวาส">นราธิวาส</option>
+          </optgroup>
+        </select>
+
+        <!-- Sub-District Filter (26 Districts of Khon Kaen, 20 Districts of Udon Thani) -->
+        <select id="sub-district-filter" class="district-select" style="font-weight: 700; color: #0F172A; min-width: 185px; display: none;">
+          <option value="all">📍 ทุกอำเภอ</option>
         </select>
 
         <!-- View Mode Switcher -->
@@ -425,20 +729,50 @@
     </div>
 
     <!-- Legend bar -->
-    <div class="legend-bar">
-      <span>เกณฑ์คะแนน AI Opportunity Score:</span>
-      <div class="legend-item">
-        <div class="legend-badge red"></div>
-        <span><strong>สีแดง (>90)</strong> : โอกาสสูงสุด เซลส์ควรเข้าพบด่วน (โครงการพึ่งเริ่มตอกเสาเข็ม)</span>
+    <div class="legend-bar" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+      <span id="province-total-projects-badge" style="font-weight: 800; color: #0F172A; font-size: 0.85rem; white-space: nowrap;">
+        จำนวนโครงการในอุดรธานี <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">0</span> โครงการ
+      </span>
+      <div class="legend-item" style="display: inline-flex; align-items: center; gap: 5px;">
+        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #DC2626;"></span>
+        <span><strong>สีแดง (92)</strong> : โอกาสสูงสุด (7+ โครงการ)</span>
       </div>
-      <div class="legend-item">
-        <div class="legend-badge orange"></div>
-        <span><strong>สีส้ม (70-89)</strong> : โอกาสระดับสูง (ช่วงวางรากฐานและขึ้นโครงสร้าง)</span>
+      <div class="legend-item" style="display: inline-flex; align-items: center; gap: 5px;">
+        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #16A34A;"></span>
+        <span><strong>สีเขียว (80)</strong> : โอกาสสูงมาก (5-6 โครงการ)</span>
       </div>
-      <div class="legend-item">
-        <div class="legend-badge yellow"></div>
-        <span><strong>สีเหลือง (50-69)</strong> : โอกาสปานกลาง</span>
+      <div class="legend-item" style="display: inline-flex; align-items: center; gap: 5px;">
+        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #EA580C;"></span>
+        <span><strong>สีส้ม (70)</strong> : โอกาสสูง (3-4 โครงการ)</span>
       </div>
+      <div class="legend-item" style="display: inline-flex; align-items: center; gap: 5px;">
+        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #CA8A04;"></span>
+        <span><strong>สีเหลือง (35)</strong> : โอกาสเริ่มต้น (1-2 โครงการ)</span>
+      </div>
+      <div class="legend-item" style="display: inline-flex; align-items: center; gap: 5px;">
+        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #64748B;"></span>
+        <span><strong>สีเทา (15)</strong> : รอไซต์ใหม่ (0 โครงการ)</span>
+      </div>
+    </div>
+
+    <!-- Company Tag Filter Toolbar (All / Focus / Non-Focus / New) -->
+    <div class="tag-filter-toolbar">
+      <span class="tag-filter-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        สถานะกลุ่มบริษัท:
+      </span>
+      <button class="tag-filter-btn active" data-filter="all" onclick="filterByCompanyTag('all')">
+        📋 ทั้งหมด <span class="count-badge" id="tag-count-all">0</span>
+      </button>
+      <button class="tag-filter-btn" data-filter="focus" onclick="filterByCompanyTag('focus')">
+        🎯 Focus <span class="count-badge" id="tag-count-focus">0</span>
+      </button>
+      <button class="tag-filter-btn" data-filter="non-focus" onclick="filterByCompanyTag('non-focus')">
+        ⚪ Non-Focus <span class="count-badge" id="tag-count-non-focus">0</span>
+      </button>
+      <button class="tag-filter-btn" data-filter="new" onclick="filterByCompanyTag('new')">
+        ✨ New <span class="count-badge" id="tag-count-new">0</span>
+      </button>
     </div>
 
     <!-- Main Priority Table View -->
@@ -447,15 +781,15 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>อันดับ</th>
+              <th style="width: 55px; text-align: center;">อันดับ</th>
               <th>ชื่อบริษัท / สถานะยืนยัน</th>
-              <th>พื้นที่ (อุดรธานี)</th>
+              <th id="th-province-column">พื้นที่ (อุดรธานี)</th>
               <th>จำนวนโครงการ (ไซต์จริงจาก FB)</th>
-              <th>มูลค่าโครงการรวม</th>
-              <th>Opportunity Score</th>
+              <th class="col-sales-2025" style="text-align: right; min-width: 130px;">ประวัติซื้อขาย 2025</th>
+              <th class="col-sales-2026" style="text-align: right; min-width: 130px;">ประวัติซื้อขาย 2026</th>
+              <th style="text-align: center;">Opportunity Score</th>
               <th>Revenue Potential</th>
               <th>คำแนะนำจาก AI</th>
-              <th style="text-align: right;">การดำเนินการ</th>
             </tr>
           </thead>
           <tbody id="company-table-body">
@@ -483,7 +817,7 @@
       <!-- Modal Header -->
       <div class="modal-header">
         <div>
-          <div
+          <div id="modal-playbook-badge"
             style="font-size: 0.72rem; color: var(--primary-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
             COMPANY DEEP ANALYSIS & SALES PLAYBOOK • UDON THANI
           </div>
@@ -515,48 +849,55 @@
             99.5%</span>
         </div>
 
+        <!-- Company Status Tracker Box (Focus / Non-Focus / New) -->
+        <div class="modal-status-selector-box">
+          <div class="status-selector-title">
+            <span>🏷️ กำหนดสถานะกลุ่มบริษัท:</span>
+            <span class="sub">(คลิกเพื่อจัดกลุ่มเป้าหมาย บันทึกอัตโนมัติ)</span>
+          </div>
+          <div class="status-button-group">
+            <button type="button" class="btn-status-option" id="btn-status-focus" data-status="focus" onclick="handleSetCompanyTag('focus')">
+              🎯 Focus
+            </button>
+            <button type="button" class="btn-status-option" id="btn-status-non-focus" data-status="non-focus" onclick="handleSetCompanyTag('non-focus')">
+              ⚪ Non-Focus
+            </button>
+            <button type="button" class="btn-status-option" id="btn-status-new" data-status="new" onclick="handleSetCompanyTag('new')">
+              ✨ New
+            </button>
+          </div>
+        </div>
+
         <!-- Top Details: Company Info & AI Score Matrix -->
         <div class="detail-top-grid">
           <!-- Left: Company Overview -->
-          <div class="detail-company-card">
-            <h3 class="section-title"><span class="indicator"></span> ข้อมูลทั่วไปและศักยภาพบริษัท</h3>
+          <div class="detail-company-card dark-red-card">
+            <h3 class="section-title" style="color: #FFFFFF !important;"><span class="indicator" style="background: #FBBF24 !important;"></span> ข้อมูลทั่วไปและที่ตั้งบริษัท</h3>
 
-            <div
-              style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; font-size: 0.82rem; margin-bottom: 0.85rem;">
-              <div>
-                <span style="color: #64748B;">ผู้มีอำนาจตัดสินใจ / จัดซื้อ:</span>
-                <div id="modal-contact-person" style="font-weight: 700; color: #0F172A;">-</div>
-              </div>
-              <div>
-                <span style="color: #64748B;">เบอร์โทรศัพท์ติดต่อ:</span>
-                <div id="modal-phone" style="font-weight: 700; color: #0F172A;">-</div>
-              </div>
-              <div>
-                <span style="color: #64748B;">มูลค่าโครงการสะสม:</span>
-                <div id="modal-total-value" style="font-weight: 700; color: #0F172A;">-</div>
-              </div>
-              <div>
-                <span style="color: #64748B;">อัตราการเติบโต:</span>
-                <div id="modal-growth-rate" style="font-weight: 700; color: #16A34A;">-</div>
-              </div>
+            <div style="font-size: 0.82rem; margin-bottom: 0.85rem;">
+              <span style="color: #FECACA; font-weight: 500;">เบอร์โทรศัพท์ติดต่อ:</span>
+              <div id="modal-phone" style="font-weight: 700; color: #FFFFFF; margin-top: 3px; font-size: 0.95rem;">-</div>
             </div>
 
-            <div style="font-size: 0.8rem; margin-bottom: 0.6rem;">
-              <span style="color: #64748B;">ที่ตั้งสำนักงาน:</span>
-              <div id="modal-address" style="color: #334155; font-weight: 500;">-</div>
+            <div style="font-size: 0.82rem; margin-bottom: 0.85rem;">
+              <span style="color: #FECACA; font-weight: 500;">ที่ตั้งสำนักงาน:</span>
+              <div id="modal-address" style="color: #F8FAFC; font-weight: 600; margin-top: 3px; line-height: 1.4;">-</div>
             </div>
 
-            <div style="font-size: 0.8rem; margin-bottom: 0.6rem;">
-              <span style="color: #64748B;">การขยายพื้นที่ดำเนินงาน:</span>
-              <div id="modal-area-expansion" style="color: #0F172A; font-weight: 600;">-</div>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.25);">
+              <span style="color: #FECACA; font-size: 0.8rem; display: block; margin-bottom: 6px; font-weight: 500;">พิกัดและแผนที่นำทาง:</span>
+              <a id="modal-gmaps-link" href="#" target="_blank" rel="noopener noreferrer"
+                style="display: inline-flex; align-items: center; gap: 8px; padding: 0.55rem 1rem; background: #FFFFFF; color: #991B1B; border: 1.5px solid #FECACA; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                📍 <span id="modal-gmaps-text">เปิด Google Maps นำทาง</span> <span style="font-size: 0.75rem; margin-left: 2px;">↗</span>
+              </a>
             </div>
 
-            <div
-              style="background: #FFFFFF; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
-              <span style="font-size: 0.78rem; font-weight: 600; color: #475569;">Revenue Potential (ยอดขาย SCG
-                ที่คาดหวัง):</span>
-              <span id="modal-revenue-potential"
-                style="font-weight: 800; color: var(--primary-red); font-size: 1.05rem;">-</span>
+            <!-- Stage Filter Pills moved here -->
+            <div id="modal-top-stage-filter-container" style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.25);">
+              <span style="color: #FECACA; font-size: 0.8rem; display: block; margin-bottom: 6px; font-weight: 600;">กรองสเตจโครงการก่อสร้าง:</span>
+              <div id="modal-top-stage-filter-buttons" style="display: flex; gap: 4px; background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.18); padding: 4px; border-radius: 8px; flex-wrap: wrap;">
+                <!-- Filter buttons injected via JS -->
+              </div>
             </div>
           </div>
 
@@ -605,40 +946,64 @@
           <!-- Dynamically Injected via JS with Stage Filter Tabs & Full Projects Cards -->
         </div>
 
-        <!-- SCG Product Synergy -->
-        <div class="scg-product-match-box">
-          <h3 class="section-title" style="margin-bottom: 0.25rem;">
-            <span class="indicator"></span> ความเหมาะสมกับสินค้าของ SCG (Product Synergy)
-          </h3>
-          <p style="font-size: 0.78rem; color: #64748B;">
-            วิเคราะห์ความต้องการวัสดุก่อสร้างตามรูปแบบบ้านและระยะงานก่อสร้างปัจจุบัน
-          </p>
-          <div id="modal-product-tags" class="product-tags-grid">
-            <!-- Tags Injected via JS -->
+        <!-- Sales Team CRM Notes Box -->
+        <div class="modal-crm-notes-card" style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <h3 class="section-title" style="margin-bottom: 2px;">
+                <span class="indicator"></span> 📝 บันทึกการติดตามของทีมขาย (Sales CRM Notes)
+              </h3>
+              <p style="font-size: 0.76rem; color: #64748B; margin: 0;">
+                บันทึกข้อมูลการเข้าพบลูกค้า, ข้อตกลงราคา หรือแผนการเสนอขายสินค้า SCG สำหรับบริษัทนี้ (บันทึกอัตโนมัติ)
+              </p>
+            </div>
+            <div id="modal-crm-note-status-indicator" style="font-size: 0.72rem; color: #16A34A; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+              <span>✅ พร้อมบันทึก</span>
+            </div>
           </div>
-        </div>
 
-        <!-- Action Plan & Sales Playbook -->
-        <div class="action-plan-box">
-          <div class="action-plan-header">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M9 11l3 3L22 4" />
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-            </svg>
-            <span>Action Plan & Sales Playbook สำหรับทีมขาย SCG โซนอุดรธานี</span>
+          <!-- Quick Templates / Tags -->
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <span style="font-size: 0.72rem; color: #64748B; font-weight: 700; align-self: center;">แทรกข้อความด่วน:</span>
+            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('📞 โทรติดต่อแนะนำตัวและสอบถามความต้องการปูน SCG แล้ว')">
+              + โทรติดต่อแล้ว
+            </button>
+            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('🚗 เข้าพบผู้รับเหมา/วิศวกร ณ ไซต์งานจริง พูดคุยราบรื่น')">
+              + เข้าพบหน้างานแล้ว
+            </button>
+            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('📄 ลูกค้าขอใบเสนอราคาปูนไฮดรอลิก & CPAC นัดส่งภายใน 48 ชม.')">
+              + ขอใบเสนอราคา
+            </button>
+            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('🎉 ลูกค้าตกลงสั่งซื้อสินค้า SCG เรียบร้อย')">
+              + ปิดการขายสำเร็จ
+            </button>
           </div>
-          <div id="modal-action-plan-list" class="action-steps-list">
-            <!-- Steps Injected via JS -->
-          </div>
-        </div>
 
-        <!-- AI Recommendation Narrative -->
-        <div
-          style="background: #F8FAFC; border-left: 4px solid var(--primary-red); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin-top: 1rem;">
-          <div style="font-size: 0.8rem; font-weight: 700; color: #0F172A; margin-bottom: 0.25rem;">
-            บทวิเคราะห์เชิงกลยุทธ์จาก AI:</div>
-          <div id="modal-ai-recommendation" style="font-size: 0.82rem; color: #334155; line-height: 1.5;">
-            -
+          <!-- Textarea Note Input -->
+          <div style="position: relative;">
+            <textarea id="modal-company-sales-note" rows="4" 
+              placeholder="พิมพ์บันทึกการติดตามลูกค้าที่นี่... เช่น: เข้าพบคุณสมชายแล้ว สนใจปูน SCG ไฮดรอลิก สำหรับไซต์งานบ้านคุณบีม นัดส่งใบเสนอราคาวันศุกร์นี้..."
+              oninput="handleCompanyNoteAutoSave(this.value)"
+              style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 10px 12px; font-size: 0.84rem; font-family: inherit; line-height: 1.5; color: #0F172A; resize: vertical; box-sizing: border-box; outline: none; transition: all 0.2s ease; background: #F8FAFC;"
+              onfocus="this.style.borderColor='#DC2626'; this.style.background='#FFFFFF'; this.style.boxShadow='0 0 0 3px rgba(220,38,38,0.1)';" 
+              onblur="this.style.borderColor='#CBD5E1'; this.style.background='#F8FAFC'; this.style.boxShadow='none';"></textarea>
+          </div>
+
+          <!-- Footer Actions -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem; flex-wrap: wrap; gap: 8px;">
+            <div id="modal-crm-note-last-updated" style="font-size: 0.72rem; color: #94A3B8;">
+              บันทึกล่าสุด: -
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" onclick="clearCompanyNote()" 
+                style="padding: 5px 12px; font-size: 0.75rem; font-weight: 600; color: #64748B; background: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 6px; cursor: pointer;">
+                ล้างข้อความ
+              </button>
+              <button type="button" onclick="saveCompanyNoteManually()" 
+                style="padding: 5px 16px; font-size: 0.75rem; font-weight: 700; color: #FFFFFF; background: #DC2626; border: 1px solid #B91C1C; border-radius: 6px; cursor: pointer; box-shadow: 0 2px 4px rgba(220,38,38,0.25);">
+                💾 บันทึกโน้ต
+              </button>
+            </div>
           </div>
         </div>
 
@@ -850,7 +1215,7 @@
             <div
               style="font-size: 0.82rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
               <span>📈 กราฟความต้องการตามระยะก่อสร้าง</span>
-              <span style="font-size: 0.72rem; color: var(--text-secondary);">หน่วย: ล้านบาท</span>
+              <span style="font-size: 0.72rem; color: #1E40AF; font-weight: 700; background: #EFF6FF; padding: 1px 6px; border-radius: 4px; border: 1px solid #BFDBFE;">หน่วย: ไซต์งาน</span>
             </div>
             <div style="position: relative; width: 100%; height: 210px;">
               <canvas id="productModalStageChart"></canvas>
@@ -870,8 +1235,8 @@
               <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);">
                 🏗️ ไซต์งานใน จ.อุดรธานี ที่มีความต้องการสินค้านี้ด่วนที่สุด
               </h3>
-              <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 1px;">
-                คลิกรายการเพื่อเปิดดู BOQ และหลักฐานภาพถ่ายหน้างานจริง
+              <p style="font-size: 0.72rem; color: #1E40AF; margin-top: 1px; font-weight: 600;">
+                🔗 คลิกที่รายการเพื่อเปิดดูโพสต์หน้างานจริงบน Facebook ทันที (Direct Link)
               </p>
             </div>
             <span id="prodmodal-project-count"
@@ -1123,6 +1488,105 @@
       </div>
     </div>
 
+    <!-- Modal: บันทึกการติดตาม & เข้าพบลูกค้า (CRM Visit Log Modal) -->
+    <div id="company-followup-modal" class="modal-overlay" onclick="closeFollowUpModal()" style="display: none; align-items: center; justify-content: center; z-index: 999999; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px);">
+      <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 580px; width: 92%; background: #FFFFFF; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden; border: 1px solid #E2E8F0; animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: #FFFFFF; padding: 18px 24px; display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #D71920;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.2rem;">📝</span>
+              <h3 style="margin: 0; font-size: 1.15rem; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em;">บันทึกการติดตาม & เข้าพบลูกค้า</h3>
+            </div>
+            <div id="followup-modal-company-name" style="margin-top: 4px; font-size: 0.85rem; color: #94A3B8; font-weight: 600;">-</div>
+          </div>
+          <button type="button" onclick="closeFollowUpModal()" style="background: rgba(255,255,255,0.1); border: none; color: #CBD5E1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">✕</button>
+        </div>
+
+        <!-- Body -->
+        <div style="padding: 20px 24px; max-height: 75vh; overflow-y: auto;">
+          <input type="hidden" id="followup-company-id" value="">
+
+          <!-- Quick Company Info Pill -->
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.78rem;">
+            <div><span style="color: #64748B;">ผู้ติดต่อ:</span> <strong id="followup-contact-person" style="color: #0F172A;">-</strong></div>
+            <div><span style="color: #64748B;">โทร:</span> <strong id="followup-phone" style="color: #0284C7;">-</strong></div>
+            <div><span style="color: #64748B;">พื้นที่:</span> <strong id="followup-district" style="color: #0F172A;">-</strong></div>
+          </div>
+
+          <!-- Status Selector (5 States) -->
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #0F172A; margin-bottom: 8px;">
+            🎯 สถานะการติดตาม / การเข้าพบ:
+          </label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 8px; margin-bottom: 18px;">
+            <div class="crm-status-box" data-status="pending" onclick="selectCrmStatus('pending')" style="padding: 9px 8px; border-radius: 8px; border: 2px solid #E2E8F0; text-align: center; font-size: 0.75rem; font-weight: 700; transition: all 0.15s; background: #FFFFFF; color: #64748B; cursor: pointer; user-select: none;">
+              📍 ยังไม่เข้าพบ
+            </div>
+
+            <div class="crm-status-box" data-status="scheduled" onclick="selectCrmStatus('scheduled')" style="padding: 9px 8px; border-radius: 8px; border: 2px solid #E2E8F0; text-align: center; font-size: 0.75rem; font-weight: 700; transition: all 0.15s; background: #FFFFFF; color: #0284C7; cursor: pointer; user-select: none;">
+              🏃 นัดหมายแล้ว
+            </div>
+
+            <div class="crm-status-box" data-status="visited" onclick="selectCrmStatus('visited')" style="padding: 9px 8px; border-radius: 8px; border: 2px solid #E2E8F0; text-align: center; font-size: 0.75rem; font-weight: 700; transition: all 0.15s; background: #FFFFFF; color: #16A34A; cursor: pointer; user-select: none;">
+              🤝 เข้าพบแล้ว
+            </div>
+
+            <div class="crm-status-box" data-status="quoting" onclick="selectCrmStatus('quoting')" style="padding: 9px 8px; border-radius: 8px; border: 2px solid #E2E8F0; text-align: center; font-size: 0.75rem; font-weight: 700; transition: all 0.15s; background: #FFFFFF; color: #9333EA; cursor: pointer; user-select: none;">
+              📑 เสนอราคา/สเปก
+            </div>
+
+            <div class="crm-status-box" data-status="won" onclick="selectCrmStatus('won')" style="padding: 9px 8px; border-radius: 8px; border: 2px solid #E2E8F0; text-align: center; font-size: 0.75rem; font-weight: 700; transition: all 0.15s; background: #FFFFFF; color: #059669; cursor: pointer; user-select: none;">
+              ✅ ปิดการขาย
+            </div>
+          </div>
+          <input type="hidden" id="followup-selected-status" value="pending">
+
+          <!-- Note Area -->
+          <label for="followup-note-input" style="display: block; font-size: 0.82rem; font-weight: 700; color: #0F172A; margin-bottom: 6px;">
+            💬 บันทึกผลการพูดคุย / รายละเอียดการเข้าพบ:
+          </label>
+          <textarea id="followup-note-input" rows="3" placeholder="ตัวอย่าง: เข้าพบคุณสมชายแล้ว สนใจปูน SCG ไฮดรอลิก 500 ถุง สำหรับไซต์บ้าน 2 ชั้น นัดส่งใบเสนอราคาวันศุกร์นี้..." style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 10px 12px; font-size: 0.82rem; font-family: inherit; line-height: 1.45; color: #0F172A; resize: vertical; margin-bottom: 14px; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#D71920'" onblur="this.style.borderColor='#CBD5E1'"></textarea>
+
+          <!-- Products of Interest Checkboxes -->
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #0F172A; margin-bottom: 6px;">
+            📦 สินค้า SCG ที่ลูกค้าให้ความสนใจ:
+          </label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px; margin-bottom: 16px; font-size: 0.78rem; color: #334155;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; background: #F8FAFC; padding: 6px 8px; border-radius: 6px; border: 1px solid #E2E8F0;"><input type="checkbox" name="followup-prod" value="ปูนโครงสร้าง SCG"> ปูนโครงสร้าง SCG</label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; background: #F8FAFC; padding: 6px 8px; border-radius: 6px; border: 1px solid #E2E8F0;"><input type="checkbox" name="followup-prod" value="คอนกรีตผสมเสร็จ CPAC"> คอนกรีต CPAC</label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; background: #F8FAFC; padding: 6px 8px; border-radius: 6px; border: 1px solid #E2E8F0;"><input type="checkbox" name="followup-prod" value="กระเบื้องหลังคา SCG NeuTile/Prestige"> หลังคา SCG NeuTile</label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; background: #F8FAFC; padding: 6px 8px; border-radius: 6px; border: 1px solid #E2E8F0;"><input type="checkbox" name="followup-prod" value="อิฐมวลเบา Q-CON"> อิฐมวลเบา Q-CON</label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; background: #F8FAFC; padding: 6px 8px; border-radius: 6px; border: 1px solid #E2E8F0;"><input type="checkbox" name="followup-prod" value="ไม้สังเคราะห์ SCG D-COR & สมาร์ทบอร์ด"> ไม้สังเคราะห์ D-COR</label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; background: #F8FAFC; padding: 6px 8px; border-radius: 6px; border: 1px solid #E2E8F0;"><input type="checkbox" name="followup-prod" value="สุขภัณฑ์ & กระเบื้อง COTTO"> สุขภัณฑ์ COTTO</label>
+          </div>
+
+          <!-- Date Fields & Sales Rep Name -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 6px;">
+            <div>
+              <label for="followup-next-date" style="display: block; font-size: 0.78rem; font-weight: 700; color: #0F172A; margin-bottom: 4px;">📅 นัดหมายติดตามผลครั้งถัดไป:</label>
+              <input type="date" id="followup-next-date" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 7px 10px; font-size: 0.8rem; color: #0F172A; box-sizing: border-box; outline: none;">
+            </div>
+            <div>
+              <label for="followup-sales-rep" style="display: block; font-size: 0.78rem; font-weight: 700; color: #0F172A; margin-bottom: 4px;">👤 เซลส์ผู้ดูแล / บันทึก:</label>
+              <input type="text" id="followup-sales-rep" placeholder="เช่น ทีมขาย SCG อุดรธานี" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 7px 10px; font-size: 0.8rem; color: #0F172A; box-sizing: border-box; outline: none;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background: #F8FAFC; border-top: 1px solid #E2E8F0; padding: 14px 24px; display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" onclick="closeFollowUpModal()" style="background: #E2E8F0; color: #475569; border: none; padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: all 0.15s;">
+            ยกเลิก
+          </button>
+          <button type="button" onclick="saveFollowUpLog()" style="background: #D71920; color: #FFFFFF; border: none; padding: 9px 22px; border-radius: 8px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 0 2px 8px rgba(215,25,32,0.35); transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px;">
+            <span>💾 บันทึกการติดตาม</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -1130,1283 +1594,29 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-                                                        <!-- Embedded Full 64 Projects Master Dataset -->
-    <script>
-/**
- * NEXTSITE AI - 33 VERIFIED CONTRACTORS จ.อุดรธานี (UDON THANI MASTER DATASET)
- * ข้อมูลตั้งต้น 0 โครงการ สะอาดหมดจด พร้อมสแกน Apify 1:1
- */
+    <!-- Master Dataset -->
+    <script src="js/data.js?v=61.0"></script>
+    <!-- Global Full-Screen Drag & Drop Overlay -->
+    <div id="global-drag-drop-overlay" style="display: none; position: fixed; inset: 0; z-index: 2147483647; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(10px); flex-direction: column; align-items: center; justify-content: center; color: #FFFFFF; border: 4px dashed #38BDF8; pointer-events: none;">
+      <div style="font-size: 3.5rem; margin-bottom: 12px; animation: pulse 1.5s infinite;">📥</div>
+      <h2 style="font-size: 1.6rem; font-weight: 800; color: #FFFFFF; margin: 0 0 8px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+        ปล่อยไฟล์ JSON ที่นี่ (Apify Dataset)
+      </h2>
+      <p style="font-size: 0.95rem; color: #93C5FD; margin: 0; font-weight: 600;">
+        ระบบ AI จะวิเคราะห์โพสต์ Facebook และสกัดไซต์งานเข้าตารางอัตโนมัติทันที
+      </p>
+    </div>
 
-var UDON_COMPANIES = [
-  {
-    "id": "udon-comp-01",
-    "name": "มหารุ่งโรจน์ รับสร้างบ้าน อุดรธานี",
-    "engName": "Maharungroj House Builder Udon Thani",
-    "category": "รับสร้างบ้านคุณภาพและออกแบบสถาปัตยกรรม เพจ: maharungroj",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ถ.ทหาร ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "042-246-888, 081-965-7788",
-    "contactPerson": "คุณมหารุ่งโรจน์ (ผู้บริหาร)",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 45,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.หนองหาน, อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/maharungroj/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4080, 102.7980],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/maharungroj/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "มหารุ่งโรจน์ รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: มหารุ่งโรจน์ อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-02",
-    "name": "UD.Home รับสร้างบ้าน อุดรธานี",
-    "engName": "UD.Home Engineering & Construction",
-    "category": "รับสร้างบ้านโมเดิร์นและงานวิศวกรรม เพจ: UD.HomeEn",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ถ.รอบเมือง ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "089-712-3456, 042-321-789",
-    "contactPerson": "ทีมวิศวกร UD.Home",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 42,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.กุดจับ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/UD.HomeEn/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4250, 102.8250],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/UD.HomeEn/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "UD.Home รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: UD.Home อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-03",
-    "name": "โมเดิร์น ดี รับสร้างบ้าน (Modern De)",
-    "engName": "Modern De House Builder",
-    "category": "รับสร้างบ้านลักชัวรี่-พรีเมียม เพจ: MODERNDEHouseBuilder",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ถ.อุดรดุษฎี ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "042-223-333, 086-455-9988",
-    "contactPerson": "คุณโมเดิร์นดี",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 50,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.เพ็ญ, อ.บ้านผือ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/MODERNDEHouseBuilder/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4190, 102.7910],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/MODERNDEHouseBuilder/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "โมเดิร์น ดี รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: โมเดิร์น ดี อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-04",
-    "name": "ทเวนตี้ ซิกส์ เฮ้าส์ (Twenty Six House)",
-    "engName": "Twenty Six House Builder",
-    "category": "รับสร้างบ้านสไตล์มินิมอล-นอร์ดิก เพจ: Twentysix.house",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ถ.โพศรี ต.บ้านเลื่อม อ.เมือง จ.อุดรธานี 41000",
-    "phone": "095-126-2626",
-    "contactPerson": "ทีมงาน ทเวนตี้ ซิกส์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 38,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.หนองวัวซอ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/Twentysix.house/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3950, 102.7680],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/Twentysix.house/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "ทเวนตี้ ซิกส์ เฮ้าส์",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Twenty Six House",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-05",
-    "name": "Nasit Home รับสร้างบ้านและออกแบบ",
-    "engName": "Nasit House and Design",
-    "category": "ออกแบบและรับเหมาก่อสร้าง เพจ: nasithouseanddesign",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ถ.มิตรภาพ ต.หนองขอนกว้าง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "087-890-1234",
-    "contactPerson": "คุณนสิทธิ์ (สถาปนิก)",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 35,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.โนนสะอาด",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/nasithouseanddesign/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3650, 102.8120],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/nasithouseanddesign/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Nasit Home",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Nasit Home อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-06",
-    "name": "Function Design รับสร้างบ้าน อุดรธานี",
-    "engName": "Function Design & Construction",
-    "category": "ออกแบบฟังก์ชันและรับสร้างบ้าน เพจ Facebook: Function Design",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
-    "phone": "084-555-6789",
-    "contactPerson": "ทีมงาน Function Design",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 36,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/share/1DizCH5LWR/?mibextid=wwXIfr",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3520, 102.8350],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/share/1DizCH5LWR/?mibextid=wwXIfr",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Function Design",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Function Design",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-07",
-    "name": "TT Design and Construction",
-    "engName": "TT Design and Construction",
-    "category": "รับเหมาก่อสร้างและออกแบบสถาปัตย์ เพจ Facebook: TT Design",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "081-234-5678",
-    "contactPerson": "คุณทีที ดีไซน์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 32,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/share/1976Zj9Qc4/?mibextid=wwXIfr",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4350, 102.8150],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/share/1976Zj9Qc4/?mibextid=wwXIfr",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "TT Design and Construction",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: TT Design & Construction",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-08",
-    "name": "SD HOUSE รับสร้างบ้าน อุดรธานี",
-    "engName": "SD House Udon Thani",
-    "category": "รับสร้างบ้านและอาคาร เพจ Facebook: SD HOUSE",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "089-999-8877",
-    "contactPerson": "ทีมงาน SD HOUSE",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 34,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.เพ็ญ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/share/1Du2j6MnLh/?mibextid=wwXIfr",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4120, 102.7720],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/share/1Du2j6MnLh/?mibextid=wwXIfr",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "SD HOUSE",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: SD HOUSE อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-09",
-    "name": "Udon Home Work (เฟิร์สแลนด์ ทาวน์)",
-    "engName": "Udon Home Work & Firstland",
-    "category": "โครงการบ้านเดี่ยวและรับสร้างบ้าน เพจ: firstlandtown",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "042-998-877, 086-333-2211",
-    "contactPerson": "ฝ่ายขาย Udon Home Work",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 40,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/firstlandtown/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4410, 102.8310],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/firstlandtown/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Udon Home Work",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Udon Home Work",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-10",
-    "name": "Little Home รับสร้างบ้าน อุดรธานี",
-    "engName": "Little Home Builder LH2553",
-    "category": "รับสร้างบ้านมาตรฐาน เพจ: LH2553",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.บ้านเลื่อม อ.เมือง จ.อุดรธานี 41000",
-    "phone": "081-778-9900",
-    "contactPerson": "คุณลิตเติลโฮม",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 33,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุดจับ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/LH2553/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4050, 102.7550],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/LH2553/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Little Home รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Little Home อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-11",
-    "name": "WD รับสร้างบ้านและตกแต่ง",
-    "engName": "WD House Builder & Design",
-    "category": "รับเหมาสร้างบ้านและต่อเติม เพจ Facebook: WD",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองนาคำ อ.เมือง จ.อุดรธานี 41000",
-    "phone": "085-667-8899",
-    "contactPerson": "ทีมงาน WD",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 30,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/share/1KVoCEXt6J/?mibextid=wwXIfr",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4180, 102.8450],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/share/1KVoCEXt6J/?mibextid=wwXIfr",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "WD รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: WD อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-12",
-    "name": "Wattana รับสร้างบ้าน อุดรธานี",
-    "engName": "Wattana House Building",
-    "category": "รับสร้างบ้านคุณภาพ เพจ: wattanahousebuilding",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "083-456-7891",
-    "contactPerson": "คุณวัฒนา (ผู้จัดการ)",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 36,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/wattanahousebuilding/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4010, 102.7880],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/wattanahousebuilding/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Wattana รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Wattana House Building",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-13",
-    "name": "บริษัท จูปิเตอร์ จำกัด (Jupiter Company Limited)",
-    "engName": "Jupiter Company Limited",
-    "category": "รับสร้างบ้านและวิศวกรรมอาคาร เพจ: JupiterCompanyLimited",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "042-328-999, 081-876-5432",
-    "contactPerson": "ผู้บริหาร บจก.จูปิเตอร์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 44,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.บ้านผือ, อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/JupiterCompanyLimited/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4320, 102.8050],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/JupiterCompanyLimited/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Jupiter Company Limited",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Jupiter Company Limited",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-14",
-    "name": "KKC Property Home รับสร้างบ้าน",
-    "engName": "KKC Property Home Co., Ltd.",
-    "category": "พัฒนาอสังหาริมทรัพย์และรับสร้างบ้าน เพจ: kkchome.co.th",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "042-188-777, 088-555-4433",
-    "contactPerson": "ฝ่ายขาย KKC Home",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 37,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/kkchome.co.th/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4150, 102.7810],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/kkchome.co.th/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "KKC Property Home",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: KKC Property Home",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-15",
-    "name": "338 รับสร้างบ้าน (เครือข่ายอีสานเหนือ)",
-    "engName": "338 Home Builder Udon-Ubon",
-    "category": "รับสร้างบ้านโมเดิร์น เพจ: ubon338",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ถ.เลี่ยงเมือง ต.หนองขอนกว้าง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "097-338-3388",
-    "contactPerson": "ทีมงาน 338 รับสร้างบ้าน",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 41,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.หนองวัวซอ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/ubon338/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3780, 102.8250],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/ubon338/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "338 รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: 338 รับสร้างบ้าน",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-16",
-    "name": "KW HOME รับสร้างบ้าน อุดรธานี",
-    "engName": "KW Home Builder 2018",
-    "category": "รับสร้างบ้านสไตล์คอนเทมโพรารี เพจ: KWHOME2018",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
-    "phone": "086-778-2018",
-    "contactPerson": "คุณเคดับบลิว โฮม",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 33,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.โนนสะอาด",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/KWHOME2018/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3480, 102.8210],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/KWHOME2018/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "KW HOME",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: KW HOME อุดรธานี",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-17",
-    "name": "ธนเสฏฐ์เจริญทรัพย์ รับสร้างบ้าน",
-    "engName": "Thanaseth Charoensup Home Builder",
-    "category": "รับสร้างบ้านครบวงจร เพจ: THANASETHOFFICIAL",
-    "province": "อุดรธานี",
-    "district": "หนองหาน",
-    "address": "ต.หนองหาน อ.หนองหาน จ.อุดรธานี 41130",
-    "phone": "089-887-9911",
-    "contactPerson": "คุณธนเสฏฐ์ เจริญทรัพย์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 38,
-    "areaExpansion": "ครอบคลุม อ.หนองหาน, อ.บ้านดุง, อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/THANASETHOFFICIAL/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.หนองหาน"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3620, 103.1050],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/THANASETHOFFICIAL/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "ธนเสฏฐ์เจริญทรัพย์",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: ธนเสฏฐ์เจริญทรัพย์",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-18",
-    "name": "บ้านอรุณ Home Builder",
-    "engName": "Baan Arun Home Builder",
-    "category": "รับสร้างบ้านสไตล์โมเดิร์น เพจ: baanarun.homebuilding",
-    "province": "อุดรธานี",
-    "district": "กุมภวาปี",
-    "address": "ต.กุมภวาปี อ.กุมภวาปี จ.อุดรธานี 41110",
-    "phone": "081-987-6543",
-    "contactPerson": "คุณบ้านอรุณ",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 35,
-    "areaExpansion": "ครอบคลุม อ.กุมภวาปี, อ.โนนสะอาด, อ.ประจักษ์ศิลปาคม",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/baanarun.homebuilding/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.กุมภวาปี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.1130, 103.0180],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/baanarun.homebuilding/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "บ้านอรุณ Home Builder",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: บ้านอรุณ Home Builder",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-19",
-    "name": "Estate818 รับสร้างบ้าน อุดรธานี",
-    "engName": "Estate 818 House Builder",
-    "category": "รับสร้างบ้านโมเดิร์น เพจ Facebook: Estate818",
-    "province": "อุดรธานี",
-    "district": "บ้านผือ",
-    "address": "ต.บ้านผือ อ.บ้านผือ จ.อุดรธานี 41160",
-    "phone": "091-818-8188",
-    "contactPerson": "คุณเอสเตท 818",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 36,
-    "areaExpansion": "ครอบคลุม อ.บ้านผือ, อ.กุดจับ, อ.น้ำโสม",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/profile.php?id=61586971197602",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.บ้านผือ"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.6950, 102.4820],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/profile.php?id=61586971197602",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Estate818",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Estate818",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-20",
-    "name": "ซัคเซสโฮมบิวเดอร์ (Success Home Builder)",
-    "engName": "Success Home Builder",
-    "category": "รับสร้างบ้านครบวงจร เพจ Facebook: Success Home Builder",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.บ้านเลื่อม อ.เมือง จ.อุดรธานี 41000",
-    "phone": "082-998-1122",
-    "contactPerson": "ทีมงาน Success Home",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 34,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.เพ็ญ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/share/1CAVeACDiW/?mibextid=wwXIfr",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4100, 102.7620],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/share/1CAVeACDiW/?mibextid=wwXIfr",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Success Home Builder",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Success Home Builder",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-21",
-    "name": "A.D Home รับสร้างบ้านและออกแบบ",
-    "engName": "A.D Home & Design",
-    "category": "รับเหมาสร้างบ้าน เพจ: adhomeanddesign",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "086-123-9988",
-    "contactPerson": "คุณเอดี โฮม",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 30,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.หนองวัวซอ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/adhomeanddesign/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3980, 102.7790],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/adhomeanddesign/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "A.D Home",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: A.D Home",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-22",
-    "name": "Gold House Property อุดรธานี",
-    "engName": "Gold House Property Udon Thani",
-    "category": "โครงการบ้านเดี่ยวและรับสร้างบ้าน เพจ: goldhouseproperty",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "042-123-456, 081-555-7799",
-    "contactPerson": "ฝ่ายพัฒนาโครงการ Gold House",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 39,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/goldhouseproperty/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4380, 102.8220],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/goldhouseproperty/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Gold House Property",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Gold House Property",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-23",
-    "name": "Mind Home Grand รับสร้างบ้านและตกแต่งภายใน",
-    "engName": "Mind Home Grand Udon Thani",
-    "category": "รับสร้างบ้านหรูและตกแต่งภายในครบวงจร เพจ: MindHome.Grand",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "089-778-9911",
-    "contactPerson": "ทีมออกแบบ Mind Home Grand",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 43,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.กุมภวาปี, อ.เพ็ญ",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/MindHome.Grand/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4140, 102.7950],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/MindHome.Grand/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Mind Home Grand",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Mind Home Grand",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-24",
-    "name": "มหาทรัพย์ คอนสตรัคชั่น&ดีไซน์",
-    "engName": "Mahasub Construction & Design",
-    "category": "รับสร้างบ้านและออกแบบ เพจ Facebook: มหาทรัพย์ คอนสตรัคชั่น",
-    "province": "อุดรธานี",
-    "district": "เพ็ญ",
-    "address": "ต.เพ็ญ อ.เพ็ญ จ.อุดรธานี 41150",
-    "phone": "087-654-3211",
-    "contactPerson": "คุณมหาทรัพย์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 32,
-    "areaExpansion": "ครอบคลุม อ.เพ็ญ, อ.สร้างคอม, อ.เมืองอุดรธานี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/profile.php?id=61557782920214",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.เพ็ญ"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.6850, 102.9450],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/profile.php?id=61557782920214",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "มหาทรัพย์ คอนสตรัคชั่น&ดีไซน์",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: มหาทรัพย์ คอนสตรัคชั่น",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-25",
-    "name": "วินเนอร์โกลด์ เฮ้าส์ (Winner Gold House)",
-    "engName": "Winner Gold House",
-    "category": "รับสร้างบ้านสไตล์พรีเมียม เพจ: WINNERGOLDHOUSE",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "081-334-5566",
-    "contactPerson": "ทีมงาน วินเนอร์โกลด์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 36,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/WINNERGOLDHOUSE/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4280, 102.8190],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/WINNERGOLDHOUSE/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "วินเนอร์โกลด์ เฮ้าส์",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Winner Gold House",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-26",
-    "name": "E House construction รับสร้างบ้านอีสาน",
-    "engName": "E House Construction (Esarn Thai House)",
-    "category": "รับสร้างบ้านสไตล์ไทยโมเดิร์น เพจ: esarnthaihouse",
-    "province": "อุดรธานี",
-    "district": "กุดจับ",
-    "address": "ต.เมืองเพีย อ.กุดจับ จ.อุดรธานี 41250",
-    "phone": "085-443-2211",
-    "contactPerson": "ทีมงาน E House",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 31,
-    "areaExpansion": "ครอบคลุม อ.กุดจับ, อ.บ้านผือ, อ.เมืองอุดรธานี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/esarnthaihouse/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.กุดจับ"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4280, 102.5650],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/esarnthaihouse/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "E House construction",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: E House Construction",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-27",
-    "name": "SY.House รับสร้างบ้าน (SY House Construction)",
-    "engName": "SY House Construction",
-    "category": "รับเหมาก่อสร้างและสร้างบ้าน เพจ: SYHOUSECONSTRUCTION",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองนาคำ อ.เมือง จ.อุดรธานี 41000",
-    "phone": "089-667-1122",
-    "contactPerson": "คุณเอสวาย เฮ้าส์",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 37,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/SYHOUSECONSTRUCTION/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4210, 102.8390],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/SYHOUSECONSTRUCTION/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "SY.House",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: SY.House",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-28",
-    "name": "เสริมสุดา รับสร้างบ้าน อุดรธานี",
-    "engName": "Sermsuda House Builder",
-    "category": "รับเหมาก่อสร้างครบวงจร เพจ Facebook: เสริมสุดา",
-    "province": "อุดรธานี",
-    "district": "โนนสะอาด",
-    "address": "ต.โนนสะอาด อ.โนนสะอาด จ.อุดรธานี 41240",
-    "phone": "087-123-4567",
-    "contactPerson": "ช่างเสริมสุดา",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 30,
-    "areaExpansion": "ครอบคลุม อ.โนนสะอาด, อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/share/17p9b88Aew/?mibextid=wwXIfr",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.โนนสะอาด"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [16.9850, 102.9150],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/share/17p9b88Aew/?mibextid=wwXIfr",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "เสริมสุดา รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: เสริมสุดา",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-29",
-    "name": "Baron House รับสร้างบ้านและดีไซน์",
-    "engName": "Baron House Design",
-    "category": "ออกแบบสถาปัตยกรรมและรับสร้างบ้าน เพจ: BaronHouseDesign",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
-    "phone": "083-776-5544",
-    "contactPerson": "สถาปนิก Baron House",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 35,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/BaronHouseDesign/",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.3600, 102.8310],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/BaronHouseDesign/",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Baron House",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Baron House",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-30",
-    "name": "โฮมสเปซ รับสร้างบ้าน (Home Space)",
-    "engName": "Home Space Builder",
-    "category": "รับสร้างบ้านโมเดิร์น เพจ: homespace178",
-    "province": "อุดรธานี",
-    "district": "หนองวัวซอ",
-    "address": "ต.หนองวัวซอ อ.หนองวัวซอ จ.อุดรธานี 41220",
-    "phone": "088-178-1788",
-    "contactPerson": "คุณโฮมสเปซ",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 33,
-    "areaExpansion": "ครอบคลุม อ.หนองวัวซอ, อ.เมืองอุดรธานี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/homespace178/?locale=th_TH",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.หนองวัวซอ"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.1650, 102.5750],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/homespace178/?locale=th_TH",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "โฮมสเปซ รับสร้างบ้าน",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: โฮมสเปซ",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-31",
-    "name": "Ks รวมช่าง รับสร้างบ้าน อุดรธานี",
-    "engName": "Ks Ruamchang Construction",
-    "category": "รับเหมาก่อสร้างและต่อเติม เพจ Facebook: Ks รวมช่าง",
-    "province": "อุดรธานี",
-    "district": "บ้านดุง",
-    "address": "ต.บ้านดุง อ.บ้านดุง จ.อุดรธานี 41190",
-    "phone": "086-445-5667",
-    "contactPerson": "ช่างเคเอส",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 30,
-    "areaExpansion": "ครอบคลุม อ.บ้านดุง, อ.ทุ่งฝน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/profile.php?id=61560637513978",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทต.บ้านดุง"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.6980, 103.2580],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/profile.php?id=61560637513978",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "Ks รวมช่าง",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: Ks รวมช่าง",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-32",
-    "name": "ป.รุ่งเรืองพีเอสพีเอส รับสร้างบ้าน",
-    "engName": "P.Rungruang PSPS House Building",
-    "category": "รับสร้างบ้าน เพจ: housebuildingsunphage",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หนองบัว อ.เมือง จ.อุดรธานี 41000",
-    "phone": "081-889-9900",
-    "contactPerson": "คุณป.รุ่งเรือง",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 32,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี, อ.หนองหาน",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/housebuildingsunphage",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4350, 102.8350],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/housebuildingsunphage",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "ป.รุ่งเรืองพีเอสพีเอส",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: ป.รุ่งเรืองพีเอสพีเอส",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  },
-  {
-    "id": "udon-comp-33",
-    "name": "หจก. เอกชัย รุ่งเรือง รับสร้างบ้าน",
-    "engName": "Ekachai Rungruang Ltd., Part.",
-    "category": "รับเหมาก่อสร้างและสร้างบ้าน เพจ Facebook: เอกชัย รุ่งเรือง",
-    "province": "อุดรธานี",
-    "district": "เมืองอุดรธานี",
-    "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
-    "phone": "084-222-1133",
-    "contactPerson": "คุณเอกชัย (กรรมการผู้จัดการ)",
-    "totalProjects": 0,
-    "newProjectsThisMonth": 0,
-    "totalValueMillion": 0.0,
-    "growthRate": 35,
-    "areaExpansion": "ครอบคลุม อ.เมืองอุดรธานี และ อ.กุมภวาปี",
-    "verificationStatus": {
-      "isVerified": true,
-      "confidence": "100%",
-      "evidenceSource": "Facebook: https://www.facebook.com/profile.php?id=100078939424242",
-      "permitStatus": "ได้รับใบอนุญาตก่อสร้าง ทม.อุดรธานี"
-    },
-    "stageBreakdown": { "groundbreak": 0, "foundation": 0, "structure": 0, "finishing": 0 },
-    "latestTimelineStage": "groundbreak",
-    "revenuePotentialText": "฿0.0M - ฿0.0M",
-    "coordinates": [17.4050, 102.8020],
-    "googleMapsUrl": "https://www.google.com/maps/place/Udon+Thani",
-    "facebookUrl": "https://www.facebook.com/profile.php?id=100078939424242",
-    "facebookSignal": {
-      "postDate": "รอสแกน Apify",
-      "pageName": "หจก.เอกชัย รุ่งเรือง",
-      "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
-      "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": []
-    },
-    "projects": [],
-    "aiShortRec": "🎯 เพจทางการ: เอกชัย รุ่งเรือง",
-    "aiRecommendation": "รอสแกนข้อมูลโครงการจริงจากไฟล์ Apify JSON",
-    "salesActionPlan": []
-  }
-];
-
-if (typeof window !== 'undefined') {
-  window.UDON_COMPANIES = UDON_COMPANIES;
-}
-
-    </script>
     <!-- App JS modules -->
-    <script src="js/scoring.js"></script>
-    <script src="js/charts.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/scoring.js?v=63.0"></script>
+    <script src="js/charts.js?v=63.0"></script>
+    <script src="js/map.js?v=63.0"></script>
+    <script src="js/app.js?v=63.0"></script>
 </body>
 
 </html>
+
+
 
 
 
