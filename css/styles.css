@@ -450,6 +450,7 @@ body {
 
 /* Facebook AI Keyword Intelligence Section */
 .fb-keyword-intelligence-card {
+  display: none !important;
   background: #BFDBFE;
   border: 1px solid #93C5FD;
   border-left: 5px solid #1E40AF;
@@ -787,18 +788,28 @@ body {
 }
 
 .score-pill-btn.red-filter.active {
-  color: #B91218;
-  font-weight: 700;
+  color: #DC2626;
+  font-weight: 800;
+}
+
+.score-pill-btn.green-filter.active {
+  color: #16A34A;
+  font-weight: 800;
 }
 
 .score-pill-btn.orange-filter.active {
-  color: #D97706;
-  font-weight: 700;
+  color: #EA580C;
+  font-weight: 800;
 }
 
 .score-pill-btn.yellow-filter.active {
+  color: #CA8A04;
+  font-weight: 800;
+}
+
+.score-pill-btn.gray-filter.active {
   color: #475569;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .district-select {
@@ -933,6 +944,40 @@ body {
 
 .data-table tbody tr:hover td {
   background-color: #EFF6FF !important;
+}
+
+/* ไฮไลท์คอลัมน์ประวัติการซื้อขาย SCG (2025 & 2026) เป็นแถบสีน้ำเงินยาวตลอดทั้งตาราง */
+.data-table th.col-sales-2025 {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  border-left: 2px solid #1E40AF !important;
+  border-top: 3px solid #60A5FA !important;
+  border-bottom: 2px solid #1E40AF !important;
+}
+
+.data-table th.col-sales-2026 {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  border-right: 2px solid #1E40AF !important;
+  border-top: 3px solid #60A5FA !important;
+  border-bottom: 2px solid #1E40AF !important;
+}
+
+.data-table td.col-sales-2025 {
+  background-color: #EFF6FF !important;
+  border-left: 1.5px solid #BFDBFE !important;
+}
+
+.data-table td.col-sales-2026 {
+  background-color: #EFF6FF !important;
+  border-right: 1.5px solid #BFDBFE !important;
+}
+
+.data-table tbody tr:hover td.col-sales-2025,
+.data-table tbody tr:hover td.col-sales-2026 {
+  background-color: #DBEAFE !important;
 }
 
 /* Table Elements */
@@ -1258,6 +1303,25 @@ body {
   animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+#company-followup-modal {
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+}
+
+#company-followup-modal textarea,
+#company-followup-modal input,
+#company-followup-modal select,
+#company-followup-modal button {
+  pointer-events: auto !important;
+  user-select: text !important;
+}
+
+textarea[id^="inline-crm-note-"] {
+  user-select: text !important;
+  pointer-events: auto !important;
+}
+
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -1312,11 +1376,64 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.detail-company-card {
-  background: #F8FAFC;
-  border: 1px solid var(--border-color);
+.detail-company-card,
+.dark-red-card {
+  background: linear-gradient(145deg, #7F1D1D 0%, #991B1B 100%) !important;
+  border: 1.5px solid #B91C1C !important;
   border-radius: var(--radius-lg);
   padding: 1.25rem;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(127, 29, 29, 0.28) !important;
+}
+
+.detail-company-card .section-title {
+  color: #FFFFFF !important;
+}
+
+.detail-company-card .section-title .indicator {
+  background: #FBBF24 !important;
+}
+
+.detail-company-card #modal-phone a,
+.detail-company-card #modal-phone {
+  color: #FFFFFF !important;
+}
+
+.detail-company-card #modal-address {
+  color: #F8FAFC !important;
+}
+
+.detail-company-card #modal-gmaps-link {
+  background: #FFFFFF !important;
+  color: #991B1B !important;
+  border: 1.5px solid #FECACA !important;
+}
+
+.detail-company-card #modal-gmaps-link:hover {
+  background: #FFF1F2 !important;
+  transform: translateY(-1px);
+}
+
+.detail-company-card #modal-top-stage-filter-buttons {
+  background: rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+.detail-company-card .stage-tab-btn {
+  color: #FEE2E2 !important;
+  background: transparent !important;
+}
+
+.detail-company-card .stage-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+}
+
+.detail-company-card .stage-tab-btn.active {
+  background: #FFFFFF !important;
+  color: #991B1B !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Verification Badge */
@@ -1496,18 +1613,19 @@ body {
 }
 
 .project-card {
-  border: 1px solid var(--border-color);
+  border: 1.5px solid #334155;
   border-radius: var(--radius-md);
   padding: 1.15rem;
-  background: #FFFFFF;
-  transition: all 0.2s;
-  cursor: pointer;
+  background: linear-gradient(145deg, #1E293B 0%, #0F2038 100%);
+  color: #FFFFFF;
+  transition: all 0.2s ease;
   position: relative;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
 }
 
 .project-card:hover {
-  border-color: var(--primary-red);
-  box-shadow: var(--shadow-md);
+  border-color: #38BDF8;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.4);
   transform: translateY(-2px);
 }
 
@@ -1521,7 +1639,17 @@ body {
 .project-title {
   font-size: 0.92rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #FFFFFF !important;
+}
+
+.project-card .project-meta-text {
+  font-size: 0.74rem;
+  color: #94A3B8;
+  margin-top: 2px;
+}
+
+.project-card .project-meta-text strong {
+  color: #4ADE80;
 }
 
 .project-stage-badge {
@@ -1625,9 +1753,9 @@ body {
 }
 
 .tracking-btn {
-  border: none;
-  background: transparent;
-  padding: 0.3rem 0.65rem;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  padding: 0.32rem 0.7rem;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
   font-weight: 600;
@@ -1641,32 +1769,71 @@ body {
 }
 
 .tracking-btn:hover {
-  background: #E2E8F0;
+  background: #F1F5F9;
   color: #0F172A;
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
 }
 
-.tracking-btn.btn-pending.active {
-  background: #FFFFFF;
-  color: #475569;
-  font-weight: 800;
-  border: 1px solid #94A3B8;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+/* 1. รอติดตาม -> สีเหลือง */
+.tracking-btn.btn-pending.active,
+.tracking-btn.active.pending {
+  background: #FEF9C3 !important;
+  color: #854D0E !important;
+  font-weight: 800 !important;
+  border: 1.5px solid #EAB308 !important;
+  box-shadow: 0 2px 6px rgba(234, 179, 8, 0.35) !important;
 }
 
-.tracking-btn.btn-in-progress.active {
-  background: #FEF08A;
-  color: #854D0E;
-  font-weight: 800;
-  border: 1.5px solid #EAB308;
-  box-shadow: 0 1px 4px rgba(234, 179, 8, 0.25);
+/* 2. นัดหมาย -> สีแดง */
+.tracking-btn.btn-followup.active,
+.tracking-btn.active.followup {
+  background: #FEE2E2 !important;
+  color: #991B1B !important;
+  font-weight: 800 !important;
+  border: 1.5px solid #DC2626 !important;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35) !important;
 }
 
-.tracking-btn.btn-completed.active {
-  background: #DCFCE7;
-  color: #166534;
-  font-weight: 800;
-  border: 1.5px solid #22C55E;
-  box-shadow: 0 1px 4px rgba(34, 197, 94, 0.25);
+/* 3. ส่งใบเสนอราคา -> สีน้ำเงิน */
+.tracking-btn.btn-quote.active,
+.tracking-btn.btn-quote-sent.active,
+.tracking-btn.active.quote_sent {
+  background: #DBEAFE !important;
+  color: #1E40AF !important;
+  font-weight: 800 !important;
+  border: 1.5px solid #2563EB !important;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* 4. ปิดการขาย -> สีเขียว */
+.tracking-btn.btn-won.active,
+.tracking-btn.active.won {
+  background: #DCFCE7 !important;
+  color: #166534 !important;
+  font-weight: 800 !important;
+  border: 1.5px solid #16A34A !important;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.35) !important;
+}
+
+.btn-quick-note-tag {
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-quick-note-tag:hover {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border-color: #93C5FD;
+  transform: translateY(-1px);
 }
 
 .tracking-badge {
@@ -2343,3 +2510,327 @@ body.executive-presentation .kpi-value {
   }
 }
 
+/* CRM Header Clickable Status Pills */
+.crm-header-clickable-pill {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none;
+}
+
+.crm-header-clickable-pill:hover {
+  transform: translateY(-1.5px) scale(1.04);
+  background: rgba(30, 41, 59, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.crm-header-clickable-pill:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.crm-modal-project-card {
+  transition: all 0.2s ease;
+}
+
+.crm-modal-project-card:hover {
+  border-color: #94A3B8 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Company Focus / Non-Focus / New Status Tracker & Filter Styles
+   ========================================================================== */
+
+/* Top Filter Toolbar for Tags */
+.tag-filter-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.tag-filter-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 0.25rem;
+}
+
+.tag-filter-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 14px !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #CBD5E1 !important;
+  background: #FFFFFF !important;
+  color: #475569 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  user-select: none !important;
+}
+
+.tag-filter-btn:hover {
+  border-color: #94A3B8 !important;
+  background: #F8FAFC !important;
+  transform: translateY(-1px);
+}
+
+/* Style 1: Active Filter Button has Red Border + Soft Red Tint + Red Text */
+.tag-filter-btn.active {
+  border: 2px solid #DC2626 !important;
+  background: #FEF2F2 !important;
+  color: #DC2626 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.18) !important;
+  transform: translateY(-1px);
+}
+
+.tag-filter-btn .count-badge {
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  padding: 1px 7px !important;
+  border-radius: 9999px !important;
+  background: #F1F5F9 !important;
+  color: #475569 !important;
+  transition: all 0.2s ease !important;
+}
+
+.tag-filter-btn.active .count-badge {
+  background: #FEE2E2 !important;
+  color: #DC2626 !important;
+  border: 1px solid #FECACA !important;
+}
+
+/* Modal Status Selector Group */
+.modal-status-selector-box {
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  margin-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.status-selector-title {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #1E293B;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-selector-title span.sub {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.status-button-group {
+  display: inline-flex;
+  gap: 6px;
+  background: #FFFFFF;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid #CBD5E1;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.btn-status-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.btn-status-option:hover {
+  background: #F1F5F9;
+  color: #1E293B;
+}
+
+.btn-status-option.active[data-status="focus"] {
+  background: #FEF2F2;
+  color: #DC2626;
+  border-color: #FCA5A5;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15);
+}
+
+.btn-status-option.active[data-status="non-focus"] {
+  background: #F8FAFC;
+  color: #475569;
+  border-color: #CBD5E1;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(100, 116, 139, 0.12);
+}
+
+.btn-status-option.active[data-status="new"] {
+  background: #ECFDF5;
+  color: #059669;
+  border-color: #6EE7B7;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.15);
+}
+
+/* Status Pill in Table & Cards */
+.company-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.2px;
+}
+
+.company-status-tag.focus {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
+}
+
+.company-status-tag.non-focus {
+  background: #F1F5F9;
+  color: #64748B;
+  border: 1px solid #E2E8F0;
+}
+
+.company-status-tag.new {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+}
+
+/* Toast feedback for status saved */
+#status-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.status-toast {
+  background: #0F172A;
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: toastFadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1), toastFadeOutDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards;
+}
+
+@keyframes toastFadeInUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastFadeOutDown {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(12px) scale(0.95); }
+}
+
+/* Table and Rank Badges styling matching Executive UI */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Prompt', 'Inter', sans-serif;
+}
+
+.data-table thead th {
+  background: #F8FAFC;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 12px 16px;
+  border-bottom: 1.5px solid #E2E8F0;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.data-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 0.85rem;
+}
+
+.data-table tbody tr.row-dark-tint {
+  background-color: #F8FAFC;
+}
+
+.data-table tbody tr.row-light-tint {
+  background-color: #FFFFFF;
+}
+
+.data-table tbody tr:hover {
+  background-color: #F1F5F9 !important;
+}
+
+.rank-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+.rank-badge.rank-1, .rank-badge.rank-3, .rank-badge.rank-dark-blue {
+  background-color: #1D4ED8;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.35);
+}
+
+.rank-badge.rank-2, .rank-badge.rank-light-blue {
+  background-color: #DBEAFE;
+  color: #1D4ED8;
+  border: 1.5px solid #BFDBFE;
+}
+
+.company-title {
+  font-weight: 800;
+  color: #0F172A;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+
+.company-title:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+.ai-recommendation-cell:hover {
+  background-color: rgba(239, 246, 255, 0.6);
+}
