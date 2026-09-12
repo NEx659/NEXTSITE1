@@ -2834,3 +2834,18 @@ body.executive-presentation .kpi-value {
 .ai-recommendation-cell:hover {
   background-color: rgba(239, 246, 255, 0.6);
 }
+
+.btn-export-pdf {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-export-pdf:hover {
+  background: #1E40AF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(11, 46, 131, 0.35) !important;
+}
+
+.btn-export-pdf:active {
+  transform: translateY(0);
+}
+

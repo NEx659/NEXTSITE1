@@ -140,24 +140,49 @@ function getProcessedCompanies() {
     };
   });
 
-  // จัดอันดับ: คะแนน Opportunity Score สูงสุด (92 -> 80 -> 70 -> 35 -> 15) ต้องอยู่บนสุดเสมอ
+  // จัดอันดับ: บริษัทที่มีประวัติการซื้อขาย 2025 และ 2026 ขึ้นก่อนเสมอ
   processed.sort((a, b) => {
+    const salesA_2025 = Number(a.sales2025) || 0;
+    const salesA_2026 = Number(a.sales2026) || 0;
+    const totalSalesA = salesA_2026 + salesA_2025;
+    const hasSalesA = (salesA_2025 > 0 || salesA_2026 > 0) ? 1 : 0;
+
+    const salesB_2025 = Number(b.sales2025) || 0;
+    const salesB_2026 = Number(b.sales2026) || 0;
+    const totalSalesB = salesB_2026 + salesB_2025;
+    const hasSalesB = (salesB_2025 > 0 || salesB_2026 > 0) ? 1 : 0;
+
+    // 1. บริษัทที่มีประวัติการซื้อขาย SCG ปี 2025 / 2026 ขึ้นก่อน
+    if (hasSalesB !== hasSalesA) {
+      return hasSalesB - hasSalesA;
+    }
+
     const scoreA = Number(a.opportunityScore) || 0;
     const scoreB = Number(b.opportunityScore) || 0;
 
-    // 1. คะแนน Opportunity Score สูงสุดอยู่บนสุด
+    const aProj = a.totalProjects || (a.projects ? a.projects.length : 0);
+    const bProj = b.totalProjects || (b.projects ? b.projects.length : 0);
+
+    // 2. ในกลุ่มที่มีประวัติซื้อขาย ให้เรียงตาม Opportunity Score -> จำนวนโครงการ -> ยอดซื้อขาย
+    if (hasSalesA === 1 && hasSalesB === 1) {
+      if (scoreB !== scoreA) {
+        return scoreB - scoreA;
+      }
+      if (bProj !== aProj) {
+        return bProj - aProj;
+      }
+      if (totalSalesB !== totalSalesA) {
+        return totalSalesB - totalSalesA;
+      }
+    }
+
+    // 3. ในกลุ่มที่ไม่มีประวัติซื้อขาย เรียงตาม Opportunity Score -> จำนวนโครงการ -> มูลค่าโครงการ
     if (scoreB !== scoreA) {
       return scoreB - scoreA;
     }
-
-    // 2. ถ้าคะแนนเท่ากัน ให้เรียงตามจำนวนโครงการจริง (มาก -> น้อย)
-    const aProj = a.totalProjects || (a.projects ? a.projects.length : 0);
-    const bProj = b.totalProjects || (b.projects ? b.projects.length : 0);
     if (bProj !== aProj) {
       return bProj - aProj;
     }
-
-    // 3. เรียงตามมูลค่าโครงการ (มาก -> น้อย)
     return (b.totalValueMillion || 0) - (a.totalValueMillion || 0);
   });
 
