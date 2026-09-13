@@ -1443,7 +1443,7 @@ var UDON_COMPANIES = [
     "coordinates": [17.458, 102.783],
     "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=ห้างหุ้นส่วนจำกัด+บ้านดี-อุดร+หมูม่น+เมืองอุดรธานี",
     "gmaps": "https://www.google.com/maps/search/?api=1&query=ห้างหุ้นส่วนจำกัด+บ้านดี-อุดร+หมูม่น+เมืองอุดรธานี",
-    "facebookUrl": "https://www.facebook.com/profile.php?id=61584987645535&locale=th_TH#",
+    "facebookUrl": "https://www.facebook.com/profile.php?id=61565401665404",
     "facebookSignal": { "postDate": "รอสแกน Apify", "pageName": "ห้างหุ้นส่วนจำกัด บ้านดี-อุดร", "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper", "likes": 0, "comments": 0, "shares": 0, "detectedKeywords": ["อุดรธานี", "SCG"] },
     "projects": [],
     "aiShortRec": "ศูนย์รับสร้างบ้าน จ.อุดรธานี",

@@ -106,7 +106,12 @@ function cleanThaiText(text) {
     'FU-House-Interior-Design': 'ห้างหุ้นส่วนจำกัด ฟู่เฮ้าส์ อินทีเรีย ดีไซน์ FU House Interior Design',
     '100080371301938': 'ห้างหุ้นส่วนจำกัด ฟู่เฮ้าส์ อินทีเรีย ดีไซน์ FU House Interior Design',
     'siarchitecture': 'ห้างหุ้นส่วนจำกัด เอสไอ อาร์คิเทคเชอร์ แอนด์ คอนสตรัคชั่น',
-    'sdhousedesign': 'ห้างหุ้นส่วนจำกัด เอสดี เฮ้าส์ ดีไซน์'
+    'sdhousedesign': 'ห้างหุ้นส่วนจำกัด เอสดี เฮ้าส์ ดีไซน์',
+    'N.P.HomeEngineering': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
+    'n.p.homeengineering': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
+    'nphome': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
+    'รับสร้างบ้านภาคอิสาน BY N.p.home': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
+    'รับสร้างบ้านภาคอิสาน by n.p.home': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง'
   };
 
   for (const [slug, thaiName] of Object.entries(KNOWN_SLUG_MAP)) {
@@ -157,6 +162,12 @@ function setCompanyTag(companyId, tag, event) {
   const tagMap = loadCompanyTagsMap();
   tagMap[companyId] = tag;
   saveCompanyTagsMap(tagMap);
+
+  // Sync to Supabase Cloud in real-time
+  if (typeof updateCloudCompanyTag === 'function') {
+    updateCloudCompanyTag(companyId, tag);
+  }
+
   applyFilters();
   updateTagFilterCounts(allCompanies);
 
@@ -180,6 +191,9 @@ function filterByCompanyTag(tag) {
   });
 
   applyFilters();
+  if (typeof updateStickyOffsets === 'function') {
+    setTimeout(updateStickyOffsets, 50);
+  }
 }
 
 function updateTagFilterCounts(companies) {
@@ -406,6 +420,7 @@ function loadSavedCompaniesData() {
   // จัดลำดับ: คะแนน Opportunity Score สูงสุด (92 -> 80 -> 70 -> 35 -> 15) ต้องอยู่บนสุดเสมอ
   sortCompaniesByOpportunityScore(allCompanies);
   filteredCompanies = [...allCompanies];
+  window.allCompanies = allCompanies;
 }
 
 function getCompanyScoreValue(comp) {
@@ -722,7 +737,7 @@ function renderTable() {
   if (filteredCompanies.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="8" style="padding: 4rem 1rem; text-align: center; color: #64748B;">
+        <td colspan="9" style="padding: 4rem 1rem; text-align: center; color: #64748B;">
           <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;">
             <span style="font-size: 2.5rem;">🔍</span>
             <span style="font-size: 1rem; font-weight: 700; color: #0F172A;">ไม่พบข้อมูลผู้รับเหมาตามเงื่อนไขการค้นหา</span>
@@ -855,10 +870,17 @@ function renderTable() {
         </div>
       </td>
 
-      <!-- 3. พื้นที่ (อุดรธานี) -->
+      <!-- 3. พื้นที่ อำเภอจริงตาม Maps -->
       <td style="vertical-align: middle;">
         <div style="display: flex; flex-direction: column; gap: 2px;">
-          <div style="font-weight: 800; color: #0F172A; font-size: 0.88rem;">${cleanThaiText(company.district) || 'เมืองอุดรธานี'}</div>
+          <div style="font-weight: 800; color: #0F172A; font-size: 0.88rem; display: flex; align-items: center; gap: 4px;">
+            <span>${cleanThaiText(company.district) || 'เมืองอุดรธานี'}</span>
+            ${(company.googleMapsUrl || company.gmaps) ? `
+              <a href="${company.googleMapsUrl || company.gmaps}" target="_blank" onclick="event.stopPropagation();" title="เปิดดูหมุดพิกัดจริงบน Google Maps (${cleanThaiText(company.name)})" style="color: #EA4335; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                📍
+              </a>
+            ` : ''}
+          </div>
           <div style="color: #64748B; font-size: 0.78rem;">จ.${cleanThaiText(company.province) || 'อุดรธานี'}</div>
         </div>
       </td>
@@ -1037,6 +1059,10 @@ function applyFilters() {
   if (window.mapModule && typeof window.mapModule.renderCompanyMarkers === 'function') {
     window.mapModule.renderCompanyMarkers(filteredCompanies);
   }
+
+  if (typeof updateStickyOffsets === 'function') {
+    setTimeout(updateStickyOffsets, 30);
+  }
 }
 
 function selectFacebookKeyword(kwId) {
@@ -1057,24 +1083,15 @@ function showOnMap(companyId) {
   const comp = allCompanies.find(c => c.id === companyId);
   if (!comp) return;
 
-  const btnTableView = document.getElementById('btn-table-view');
-  const btnMapView = document.getElementById('btn-map-view');
-  const tableView = document.getElementById('table-card-container');
-  const mapView = document.getElementById('map-view-container');
-
-  if (btnMapView && mapView && tableView) {
-    tableView.style.display = 'none';
-    mapView.style.display = 'block';
-    if (btnTableView) btnTableView.classList.remove('active');
-    btnMapView.classList.add('active');
-
-    if (window.mapModule && window.mapModule.map) {
-      window.mapModule.map.invalidateSize();
-      if (comp.coordinates) {
-        window.mapModule.map.setView(comp.coordinates, 14);
-      }
-    }
+  if (comp.googleMapsUrl || comp.gmaps) {
+    window.open(comp.googleMapsUrl || comp.gmaps, '_blank');
+    return;
   }
+  if (comp.coordinates && Array.isArray(comp.coordinates)) {
+    window.open(`https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`, '_blank');
+    return;
+  }
+  window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(comp.name + ' ' + (comp.province || 'อุดรธานี'))}`, '_blank');
 }
 
 // ==========================================
@@ -1393,9 +1410,6 @@ function openCompanyProjectsModal(companyOrId) {
   // Score Matrix / SCG Sales Intelligence & AI Advisor
   renderModalScoreOrSalesIntelligence(comp);
 
-  // Timeline
-  renderModalTimeline(comp.latestTimelineStage || 'structure');
-
   // Render Projects List
   renderCompanyProjectsList(comp);
 
@@ -1500,38 +1514,6 @@ function filterModalProjects(stageKey) {
   if (activeSelectedCompany) {
     renderCompanyProjectsList(activeSelectedCompany);
   }
-}
-
-function renderModalTimeline(currentStage) {
-  const container = document.getElementById('modal-timeline-track');
-  if (!container) return;
-
-  const stages = [
-    { key: 'groundbreak', label: '1. เสาเอก / เปิดหน้างาน', sub: 'ปูนฐานราก & CPAC' },
-    { key: 'foundation', label: '2. งานฐานราก & เสา', sub: 'คอนกรีตผสมเสร็จ' },
-    { key: 'structure', label: '3. งานโครงสร้าง & ก่อผนัง', sub: 'อิฐมวลเบา & หลังคา' },
-    { key: 'finishing', label: '4. งานตกแต่ง & สุขภัณฑ์', sub: 'สมาร์ทบอร์ด & COTTO' }
-  ];
-
-  const stageOrder = { 'groundbreak': 0, 'foundation': 1, 'structure': 2, 'finishing': 3 };
-  const currentIdx = stageOrder[currentStage] !== undefined ? stageOrder[currentStage] : 2;
-
-  container.innerHTML = `
-    <div class="timeline-line"></div>
-    ${stages.map((st, idx) => {
-      let stateClass = '';
-      if (idx < currentIdx) stateClass = 'completed';
-      else if (idx === currentIdx) stateClass = 'active';
-
-      return `
-        <div class="timeline-step ${stateClass}">
-          <div class="step-node">${idx < currentIdx ? '✓' : idx + 1}</div>
-          <div class="step-label">${st.label}</div>
-          <div class="step-sub">${st.sub}</div>
-        </div>
-      `;
-    }).join('')}
-  `;
 }
 
 function getStageMatchedScgMaterials(proj) {
@@ -2117,8 +2099,11 @@ const UDON_LOCAL_ZONES = [
   'หมากแข้ง', 'หนองบัว', 'สามพร้าว', 'บ้านจั่น', 'บ้านจาน', 'หนองนาคำ', 'บ้านตาด', 
   'โนนสูง', 'บ้านเลื่อม', 'เชียงพิณ', 'หมูม่น', 'กุดสระ', 'นาดี', 'บ้านขาว', 
   'หนองไผ่', 'นาข่า', 'หนองขอนกว้าง', 'นิคมสงเคราะห์', 'โคกสะอาด',
+  'รังษิณา', 'ขนส่งรังษิณา', 'อุดรดุษฎี', 'ถนนอุดรดุษฎี', 'ดอนเสือ', 'สนามกีฬาดอนเสือ',
+  'หนองประจักษ์', 'โพศรี', 'ทหาร', 'นิตโย', 'ศุภกิจจรรยา', 'ยูดีทาวน์', 'รอบเมือง', 'เลี่ยงเมืองอุดร',
   'เชียงแหว', 'จำปี', 'ผาสุก', 'ดอนหายโศก', 'บ้านเชียง', 'หนองเม็ก', 'โพนสูง',
   'สร้างแป้น', 'สุมเส้า', 'สุขคณา', 'โนนตูม', 'โนนยาง',
+  'นาม่วง', 'เชียงกรม', 'บ้านเชียงกรม',
   'อภิทาวน์', 'ศุภาลัย', 'รชยา', 'วิลลาจจิโอ', 'สีหราช', 'แลนด์แอนด์เฮ้าส์', 'คันทรีการ์เด้น'
 ];
 
@@ -2238,15 +2223,30 @@ function isExplicitOtherProvinceSite(text) {
   return false;
 }
 
+function getTopLinesText(text, maxLines = 4) {
+  if (!text) return '';
+  const lines = String(text)
+    .split(/\r?\n/)
+    .map(l => l.trim())
+    .filter(l => l.length > 0);
+  return lines.slice(0, maxLines).join(' ');
+}
+
 function extractCustomerName(text) {
   if (!text) return '';
-  let clean = String(text);
+  // เน้น 3-4 บรรทัดแรกของโพสต์ตามที่ผู้ใช้กำหนด
+  const topText = getTopLinesText(text, 4);
+  let clean = String(topText || text);
   if (typeof clean.normalize === 'function') {
     try {
       clean = clean.normalize('NFKD');
     } catch(e) {}
   }
   
+  // ตัดสำนวนภาษาไทยที่มักทำให้เข้าใจผิดว่าเป็นชื่อลูกค้า เช่น "ทำให้คุณ “สบายใจ”", "ช่วยให้คุณมั่นใจ"
+  clean = clean.replace(/(?:ทำให้|ให้|เพื่อ|ช่วย|สำหรับ|กราบขอบ|ขอขอบ|เลือกทีมที่ทำให้)\s*คุณ\s*["“”'«»]?([ก-๙a-zA-Z]+)["“”'«»]?/g, ' ');
+  clean = clean.replace(/(?:คุณ)\s*["“”'«»]([ก-๙a-zA-Z]+)["“”'«»]/g, ' ');
+
   // Look for patterns like: เสี่ย... กับเจ้..., Owner: คุณ..., บ้านคุณ..., ลูกค้าคุณ..., คุณ..., เจ้าของบ้านคุณ...
   const patterns = [
     /(?:Owner|owner|𝗢𝘄𝗻𝗲𝗿|เจ้าของบ้าน|ลูกค้าคนสำคัญ)\s*[:：\-]?\s*(?:คุณ)?\s*([ก-๙a-zA-Z\.\s]{2,20})/i,
@@ -2256,12 +2256,18 @@ function extractCustomerName(text) {
     /(?:คุณ)\s*([ก-๙a-zA-Z]{2,15})/i
   ];
 
+  const blacklist = [
+    'ภาพ', 'ภาพถ่าย', 'งาน', 'ลูกค้า', 'สร้าง', 'บ้าน', 'ดี', 'เรา', 'ท่าน', 'ทุกท่าน', 'พี่', 'น้อง', 
+    'โปรด', 'ใหม่', 'เก่า', 'ครับ', 'ค่ะ', 'นะ', 'SCG', 'scg', 'CPAC', 'cpac', 'อุดร', 'อุดรธานี',
+    'สบายใจ', 'อุ่นใจ', 'มั่นใจ', 'ไว้วางใจ', 'คนสำคัญ', 'ออกแบบจนส่งมอบ', 'รับกุญแจ', 'บริการ', 'คุณภาพ', 
+    'มืออาชีพ', 'การันตี', 'มาตรฐาน', 'ปลอดภัย', 'ครบวงจร', 'ผู้ประกอบการ'
+  ];
+
   for (const regex of patterns) {
     const match = clean.match(regex);
     if (match && match[1]) {
       let candidate = match[1].replace(/[\r\n\t]+/g, ' ').trim();
       candidate = candidate.replace(/^(?:คุณ|เสี่ย|เจ้|เฮีย)\s*/, '').trim();
-      const blacklist = ['ภาพ', 'ภาพถ่าย', 'งาน', 'ลูกค้า', 'สร้าง', 'บ้าน', 'ดี', 'เรา', 'ท่าน', 'ทุกท่าน', 'พี่', 'น้อง', 'โปรด', 'ใหม่', 'เก่า', 'ครับ', 'ค่ะ', 'นะ', 'SCG', 'scg', 'CPAC', 'cpac', 'อุดร', 'อุดรธานี'];
       if (!blacklist.includes(candidate) && candidate.length >= 2) {
         return candidate;
       }
@@ -2358,10 +2364,11 @@ function extractUdonDistrict(text, fallbackDistrict = 'เมืองอุด�
 
   // 4. Sub-district to District Mapping
   for (const z of UDON_LOCAL_ZONES) {
-    if (t.includes(z.toLowerCase()) || t.includes('ต.' + z.toLowerCase()) || t.includes('ตำบล' + z.toLowerCase())) {
+    if (t.includes(z.toLowerCase()) || t.includes('ต.' + z.toLowerCase()) || t.includes('ตำบล' + z.toLowerCase()) || t.includes('ถนน' + z.toLowerCase())) {
       if (z === 'สร้างแป้น' || z === 'สุมเส้า') return 'เพ็ญ';
       if (z === 'เชียงแหว') return 'กุมภวาปี';
       if (z === 'บ้านเชียง' || z === 'หนองเม็ก') return 'หนองหาน';
+      if (z === 'นาม่วง' || z === 'เชียงกรม' || z === 'บ้านเชียงกรม') return 'ประจักษ์ศิลปาคม';
       return 'เมืองอุดรธานี';
     }
   }
@@ -2373,21 +2380,39 @@ function stripCompanyContactFooter(text) {
   if (!text) return '';
   let str = String(text);
   
-  // Cut off company contact footers where office address/phone/links are listed
+  // Cut off company contact footers where office address/phone/links/service blurbs/dividers are listed
   const footerMarkers = [
+    /(?:-\s*){4,}/,
+    /(?:_\s*){4,}/,
+    /(?:=\s*){4,}/,
     /------------------/i,
     /==================/i,
-    /📍\s*(?:ที่ตั้งสำนักงาน|ออฟฟิศ|สำนักงานใหญ่|พิกัดสำนักงาน|แผนที่สำนักงาน|ที่อยู่สำนักงาน)/i,
+    /📌\s*(?:รับสร้างบ้าน|สอบถาม|ฟรี|สนใจ|ที่ตั้ง|สำนักงาน)/i,
+    /📩\s*สอบถาม/i,
+    /\*\*รับงานเริ่มต้น/i,
+    /รับสร้างบ้าน\s*เริ่มต้น/i,
+    /รับงานเริ่มต้น\s*[0-9]/i,
+    /ยื่นสินเชื่อ\s*ออกแบบ/i,
+    /การันตีด้วยผลงานคุณภาพ/i,
+    /พร้อมบริการสุดพิเศษ/i,
+    /ฟรี\s*!\s*ดำเนินการ/i,
+    /ฟรี\s*!\s*ออกแบบ/i,
+    /ฟรี\s*!\s*ยื่นขอ/i,
+    /👉🏻?\s*(?:อำนวยความสะดวก|บริการ|สนใจติดต่อ|ปรึกษา)/i,
+    /🆓\s*(?:ปรึกษา|สำรวจ|ยื่นขออนุญาต)/i,
+    /✅\s*#?มีผลงานสร้างเสร็จ/i,
+    /📍\s*(?:ที่ตั้งสำนักงาน|ออฟฟิศ|สำนักงานใหญ่|พิกัดสำนักงาน|แผนที่สำนักงาน|ที่อยู่สำนักงาน|สำนักงานตั้งอยู่)/i,
     /(?:ที่ตั้งสำนักงาน|สำนักงานใหญ่|พิกัดออฟฟิศ|แผนที่ออฟฟิศ)\s*[:：]/i,
     /(?:สนใจติดต่อ|ติดต่อสอบถาม|สอบถามข้อมูลเพิ่มเติม|ปรึกษาเรื่องสร้างบ้าน|โทร|Tel|Line ID)\s*[:：]/i,
     /☎️/i,
     /📞/i,
-    /📱/i
+    /📱/i,
+    /LINE\s*[:：]/i
   ];
 
   for (const marker of footerMarkers) {
     const match = str.match(marker);
-    if (match && match.index > 25) {
+    if (match && match.index > 15) {
       str = str.substring(0, match.index);
     }
   }
@@ -2432,6 +2457,20 @@ function isPromotionalOrAdPost(text) {
     return true;
   }
 
+  // Brand PR & Marketing Slogans detection (e.g. เพราะบ้านคือความฝัน, ตั้งแต่วันแรกจนถึงวันรับกุญแจ)
+  const prSloganTerms = [
+    'เพราะบ้านคือความฝัน', 'สร้างบ้านทั้งที', 'วันแรกจนถึงวันรับกุญแจ', 'วันรับกุญแจ',
+    'ดูแลตั้งแต่เริ่มออกแบบจนส่งมอบ', 'ออกแบบจนส่งมอบ', 'ควบคุมงานโดยวิศวกร',
+    'การันตีความน่าเชื่อถือ', 'ชื่อนี้ที่มั่นใจ', 'รับงานเริ่มต้น', 'การันตีด้วยผลงานคุณภาพ',
+    'บริการครบวงจร', 'สร้างจริง เสร็จจริง', 'ยื่นสินเชื่อทุกธนาคาร', 'ฟรี ! ดำเนินการยื่นสินเชื่อ'
+  ];
+  if (prSloganTerms.some(term => t.includes(term))) {
+    // ต้องมีชื่อ 1 ใน 20 อำเภอในเนื้อหาหน้างานจริง (ไม่ใช่สโลแกน) ถึงจะอนุญาต
+    if (!hasExplicitUdonDistrictInText(bodyNoFooter)) {
+      return true; // ปฏิเสธโพสต์โฆษณา/ประชาสัมพันธ์บริษัท
+    }
+  }
+
   // Must have an explicit district in Udon Thani (strictly excluding generic hashtags like #รับสร้างบ้านอุดรธานี)
   const hasUdonDistrict = hasExplicitUdonDistrictInText(bodyNoFooter) || hasExplicitUdonDistrictInText(text);
 
@@ -2452,11 +2491,14 @@ function isPromotionalOrAdPost(text) {
 
   // Real active construction terms (must have actual physical work)
   const realMilestones = [
-    'พิธียกเสาเอก', 'ยกเสาเอก', 'ยกเสาโท', 'ตอกเสาเข็มเสร็จ', 'ลงเสาเข็มแล้ว', 'เจาะเสาเข็ม',
-    'ขุดฐานราก', 'เทลีนฐานราก', 'เทคอนกรีตฐานราก', 'เทตอม่อ', 'เทคานคอดิน', 
-    'เทเสา', 'เทพื้น', 'เทคอนกรีตพื้น', 'หล่อเสา', 'ขึ้นโครงหลังคา', 'โครงหลังคาสำเร็จรูป',
-    'มุงกระเบื้องหลังคา', 'มุงหลังคา', 'ก่ออิฐมวลเบา', 'ก่ออิฐมอญ', 'ฉาบปูนเสร็จ', 'ตรวจงวดงานที่', 
-    'ส่งมอบบ้านจริง', 'ส่งมอบงานงวด', 'งานเดินระบบไฟฟ้า', 'เดินระบบไฟฟ้า', 'smart truss'
+    'พิธียกเสาเอก', 'ยกเสาเอก', 'พิธีลงเสาเอก', 'ยกเสาโท', 'ตอกเสาเข็ม', 'ลงเสาเข็ม', 'เจาะเสาเข็ม',
+    'ขุดฐานราก', 'เทลีนฐานราก', 'เทลีน', 'เทคอนกรีตฐานราก', 'เทตอม่อ', 'เทคานคอดิน', 'เทคาน', 'ผูกเหล็ก',
+    'เทเสา', 'เทพื้น', 'เทคอนกรีตพื้น', 'หล่อเสา', 'ขึ้นโครงหลังคา', 'โครงหลังคาสำเร็จรูป', 'โครงหลังคา',
+    'มุงกระเบื้องหลังคา', 'มุงหลังคา', 'กระเบื้องหลังคา', 'ก่ออิฐมวลเบา', 'ก่ออิฐมอญ', 'งานก่ออิฐ', 
+    'ฉาบปูน', 'งานฉาบ', 'ฉาบผนัง', 'งานบันได', 'บันไดไม้', 'ติดตั้งบันได', 'งานฝ้า', 'ฝ้าเพดาน',
+    'ปูกระเบื้อง', 'งานปูกระเบื้อง', 'งานระบบไฟ', 'เดินระบบไฟฟ้า', 'ตรวจงวดงาน', 
+    'ส่งมอบบ้าน', 'ส่งมอบงาน', 'ส่งมอบ', 'ตรวจรับบ้าน', 'smart truss', 'อัปเดต:', 'อัพเดต:',
+    'เซ็นต์สัญญา', 'เซ็นสัญญา', 'ทำสัญญา', 'พูลวิลล่า', 'pool villa', 'ร้านพิซซ่า', 'โครงสร้างหลังคาเหล็ก'
   ];
   const hasMilestone = realMilestones.some(m => t.includes(m));
 
@@ -2500,27 +2542,58 @@ function isGenuineConstructionProject(text, ocrText = '', locationText = '') {
   const combined = (String(text) + ' ' + String(ocrText) + ' ' + String(locationText)).toLowerCase();
   if (combined.trim().length < 10) return false;
 
+  // ตัด Footer ท้ายโพสต์ และตัดแฮชแท็กออก
   const postBody = stripCompanyContactFooter(text);
+  const cleanBodyNoHashtags = postBody.replace(/#\S+/g, ' ');
 
-  // CRITICAL USER RULE: ถ้าเป็นกิจกรรมภายใน (ฝึกงาน, งานเลี้ยง, รับสมัครงาน, วันเกิด, ดูดวง, วันมงคล) ปฏิเสธทันที
-  if (isInternalOrNonConstructionPost(postBody)) {
+  // 1. ถ้าเป็นกิจกรรมภายใน (ฝึกงาน, งานเลี้ยง, รับสมัครงาน, วันเกิด, ดูดวง, วันมงคล, สาระน่ารู้) ปฏิเสธทันที
+  if (isInternalOrNonConstructionPost(cleanBodyNoHashtags)) {
     return false;
   }
 
-  // CRITICAL USER RULE: ถ้าเป็นไซต์งานต่างจังหวัด (เช่น ขอนแก่น, เลย, หนองคาย, สกลนคร, ร้อยเอ็ด) ปฏิเสธทันที
-  if (isExplicitOtherProvinceSite(postBody) || isExplicitOtherProvinceSite(locationText)) {
+  // 2. ถ้าเนื้อหาหน้างานระบุเป็นไซต์งานต่างจังหวัดชัดเจน (เช่น ขอนแก่น, เลย, หนองคาย, สกลนคร, ร้อยเอ็ด) ปฏิเสธทันที
+  if (isExplicitOtherProvinceSite(cleanBodyNoHashtags) || isExplicitOtherProvinceSite(locationText)) {
     return false;
   }
 
-  // MANDATORY RULE: ต้องมี 1 ใน 20 อำเภอใน จ.อุดรธานี หรือหมู่บ้าน/ตำบลในอุดรธานีเท่านั้น
-  const hasUdonDistrict = hasExplicitUdonDistrictInText(postBody) || hasExplicitUdonDistrictInText(locationText) || hasExplicitUdonDistrictInText(text);
+  // 3. ตรวจจับโพสต์โฆษณา / สโลแกนประชาสัมพันธ์บริษัท (Brand PR & Marketing Slogans) เช่น "เพราะบ้านคือความฝัน", "รับงานเริ่มต้น"
+  const prSloganTerms = [
+    'เพราะบ้านคือความฝัน', 'สร้างบ้านทั้งที', 'วันแรกจนถึงวันรับกุญแจ', 'วันรับกุญแจ',
+    'ดูแลตั้งแต่เริ่มออกแบบจนส่งมอบ', 'ออกแบบจนส่งมอบ', 'ควบคุมงานโดยวิศวกร',
+    'การันตีความน่าเชื่อถือ', 'ชื่อนี้ที่มั่นใจ', 'รับงานเริ่มต้น', 'การันตีด้วยผลงานคุณภาพ',
+    'บริการครบวงจร', 'สร้างจริง เสร็จจริง', 'ยื่นสินเชื่อทุกธนาคาร', 'ฟรี ! ดำเนินการ'
+  ];
+  if (prSloganTerms.some(term => cleanBodyNoHashtags.toLowerCase().includes(term))) {
+    // ต้องมีชื่ออำเภอหน้างานจริงในเนื้อหาไซต์งาน (ไม่ใช่ที่อยู่ออฟฟิศท้ายโพสต์)
+    if (!hasExplicitUdonDistrictInText(cleanBodyNoHashtags)) {
+      return false; // ไม่มีอำเภอหน้างานจริง -> ปฏิเสธทันที
+    }
+  }
+
+  // 4. ตรวจสอบชื่ออำเภอหน้างานจริงใน จ.อุดรธานี (ในเนื้อหาหน้างาน หรือ Check-in)
+  const hasUdonDistrict = hasExplicitUdonDistrictInText(cleanBodyNoHashtags) || (locationText && hasExplicitUdonDistrictInText(locationText));
   if (!hasUdonDistrict) {
-    return false; // ไม่มีชื่ออำเภอในอุดรธานี -> ไม่ดึงเด็ดขาด
+    return false; // ไม่มีชื่ออำเภอหน้างานจริงในอุดรธานี -> ปฏิเสธ ไม่ดึงเด็ดขาด
   }
 
-  // USER RULE 1 & 2:
-  // 1. มี 1 ใน 20 อำเภอในอุดรธานี -> ดึงทันที
-  // 2. มีคำว่า ยกเสาเอก, เทปูน, เทคอนกรีต, อัพเดท, โปรเจค, ส่งมอบ, ชื่อคน และมีชื่ออำเภอในอุดร -> ดึงทันที
+  // 5. ตรวจสอบสเตจงานก่อสร้างจริง (Milestones ที่ทีมขาย SCG เข้าพบและเสนอขายวัสดุได้)
+  const realMilestones = [
+    'พิธียกเสาเอก', 'ยกเสาเอก', 'พิธีลงเสาเอก', 'ลงเสาเอก', 'ยกเสาโท', 'ตอกเสาเข็ม', 'ลงเสาเข็ม', 'เจาะเสาเข็ม',
+    'ขุดฐานราก', 'เทลีนฐานราก', 'เทลีน', 'เทคอนกรีตฐานราก', 'เทตอม่อ', 'เทคานคอดิน', 'เทคาน', 'ผูกเหล็ก',
+    'เทเสา', 'เทพื้น', 'เทคอนกรีตพื้น', 'หล่อเสา', 'ขึ้นโครงหลังคา', 'โครงหลังคาสำเร็จรูป', 'โครงหลังคา',
+    'มุงกระเบื้องหลังคา', 'มุงหลังคา', 'กระเบื้องหลังคา', 'ก่ออิฐมวลเบา', 'ก่ออิฐมอญ', 'งานก่ออิฐ', 
+    'ฉาบปูน', 'งานฉาบ', 'ฉาบผนัง', 'งานบันได', 'บันไดไม้', 'ติดตั้งบันได', 'งานฝ้า', 'ฝ้าเพดาน',
+    'ปูกระเบื้อง', 'งานปูกระเบื้อง', 'งานระบบไฟ', 'เดินระบบไฟฟ้า', 'ระบบประปา', 'ติดตั้งสุขภัณฑ์', 'สุขภัณฑ์',
+    'ตรวจงวดงาน', 'ส่งมอบบ้าน', 'ส่งมอบงาน', 'ส่งมอบ', 'ตรวจรับบ้าน', 'smart truss',
+    'เซ็นต์สัญญา', 'เซ็นสัญญา', 'ทำสัญญา', 'พูลวิลล่า', 'pool villa', 'ร้านพิซซ่า', 'โครงสร้างหลังคาเหล็ก',
+    'หน้างาน', 'ไซต์งาน', 'อัพเดตหน้างาน', 'อัปเดตหน้างาน', 'อัปเดต:', 'อัพเดต:', 'site update', 'update :',
+    'ลงหน้างาน', 'รีโนเวท', 'ต่อเติม'
+  ];
+  const hasMilestone = realMilestones.some(m => cleanBodyNoHashtags.toLowerCase().includes(m) || combined.includes(m));
+  if (!hasMilestone) {
+    return false; // ไม่มีการอัปเดตหน้างานจริง -> ไม่ดึงเด็ดขาด
+  }
+
   return true;
 }
 
@@ -2581,6 +2654,31 @@ function findMatchingCompany(item, rawText, rawPageName, postUrl) {
     return false;
   });
   if (byKeyword) return byKeyword;
+
+  // 6. Match by known contractor brand aliases (e.g. N.P. HOME -> เอ็น.พี.โฮมส์)
+  const brandAliases = [
+    { keys: ['บ้านดี-อุดร', 'บ้านดีอุดร', 'หจก.บ้านดี-อุดร', 'baan-d udon', 'baand udon', 'k.k house', 'k.k. house', 'kk house', 'kkhouse', '61565401665404', '61584987645535'], compName: 'บ้านดี-อุดร' },
+    { keys: ['tt design', 'ttdesign', 'tt1991', '0916868536', '091-6868536', 'tt design & construction'], compName: 'ทีที ดีไซน์' },
+    { keys: ['n.p.home', 'n.p. home', 'nphome', 'n.p home', 'เอ็น.พี.โฮมส์', 'เอ็นพีโฮม'], compName: 'เอ็น.พี.โฮมส์' },
+    { keys: ['dreamup', 'dream up', 'ดรีมอัพ'], compName: 'ดรีมอัพ' },
+    { keys: ['modernde', 'modern de', 'modern-de', 'โมเดิร์นดี', 'โมเดิร์น ดี'], compName: 'โมเดิร์น ดี' },
+    { keys: ['mindhome', 'mind home', 'มายด์โฮม', 'มายด์ โฮม'], compName: 'มายด์ โฮม' },
+    { keys: ['udhome', 'ud.home', 'ยูดี.โฮมส์', 'ยูดีโฮม'], compName: 'ยูดี.โฮมส์' },
+    { keys: ['syc.house', 'ทรัพย์ยิ่งเจริญ'], compName: 'ทรัพย์ยิ่งเจริญ' },
+    { keys: ['karin', 'การิน'], compName: 'การิน' },
+    { keys: ['baanyai', 'บ้านใหญ่'], compName: 'บ้านใหญ่' },
+    { keys: ['kiddee', 'คิดดีเฮาส์', 'คิดดี'], compName: 'คิดดีเฮาส์' },
+    { keys: ['karntang', 'อุดรการทาง'], compName: 'อุดรการทาง' },
+    { keys: ['sd house', 'เอสดี เฮ้าส์', 'sdhouse'], compName: 'เอสดี เฮ้าส์' },
+    { keys: ['si architecture', 'เอสไอ อาร์คิเทคเชอร์', 'siarchitecture'], compName: 'เอสไอ อาร์คิเทคเชอร์' }
+  ];
+
+  for (const alias of brandAliases) {
+    if (alias.keys.some(k => pageNameLower.includes(k) || userNameLower.includes(k) || textLower.includes(k) || itemSlug.includes(k))) {
+      const match = allCompanies.find(c => c.name.includes(alias.compName));
+      if (match) return match;
+    }
+  }
 
   return null;
 }
@@ -2713,11 +2811,29 @@ function extractSpecificProjectTitle(text, custName, distName, stage) {
   if (tLower.includes('สามพร้าว')) return `ไซต์งานก่อสร้าง ต.สามพร้าว อ.${distName}`;
   if (tLower.includes('บ้านจั่น')) return `ไซต์งานก่อสร้าง ต.บ้านจั่น อ.${distName}`;
 
+  if (tLower.includes('พูลวิลล่า') || tLower.includes('pool villa')) {
+    return custName && custName !== 'เจ้าของบ้าน' && custName.length >= 2
+      ? `โครงการบ้านพูลวิลล่า (คุณ${custName}) อ.${distName}`
+      : `โครงการบ้านพูลวิลล่า Pool Villa อ.${distName}`;
+  }
+  if (tLower.includes('พิซซ่า') || tLower.includes('ร้านพิซซ่า') || tLower.includes('รังษิณา')) {
+    return `งานโครงสร้างร้านและที่พักอาศัย (โซนรังษิณา) อ.${distName}`;
+  }
+  if (tLower.includes('นาม่วง') || tLower.includes('เชียงกรม')) {
+    return custName && custName !== 'เจ้าของบ้าน' && custName.length >= 2
+      ? `โครงการบ้านคุณ${custName} (ต.นาม่วง) อ.${distName}`
+      : `โครงการบ้าน ต.นาม่วง อ.${distName}`;
+  }
   if (tLower.includes('รีโนเวท') || tLower.includes('ต่อเติม')) {
     return `งานรีโนเวทและต่อเติมอาคาร อ.${distName}`;
   }
   if (tLower.includes('ระบบไฟฟ้า') || tLower.includes('เดินระบบไฟฟ้า')) {
     return `ไซต์งานเดินระบบไฟฟ้า อ.${distName}`;
+  }
+  if (tLower.includes('บันได') || tLower.includes('งานบันได')) {
+    return custName && custName !== 'เจ้าของบ้าน' && custName.length >= 2
+      ? `งานติดตั้งบันไดไม้ บ้านคุณ${custName} อ.${distName}`
+      : `ไซต์งานติดตั้งบันไดไม้ อ.${distName}`;
   }
   if (tLower.includes('smart truss') || tLower.includes('โครงหลังคา')) {
     return `ไซต์งานโครงหลังคา Smart Truss อ.${distName}`;
@@ -2851,39 +2967,51 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       return; // ข้ามโพสต์ที่เป็นไซต์งานต่างจังหวัด
     }
 
-    // Extract Customer Name and District from post body or check-in location
+    // Extract Customer Name and District from post body (excluding company office footer) or check-in location
     const custName = extractCustomerName(postBodyWithoutFooter);
-    const hasExplicitDistrict = hasExplicitUdonDistrictInText(postBodyWithoutFooter) || hasExplicitUdonDistrictInText(locText) || hasExplicitUdonDistrictInText(text);
+    const hasExplicitDistrict = hasExplicitUdonDistrictInText(postBodyWithoutFooter) || (locText && hasExplicitUdonDistrictInText(locText));
 
-    // CRITICAL USER RULE: ต้องมี 1 ใน 20 อำเภอของ จ.อุดรธานี เท่านั้น
+    // CRITICAL USER RULE: ต้องมี 1 ใน 20 อำเภอของ จ.อุดรธานี ในเนื้อหาไซต์งานจริงเท่านั้น (ไม่ใช่ที่อยู่ออฟฟิศ)
     if (!hasExplicitDistrict) {
-      return; // ข้ามโพสต์ที่ไม่มีชื่อ 1 ใน 20 อำเภอของอุดรธานี
+      return; // ข้ามโพสต์ที่ไม่มีชื่ออำเภอหน้างานจริง
     }
+
+    const topLines = getTopLinesText(postBodyWithoutFooter, 4);
+    const stageCheckText = topLines || postBodyWithoutFooter;
 
     let stageKey = 'structure';
     let stage = 'งานโครงสร้างอาคาร';
-    if (text.includes('ส่งมอบบ้าน') || text.includes('ส่งมอบงาน') || text.includes('ตรวจรับบ้าน') || text.includes('ส่งมอบผลงาน')) {
+    if (stageCheckText.includes('ส่งมอบ') || stageCheckText.includes('ตรวจรับบ้าน') || stageCheckText.includes('ส่งมอบผลงาน')) {
       stageKey = 'finishing';
       stage = 'ส่งมอบบ้านเสร็จสมบูรณ์ / โอกาสงานต่อเติม';
-    } else if (text.includes('รีโนเวท') || text.includes('ต่อเติม') || text.includes('โรงจอดรถ') || text.includes('ต่อเติมครัว') || text.includes('ปรับปรุง')) {
-      stageKey = 'finishing';
-      stage = 'งานรีโนเวทและต่อเติมอาคาร';
-    } else if (text.includes('เสาเอก') || text.includes('ยกเสา')) {
+    } else if (stageCheckText.includes('เซ็นต์สัญญา') || stageCheckText.includes('เซ็นสัญญา') || stageCheckText.includes('ทำสัญญา')) {
+      stageKey = 'groundbreak';
+      stage = 'เซ็นสัญญา / เตรียมเปิดหน้างานก่อสร้าง';
+    } else if (stageCheckText.includes('เสาเอก') || stageCheckText.includes('ยกเสา')) {
       stageKey = 'groundbreak';
       stage = 'ยกเสาเอก / เริ่มลงเสาเข็มเปิดหน้างาน';
-    } else if (text.includes('ฐานราก') || text.includes('คานคอดิน') || text.includes('เทเสา') || text.includes('ตอม่อ')) {
+    } else if (stageCheckText.includes('ฐานราก') || stageCheckText.includes('คานคอดิน') || stageCheckText.includes('เทเสา') || stageCheckText.includes('ตอม่อ') || stageCheckText.includes('เทพื้น') || stageCheckText.includes('เทลีน')) {
       stageKey = 'foundation';
       stage = 'งานฐานรากและเสาโครงสร้าง';
-    } else if (text.includes('smart truss') || text.includes('โครงหลังคา') || text.includes('มุงหลังคา') || text.includes('กระเบื้องหลังคา') || text.includes('แผ่นหลังคา')) {
+    } else if (stageCheckText.includes('smart truss') || stageCheckText.includes('โครงหลังคา') || stageCheckText.includes('มุงหลังคา') || stageCheckText.includes('กระเบื้องหลังคา') || stageCheckText.includes('แผ่นหลังคา')) {
       stageKey = 'structure';
       stage = 'งานโครงสร้างหลังคาและมุงหลังคา SCG';
-    } else if (text.includes('ระบบไฟฟ้า') || text.includes('เดินระบบไฟฟ้า') || text.includes('ระบบประปา') || text.includes('งานระบบ') || text.includes('ตกแต่ง') || text.includes('ทาสี') || text.includes('ปูกระเบื้อง') || text.includes('สุขภัณฑ์') || text.includes('ฝ้า')) {
+    } else if (stageCheckText.includes('รีโนเวท') || stageCheckText.includes('ต่อเติม') || stageCheckText.includes('โรงจอดรถ') || stageCheckText.includes('ต่อเติมครัว') || stageCheckText.includes('ปรับปรุง')) {
       stageKey = 'finishing';
-      stage = (text.includes('ระบบไฟฟ้า') || text.includes('เดินระบบไฟฟ้า')) ? 'งานเดินระบบไฟฟ้าและงานระบบอาคาร' : 'งานตกแต่งภายในและติดตั้งสุขภัณฑ์';
+      stage = 'งานรีโนเวทและต่อเติมอาคาร';
+    } else if (stageCheckText.includes('บันได') || stageCheckText.includes('งานบันได') || stageCheckText.includes('ระบบไฟฟ้า') || stageCheckText.includes('เดินระบบไฟฟ้า') || stageCheckText.includes('ระบบประปา') || stageCheckText.includes('งานระบบ') || stageCheckText.includes('ตกแต่ง') || stageCheckText.includes('ทาสี') || stageCheckText.includes('ปูกระเบื้อง') || stageCheckText.includes('สุขภัณฑ์') || stageCheckText.includes('ฝ้า')) {
+      stageKey = 'finishing';
+      if (stageCheckText.includes('บันได')) {
+        stage = 'งานติดตั้งบันไดและงานตกแต่งภายใน';
+      } else if (stageCheckText.includes('ระบบไฟฟ้า') || stageCheckText.includes('เดินระบบไฟฟ้า')) {
+        stage = 'งานเดินระบบไฟฟ้าและงานระบบอาคาร';
+      } else {
+        stage = 'งานตกแต่งภายในและติดตั้งสุขภัณฑ์';
+      }
     }
 
     const distName = hasExplicitDistrict 
-      ? extractUdonDistrict(postBodyWithoutFooter + ' ' + locText, comp.district || 'เมืองอุดรธานี') 
+      ? extractUdonDistrict(topLines + ' ' + postBodyWithoutFooter + ' ' + locText, comp.district || 'เมืองอุดรธานี') 
       : (comp.district || 'เมืองอุดรธานี');
 
     // Build Specific Descriptive Project Title
@@ -3295,8 +3423,18 @@ function setupEventListeners() {
 }
 
 // ==========================================
-// 14. APPLICATION INITIALIZATION
+// 14. APPLICATION INITIALIZATION & STICKY HEADER
 // ==========================================
+function updateStickyOffsets() {
+  const appHeader = document.querySelector('.app-header');
+  if (appHeader) {
+    const headerHeight = Math.round(appHeader.getBoundingClientRect().height) || 52;
+    document.documentElement.style.setProperty('--sticky-app-header-top', headerHeight + 'px');
+  }
+}
+
+window.addEventListener('resize', updateStickyOffsets);
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 NEXTSITE AI Dashboard Initializing with Executive UI...');
 
@@ -3319,6 +3457,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
   initGlobalDragAndDrop();
   startFacebookCrawlerTicker();
+
+  updateStickyOffsets();
+  setTimeout(updateStickyOffsets, 200);
+  setTimeout(updateStickyOffsets, 600);
 
   console.log('✅ NEXTSITE AI Dashboard Loaded Successfully with 100% Thai & Clean Text.');
 });

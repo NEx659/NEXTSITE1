@@ -394,6 +394,11 @@
           <span>📥 อัปโหลด Apify JSON</span>
         </button>
 
+        <!-- Supabase Cloud Sync Button -->
+        <button id="btn-cloud-sync" onclick="syncAllLocalCompaniesToSupabase(allCompanies)" style="background: rgba(16, 185, 129, 0.18); color: #34D399; border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="ซิงค์รายชื่อบริษัทและสถานะทั้งหมดขึ้น Cloud Database Supabase">
+          <span>☁️ ซิงค์ขึ้น Supabase</span>
+        </button>
+
         <div style="width: 1px; height: 22px; background: rgba(255,255,255,0.2); margin: 0 4px;"></div>
 
         <!-- Dark Glass CRM Status Pills Matching Reference Image -->
@@ -1553,6 +1558,10 @@
         ระบบ AI จะวิเคราะห์โพสต์ Facebook และสกัดไซต์งานเข้าตารางอัตโนมัติทันที
       </p>
     </div>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js?v=1.0"></script>
 
     <!-- App JS modules -->
     <script src="js/scoring.js?v=64.0"></script>

@@ -69,24 +69,30 @@ function getMapScoreStyle(score) {
 }
 
 function initUdonMap(companies, onMarkerClick) {
-  if (mapInstance) {
+  const mapContainer = document.getElementById('udonMap');
+  if (!mapContainer || mapInstance) {
     return;
   }
 
   // พิกัดใจกลาง จ.อุดรธานี
   const udonCenter = [17.4157, 102.7872];
 
-  mapInstance = L.map('udonMap', {
-    scrollWheelZoom: true
-  }).setView(udonCenter, 12);
+  try {
+    mapInstance = L.map('udonMap', {
+      scrollWheelZoom: true
+    }).setView(udonCenter, 12);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors | NEXTSITE AI (จ.อุดรธานี)',
-    maxZoom: 18
-  }).addTo(mapInstance);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO | NEXTSITE AI (จ.อุดรธานี)',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(mapInstance);
 
-  markersLayer = L.layerGroup().addTo(mapInstance);
-  renderMapMarkers(companies, onMarkerClick);
+    markersLayer = L.layerGroup().addTo(mapInstance);
+    renderMapMarkers(companies, onMarkerClick);
+  } catch (err) {
+    console.warn('Map initialization skipped (container not active):', err);
+  }
 }
 
 function renderMapMarkers(companies, onMarkerClick) {
