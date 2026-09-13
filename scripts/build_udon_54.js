@@ -447,7 +447,7 @@ const companiesRaw = [
         "name": "ห้างหุ้นส่วนจำกัด บ้านดี-อุดร",
         "phone": "064 271 6343",
         "addr": "447 หมู่ที่ 7 ตำบลหมูม่น อำเภอเมืองอุดรธานี จังหวัดอุดรธานี, Udon Thani, Thailand, 41000",
-        "fb": "https://www.facebook.com/profile.php?id=61584987645535&locale=th_TH#",
+        "fb": "https://www.facebook.com/profile.php?id=61565401665404",
         "dist": "เมืองอุดรธานี",
         "lat": 17.4580,
         "lng": 102.7830
