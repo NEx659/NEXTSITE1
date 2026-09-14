@@ -399,6 +399,13 @@
           <span>☁️ ซิงค์ขึ้น Supabase</span>
         </button>
 
+        <!-- User Authentication & Territory Badge -->
+        <div id="user-auth-section" style="display: inline-flex; align-items: center;">
+          <button onclick="openLoginModal()" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.12); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.28); padding: 5px 12px; border-radius: 8px; font-size: 0.76rem; font-weight: 800; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.15s ease;">
+            <span>🔐 เข้าสู่ระบบเซลส์</span>
+          </button>
+        </div>
+
         <div style="width: 1px; height: 22px; background: rgba(255,255,255,0.2); margin: 0 4px;"></div>
 
         <!-- Dark Glass CRM Status Pills Matching Reference Image -->
@@ -782,10 +789,6 @@
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 8px;">
-          <button id="btn-export-company-pdf" type="button" onclick="exportCompanyPdfReport()" class="btn-export-pdf" style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #0B2E83; color: #FFFFFF; border: none; border-radius: 8px; font-weight: 800; font-size: 0.8rem; cursor: pointer; box-shadow: 0 2px 6px rgba(11, 46, 131, 0.25); transition: all 0.2s ease;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            <span>ดาวน์โหลดรายงาน PDF</span>
-          </button>
           <button class="modal-close-btn" onclick="closeCompanyModal()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -1557,6 +1560,55 @@
       <p style="font-size: 0.95rem; color: #93C5FD; margin: 0; font-weight: 600;">
         ระบบ AI จะวิเคราะห์โพสต์ Facebook และสกัดไซต์งานเข้าตารางอัตโนมัติทันที
       </p>
+    </div>
+
+    <!-- Sales Login Modal -->
+    <div id="sales-login-modal" class="modal-overlay" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center;">
+      <div style="background: #FFFFFF; width: 100%; max-width: 420px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); overflow: hidden; border: 1px solid #CBD5E1;">
+        <!-- Modal Header -->
+        <div style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); padding: 20px 24px; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #D9251D;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(217, 37, 29, 0.2); border: 1px solid #D9251D; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              🔐
+            </div>
+            <div>
+              <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #FFFFFF;">เข้าสู่ระบบเซลส์ SCG</h3>
+              <p style="margin: 2px 0 0 0; font-size: 0.72rem; color: #94A3B8;">Sales Territory Authentication</p>
+            </div>
+          </div>
+          <button onclick="closeLoginModal()" style="background: transparent; border: none; color: #94A3B8; font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 4px;">✕</button>
+        </div>
+
+        <!-- Modal Form -->
+        <form onsubmit="handleSalesLoginForm(event)" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+          <div id="login-error-msg" style="display: none; background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; padding: 8px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 700;"></div>
+
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 6px;">อีเมลผู้ใช้งาน (Email)</label>
+            <input type="email" id="login-email" required placeholder="somchai.sales@scg.com" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-size: 0.88rem; outline: none; font-family: inherit;">
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 6px;">รหัสผ่าน (Password)</label>
+            <input type="password" id="login-password" required placeholder="••••••••" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-size: 0.88rem; outline: none; font-family: inherit;">
+          </div>
+
+          <!-- Fast Demo Fill Button -->
+          <div style="background: #F8FAFC; border: 1px dashed #CBD5E1; padding: 8px 12px; border-radius: 8px;">
+            <div style="font-size: 0.7rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">⚡ ทางลัดทดสอบ (Demo Quick Login):</div>
+            <button type="button" onclick="fillDemoUser('somchai.sales@scg.com', '12345678')" style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; border-radius: 6px; padding: 4px 10px; font-size: 0.72rem; font-weight: 800; cursor: pointer;">
+              👤 เซลส์สมชาย (จ.อุดรธานี)
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <button type="button" onclick="closeLoginModal()" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #CBD5E1; background: #F1F5F9; color: #475569; font-weight: 700; font-size: 0.85rem; cursor: pointer;">ยกเลิก</button>
+            <button type="submit" id="btn-login-submit" style="flex: 2; padding: 10px; border-radius: 8px; border: none; background: #D9251D; color: #FFFFFF; font-weight: 800; font-size: 0.85rem; cursor: pointer; box-shadow: 0 4px 12px rgba(217,37,29,0.3);">
+              เข้าสู่ระบบ
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Supabase JS Client -->

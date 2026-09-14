@@ -159,6 +159,18 @@ function setCompanyTag(companyId, tag, event) {
   if (event && event.stopPropagation) {
     event.stopPropagation();
   }
+
+  const comp = allCompanies.find(c => c.id === companyId);
+  
+  // Territory permission check
+  if (typeof window.canCurrentUserEditCompany === 'function' && comp) {
+    if (!window.canCurrentUserEditCompany(comp)) {
+      const userProv = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.assignedProvince : 'อื่น';
+      showStatusToast(`🔒 ไม่มีสิทธิ์แก้ไขข้อมูล ${comp.province || 'พื้นที่นี้'} (คุณได้รับมอบหมายเฉพาะ จ.${userProv})`);
+      return;
+    }
+  }
+
   const tagMap = loadCompanyTagsMap();
   tagMap[companyId] = tag;
   saveCompanyTagsMap(tagMap);
@@ -177,6 +189,64 @@ function setCompanyTag(companyId, tag, event) {
     'new': '✨ New (เข้าใหม่)'
   };
   showStatusToast(`อัปเดตเป็น ${tagNames[tag] || tag} เรียบร้อย`);
+}
+
+// ==========================================
+// SALES LOGIN & AUTH MODAL HANDLERS
+// ==========================================
+function openLoginModal() {
+  const modal = document.getElementById('sales-login-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    const errEl = document.getElementById('login-error-msg');
+    if (errEl) errEl.style.display = 'none';
+  }
+}
+
+function closeLoginModal() {
+  const modal = document.getElementById('sales-login-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function fillDemoUser(email, pass) {
+  const elEmail = document.getElementById('login-email');
+  const elPass = document.getElementById('login-password');
+  if (elEmail) elEmail.value = email;
+  if (elPass) elPass.value = pass;
+}
+
+async function handleSalesLoginForm(event) {
+  event.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const pass = document.getElementById('login-password').value;
+  const btnSubmit = document.getElementById('btn-login-submit');
+  const errEl = document.getElementById('login-error-msg');
+
+  if (errEl) errEl.style.display = 'none';
+  if (btnSubmit) {
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'กำลังตรวจสอบ...';
+  }
+
+  try {
+    if (typeof window.loginSalesUser === 'function') {
+      const user = await window.loginSalesUser(email, pass);
+      closeLoginModal();
+      showStatusToast(`ยินดีต้อนรับ ${user.fullName} (พื้นที่: ${user.assignedProvince})`);
+    } else {
+      throw new Error('ระบบ Supabase ยังไม่พร้อม');
+    }
+  } catch (err) {
+    if (errEl) {
+      errEl.textContent = '❌ เข้าสู่ระบบไม่สำเร็จ: ' + err.message;
+      errEl.style.display = 'block';
+    }
+  } finally {
+    if (btnSubmit) {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'เข้าสู่ระบบ';
+    }
+  }
 }
 
 function filterByCompanyTag(tag) {
