@@ -882,6 +882,13 @@ body {
 .legend-badge.orange { background-color: #16A34A; }
 .legend-badge.yellow { background-color: #64748B; }
 
+/* Legend & Tag Filters Toolbar Group */
+.sticky-table-header-group {
+  background: transparent;
+  padding: 4px 0 8px 0;
+  margin-bottom: 0.5rem;
+}
+
 /* Main Table Container */
 .table-card {
   background: #FFFFFF;
@@ -894,25 +901,38 @@ body {
 
 .table-responsive {
   width: 100%;
+  max-height: calc(100vh - 210px);
+  min-height: 480px;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .data-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   text-align: left;
   font-size: 0.85rem;
 }
 
+.data-table thead {
+  position: static;
+}
+
 .data-table th {
-  background: #F1F5F9;
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  background: #F1F5F9 !important;
   padding: 0.95rem 1rem;
   font-weight: 800;
   color: #0F172A;
+  border-top: 0;
   border-bottom: 2px solid #CBD5E1;
   white-space: nowrap;
   font-size: 0.8rem;
   letter-spacing: 0.2px;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06);
 }
 
 .data-table td {
