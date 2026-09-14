@@ -383,7 +383,7 @@ function saveSavedTrackingStatuses(statusMap) {
 // SCG ACTUAL CUSTOMER SALES DATA (2025 vs 2026)
 // ==========================================
 const SCG_CUSTOMER_SALES_LIST = [
-  { code: '10051168', name: 'เอเฮ้าส์ บิวเดอร์', sales2025: 15209, sales2026: 22100, keys: ['เอเฮ้าส์', 'a-house', 'a house'] },
+  { code: '10051168', name: 'เอเฮ้าส์ บิวเดอร์', sales2025: 15209, sales2026: 22100, keys: ['เอเฮ้าส์', 'เอ-เฮ้าส์', 'a-house', 'a house'] },
   { code: '10108161', name: 'โมเดิร์น ดี (อุดรธานี)', sales2025: 1069432, sales2026: 1208551, keys: ['โมเดิร์น ดี', 'โมเดิร์นดี', 'modernde', 'modern de', 'modern-de'] },
   { code: '10126345', name: 'หล้าก่ำ ทรัพย์เจริญยิ่ง', sales2025: 110483, sales2026: 18166, keys: ['หล้าก่ำ', 'ทรัพย์เจริญยิ่ง'] },
   { code: '10280647', name: 'มหารุ่งโรจน์โฮมบิลเดอร์', sales2025: 3461247, sales2026: 783850, keys: ['มหารุ่งโรจน์', 'maharungroj'] },
@@ -396,7 +396,7 @@ const SCG_CUSTOMER_SALES_LIST = [
   { code: '10383888', name: 'ฟ้าสว่างการโยธา', sales2025: 553824, sales2026: 569818, keys: ['ฟ้าสว่าง', 'fasawang'] },
   { code: '10400409', name: 'บ้านดี-อุดร', sales2025: 423136.5, sales2026: 1198975, keys: ['บ้านดี-อุดร', 'บ้านดี อุดร', 'บ้านดีอุดร', 'baan-d', 'baan d'] },
   { code: '10461104', name: 'นิติพันธ์ เปือยยะ', sales2025: 1289592, sales2026: 852291, keys: ['นิติพันธ์', 'nitipan'] },
-  { code: '10482913', name: 'ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991', sales2025: 1570146, sales2026: 3396188, keys: ['ทีที ดีไซน์', 'ทีทีดีไซน์', 'tt design', 'ttdesign'] },
+  { code: '10482913', name: 'ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991', sales2025: 1570146.44, sales2026: 3396188.25, keys: ['ทีที ดีไซน์', 'ทีทีดีไซน์', 'tt design', 'ttdesign'] },
   { code: '10484743', name: 'ช.รุ่งอรุณ คอนสตรัคชั่น', sales2025: 151787.5, sales2026: 189440, keys: ['ช.รุ่งอรุณ', 'รุ่งอรุณ คอนสตรัคชั่น', 'รุ่งอรุณ'] },
   { code: '10485682', name: 'รุ่งรัตน์บิวตี้โฮม', sales2025: 12246, sales2026: 768825.5, keys: ['รุ่งรัตน์บิวตี้โฮม', 'รุ่งรัตน์'] },
   { code: '10500344', name: 'การิน บ้านสวย', sales2025: 469506, sales2026: 1337450, keys: ['การิน บ้านสวย', 'การิน', 'karin'] },
@@ -668,12 +668,19 @@ function getCompanyCrmLog(companyId) {
 function saveCompanyCrmLog(companyId, logData) {
   try {
     const logs = getAllCrmLogs();
-    logs[companyId] = {
+    const updatedRecord = {
       ...logs[companyId],
       ...logData,
       lastUpdated: new Date().toISOString()
     };
+    logs[companyId] = updatedRecord;
     localStorage.setItem(STORAGE_KEY_CRM_LOGS, JSON.stringify(logs));
+    localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+
+    // Asynchronously save to Supabase Cloud
+    if (typeof window.saveCloudCrmLog === 'function') {
+      window.saveCloudCrmLog(companyId, updatedRecord);
+    }
   } catch (e) {
     console.warn('Failed to save CRM log', e);
   }
@@ -696,60 +703,158 @@ function renderCrmStatusBadge(status = 'pending', companyId = null) {
 function quickSaveInlineCrmNote(companyId, noteText, showToast = false) {
   saveCompanyCrmLog(companyId, { note: noteText });
   if (showToast) {
-    showStatusToast(`บันทึกโน้ต CRM เรียบร้อย`);
+    showStatusToast(`☁️ บันทึกโน้ต CRM ขึ้น Cloud เรียบร้อย`);
   }
 }
 
 function openFollowUpModal(companyId, focusNote = true, event) {
-  if (event) event.stopPropagation();
-  const comp = allCompanies.find(c => c.id === companyId);
-  if (!comp) return;
-
-  const log = getCompanyCrmLog(companyId);
-  const modal = document.getElementById('followup-modal') || document.getElementById('company-followup-modal');
+  if (event && event.stopPropagation) event.stopPropagation();
+  const modal = document.getElementById('company-followup-modal') || document.getElementById('followup-modal');
   if (!modal) return;
+  
+  const compList = (typeof allCompanies !== 'undefined' && allCompanies && allCompanies.length) ? allCompanies : (typeof UDON_COMPANIES !== 'undefined' ? UDON_COMPANIES : []);
+  const company = compList.find(c => c.id === companyId) || { id: companyId, name: 'บริษัทรับสร้างบ้าน', district: 'เมือง', province: 'อุดรธานี' };
 
-  const elName = document.getElementById('crm-modal-company-name');
-  const elId = document.getElementById('crm-modal-company-id');
-  const elNote = document.getElementById('crm-modal-note');
+  const idEl = document.getElementById('followup-company-id') || document.getElementById('crm-modal-company-id');
+  if (idEl) idEl.value = company.id;
 
-  if (elName) elName.textContent = cleanThaiText(comp.name);
-  if (elId) elId.value = companyId;
-  if (elNote) elNote.value = log.note || '';
+  const nameEl = document.getElementById('followup-modal-company-name') || document.getElementById('crm-modal-company-name');
+  if (nameEl) nameEl.textContent = (company.name || '') + ' (' + (company.district || 'เมืองอุดรธานี') + ', ' + (company.province || 'อุดรธานี') + ')';
 
-  selectCrmStatus(log.status || 'pending');
+  const contactEl = document.getElementById('followup-contact-person');
+  if (contactEl) contactEl.textContent = company.contactPerson || 'ฝ่ายบริหาร / เจ้าของ';
+
+  const phoneEl = document.getElementById('followup-phone');
+  if (phoneEl) phoneEl.textContent = company.phone || '-';
+
+  const distEl = document.getElementById('followup-district');
+  if (distEl) distEl.textContent = (company.district || 'เมือง') + ', จ.' + (company.province || 'อุดรธานี');
+
+  const crmLog = getCompanyCrmLog(company.id);
+
+  selectCrmStatus(crmLog.status || 'pending');
+
+  const noteInput = document.getElementById('followup-note-input') || document.getElementById('crm-modal-note');
+  if (noteInput) noteInput.value = crmLog.note || '';
+
+  const dateInput = document.getElementById('followup-next-date');
+  if (dateInput) dateInput.value = crmLog.nextDate || '';
+
+  const repInput = document.getElementById('followup-sales-rep');
+  if (repInput) repInput.value = crmLog.salesRep || (window.currentSalesUser ? window.currentSalesUser.fullName : 'ทีมขาย SCG อุดรธานี');
+
+  const prodCheckboxes = document.querySelectorAll('input[name="followup-prod"]');
+  prodCheckboxes.forEach(cb => {
+    cb.checked = (crmLog.products || []).indexOf(cb.value) !== -1;
+  });
 
   modal.style.display = 'flex';
-  if (focusNote && elNote) {
-    setTimeout(() => elNote.focus(), 100);
+  modal.style.visibility = 'visible';
+  modal.style.opacity = '1';
+  modal.style.zIndex = '2147483647';
+
+  if (focusNote !== false && noteInput) {
+    setTimeout(() => {
+      noteInput.focus();
+      noteInput.selectionStart = noteInput.selectionEnd = noteInput.value.length;
+    }, 100);
   }
 }
 
 function closeFollowUpModal() {
-  const modal = document.getElementById('followup-modal') || document.getElementById('company-followup-modal');
+  const modal = document.getElementById('company-followup-modal') || document.getElementById('followup-modal');
   if (modal) modal.style.display = 'none';
 }
 
 function selectCrmStatus(statusVal) {
-  const container = document.getElementById('crm-status-radio-group');
-  if (!container) return;
-  const radios = container.querySelectorAll('input[name="crm-status"]');
-  radios.forEach(r => {
-    r.checked = (r.value === statusVal);
+  const hiddenInput = document.getElementById('followup-selected-status');
+  if (hiddenInput) {
+    hiddenInput.value = statusVal;
+  }
+  const statusColors = {
+    'pending': { bg: '#F1F5F9', border: '#0F172A', shadow: '0 0 0 2px #0F172A', color: '#0F172A' },
+    'scheduled': { bg: '#EFF6FF', border: '#0284C7', shadow: '0 0 0 2px #0284C7', color: '#0284C7' },
+    'visited': { bg: '#F0FDF4', border: '#16A34A', shadow: '0 0 0 2px #16A34A', color: '#16A34A' },
+    'quoting': { bg: '#FAF5FF', border: '#9333EA', shadow: '0 0 0 2px #9333EA', color: '#9333EA' },
+    'won': { bg: '#ECFDF5', border: '#059669', shadow: '0 0 0 2px #059669', color: '#059669' }
+  };
+
+  document.querySelectorAll('.crm-status-box').forEach(box => {
+    const val = box.getAttribute('data-status');
+    if (val === statusVal) {
+      const c = statusColors[val] || statusColors['pending'];
+      box.style.borderColor = c.border;
+      box.style.boxShadow = c.shadow;
+      box.style.background = c.bg;
+      box.style.color = c.color;
+      box.style.fontWeight = '800';
+    } else {
+      box.style.borderColor = '#E2E8F0';
+      box.style.boxShadow = 'none';
+      box.style.background = '#FFFFFF';
+      box.style.color = '#64748B';
+      box.style.fontWeight = '600';
+    }
   });
+
+  const container = document.getElementById('crm-status-radio-group');
+  if (container) {
+    const radios = container.querySelectorAll('input[name="crm-status"]');
+    radios.forEach(r => {
+      r.checked = (r.value === statusVal);
+    });
+  }
 }
 
 function saveFollowUpLog() {
-  const companyId = document.getElementById('crm-modal-company-id')?.value;
-  const note = document.getElementById('crm-modal-note')?.value;
-  const selectedRadio = document.querySelector('input[name="crm-status"]:checked');
-  const status = selectedRadio ? selectedRadio.value : 'pending';
+  const idEl = document.getElementById('followup-company-id') || document.getElementById('crm-modal-company-id');
+  const companyId = idEl ? idEl.value : '';
+  if (!companyId) return;
 
-  if (companyId) {
-    saveCompanyCrmLog(companyId, { status, note });
-    closeFollowUpModal();
-    showStatusToast('บันทึกข้อมูลการติดตามเรียบร้อย');
+  const statusInput = document.getElementById('followup-selected-status');
+  const selectedRadio = document.querySelector('input[name="crm-status"]:checked');
+  const status = statusInput ? statusInput.value : (selectedRadio ? selectedRadio.value : 'pending');
+
+  const noteInput = document.getElementById('followup-note-input') || document.getElementById('crm-modal-note');
+  const note = noteInput ? noteInput.value.trim() : '';
+
+  const dateInput = document.getElementById('followup-next-date');
+  const nextDate = dateInput ? dateInput.value : '';
+
+  const repInput = document.getElementById('followup-sales-rep');
+  const salesRep = repInput ? repInput.value.trim() : (window.currentSalesUser ? window.currentSalesUser.fullName : 'ทีมขาย SCG อุดรธานี');
+
+  const selectedProds = [];
+  document.querySelectorAll('input[name="followup-prod"]:checked').forEach(cb => {
+    selectedProds.push(cb.value);
+  });
+
+  const logData = {
+    status: status,
+    note: note,
+    nextDate: nextDate,
+    salesRep: salesRep,
+    products: selectedProds,
+    updatedAt: new Date().toISOString()
+  };
+
+  saveCompanyCrmLog(companyId, logData);
+
+  const inlineTextarea = document.getElementById('inline-crm-note-' + companyId);
+  if (inlineTextarea) {
+    inlineTextarea.value = note;
+    inlineTextarea.style.background = note ? '#FFFFFF' : '#F8FAFC';
+    inlineTextarea.style.borderColor = note ? '#94A3B8' : '#CBD5E1';
+  }
+
+  closeFollowUpModal();
+  if (typeof renderTable === 'function') {
     renderTable();
+  }
+  if (typeof showStatusToast === 'function') {
+    showStatusToast('☁️ บันทึกการติดตาม & ซิงค์ขึ้น Supabase เรียบร้อยแล้ว!');
+  } else if (typeof showToastNotification === 'function') {
+    showToastNotification('☁️ บันทึกการติดตาม & ซิงค์ขึ้น Supabase เรียบร้อยแล้ว!');
   }
 }
 
@@ -785,6 +890,7 @@ function renderKPIs() {
   const elHighOpp = document.getElementById('kpi-high-opp');
   const elTotalVal = document.getElementById('kpi-total-value');
   const elTotalProjectsSub = document.getElementById('kpi-total-projects-subtext');
+  const elProvinceTotalProjectsBadge = document.getElementById('province-total-projects-badge');
   const elProvinceTotalProjectsCount = document.getElementById('province-total-projects-count');
 
   if (elTotalComp) elTotalComp.textContent = totalCompanies;
@@ -792,7 +898,16 @@ function renderKPIs() {
   if (elHighOpp) elHighOpp.textContent = highPriorityLeads;
   if (elTotalVal) elTotalVal.textContent = `฿${totalPipelineValue.toFixed(1)}M`;
   if (elTotalProjectsSub) elTotalProjectsSub.textContent = `รวม ${totalProjects} โครงการที่กำลังก่อสร้าง`;
-  if (elProvinceTotalProjectsCount) elProvinceTotalProjectsCount.textContent = totalProjects;
+  
+  if (elProvinceTotalProjectsBadge) {
+    if (activeDistrict === 'all') {
+      elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการทุกจังหวัด <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
+    } else {
+      elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการในจ.${cleanThaiText(activeDistrict)} <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
+    }
+  } else if (elProvinceTotalProjectsCount) {
+    elProvinceTotalProjectsCount.textContent = totalProjects;
+  }
 }
 
 // ==========================================
@@ -1124,6 +1239,40 @@ function applyFilters() {
 
   renderKPIs();
   renderTable();
+
+  // Dynamically update Report summary badge to match selected province
+  const reportBadge = document.getElementById('badge-report-summary');
+  if (reportBadge) {
+    const isAll = (activeDistrict === 'all');
+    const count = filteredCompanies.length;
+    const provLabel = isAll ? 'ทุกจังหวัด' : `จ.${cleanThaiText(activeDistrict)}`;
+    
+    // Set dynamic link to report.html
+    let provParam = 'all';
+    if (!isAll) {
+      if (activeDistrict === 'สกลนคร') provParam = 'sakon';
+      else if (activeDistrict === 'อุดรธานี') provParam = 'udon';
+      else provParam = encodeURIComponent(activeDistrict);
+    }
+    reportBadge.setAttribute('href', `report.html?province=${provParam}`);
+
+    reportBadge.innerHTML = `
+      <span style="font-size: 0.9rem;">📊</span>
+      <span>Report ${provLabel}:</span>
+      <span style="color: #0369A1; font-weight: 700;">วิเคราะห์ ${count} บริษัท • พร้อมยอดขาย 2025/2026</span>
+      <span style="font-size: 0.72rem; background: #3B82F6; color: #FFFFFF; padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 2px;">เปิดหน้ารายงาน ↗</span>
+    `;
+  }
+
+  // Update Search Input placeholder to match selected province
+  const searchInput = document.getElementById('search-input') || document.getElementById('company-search-input');
+  if (searchInput) {
+    if (activeDistrict === 'all') {
+      searchInput.placeholder = '🔍 ค้นหาชื่อบริษัท, ผู้บริหาร, หรือพื้นที่...';
+    } else {
+      searchInput.placeholder = `🔍 ค้นหาชื่อบริษัท, ผู้บริหาร, หรืออำเภอใน${cleanThaiText(activeDistrict)}...`;
+    }
+  }
 
   // Update map markers
   if (window.mapModule && typeof window.mapModule.renderCompanyMarkers === 'function') {
@@ -1771,6 +1920,19 @@ function closeAllModals() {
   closeApifyModal();
   closeCrmStatusModal();
 }
+
+// ==========================================
+// 9.0 SALES SUMMARY REPORT PAGE NAVIGATION
+// ==========================================
+function openSalesReportModal() {
+  const isSakon = window.location.pathname.includes('SAKON');
+  const defaultProv = isSakon ? 'สกลนคร' : 'อุดรธานี';
+  const provName = activeDistrict === 'all' ? defaultProv : activeDistrict;
+  const provParam = (provName === 'สกลนคร') ? 'sakon' : ((provName === 'อุดรธานี') ? 'udon' : encodeURIComponent(provName));
+  window.location.href = `report.html?province=${provParam}`;
+}
+
+window.openSalesReportModal = openSalesReportModal;
 
 // ==========================================
 // 9.1 PDF REPORT EXPORT ENGINE (Single Company Dossier)

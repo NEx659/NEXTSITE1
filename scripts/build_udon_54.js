@@ -464,11 +464,11 @@ const companiesRaw = [
     {
         "name": "บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จำกัด",
         "phone": "095 836 1416",
-        "addr": "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
+        "addr": "เลขที่ 165 ตำบลนาม่วง อำเภอประจักษ์ศิลปาคม จังหวัดอุดรธานี 41110",
         "fb": "https://www.facebook.com/share/1FFVcPSUWS/?mibextid=wwXIfr",
-        "dist": "เมืองอุดรธานี",
-        "lat": 17.4115,
-        "lng": 102.7965
+        "dist": "ประจักษ์ศิลปาคม",
+        "lat": 17.2796,
+        "lng": 103.0337
     },
     {
         "name": "รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน",

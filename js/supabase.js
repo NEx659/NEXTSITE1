@@ -88,6 +88,9 @@ async function logoutSalesUser() {
   if (typeof showStatusToast === 'function') {
     showStatusToast('ออกจากระบบเรียบร้อยแล้ว');
   }
+  setTimeout(() => {
+    openLoginModal();
+  }, 400);
 }
 
 /**
@@ -201,15 +204,19 @@ async function checkCurrentSession() {
         try {
           currentSalesUser = JSON.parse(cached);
           updateAuthHeaderUI();
-        } catch (e) {}
+        } catch (e) {
+          currentSalesUser = null;
+        }
       } else {
-        updateAuthHeaderUI();
+        currentSalesUser = null;
       }
     }
   } catch (err) {
     console.warn('Session check warning:', err);
-    updateAuthHeaderUI();
+    currentSalesUser = null;
   }
+
+  updateAuthHeaderUI();
 }
 
 // ==========================================
@@ -348,7 +355,7 @@ async function syncAllLocalCompaniesToSupabase(companiesArray) {
     scg_customer_id: c.scgCustomerId || c.scgCode || '',
     tag: c.tag || 'Focus',
     sales_2025: Number(c.sales2025) || 0,
-    sales_2026: Number(c.sales2026) || 0,
+    sales_2026: Number(c.sales2026_0914 != null ? c.sales2026_0914 : (c.sales2026 || 0)),
     opportunity_score: Number(c.opportunityScore) || 0,
     revenue_potential: c.revenuePotential || '',
     ai_recommendation: c.aiRecommendation || '',
@@ -359,7 +366,7 @@ async function syncAllLocalCompaniesToSupabase(companiesArray) {
   }));
 
   try {
-    const { data, error } = await client
+    let { data, error } = await client
       .from('companies')
       .upsert(payload, { onConflict: 'id' });
 
@@ -374,7 +381,7 @@ async function syncAllLocalCompaniesToSupabase(companiesArray) {
     }
 
     console.log(`✅ ซิงค์ข้อมูลบริษัท ${payload.length} แห่งขึ้น Supabase สำเร็จ!`);
-    alert(`🎉 ซิงค์ข้อมูลบริษัททั้งหมด ${payload.length} แห่งขึ้น Supabase เรียบร้อยแล้ว!\n\nกลับไปดูที่ Supabase ได้เลยครับ`);
+    alert(`🎉 ซิงค์ข้อมูลบริษัททั้งหมด ${payload.length} แห่งขึ้น Supabase เรียบร้อยแล้ว!\n\nข้อมูลและ Tag บน Cloud อัปเดตตรงกัน 100%`);
     
     if (syncBtn) {
       syncBtn.innerHTML = '<span>✅ ซิงค์สำเร็จแล้ว</span>';
@@ -395,14 +402,237 @@ async function syncAllLocalCompaniesToSupabase(companiesArray) {
   }
 }
 
+/**
+ * Fetch latest customer sales figures from Supabase Cloud
+ */
+async function fetchCloudCustomerSales() {
+  const client = supabaseClient || initSupabase();
+  if (!client) return null;
+
+  try {
+    let { data, error } = await client
+      .from('companies')
+      .select('id, name, scg_customer_id, sales_2025, sales_2026');
+
+    if (error) {
+      console.warn('⚠️ Supabase fetch sales error:', error.message);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('⚠️ Supabase fetch sales exception:', err);
+    return null;
+  }
+}
+
+/**
+ * Update sales for a specific company in Supabase Cloud
+ */
+async function saveCompanySalesToCloud(companyIdOrCode, salesData) {
+  const client = supabaseClient || initSupabase();
+  if (!client) return false;
+
+  try {
+    const updatePayload = {
+      updated_at: new Date().toISOString()
+    };
+    if (salesData.sales2025 != null) updatePayload.sales_2025 = Number(salesData.sales2025);
+    if (salesData.sales2026_0914 != null || salesData.sales2026 != null) {
+      updatePayload.sales_2026 = Number(salesData.sales2026_0914 != null ? salesData.sales2026_0914 : salesData.sales2026);
+    }
+
+    const { data, error } = await client
+      .from('companies')
+      .update(updatePayload)
+      .or(`id.eq.${companyIdOrCode},scg_customer_id.eq.${companyIdOrCode}`);
+
+    if (error) {
+      console.error('❌ Cloud sales update error:', error.message);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error('❌ Cloud sales update exception:', err);
+    return false;
+  }
+}
+
+/**
+ * Save CRM Note & Follow-up log to Supabase Cloud
+ */
+async function saveCloudCrmLog(companyId, crmData) {
+  const client = supabaseClient || initSupabase();
+  if (!client) {
+    console.warn('⚠️ Supabase client not initialized yet');
+    return false;
+  }
+
+  try {
+    const jsonStr = JSON.stringify({
+      status: crmData.status || 'pending',
+      note: crmData.note || '',
+      nextDate: crmData.nextDate || '',
+      salesRep: crmData.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
+      products: crmData.products || [],
+      updatedAt: crmData.updatedAt || new Date().toISOString()
+    });
+
+    const updatePayload = {
+      crm_note: crmData.note || '',
+      crm_status: crmData.status || 'pending',
+      crm_sales_rep: crmData.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
+      crm_next_date: crmData.nextDate || '',
+      revenue_potential: jsonStr,
+      updated_at: new Date().toISOString()
+    };
+
+    const { error } = await client
+      .from('companies')
+      .update(updatePayload)
+      .eq('id', companyId);
+
+    if (error) {
+      console.error('❌ Supabase Cloud CRM Save error:', error.message);
+      if (typeof showStatusToast === 'function') {
+        showStatusToast('⚠️ บันทึก Cloud ไม่สำเร็จ: ' + error.message);
+      }
+      return false;
+    }
+
+    console.log(`☁️ Synced CRM log for ${companyId} to Supabase successfully:`, updatePayload);
+    if (typeof showStatusToast === 'function') {
+      showStatusToast('☁️ บันทึกโน้ตขึ้น Supabase Cloud สำเร็จเรียบร้อย!');
+    }
+    return true;
+  } catch (err) {
+    console.error('❌ Cloud CRM Save exception:', err);
+    return false;
+  }
+}
+
+/**
+ * Load all CRM Notes from Supabase Cloud and sync into LocalStorage & UI
+ */
+async function loadAndApplyCloudCrmLogs() {
+  const client = supabaseClient || initSupabase();
+  if (!client) return;
+
+  try {
+    const { data, error } = await client
+      .from('companies')
+      .select('id, crm_note, crm_status, crm_sales_rep, crm_next_date, revenue_potential');
+
+    if (error) {
+      console.warn('⚠️ Could not load cloud CRM logs:', error.message);
+      return;
+    }
+
+    if (data && data.length > 0) {
+      let crmLogs = {};
+      try {
+        const raw = localStorage.getItem('nextsite_crm_followup_logs') || localStorage.getItem('nextsite_crm_logs_v1');
+        if (raw) crmLogs = JSON.parse(raw);
+      } catch (e) {}
+
+      let updatedCount = 0;
+      data.forEach(item => {
+        if (item.id) {
+          if (item.crm_note || item.crm_status) {
+            crmLogs[item.id] = {
+              note: item.crm_note || '',
+              status: item.crm_status || 'pending',
+              salesRep: item.crm_sales_rep || '',
+              nextDate: item.crm_next_date || '',
+              updatedAt: new Date().toISOString()
+            };
+            updatedCount++;
+          } else if (item.revenue_potential && typeof item.revenue_potential === 'string' && item.revenue_potential.startsWith('{')) {
+            try {
+              crmLogs[item.id] = JSON.parse(item.revenue_potential);
+              updatedCount++;
+            } catch (e) {}
+          }
+        }
+      });
+
+      localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(crmLogs));
+      localStorage.setItem('nextsite_crm_logs_v1', JSON.stringify(crmLogs));
+
+      if (typeof renderTable === 'function') {
+        renderTable();
+      }
+      console.log(`☁️ Synced ${updatedCount} CRM notes from Supabase Cloud successfully!`);
+    }
+  } catch (err) {
+    console.warn('⚠️ Supabase CRM sync exception:', err);
+  }
+}
+
 // Auto init on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(async () => {
     initSupabase();
     await checkCurrentSession();
     await loadAndApplyCloudTags();
+    await loadAndApplyCloudCrmLogs();
   }, 300);
 });
+
+// Modal UI Helpers
+function openLoginModal() {
+  const modal = document.getElementById('sales-login-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    const errEl = document.getElementById('login-error-msg');
+    if (errEl) errEl.style.display = 'none';
+  }
+}
+
+function closeLoginModal() {
+  const modal = document.getElementById('sales-login-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function fillDemoUser(email, pass) {
+  const elEmail = document.getElementById('login-email');
+  const elPass = document.getElementById('login-password');
+  if (elEmail) elEmail.value = email;
+  if (elPass) elPass.value = pass;
+}
+
+async function handleSalesLoginForm(event) {
+  if (event && event.preventDefault) event.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const pass = document.getElementById('login-password').value;
+  const btnSubmit = document.getElementById('btn-login-submit');
+  const errEl = document.getElementById('login-error-msg');
+
+  if (errEl) errEl.style.display = 'none';
+  if (btnSubmit) {
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'กำลังตรวจสอบ...';
+  }
+
+  try {
+    const user = await loginSalesUser(email, pass);
+    closeLoginModal();
+    if (typeof showStatusToast === 'function') {
+      showStatusToast(`ยินดีต้อนรับ ${user.fullName} (พื้นที่: ${user.assignedProvince})`);
+    } else {
+      alert(`ยินดีต้อนรับ ${user.fullName} (พื้นที่: ${user.assignedProvince})`);
+    }
+  } catch (err) {
+    if (errEl) {
+      errEl.textContent = '❌ เข้าสู่ระบบไม่สำเร็จ: ' + err.message;
+      errEl.style.display = 'block';
+    }
+  } finally {
+    if (btnSubmit) {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'เข้าสู่ระบบ';
+    }
+  }
+}
 
 if (typeof window !== 'undefined') {
   window.initSupabase = initSupabase;
@@ -414,4 +644,10 @@ if (typeof window !== 'undefined') {
   window.logoutSalesUser = logoutSalesUser;
   window.canCurrentUserEditCompany = canCurrentUserEditCompany;
   window.updateAuthHeaderUI = updateAuthHeaderUI;
+  window.openLoginModal = openLoginModal;
+  window.closeLoginModal = closeLoginModal;
+  window.fillDemoUser = fillDemoUser;
+  window.handleSalesLoginForm = handleSalesLoginForm;
+  window.saveCloudCrmLog = saveCloudCrmLog;
+  window.loadAndApplyCloudCrmLogs = loadAndApplyCloudCrmLogs;
 }
