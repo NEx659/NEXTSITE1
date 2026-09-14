@@ -195,6 +195,9 @@
       <a href="index.html" class="btn-action btn-back" id="btn-back-dashboard">
         ⬅️ กลับหน้าหลัก Dashboard
       </a>
+      <button type="button" id="btn-report-cloud-sync" onclick="loadAndApplyCloudSales(true)" class="btn-action" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1.5px solid rgba(16, 185, 129, 0.4);" title="คลิกเพื่อดึงยอดขายล่าสุดจาก Supabase Cloud">
+        ☁️ ดึงยอดจาก Supabase
+      </button>
       <button type="button" onclick="exportToExcelCsv()" class="btn-action btn-excel">
         📥 ส่งออก Excel (CSV)
       </button>
@@ -379,10 +382,11 @@
 
     <!-- Data Table Card (Excel View) -->
     <div class="report-card">
-      <div style="background: #002060; color: #FFFFFF; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
-        <div style="font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+      <div style="background: #002060; color: #FFFFFF; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <div style="font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
           <span>📋</span>
           <span id="table-header-title">ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.อุดรธานี</span>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #BAE6FD;">(เฉพาะบริษัทที่มีข้อมูลใน NEXTSITE เท่านั้น)</span>
         </div>
         <div style="font-size: 0.78rem; color: #93C5FD; font-weight: 700;" id="table-header-date">
           ข้อมูลล่าสุด ณ วันที่ 14.09.2569
@@ -426,8 +430,10 @@
 
   </main>
 
-  <!-- Load Data Files -->
+  <!-- Load Data Files & Supabase Client -->
   <script src="js/data.js?v=64.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js?v=20.0"></script>
   
   <script>
     // SCG ACTUAL CUSTOMER SALES DATA LIST (Master Map)
@@ -437,7 +443,7 @@
     // - sales2026_0930: ยอดขาย ณ วันที่ 30.09.2569 (อัพเดทสิ้นเดือนกันยายน)
     // - sales2026_1030: ยอดขาย ณ วันที่ 30.10.2569 (อัพเดทสิ้นเดือนตุลาคม)
     const SCG_CUSTOMER_SALES_LIST = [
-      { code: '10051168', name: 'เอเฮ้าส์ บิวเดอร์', sales2025: 15209, sales2026_0914: 22100, sales2026_0930: null, sales2026_1030: null, keys: ['เอเฮ้าส์', 'a-house', 'a house'] },
+      { code: '10051168', name: 'เอเฮ้าส์ บิวเดอร์', sales2025: 15209, sales2026_0914: 22100, sales2026_0930: null, sales2026_1030: null, keys: ['เอเฮ้าส์', 'เอ-เฮ้าส์', 'a-house', 'a house'] },
       { code: '10108161', name: 'โมเดิร์น ดี (อุดรธานี)', sales2025: 1069432, sales2026_0914: 1208551, sales2026_0930: null, sales2026_1030: null, keys: ['โมเดิร์น ดี', 'โมเดิร์นดี', 'modernde', 'modern de', 'modern-de'] },
       { code: '10126345', name: 'หล้าก่ำ ทรัพย์เจริญยิ่ง', sales2025: 110483, sales2026_0914: 18166, sales2026_0930: null, sales2026_1030: null, keys: ['หล้าก่ำ', 'ทรัพย์เจริญยิ่ง'] },
       { code: '10280647', name: 'มหารุ่งโรจน์โฮมบิลเดอร์', sales2025: 3461247, sales2026_0914: 783850, sales2026_0930: null, sales2026_1030: null, keys: ['มหารุ่งโรจน์', 'maharungroj'] },
@@ -450,7 +456,7 @@
       { code: '10383888', name: 'ฟ้าสว่างการโยธา', sales2025: 553824, sales2026_0914: 569818, sales2026_0930: null, sales2026_1030: null, keys: ['ฟ้าสว่าง', 'fasawang'] },
       { code: '10400409', name: 'บ้านดี-อุดร', sales2025: 423136.5, sales2026_0914: 1198975, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี-อุดร', 'บ้านดี อุดร', 'บ้านดีอุดร', 'baan-d', 'baan d'] },
       { code: '10461104', name: 'นิติพันธ์ เปือยยะ', sales2025: 1289592, sales2026_0914: 852291, sales2026_0930: null, sales2026_1030: null, keys: ['นิติพันธ์', 'nitipan'] },
-      { code: '10482913', name: 'ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991', sales2025: 1570146, sales2026_0914: 3396188, sales2026_0930: null, sales2026_1030: null, keys: ['ทีที ดีไซน์', 'ทีทีดีไซน์', 'tt design', 'ttdesign'] },
+      { code: '10482913', name: 'ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991', sales2025: 1570146.44, sales2026_0914: 3396188.25, sales2026_0930: null, sales2026_1030: null, keys: ['ทีที ดีไซน์', 'ทีทีดีไซน์', 'tt design', 'ttdesign'] },
       { code: '10484743', name: 'ช.รุ่งอรุณ คอนสตรัคชั่น', sales2025: 151787.5, sales2026_0914: 189440, sales2026_0930: null, sales2026_1030: null, keys: ['ช.รุ่งอรุณ', 'รุ่งอรุณ คอนสตรัคชั่น', 'รุ่งอรุณ'] },
       { code: '10485682', name: 'รุ่งรัตน์บิวตี้โฮม', sales2025: 12246, sales2026_0914: 768825.5, sales2026_0930: null, sales2026_1030: null, keys: ['รุ่งรัตน์บิวตี้โฮม', 'รุ่งรัตน์'] },
       { code: '10500344', name: 'การิน บ้านสวย', sales2025: 469506, sales2026_0914: 1337450, sales2026_0930: null, sales2026_1030: null, keys: ['การิน บ้านสวย', 'การิน', 'karin'] },
@@ -867,7 +873,59 @@
       URL.revokeObjectURL(url);
     }
 
-    document.addEventListener('DOMContentLoaded', initReport);
+    async function loadAndApplyCloudSales(manualClick = false) {
+      const syncBtn = document.getElementById('btn-report-cloud-sync');
+      if (manualClick && syncBtn) {
+        syncBtn.innerHTML = '<span>⏳ กำลังดึงข้อมูล...</span>';
+      }
+
+      try {
+        if (typeof fetchCloudCustomerSales === 'function') {
+          const cloudData = await fetchCloudCustomerSales();
+          if (cloudData && Array.isArray(cloudData) && cloudData.length > 0) {
+            let updatedCount = 0;
+            masterReportList.forEach(c => {
+              const cName = (c.name || '').toLowerCase();
+              const scgId = c.scgCode;
+              const cloudMatch = cloudData.find(item => {
+                if (scgId && item.scg_customer_id && item.scg_customer_id === scgId) return true;
+                if (item.name && cName.includes(item.name.toLowerCase())) return true;
+                if (item.id && c.id && item.id === c.id) return true;
+                return false;
+              });
+
+              if (cloudMatch) {
+                if (cloudMatch.sales_2025 != null && Number(cloudMatch.sales_2025) > 0) c.sales2025 = Number(cloudMatch.sales_2025);
+                if (cloudMatch.sales_2026_0914 != null && Number(cloudMatch.sales_2026_0914) > 0) c.sales2026_0914 = Number(cloudMatch.sales_2026_0914);
+                if (cloudMatch.sales_2026_0930 != null && Number(cloudMatch.sales_2026_0930) > 0) c.sales2026_0930 = Number(cloudMatch.sales_2026_0930);
+                if (cloudMatch.sales_2026_1030 != null && Number(cloudMatch.sales_2026_1030) > 0) c.sales2026_1030 = Number(cloudMatch.sales_2026_1030);
+
+                c.sales2026_latest = (c.sales2026_1030 != null && c.sales2026_1030 > 0) ? c.sales2026_1030 :
+                                     ((c.sales2026_0930 != null && c.sales2026_0930 > 0) ? c.sales2026_0930 : c.sales2026_0914);
+                updatedCount++;
+              }
+            });
+
+            renderReportTable();
+            if (manualClick) {
+              alert(`🎉 ดึงข้อมูลยอดขายล่าสุดจาก Supabase Cloud เรียบร้อยแล้ว (${updatedCount} บริษัท)!`);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Could not auto load cloud sales:', err);
+        if (manualClick) alert('⚠️ ไม่สามารถเชื่อมต่อ Supabase ได้: ' + err.message);
+      } finally {
+        if (syncBtn) {
+          syncBtn.innerHTML = '<span>☁️ ดึงยอดจาก Supabase</span>';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initReport();
+      setTimeout(loadAndApplyCloudSales, 400);
+    });
   </script>
 </body>
 

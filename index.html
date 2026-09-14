@@ -317,7 +317,7 @@
       try {
         var raw = localStorage.getItem('nextsite_crm_followup_logs');
         var logs = raw ? JSON.parse(raw) : {};
-        logs[companyId] = {
+        var logObj = {
           status: status,
           note: note,
           nextDate: nextDate,
@@ -325,7 +325,14 @@
           products: selectedProds,
           updatedAt: new Date().toISOString()
         };
+        logs[companyId] = logObj;
         localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+        localStorage.setItem('nextsite_crm_logs_v1', JSON.stringify(logs));
+
+        // Save to Supabase Cloud in real-time
+        if (typeof window.saveCloudCrmLog === 'function') {
+          window.saveCloudCrmLog(companyId, logObj);
+        }
       } catch(e) {}
 
       var inlineTextarea = document.getElementById('inline-crm-note-' + companyId);
@@ -340,7 +347,9 @@
         renderTable();
       }
       if (typeof showToastNotification === 'function') {
-        showToastNotification('💾 บันทึกข้อมูลการติดตาม & โน้ตการเข้าพบเรียบร้อยแล้ว!');
+        showToastNotification('☁️ บันทึกการติดตาม & โน้ตทีมขายขึ้น Cloud เรียบร้อยแล้ว!');
+      } else if (typeof showStatusToast === 'function') {
+        showStatusToast('☁️ บันทึกการติดตาม & โน้ตทีมขายขึ้น Cloud เรียบร้อยแล้ว!');
       }
     }
   </script>
@@ -1684,14 +1693,14 @@
 
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase.js?v=12.0"></script>
+    <script src="js/supabase.js?v=30.0"></script>
 
     <!-- App JS modules -->
-    <script src="js/data.js?v=64.0"></script>
+    <script src="js/data.js?v=65.0"></script>
     <script src="js/scoring.js?v=64.0"></script>
     <script src="js/charts.js?v=64.0"></script>
     <script src="js/map.js?v=66.0"></script>
-    <script src="js/app.js?v=107.0"></script>
+    <script src="js/app.js?v=120.0"></script>
 </body>
 
 </html>
