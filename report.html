@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTSITE AI — Sales Summary Report (รายงานสรุปยอดขาย 2025 vs 2026)</title>
+  <meta name="description" content="รายงานสรุปยอดขายบริษัทรับสร้างบ้าน SCG Construction Intelligence System 2025 vs 2026">
+
+  <!-- Google Fonts: Prompt, Inter & Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css?v=69.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: #F1F5F9;
+      color: #0F172A;
+      zoom: 0.85;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-navbar {
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .report-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    .report-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .excel-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Sarabun', 'Inter', sans-serif;
+    }
+
+    .excel-table th {
+      background: #002060 !important;
+      color: #FFFFFF !important;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      border: 1px solid #001A4E;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .excel-table td {
+      padding: 10px 16px;
+      font-size: 0.90rem;
+      border: 1px solid #CBD5E1;
+    }
+
+    .excel-table tbody tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    .excel-table tbody tr:hover {
+      background: #EFF6FF !important;
+    }
+
+    .excel-table tfoot td {
+      background: #002060 !important;
+      color: #FFFFFF !important;
+      font-weight: 900;
+      padding: 12px 16px;
+      border: 1px solid #001A4E;
+      font-size: 0.95rem;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: none;
+    }
+
+    .btn-back {
+      background: #F1F5F9;
+      color: #334155;
+      border: 1.5px solid #CBD5E1;
+    }
+    .btn-back:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+    }
+
+    .btn-excel {
+      background: #10B981;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(16,185,129,0.3);
+    }
+    .btn-excel:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-print {
+      background: #3B82F6;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+    }
+    .btn-print:hover {
+      background: #2563EB;
+      transform: translateY(-1px);
+    }
+
+    @media print {
+      body {
+        zoom: 1;
+        background: #FFFFFF;
+      }
+      .report-navbar, .filter-toolbar, .no-print {
+        display: none !important;
+      }
+      .report-container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .report-card {
+        box-shadow: none;
+        border: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+  <header class="report-navbar">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+        <div style="background: #D9251D; color: #FFFFFF; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; box-shadow: 0 2px 6px rgba(217,37,29,0.35);">
+          N
+        </div>
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 900; color: #0F172A; letter-spacing: -0.02em;">
+            NEXTSITE <span style="color: #D9251D;">AI</span>
+          </div>
+          <div style="font-size: 0.70rem; color: #64748B; font-weight: 700;">
+            SCG CONSTRUCTION INTELLIGENCE REPORT
+          </div>
+        </div>
+      </a>
+      <div style="width: 1px; height: 26px; background: #CBD5E1; margin: 0 6px;"></div>
+      <div style="font-size: 0.95rem; font-weight: 800; color: #1E40AF; display: flex; align-items: center; gap: 6px;">
+        <span>📊 รายงานสรุปยอดขายบริษัทรับสร้างบ้าน (2025 vs 2026)</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <a href="index.html" class="btn-action btn-back" id="btn-back-dashboard">
+        ⬅️ กลับหน้าหลัก Dashboard
+      </a>
+      <button type="button" onclick="exportToExcelCsv()" class="btn-action btn-excel">
+        📥 ส่งออก Excel (CSV)
+      </button>
+      <button type="button" onclick="window.print()" class="btn-action btn-print">
+        🖨️ สั่งพิมพ์รายงาน
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="report-container">
+
+    <!-- KPI Summary Row -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px;">
+      
+      <!-- Card 1: Companies Count -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">🏢 จำนวนบริษัทในรายงาน</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #0F172A;" id="kpi-company-count">0</div>
+        <div style="font-size: 0.72rem; color: #3B82F6; font-weight: 700; margin-top: 2px;">บริษัทรับสร้างบ้านทั้งหมด</div>
+      </div>
+
+      <!-- Card 2: Sales 2025 -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">💰 ยอดขายรวมปี 2025</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #1E293B;" id="kpi-sales-2025">฿0</div>
+        <div style="font-size: 0.72rem; color: #64748B; font-weight: 700; margin-top: 2px;">ฐานยอดซื้อจริง SCG ปี 2568</div>
+      </div>
+
+      <!-- Card 3: Sales 2026 -->
+      <div style="background: #FFFFFF; border: 1.5px solid #BBF7D0; background: linear-gradient(to bottom, #FFFFFF, #F0FDF4); border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #166534; font-weight: 700; margin-bottom: 4px;">🚀 ยอดขายรวมปี 2026 (ล่าสุด)</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #16A34A;" id="kpi-sales-2026">฿0</div>
+        <div style="font-size: 0.72rem; color: #166534; font-weight: 700; margin-top: 2px;">ข้อมูลสะสม ณ วันที่ 14.09.2569</div>
+      </div>
+
+      <!-- Card 4: YoY Growth Rate -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">📈 อัตราการเติบโต YoY</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #16A34A;" id="kpi-growth-rate">+0.0%</div>
+        <div style="font-size: 0.72rem; color: #64748B; font-weight: 700; margin-top: 2px;">เทียบ 2026 vs 2025</div>
+      </div>
+
+    </div>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="filter-toolbar" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 12px 18px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <!-- Province Dropdown (All Provinces) -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">📍 จังหวัด:</label>
+          <select id="select-province" onchange="onProvinceChange()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 800; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none; max-width: 220px;">
+            <option value="all">ทุกจังหวัด (ทั้งหมด)</option>
+            
+            <optgroup label="📍 ภาคตะวันออกเฉียงเหนือ (20 จังหวัด)">
+              <option value="อุดรธานี" selected>จ.อุดรธานี</option>
+              <option value="สกลนคร">จ.สกลนคร</option>
+              <option value="ขอนแก่น">จ.ขอนแก่น</option>
+              <option value="นครราชสีมา">จ.นครราชสีมา (โคราช)</option>
+              <option value="อุบลราชธานี">จ.อุบลราชธานี</option>
+              <option value="หนองคาย">จ.หนองคาย</option>
+              <option value="หนองบัวลำภู">จ.หนองบัวลำภู</option>
+              <option value="เลย">จ.เลย</option>
+              <option value="บึงกาฬ">จ.บึงกาฬ</option>
+              <option value="นครพนม">จ.นครพนม</option>
+              <option value="มุกดาหาร">จ.มุกดาหาร</option>
+              <option value="กาฬสินธุ์">จ.กาฬสินธุ์</option>
+              <option value="มหาสารคาม">จ.มหาสารคาม</option>
+              <option value="ร้อยเอ็ด">จ.ร้อยเอ็ด</option>
+              <option value="ยโสธร">จ.ยโสธร</option>
+              <option value="อำนาจเจริญ">จ.อำนาจเจริญ</option>
+              <option value="บุรีรัมย์">จ.บุรีรัมย์</option>
+              <option value="สุรินทร์">จ.สุรินทร์</option>
+              <option value="ศรีสะเกษ">จ.ศรีสะเกษ</option>
+              <option value="ชัยภูมิ">จ.ชัยภูมิ</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคกลาง & กรุงเทพฯ">
+              <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+              <option value="นนทบุรี">จ.นนทบุรี</option>
+              <option value="ปทุมธานี">จ.ปทุมธานี</option>
+              <option value="สมุทรปราการ">จ.สมุทรปราการ</option>
+              <option value="พระนครศรีอยุธยา">จ.พระนครศรีอยุธยา</option>
+              <option value="สระบุรี">จ.สระบุรี</option>
+              <option value="ลพบุรี">จ.ลพบุรี</option>
+              <option value="นครปฐม">จ.นครปฐม</option>
+              <option value="สมุทรสาคร">จ.สมุทรสาคร</option>
+              <option value="สมุทรสงคราม">จ.สมุทรสงคราม</option>
+              <option value="สุพรรณบุรี">จ.สุพรรณบุรี</option>
+              <option value="อ่างทอง">จ.อ่างทอง</option>
+              <option value="สิงห์บุรี">จ.สิงห์บุรี</option>
+              <option value="ชัยนาท">จ.ชัยนาท</option>
+              <option value="นครสวรรค์">จ.นครสวรรค์</option>
+              <option value="อุทัยธานี">จ.อุทัยธานี</option>
+              <option value="เพชรบูรณ์">จ.เพชรบูรณ์</option>
+              <option value="พิจิตร">จ.พิจิตร</option>
+              <option value="พิษณุโลก">จ.พิษณุโลก</option>
+              <option value="กำแพงเพชร">จ.กำแพงเพชร</option>
+              <option value="สุโขทัย">จ.สุโขทัย</option>
+              <option value="อุตรดิตถ์">จ.อุตรดิตถ์</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคเหนือ">
+              <option value="เชียงใหม่">จ.เชียงใหม่</option>
+              <option value="เชียงราย">จ.เชียงราย</option>
+              <option value="ลำปาง">จ.ลำปาง</option>
+              <option value="ลำพูน">จ.ลำพูน</option>
+              <option value="พะเยา">จ.พะเยา</option>
+              <option value="แพร่">จ.แพร่</option>
+              <option value="น่าน">จ.น่าน</option>
+              <option value="แม่ฮ่องสอน">จ.แม่ฮ่องสอน</option>
+              <option value="ตาก">จ.ตาก</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคตะวันออก">
+              <option value="ชลบุรี">จ.ชลบุรี</option>
+              <option value="ระยอง">จ.ระยอง</option>
+              <option value="ฉะเชิงเทรา">จ.ฉะเชิงเทรา</option>
+              <option value="จันทบุรี">จ.จันทบุรี</option>
+              <option value="ตราด">จ.ตราด</option>
+              <option value="ปราจีนบุรี">จ.ปราจีนบุรี</option>
+              <option value="นครนายก">จ.นครนายก</option>
+              <option value="สระแก้ว">จ.สระแก้ว</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคตะวันตก & ใต้">
+              <option value="กาญจนบุรี">จ.กาญจนบุรี</option>
+              <option value="ราชบุรี">จ.ราชบุรี</option>
+              <option value="เพชรบุรี">จ.เพชรบุรี</option>
+              <option value="ประจวบคีรีขันธ์">จ.ประจวบคีรีขันธ์</option>
+              <option value="ภูเก็ต">จ.ภูเก็ต</option>
+              <option value="สงขลา">จ.สงขลา</option>
+              <option value="สุราษฎร์ธานี">จ.สุราษฎร์ธานี</option>
+              <option value="นครศรีธรรมราช">จ.นครศรีธรรมราช</option>
+              <option value="กระบี่">จ.กระบี่</option>
+              <option value="พังงา">จ.พังงา</option>
+              <option value="ตรัง">จ.ตรัง</option>
+              <option value="พัทลุง">จ.พัทลุง</option>
+              <option value="ชุมพร">จ.ชุมพร</option>
+              <option value="ระนอง">จ.ระนอง</option>
+              <option value="สตูล">จ.สตูล</option>
+              <option value="ยะลา">จ.ยะลา</option>
+              <option value="ปัตตานี">จ.ปัตตานี</option>
+              <option value="นราธิวาส">จ.นราธิวาส</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Filter only buyers -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">🏷️ การแสดงผล:</label>
+          <select id="select-filter-type" onchange="renderReportTable()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 800; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none;">
+            <option value="all">แสดงทุกบริษัททั้งหมด</option>
+            <option value="has_sales" selected>เฉพาะบริษัทที่มีประวัติซื้อขาย SCG (2025 / 2026)</option>
+            <option value="growth_up">เฉพาะบริษัทที่ยอดขายเติบโต (+ Growth)</option>
+          </select>
+        </div>
+
+        <!-- Sort dropdown -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">📊 เรียงลำดับ:</label>
+          <select id="select-sort-type" onchange="renderReportTable()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 800; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none;">
+            <option value="growth_desc" selected>🚀 เติบโต YoY สูงสุด (มาก ➡️ น้อย)</option>
+            <option value="sales26_0914_desc">💰 ยอดขาย 2026 (14.09.2569) สูงสุด</option>
+            <option value="sales26_0930_desc">💰 ยอดขาย 2026 (30.09.2569) สูงสุด</option>
+            <option value="sales26_1030_desc">💰 ยอดขาย 2026 (30.10.2569) สูงสุด</option>
+            <option value="sales25_desc">📅 ยอดขายปี 2025 สูงสุด</option>
+            <option value="total_desc">📈 ยอดขายรวมสูงสุด (2025 + 2026)</option>
+            <option value="growth_asc">📉 เติบโต YoY ต่ำสุด (น้อย ➡️ มาก)</option>
+            <option value="name_asc">🔤 ชื่อบริษัท (ก - ฮ)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div style="position: relative; min-width: 280px;">
+        <input type="text" id="search-input" oninput="renderReportTable()" placeholder="🔍 ค้นหาชื่อบริษัท หรือ รหัสลูกค้า..." style="width: 100%; padding: 8px 14px; font-size: 0.85rem; border: 1.5px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; outline: none;">
+      </div>
+
+    </div>
+
+    <!-- Data Table Card (Excel View) -->
+    <div class="report-card">
+      <div style="background: #002060; color: #FFFFFF; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+          <span>📋</span>
+          <span id="table-header-title">ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.อุดรธานี</span>
+        </div>
+        <div style="font-size: 0.78rem; color: #93C5FD; font-weight: 700;" id="table-header-date">
+          ข้อมูลล่าสุด ณ วันที่ 14.09.2569
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="excel-table">
+          <thead>
+            <tr>
+              <th style="width: 45px; text-align: center; cursor: pointer; user-select: none;" onclick="setSortColumn('growth')" title="คลิกเพื่อเรียง">ลำดับ</th>
+              <th style="text-align: left; width: 31%; cursor: pointer; user-select: none;" onclick="setSortColumn('name')" title="คลิกเพื่อเรียงตามชื่อบริษัท">บริษัท <span id="sort-icon-name" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 12%; cursor: pointer; user-select: none;" onclick="setSortColumn('sales25')" title="คลิกเพื่อเรียงตามยอดขาย 2025">2025 <span id="sort-icon-sales25" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 14%; cursor: pointer; user-select: none;" onclick="setSortColumn('sales26_0914')" title="คลิกเพื่อเรียงตามยอดขาย 14.09.2569">2026 (14.09.2569) <span id="sort-icon-sales26_0914" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 14%; cursor: pointer; user-select: none;" onclick="setSortColumn('sales26_0930')" title="คลิกเพื่อเรียงตามยอดขาย 30.09.2569">2026 (30.09.2569) <span id="sort-icon-sales26_0930" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 14%; cursor: pointer; user-select: none;" onclick="setSortColumn('sales26_1030')" title="คลิกเพื่อเรียงตามยอดขาย 30.10.2569">2026 (30.10.2569) <span id="sort-icon-sales26_1030" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 11%; cursor: pointer; user-select: none; background: #001740;" onclick="setSortColumn('growth')" title="คลิกเพื่อเรียงตามอัตราเติบโต YoY">เติบโต YoY <span id="sort-icon-growth" style="font-size: 0.8rem; color: #FDE047;">▼</span></th>
+            </tr>
+          </thead>
+          <tbody id="report-table-body">
+            <!-- Rendered by JS -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" style="text-align: left;" id="tfoot-label">รวมทั้งสิ้น (0 บริษัท)</td>
+              <td style="text-align: right;" id="tfoot-2025">฿0</td>
+              <td style="text-align: right; color: #86EFAC;" id="tfoot-2026-0914">฿0</td>
+              <td style="text-align: right; color: #86EFAC;" id="tfoot-2026-0930">-</td>
+              <td style="text-align: right; color: #86EFAC;" id="tfoot-2026-1030">-</td>
+              <td style="text-align: right; color: #FDE047;" id="tfoot-growth">+0.0%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div style="margin-top: 16px; font-size: 0.76rem; color: #64748B; text-align: center; padding-bottom: 24px;">
+      SCG NEXTSITE AI Intelligence System • วิเคราะห์ข้อมูลยอดขายและโอกาสทางธุรกิจรับสร้างบ้าน 20 จังหวัดภาคอีสาน
+    </div>
+
+  </main>
+
+  <!-- Load Data Files -->
+  <script src="js/data.js?v=64.0"></script>
+  
+  <script>
+    // SCG ACTUAL CUSTOMER SALES DATA LIST (Master Map)
+    // Structure:
+    // - sales2025: ยอดขายปี 2025
+    // - sales2026_0914: ยอดขาย ณ วันที่ 14.09.2569 (หรือ sales2026)
+    // - sales2026_0930: ยอดขาย ณ วันที่ 30.09.2569 (อัพเดทสิ้นเดือนกันยายน)
+    // - sales2026_1030: ยอดขาย ณ วันที่ 30.10.2569 (อัพเดทสิ้นเดือนตุลาคม)
+    const SCG_CUSTOMER_SALES_LIST = [
+      { code: '10051168', name: 'เอเฮ้าส์ บิวเดอร์', sales2025: 15209, sales2026_0914: 22100, sales2026_0930: null, sales2026_1030: null, keys: ['เอเฮ้าส์', 'a-house', 'a house'] },
+      { code: '10108161', name: 'โมเดิร์น ดี (อุดรธานี)', sales2025: 1069432, sales2026_0914: 1208551, sales2026_0930: null, sales2026_1030: null, keys: ['โมเดิร์น ดี', 'โมเดิร์นดี', 'modernde', 'modern de', 'modern-de'] },
+      { code: '10126345', name: 'หล้าก่ำ ทรัพย์เจริญยิ่ง', sales2025: 110483, sales2026_0914: 18166, sales2026_0930: null, sales2026_1030: null, keys: ['หล้าก่ำ', 'ทรัพย์เจริญยิ่ง'] },
+      { code: '10280647', name: 'มหารุ่งโรจน์โฮมบิลเดอร์', sales2025: 3461247, sales2026_0914: 783850, sales2026_0930: null, sales2026_1030: null, keys: ['มหารุ่งโรจน์', 'maharungroj'] },
+      { code: '10335064', name: 'มายด์ โฮม แอสเสท', sales2025: 2514378, sales2026_0914: 1361324, sales2026_0930: null, sales2026_1030: null, keys: ['มายด์ โฮม', 'มายด์โฮม', 'mind home', 'mindhome'] },
+      { code: '10349378', name: 'จีรนันท์ พร็อพเพอร์ตี้', sales2025: 31873, sales2026_0914: 181379, sales2026_0930: null, sales2026_1030: null, keys: ['จีรนันท์', 'jeeranun'] },
+      { code: '10351579', name: 'วันเดอร์ครีเอชั่น', sales2025: 14345.3, sales2026_0914: 127081, sales2026_0930: null, sales2026_1030: null, keys: ['วันเดอร์ครีเอชั่น', 'วันเดอร์', 'wonder creation', 'wondercreation'] },
+      { code: '10369218', name: 'พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้า', sales2025: 3282, sales2026_0914: 162877.8, sales2026_0930: null, sales2026_1030: null, keys: ['พีรพัฒน์', 'peerapat'] },
+      { code: '10369220', name: 'ยูดี.โฮมส์ เอ็นจิเนียริ่ง', sales2025: 2151623, sales2026_0914: 2222685, sales2026_0930: null, sales2026_1030: null, keys: ['ยูดี.โฮมส์', 'ยูดี โฮมส์', 'ยูดีโฮมส์', 'ud home', 'ud.homes', 'udhome'] },
+      { code: '10380747', name: 'จุฑามาศ ขุลีดี', sales2025: 2531813, sales2026_0914: 243723, sales2026_0930: null, sales2026_1030: null, keys: ['จุฑามาศ ขุลีดี', 'จุฑามาศ'] },
+      { code: '10383888', name: 'ฟ้าสว่างการโยธา', sales2025: 553824, sales2026_0914: 569818, sales2026_0930: null, sales2026_1030: null, keys: ['ฟ้าสว่าง', 'fasawang'] },
+      { code: '10400409', name: 'บ้านดี-อุดร', sales2025: 423136.5, sales2026_0914: 1198975, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี-อุดร', 'บ้านดี อุดร', 'บ้านดีอุดร', 'baan-d', 'baan d'] },
+      { code: '10461104', name: 'นิติพันธ์ เปือยยะ', sales2025: 1289592, sales2026_0914: 852291, sales2026_0930: null, sales2026_1030: null, keys: ['นิติพันธ์', 'nitipan'] },
+      { code: '10482913', name: 'ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991', sales2025: 1570146, sales2026_0914: 3396188, sales2026_0930: null, sales2026_1030: null, keys: ['ทีที ดีไซน์', 'ทีทีดีไซน์', 'tt design', 'ttdesign'] },
+      { code: '10484743', name: 'ช.รุ่งอรุณ คอนสตรัคชั่น', sales2025: 151787.5, sales2026_0914: 189440, sales2026_0930: null, sales2026_1030: null, keys: ['ช.รุ่งอรุณ', 'รุ่งอรุณ คอนสตรัคชั่น', 'รุ่งอรุณ'] },
+      { code: '10485682', name: 'รุ่งรัตน์บิวตี้โฮม', sales2025: 12246, sales2026_0914: 768825.5, sales2026_0930: null, sales2026_1030: null, keys: ['รุ่งรัตน์บิวตี้โฮม', 'รุ่งรัตน์'] },
+      { code: '10500344', name: 'การิน บ้านสวย', sales2025: 469506, sales2026_0914: 1337450, sales2026_0930: null, sales2026_1030: null, keys: ['การิน บ้านสวย', 'การิน', 'karin'] },
+      { code: '10503273', name: 'สุขสกล ดีเวลลอปเม้นท์', sales2025: 677870.3, sales2026_0914: 2338879, sales2026_0930: null, sales2026_1030: null, keys: ['สุขสกล', 'suksakon'] },
+      { code: '10509038', name: '117อาร์คิเทคท์', sales2025: 28572.5, sales2026_0914: 395558.3, sales2026_0930: null, sales2026_1030: null, keys: ['117อาร์คิเทคท์', '117', '117 architect'] },
+      { code: '10523555', name: 'ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์', sales2025: 1146567, sales2026_0914: 2903328, sales2026_0930: null, sales2026_1030: null, keys: ['ทเวนตี้ซิกซ์', '26 development', '26'] },
+      { code: '10551209', name: 'บ้านใหญ่ (2016) โฮม บิวเดอร์', sales2025: 5481324, sales2026_0914: 5472101, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านใหญ่', 'baanyai', 'baanyai2016'] },
+      { code: '10590829', name: 'เลอ คราวน์ ดีไซน์', sales2025: 11367, sales2026_0914: 329498.4, sales2026_0930: null, sales2026_1030: null, keys: ['เลอ คราวน์', 'เลอคราวน์', 'le crown', 'lecrown'] },
+      { code: '10612650', name: 'บ้านดี อยู่ดี ดีไซน์', sales2025: 31155, sales2026_0914: 93806.25, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี อยู่ดี', 'บ้านดีอยู่ดี', 'baandee yoodee'] },
+      { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026_0914: 1992527, sales2026_0930: null, sales2026_1030: null, keys: ['กิจดลวรโชติ', 'กิจดล'] }
+    ];
+
+    let masterReportList = [];
+
+    function initReport() {
+      // Parse URL param for province
+      const urlParams = new URLSearchParams(window.location.search);
+      const provParam = urlParams.get('province');
+      
+      const provSelect = document.getElementById('select-province');
+      if (provParam) {
+        if (provParam.toLowerCase().includes('sakon') || provParam === 'สกลนคร') {
+          provSelect.value = 'สกลนคร';
+        } else if (provParam.toLowerCase().includes('udon') || provParam === 'อุดรธานี') {
+          provSelect.value = 'อุดรธานี';
+        } else if (provParam === 'all') {
+          provSelect.value = 'all';
+        }
+      }
+
+      // Base companies dataset
+      let baseList = [];
+      if (typeof window.UDON_COMPANIES !== 'undefined' && Array.isArray(window.UDON_COMPANIES)) {
+        baseList = JSON.parse(JSON.stringify(window.UDON_COMPANIES));
+      }
+
+      // Map sales
+      masterReportList = baseList.map(c => {
+        const cName = (c.name || '').toLowerCase();
+        const match = SCG_CUSTOMER_SALES_LIST.find(item => {
+          if (item.keys && item.keys.some(k => cName.includes(k))) return true;
+          if (cName.includes(item.name.toLowerCase())) return true;
+          return false;
+        });
+
+        if (match) {
+          c.scgCode = match.code;
+          c.sales2025 = Number(match.sales2025) || 0;
+          c.sales2026_0914 = Number(match.sales2026_0914 != null ? match.sales2026_0914 : match.sales2026) || 0;
+          c.sales2026_0930 = match.sales2026_0930 != null ? Number(match.sales2026_0930) : null;
+          c.sales2026_1030 = match.sales2026_1030 != null ? Number(match.sales2026_1030) : null;
+        } else {
+          c.scgCode = c.scgCustomerCode || null;
+          c.sales2025 = Number(c.sales2025) || 0;
+          c.sales2026_0914 = Number(c.sales2026_0914 != null ? c.sales2026_0914 : c.sales2026) || 0;
+          c.sales2026_0930 = c.sales2026_0930 != null ? Number(c.sales2026_0930) : null;
+          c.sales2026_1030 = c.sales2026_1030 != null ? Number(c.sales2026_1030) : null;
+        }
+
+        // Determine latest 2026 sales for growth comparison
+        c.sales2026_latest = (c.sales2026_1030 != null && c.sales2026_1030 > 0) ? c.sales2026_1030 :
+                             ((c.sales2026_0930 != null && c.sales2026_0930 > 0) ? c.sales2026_0930 : c.sales2026_0914);
+
+        return c;
+      });
+
+      onProvinceChange();
+    }
+
+    function onProvinceChange() {
+      const prov = document.getElementById('select-province').value;
+      const titleEl = document.getElementById('table-header-title');
+      const backBtn = document.getElementById('btn-back-dashboard');
+      
+      if (prov === 'สกลนคร') {
+        titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.สกลนคร';
+        backBtn.href = 'NEX SAKON.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (สกลนคร)';
+      } else if (prov === 'อุดรธานี') {
+        titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.อุดรธานี';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (อุดรธานี)';
+      } else {
+        titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน ทุกจังหวัด';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard';
+      }
+
+      renderReportTable();
+    }
+
+    let currentSort = 'growth_desc';
+
+    function getGrowthValue(c) {
+      const s25 = Number(c.sales2025) || 0;
+      const s26 = Number(c.sales2026_latest != null ? c.sales2026_latest : c.sales2026_0914) || 0;
+      if (s25 > 0 && s26 > 0) {
+        return ((s26 - s25) / s25) * 100;
+      }
+      if (s26 > 0 && s25 === 0) {
+        return 999999999; // ลูกค้าใหม่ปี 2026 เติบโตสูงสุด
+      }
+      if (s26 === 0 && s25 > 0) {
+        return -100; // ยอดตก 100%
+      }
+      return -999999999; // ไม่มียอดขาย
+    }
+
+    function setSortColumn(col) {
+      const selectSort = document.getElementById('select-sort-type');
+      if (col === 'growth') {
+        currentSort = (currentSort === 'growth_desc') ? 'growth_asc' : 'growth_desc';
+      } else if (col === 'sales26_0914') {
+        currentSort = (currentSort === 'sales26_0914_desc') ? 'sales26_0914_asc' : 'sales26_0914_desc';
+      } else if (col === 'sales26_0930') {
+        currentSort = (currentSort === 'sales26_0930_desc') ? 'sales26_0930_asc' : 'sales26_0930_desc';
+      } else if (col === 'sales26_1030') {
+        currentSort = (currentSort === 'sales26_1030_desc') ? 'sales26_1030_asc' : 'sales26_1030_desc';
+      } else if (col === 'sales25') {
+        currentSort = (currentSort === 'sales25_desc') ? 'sales25_asc' : 'sales25_desc';
+      } else if (col === 'name') {
+        currentSort = (currentSort === 'name_asc') ? 'name_desc' : 'name_asc';
+      } else {
+        currentSort = 'growth_desc';
+      }
+      if (selectSort) {
+        selectSort.value = currentSort;
+      }
+      renderReportTable();
+    }
+
+    function renderReportTable() {
+      const selectedProv = document.getElementById('select-province').value;
+      const filterType = document.getElementById('select-filter-type').value;
+      const searchQ = (document.getElementById('search-input').value || '').trim().toLowerCase();
+      const sortVal = document.getElementById('select-sort-type') ? document.getElementById('select-sort-type').value : currentSort;
+
+      // Update header sort icons
+      const iconName = document.getElementById('sort-icon-name');
+      const iconS25 = document.getElementById('sort-icon-sales25');
+      const iconS26_0914 = document.getElementById('sort-icon-sales26_0914');
+      const iconS26_0930 = document.getElementById('sort-icon-sales26_0930');
+      const iconS26_1030 = document.getElementById('sort-icon-sales26_1030');
+      const iconGrowth = document.getElementById('sort-icon-growth');
+      
+      if (iconName) iconName.textContent = sortVal === 'name_asc' ? ' ▲' : (sortVal === 'name_desc' ? ' ▼' : '');
+      if (iconS25) iconS25.textContent = sortVal === 'sales25_desc' ? ' ▼' : (sortVal === 'sales25_asc' ? ' ▲' : '');
+      if (iconS26_0914) iconS26_0914.textContent = sortVal === 'sales26_0914_desc' ? ' ▼' : (sortVal === 'sales26_0914_asc' ? ' ▲' : '');
+      if (iconS26_0930) iconS26_0930.textContent = sortVal === 'sales26_0930_desc' ? ' ▼' : (sortVal === 'sales26_0930_asc' ? ' ▲' : '');
+      if (iconS26_1030) iconS26_1030.textContent = sortVal === 'sales26_1030_desc' ? ' ▼' : (sortVal === 'sales26_1030_asc' ? ' ▲' : '');
+      if (iconGrowth) iconGrowth.textContent = sortVal === 'growth_desc' ? ' ▼' : (sortVal === 'growth_asc' ? ' ▲' : '');
+
+      let list = masterReportList.filter(c => {
+        // 1. Province Filter
+        if (selectedProv !== 'all') {
+          const prov = c.province || 'อุดรธานี';
+          if (!prov.includes(selectedProv)) return false;
+        }
+
+        const s25 = Number(c.sales2025) || 0;
+        const s26 = Number(c.sales2026_latest != null ? c.sales2026_latest : c.sales2026_0914) || 0;
+
+        // 2. Filter Type
+        if (filterType === 'has_sales') {
+          if (s25 === 0 && s26 === 0) return false;
+        } else if (filterType === 'growth_up') {
+          if (s26 <= s25 || s26 === 0) return false;
+        }
+
+        // 3. Search Query
+        if (searchQ) {
+          const name = (c.name || '').toLowerCase();
+          const code = (c.scgCode || '').toLowerCase();
+          if (!name.includes(searchQ) && !code.includes(searchQ)) return false;
+        }
+
+        return true;
+      });
+
+      // Sort: Default highest YoY growth first
+      list.sort((a, b) => {
+        const s25A = Number(a.sales2025) || 0;
+        const s25B = Number(b.sales2025) || 0;
+        const s26_0914_A = Number(a.sales2026_0914) || 0;
+        const s26_0914_B = Number(b.sales2026_0914) || 0;
+        const s26_0930_A = Number(a.sales2026_0930) || 0;
+        const s26_0930_B = Number(b.sales2026_0930) || 0;
+        const s26_1030_A = Number(a.sales2026_1030) || 0;
+        const s26_1030_B = Number(b.sales2026_1030) || 0;
+
+        const latestA = Number(a.sales2026_latest != null ? a.sales2026_latest : a.sales2026_0914) || 0;
+        const latestB = Number(b.sales2026_latest != null ? b.sales2026_latest : b.sales2026_0914) || 0;
+
+        const totalA = latestA + s25A;
+        const totalB = latestB + s25B;
+        const gA = getGrowthValue(a);
+        const gB = getGrowthValue(b);
+
+        if (sortVal === 'growth_desc') {
+          if (gB !== gA) return gB - gA;
+          if (latestB !== latestA) return latestB - latestA;
+          return totalB - totalA;
+        } else if (sortVal === 'growth_asc') {
+          if (gA !== gB) return gA - gB;
+          if (latestA !== latestB) return latestA - latestB;
+          return totalA - totalB;
+        } else if (sortVal === 'sales26_0914_desc') {
+          if (s26_0914_B !== s26_0914_A) return s26_0914_B - s26_0914_A;
+          return s25B - s25A;
+        } else if (sortVal === 'sales26_0914_asc') {
+          if (s26_0914_A !== s26_0914_B) return s26_0914_A - s26_0914_B;
+          return s25A - s25B;
+        } else if (sortVal === 'sales26_0930_desc') {
+          if (s26_0930_B !== s26_0930_A) return s26_0930_B - s26_0930_A;
+          return s26_0914_B - s26_0914_A;
+        } else if (sortVal === 'sales26_0930_asc') {
+          if (s26_0930_A !== s26_0930_B) return s26_0930_A - s26_0930_B;
+          return s26_0914_A - s26_0914_B;
+        } else if (sortVal === 'sales26_1030_desc') {
+          if (s26_1030_B !== s26_1030_A) return s26_1030_B - s26_1030_A;
+          return s26_0930_B - s26_0930_A;
+        } else if (sortVal === 'sales26_1030_asc') {
+          if (s26_1030_A !== s26_1030_B) return s26_1030_A - s26_1030_B;
+          return s26_0930_A - s26_0930_B;
+        } else if (sortVal === 'sales25_desc') {
+          if (s25B !== s25A) return s25B - s25A;
+          return latestB - latestA;
+        } else if (sortVal === 'sales25_asc') {
+          if (s25A !== s25B) return s25A - s25B;
+          return latestA - latestB;
+        } else if (sortVal === 'total_desc') {
+          if (totalB !== totalA) return totalB - totalA;
+          return latestB - latestA;
+        } else if (sortVal === 'name_asc') {
+          return (a.name || '').localeCompare(b.name || '', 'th');
+        } else if (sortVal === 'name_desc') {
+          return (b.name || '').localeCompare(a.name || '', 'th');
+        }
+        return gB - gA;
+      });
+
+      let sum2025 = 0;
+      let sum2026_0914 = 0;
+      let sum2026_0930 = 0;
+      let count2026_0930 = 0;
+      let sum2026_1030 = 0;
+      let count2026_1030 = 0;
+      let sumLatest = 0;
+
+      const tbody = document.getElementById('report-table-body');
+      tbody.innerHTML = list.map((c, idx) => {
+        const s25 = Number(c.sales2025) || 0;
+        const s26_0914 = Number(c.sales2026_0914) || 0;
+        const s26_0930 = c.sales2026_0930 != null ? Number(c.sales2026_0930) : null;
+        const s26_1030 = c.sales2026_1030 != null ? Number(c.sales2026_1030) : null;
+        const s26_latest = Number(c.sales2026_latest != null ? c.sales2026_latest : s26_0914) || 0;
+
+        sum2025 += s25;
+        sum2026_0914 += s26_0914;
+        if (s26_0930 != null) {
+          sum2026_0930 += s26_0930;
+          count2026_0930++;
+        }
+        if (s26_1030 != null) {
+          sum2026_1030 += s26_1030;
+          count2026_1030++;
+        }
+        sumLatest += s26_latest;
+
+        let growthHtml = '<span style="color: #94A3B8;">-</span>';
+        if (s25 > 0 && s26_latest > 0) {
+          const growth = ((s26_latest - s25) / s25) * 100;
+          const isUp = growth >= 0;
+          growthHtml = `<span style="font-weight: 800; color: ${isUp ? '#16A34A' : '#DC2626'};">${isUp ? '+' : ''}${growth.toFixed(1)}%</span>`;
+        } else if (s26_latest > 0 && s25 === 0) {
+          growthHtml = '<span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>';
+        }
+
+        const codeBadge = c.scgCode ? `<span style="background: #F1F5F9; border: 1px solid #CBD5E1; color: #475569; font-size: 0.74rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px;">รหัส ${c.scgCode}</span>` : '';
+
+        // Determine 14.09.2569 color
+        let color0914 = '#0F172A';
+        if (s26_0914 === 0 && s25 === 0) {
+          color0914 = '#94A3B8';
+        } else if (s25 > 0 && s26_0914 < s25) {
+          color0914 = '#DC2626'; // แดง
+        } else if (s26_0914 > s25 && s25 > 0) {
+          color0914 = '#16A34A'; // เขียว
+        }
+
+        // Determine 30.09.2569 cell
+        let cell0930Html = '<span style="color: #94A3B8;">-</span>';
+        if (s26_0930 != null) {
+          let color0930 = '#0F172A';
+          if (s26_0930 > s26_0914) color0930 = '#16A34A';
+          else if (s26_0930 < s26_0914) color0930 = '#DC2626';
+          cell0930Html = `<span style="font-weight: 900; color: ${color0930};">฿${s26_0930.toLocaleString('th-TH', {minimumFractionDigits: (s26_0930 % 1 !== 0 ? 2 : 0), maximumFractionDigits: 2})}</span>`;
+        }
+
+        // Determine 30.10.2569 cell
+        let cell1030Html = '<span style="color: #94A3B8;">-</span>';
+        if (s26_1030 != null) {
+          const prevRef = s26_0930 != null ? s26_0930 : s26_0914;
+          let color1030 = '#0F172A';
+          if (s26_1030 > prevRef) color1030 = '#16A34A';
+          else if (s26_1030 < prevRef) color1030 = '#DC2626';
+          cell1030Html = `<span style="font-weight: 900; color: ${color1030};">฿${s26_1030.toLocaleString('th-TH', {minimumFractionDigits: (s26_1030 % 1 !== 0 ? 2 : 0), maximumFractionDigits: 2})}</span>`;
+        }
+
+        return `
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">${idx + 1}</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <span>${c.name}</span>
+                ${codeBadge}
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: ${s25 > 0 ? '#1E293B' : '#94A3B8'};">
+              ${s25 > 0 ? '฿' + s25.toLocaleString('th-TH', {minimumFractionDigits: (s25 % 1 !== 0 ? 2 : 0), maximumFractionDigits: 2}) : '-'}
+            </td>
+            <td style="text-align: right; font-weight: 900; color: ${color0914};">
+              ${s26_0914 > 0 ? '฿' + s26_0914.toLocaleString('th-TH', {minimumFractionDigits: (s26_0914 % 1 !== 0 ? 2 : 0), maximumFractionDigits: 2}) : '-'}
+            </td>
+            <td style="text-align: right;">
+              ${cell0930Html}
+            </td>
+            <td style="text-align: right;">
+              ${cell1030Html}
+            </td>
+            <td style="text-align: right;">
+              ${growthHtml}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Update KPIs
+      document.getElementById('kpi-company-count').textContent = list.length + ' บริษัท';
+      document.getElementById('kpi-sales-2025').textContent = '฿' + sum2025.toLocaleString('th-TH', {maximumFractionDigits: 0});
+      document.getElementById('kpi-sales-2026').textContent = '฿' + sumLatest.toLocaleString('th-TH', {maximumFractionDigits: 0});
+
+      let totalGrowth = 0;
+      if (sum2025 > 0) {
+        totalGrowth = ((sumLatest - sum2025) / sum2025) * 100;
+      }
+      const growthEl = document.getElementById('kpi-growth-rate');
+      const isUp = totalGrowth >= 0;
+      growthEl.textContent = `${isUp ? '+' : ''}${totalGrowth.toFixed(1)}%`;
+      growthEl.style.color = isUp ? '#16A34A' : '#DC2626';
+
+      // Update Footers
+      document.getElementById('tfoot-label').textContent = `รวมทั้งสิ้น (${list.length} บริษัท)`;
+      document.getElementById('tfoot-2025').textContent = '฿' + sum2025.toLocaleString('th-TH', {maximumFractionDigits: 0});
+      document.getElementById('tfoot-2026-0914').textContent = '฿' + sum2026_0914.toLocaleString('th-TH', {maximumFractionDigits: 0});
+      document.getElementById('tfoot-2026-0930').textContent = count2026_0930 > 0 ? '฿' + sum2026_0930.toLocaleString('th-TH', {maximumFractionDigits: 0}) : '-';
+      document.getElementById('tfoot-2026-1030').textContent = count2026_1030 > 0 ? '฿' + sum2026_1030.toLocaleString('th-TH', {maximumFractionDigits: 0}) : '-';
+      document.getElementById('tfoot-growth').textContent = `${isUp ? '+' : ''}${totalGrowth.toFixed(1)}%`;
+    }
+
+    function exportToExcelCsv() {
+      const selectedProv = document.getElementById('select-province').value;
+      const provName = selectedProv === 'all' ? 'All_Provinces' : selectedProv;
+
+      let csvContent = "\uFEFFลำดับ,บริษัท,รหัสลูกค้า SCG,ยอดขาย 2025 (บาท),ยอดขาย 2026 (14.09.2569) (บาท),ยอดขาย 2026 (30.09.2569) (บาท),ยอดขาย 2026 (30.10.2569) (บาท),อัตราเติบโต YoY (%)\n";
+
+      let sum2025 = 0;
+      let sum26_0914 = 0;
+      let sum26_0930 = 0;
+      let sum26_1030 = 0;
+
+      const rows = document.querySelectorAll('#report-table-body tr');
+      rows.forEach((r, idx) => {
+        const cells = r.querySelectorAll('td');
+        if (cells.length >= 7) {
+          const nameText = cells[1].innerText.replace(/\n/g, ' ').replace(/"/g, '""');
+          const s25Text = cells[2].innerText.replace(/[^0-9.-]+/g,"") || 0;
+          const s26_0914Text = cells[3].innerText.replace(/[^0-9.-]+/g,"") || 0;
+          const s26_0930Text = cells[4].innerText.replace(/[^0-9.-]+/g,"") || 0;
+          const s26_1030Text = cells[5].innerText.replace(/[^0-9.-]+/g,"") || 0;
+          const growthText = cells[6].innerText.trim();
+          
+          sum2025 += Number(s25Text);
+          sum26_0914 += Number(s26_0914Text);
+          sum26_0930 += Number(s26_0930Text);
+          sum26_1030 += Number(s26_1030Text);
+
+          csvContent += `"${idx + 1}","${nameText}","",${s25Text},${s26_0914Text},${s26_0930Text},${s26_1030Text},"${growthText}"\n`;
+        }
+      });
+
+      const latestSum = sum26_1030 > 0 ? sum26_1030 : (sum26_0930 > 0 ? sum26_0930 : sum26_0914);
+      let totalGrowth = sum2025 > 0 ? (((latestSum - sum2025) / sum2025) * 100).toFixed(1) + "%" : "-";
+      csvContent += `"","รวมทั้งสิ้น (${rows.length} บริษัท)","",${sum2025},${sum26_0914},${sum26_0930},${sum26_1030},"${totalGrowth}"\n`;
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `SCG_Sales_Report_${provName}_Monthly_Track.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    document.addEventListener('DOMContentLoaded', initReport);
+  </script>
+</body>
+
+</html>
