@@ -724,9 +724,16 @@
            onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none'; this.style.boxShadow='0 1px 3px rgba(30,64,175,0.08)';">
           <span style="font-size: 0.9rem;">📊</span>
           <span>Report จ.อุดรธานี:</span>
-          <span style="color: #0369A1; font-weight: 700;">วิเคราะห์ 56 บริษัท • พร้อมยอดขาย 2025/2026</span>
+          <span style="color: #0369A1; font-weight: 700;">วิเคราะห์ 54 บริษัท • พร้อมยอดขาย 2025/2026</span>
           <span style="font-size: 0.72rem; background: #3B82F6; color: #FFFFFF; padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 2px;">เปิดหน้ารายงาน ↗</span>
         </a>
+
+        <!-- ปุ่มบทวิเคราะห์ AI ประจำเดือน -->
+        <button type="button" onclick="openAiStrategyModal()" style="display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #2563EB 100%); color: #FFFFFF; border: none; padding: 5px 14px; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35); cursor: pointer; transition: all 0.2s ease; user-select: none;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 5px 14px rgba(124, 58, 237, 0.45)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 2px 8px rgba(124, 58, 237, 0.35)';">
+          <span>✨</span>
+          <span>คำแนะนำ & บทวิเคราะห์จาก AI</span>
+          <span style="background: rgba(255,255,255,0.2); font-size: 0.7rem; padding: 1px 6px; border-radius: 4px; font-weight: 700;">ก.ย. 69</span>
+        </button>
       </div>
 
       <!-- Total Projects in Province Badge -->
@@ -1690,6 +1697,243 @@
         </div>
       </div>
     </div>
+
+    <!-- ========================================== -->
+    <!-- AI STRATEGY & SALES ADVISORY MODAL -->
+    <!-- ========================================== -->
+    <div id="ai-strategy-modal" class="modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(6px); z-index: 99999; align-items: center; justify-content: center; padding: 20px;" onclick="if(event.target === this) closeAiStrategyModal()">
+      <div style="background: #FFFFFF; width: 100%; max-width: 980px; max-height: 92vh; border-radius: 18px; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45); display: flex; flex-direction: column; overflow: hidden; border: 1.5px solid #CBD5E1; animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
+        
+        <!-- Modal Header: AI Gradient -->
+        <div style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 40%, #1E3A8A 100%); color: #FFFFFF; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #6366F1;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);">
+              ✨
+            </div>
+            <div>
+              <div style="font-size: 1.15rem; font-weight: 800; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;">
+                <span>บทวิเคราะห์กลยุทธ์ยอดขาย & คำแนะนำประจำเดือนจาก AI</span>
+                <span style="background: #ECFDF5; color: #065F46; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-weight: 800; border: 1px solid #A7F3D0;">SCG Udon Thani Intelligence</span>
+              </div>
+              <div style="font-size: 0.78rem; color: #C7D2FE; font-weight: 600; margin-top: 2px;">
+                วิเคราะห์โครงสร้างตลาดและพฤติกรรมการซื้อ • ฉบับเปรียบเทียบยอดขายปี 2025 vs 2026 (ประจำรอบ 14 กันยายน 2569)
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button type="button" onclick="printAiStrategyReport()" style="background: rgba(255,255,255,0.15); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+              🖨️ พิมพ์บทวิเคราะห์
+            </button>
+            <button type="button" onclick="closeAiStrategyModal()" style="background: transparent; color: #FFFFFF; border: none; font-size: 1.4rem; width: 34px; height: 34px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='transparent'">
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Body (Scrollable Insights) -->
+        <div id="ai-strategy-printable-area" style="flex: 1; overflow-y: auto; padding: 24px; background: #F8FAFC; font-family: 'Prompt', 'Inter', sans-serif;">
+          
+          <!-- Summary KPI Metrics Cards -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 22px;">
+            
+            <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #16A34A; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+              <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">🚀 กลุ่มดาวรุ่ง (Growth Engines)</div>
+              <div style="font-size: 1.25rem; font-weight: 900; color: #16A34A; margin-top: 4px;">+10.2 ล้านบาท</div>
+              <div style="font-size: 0.72rem; color: #15803D; font-weight: 600; margin-top: 2px;">ทีที ดีไซน์, ทเวนตี้ซิกซ์, สุขสกล, กิจดล ฯลฯ</div>
+            </div>
+
+            <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #DC2626; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+              <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">🚨 ยอดหลุดหาย (At-Risk / Churn)</div>
+              <div style="font-size: 1.25rem; font-weight: 900; color: #DC2626; margin-top: 4px;">-6.1 ล้านบาท</div>
+              <div style="font-size: 0.72rem; color: #B91C1C; font-weight: 600; margin-top: 2px;">จุฑามาศ, มหารุ่งโรจน์, มายด์ โฮม</div>
+            </div>
+
+            <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #2563EB; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+              <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">🏛️ เสาหลักยอดมั่นคง (Anchor)</div>
+              <div style="font-size: 1.25rem; font-weight: 900; color: #1E40AF; margin-top: 4px;">5.47 ล้านบาท</div>
+              <div style="font-size: 0.72rem; color: #1D4ED8; font-weight: 600; margin-top: 2px;">บ้านใหญ่ (2016) ยืน 1 คงเส้นคงวา</div>
+            </div>
+
+            <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #9333EA; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+              <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">📈 สถานะตลาดรวม (Market Trend)</div>
+              <div style="font-size: 1.25rem; font-weight: 900; color: #7E22CE; margin-top: 4px;">เปลี่ยนถ่ายขั้ว (Shift)</div>
+              <div style="font-size: 0.72rem; color: #6B21A8; font-weight: 600; margin-top: 2px;">รายใหม่ขยายตัว รายใหญ่เดิมชะลอ</div>
+            </div>
+
+          </div>
+
+          <!-- Section 1: Market Shift Analysis -->
+          <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 20px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+              <span style="font-size: 1.2rem;">📊</span>
+              <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A;">1. บทวิเคราะห์โครงสร้างยอดขาย (Market Structure Analysis)</h3>
+            </div>
+            
+            <p style="font-size: 0.86rem; color: #334155; line-height: 1.6; margin-top: 0;">
+              ตลาดรับสร้างบ้านใน จ.อุดรธานี กำลังเกิดปรากฏการณ์ <strong>"เปลี่ยนขั้วอำนาจทางการค้า (Market Shift)"</strong> อย่างมีนัยสำคัญ โดยแบ่งกลุ่มลูกค้าออกเป็น 3 มิติชัดเจน:
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 14px;">
+              
+              <!-- Box A -->
+              <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 10px; padding: 14px;">
+                <div style="font-weight: 800; color: #166534; font-size: 0.88rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                  <span>🚀 กลุ่มดาวรุ่งพุ่งแรง (Growth Engines)</span>
+                </div>
+                <ul style="margin: 0; padding-left: 18px; font-size: 0.8rem; color: #14532D; line-height: 1.7;">
+                  <li><strong>ทีที ดีไซน์:</strong> 1.57M ➔ 3.39M <span style="color:#16A34A; font-weight:800;">(+116.3%)</span></li>
+                  <li><strong>ทเวนตี้ซิกซ์:</strong> 1.14M ➔ 2.90M <span style="color:#16A34A; font-weight:800;">(+153.2%)</span></li>
+                  <li><strong>สุขสกล (NASIT HOME):</strong> 6.77แสน ➔ 2.33M <span style="color:#16A34A; font-weight:800;">(+245.0%)</span></li>
+                  <li><strong>กิจดลวรโชติ1:</strong> 4.38แสน ➔ 1.99M <span style="color:#16A34A; font-weight:800;">(+354.8%)</span></li>
+                  <li><strong>การิน บ้านสวย:</strong> 4.69แสน ➔ 1.33M <span style="color:#16A34A; font-weight:800;">(+184.9%)</span></li>
+                  <li><strong>บ้านดี-อุดร:</strong> 4.23แสน ➔ 1.19M <span style="color:#16A34A; font-weight:800;">(+183.4%)</span></li>
+                </ul>
+              </div>
+
+              <!-- Box B -->
+              <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 10px; padding: 14px;">
+                <div style="font-weight: 800; color: #991B1B; font-size: 0.88rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                  <span>🚨 สัญญาณอันตราย ยอดหลุดหาย (Red Alert)</span>
+                </div>
+                <ul style="margin: 0; padding-left: 18px; font-size: 0.8rem; color: #7F1D1D; line-height: 1.7;">
+                  <li><strong>จุฑามาศ ขุลีดี:</strong> 2.53M ➔ 2.43แสน <span style="color:#DC2626; font-weight:800;">(-90.4%) ⚠️ หายไป 2.28 ล้าน</span></li>
+                  <li><strong>มหารุ่งโรจน์:</strong> 3.46M ➔ 7.83แสน <span style="color:#DC2626; font-weight:800;">(-77.4%) ⚠️ หายไป 2.67 ล้าน</span></li>
+                  <li><strong>มายด์ โฮม:</strong> 2.51M ➔ 1.36M <span style="color:#DC2626; font-weight:800;">(-45.9%) ⚠️ หายไป 1.15 ล้าน</span></li>
+                  <li><strong>นิติพันธ์ เปือยยะ:</strong> 1.28M ➔ 8.52แสน <span style="color:#DC2626; font-weight:800;">(-33.9%) ⚠️ หายไป 4.3 แสน</span></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Section 2: Key Hypotheses -->
+          <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 20px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+              <span style="font-size: 1.2rem;">💡</span>
+              <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A;">2. ข้อสังเกตและสมมติฐานสำคัญ (Key Strategic Hypotheses)</h3>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start; background: #FFFBEB; border: 1px solid #FDE68A; padding: 12px 14px; border-radius: 8px;">
+                <span style="font-size: 1.2rem; line-height: 1;">⚠️</span>
+                <div style="font-size: 0.83rem; color: #78350F; line-height: 1.55;">
+                  <strong>1. ยอดรวมโตสวยงาม แต่ "รูรั่ว" กว้างมาก:</strong> กลุ่มดาวรุ่งช่วยดันยอดโตกว่า +10 ล้านบาท แต่กลุ่มลูกค้ารายใหญ่เดิม 3 ราย (จุฑามาศ, มหารุ่งโรจน์, มายด์ โฮม) ยอดหลุดหายไปกว่า <strong>6.1 ล้านบาท</strong> จึงต้องส่งทีมเข้าสำรวจทันทีว่า <em>"งานก่อสร้างลดลงจริง"</em> หรือ <em>"เปลี่ยนไปใช้ปูนคู่แข่ง / คอนกรีตผสมเสร็จท้องถิ่น"</em> หรือ <em>"เปลี่ยนไปซื้อผ่านร้านค้าตัวแทนอื่น"</em>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px; align-items: flex-start; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px 14px; border-radius: 8px;">
+                <span style="font-size: 1.2rem; line-height: 1;">✨</span>
+                <div style="font-size: 0.83rem; color: #14532D; line-height: 1.55;">
+                  <strong>2. กลุ่ม New & Non-Focus ที่พร้อมดันขึ้นเป็น Focus Tier:</strong> บริษัทอย่าง <em>รุ่งรัตน์บิวตี้โฮม (1.2 หมื่น ➔ 7.6 แสน)</em> และ <em>117อาร์คิเทคท์ (2.8 หมื่น ➔ 3.9 แสน)</em> มีอัตราการเติบโตแบบก้าวกระโดด ควรดึงเข้าสู่แผนดูแลพิเศษ (VIP Onboarding) ทันที
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Actionable Sales Playbook -->
+          <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+              <span style="font-size: 1.2rem;">🎯</span>
+              <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A;">3. แผนปฏิบัติการทีมขาย 4 ขั้นตอน (Actionable Sales Playbook)</h3>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 14px;">
+              
+              <!-- Action 1 -->
+              <div style="border: 1.5px solid #FCA5A5; background: #FFF5F5; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 0.88rem; font-weight: 800; color: #991B1B; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                  <span style="background: #DC2626; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">1</span>
+                  <span>แผนกู้ยอดด่วน "Win-Back Rescue" (ด่วนที่สุด)</span>
+                </div>
+                <div style="font-size: 0.79rem; color: #7F1D1D; line-height: 1.55;">
+                  • <strong>เป้าหมาย:</strong> จุฑามาศ, มหารุ่งโรจน์, มายด์ โฮม<br>
+                  • <strong>แนวทาง:</strong> เซลส์เข้าพบเจ้าของ/ฝ่ายจัดซื้อสัปดาห์นี้ หากติดเรื่องราคา/เครดิต ให้ร่วมมือกับตัวแทนจำหน่ายจัด Volume Rebate หรือนำเสนอโซลูชันลดแรงงาน เช่น คอนกรีต CPAC
+                </div>
+              </div>
+
+              <!-- Action 2 -->
+              <div style="border: 1.5px solid #86EFAC; background: #F0FDF4; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 0.88rem; font-weight: 800; color: #166534; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                  <span style="background: #16A34A; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">2</span>
+                  <span>แผนล็อกสัญญาระยะยาว "VIP Lock-in" (รักษาฐานโต)</span>
+                </div>
+                <div style="font-size: 0.79rem; color: #14532D; line-height: 1.55;">
+                  • <strong>เป้าหมาย:</strong> ทีที ดีไซน์, ทเวนตี้ซิกซ์, สุขสกล, กิจดลวรโชติ<br>
+                  • <strong>แนวทาง:</strong> เสนอ <em>SCG Partner Privileges</em> มีทีมวิศวกรและผู้เชี่ยวชาญเข้าช่วยตรวจไซต์งาน + สนับสนุนป้าย Co-Branding หน้าไซต์งานจริง เพื่อล็อกให้ใช้ SCG 100%
+                </div>
+              </div>
+
+              <!-- Action 3 -->
+              <div style="border: 1.5px solid #93C5FD; background: #EFF6FF; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 0.88rem; font-weight: 800; color: #1E40AF; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                  <span style="background: #2563EB; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">3</span>
+                  <span>ปิดดีลด้วย Cross-Selling (ขยายตะกร้าสินค้า)</span>
+                </div>
+                <div style="font-size: 0.79rem; color: #1E3A8A; line-height: 1.55;">
+                  • <strong>เป้าหมาย:</strong> ผู้รับเหมาที่ซื้อเฉพาะปูนผงโครงสร้าง<br>
+                  • <strong>แนวทาง:</strong> เสนอพ่วงสินค้า Margin สูง ได้แก่ <em>คอนกรีตผสมเสร็จ CPAC + ระบบหลังคา SCG NeuTile + อิฐมวลเบา Q-CON + กระเบื้อง/สุขภัณฑ์ COTTO</em> เพื่อดัน Ticket Size
+                </div>
+              </div>
+
+              <!-- Action 4 -->
+              <div style="border: 1.5px solid #FDE047; background: #FEFCE8; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 0.88rem; font-weight: 800; color: #854D0E; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                  <span style="background: #CA8A04; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">4</span>
+                  <span>เจาะไซต์งานตั้งแต่เริ่มเทฐานราก (Early-Stage Hunting)</span>
+                </div>
+                <div style="font-size: 0.79rem; color: #713F12; line-height: 1.55;">
+                  • <strong>เป้าหมาย:</strong> ไซต์งานที่ตรวจพบสัญญาณโพสต์ Facebook ในระบบ<br>
+                  • <strong>แนวทาง:</strong> ใช้ระบบคัดกรองไซต์สเตจ <em>Groundbreak & Foundation (วางผัง/เทตอม่อ)</em> เข้าเจาะก่อนคู่แข่ง จะมีโอกาสปิดดีลปูนเทคานและโครงสร้างได้สูงกว่าถึง 80%
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal Footer -->
+        <div style="background: #F1F5F9; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #CBD5E1; flex-wrap: wrap; gap: 10px;">
+          <div style="font-size: 0.76rem; color: #64748B; display: flex; align-items: center; gap: 6px;">
+            <span>🤖</span>
+            <span>ระบบรองรับการวิเคราะห์และอัปเดตบทวิเคราะห์ชุดใหม่เป็นประจำทุกเดือนตามรอบข้อมูลยอดขาย</span>
+          </div>
+          <button type="button" onclick="closeAiStrategyModal()" style="background: #1E293B; color: #FFFFFF; border: none; padding: 7px 20px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer;">
+            ปิดหน้าต่าง
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      function openAiStrategyModal() {
+        const modal = document.getElementById('ai-strategy-modal');
+        if (modal) {
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeAiStrategyModal() {
+        const modal = document.getElementById('ai-strategy-modal');
+        if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+
+      function printAiStrategyReport() {
+        document.body.classList.add('printing-ai-strategy');
+        setTimeout(() => {
+          window.print();
+          setTimeout(() => {
+            document.body.classList.remove('printing-ai-strategy');
+          }, 1200);
+        }, 50);
+      }
+    </script>
 
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
