@@ -478,6 +478,12 @@
           provSelect.value = 'อุดรธานี';
         } else if (provParam === 'all') {
           provSelect.value = 'all';
+        } else {
+          try {
+            provSelect.value = decodeURIComponent(provParam);
+          } catch(e) {
+            provSelect.value = provParam;
+          }
         }
       }
 
@@ -533,8 +539,12 @@
         titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.อุดรธานี';
         backBtn.href = 'index.html';
         backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (อุดรธานี)';
-      } else {
+      } else if (prov === 'all') {
         titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน ทุกจังหวัด';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard';
+      } else {
+        titleEl.textContent = `ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.${prov}`;
         backBtn.href = 'index.html';
         backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard';
       }
