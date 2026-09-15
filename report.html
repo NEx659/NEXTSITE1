@@ -532,7 +532,10 @@
       { code: '10551209', name: 'บ้านใหญ่ (2016) โฮม บิวเดอร์', sales2025: 5481324, sales2026_0914: 5472101, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านใหญ่', 'baanyai', 'baanyai2016'] },
       { code: '10590829', name: 'เลอ คราวน์ ดีไซน์', sales2025: 11367, sales2026_0914: 329498.4, sales2026_0930: null, sales2026_1030: null, keys: ['เลอ คราวน์', 'เลอคราวน์', 'le crown', 'lecrown'] },
       { code: '10612650', name: 'บ้านดี อยู่ดี ดีไซน์', sales2025: 31155, sales2026_0914: 93806.25, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี อยู่ดี', 'บ้านดีอยู่ดี', 'baandee yoodee'] },
-      { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026_0914: 1992527, sales2026_0930: null, sales2026_1030: null, keys: ['กิจดลวรโชติ', 'กิจดล'] }
+      { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026_0914: 1992527, sales2026_0930: null, sales2026_1030: null, keys: ['กิจดลวรโชติ', 'กิจดล'] },
+      { code: '10729130', name: 'บ้านวิศวะพัฒนา', sales2025: 0, sales2026_0914: 238997, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านวิศวะพัฒนา', 'บ้านวิศวะ', 'baanwisawa', 'banwisawa'] },
+      { code: '10739362', name: 'ห้างหุ้นส่วนจำกัด เค พี โฮม', sales2025: 0, sales2026_0914: 7101, sales2026_0930: null, sales2026_1030: null, keys: ['เค พี โฮม', 'เค.พี.โฮม', 'เคพีโฮม', 'kp home', 'k.p. home'] },
+      { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026_0914: 161278, sales2026_0930: null, sales2026_1030: null, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] }
     ];
 
     let masterReportList = [];
@@ -811,7 +814,15 @@
           growthHtml = '<span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>';
         }
 
-        const codeBadge = c.scgCode ? `<span style="background: #F1F5F9; border: 1px solid #CBD5E1; color: #475569; font-size: 0.74rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px;">รหัส ${c.scgCode}</span>` : '';
+        const targetPage = (c.province && c.province.includes('สกลนคร')) ? 'NEX SAKON.html' : 'index.html';
+        const targetUrl = `${targetPage}?companyId=${encodeURIComponent(c.id || '')}&scgCode=${encodeURIComponent(c.scgCode || '')}`;
+
+        const codeBadge = c.scgCode ? `
+          <a href="${targetUrl}" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ${c.name} ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส ${c.scgCode}</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        ` : '';
 
         // Determine 14.09.2569 color
         let color0914 = '#0F172A';
@@ -847,7 +858,9 @@
             <td style="text-align: center; font-weight: 700; color: #64748B;">${idx + 1}</td>
             <td style="font-weight: 700; color: #0F172A;">
               <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
-                <span>${c.name}</span>
+                <a href="${targetUrl}" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ${c.name} ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ${c.name}
+                </a>
                 ${codeBadge}
               </div>
             </td>
