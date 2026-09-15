@@ -89,6 +89,15 @@
       background-color: #DBEAFE !important;
     }
 
+    /* Presentation Mode: ซ่อนคอลัมน์ประวัติซื้อขายเมื่อคุยกับลูกค้า */
+    body.hide-sales-mode .col-sales-2025,
+    body.hide-sales-mode .col-sales-2026 {
+      display: none !important;
+    }
+    body.hide-sales-mode .modal-sales-confidential {
+      display: none !important;
+    }
+
     .tag-filter-btn .count-badge {
       font-size: 0.72rem !important;
       font-weight: 800 !important;
@@ -526,20 +535,30 @@
     </section>
 
     <!-- SCG Product Demand & Analytics Cards (Click card to view charts) -->
-    <section class="product-analytics-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+    <section id="product-demand-section" class="product-analytics-section">
+      <div class="product-demand-header-box" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; cursor: pointer;" onclick="toggleProductDemandSection()">
         <div>
           <h2
-            style="font-size: 1.05rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--primary-red);">📊</span> สรุปความต้องการสินค้า SCG ตามสเตจงานจริง (Product Demand Intelligence)
+            style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF; display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+            <span>📊</span> สรุปความต้องการสินค้า SCG ตามสเตจงานจริง (Product Demand Intelligence)
           </h2>
-          <p id="product-demand-subtitle" style="font-size: 0.76rem; color: var(--text-secondary); margin-top: 2px;">
+          <p id="product-demand-subtitle" style="font-size: 0.76rem; color: #FECACA; margin-top: 2px; margin-bottom: 0;">
             คลิกที่การ์ดสินค้าแต่ละกลุ่ม เพื่อดูรายชื่อไซต์งานจริงใน <span id="product-demand-province-label">จ.สกลนคร</span> และสเตจก่อสร้างที่ตรงกับความต้องการใช้วัสดุ
           </p>
         </div>
-        <div
-          style="font-size: 0.72rem; color: var(--text-secondary); background: #F1ECE0; padding: 0.3rem 0.7rem; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color);">
-          💡 คลิกการ์ดเพื่อเปิดรายชื่อไซต์งาน
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div
+            style="font-size: 0.72rem; color: #78350F; background: #FEF3C7; padding: 0.3rem 0.7rem; border-radius: 6px; font-weight: 700; border: 1px solid #FDE68A;">
+            💡 คลิกการ์ดเพื่อเปิดรายชื่อไซต์งาน
+          </div>
+          <!-- Triangle Collapse / Expand Arrow Button -->
+          <button id="btn-toggle-product-demand" type="button" onclick="event.stopPropagation(); toggleProductDemandSection()"
+            title="คลิกเพื่อย่อ/ขยายรายละเอียดสินค้า"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.22); color: #FFFFFF; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease;"
+            onmouseover="this.style.background='rgba(0,0,0,0.4)'; this.style.borderColor='#FFFFFF';"
+            onmouseout="this.style.background='rgba(0,0,0,0.22)'; this.style.borderColor='rgba(255,255,255,0.4)';">
+            <span id="icon-toggle-product-demand" style="transition: transform 0.2s ease; display: inline-block;">▼</span>
+          </button>
         </div>
       </div>
 
@@ -729,9 +748,20 @@
         </a>
       </div>
 
-      <!-- Total Projects in Province Badge -->
-      <div id="province-total-projects-badge" style="font-weight: 800; color: #0F172A; font-size: 0.85rem; white-space: nowrap;">
-        จำนวนโครงการในสกลนคร <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">0</span> โครงการ
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <!-- Privacy Toggle Button: ซ่อน/แสดง ยอดขายเพื่อคุยกับลูกค้า (Icon Only) -->
+        <button id="btn-toggle-sales-columns" type="button" onclick="toggleSalesColumnsVisibility()"
+          title="ซ่อน/แสดง ยอดซื้อขาย (โหมดคุยกับลูกค้า)"
+          style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #FFFFFF; border: 1.5px solid #CBD5E1; color: #334155; border-radius: 50%; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.06);"
+          onmouseover="this.style.borderColor='#3B82F6'; this.style.transform='scale(1.08)';"
+          onmouseout="if(!document.body.classList.contains('hide-sales-mode')){ this.style.borderColor='#CBD5E1'; this.style.transform='scale(1)'; }">
+          <span id="icon-toggle-sales">👁️</span>
+        </button>
+
+        <!-- Total Projects in Province Badge -->
+        <div id="province-total-projects-badge" style="font-weight: 800; color: #0F172A; font-size: 0.85rem; white-space: nowrap;">
+          จำนวนโครงการในสกลนคร <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">0</span> โครงการ
+        </div>
       </div>
     </div>
 
@@ -745,21 +775,19 @@
               <th style="text-align: center;">บริษัท</th>
               <th id="th-province-column">พื้นที่ตั้งบริษัท</th>
               <th>ความน่าจะเป็นโครงการ <span style="font-size: 0.72rem; font-weight: 600; color: #64748B; display: block; margin-top: 1px;">(สัญญาณย้อนหลัง 8 โพสต์ล่าสุด)</span></th>
-              <th class="col-sales-2025" style="text-align: right; min-width: 130px;">ประวัติซื้อขาย 2025</th>
-              <th class="col-sales-2026" style="text-align: right; min-width: 130px;">ประวัติซื้อขาย 2026</th>
-              <th style="text-align: center; min-width: 145px; padding: 6px 8px;">
-                <div style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; flex-wrap: nowrap;">
-                  <span>สถานะ</span>
-                  <select id="select-crm-status-filter" onchange="handleCrmStatusFilterChange(this.value)" 
-                    style="font-size: 0.74rem; font-weight: 800; padding: 2px 6px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #0F172A; cursor: pointer; outline: none; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: all 0.15s ease;"
-                    title="คลิกเพื่อเลือกกรองสถานะการติดตาม">
-                    <option value="all">ทั้งหมด 🔻</option>
-                    <option value="followed">🟢 เข้าติดตามแล้ว</option>
-                    <option value="pending">🟠 รอการติดตาม</option>
-                  </select>
+              <th class="col-sales-2025" style="text-align: right; min-width: 130px;">
+                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px;">
+                  <span>ประวัติซื้อขาย 2025</span>
                 </div>
               </th>
-              <th>Revenue Potential</th>
+              <th class="col-sales-2026" style="text-align: right; min-width: 130px;">
+                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px;">
+                  <span>ประวัติซื้อขาย 2026</span>
+                  <button type="button" onclick="toggleSalesColumnsVisibility()" title="ซ่อนคอลัมน์ยอดขาย (เพื่อคุยกับลูกค้า)" style="background: rgba(255,255,255,0.22); border: none; color: #FFFFFF; font-size: 0.65rem; font-weight: 800; padding: 1px 6px; border-radius: 4px; cursor: pointer; margin-left: 2px;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.22)'">✕ ซ่อน</button>
+                </div>
+              </th>
+              <th style="text-align: center; min-width: 145px;">สถานะ</th>
+              <th style="text-align: center; min-width: 135px;">รูปหน้างานที่เข้าติดตามจริง</th>
               <th>คำแนะนำจาก AI</th>
             </tr>
           </thead>
@@ -917,21 +945,46 @@
             </div>
           </div>
 
-          <!-- Quick Templates / Tags -->
-          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 0.75rem;">
-            <span style="font-size: 0.72rem; color: #64748B; font-weight: 700; align-self: center;">แทรกข้อความด่วน:</span>
-            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('📞 โทรติดต่อแนะนำตัวและสอบถามความต้องการปูน SCG แล้ว')">
-              + โทรติดต่อแล้ว
-            </button>
-            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('🚗 เข้าพบผู้รับเหมา/วิศวกร ณ ไซต์งานจริง พูดคุยราบรื่น')">
-              + เข้าพบหน้างานแล้ว
-            </button>
-            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('📄 ลูกค้าขอใบเสนอราคาปูนไฮดรอลิก & CPAC นัดส่งภายใน 48 ชม.')">
-              + ขอใบเสนอราคา
-            </button>
-            <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('🎉 ลูกค้าตกลงสั่งซื้อสินค้า SCG เรียบร้อย')">
-              + ปิดการขายสำเร็จ
-            </button>
+          <!-- Quick Templates / Tags & Sales Opportunity Level Selector -->
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 0.75rem;">
+            <!-- Quick Templates Tags -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+              <span style="font-size: 0.72rem; color: #64748B; font-weight: 700; align-self: center;">แทรกข้อความด่วน:</span>
+              <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('📞 โทรติดต่อแนะนำตัวและสอบถามความต้องการปูน SCG แล้ว')">
+                + โทรติดต่อแล้ว
+              </button>
+              <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('🚗 เข้าพบผู้รับเหมา/วิศวกร ณ ไซต์งานจริง พูดคุยราบรื่น')">
+                + เข้าพบหน้างานแล้ว
+              </button>
+              <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('📄 ลูกค้าขอใบเสนอราคาปูนไฮดรอลิก & CPAC นัดส่งภายใน 48 ชม.')">
+                + ขอใบเสนอราคา
+              </button>
+              <button type="button" class="btn-quick-note-tag" onclick="appendQuickNoteTemplate('🎉 ลูกค้าตกลงสั่งซื้อสินค้า SCG เรียบร้อย')">
+                + ปิดการขายสำเร็จ
+              </button>
+            </div>
+
+            <!-- Sales Opportunity Level Selector -->
+            <div style="display: inline-flex; align-items: center; gap: 6px; background: #F8FAFC; padding: 4px 8px; border-radius: 8px; border: 1.5px solid #E2E8F0;">
+              <span style="font-size: 0.72rem; color: #0F172A; font-weight: 800; white-space: nowrap;">📊 โอกาสการขาย:</span>
+              <div style="display: inline-flex; gap: 4px;">
+                <button type="button" id="btn-opp-high" onclick="handleSetCompanyOpportunityLevel('high')" 
+                  title="คลิกเพื่อเลือก: มีโอกาสการขายสูง (ระบบจะจำค่าและบันทึกลง Cloud)"
+                  style="font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #15803D; cursor: pointer; transition: all 0.15s ease;">
+                  🟢 สูง
+                </button>
+                <button type="button" id="btn-opp-medium" onclick="handleSetCompanyOpportunityLevel('medium')" 
+                  title="คลิกเพื่อเลือก: มีโอกาสการขายปานกลาง (ระบบจะจำค่าและบันทึกลง Cloud)"
+                  style="font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #C2410C; cursor: pointer; transition: all 0.15s ease;">
+                  🟠 ปานกลาง
+                </button>
+                <button type="button" id="btn-opp-low" onclick="handleSetCompanyOpportunityLevel('low')" 
+                  title="คลิกเพื่อเลือก: มีโอกาสการขายน้อย (ระบบจะจำค่าและบันทึกลง Cloud)"
+                  style="font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #475569; cursor: pointer; transition: all 0.15s ease;">
+                  ⚪ น้อย
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Textarea Note Input -->
@@ -1233,8 +1286,10 @@
         </div>
       </div>
     </div>
-    <!-- KPI Quick Summary Inspector Modal -->
-    <div id="kpi-detail-modal" class="project-modal-overlay" onclick="closeKpiModal()">
+  </div>
+
+  <!-- KPI Quick Summary Inspector Modal -->
+  <div id="kpi-detail-modal" class="project-modal-overlay" onclick="closeKpiModal()">
       <div class="project-modal-content" onclick="event.stopPropagation()" style="max-width: 780px;">
         <!-- Header -->
         <div class="modal-header">
@@ -1652,7 +1707,7 @@
             </div>
             <div>
               <div style="font-size: 1.05rem; font-weight: 800; letter-spacing: -0.01em;" id="report-modal-title">รายงานสรุปยอดขายบริษัทรับสร้างบ้าน จ.สกลนคร</div>
-              <div style="font-size: 0.76rem; color: #93C5FD; font-weight: 600;" id="report-modal-subtitle">เปรียบเทียบยอดขาย SCG ปี 2025 vs 2026 (ข้อมูลล่าสุด ณ วันที่ 14.09.2569)</div>
+              <div style="font-size: 0.76rem; color: #93C5FD; font-weight: 600;" id="report-modal-subtitle">เปรียบเทียบยอดขาย SCG ปี 2025 vs 2026 (ข้อมูลล่าสุด ณ วันที่ 15.09.2569)</div>
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -1698,7 +1753,7 @@
               <tr style="background: #002060; color: #FFFFFF;">
                 <th style="padding: 10px 14px; text-align: left; font-size: 0.85rem; font-weight: 800; border: 1px solid #001A4E; width: 45%;">บริษัท</th>
                 <th style="padding: 10px 14px; text-align: right; font-size: 0.85rem; font-weight: 800; border: 1px solid #001A4E; width: 22%;">2025</th>
-                <th style="padding: 10px 14px; text-align: right; font-size: 0.85rem; font-weight: 800; border: 1px solid #001A4E; width: 22%;" id="report-th-2026">2026 (14.09.2569)</th>
+                <th style="padding: 10px 14px; text-align: right; font-size: 0.85rem; font-weight: 800; border: 1px solid #001A4E; width: 22%;" id="report-th-2026">ข้อมูลปัจจุบัน (15.09.2569)</th>
                 <th style="padding: 10px 14px; text-align: right; font-size: 0.85rem; font-weight: 800; border: 1px solid #001A4E; width: 11%;">เติบโต (YoY)</th>
               </tr>
             </thead>
