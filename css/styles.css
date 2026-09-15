@@ -1001,6 +1001,16 @@ body {
   background-color: #DBEAFE !important;
 }
 
+/* Presentation Mode: ซ่อนคอลัมน์ประวัติซื้อขายเมื่อนำเสนอข้อมูลหรือคุยกับลูกค้า */
+body.hide-sales-mode .col-sales-2025,
+body.hide-sales-mode .col-sales-2026 {
+  display: none !important;
+}
+
+body.hide-sales-mode .modal-sales-confidential {
+  display: none !important;
+}
+
 /* Table Elements */
 .rank-badge {
   width: 34px;
@@ -2182,6 +2192,24 @@ body.executive-presentation .kpi-value {
   padding: 0.9rem 1.15rem;
   margin-bottom: 1.25rem;
   box-shadow: 0 4px 16px rgba(185,18,24,0.3);
+  transition: all 0.25s ease;
+}
+
+.product-analytics-section.collapsed {
+  padding-bottom: 0.85rem;
+  box-shadow: 0 2px 8px rgba(185,18,24,0.2);
+}
+
+.product-analytics-section.collapsed .product-summary-grid {
+  display: none !important;
+}
+
+.product-analytics-section.collapsed #product-demand-subtitle {
+  display: none !important;
+}
+
+.product-analytics-section.collapsed .product-demand-header-box {
+  margin-bottom: 0 !important;
 }
 
 .product-summary-grid {

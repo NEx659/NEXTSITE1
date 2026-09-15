@@ -17,6 +17,7 @@ let currentView = 'table'; // 'table' | 'map'
 let activeSelectedCompany = null;
 let activeModalProjectStageFilter = 'all';
 let activeCompanyTagFilter = 'all'; // 'all' | 'focus' | 'non-focus' | 'new'
+let activeFollowupStatusFilter = 'all'; // 'all' | 'followed' | 'pending'
 
 // Storage Keys
 const STORAGE_KEY_COMPANY_TAGS = 'nextsite_company_tags_v1';
@@ -266,6 +267,15 @@ function filterByCompanyTag(tag) {
   }
 }
 
+function handleCrmStatusFilterChange(val) {
+  activeFollowupStatusFilter = val || 'all';
+  const sel = document.getElementById('select-crm-status-filter');
+  if (sel && sel.value !== activeFollowupStatusFilter) {
+    sel.value = activeFollowupStatusFilter;
+  }
+  applyFilters();
+}
+
 function updateTagFilterCounts(companies) {
   const source = allCompanies && allCompanies.length > 0 ? allCompanies : (companies || []);
   const tagMap = loadCompanyTagsMap();
@@ -406,7 +416,10 @@ const SCG_CUSTOMER_SALES_LIST = [
   { code: '10551209', name: 'บ้านใหญ่ (2016) โฮม บิวเดอร์', sales2025: 5481324, sales2026: 5472101, keys: ['บ้านใหญ่', 'baanyai', 'baanyai2016'] },
   { code: '10590829', name: 'เลอ คราวน์ ดีไซน์', sales2025: 11367, sales2026: 329498.4, keys: ['เลอ คราวน์', 'เลอคราวน์', 'le crown', 'lecrown'] },
   { code: '10612650', name: 'บ้านดี อยู่ดี ดีไซน์', sales2025: 31155, sales2026: 93806.25, keys: ['บ้านดี อยู่ดี', 'บ้านดีอยู่ดี', 'baandee yoodee'] },
-  { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026: 1992527, keys: ['กิจดลวรโชติ', 'กิจดล'] }
+  { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026: 1992527, keys: ['กิจดลวรโชติ', 'กิจดล'] },
+  { code: '10729130', name: 'บ้านวิศวะพัฒนา', sales2025: 0, sales2026: 238997, keys: ['บ้านวิศวะพัฒนา', 'บ้านวิศวะ', 'baanwisawa', 'banwisawa'] },
+  { code: '10739362', name: 'ห้างหุ้นส่วนจำกัด เค พี โฮม', sales2025: 0, sales2026: 7101, keys: ['เค พี โฮม', 'เค.พี.โฮม', 'เคพีโฮม', 'kp home', 'k.p. home'] },
+  { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026: 161278, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] }
 ];
 
 function loadSavedCompaniesData() {
@@ -681,6 +694,12 @@ function saveCompanyCrmLog(companyId, logData) {
     if (typeof window.saveCloudCrmLog === 'function') {
       window.saveCloudCrmLog(companyId, updatedRecord);
     }
+
+    // Refresh table row status in real-time if active
+    const rowEl = document.getElementById(`company-row-${companyId}`);
+    if (rowEl && typeof renderTable === 'function' && !document.querySelector('.modal-overlay.active')) {
+      // Light debounce update
+    }
   } catch (e) {
     console.warn('Failed to save CRM log', e);
   }
@@ -899,14 +918,151 @@ function renderKPIs() {
   if (elTotalVal) elTotalVal.textContent = `฿${totalPipelineValue.toFixed(1)}M`;
   if (elTotalProjectsSub) elTotalProjectsSub.textContent = `รวม ${totalProjects} โครงการที่กำลังก่อสร้าง`;
   
+  // Dynamic Province Label Synchronization
+  const isAllProv = (activeDistrict === 'all');
+  const provLabel = isAllProv ? 'ทุกจังหวัด' : `จ.${cleanThaiText(activeDistrict)}`;
+  const provLabelShort = isAllProv ? 'ทุกจังหวัด' : cleanThaiText(activeDistrict);
+
+  // 1. Synchronize KPI Card 4 Title (มูลค่าโอกาสทางธุรกิจรวม)
+  const elTotalValTitle = document.getElementById('kpi-total-value-title');
+  if (elTotalValTitle) {
+    elTotalValTitle.textContent = `มูลค่าโอกาสทางธุรกิจรวม (${provLabelShort})`;
+  }
+
+  // 2. Synchronize KPI Card 1 Subtext (ครอบคลุมทั่ว จ....)
+  const elTotalCompSubtext = document.getElementById('kpi-total-companies-subtext');
+  if (elTotalCompSubtext) {
+    elTotalCompSubtext.textContent = isAllProv ? 'ครอบคลุมทั่วทุกจังหวัด' : `ครอบคลุมทั่ว ${provLabel}`;
+  }
+
+  // 3. Synchronize Product Demand Section Header
+  const elProdDemandProv = document.getElementById('product-demand-province-label');
+  if (elProdDemandProv) {
+    elProdDemandProv.textContent = isAllProv ? 'ทุกจังหวัด' : provLabel;
+  }
+
+  // 4. Synchronize Project Count Badge
   if (elProvinceTotalProjectsBadge) {
-    if (activeDistrict === 'all') {
+    if (isAllProv) {
       elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการทุกจังหวัด <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
     } else {
-      elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการในจ.${cleanThaiText(activeDistrict)} <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
+      elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการใน${provLabel} <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
     }
   } else if (elProvinceTotalProjectsCount) {
     elProvinceTotalProjectsCount.textContent = totalProjects;
+  }
+}
+
+function toggleTargetFollowup(companyId, event) {
+  if (event) {
+    if (event.stopPropagation) event.stopPropagation();
+    if (event.preventDefault) event.preventDefault();
+  }
+  const log = getCompanyCrmLog(companyId);
+  const isTargeted = !(log.wantFollowup === true);
+  saveCompanyCrmLog(companyId, { wantFollowup: isTargeted });
+  
+  if (typeof renderTable === 'function') {
+    renderTable();
+  }
+  
+  if (isTargeted) {
+    showStatusToast('🎯 ปักหมุด: ต้องการติดตามเรียบร้อย');
+  } else {
+    showStatusToast('⚪ ยกเลิกการปักหมุดต้องการติดตาม');
+  }
+}
+
+const STORAGE_KEY_HIDE_SALES = 'nextsite_hide_sales_mode';
+
+function initSalesVisibilityState() {
+  try {
+    const isHidden = localStorage.getItem(STORAGE_KEY_HIDE_SALES) === 'true';
+    applySalesVisibilityState(isHidden);
+  } catch (e) {}
+}
+
+function toggleSalesColumnsVisibility() {
+  const currentlyHidden = document.body.classList.contains('hide-sales-mode');
+  const nextState = !currentlyHidden;
+  applySalesVisibilityState(nextState);
+  try {
+    localStorage.setItem(STORAGE_KEY_HIDE_SALES, nextState ? 'true' : 'false');
+  } catch (e) {}
+  
+  if (nextState) {
+    showStatusToast('🔒 ซ่อนคอลัมน์ประวัติซื้อขายเรียบร้อย (โหมดคุยกับลูกค้า)');
+  } else {
+    showStatusToast('👁️ แสดงคอลัมน์ประวัติซื้อขายตามปกติ');
+  }
+}
+
+function applySalesVisibilityState(hidden) {
+  const btn = document.getElementById('btn-toggle-sales-columns');
+  const text = document.getElementById('text-toggle-sales');
+  const icon = document.getElementById('icon-toggle-sales');
+
+  if (hidden) {
+    document.body.classList.add('hide-sales-mode');
+    if (btn) {
+      btn.style.background = '#FEF2F2';
+      btn.style.borderColor = '#FCA5A5';
+      btn.style.color = '#B91C1C';
+      btn.title = 'คลิกเพื่อ แสดง ยอดซื้อขาย (กำลังซ่อนอยู่)';
+    }
+    if (text) text.textContent = 'แสดงยอดขาย (กำลังซ่อน)';
+    if (icon) icon.textContent = '🙈';
+  } else {
+    document.body.classList.remove('hide-sales-mode');
+    if (btn) {
+      btn.style.background = '#FFFFFF';
+      btn.style.borderColor = '#CBD5E1';
+      btn.style.color = '#334155';
+      btn.title = 'คลิกเพื่อ ซ่อน ยอดซื้อขาย (โหมดคุยกับลูกค้า)';
+    }
+    if (text) text.textContent = 'ซ่อนยอดขาย (โหมดคุยกับลูกค้า)';
+    if (icon) icon.textContent = '👁️';
+  }
+}
+
+// ==========================================
+// 6.2 PRODUCT DEMAND INTELLIGENCE COLLAPSE/EXPAND
+// ==========================================
+const STORAGE_KEY_PRODUCT_DEMAND_COLLAPSED = 'nextsite_product_demand_collapsed';
+
+function initProductDemandCollapseState() {
+  try {
+    const isCollapsed = localStorage.getItem(STORAGE_KEY_PRODUCT_DEMAND_COLLAPSED) === 'true';
+    if (isCollapsed) {
+      applyProductDemandCollapseState(true);
+    }
+  } catch (e) {}
+}
+
+function toggleProductDemandSection() {
+  const section = document.getElementById('product-demand-section');
+  if (!section) return;
+  const willCollapse = !section.classList.contains('collapsed');
+  applyProductDemandCollapseState(willCollapse);
+  try {
+    localStorage.setItem(STORAGE_KEY_PRODUCT_DEMAND_COLLAPSED, willCollapse ? 'true' : 'false');
+  } catch (e) {}
+}
+
+function applyProductDemandCollapseState(collapsed) {
+  const section = document.getElementById('product-demand-section');
+  const icon = document.getElementById('icon-toggle-product-demand');
+  const btn = document.getElementById('btn-toggle-product-demand');
+  if (!section) return;
+
+  if (collapsed) {
+    section.classList.add('collapsed');
+    if (icon) icon.textContent = '◀';
+    if (btn) btn.title = 'คลิกเพื่อขยายดูความต้องการสินค้า SCG';
+  } else {
+    section.classList.remove('collapsed');
+    if (icon) icon.textContent = '▼';
+    if (btn) btn.title = 'คลิกเพื่อย่อรายละเอียดสินค้า';
   }
 }
 
@@ -927,7 +1083,7 @@ function renderTable() {
             <span style="font-size: 2.5rem;">🔍</span>
             <span style="font-size: 1rem; font-weight: 700; color: #0F172A;">ไม่พบข้อมูลผู้รับเหมาตามเงื่อนไขการค้นหา</span>
             <span style="font-size: 0.8rem; color: #64748B;">ลองเปลี่ยนคำค้นหา หรือเลือกตัวกรอง 'ทั้งหมด'</span>
-            <button onclick="activeFilter='all'; activeDistrict='all'; activeSubDistrict='all'; activeCompanyTagFilter='all'; searchQuery=''; applyFilters();" 
+            <button onclick="activeFilter='all'; activeDistrict='all'; activeSubDistrict='all'; activeCompanyTagFilter='all'; activeFollowupStatusFilter='all'; if(document.getElementById('select-crm-status-filter')) document.getElementById('select-crm-status-filter').value='all'; searchQuery=''; applyFilters();" 
               class="btn-action-primary" style="margin-top: 0.5rem;">
               ล้างตัวกรองทั้งหมด
             </button>
@@ -1001,7 +1157,26 @@ function renderTable() {
       recTierColor = '#CA8A04';
     }
 
+    // Check if sales rep manually assessed opportunity level
+    const companyCrmLog = getCompanyCrmLog(company.id);
+    let isSalesAssessed = false;
+    if (companyCrmLog.salesOpportunityLevel === 'high') {
+      recTierText = 'โอกาสสูง (เซลส์ประเมิน)';
+      recTierColor = '#16A34A';
+      isSalesAssessed = true;
+    } else if (companyCrmLog.salesOpportunityLevel === 'medium') {
+      recTierText = 'โอกาสปานกลาง (เซลส์ประเมิน)';
+      recTierColor = '#EA580C';
+      isSalesAssessed = true;
+    } else if (companyCrmLog.salesOpportunityLevel === 'low') {
+      recTierText = 'โอกาสน้อย (เซลส์ประเมิน)';
+      recTierColor = '#64748B';
+      isSalesAssessed = true;
+    }
+
     const tr = document.createElement('tr');
+    tr.id = `company-row-${company.id}`;
+    tr.dataset.companyId = company.id;
     tr.className = index % 2 === 0 ? 'row-dark-tint' : 'row-light-tint';
     tr.style.cursor = 'pointer';
     tr.onclick = (e) => {
@@ -1125,20 +1300,112 @@ function renderTable() {
         </div>
       </td>
 
-      <!-- 7. Opportunity Score -->
-      <td style="text-align: center; vertical-align: middle;">
-        <div style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 5px 16px; border-radius: 9999px; border: 1.5px solid ${badgeBorder}; background: ${badgeBg}; font-weight: 800; font-size: 0.88rem; color: ${badgeColor}; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-          <span style="color: ${badgeColor}; font-size: 0.95rem;">●</span>
-          <span>${oppScore}</span>
-        </div>
+      <!-- 7. สถานะการติดตาม (ปุ่มต้องการติดตาม + ป้ายสถานะเข้าติดตามแล้ว/รอการติดตาม) -->
+      <td style="text-align: center; vertical-align: middle; padding: 6px 8px;">
+        ${(() => {
+          const log = getCompanyCrmLog(company.id);
+          const isTargeted = (log.wantFollowup === true);
+          const hasFollowedUp = (log.note && log.note.trim().length > 0) || 
+                                (Array.isArray(log.photos) && log.photos.length > 0) || 
+                                ['followup', 'won', 'quote_sent'].includes(log.status);
+
+          const targetBtnHtml = isTargeted
+            ? `
+              <button type="button" onclick="toggleTargetFollowup('${company.id}', event)" 
+                title="คลิกเพื่อยกเลิกการปักหมุดต้องการติดตาม" 
+                style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 3px 10px; border-radius: 6px; border: 1.5px solid #2563EB; background: #EFF6FF; color: #1D4ED8; font-size: 0.72rem; font-weight: 800; cursor: pointer; box-shadow: 0 1px 3px rgba(37,99,235,0.2); transition: all 0.15s ease;"
+                onmouseover="this.style.background='#DBEAFE'; this.style.transform='scale(1.03)';" 
+                onmouseout="this.style.background='#EFF6FF'; this.style.transform='scale(1)';">
+                <span>🎯</span>
+                <span>ต้องการติดตาม</span>
+                <span style="font-size: 0.65rem; background: #2563EB; color: #FFFFFF; border-radius: 9999px; padding: 0 4px; margin-left: 2px;">✓</span>
+              </button>
+            `
+            : `
+              <button type="button" onclick="toggleTargetFollowup('${company.id}', event)" 
+                title="คลิกเพื่อปักหมุดว่า 'ต้องการติดตาม' บริษัทนี้" 
+                style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 3px 10px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #475569; font-size: 0.72rem; font-weight: 700; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition: all 0.15s ease;"
+                onmouseover="this.style.borderColor='#3B82F6'; this.style.color='#1D4ED8'; this.style.background='#EFF6FF'; this.style.transform='scale(1.03)';" 
+                onmouseout="this.style.borderColor='#CBD5E1'; this.style.color='#475569'; this.style.background='#FFFFFF'; this.style.transform='scale(1)';">
+                <span style="color: #94A3B8;">📌</span>
+                <span>ต้องการติดตาม</span>
+              </button>
+            `;
+
+          const statusBadgeHtml = hasFollowedUp
+            ? `
+              <div onclick="openCompanyProjectsModal('${company.id}')" title="เข้าติดตามแล้ว (มีประวัติการเข้าพบ/โน้ต/รูปถ่ายหน้างาน)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #86EFAC; background: #F0FDF4; font-weight: 800; font-size: 0.74rem; color: #15803D; box-shadow: 0 1px 3px rgba(22,163,74,0.1); white-space: nowrap; cursor: pointer;">
+                <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>เข้าติดตามแล้ว</span>
+              </div>
+            `
+            : `
+              <div onclick="openCompanyProjectsModal('${company.id}')" title="รอการติดตาม (ยังไม่มีบันทึกการเข้าพบหรือรูปถ่าย)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #FED7AA; background: #FFF7ED; font-weight: 800; font-size: 0.74rem; color: #C2410C; box-shadow: 0 1px 3px rgba(234,88,12,0.1); white-space: nowrap; cursor: pointer;">
+                <span style="color: #EA580C; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>รอการติดตาม</span>
+              </div>
+            `;
+
+          return `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;">
+              ${targetBtnHtml}
+              ${statusBadgeHtml}
+            </div>
+          `;
+        })()}
       </td>
 
-      <!-- 7. Revenue Potential (500,000 บาท/โครงการ) -->
-      <td style="vertical-align: middle;">
-        <div style="display: flex; flex-direction: column; gap: 2px;">
-          <div style="font-weight: 900; color: #0F172A; font-size: 0.95rem;">฿${(projCount * 0.5).toFixed(1)}M</div>
-          <div style="color: #64748B; font-size: 0.74rem;">${projCount > 0 ? `(${projCount} × ฿500K)` : 'SCG Product Target'}</div>
-        </div>
+      <!-- 7. รูปหน้างานที่เข้าติดตามจริง (จากหน้าโน้ตของเซลส์) -->
+      <td style="vertical-align: middle; text-align: center; padding: 6px 8px;">
+        ${(() => {
+          const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(company.id) : {};
+          const photos = Array.isArray(log.photos) ? log.photos : [];
+          
+          if (photos.length === 0) {
+            return `
+              <div onclick="openCompanyProjectsModal('${company.id}')" title="ยังไม่มีรูปถ่ายหน้างาน (คลิกเพื่อเปิดหน้าต่างโน้ตและอัปโหลดรูป)" style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 4px 8px; border-radius: 6px; border: 1px dashed #CBD5E1; background: #F8FAFC; color: #94A3B8; font-size: 0.72rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease;" onmouseover="this.style.borderColor='#3B82F6'; this.style.color='#2563EB'; this.style.background='#EFF6FF';" onmouseout="this.style.borderColor='#CBD5E1'; this.style.color='#94A3B8'; this.style.background='#F8FAFC';">
+                <span>📷</span>
+                <span>ยังไม่มีรูป</span>
+              </div>
+            `;
+          }
+
+          // If 1 photo: show preview thumbnail
+          if (photos.length === 1) {
+            const p = photos[0];
+            const safeName = (company.name || '').replace(/'/g, "\\'");
+            return `
+              <div style="display: inline-flex; align-items: center; gap: 6px;">
+                <div onclick="event.stopPropagation(); openImageLightbox('${p.dataUrl}', '${safeName} • รูปหน้างาน')" title="คลิกเพื่อดูรูปขยายเต็มจอ" style="position: relative; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 1.5px solid #3B82F6; box-shadow: 0 2px 4px rgba(59,130,246,0.2); background: #0F172A; cursor: pointer; transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='none';">
+                  <img src="${p.dataUrl}" alt="Site Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div onclick="openCompanyProjectsModal('${company.id}')" title="คลิกเพื่อเปิดดูในหน้าโน้ต" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; cursor: pointer;">
+                  1 รูป
+                </div>
+              </div>
+            `;
+          }
+
+          // If multiple photos: show stacked preview thumbnails with count
+          const p1 = photos[0];
+          const p2 = photos[1];
+          const safeName = (company.name || '').replace(/'/g, "\\'");
+          return `
+            <div style="display: inline-flex; align-items: center; gap: 6px;">
+              <div style="display: flex; align-items: center; position: relative;">
+                <div onclick="event.stopPropagation(); openImageLightbox('${p1.dataUrl}', '${safeName} • รูปหน้างาน 1/${photos.length}')" title="คลิกเพื่อดูรูปขยายเต็มจอ" style="width: 38px; height: 38px; border-radius: 8px; overflow: hidden; border: 1.5px solid #3B82F6; box-shadow: 0 2px 4px rgba(0,0,0,0.15); background: #0F172A; cursor: pointer; transition: transform 0.15s ease; z-index: 2;" onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex=5;" onmouseout="this.style.transform='none'; this.style.zIndex=2;">
+                  <img src="${p1.dataUrl}" alt="Site Photo 1" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div onclick="event.stopPropagation(); openImageLightbox('${p2.dataUrl}', '${safeName} • รูปหน้างาน 2/${photos.length}')" title="คลิกเพื่อดูรูปขยายเต็มจอ" style="width: 38px; height: 38px; border-radius: 8px; overflow: hidden; border: 1.5px solid #60A5FA; box-shadow: 0 2px 4px rgba(0,0,0,0.15); background: #0F172A; cursor: pointer; transition: transform 0.15s ease; margin-left: -14px; z-index: 1;" onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex=5;" onmouseout="this.style.transform='none'; this.style.zIndex=1;">
+                  <img src="${p2.dataUrl}" alt="Site Photo 2" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+              </div>
+              <div onclick="openCompanyProjectsModal('${company.id}')" title="คลิกเพื่อเปิดดูทั้งหมดในหน้าโน้ต" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'" onmouseout="this.style.background='#EFF6FF'">
+                ${photos.length} รูป ↗
+              </div>
+            </div>
+          `;
+        })()}
       </td>
 
       <!-- 8. คำแนะนำจาก AI -->
@@ -1229,6 +1496,18 @@ function applyFilters() {
     if (activeCompanyTagFilter !== 'all') {
       const tag = getCompanyTag(comp.id);
       if (tag !== activeCompanyTagFilter) return false;
+    }
+
+    // 7. Follow-up Status Filter (CRM Status: All / Targeted / Followed / Pending)
+    if (activeFollowupStatusFilter !== 'all') {
+      const log = getCompanyCrmLog(comp.id);
+      const hasFollowedUp = (log.note && log.note.trim().length > 0) || 
+                            (Array.isArray(log.photos) && log.photos.length > 0) || 
+                            ['followup', 'won', 'quote_sent'].includes(log.status);
+
+      if (activeFollowupStatusFilter === 'targeted' && !log.wantFollowup) return false;
+      if (activeFollowupStatusFilter === 'followed' && !hasFollowedUp) return false;
+      if (activeFollowupStatusFilter === 'pending' && hasFollowedUp) return false;
     }
 
     return true;
@@ -1650,6 +1929,12 @@ function openCompanyProjectsModal(companyOrId) {
       : 'บันทึกล่าสุด: ยังไม่มีประวัติ';
   }
 
+  // Render Opportunity Level Buttons
+  updateOpportunityLevelButtonsUI(log.salesOpportunityLevel || null);
+
+  // Render Site Visit Photos Gallery
+  renderCompanyPhotosGallery(comp.id);
+
   modal.style.display = 'flex';
 }
 
@@ -1713,6 +1998,78 @@ function saveCompanyNoteManually() {
   showStatusToast(`💾 บันทึกโน้ต CRM ของ "${activeSelectedCompany.name}" เรียบร้อยแล้ว`);
 }
 
+function handleSetCompanyOpportunityLevel(level) {
+  if (!activeSelectedCompany) return;
+  const currentLog = getCompanyCrmLog(activeSelectedCompany.id);
+  const currentLevel = currentLog.salesOpportunityLevel;
+  
+  // If clicking same level, toggle off
+  const newLevel = (currentLevel === level) ? null : level;
+  saveCompanyCrmLog(activeSelectedCompany.id, { salesOpportunityLevel: newLevel });
+  
+  updateOpportunityLevelButtonsUI(newLevel);
+  if (typeof renderTable === 'function') renderTable();
+  
+  const labels = {
+    'high': '🟢 โอกาสการขายสูง',
+    'medium': '🟠 โอกาสการขายปานกลาง',
+    'low': '⚪ โอกาสการขายน้อย'
+  };
+  if (newLevel) {
+    showStatusToast(`💾 บันทึกการประเมิน: ${labels[newLevel]} เรียบร้อยแล้ว`);
+  } else {
+    showStatusToast('⚪ ยกเลิกการประเมินโอกาสการขาย (กลับเป็นค่าคำนวณอัตโนมัติ)');
+  }
+}
+
+function updateOpportunityLevelButtonsUI(selectedLevel) {
+  const btnHigh = document.getElementById('btn-opp-high');
+  const btnMedium = document.getElementById('btn-opp-medium');
+  const btnLow = document.getElementById('btn-opp-low');
+  
+  if (btnHigh) {
+    if (selectedLevel === 'high') {
+      btnHigh.style.border = '1.5px solid #16A34A';
+      btnHigh.style.background = '#DCFCE7';
+      btnHigh.style.color = '#15803D';
+      btnHigh.style.boxShadow = '0 1px 4px rgba(22,163,74,0.3)';
+    } else {
+      btnHigh.style.border = '1.5px solid #CBD5E1';
+      btnHigh.style.background = '#FFFFFF';
+      btnHigh.style.color = '#15803D';
+      btnHigh.style.boxShadow = 'none';
+    }
+  }
+
+  if (btnMedium) {
+    if (selectedLevel === 'medium') {
+      btnMedium.style.border = '1.5px solid #EA580C';
+      btnMedium.style.background = '#FFEDD5';
+      btnMedium.style.color = '#9A3412';
+      btnMedium.style.boxShadow = '0 1px 4px rgba(234,88,12,0.3)';
+    } else {
+      btnMedium.style.border = '1.5px solid #CBD5E1';
+      btnMedium.style.background = '#FFFFFF';
+      btnMedium.style.color = '#C2410C';
+      btnMedium.style.boxShadow = 'none';
+    }
+  }
+
+  if (btnLow) {
+    if (selectedLevel === 'low') {
+      btnLow.style.border = '1.5px solid #64748B';
+      btnLow.style.background = '#F1F5F9';
+      btnLow.style.color = '#1E293B';
+      btnLow.style.boxShadow = '0 1px 4px rgba(100,116,139,0.3)';
+    } else {
+      btnLow.style.border = '1.5px solid #CBD5E1';
+      btnLow.style.background = '#FFFFFF';
+      btnLow.style.color = '#475569';
+      btnLow.style.boxShadow = 'none';
+    }
+  }
+}
+
 function clearCompanyNote() {
   if (!activeSelectedCompany) return;
   if (confirm('คุณต้องการล้างข้อความโน้ตทั้งหมดของบริษัทนี้หรือไม่?')) {
@@ -1725,6 +2082,155 @@ function clearCompanyNote() {
     if (noteStatus) noteStatus.innerHTML = '<span style="color: #64748B;">⚪ ว่าง</span>';
     if (noteLastUpdated) noteLastUpdated.textContent = 'บันทึกล่าสุด: -';
     showStatusToast('ล้างข้อความโน้ตเรียบร้อย');
+  }
+}
+
+// ==========================================
+// 8.2 SITE VISIT PHOTOS & LIGHTBOX (PROOF OF WORK)
+// ==========================================
+function compressImage(file, maxWidth = 960, maxHeight = 960, quality = 0.75) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        resolve(dataUrl);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderCompanyPhotosGallery(companyId) {
+  const container = document.getElementById('modal-company-photos-grid');
+  const countEl = document.getElementById('modal-company-photo-count');
+  if (!container) return;
+
+  const log = getCompanyCrmLog(companyId);
+  const photos = Array.isArray(log.photos) ? log.photos : [];
+
+  if (countEl) {
+    countEl.textContent = `${photos.length} รูป`;
+  }
+
+  if (photos.length === 0) {
+    container.innerHTML = `
+      <div style="width: 100%; text-align: center; color: #94A3B8; font-size: 0.78rem; padding: 12px 0;">
+        <span>📷 ยังไม่มีรูปภาพหลักฐานลงพื้นที่ (กดปุ่ม <strong>'+ อัปโหลดรูปภาพหน้างาน'</strong> เพื่อบันทึกรูปถ่าย)</span>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = photos.map((p, idx) => {
+    const timeStr = p.timestamp ? new Date(p.timestamp).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : `รูปที่ ${idx + 1}`;
+    const safeCaption = (p.name || `หลักฐานลงพื้นที่ - ${activeSelectedCompany ? activeSelectedCompany.name : ''}`).replace(/"/g, '&quot;');
+    
+    return `
+      <div style="position: relative; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; border: 1.5px solid #CBD5E1; box-shadow: 0 2px 5px rgba(15,23,42,0.08); background: #0F172A; cursor: pointer; flex-shrink: 0;" onclick="openImageLightbox('${p.dataUrl}', '${safeCaption} • ${timeStr}')">
+        <img src="${p.dataUrl}" alt="Site visit photo" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,0.78); color: #FFFFFF; font-size: 0.62rem; font-weight: 700; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          ${timeStr}
+        </div>
+        <button type="button" onclick="event.stopPropagation(); deleteCompanyPhoto('${p.id}');" title="ลบรูปนี้" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(239,68,68,0.92); color: #FFFFFF; border: none; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">
+          ✕
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+async function handleCompanyPhotoUpload(event) {
+  if (!activeSelectedCompany) return;
+  const files = event.target.files;
+  if (!files || files.length === 0) return;
+
+  const countEl = document.getElementById('modal-company-photo-count');
+  if (countEl) countEl.innerHTML = '<span style="color: #D97706;">⏳ กำลังประมวลผลรูป...</span>';
+
+  const log = getCompanyCrmLog(activeSelectedCompany.id);
+  const existingPhotos = Array.isArray(log.photos) ? log.photos : [];
+  const newPhotos = [];
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    if (!file.type.startsWith('image/')) continue;
+    try {
+      const dataUrl = await compressImage(file, 960, 960, 0.75);
+      newPhotos.push({
+        id: 'photo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        name: file.name || 'Site Visit Photo',
+        dataUrl: dataUrl,
+        timestamp: new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Compress image failed:', e);
+    }
+  }
+
+  const updatedPhotos = [...existingPhotos, ...newPhotos];
+  saveCompanyCrmLog(activeSelectedCompany.id, { photos: updatedPhotos });
+
+  renderCompanyPhotosGallery(activeSelectedCompany.id);
+  if (typeof renderTable === 'function') renderTable();
+  showStatusToast(`📸 อัปโหลดรูปภาพหลักฐาน ${newPhotos.length} รูป เรียบร้อยแล้ว`);
+
+  // Reset file input
+  event.target.value = '';
+}
+
+function deleteCompanyPhoto(photoId) {
+  if (!activeSelectedCompany) return;
+  if (!confirm('คุณต้องการลบรูปภาพหลักฐานนี้หรือไม่?')) return;
+
+  const log = getCompanyCrmLog(activeSelectedCompany.id);
+  const existingPhotos = Array.isArray(log.photos) ? log.photos : [];
+  const updatedPhotos = existingPhotos.filter(p => p.id !== photoId);
+
+  saveCompanyCrmLog(activeSelectedCompany.id, { photos: updatedPhotos });
+  renderCompanyPhotosGallery(activeSelectedCompany.id);
+  if (typeof renderTable === 'function') renderTable();
+  showStatusToast('ลบรูปภาพเรียบร้อย');
+}
+
+function openImageLightbox(src, caption) {
+  const modal = document.getElementById('image-lightbox-modal');
+  const img = document.getElementById('lightbox-img');
+  const cap = document.getElementById('lightbox-caption');
+  if (modal && img) {
+    img.src = src;
+    if (cap) cap.textContent = caption || '';
+    modal.style.display = 'flex';
+  }
+}
+
+function closeImageLightbox() {
+  const modal = document.getElementById('image-lightbox-modal');
+  if (modal) {
+    modal.style.display = 'none';
   }
 }
 
@@ -1906,6 +2412,8 @@ function closeCompanyModal() {
   const modal = document.getElementById('company-detail-modal');
   if (modal) modal.style.display = 'none';
   activeSelectedCompany = null;
+  if (typeof renderTable === 'function') renderTable();
+  if (typeof updateHeaderCrmStats === 'function') updateHeaderCrmStats();
 }
 
 function closeProjectModal() {
@@ -3685,6 +4193,8 @@ document.addEventListener('DOMContentLoaded', () => {
   updateHeaderCrmStats();
   renderKPIs();
   renderTable();
+  initSalesVisibilityState();
+  initProductDemandCollapseState();
 
   setupEventListeners();
   initGlobalDragAndDrop();
@@ -3693,6 +4203,51 @@ document.addEventListener('DOMContentLoaded', () => {
   updateStickyOffsets();
   setTimeout(updateStickyOffsets, 200);
   setTimeout(updateStickyOffsets, 600);
+
+  // Auto-open company detail modal if URL parameter is present
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetCompId = urlParams.get('companyId') || urlParams.get('compId') || urlParams.get('id');
+    const targetScgCode = urlParams.get('scgCode') || urlParams.get('code');
+
+    if (targetCompId || targetScgCode) {
+      setTimeout(() => {
+        let comp = allCompanies.find(c => {
+          if (targetCompId && c.id === targetCompId) return true;
+          if (targetScgCode && (String(c.scgCustomerCode) === String(targetScgCode) || String(c.scgCode) === String(targetScgCode))) return true;
+          return false;
+        });
+
+        // Fallback matching by name / SCG customer sales list
+        if (!comp && targetScgCode) {
+          const salesItem = (typeof SCG_CUSTOMER_SALES_LIST !== 'undefined' ? SCG_CUSTOMER_SALES_LIST : []).find(s => String(s.code) === String(targetScgCode));
+          if (salesItem) {
+            comp = allCompanies.find(c => {
+              const cName = (c.name || '').toLowerCase();
+              if (salesItem.keys && salesItem.keys.some(k => cName.includes(k))) return true;
+              if (cName.includes(salesItem.name.toLowerCase())) return true;
+              return false;
+            });
+          }
+        }
+
+        if (comp && typeof openCompanyProjectsModal === 'function') {
+          console.log('🎯 Auto-opening Company Detail Modal for:', comp.name, comp.id);
+          openCompanyProjectsModal(comp);
+
+          const row = document.getElementById(`company-row-${comp.id}`);
+          if (row) {
+            row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            row.style.transition = 'background-color 0.5s ease';
+            row.style.backgroundColor = '#FEF3C7';
+            setTimeout(() => { row.style.backgroundColor = ''; }, 3000);
+          }
+        }
+      }, 350);
+    }
+  } catch (err) {
+    console.warn('URL param auto-open error:', err);
+  }
 
   console.log('✅ NEXTSITE AI Dashboard Loaded Successfully with 100% Thai & Clean Text.');
 });

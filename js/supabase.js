@@ -474,6 +474,9 @@ async function saveCloudCrmLog(companyId, crmData) {
       nextDate: crmData.nextDate || '',
       salesRep: crmData.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
       products: crmData.products || [],
+      wantFollowup: !!crmData.wantFollowup,
+      salesOpportunityLevel: crmData.salesOpportunityLevel || null,
+      photos: Array.isArray(crmData.photos) ? crmData.photos : [],
       updatedAt: crmData.updatedAt || new Date().toISOString()
     });
 
@@ -493,16 +496,10 @@ async function saveCloudCrmLog(companyId, crmData) {
 
     if (error) {
       console.error('❌ Supabase Cloud CRM Save error:', error.message);
-      if (typeof showStatusToast === 'function') {
-        showStatusToast('⚠️ บันทึก Cloud ไม่สำเร็จ: ' + error.message);
-      }
       return false;
     }
 
     console.log(`☁️ Synced CRM log for ${companyId} to Supabase successfully:`, updatePayload);
-    if (typeof showStatusToast === 'function') {
-      showStatusToast('☁️ บันทึกโน้ตขึ้น Supabase Cloud สำเร็จเรียบร้อย!');
-    }
     return true;
   } catch (err) {
     console.error('❌ Cloud CRM Save exception:', err);
@@ -537,21 +534,27 @@ async function loadAndApplyCloudCrmLogs() {
       let updatedCount = 0;
       data.forEach(item => {
         if (item.id) {
-          if (item.crm_note || item.crm_status) {
-            crmLogs[item.id] = {
-              note: item.crm_note || '',
-              status: item.crm_status || 'pending',
-              salesRep: item.crm_sales_rep || '',
-              nextDate: item.crm_next_date || '',
-              updatedAt: new Date().toISOString()
-            };
-            updatedCount++;
-          } else if (item.revenue_potential && typeof item.revenue_potential === 'string' && item.revenue_potential.startsWith('{')) {
+          let cloudLog = null;
+          if (item.revenue_potential && typeof item.revenue_potential === 'string' && item.revenue_potential.startsWith('{')) {
             try {
-              crmLogs[item.id] = JSON.parse(item.revenue_potential);
-              updatedCount++;
+              cloudLog = JSON.parse(item.revenue_potential);
             } catch (e) {}
           }
+
+          const existingLocal = crmLogs[item.id] || {};
+          crmLogs[item.id] = {
+            ...existingLocal,
+            ...(cloudLog || {}),
+            note: item.crm_note || (cloudLog && cloudLog.note) || existingLocal.note || '',
+            status: item.crm_status || (cloudLog && cloudLog.status) || existingLocal.status || 'pending',
+            salesRep: item.crm_sales_rep || (cloudLog && cloudLog.salesRep) || existingLocal.salesRep || '',
+            nextDate: item.crm_next_date || (cloudLog && cloudLog.nextDate) || existingLocal.nextDate || '',
+            wantFollowup: (cloudLog && typeof cloudLog.wantFollowup !== 'undefined') ? cloudLog.wantFollowup : (typeof existingLocal.wantFollowup !== 'undefined' ? existingLocal.wantFollowup : false),
+            salesOpportunityLevel: (cloudLog && cloudLog.salesOpportunityLevel) ? cloudLog.salesOpportunityLevel : (existingLocal.salesOpportunityLevel || null),
+            photos: (cloudLog && Array.isArray(cloudLog.photos) && cloudLog.photos.length > 0) ? cloudLog.photos : (Array.isArray(existingLocal.photos) ? existingLocal.photos : []),
+            updatedAt: new Date().toISOString()
+          };
+          updatedCount++;
         }
       });
 

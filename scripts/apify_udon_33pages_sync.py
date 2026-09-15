@@ -144,85 +144,54 @@ def check_strict_udon_location(raw_text):
         "วางแผนทิศบ้าน", "ก่อนสร้างบ้าน", "ทิศแดด", "ทิศลม", "ผลงานสร้างเสร็จจริงกว่า", "ผลงานคุณภาพมากกว่า"
     ]
 
-    verified_customer_signals = [
-        "บ้านคุณ", "ของ คุณ", "ของคุณ", "ลูกค้าคุณ", "owner :", "owner:", "owner", "เจ้าของบ้าน",
-        "พิธียกเสาเอก", "พิธีลงเสาเอก", "ยกเสาเอก", "ยกเสาโท",
-        "ส่งมอบบ้านคุณ", "ส่งมอบงานคุณ", "พิธีมอบกุญแจ", "เซ็นต์สัญญา", "เซ็นสัญญา", "ทำสัญญา"
-    ]
+    # คีย์เวิร์ดสัญญาณตามความต้องการของผู้ใช้:
+    # 1. ยกเสาเอก
+    # 2. อัพเดท / อัปเดต
+    # 3. คุณ... (ชื่อลูกค้า/เจ้าของบ้าน)
+    has_pillar = any(k in text_lower for k in ["ยกเสาเอก", "พิธียกเสาเอก", "เสาเอก", "ลงเสาเอก", "ยกเสาโท"])
+    has_update = any(k in text_lower for k in ["อัพเดท", "อัปเดต", "update", "อัพเดทหน้างาน", "อัปเดตหน้างาน", "รายงานความคืบหน้า", "ส่งมอบ"])
+    has_customer_khun = "คุณ" in text_lower or "บ้านคุณ" in text_lower or "ของคุณ" in text_lower
 
-    real_site_evidence = [
-        "อัพเดทหน้างาน", "อัปเดตหน้างาน", "site update", "update หน้างาน", "อัปเดต:", "อัพเดต:", "update :",
-        "อัปเดตความคืบหน้า", "อัพเดทความคืบหน้า", "รายงานความคืบหน้า",
-        "อัพเดทงาน", "อัปเดตงาน", "update งาน", "รายงานหน้างาน", "เข้าตรวจหน้างาน", "เข้าตรวจไซต์งาน",
-        "จบหน้างาน", "จบงาน", "ปิดหน้างาน", "ส่งมอบบ้าน", "ตรวจรับบ้าน", "ส่งมอบงาน", "ส่งมอบ",
-        "ชมผลงานจริง", "ผลงานจริง", "อีกผลงาน", "อีกหนึ่งผลงาน",
-        "📌site", "📌หน้างาน", "site :", "site:", "หน้างาน :", "หน้างาน:", "พิกัดหน้างาน", "งบก่อสร้าง",
-        "เทคอนกรีต", "เทพื้น", "เทปูน", "คานคอดิน", "ผูกเหล็ก", "ฉาบผนัง", "งานฉาบ", "ฉาบปูน", "ก่ออิฐ",
-        "งานฝ้า", "ฝ้าเพดาน", "ฝ้าหลุม", "ฝ้าฉาบเรียบ", "ปูกระเบื้อง", "งานปูกระเบื้อง", "มุงหลังคา", "ทาสี", "งานสี", "ติดตั้ง builtin",
-        "งานบันได", "บันไดไม้", "ติดตั้งบันได", "งานไม้", "การติดตั้ง",
-        "พูลวิลล่า", "pool villa", "ร้านพิซซ่า", "โครงสร้างหลังคาเหล็ก", "รังษิณา", "อุดรดุษฎี"
-    ]
+    has_target_signal = has_pillar or has_update or has_customer_khun
 
-    is_catalog_or_marketing = any(ad in text_lower for ad in marketing_catalog_patterns)
-    has_verified_customer = any(c in text_lower for c in verified_customer_signals)
-    has_real_evidence = any(sig in text_lower for sig in real_site_evidence)
-
-    if is_catalog_or_marketing and not has_verified_customer and not has_real_evidence:
-        return False, None, [], "อุดรธานี"
-
-    if not has_verified_customer and not has_real_evidence:
-        return False, None, [], "อุดรธานี"
-
+    # รายชื่อจังหวัดอื่นนอกเหนืออุดรธานี (ถ้าพบให้ตัดทิ้ง ไม่ดึงมา)
     other_provinces = [
-        "อำนาจเจริญ", "ยโสธร", "ชัยภูมิ", "ภูเขียว", "แก้งคร้อ", "คอนสาร", "เกษตรสมบูรณ์",
-        "สกลนคร", "พังโคน", "กุสุมาลย์", "พรรณานิคม", "วาริชภูมิ", "เต่างอย", "โคกศรีสุพรรณ", "วานรนิวาส", "สว่างแดนดิน",
-        "หนองคาย", "ท่าบ่อ", "โพนพิสัย", "ศรีเชียงใหม่", "สังคม", "รัตนวาปี",
-        "หนองบัวลำภู", "นากลาง", "ศรีบุญเรือง", "โนนสัง", "สุวรรณคูหา", "นาวัง",
-        "กาฬสินธุ์", "สมเด็จ", "ยางตลาด", "กมลาไสย", "กุฉินารายณ์",
-        "เลย", "วังสะพุง", "เชียงคาน", "ภูเรือ", "ด่านซ้าย", "ภูกระดึง",
-        "บึงกาฬ", "เซกา", "โซ่พิสัย", "บึงโขงหลง", "ปากคาด",
-        "นครพนม", "ธาตุพนม", "เรณูนคร", "มุกดาหาร", "มหาสารคาม", "ร้อยเอ็ด", "อุบล", "โคราช", "นครราชสีมา", "บุรีรัมย์", "สุรินทร์", "ศรีสะเกษ"
+        "ขอนแก่น", "สกลนคร", "ร้อยเอ็ด", "หนองคาย", "กาฬสินธุ์", "หนองบัวลำภู", "นครพนม",
+        "เลย", "บึงกาฬ", "มหาสารคาม", "อุบล", "อุบลราชธานี", "โคราช", "นครราชสีมา",
+        "บุรีรัมย์", "สุรินทร์", "ศรีสะเกษ", "ชัยภูมิ", "มุกดาหาร", "ยโสธร", "อำนาจเจริญ",
+        "เชียงใหม่", "เชียงราย", "พิษณุโลก", "นครสวรรค์", "กรุงเทพ", "กทม", "นนทบุรี", "ปทุมธานี",
+        "สมุทรปราการ", "ชลบุรี", "ระยอง"
     ]
     
+    # ถ้ามีการระบุจังหวัดอื่นชัดเจน -> ไม่ดึงมา (ตัดทิ้ง)
     for op in other_provinces:
         if op in text_lower:
-            if re.search(r"(?:📍|หน้างาน|พิกัด|สถานที่|ส่งมอบ|ก่อสร้าง|ไซต์งาน|สร้างที่|โครงการที่|จ\.|อ\.).{0,35}" + op, text_lower):
-                return False, None, [], "อุดรธานี"
-    
-    # 1. เช็กขอนแก่น (26 อำเภอ)
-    matched_khon_kaen = None
-    found_terms = []
-    for kd in KHONKAEN_DISTRICTS:
-        for t in kd["terms"]:
-            if t.lower() in text_lower:
-                matched_khon_kaen = kd["district"]
-                found_terms.append(t)
-                break
-        if matched_khon_kaen:
-            break
+            return False, None, [], "อื่น ๆ"
             
-    has_khon_kaen = any(kw in text_lower for kw in ["ขอนแก่น", "จ.ขอนแก่น", "khon kaen"]) or matched_khon_kaen is not None
-
-    # 2. เช็กอุดรธานี (20 อำเภอ)
-    matched_udon = None
+    # ตรวจสอบว่าตรงกับอำเภอใน จ.อุดรธานี หรือไม่
+    matched_udon_district = None
+    found_terms = []
     for d in DISTRICT_LIST:
         for t in d["terms"]:
             if t.lower() in text_lower:
-                matched_udon = d["district"]
+                matched_udon_district = d["district"]
                 found_terms.append(t)
                 break
-        if matched_udon:
+        if matched_udon_district:
             break
             
-    has_udon = any(kw in text_lower for kw in PROVINCE_KEYWORDS) or matched_udon is not None
+    has_udon_prov = any(kw in text_lower for kw in PROVINCE_KEYWORDS)
 
-    if not has_khon_kaen and not has_udon:
-        return False, None, [], "อุดรธานี"
+    # เงื่อนไขการดึงข้อมูล:
+    # 1. มีคีย์เวิร์ดสัญญาณ (ยกเสาเอก / อัพเดท / คุณ...) หรือมีคำว่าอุดรธานี/อำเภอ
+    # 2. ไม่ได้ระบุจังหวัดอื่น
+    if has_target_signal or has_udon_prov or (matched_udon_district is not None):
+        final_district = matched_udon_district if matched_udon_district else "ยังไม่ระบุอำเภอ"
+        matched_kw_summary = found_terms if found_terms else (["ยกเสาเอก"] if has_pillar else (["อัพเดท"] if has_update else ["ชื่อลูกค้า(คุณ)"]))
+        return True, final_district, matched_kw_summary, "อุดรธานี"
 
-    if has_khon_kaen and (not has_udon or matched_khon_kaen is not None):
-        return True, matched_khon_kaen or "เมืองขอนแก่น", found_terms or ["ขอนแก่น"], "ขอนแก่น"
-    else:
-        return True, matched_udon or "เมืองอุดรธานี", found_terms or ["อุดรธานี"], "อุดรธานี"
+    # ถ้าไม่มีสัญญาณหน้างานและไม่ระบุอุดร -> ไม่ดึง
+    return False, None, [], "อุดรธานี"
 
 def run_apify_scraper_33_pages(max_posts_per_page=10):
     """
