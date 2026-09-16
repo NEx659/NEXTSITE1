@@ -2946,12 +2946,21 @@ const UDON_DISTRICTS_EN_MAP = {
 
 function isExplicitOtherProvinceSite(text) {
   if (!text) return false;
-  let t = String(text).toLowerCase();
+  let t = stripCompanyContactFooter(text).toLowerCase();
 
-  // Strip generic marketing hashtags so '#รับสร้างบ้านหนองคาย' etc. in footer does not cause false rejection
+  // Strip generic marketing hashtags
   t = t.replace(/#(?:รับสร้างบ้าน|สร้างบ้าน|บริษัทรับสร้างบ้าน|ศูนย์รับสร้างบ้าน|แบบบ้าน)[^\s]+/gi, '');
   t = t.replace(/#\S+/g, '');
   
+  // International / neighboring countries exclusion (e.g. Vientiane, Laos, สปป.ลาว, เวียงจันทน์)
+  const internationalLocations = [
+    'vientiane', 'laos', 'เวียงจันทน์', 'สปป.ลาว', 'ลาว', 'หลวงพระบาง', 'ปากเซ', 'สะหวันนะเขต', 'จำปาศักดิ์',
+    'cambodia', 'กัมพูชา', 'พนมเปญ', 'myanmar', 'พม่า', 'เมียนมา', 'vietnam', 'เวียดนาม'
+  ];
+  if (internationalLocations.some(loc => t.includes(loc))) {
+    return true;
+  }
+
   // If the post explicitly specifies an authentic Udon district in the site description (e.g. อ.เพ็ญ จ.อุดรธานี)
   const isExplicitUdonSite = (t.includes('จ.อุดรธานี') || t.includes('จังหวัดอุดรธานี') || t.includes('อุดรธานี')) &&
     UDON_20_DISTRICTS_LIST.some(d => t.includes(d.toLowerCase()) || t.includes('อ.' + d.toLowerCase()) || t.includes('อำเภอ' + d.toLowerCase()));
@@ -3701,33 +3710,398 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     "ส่งมอบบ้าน", "ส่งมอบงาน", "ตรวจงาน", "ตรวจหน้างาน", "ตรวจรับบ้าน", "สู่การเริ่มต้นก่อสร้างจริง"
   ];
 
-  const customerKeywords = ["บ้านคุณ", "บ้านของคุณ", "ของบ้านคุณ", "ของคุณหมอ", "ของคุณ", "บ้านพักอาศัยคุณ"];
-
-  const marketingAndTipKeywords = [
-    "แบบบ้านยอดนิยม", "แบบบ้านดีไซน์", "แบบบ้านขายดี", "แบบบ้านแนะนำ", "แบบบ้านสวย", "แบบบ้านทันสมัย", "แบบบ้านโมเดิร์น", "แบบบ้านทรง",
-    "10 แบบบ้าน", "แบบบ้านชั้นเดียว", "แบบบ้าน 2 ชั้น", "แบบบ้าน",
-    "ราคาพิเศษ", "ราคาเริ่มต้น", "เริ่มต้นเพียง", "ตารางเมตรละ", "ตร.ม.ละ", "ล้านบาท*",
-    "โปรโมชั่นพิเศษ", "โปรโมชันพิเศษ", "โปรโมชั่น", "โปรโมชัน", "จองและทำสัญญา", "จองวันนี้", "รับส่วนลด", "แจกฟรี", "ฟรีของแถม", "แถมฟรี",
-    "ยื่นสินเชื่อ", "กู้ได้เต็ม", "ผ่อนเริ่มต้น", "ดำเนินการยื่นสินเชื่อ",
-    "อยากสร้างบ้านทั้งที", "สร้างสุข สร้างฝัน", "เพราะบ้านคือความฝัน", "สร้างบ้านคือเรื่องง่าย", "คุ้มค่า คุ้มราคา", "งบประมาณไม่บานปลาย",
-    "ทำไมถึงใช้", "ทำไมเราถึงใช้", "ทำไมต้อง", "เทคนิคสำคัญ", "ความลับอยู่ที่", "ความรู้เรื่องบ้าน", "เกร็ดความรู้", "ข้อควรรู้", "รู้หรือไม่", "หลายคนที่ติดตาม", "คลิปนี้มีคำตอบ", "ข้อดีข้อเสีย",
-    "3d", "perspective", "ภาพ 3d", "ภาพจำลอง", "ภาพเสมือนจริง",
-    "monthly meeting", "การประชุมประจำเดือน", "ประชุม", "สัมมนา", "อบรม"
+  // =========================================================
+  // STEP 1 FILTER: คัดเฉพาะโพสต์ที่ระบุหน้างานจังหวัดอื่นชัดเจนออก (เข้มงวดที่สุด ทั้งในและต่างประเทศ)
+  // =========================================================
+  const otherProvincesList = [
+    // ต่างประเทศ / สปป.ลาว
+    "vientiane", "laos", "เวียงจันทน์", "สปป.ลาว", "ลาว", "หลวงพระบาง", "ปากเซ", "สะหวันนะเขต", "จำปาศักดิ์",
+    "cambodia", "กัมพูชา", "พนมเปญ", "myanmar", "พม่า", "เมียนมา", "vietnam", "เวียดนาม", "ต่างประเทศ",
+    // 76 จังหวัดในไทย
+    "หนองคาย", "หนองบัวลำภู", "สกลนคร", "ขอนแก่น", "เลย", "บึงกาฬ", "กาฬสินธุ์",
+    "ร้อยเอ็ด", "นครพนม", "มหาสารคาม", "สารคาม", "มุกดาหาร", "ชัยภูมิ", "นครราชสีมา", "โคราช",
+    "อุบลราชธานี", "อุบล", "ยโสธร", "อำนาจเจริญ", "สุรินทร์", "ศรีสะเกษ", "บุรีรัมย์",
+    "เชียงใหม่", "เชียงราย", "ลำปาง", "ลำพูน", "แพร่", "น่าน", "พะเยา", "แม่ฮ่องสอน", "พิษณุโลก", "สุโขทัย", "ตาก", "อุตรดิตถ์", "เพชรบูรณ์", "พิจิตร", "กำแพงเพชร", "นครสวรรค์", "อุทัยธานี",
+    "กรุงเทพ", "กทม", "นนทบุรี", "ปทุมธานี", "สมุทรปราการ", "สมุทรสาคร", "สมุทรสงคราม", "นครปฐม", "อยุธยา", "พระนครศรีอยุธยา", "สระบุรี", "ลพบุรี", "สิงห์บุรี", "อ่างทอง", "ชัยนาท",
+    "ชลบุรี", "ระยอง", "จันทบุรี", "ตราด", "ฉะเชิงเทรา", "ปราจีนบุรี", "นครนายก", "สระแก้ว",
+    "เพชรบุรี", "ประจวบคีรีขันธ์", "ราชบุรี", "กาญจนบุรี", "สุพรรณบุรี",
+    "ภูเก็ต", "กระบี่", "พังงา", "สุราษฎร์ธานี", "นครศรีธรรมราช", "สงขลา", "หาดใหญ่", "ตรัง", "พัทลุง", "สตูล", "ชุมพร", "ระนอง", "ยะลา", "ปัตตานี", "นราธิวาส"
   ];
 
-  const otherProvincesStrict = [
-    "บึงกาฬ", "ปากคาด", "โซ่พิสัย", "เซกา", "บึงโขงหลง", "ศรีวิไล", "พรเจริญ", "บุ่งคล้า",
-    "กาฬสินธุ์", "ท่าคันโท", "สหัสขันธ์", "กมลาไสย", "สมเด็จ", "ยางตลาด", "กุฉินารายณ์", "ห้วยผึ้ง", "นามน", "เขาวง",
-    "นครพนม", "ธาตุพนม", "นาแก", "เรณูนคร", "ปลาปาก", "ท่าอุเทน", "ศรีสงคราม", "บ้านแพง",
-    "ขอนแก่น", "ชุมแพ", "บ้านไผ่", "น้ำพอง", "กระนวน", "พระยืน", "หนองเรือ", "พล", "ภูเวียง", "มัญจาคีรี",
-    "สกลนคร", "พังโคน", "สว่างแดนดิน", "วานรนิวาส", "พรรณานิคม", "วาริชภูมิ", "กุสุมาลย์", "อากาศอำนวย", "เต่างอย",
-    "หนองคาย", "ท่าบ่อ", "โพนพิสัย", "ศรีเชียงใหม่", "สังคม", "สระใคร", "รัตนวาปี", "เฝ้าไร่", "โพธิ์ตาก",
-    "หนองบัวลำภู", "นากลาง", "โนนสัง", "ศรีบุญเรือง", "สุวรรณคูหา", "นาวัง",
-    "เลย", "วังสะพุง", "เชียงคาน", "ด่านซ้าย", "ภูเรือ", "ภูกระดึง", "ท่าลี่", "ปากชม",
-    "ร้อยเอ็ด", "มหาสารคาม", "สารคาม", "มุกดาหาร", "ยโสธร", "อำนาจเจริญ", "อุบลราชธานี", "อุบล",
-    "นครราชสีมา", "โคราช", "บุรีรัมย์", "สุรินทร์", "ศรีสะเกษ", "ชัยภูมิ",
-    "เชียงใหม่", "เชียงราย", "พิษณุโลก", "นครสวรรค์", "กรุงเทพ", "กทม", "นนทบุรี", "ปทุมธานี", "สมุทรปราการ", "ชลบุรี", "ระยอง"
+  const outsideDistrictsList = [
+    // เลย
+    "วังสะพุง", "เชียงคาน", "ด่านซ้าย", "ภูเรือ", "ภูกระดึง", "ท่าลี่", "ปากชม", "นาแห้ว", "ภูหลวง", "ผาขาว", "เอราวัณ", "หนองหิน",
+    // บึงกาฬ
+    "เซกา", "บึงโขงหลง", "โซ่พิสัย", "ปากคาด", "พรเจริญ", "ศรีวิไล", "บุ่งคล้า",
+    // หนองคาย
+    "ท่าบ่อ", "โพนพิสัย", "ศรีเชียงใหม่", "สังคม", "รัตนวาปี", "สระใคร", "เฝ้าไร่", "โพธิ์ตาก",
+    // สกลนคร
+    "พังโคน", "สว่างแดนดิน", "วานรนิวาส", "พรรณานิคม", "อากาศอำนวย", "กุสุมาลย์", "กุดบาก", "คำตากล้า", "เจริญศิลป์", "เต่างอย", "โคกศรีสุพรรณ", "นิคมน้ำอูน", "ภูพาน", "โพนนาแก้ว",
+    // หนองบัวลำภู
+    "นากลาง", "ศรีบุญเรือง", "โนนสัง", "นาวัง", "สุวรรณคูหา",
+    // ขอนแก่น
+    "บ้านไผ่", "ชุมแพ", "น้ำพอง", "กระนวน", "พระยืน", "หนองเรือ", "พล", "บ้านแฮด", "โนนศิลา", "เขาสวนกวาง", "อุบลรัตน์", "มัญจาคีรี", "ชนบท", "แวงน้อย", "แวงใหญ่", "โคกโพธิ์ไชย", "เปือยน้อย", "ภูเวียง", "ภูผาม่าน", "ซำสูง", "ม.ขอนแก่น", "มข.",
+    // กาฬสินธุ์
+    "ยางตลาด", "กมลาไสย", "สมเด็จ", "กุฉินารายณ์", "สหัสขันธ์", "ห้วยผึ้ง", "หนองกุงศรี",
+    // ร้อยเอ็ด
+    "เกษตรวิสัย", "เสลภูมิ", "โพนทอง", "สุวรรณภูมิ", "อาจสามารถ", "พนมไพร",
+    // สารคาม
+    "โกสุมพิสัย", "วาปีปทุม", "กันทรวิชัย", "พยัคฆภูมิพิสัย",
+    // นครพนม
+    "ธาตุพนม", "เรณูนคร", "ศรีสงคราม", "ท่าอุเทน", "นาแก", "บ้านแพง",
+    // มุกดาหาร
+    "นิคมคำสร้อย", "ดอนตาล", "หว้านใหญ่", "หนองสูง",
+    // ชัยภูมิ
+    "ภูเขียว", "แก้งคร้อ", "บ้านเขว้า", "เกษตรสมบูรณ์", "คอนสาร", "คอนสวรรค์",
+    // โคราช
+    "ปากช่อง", "พิมาย", "สีคิ้ว", "ปักธงชัย", "สูงเนิน", "โชคชัย", "ด่านขุนทด",
+    // อุบล
+    "วารินชำราบ", "เดชอุดม", "พิบูลมังสาหาร"
   ];
+
+  const udonDistrictsList = [
+    // 20 Official Districts (Thai & English variations)
+    "เมืองอุดรธานี", "เมืองอุดร", "อำเภอเมือง", "อ.เมือง", "กุมภวาปี", "หนองหาน", "บ้านดุง", "เพ็ญ", "กุดจับ",
+    "โนนสะอาด", "ศรีธาตุ", "วังสามหมอ", "ทุ่งฝน", "สร้างคอม", "หนองแสง", "หนองวัวซอ",
+    "บ้านผือ", "น้ำโสม", "นายูง", "พิบูลย์รักษ์", "กู่แก้ว", "ประจักษ์ศิลปาคม", "ไชยวาน",
+    // Udon Thani Subdistricts / Key Zones
+    "หมูม่น", "หมากแข้ง", "หนองบัว", "สามพร้าว", "บ้านจั่น", "บ้านจาน", "หนองนาคำ", "บ้านตาด",
+    "โนนสูง", "บ้านเลื่อม", "เชียงพิณ", "กุดสระ", "นาดี", "บ้านขาว", "หนองไผ่", "นาข่า",
+    "หนองขอนกว้าง", "นิคมสงเคราะห์", "โคกสะอาด", "เชียงแหว", "จำปี", "ผาสุก", "ดอนหายโศก",
+    "บ้านเชียง", "หนองเม็ก", "โพนสูง", "สร้างแป้น", "สุมเส้า", "สุขคณา", "โนนตูม", "โนนยาง",
+    "นาม่วง", "เชียงกรม", "บ้านปูลู", "รังษิณา", "ดอนเสือ", "หนองประจักษ์", "ยูดีทาวน์",
+    // Udon General
+    "อุดรธานี", "จ.อุดร", "จังหวัดอุดร", "จ. อุดร", "เมือง, อุดร", "เมือง อุดร", "udon"
+  ];
+
+  function isExplicitOtherProvince(post) {
+    if (post.error || post['#error']) return true; // Error placeholder
+    const text = post.text || post.message || '';
+    if (!text) return false;
+
+    // 1. ตัดส่วนท้ายที่เป็นที่อยู่สำนักงาน / เบอร์โทร / แฮชแท็กพื้นที่ให้บริการ / เทมเพลตโปรโมท ออกก่อนตรวจเช็กไซต์งานเสมอ!
+    let bodyText = text;
+    const footerMarkers = [
+      '📌', '📍 ที่ตั้งสำนักงาน', '📍 ที่อยู่สำนักงาน', '📍 แผนที่สำนักงาน', '📍 พิกัดสำนักงาน',
+      'ที่ตั้ง สำนักงาน', 'ที่ตั้งสำนักงาน', 'สำนักงานใหญ่', 'ออฟฟิศตั้งอยู่', 'ที่อยู่สำนักงาน',
+      '____________________', '“ ใส่ใจทุกรายละเอียด', '● ปรึกษาฟรี', '● ประเมิณหน้างานฟรี', '● ประเมินหน้างานฟรี', 'Contact for work',
+      'สนใจติดต่อ', 'ติดต่อสอบถาม', 'สอบถามเพิ่มเติม', 'โทร 0', 'Tel:', 'Line ID', '#รับสร้างบ้าน', '#พื้นที่ให้บริการ', '#DREAM UP'
+    ];
+    for (const fm of footerMarkers) {
+      const idx = bodyText.indexOf(fm);
+      if (idx > 10) {
+        bodyText = bodyText.substring(0, idx);
+      }
+    }
+
+    const lines = bodyText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+
+    // 2. ตรวจสอบบรรทัดที่ระบุ พิกัด / หน้างาน / สถานที่ก่อสร้าง / ส่งมอบบ้าน / โครงการบ้าน / Site location
+    for (const line of lines) {
+      if (/(?:📍|พิกัด|หน้างาน|สถานที่ก่อสร้าง|สถานที่|ที่ตั้งโครงการ|โลเคชั่น|location|site\s*location|ส่งมอบบ้าน|บ้านพักอาศัย|โครงการบ้าน|สร้างบ้านที่|บ้านคุณ)/i.test(line)) {
+        // หากบรรทัดนี้ระบุจังหวัดอื่น หรือต่างประเทศ (เช่น Vientiane, Laos)
+        for (const prov of otherProvincesList) {
+          const provRegex = (prov === 'เลย' || prov === 'อุบล' || prov === 'กทม' || prov === 'ลาว') 
+            ? new RegExp(`(?:จ\\.|จังหวัด|ประเทศ)?\\s*${prov}`, 'i')
+            : new RegExp(prov, 'i');
+          if (provRegex.test(line) && !line.toLowerCase().includes('udon')) {
+            return true; // คัดออกทันที เป็นหน้างานต่างจังหวัด/ต่างประเทศ
+          }
+        }
+        // หากบรรทัดนี้ระบุอำเภอของต่างจังหวัด (เช่น วังสะพุง, ชุมแพ, สว่างแดนดิน)
+        for (const dist of outsideDistrictsList) {
+          const distRegex = new RegExp(`(?:อ\\.|อำเภอ|ต\\.|ตำบล)?\\s*${dist}`, 'i');
+          if (distRegex.test(line) && !line.includes('อุดร')) {
+            return true; // คัดออกทันที
+          }
+        }
+      }
+
+      // ตรวจสอบการระบุ จ.xxx หรือ อ.xxx หรือ ประเทศเพื่อนบ้านชัดเจนในแต่ละบรรทัดของเนื้อหาไซต์งาน
+      for (const prov of otherProvincesList) {
+        const provRegex = new RegExp(`(?:จ\\.|จังหวัด|location\\s*[:\\|]|site\\s*location\\s*[:\\|])?\\s*${prov}`, 'i');
+        if (provRegex.test(line) && !line.toLowerCase().includes('udon')) {
+          return true; // คัดออกทันที
+        }
+      }
+      for (const dist of outsideDistrictsList) {
+        const distRegex = new RegExp(`(?:อ\\.|อำเภอ)\\s*${dist}`, 'i');
+        if (distRegex.test(line) && !line.includes('อุดร')) {
+          return true; // คัดออกทันที
+        }
+      }
+    }
+
+    // 3. ตรวจสอบภาพรวมของ bodyText (ที่ตัด Footer สำนักงานออกแล้ว)
+    for (const prov of otherProvincesList) {
+      const provRegex = new RegExp(`(?:จ\\.|จังหวัด|หน้างาน|พิกัด|location|site\\s*location)\\s*[:\\s\\|]*${prov}`, 'i');
+      if (provRegex.test(bodyText) && !bodyText.toLowerCase().includes('udon')) {
+        return true; // คัดออกทันที
+      }
+    }
+    for (const dist of outsideDistrictsList) {
+      const distRegex = new RegExp(`(?:อ\\.|อำเภอ|หน้างาน|พิกัด)\\s*[:\\s]*${dist}`, 'i');
+      if (distRegex.test(bodyText) && !bodyText.includes('อุดร')) {
+        return true; // คัดออกทันที
+      }
+    }
+
+    return false;
+  }
+
+  // =========================================================
+  // STEP 2 FILTER: คัดโพสต์ประกาศวันหยุด / วันสำคัญออก
+  // =========================================================
+  function isHolidayAnnouncement(post) {
+    const text = post.text || post.message || '';
+    if (!text) return false;
+
+    // ข้อยกเว้น: สโลแกนเช่น "การพัฒนา ไม่มีวันหยุด" ของโครงการก่อสร้างสำนักงาน
+    if (text.includes('การพัฒนา ไม่มีวันหยุด') || text.includes('ไม่มีวันหยุด')) {
+      if (text.includes('สำนักงานใหม่') || text.includes('ก่อสร้าง')) {
+        return false;
+      }
+    }
+
+    const holidayRegex = /(?:แจ้งวันหยุด|วันหยุดนักขัตฤกษ์|ประกาศวันหยุด|หยุดทำการ|ปิดทำการ|สุขสันต์วันแม่|วันแม่แห่งชาติ|Happy Mother's Day|สุขสันต์วันสงกรานต์|สวัสดีปีใหม่|วันหยุดยาว)/i;
+    if (holidayRegex.test(text)) {
+      if (!/เทคาน|ฐานราก|ยกเสาเอก|เสาเข็ม|มุงหลังคา|ฉาบปูน|ตอกเสาเข็ม/i.test(text)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // =========================================================
+  // STEP 3 FILTER: คัดโพสต์โฆษณา/โปรโมทออก (เว้นแต่มีชื่ออำเภอในอุดร หรือ มีชื่อคน)
+  // =========================================================
+  const adPromoKeywordsList = [
+    "โปรโมชั่น", "โปรโมชัน", "โปรโมชั่นพิเศษ", "โปรโมชันพิเศษ",
+    "ราคาพิเศษ", "ลดกระหน่ำ", "แจกฟรี", "ของแถม", "ฟรีของแถม", "แถมฟรี",
+    "จองวันนี้", "จองและทำสัญญา", "ผ่อนเริ่มต้น", "กู้ได้เต็ม", "ยื่นสินเชื่อ",
+    "แบบบ้านขายดี", "แบบบ้านยอดนิยม", "10 แบบบ้าน", "แบบบ้านแนะนำ",
+    "ราคาเริ่มต้น", "เริ่มต้นเพียง", "ตารางเมตรละ", "ตร.ม.ละ"
+  ];
+
+  function isAdWithoutDistrictOrPerson(post) {
+    const text = post.text || post.message || '';
+    if (!text) return false;
+
+    let isAd = false;
+    for (const kw of adPromoKeywordsList) {
+      if (text.includes(kw)) {
+        isAd = true;
+        break;
+      }
+    }
+
+    if (isAd) {
+      // ตัด footer ออฟฟิศออกก่อนตรวจอำเภอหรือชื่อคนหน้างาน
+      let body = text;
+      const footerMarkers = [
+        '📌', '📍 ที่ตั้งสำนักงาน', '📍 ที่อยู่สำนักงาน', '📍 แผนที่สำนักงาน', '📍 พิกัดสำนักงาน',
+        'ที่ตั้ง สำนักงาน', 'ที่ตั้งสำนักงาน', 'สำนักงานใหญ่', 'ออฟฟิศตั้งอยู่', 'ที่อยู่สำนักงาน',
+        'สนใจติดต่อ', 'ติดต่อสอบถาม', 'สอบถามเพิ่มเติม', 'โทร 0', 'Tel:', 'Line ID', '#รับสร้างบ้าน', '#พื้นที่ให้บริการ', '#DREAM UP'
+      ];
+      for (const fm of footerMarkers) {
+        const idx = body.indexOf(fm);
+        if (idx > 10) body = body.substring(0, idx);
+      }
+
+      // ตัดบรรทัดของแถมโปรโมชั่น และสโลแกนการตลาดออกก่อนตรวจงานก่อสร้างจริง
+      let bodyNoGifts = body.replace(/(?:🎁|🎉|🎊|ฟรี!|แถมฟรี|ของแถม|ฟรี\s*[:!])[^\n]+/gi, '');
+      bodyNoGifts = bodyNoGifts.replace(/(?:จนถึงวันส่งมอบ|ตั้งแต่เริ่มจน|ตั้งแต่วันแรกจน|ตั้งแต่ฐานรากจนถึง|เรื่องการสร้างบ้าน|ไว้ใจ\s*\|)/gi, '');
+
+      // ตรวจสอบข้อยกเว้น: มีระบุงานก่อสร้างจริงในอุดรธานี
+      const hasRealWork = /(?:งานติดตั้ง|งานทาสี|งานมุง|งานปูกระเบื้อง|งานเทพื้น|งานฉาบ|งานก่อ|เทคาน|ฐานราก|ยกเสาเอก|เสาเข็ม|โครงเหล็ก|ส่งมอบบ้าน|ส่งมอบงาน)/i.test(bodyNoGifts);
+      if (hasRealWork && (body.includes('อุดร') || body.includes('อุดรธานี') || /(?:อ\.|อำเภอ)\s*เมือง/i.test(body))) {
+        return false; // เก็บไว้ (เป็นงานก่อสร้างจริงในอุดร)
+      }
+
+      // ตรวจสอบข้อยกเว้น: 1 ใน 20 อำเภอ/ตำบลในอุดรธานี (เฉพาะในเนื้อหาหน้างาน)
+      for (const dist of udonDistrictsList) {
+        if (body.includes(dist)) {
+          return false; // เก็บไว้ (มีอำเภอ/ตำบลในอุดร)
+        }
+      }
+
+      // ตรวจสอบกรณีเขียน "อำเภอเมือง อุดรธานี" หรือ "อ.เมือง อุดรธานี"
+      if (/(?:อ\.|อำเภอ)\s*เมือง/i.test(body) && (body.includes('อุดร') || body.includes('อุดรธานี'))) {
+        return false;
+      }
+
+      // ตรวจสอบข้อยกเว้น: มีชื่อคน / เจ้าของบ้าน (ระบุชื่อบุคคลจริง ไม่ใช่คำโฆษณา)
+      const custRegex = /(?:บ้านคุณ|บ้านพักอาศัยคุณ|บ้านพักคุณ|บ้านพี่|บ้านป้า|บ้านลุง|บ้านน้า|บ้านหมอ|บ้านอาจารย์|Owner|owner)\s*[:\s]*([ก-๙a-zA-Z]+)/;
+      const custMatch = body.match(custRegex);
+      if (custMatch && custMatch[1]) {
+        const c = custMatch[1].trim();
+        if (!/^(?:ของคุณ|ของบ้านคุณ|ภาพ|งาน|สร้าง|ดี|เรา|ท่าน|ทุกท่าน|พี่|น้อง|ใหม่|เก่า|ครับ|ค่ะ|อุดร|คุณภาพ|มาตรฐาน|ลูกค้า|ออกแบบ|ไว้วางใจ|บริการ|สัญญา|ตรงตามความต้องการ|ตั้งแต่วันแรก)$/.test(c)) {
+          return false; // เก็บไว้ (มีชื่อเจ้าของบ้านจริง)
+        }
+      }
+
+      if (/(?:ท่านอาจารย์|อาจารย์|คุณหมอ|หมอ|ผอ\.|เสี่ย|ช่าง)\s*([ก-๙a-zA-Z0-9]+)/i.test(body)) {
+        const pMatch = body.match(/(?:ท่านอาจารย์|อาจารย์|คุณหมอ|หมอ|ผอ\.|เสี่ย|ช่าง)\s*([ก-๙a-zA-Z0-9]+)/i);
+        if (pMatch && pMatch[1] && !/^(?:คุณภาพ|มาตรฐาน|มืออาชีพ|ประสบการณ์)$/.test(pMatch[1])) {
+          return false; // เก็บไว้ (มีชื่อบุคคล)
+        }
+      }
+
+      return true; // คัดออก (เป็นโฆษณาโปรโมชั่นที่ไม่มีอำเภอในอุดรและไม่มีชื่อคน)
+    }
+
+    return false;
+  }
+
+  // =========================================================
+  // STEP 4 FILTER: คัดโพสต์ที่เป็นภาพ 3D / แบบบ้านกราฟิกดีไซน์ออก (เว้นแต่เป็นภาพหน้างานก่อสร้างจริง)
+  // =========================================================
+  function isPure3DOrGraphicRender(post) {
+    const text = post.text || post.message || '';
+    if (!text) return false;
+
+    // ตรวจสอบคีย์เวิร์ดงาน 3D / กราฟิก / เรนเดอร์ / โมเดล / แคตตาล็อกแบบบ้าน
+    const is3DKeyword = /(?:ภาพ|รูป|แบบ|โมเดล|งานออกแบบ|แปลน)\s*3[dD]|3[dD]\s*(?:perspective|render|ภาพ|รูป|แบบ)|perspective|render|ภาพจำลอง|แบบแปลน|ขึ้นภาพ\s*3[dD]|#แบบบ้าน|แบบบ้านพักอาศัย\s*ค\.ส\.ล/i.test(text);
+
+    if (is3DKeyword) {
+      // ตรวจสอบว่ามีงานก่อสร้างจริงหน้างานหรือไม่ (เช่น งานเทคาน, งานฉาบ, งานปูกระเบื้อง, ส่งมอบงาน ฯลฯ)
+      const hasRealSiteTask = /(?:เทคาน|เทพื้น|ขุดฐานราก|เทตอม่อ|ยกเสาเอก|ลงเสาเข็ม|ตอกเสาเข็ม|มุงหลังคา|ก่ออิฐ|ฉาบปูน|ส่งมอบบ้าน|ส่งมอบงาน|งานติดตั้งสุขภัณฑ์|งานทาสีโครงเหล็ก|งานปูกระเบื้อง|งานฝ้า|งานเดินระบบ|งานติดบัว|งานติดอุปกรณ์ไฟฟ้า|On site:|SITE UPDATE)/i.test(text);
+
+      if (!hasRealSiteTask) {
+        return true; // คัดออก (เป็นภาพ 3D/กราฟิกโมเดล ไม่มีงานก่อสร้างหน้างานจริง)
+      }
+    }
+
+    return false;
+  }
+
+  // =========================================================
+  // STEP 5 FILTER: คัดโพสต์งานออกแบบ/แบบบ้าน/ดีไซน์ ที่ไม่มีอำเภอในอุดร และไม่มีชื่อเจ้าของบ้านออก
+  // =========================================================
+  const designKeywordsList = [
+    "ออกแบบ", "รับออกแบบ", "งานออกแบบ", "เขียนแบบ", "ดีไซน์", "บริการออกแบบ", "ออกแบบตกแต่ง",
+    "Design by", "DESIGN BY", "design by", "ไอเดียผังบ้าน", "แบบบ้าน", "แปลนบ้าน"
+  ];
+
+  function isDesignWithoutDistrictOrPerson(post) {
+    const text = post.text || post.message || '';
+    if (!text) return false;
+
+    // ตัด footer ออฟฟิศออกก่อนตรวจ
+    let body = text;
+    const footerMarkers = [
+      '📌', '📍 ที่ตั้งสำนักงาน', '📍 ที่อยู่สำนักงาน', '📍 แผนที่สำนักงาน', '📍 พิกัดสำนักงาน',
+      'ที่ตั้ง สำนักงาน', 'ที่ตั้งสำนักงาน', 'สำนักงานใหญ่', 'ออฟฟิศตั้งอยู่', 'ที่อยู่สำนักงาน',
+      'สนใจติดต่อ', 'ติดต่อสอบถาม', 'สอบถามเพิ่มเติม', 'โทร 0', 'Tel:', 'Line ID', '#รับสร้างบ้าน', '#พื้นที่ให้บริการ', '#DREAM UP'
+    ];
+    for (const fm of footerMarkers) {
+      const idx = body.indexOf(fm);
+      if (idx > 10) body = body.substring(0, idx);
+    }
+
+    let isDesign = false;
+    for (const kw of designKeywordsList) {
+      if (body.includes(kw)) {
+        isDesign = true;
+        break;
+      }
+    }
+
+    if (isDesign) {
+      // ตรวจสอบข้อยกเว้น: มีอำเภอ 1 ใน 20 อำเภอหรือตำบลในอุดรธานี (ในเนื้อหาหน้างานเท่านั้น)
+      for (const dist of udonDistrictsList) {
+        if (body.includes(dist)) {
+          return false; // เก็บไว้ (มีอำเภอ/พื้นที่ในอุดร)
+        }
+      }
+
+      if (/(?:อ\.|อำเภอ)\s*เมือง/i.test(body) && (body.includes('อุดร') || body.includes('อุดรธานี'))) {
+        return false; // เก็บไว้
+      }
+
+      // ตรวจสอบข้อยกเว้น: มีชื่อคน / เจ้าของบ้าน
+      if (/(?:บ้านคุณ|บ้านของคุณ|ของบ้านคุณ|บ้านพักอาศัยคุณ|บ้านพักคุณ|บ้านพี่|บ้านป้า|บ้านลุง|บ้านน้า|บ้านหมอ|บ้านอาจารย์|Owner|owner)\s*[:\s]*([^\s\n,]+)/i.test(body)) {
+        return false; // เก็บไว้ (มีชื่อเจ้าของบ้าน)
+      }
+
+      if (/(?:ท่านอาจารย์|อาจารย์|คุณหมอ|หมอ|ผอ\.|เสี่ย|ช่าง)\s*([ก-๙a-zA-Z0-9]+)?/i.test(body)) {
+        return false; // เก็บไว้ (มีชื่อบุคคล)
+      }
+
+      const m = body.match(/(?:คุณ)\s*([ก-๙a-zA-Z]+)/);
+      if (m && !/คุณภาพ|คุณสมบัติ|คุ้นเคย|คุณค่า|คุ้มค่า/.test(m[0])) {
+        return false; // เก็บไว้ (มีชื่อคุณ...)
+      }
+
+      return true; // คัดออก (เป็นโพสต์งานออกแบบที่ไม่มีทั้งอำเภอในอุดรและชื่อคน)
+    }
+
+    return false;
+  }
+
+  // =========================================================
+  // STEP 6 FILTER: คัดโพสต์ประกาศรับสมัครงาน / รับสมัครพนักงาน / รับสมัครช่าง ออก
+  // =========================================================
+  const recruitmentKeywordsList = [
+    "รับสมัคร", "รับสมัครงาน", "รับสมัครพนักงาน", "เปิดรับสมัคร", "เปิดรับสมัครงาน",
+    "ตำแหน่งงานว่าง", "ตำแหน่งที่เปิดรับ", "ประกาศรับสมัคร", "สมัครงาน", "รับสมัครด่วน",
+    "รับช่าง", "หาช่าง", "รับโฟร์แมน", "หาโฟร์แมน", "รับวิศวกร", "รับสถาปนิก",
+    "we are hiring", "we're hiring", "hiring", "job vacancy", "join our team",
+    "walk-in interview", "ส่ง resume", "ส่ง portfolio", "อัตราจ้าง", "วุฒิการศึกษา",
+    "คุณสมบัติผู้สมัคร", "นักศึกษาฝึกงาน", "รับนักศึกษาฝึกงาน", "เปิดรับฝึกงาน"
+  ];
+
+  function isRecruitmentPost(post) {
+    const text = post.text || post.message || '';
+    if (!text) return false;
+
+    // ข้อยกเว้น: ถ้าเป็นเพียงการสัมภาษณ์เจ้าของบ้าน หรือ ขอบคุณที่ได้ร่วมงานก่อสร้าง
+    let clean = text.replace(/สัมภาษณ์\s*(?:เจ้าของบ้าน|ลูกค้า|คุณ)/gi, '');
+    clean = clean.replace(/(?:ร่วมงาน|ได้ร่วมงาน)\s*(?:ก่อสร้าง|กับ|สร้างบ้าน)/gi, '');
+    clean = clean.replace(/ร่วมงานเลี้ยง/gi, '');
+
+    for (const kw of recruitmentKeywordsList) {
+      if (clean.toLowerCase().includes(kw)) {
+        return true; // คัดออกทันที (เป็นโพสต์ประกาศรับสมัครงาน)
+      }
+    }
+    return false;
+  }
+
+  // =========================================================
+  // STEP 7 FILTER: คัดโพสต์อัปเดตรูปโปรไฟล์/หน้าปก, โพสต์ว่างเปล่า/อีโมจิ, ข่าว PR องค์กร/เปลี่ยนโลโก้/ครบรอบ/ขึ้นทะเบียน ออก
+  // =========================================================
+  function isCompanyPROrEmptyPost(post) {
+    const text = (post.text || post.message || '').trim();
+
+    // 1. โพสต์ว่างเปล่า หรือมีข้อความสั้นมาก (< 15 ตัวอักษร) และไม่มีคำระบุงานก่อสร้าง
+    if (!text || text.length < 15) {
+      if (!/(?:เทคาน|ฐานราก|ยกเสาเอก|เสาเข็ม|มุงหลังคา|ฉาบปูน|ส่งมอบ|ก่ออิฐ)/i.test(text)) {
+        return true; // คัดออกทันที (โพสต์ว่างเปล่า/สั้นเกินไปไม่มีเนื้องาน)
+      }
+    }
+
+    // 2. โพสต์เปลี่ยนรูปโปรไฟล์ หรือ เปลี่ยนรูปภาพหน้าปกเพจ
+    if (/ได้อัพเดตรูปโปรไฟล์|ได้อัพเดตรูปภาพหน้าปก|updated (?:their )?(?:profile|cover) photo/i.test(text)) {
+      return true; // คัดออก
+    }
+
+    // 3. ข่าวประชาสัมพันธ์องค์กร / โลโก้ใหม่ / ฉลองครบรอบ / ขึ้นทะเบียนจัดชั้นผู้ประกอบการ / ถ่ายรีวิวสินค้า
+    const isCorporatePR = /(?:NEW LOGO|โลโก้ใหม่|เปลี่ยนโลโก้|Rebrand Logo|20th Anniversary|Anniversary|ครบรอบ\s*\d+\s*ปี|\d+\s*YEARS OF|ขึ้นทะเบียนและจัดชั้น|จัดชั้นผู้ประกอบการ|กรมบัญชีกลาง|ถ่าย\s*present)/i.test(text);
+    if (isCorporatePR) {
+      const hasSiteWork = /(?:เทคาน|เทพื้น|ขุดฐานราก|เทตอม่อ|ยกเสาเอก|ลงเสาเข็ม|ตอกเสาเข็ม|มุงหลังคา|ก่ออิฐ|ฉาบปูน|ส่งมอบบ้าน|ส่งมอบงาน)/i.test(text);
+      if (!hasSiteWork) {
+        return true; // คัดออก (เป็นข่าว PR บริษัท / ครบรอบ / โลโก้)
+      }
+    }
+
+    return false;
+  }
+
+  // Filter out explicit other provinces (Step 1), Holiday announcements (Step 2), Ads/Promo without District/Person (Step 3), Pure 3D Renders (Step 4), Design posts without District/Person (Step 5), Recruitment posts (Step 6), Corporate PR & Empty posts (Step 7)
+  const validPosts = posts.filter(p => !isExplicitOtherProvince(p) && !isHolidayAnnouncement(p) && !isAdWithoutDistrictOrPerson(p) && !isPure3DOrGraphicRender(p) && !isDesignWithoutDistrictOrPerson(p) && !isRecruitmentPost(p) && !isCompanyPROrEmptyPost(p));
+  console.log(`🔍 [Filters Applied] จากทั้งหมด ${posts.length} โพสต์ คัดออก ${posts.length - validPosts.length} โพสต์ คงเหลือ ${validPosts.length} โพสต์`);
+  posts = validPosts;
 
   function cleanSlug(url) {
     if (!url) return '';
@@ -3764,6 +4138,9 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     });
 
     if (compPosts.length > 0) {
+      // Sort posts chronologically latest first
+      compPosts.sort((a, b) => new Date(b.time || 0) - new Date(a.time || 0));
+
       const latest = compPosts[0];
       comp.facebookSignal = {
         postDate: latest.time ? new Date(latest.time).toLocaleDateString('th-TH') : 'ล่าสุด',
@@ -3776,11 +4153,49 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       };
 
       const validProjects = [];
-      const seenCustomerKeys = new Set();
+      const seenSiteKeys = new Set();
 
       compPosts.forEach((p) => {
         const text = p.text || p.message || '';
         const textLower = text.toLowerCase();
+
+        // 1. Generate Site/Project Key for same-site deduplication
+        let siteKey = '';
+        const projectMatch = text.match(/Project\s*\|\s*(?:K\.|คุณ)?\s*([a-zA-Z0-9_\-]+)/i);
+        if (projectMatch) {
+          siteKey = 'cust_' + projectMatch[1].toLowerCase().trim();
+        } else {
+          const custMatch = text.match(/(?:บ้านคุณ|บ้านพักอาศัยคุณ|บ้านพักคุณ|ลูกค้าคุณ|คุณ)\s*([ก-๙a-zA-Z]+)/);
+          if (custMatch) {
+            const cName = custMatch[1].replace(/เเ/g, 'แ').trim();
+            if (!/^(?:ภาพ|งาน|สร้าง|ดี|เรา|ท่าน|ทุกท่าน|พี่|น้อง|ใหม่|เก่า|ครับ|ค่ะ|อุดร|คุณภาพ|มาตรฐาน|ลูกค้า|ออกแบบ|ไว้วางใจ|บริการ|สัญญา)$/.test(cName)) {
+              siteKey = 'cust_' + cName;
+            }
+          }
+        }
+
+        if (!siteKey) {
+          if (/โชว์รูมอุดรเซ็นเตอร์ฟิล์ม|เซ็นเตอร์ฟิล์ม/i.test(text)) siteKey = 'landmark_center_film';
+          else if (/พีที|ปั๊ม\s*pt|บ้านปูลู/i.test(text)) siteKey = 'landmark_pt_pulu';
+          else if (/Good Vibes|กู๊ดไวบ์/i.test(text)) siteKey = 'landmark_good_vibes';
+          else if (/สุขคณา/i.test(text)) siteKey = 'landmark_sukkhana';
+          else if (/MDUD\s*251/i.test(text)) siteKey = 'proj_mdud_251';
+          else if (/ศุภาลัย/i.test(text)) siteKey = 'landmark_supalai';
+          else if (/รชยา/i.test(text)) siteKey = 'landmark_rachaya';
+          else if (/อภิทาวน์/i.test(text)) siteKey = 'landmark_apitown';
+          else if (/วิลลาจจิโอ/i.test(text)) siteKey = 'landmark_villaggio';
+        }
+
+        if (!siteKey) {
+          const rawFirstLine = (text.split(/\r?\n/)[0] || '').trim().substring(0, 30);
+          siteKey = 'line_' + rawFirstLine.replace(/[^a-zA-Z0-9ก-๙]/g, '_');
+        }
+
+        // If this project was already recorded (from a newer post), skip older duplicate posts!
+        if (seenSiteKeys.has(siteKey)) {
+          return;
+        }
+        seenSiteKeys.add(siteKey);
 
         let stageKey = 'structure';
         let stageText = 'งานโครงสร้างและก่อฉาบอาคาร';
@@ -3798,12 +4213,23 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         const firstLine = rawLines.length > 0 ? rawLines[0] : `อัปเดตหน้างาน ${comp.name}`;
         const projTitle = firstLine.length > 55 ? firstLine.substring(0, 55) + '...' : firstLine;
 
+        const pDistrict = typeof extractUdonDistrict === 'function' ? extractUdonDistrict(text, comp.district || 'เมืองอุดรธานี') : (comp.district || 'เมืองอุดรธานี');
+        let locText = `อ.${pDistrict} จ.อุดรธานี`;
+        if (text.includes('หนองขอนกว้าง')) locText = 'ต.หนองขอนกว้าง อ.เมือง จ.อุดรธานี';
+        else if (text.includes('บ้านจั่น')) locText = 'ต.บ้านจั่น อ.เมือง จ.อุดรธานี';
+        else if (text.includes('หมูม่น')) locText = 'ต.หมูม่น อ.เมือง จ.อุดรธานี';
+        else if (text.includes('สามพร้าว')) locText = 'ต.สามพร้าว อ.เมือง จ.อุดรธานี';
+        else if (text.includes('หมากแข้ง')) locText = 'ต.หมากแข้ง อ.เมือง จ.อุดรธานี';
+        else if (text.includes('บ้านตาด')) locText = 'ต.บ้านตาด อ.เมือง จ.อุดรธานี';
+        else if (text.includes('โนนสูง')) locText = 'ต.โนนสูง อ.เมือง จ.อุดรธานี';
+        else if (text.includes('วังสามหมอ')) locText = 'อ.วังสามหมอ จ.อุดรธานี';
+
         validProjects.push({
           projectId: `${comp.id}-${validProjects.length + 1}`,
           name: projTitle,
-          location: `อ.${comp.district || 'เมืองอุดรธานี'} จ.อุดรธานี`,
-          province: comp.province || 'อุดรธานี',
-          district: comp.district || 'เมืองอุดรธานี',
+          location: locText,
+          province: 'อุดรธานี',
+          district: pDistrict,
           gps: comp.coordinates || [17.412, 102.801],
           stage: stageText,
           stageKey: stageKey,

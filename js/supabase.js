@@ -295,10 +295,28 @@ async function updateCloudCompanyTag(companyId, newTag) {
   if (!client) return false;
 
   try {
-    const { data, error } = await client
+    let { data, error } = await client
       .from('companies')
       .update({ tag: newTag, updated_at: new Date().toISOString() })
-      .eq('id', companyId);
+      .eq('id', companyId)
+      .select('id');
+
+    if (!error && (!data || data.length === 0)) {
+      const payload = {
+        id: companyId,
+        tag: newTag,
+        province: 'อุดรธานี'
+      };
+      if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
+        const comp = allCompanies.find(c => c.id === companyId);
+        if (comp) {
+          if (comp.name) payload.name = comp.name;
+          if (comp.province) payload.province = comp.province;
+        }
+      }
+      const upsertRes = await client.from('companies').upsert(payload, { onConflict: 'id' });
+      error = upsertRes.error;
+    }
 
     if (error) {
       console.error('❌ Update Tag Error in Supabase:', error.message);
@@ -477,7 +495,7 @@ async function saveCloudCrmLog(companyId, crmData) {
       wantFollowup: !!crmData.wantFollowup,
       salesOpportunityLevel: crmData.salesOpportunityLevel || null,
       photos: Array.isArray(crmData.photos) ? crmData.photos : [],
-      updatedAt: crmData.updatedAt || new Date().toISOString()
+      updatedAt: crmData.updatedAt || crmData.lastUpdated || new Date().toISOString()
     });
 
     const updatePayload = {
@@ -485,14 +503,33 @@ async function saveCloudCrmLog(companyId, crmData) {
       crm_status: crmData.status || 'pending',
       crm_sales_rep: crmData.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
       crm_next_date: crmData.nextDate || '',
-      revenue_potential: jsonStr,
-      updated_at: new Date().toISOString()
+      revenue_potential: jsonStr
     };
 
-    const { error } = await client
+    let { data, error } = await client
       .from('companies')
       .update(updatePayload)
-      .eq('id', companyId);
+      .eq('id', companyId)
+      .select('id');
+
+    // If row did not exist yet, upsert with basic metadata
+    if (!error && (!data || data.length === 0)) {
+      const upsertPayload = {
+        id: companyId,
+        ...updatePayload,
+        province: 'อุดรธานี'
+      };
+      if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
+        const comp = allCompanies.find(c => c.id === companyId);
+        if (comp) {
+          if (comp.name) upsertPayload.name = comp.name;
+          if (comp.province) upsertPayload.province = comp.province;
+          if (comp.tag) upsertPayload.tag = comp.tag;
+        }
+      }
+      const upsertRes = await client.from('companies').upsert(upsertPayload, { onConflict: 'id' });
+      error = upsertRes.error;
+    }
 
     if (error) {
       console.error('❌ Supabase Cloud CRM Save error:', error.message);
@@ -527,7 +564,7 @@ async function loadAndApplyCloudCrmLogs() {
     if (data && data.length > 0) {
       let crmLogs = {};
       try {
-        const raw = localStorage.getItem('nextsite_crm_followup_logs') || localStorage.getItem('nextsite_crm_logs_v1');
+        const raw = localStorage.getItem('nextsite_crm_followup_logs') || localStorage.getItem('nextsite_crm_logs_v1') || localStorage.getItem('nextsite_crm_logs_v2');
         if (raw) crmLogs = JSON.parse(raw);
       } catch (e) {}
 
@@ -552,7 +589,7 @@ async function loadAndApplyCloudCrmLogs() {
             wantFollowup: (cloudLog && typeof cloudLog.wantFollowup !== 'undefined') ? cloudLog.wantFollowup : (typeof existingLocal.wantFollowup !== 'undefined' ? existingLocal.wantFollowup : false),
             salesOpportunityLevel: (cloudLog && cloudLog.salesOpportunityLevel) ? cloudLog.salesOpportunityLevel : (existingLocal.salesOpportunityLevel || null),
             photos: (cloudLog && Array.isArray(cloudLog.photos) && cloudLog.photos.length > 0) ? cloudLog.photos : (Array.isArray(existingLocal.photos) ? existingLocal.photos : []),
-            updatedAt: new Date().toISOString()
+            updatedAt: (cloudLog && cloudLog.updatedAt) || new Date().toISOString()
           };
           updatedCount++;
         }
@@ -560,9 +597,13 @@ async function loadAndApplyCloudCrmLogs() {
 
       localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(crmLogs));
       localStorage.setItem('nextsite_crm_logs_v1', JSON.stringify(crmLogs));
+      localStorage.setItem('nextsite_crm_logs_v2', JSON.stringify(crmLogs));
 
       if (typeof renderTable === 'function') {
         renderTable();
+      }
+      if (typeof updateHeaderCrmStats === 'function') {
+        updateHeaderCrmStats();
       }
       console.log(`☁️ Synced ${updatedCount} CRM notes from Supabase Cloud successfully!`);
     }
