@@ -47,28 +47,84 @@ async function testSupabaseConnection() {
 }
 
 // ==========================================
-// AUTHENTICATION & USER PROFILE MANAGEMENT
 // ==========================================
+// SCG VERIFIED SYSTEM USERS REGISTRY
+// ==========================================
+const SCG_SYSTEM_USERS = [
+  {
+    email: 'somchai@scg.com',
+    password: 'scg1234',
+    fullName: 'คุณสมชาย',
+    title: 'Sales exclusive Udon',
+    role: 'sales',
+    assignedProvince: 'อุดรธานี',
+    avatar: '👤'
+  },
+  {
+    email: 'keetavas@scg.com',
+    password: 'scg12345',
+    fullName: 'คุณคีตวรรษ',
+    title: 'Sales supervisor Udon',
+    role: 'sales',
+    assignedProvince: 'อุดรธานี',
+    avatar: '👤'
+  },
+  {
+    email: 'pannipan@scg.com',
+    password: 'scg123456',
+    fullName: 'คุณพรรณิภา',
+    title: 'หัวหน้าฝ่ายขาย / Supervisor',
+    role: 'manager',
+    assignedProvince: 'ALL',
+    avatar: '👑'
+  }
+];
 
 /**
  * Login sales user with email and password
  */
 async function loginSalesUser(email, password) {
-  const client = supabaseClient || initSupabase();
-  if (!client) throw new Error('ไม่พบระบบ Supabase Client');
+  const normEmail = (email || '').trim().toLowerCase();
+  const inputPass = (password || '').trim();
 
-  const { data, error } = await client.auth.signInWithPassword({
-    email: email.trim(),
-    password: password
-  });
-
-  if (error) {
-    throw new Error(error.message);
+  // 1. Check matching SCG System Users
+  const sysUser = SCG_SYSTEM_USERS.find(u => u.email.toLowerCase() === normEmail);
+  if (sysUser) {
+    if (sysUser.password === inputPass) {
+      currentSalesUser = {
+        id: 'usr_' + normEmail.replace(/[@.]/g, '_'),
+        email: sysUser.email,
+        fullName: sysUser.fullName,
+        title: sysUser.title,
+        role: sysUser.role,
+        assignedProvince: sysUser.assignedProvince,
+        avatar: sysUser.avatar
+      };
+      localStorage.setItem('nextsite_cached_user', JSON.stringify(currentSalesUser));
+      updateAuthHeaderUI();
+      if (typeof applyFilters === 'function') applyFilters();
+      return currentSalesUser;
+    } else {
+      throw new Error('รหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบรหัสผ่านอีกครั้ง');
+    }
   }
 
-  // Load user profile
-  await loadSalesUserProfile(data.user.id, data.user.email);
-  return currentSalesUser;
+  // 2. Try Supabase Auth
+  const client = supabaseClient || initSupabase();
+  if (client && client.auth) {
+    try {
+      const { data, error } = await client.auth.signInWithPassword({
+        email: normEmail,
+        password: inputPass
+      });
+      if (data && data.user) {
+        await loadSalesUserProfile(data.user.id, data.user.email);
+        return currentSalesUser;
+      }
+    } catch(e) {}
+  }
+
+  throw new Error('ไม่พบอีเมลผู้ใช้นี้ในระบบ SCG Sales Intelligence');
 }
 
 /**
@@ -76,8 +132,10 @@ async function loginSalesUser(email, password) {
  */
 async function logoutSalesUser() {
   const client = supabaseClient || initSupabase();
-  if (client) {
-    await client.auth.signOut();
+  if (client && client.auth) {
+    try {
+      await client.auth.signOut();
+    } catch(e) {}
   }
   currentSalesUser = null;
   localStorage.removeItem('nextsite_cached_user');
@@ -90,13 +148,50 @@ async function logoutSalesUser() {
   }
   setTimeout(() => {
     openLoginModal();
-  }, 400);
+  }, 300);
+}
+
+/**
+ * Check if current user is permitted to delete or edit a specific item/photo
+ * - Supervisor (Manager: คุณพรรณิภา) -> Can delete/edit anything
+ * - Sales Author -> Can delete/edit their own items
+ * - Other Sales Reps -> Cannot delete/edit items created by teammates
+ */
+function canCurrentUserDeleteOrEditItem(ownerEmail) {
+  if (!currentSalesUser) {
+    return false;
+  }
+  // Master Supervisor Permission
+  if (currentSalesUser.role === 'manager' || currentSalesUser.email.toLowerCase() === 'pannipan@scg.com') {
+    return true;
+  }
+  if (!ownerEmail) {
+    return true;
+  }
+  return currentSalesUser.email.toLowerCase() === String(ownerEmail).trim().toLowerCase();
 }
 
 /**
  * Load user profile from public.user_profiles table
  */
 async function loadSalesUserProfile(userId, userEmail) {
+  const normEmail = (userEmail || '').toLowerCase();
+  const sysUser = SCG_SYSTEM_USERS.find(u => u.email.toLowerCase() === normEmail);
+  if (sysUser) {
+    currentSalesUser = {
+      id: userId || ('usr_' + normEmail.replace(/[@.]/g, '_')),
+      email: sysUser.email,
+      fullName: sysUser.fullName,
+      title: sysUser.title,
+      role: sysUser.role,
+      assignedProvince: sysUser.assignedProvince,
+      avatar: sysUser.avatar
+    };
+    localStorage.setItem('nextsite_cached_user', JSON.stringify(currentSalesUser));
+    updateAuthHeaderUI();
+    return currentSalesUser;
+  }
+
   const client = supabaseClient || initSupabase();
   if (!client) return null;
 
@@ -112,17 +207,20 @@ async function loadSalesUserProfile(userId, userEmail) {
         id: data.id,
         email: data.email || userEmail,
         fullName: data.full_name || 'เซลส์ SCG',
+        title: data.title || 'ทีมขายประจำพื้นที่',
         assignedProvince: data.assigned_province || 'อุดรธานี',
-        role: data.role || 'sales'
+        role: data.role || 'sales',
+        avatar: data.role === 'manager' ? '👑' : '👤'
       };
     } else {
-      // Default fallback if profile not inserted yet
       currentSalesUser = {
         id: userId,
         email: userEmail,
         fullName: userEmail.split('@')[0],
+        title: 'ทีมขายประจำพื้นที่',
         assignedProvince: 'อุดรธานี',
-        role: 'sales'
+        role: 'sales',
+        avatar: '👤'
       };
     }
 
@@ -144,7 +242,7 @@ async function loadSalesUserProfile(userId, userEmail) {
  */
 function canCurrentUserEditCompany(company) {
   if (!currentSalesUser) {
-    return true; // If no user is logged in, allow for open demo, or return false to require login
+    return true; // Allow interaction or open login prompt
   }
 
   if (currentSalesUser.role === 'manager' || currentSalesUser.assignedProvince === 'ALL') {
@@ -165,24 +263,25 @@ function updateAuthHeaderUI() {
   if (!container) return;
 
   if (currentSalesUser) {
+    const isManager = currentSalesUser.role === 'manager';
     container.innerHTML = `
-      <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(30, 58, 138, 0.45); border: 1px solid rgba(96, 165, 250, 0.4); padding: 4px 10px; border-radius: 8px; backdrop-filter: blur(8px);">
-        <div style="width: 24px; height: 24px; border-radius: 50%; background: #2563EB; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;">
-          👤
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: ${isManager ? 'linear-gradient(135deg, rgba(147, 51, 234, 0.45) 0%, rgba(79, 70, 229, 0.45) 100%)' : 'rgba(30, 58, 138, 0.45)'}; border: 1.5px solid ${isManager ? '#C084FC' : 'rgba(96, 165, 250, 0.5)'}; padding: 4px 12px; border-radius: 9px; backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <div style="width: 26px; height: 26px; border-radius: 50%; background: ${isManager ? '#9333EA' : '#2563EB'}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 900; box-shadow: 0 1px 4px rgba(0,0,0,0.3);">
+          ${currentSalesUser.avatar || '👤'}
         </div>
         <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.15;">
-          <span style="font-size: 0.75rem; font-weight: 800; color: #FFFFFF;">${currentSalesUser.fullName}</span>
-          <span style="font-size: 0.65rem; color: #93C5FD; font-weight: 700;">พื้นที่: ${currentSalesUser.assignedProvince}</span>
+          <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">${currentSalesUser.fullName}</span>
+          <span style="font-size: 0.65rem; color: ${isManager ? '#E9D5FF' : '#93C5FD'}; font-weight: 700;">${currentSalesUser.title || currentSalesUser.role}</span>
         </div>
-        <button onclick="logoutSalesUser()" title="ออกจากระบบ" style="background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 5px; padding: 2px 6px; font-size: 0.65rem; font-weight: 700; cursor: pointer; margin-left: 4px; transition: all 0.15s ease;">
-          ออก
+        <button onclick="logoutSalesUser()" title="ออกจากระบบ / สลับบัญชี" style="background: rgba(239, 68, 68, 0.25); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.5); border-radius: 6px; padding: 3px 8px; font-size: 0.68rem; font-weight: 800; cursor: pointer; margin-left: 4px; transition: all 0.15s ease;" onmouseover="this.style.background='rgba(239,68,68,0.45)'" onmouseout="this.style.background='rgba(239,68,68,0.25)'">
+          สลับผู้ใช้
         </button>
       </div>
     `;
   } else {
     container.innerHTML = `
-      <button onclick="openLoginModal()" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.12); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.28); padding: 5px 12px; border-radius: 8px; font-size: 0.76rem; font-weight: 800; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.15s ease;">
-        <span>🔐 เข้าสู่ระบบเซลส์</span>
+      <button onclick="openLoginModal()" style="display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); color: #FFFFFF; border: 1px solid rgba(147, 197, 253, 0.5); padding: 6px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 800; cursor: pointer; backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(37,99,235,0.3); transition: all 0.15s ease;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
+        <span>🔐 เข้าสู่ระบบ (เซลส์ / หัวหน้า)</span>
       </button>
     `;
   }
@@ -694,6 +793,8 @@ if (typeof window !== 'undefined') {
   window.loginSalesUser = loginSalesUser;
   window.logoutSalesUser = logoutSalesUser;
   window.canCurrentUserEditCompany = canCurrentUserEditCompany;
+  window.canCurrentUserDeleteOrEditItem = canCurrentUserDeleteOrEditItem;
+  window.SCG_SYSTEM_USERS = SCG_SYSTEM_USERS;
   window.updateAuthHeaderUI = updateAuthHeaderUI;
   window.openLoginModal = openLoginModal;
   window.closeLoginModal = closeLoginModal;

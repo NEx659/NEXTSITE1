@@ -734,9 +734,15 @@ function getCompanyCrmLog(companyId) {
 function saveCompanyCrmLog(companyId, logData) {
   try {
     const logs = getAllCrmLogs();
+    const existing = logs[companyId] || {};
+    const uEmail = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.email : (existing.createdBy || 'somchai@scg.com');
+    const uName = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.fullName : (existing.salesRep || 'คุณสมชาย');
+
     const updatedRecord = {
-      ...logs[companyId],
+      ...existing,
       ...logData,
+      createdBy: existing.createdBy || uEmail,
+      salesRep: logData.salesRep || uName,
       lastUpdated: new Date().toISOString()
     };
     logs[companyId] = updatedRecord;
@@ -2210,16 +2216,24 @@ function renderCompanyPhotosGallery(companyId) {
   container.innerHTML = photos.map((p, idx) => {
     const timeStr = p.timestamp ? new Date(p.timestamp).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : `รูปที่ ${idx + 1}`;
     const safeCaption = (p.name || `หลักฐานลงพื้นที่ - ${activeSelectedCompany ? activeSelectedCompany.name : ''}`).replace(/"/g, '&quot;');
-    
+    const uploaderInfo = p.uploaderName ? ` • โดย ${p.uploaderName}` : '';
+    const canDelete = (typeof canCurrentUserDeleteOrEditItem === 'function') ? canCurrentUserDeleteOrEditItem(p.uploadedBy) : true;
+
     return `
-      <div style="position: relative; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; border: 1.5px solid #CBD5E1; box-shadow: 0 2px 5px rgba(15,23,42,0.08); background: #0F172A; cursor: pointer; flex-shrink: 0;" onclick="openImageLightbox('${p.dataUrl}', '${safeCaption} • ${timeStr}')">
+      <div style="position: relative; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; border: 1.5px solid #CBD5E1; box-shadow: 0 2px 5px rgba(15,23,42,0.08); background: #0F172A; cursor: pointer; flex-shrink: 0;" onclick="openImageLightbox('${p.dataUrl}', '${safeCaption} • ${timeStr}${uploaderInfo}')">
         <img src="${p.dataUrl}" alt="Site visit photo" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,0.78); color: #FFFFFF; font-size: 0.62rem; font-weight: 700; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,0.78); color: #FFFFFF; font-size: 0.60rem; font-weight: 700; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
           ${timeStr}
         </div>
-        <button type="button" onclick="event.stopPropagation(); deleteCompanyPhoto('${p.id}');" title="ลบรูปนี้" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(239,68,68,0.92); color: #FFFFFF; border: none; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">
-          ✕
-        </button>
+        ${canDelete ? `
+          <button type="button" onclick="event.stopPropagation(); deleteCompanyPhoto('${p.id}');" title="ลบรูปภาพนี้" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(239,68,68,0.92); color: #FFFFFF; border: none; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">
+            ✕
+          </button>
+        ` : `
+          <div title="อัปโหลดโดย ${p.uploaderName || p.uploadedBy || 'เพื่อนร่วมทีม'} (ล็อกสิทธิ์เฉพาะเจ้าของ/หัวหน้า)" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(15,23,42,0.75); color: #CBD5E1; border: 1px solid rgba(255,255,255,0.3); font-size: 0.60rem; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+            🔒
+          </div>
+        `}
       </div>
     `;
   }).join('');
@@ -2237,6 +2251,9 @@ async function handleCompanyPhotoUpload(event) {
   const existingPhotos = Array.isArray(log.photos) ? log.photos : [];
   const newPhotos = [];
 
+  const uEmail = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.email : 'somchai@scg.com';
+  const uName = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.fullName : 'คุณสมชาย';
+
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     if (!file.type.startsWith('image/')) continue;
@@ -2246,6 +2263,8 @@ async function handleCompanyPhotoUpload(event) {
         id: 'photo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
         name: file.name || 'Site Visit Photo',
         dataUrl: dataUrl,
+        uploadedBy: uEmail,
+        uploaderName: uName,
         timestamp: new Date().toISOString()
       });
     } catch (e) {
@@ -2258,7 +2277,7 @@ async function handleCompanyPhotoUpload(event) {
 
   renderCompanyPhotosGallery(activeSelectedCompany.id);
   if (typeof renderTable === 'function') renderTable();
-  showStatusToast(`📸 อัปโหลดรูปภาพหลักฐาน ${newPhotos.length} รูป เรียบร้อยแล้ว`);
+  showStatusToast(`📸 อัปโหลดรูปภาพหลักฐาน ${newPhotos.length} รูป (โดย ${uName}) เรียบร้อยแล้ว`);
 
   // Reset file input
   event.target.value = '';
@@ -2266,10 +2285,20 @@ async function handleCompanyPhotoUpload(event) {
 
 function deleteCompanyPhoto(photoId) {
   if (!activeSelectedCompany) return;
-  if (!confirm('คุณต้องการลบรูปภาพหลักฐานนี้หรือไม่?')) return;
 
   const log = getCompanyCrmLog(activeSelectedCompany.id);
   const existingPhotos = Array.isArray(log.photos) ? log.photos : [];
+  const targetPhoto = existingPhotos.find(p => p.id === photoId);
+
+  if (targetPhoto && typeof canCurrentUserDeleteOrEditItem === 'function') {
+    if (!canCurrentUserDeleteOrEditItem(targetPhoto.uploadedBy)) {
+      showStatusToast(`🔒 คุณไม่มีสิทธิ์ลบรูปภาพของ ${targetPhoto.uploaderName || targetPhoto.uploadedBy || 'เพื่อนร่วมทีม'} (เฉพาะเจ้าของรูปหรือหัวหน้าพรรณิภาเท่านั้น)`);
+      return;
+    }
+  }
+
+  if (!confirm('คุณต้องการลบรูปภาพหลักฐานนี้หรือไม่?')) return;
+
   const updatedPhotos = existingPhotos.filter(p => p.id !== photoId);
 
   saveCompanyCrmLog(activeSelectedCompany.id, { photos: updatedPhotos });
