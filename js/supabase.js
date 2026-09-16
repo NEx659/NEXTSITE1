@@ -268,7 +268,12 @@ async function loadAndApplyCloudTags() {
       const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap() : {};
       data.forEach(item => {
         if (item.id && item.tag) {
-          tagMap[item.id] = item.tag;
+          const norm = String(item.tag).trim().toLowerCase();
+          tagMap[item.id] = norm;
+          if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
+            const comp = allCompanies.find(c => c.id === item.id);
+            if (comp) comp.tag = norm;
+          }
         }
       });
       if (typeof saveCompanyTagsMap === 'function') {
@@ -294,17 +299,19 @@ async function updateCloudCompanyTag(companyId, newTag) {
   const client = supabaseClient || initSupabase();
   if (!client) return false;
 
+  const normalizedTag = String(newTag || 'new').trim().toLowerCase();
+
   try {
     let { data, error } = await client
       .from('companies')
-      .update({ tag: newTag, updated_at: new Date().toISOString() })
+      .update({ tag: normalizedTag, updated_at: new Date().toISOString() })
       .eq('id', companyId)
       .select('id');
 
     if (!error && (!data || data.length === 0)) {
       const payload = {
         id: companyId,
-        tag: newTag,
+        tag: normalizedTag,
         province: 'อุดรธานี'
       };
       if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
@@ -322,7 +329,7 @@ async function updateCloudCompanyTag(companyId, newTag) {
       console.error('❌ Update Tag Error in Supabase:', error.message);
       return false;
     }
-    console.log(`☁️ Synced tag '${newTag}' for ${companyId} to Supabase`);
+    console.log(`☁️ Synced tag '${normalizedTag}' for ${companyId} to Supabase`);
     return true;
   } catch (err) {
     console.error('❌ Update Tag Exception:', err);

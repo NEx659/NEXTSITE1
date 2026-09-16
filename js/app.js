@@ -162,7 +162,14 @@ function saveCompanyTagsMap(tagMap) {
 
 function getCompanyTag(companyId) {
   const tagMap = loadCompanyTagsMap();
-  return tagMap[companyId] || 'new'; // default 'new'
+  const raw = tagMap[companyId];
+  if (raw) return String(raw).trim().toLowerCase();
+
+  if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
+    const comp = allCompanies.find(c => c.id === companyId);
+    if (comp && comp.tag) return String(comp.tag).trim().toLowerCase();
+  }
+  return 'new';
 }
 
 function setCompanyTag(companyId, tag, event) {
@@ -170,7 +177,11 @@ function setCompanyTag(companyId, tag, event) {
     event.stopPropagation();
   }
 
+  const normalizedTag = String(tag || 'new').trim().toLowerCase();
   const comp = allCompanies.find(c => c.id === companyId);
+  if (comp) {
+    comp.tag = normalizedTag;
+  }
   
   // Territory permission check
   if (typeof window.canCurrentUserEditCompany === 'function' && comp) {
@@ -182,12 +193,12 @@ function setCompanyTag(companyId, tag, event) {
   }
 
   const tagMap = loadCompanyTagsMap();
-  tagMap[companyId] = tag;
+  tagMap[companyId] = normalizedTag;
   saveCompanyTagsMap(tagMap);
 
   // Sync to Supabase Cloud in real-time
   if (typeof updateCloudCompanyTag === 'function') {
-    updateCloudCompanyTag(companyId, tag);
+    updateCloudCompanyTag(companyId, normalizedTag);
   }
 
   applyFilters();
@@ -198,7 +209,7 @@ function setCompanyTag(companyId, tag, event) {
     'non-focus': '⚪ Non-Focus (ทั่วไป)',
     'new': '✨ New (เข้าใหม่)'
   };
-  showStatusToast(`อัปเดตเป็น ${tagNames[tag] || tag} เรียบร้อย`);
+  showStatusToast(`☁️ บันทึกป้ายเป็น ${tagNames[normalizedTag] || normalizedTag} ขึ้น Cloud เรียบร้อย`);
 }
 
 // ==========================================
@@ -287,13 +298,12 @@ function handleCrmStatusFilterChange(val) {
 
 function updateTagFilterCounts(companies) {
   const source = allCompanies && allCompanies.length > 0 ? allCompanies : (companies || []);
-  const tagMap = loadCompanyTagsMap();
   let focusCount = 0;
   let nonFocusCount = 0;
   let newCount = 0;
 
   source.forEach(c => {
-    const tag = tagMap[c.id] || 'new';
+    const tag = getCompanyTag(c.id);
     if (tag === 'focus') focusCount++;
     else if (tag === 'non-focus') nonFocusCount++;
     else newCount++;
@@ -503,6 +513,19 @@ function loadSavedCompaniesData() {
       c.scgCode = null;
       c.sales2025 = 0;
       c.sales2026 = 0;
+    }
+  });
+
+  // ผูกค่า Company Tags (Focus / Non-Focus / New)
+  const tagMap = loadCompanyTagsMap();
+  allCompanies.forEach(c => {
+    const savedTag = tagMap[c.id];
+    if (savedTag) {
+      c.tag = String(savedTag).trim().toLowerCase();
+    } else if (c.tag) {
+      c.tag = String(c.tag).trim().toLowerCase();
+    } else {
+      c.tag = 'new';
     }
   });
 
@@ -4367,17 +4390,18 @@ function loadSampleHistoricalApifyDataset() {
 }
 
 function resetToInitialVerifiedData() {
-  if (confirm('คุณต้องการรีเซ็ตข้อมูลและสถานะการติดตามทั้งหมดกลับเป็นค่าเริ่มต้นหรือไม่?')) {
-    localStorage.removeItem(STORAGE_KEY_COMPANY_TAGS);
-    localStorage.removeItem(STORAGE_KEY_CRM_LOGS);
+  if (confirm('คุณต้องการรีเซ็ตข้อมูลโครงการก่อสร้าง Facebook กลับเป็นค่าเริ่มต้นหรือไม่? (สถานะ Focus/Non-Focus, โน้ต และรูปภาพของเซลส์จะยังคงอยู่ 100%)')) {
     localStorage.removeItem(STORAGE_KEY_PROJECT_STATUSES);
+    try {
+      sessionStorage.removeItem('nextsite_session_uploaded_companies');
+    } catch(e) {}
     loadSavedCompaniesData();
     applyFilters();
     updateTagFilterCounts(allCompanies);
     if (window.initProductAnalyticsCharts) {
       window.initProductAnalyticsCharts(allCompanies);
     }
-    showStatusToast('รีเซ็ตข้อมูลกลับเป็นค่าเริ่มต้น 100% เรียบร้อย');
+    showStatusToast('🔄 รีเซ็ตข้อมูลโครงการก่อสร้างเรียบร้อย (คงป้าย Focus, โน้ต และรูปภาพของเซลส์ไว้ 100%)');
   }
 }
 
