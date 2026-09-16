@@ -417,6 +417,11 @@
           <span>🔄 รีเซ็ตเป็น 0 โครงการ</span>
         </button>
 
+        <!-- Manager Summary Report Button -->
+        <button onclick="openSalesReportModal()" style="background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); color: #FFFFFF; border: 1px solid rgba(147, 197, 253, 0.4); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; box-shadow: 0 2px 8px rgba(37,99,235,0.3); transition: all 0.2s ease;" title="เปิดดูหน้ารายงานสรุปยอดขายและผลการติดตามสำหรับหัวหน้าฝ่ายขาย">
+          <span>📊 รายงานหัวหน้าฝ่ายขาย</span>
+        </button>
+
         <!-- Supabase Cloud Sync Button -->
         <button id="btn-cloud-sync" onclick="syncAllLocalCompaniesToSupabase(allCompanies)" style="background: rgba(16, 185, 129, 0.18); color: #34D399; border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="ซิงค์รายชื่อบริษัทและสถานะทั้งหมดขึ้น Cloud Database Supabase">
           <span>☁️ ซิงค์ขึ้น Supabase</span>
@@ -2027,7 +2032,7 @@
 
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase.js?v=91.0"></script>
+    <script src="js/supabase.js?v=92.0"></script>
 
     <!-- Image Lightbox Modal for Site Visit Photos -->
     <div id="image-lightbox-modal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(4px); z-index: 99999; align-items: center; justify-content: center; padding: 20px;" onclick="closeImageLightbox()">
@@ -2039,11 +2044,11 @@
     </div>
 
     <!-- App JS modules -->
-    <script src="js/data.js?v=91.0"></script>
-    <script src="js/scoring.js?v=91.0"></script>
-    <script src="js/charts.js?v=91.0"></script>
-    <script src="js/map.js?v=91.0"></script>
-    <script src="js/app.js?v=91.0"></script>
+    <script src="js/data.js?v=92.0"></script>
+    <script src="js/scoring.js?v=92.0"></script>
+    <script src="js/charts.js?v=92.0"></script>
+    <script src="js/map.js?v=92.0"></script>
+    <script src="js/app.js?v=92.0"></script>
 </body>
 
 
