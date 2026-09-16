@@ -94,7 +94,7 @@
   {
     "query": "ห้างหุ้นส่วนจำกัด จีรนันท์ พร็อพเพอร์ตี้",
     "address": "14 หมู่ที่ 12 ตำบลไชยวาน อำเภอไชยวาน จ.อุดรธานี 41290",
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%4%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%88%E0%B8%B5%E0%B8%A3%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B9%8C+%E0%B8%9E%E0%B8%A3%E0%B9%87%E0%B8%AD%E0%B8%9E%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%B5%E0%B9%88+%E0%B9%84%E0%B8%8A%E0%B8%A2%E0%B8%A7%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5"
+    "mapsUrl": "https://maps.app.goo.gl/4HTF4JfAQLsUXeih7"
   },
   {
     "query": "ห้างหุ้นส่วนจำกัด วันเดอร์ครีเอชั่น",
@@ -133,5 +133,25 @@
   {
     "query": "ห้างหุ้นส่วนจำกัด บ้านดี อยู่ดี ดีไซน์",
     "mapsUrl": "https://maps.app.goo.gl/eovsgPjYBYryDXgo8"
+  },
+  {
+    "query": "ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+    "address": "ประจักษ์ศิลปาคม จ.อุดรธานี",
+    "mapsUrl": "https://maps.app.goo.gl/gy9TQgQYzV1jG8VW9"
+  },
+  {
+    "query": "ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง",
+    "address": "161 หมู่ที่ 15 หนองเม็ก หนองหาน อุดรธานี",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5"
+  },
+  {
+    "query": "บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด",
+    "address": "117 ถ.ประชารักษา ต.หมากแข้ง อ.เมืองอุดรธานี จ.อุดรธานี",
+    "mapsUrl": "https://maps.app.goo.gl/wMZTox8VEfad8XSZ6"
+  },
+  {
+    "query": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
+    "address": "เมืองอุดรธานี จ.อุดรธานี",
+    "mapsUrl": "https://maps.app.goo.gl/dh4xE6DSzbkn5a547"
   }
 ]
