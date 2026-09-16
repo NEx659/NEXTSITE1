@@ -144,30 +144,20 @@ def check_strict_udon_location(raw_text):
         "วางแผนทิศบ้าน", "ก่อนสร้างบ้าน", "ทิศแดด", "ทิศลม", "ผลงานสร้างเสร็จจริงกว่า", "ผลงานคุณภาพมากกว่า"
     ]
 
-    # คีย์เวิร์ดสัญญาณตามความต้องการของผู้ใช้:
-    # 1. ยกเสาเอก
-    # 2. อัพเดท / อัปเดต
-    # 3. คุณ... (ชื่อลูกค้า/เจ้าของบ้าน)
-    has_pillar = any(k in text_lower for k in ["ยกเสาเอก", "พิธียกเสาเอก", "เสาเอก", "ลงเสาเอก", "ยกเสาโท"])
-    has_update = any(k in text_lower for k in ["อัพเดท", "อัปเดต", "update", "อัพเดทหน้างาน", "อัปเดตหน้างาน", "รายงานความคืบหน้า", "ส่งมอบ"])
-    has_customer_khun = "คุณ" in text_lower or "บ้านคุณ" in text_lower or "ของคุณ" in text_lower
-
-    has_target_signal = has_pillar or has_update or has_customer_khun
-
-    # รายชื่อจังหวัดอื่นนอกเหนืออุดรธานี (ถ้าพบให้ตัดทิ้ง ไม่ดึงมา)
-    other_provinces = [
-        "ขอนแก่น", "สกลนคร", "ร้อยเอ็ด", "หนองคาย", "กาฬสินธุ์", "หนองบัวลำภู", "นครพนม",
-        "เลย", "บึงกาฬ", "มหาสารคาม", "อุบล", "อุบลราชธานี", "โคราช", "นครราชสีมา",
-        "บุรีรัมย์", "สุรินทร์", "ศรีสะเกษ", "ชัยภูมิ", "มุกดาหาร", "ยโสธร", "อำนาจเจริญ",
-        "เชียงใหม่", "เชียงราย", "พิษณุโลก", "นครสวรรค์", "กรุงเทพ", "กทม", "นนทบุรี", "ปทุมธานี",
-        "สมุทรปราการ", "ชลบุรี", "ระยอง"
+    # คีย์เวิร์ดสัญญาณหน้างานที่กำลังก่อสร้างจริง (Active On-site Construction Signals)
+    construction_site_keywords = [
+        "ยกเสาเอก", "พิธียกเสาเอก", "เสาเอก", "ฤกษ์ยกเสาเอก", "ลงเสาเอก", "ยกเสาโท",
+        "ลงเสาเข็ม", "เสาเข็ม", "ตอกเสาเข็ม", "เจาะเสาเข็ม",
+        "ฐานราก", "งานฐานราก", "ตอม่อ", "คานคอดิน", "เทคาน", "ผูกเหล็ก", "เทพื้น", "เทคอนกรีต", "เทปูน",
+        "ตั้งเสา", "มุงหลังคา", "โครงหลังคา", "โครงสร้าง", "งานโครงสร้าง", "ก่ออิฐ", "ฉาบปูน",
+        "site update", "อัปเดตหน้างาน", "อัพเดทหน้างาน", "อัปเดตไซด์งาน", "อัพเดทไซด์งาน",
+        "อัปเดตความคืบหน้า", "อัพเดทความคืบหน้า", "ความคืบหน้าหน้างาน", "ความคืบหน้าไซด์งาน", "ความคืบหน้างานก่อสร้าง",
+        "ส่งมอบบ้าน", "ส่งมอบงาน", "ตรวจงาน", "ตรวจหน้างาน", "ตรวจรับบ้าน", "สู่การเริ่มต้นก่อสร้างจริง"
     ]
     
-    # ถ้ามีการระบุจังหวัดอื่นชัดเจน -> ไม่ดึงมา (ตัดทิ้ง)
-    for op in other_provinces:
-        if op in text_lower:
-            return False, None, [], "อื่น ๆ"
-            
+    is_active_construction = any(k in text_lower for k in construction_site_keywords)
+    has_customer_home = any(k in text_lower for k in ["บ้านคุณ", "บ้านของคุณ", "ของบ้านคุณ", "ของคุณหมอ", "ของคุณ"])
+
     # ตรวจสอบว่าตรงกับอำเภอใน จ.อุดรธานี หรือไม่
     matched_udon_district = None
     found_terms = []
@@ -179,18 +169,32 @@ def check_strict_udon_location(raw_text):
                 break
         if matched_udon_district:
             break
-            
-    has_udon_prov = any(kw in text_lower for kw in PROVINCE_KEYWORDS)
 
-    # เงื่อนไขการดึงข้อมูล:
-    # 1. มีคีย์เวิร์ดสัญญาณ (ยกเสาเอก / อัพเดท / คุณ...) หรือมีคำว่าอุดรธานี/อำเภอ
-    # 2. ไม่ได้ระบุจังหวัดอื่น
-    if has_target_signal or has_udon_prov or (matched_udon_district is not None):
-        final_district = matched_udon_district if matched_udon_district else "ยังไม่ระบุอำเภอ"
-        matched_kw_summary = found_terms if found_terms else (["ยกเสาเอก"] if has_pillar else (["อัพเดท"] if has_update else ["ชื่อลูกค้า(คุณ)"]))
-        return True, final_district, matched_kw_summary, "อุดรธานี"
+    # รายชื่อจังหวัดอื่นนอกเหนืออุดรธานีในข้อความหลัก (ถ้าไม่ใช่แค่ hashtag ท้ายโพสต์)
+    # แต่ถ้าเป็นโพสต์หน้างานก่อสร้างจริงจากเพจผู้รับเหมาอุดร ให้พิจารณาว่าเป็นหน้างานจริง
+    other_provinces_strict = [
+        "ขอนแก่น", "สกลนคร", "ร้อยเอ็ด", "กาฬสินธุ์", "หนองบัวลำภู", "นครพนม",
+        "เลย", "บึงกาฬ", "มหาสารคาม", "อุบลราชธานี", "นครราชสีมา", "โคราช",
+        "เชียงใหม่", "กรุงเทพ", "กทม", "ชลบุรี", "ระยอง"
+    ]
 
-    # ถ้าไม่มีสัญญาณหน้างานและไม่ระบุอุดร -> ไม่ดึง
+    # กฎการคัดกรองตามที่กำหนด:
+    # 1) ถ้าเป็น "หน้างานที่กำลังก่อสร้างจริง" (ยกเสาเอก, ฐานราก, โครงสร้าง, Site Update, บ้านคุณ...)
+    #    -> ดึงมาเลย! แม้จะไม่มีชื่ออำเภอในอุดร (กำหนดอำเภอเป็น เมืองอุดรธานี หรือ อำเภอที่พบ)
+    if is_active_construction or (has_customer_home and any(k in text_lower for k in ["ก่อสร้าง", "สร้าง", "เสา", "คาน", "แบบ"])):
+        final_dist = matched_udon_district if matched_udon_district else "เมืองอุดรธานี"
+        signal_tags = found_terms if found_terms else ["หน้างานก่อสร้างจริง"]
+        if any(k in text_lower for k in ["ยกเสาเอก", "พิธียกเสาเอก", "เสาเอก"]): signal_tags.append("ยกเสาเอก")
+        if any(k in text_lower for k in ["ฐานราก", "คานคอดิน", "ตอม่อ"]): signal_tags.append("งานฐานราก")
+        if any(k in text_lower for k in ["โครงสร้าง", "เสา", "หลังคา"]): signal_tags.append("งานโครงสร้าง")
+        if any(k in text_lower for k in ["site update", "อัปเดต", "ความคืบหน้า"]): signal_tags.append("Site Update")
+        return True, final_dist, signal_tags, "อุดรธานี"
+
+    # 2) ถ้ามีชื่อ "อำเภอในอุดรธานี" ระบุชัดเจน -> ดึงมา
+    if matched_udon_district is not None:
+        return True, matched_udon_district, found_terms, "อุดรธานี"
+
+    # 3) ถ้ามีแค่ #รับสร้างบ้านอุดรธานี หรือคำทั่วไป ลอยๆ โดยไม่มีอำเภอและไม่ใช่หน้างานก่อสร้างจริง -> ไม่ต้องดึง
     return False, None, [], "อุดรธานี"
 
 def run_apify_scraper_33_pages(max_posts_per_page=10):

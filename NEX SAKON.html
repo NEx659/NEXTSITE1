@@ -412,6 +412,11 @@
           <span>📥 อัปโหลด Apify JSON</span>
         </button>
 
+        <!-- Reset Button -->
+        <button onclick="resetUploadedDataToZero()" style="background: rgba(255, 255, 255, 0.15); color: #F1F5F9; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="รีเซ็ตข้อมูลทุกบริษัทกลับเป็น 0 โครงการ">
+          <span>🔄 รีเซ็ตเป็น 0 โครงการ</span>
+        </button>
+
         <!-- Supabase Cloud Sync Button -->
         <button id="btn-cloud-sync" onclick="syncAllLocalCompaniesToSupabase(allCompanies)" style="background: rgba(16, 185, 129, 0.18); color: #34D399; border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="ซิงค์รายชื่อบริษัทและสถานะทั้งหมดขึ้น Cloud Database Supabase">
           <span>☁️ ซิงค์ขึ้น Supabase</span>
@@ -774,7 +779,7 @@
               <th style="width: 55px; text-align: center;">อันดับ</th>
               <th style="text-align: center;">บริษัท</th>
               <th id="th-province-column">พื้นที่ตั้งบริษัท</th>
-              <th>ความน่าจะเป็นโครงการ <span style="font-size: 0.72rem; font-weight: 600; color: #64748B; display: block; margin-top: 1px;">(สัญญาณย้อนหลัง 8 โพสต์ล่าสุด)</span></th>
+              <th>ความน่าจะเป็นโครงการ <span style="font-size: 0.72rem; font-weight: 600; color: #64748B; display: block; margin-top: 1px;">(สัญญาณย้อนหลัง 15 โพสต์ล่าสุด)</span></th>
               <th class="col-sales-2025" style="text-align: right; min-width: 130px;">
                 <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px;">
                   <span>ประวัติซื้อขาย 2025</span>
@@ -2034,11 +2039,11 @@
     </div>
 
     <!-- App JS modules -->
-    <script src="js/data.js?v=65.0"></script>
-    <script src="js/scoring.js?v=64.0"></script>
-    <script src="js/charts.js?v=64.0"></script>
-    <script src="js/map.js?v=66.0"></script>
-    <script src="js/app.js?v=120.0"></script>
+    <script src="js/data.js?v=76.0"></script>
+    <script src="js/scoring.js?v=76.0"></script>
+    <script src="js/charts.js?v=76.0"></script>
+    <script src="js/map.js?v=76.0"></script>
+    <script src="js/app.js?v=126.0"></script>
 </body>
 
 </html>

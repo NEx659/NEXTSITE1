@@ -461,9 +461,9 @@
   </main>
 
   <!-- Load Data Files & Supabase Client -->
-  <script src="js/data.js?v=64.0"></script>
+  <script src="js/data.js?v=64.5"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js?v=20.0"></script>
+  <script src="js/supabase.js?v=20.5"></script>
   
   <script>
     // SCG ACTUAL CUSTOMER SALES DATA LIST (Master Map)
@@ -491,15 +491,21 @@
       { code: '10485682', name: 'รุ่งรัตน์บิวตี้โฮม', sales2025: 12246, sales2026_0914: 768825.5, sales2026_0930: null, sales2026_1030: null, keys: ['รุ่งรัตน์บิวตี้โฮม', 'รุ่งรัตน์'] },
       { code: '10500344', name: 'การิน บ้านสวย', sales2025: 469506, sales2026_0914: 1337450, sales2026_0930: null, sales2026_1030: null, keys: ['การิน บ้านสวย', 'การิน', 'karin'] },
       { code: '10503273', name: 'สุขสกล ดีเวลลอปเม้นท์', sales2025: 677870.3, sales2026_0914: 2338879, sales2026_0930: null, sales2026_1030: null, keys: ['สุขสกล', 'suksakon'] },
-      { code: '10509038', name: '117อาร์คิเทคท์', sales2025: 28572.5, sales2026_0914: 395558.3, sales2026_0930: null, sales2026_1030: null, keys: ['117อาร์คิเทคท์', '117', '117 architect'] },
-      { code: '10523555', name: 'ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์', sales2025: 1146567, sales2026_0914: 2903328, sales2026_0930: null, sales2026_1030: null, keys: ['ทเวนตี้ซิกซ์', '26 development', '26'] },
+      { code: '10509038', name: '117อาร์คิเทคท์', sales2025: 28572.5, sales2026_0914: 395558.3, sales2026_0930: null, sales2026_1030: null, keys: ['117อาร์คิเทคท์', '117 architect', '117architect'] },
+      { code: '10523555', name: 'ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์', sales2025: 1146567, sales2026_0914: 2903328, sales2026_0930: null, sales2026_1030: null, keys: ['ทเวนตี้ซิกซ์', '26 development'] },
       { code: '10551209', name: 'บ้านใหญ่ (2016) โฮม บิวเดอร์', sales2025: 5481324, sales2026_0914: 5472101, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านใหญ่', 'baanyai', 'baanyai2016'] },
       { code: '10590829', name: 'เลอ คราวน์ ดีไซน์', sales2025: 11367, sales2026_0914: 329498.4, sales2026_0930: null, sales2026_1030: null, keys: ['เลอ คราวน์', 'เลอคราวน์', 'le crown', 'lecrown'] },
       { code: '10612650', name: 'บ้านดี อยู่ดี ดีไซน์', sales2025: 31155, sales2026_0914: 93806.25, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี อยู่ดี', 'บ้านดีอยู่ดี', 'baandee yoodee'] },
       { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026_0914: 1992527, sales2026_0930: null, sales2026_1030: null, keys: ['กิจดลวรโชติ', 'กิจดล'] },
       { code: '10729130', name: 'บ้านวิศวะพัฒนา', sales2025: 0, sales2026_0914: 238997, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านวิศวะพัฒนา', 'บ้านวิศวะ', 'baanwisawa', 'banwisawa'] },
       { code: '10739362', name: 'ห้างหุ้นส่วนจำกัด เค พี โฮม', sales2025: 0, sales2026_0914: 7101, sales2026_0930: null, sales2026_1030: null, keys: ['เค พี โฮม', 'เค.พี.โฮม', 'เคพีโฮม', 'kp home', 'k.p. home'] },
-      { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026_0914: 161278, sales2026_0930: null, sales2026_1030: null, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] }
+      { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026_0914: 161278, sales2026_0930: null, sales2026_1030: null, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] },
+      { code: '10568031', name: 'ห้างหุ้นส่วนจำกัด เอสวาย.เฮาส์ ดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 39378, sales2026_0914: 0, sales2026_0930: null, sales2026_1030: null, keys: ['เอสวาย', 'เอสวาย.เฮาส์', 'เอสวาย เฮาส์', 'sy house', 'syhouse'] },
+      { code: '10648769', name: 'บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด', sales2025: 187141, sales2026_0914: 75112, sales2026_0930: null, sales2026_1030: null, keys: ['อีเฮาส์', 'อีเฮ้าส์', 'e-house', 'บริษัท อีเฮาส์'] },
+      { code: '10724226', name: 'ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น', sales2025: 0, sales2026_0914: 75021, sales2026_0930: null, sales2026_1030: null, keys: ['ดีเอ็นเอ็น', 'dnn', 'dnn construction', 'ดีเอ็นเอ็น คอนสตรัคชั่น'] },
+      { code: '10724225', name: 'ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง', sales2025: 0, sales2026_0914: 1470, sales2026_0930: null, sales2026_1030: null, keys: ['เกียรติรุ่งเรือง', 'เกียรติรุ่งเรือง ก่อสร้าง', 'kiat rung ruang'] },
+      { code: '10615285', name: 'บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด', sales2025: 321401, sales2026_0914: 74809, sales2026_0930: null, sales2026_1030: null, keys: ['เอ็นทรัสท', 'entrust', 'เอ็นทรัสท คอนสตรัคชั่น', 'entrust construction', 'trust construction'] },
+      { code: '10095435', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 3023155, sales2026_0914: 670816, sales2026_0930: null, sales2026_1030: null, keys: ['โมเสคดีไซน์', 'โมเสค', 'mosaic', 'mosaic design', 'โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น'] }
     ];
 
     let masterReportList = [];
@@ -906,20 +912,16 @@
           if (cloudData && Array.isArray(cloudData) && cloudData.length > 0) {
             let updatedCount = 0;
             masterReportList.forEach(c => {
-              const cName = (c.name || '').toLowerCase();
-              const scgId = c.scgCode;
-              const cloudMatch = cloudData.find(item => {
-                if (scgId && item.scg_customer_id && item.scg_customer_id === scgId) return true;
-                if (item.name && cName.includes(item.name.toLowerCase())) return true;
-                if (item.id && c.id && item.id === c.id) return true;
-                return false;
-              });
+              const scgId = c.scgCode || c.scgCustomerCode;
+              if (!scgId) return; // ข้ามบริษัทที่ไม่ใช่ลูกค้า SCG เพื่อไม่ให้ยอดผิดพลาด
+
+              const cloudMatch = cloudData.find(item => item.scg_customer_id && item.scg_customer_id === scgId);
 
               if (cloudMatch) {
-                if (cloudMatch.sales_2025 != null && Number(cloudMatch.sales_2025) > 0) c.sales2025 = Number(cloudMatch.sales_2025);
-                if (cloudMatch.sales_2026_0914 != null && Number(cloudMatch.sales_2026_0914) > 0) c.sales2026_0914 = Number(cloudMatch.sales_2026_0914);
-                if (cloudMatch.sales_2026_0930 != null && Number(cloudMatch.sales_2026_0930) > 0) c.sales2026_0930 = Number(cloudMatch.sales_2026_0930);
-                if (cloudMatch.sales_2026_1030 != null && Number(cloudMatch.sales_2026_1030) > 0) c.sales2026_1030 = Number(cloudMatch.sales_2026_1030);
+                if (cloudMatch.sales_2025 != null) c.sales2025 = Number(cloudMatch.sales_2025);
+                if (cloudMatch.sales_2026_0914 != null) c.sales2026_0914 = Number(cloudMatch.sales_2026_0914);
+                if (cloudMatch.sales_2026_0930 != null) c.sales2026_0930 = Number(cloudMatch.sales_2026_0930);
+                if (cloudMatch.sales_2026_1030 != null) c.sales2026_1030 = Number(cloudMatch.sales_2026_1030);
 
                 c.sales2026_latest = (c.sales2026_1030 != null && c.sales2026_1030 > 0) ? c.sales2026_1030 :
                                      ((c.sales2026_0930 != null && c.sales2026_0930 > 0) ? c.sales2026_0930 : c.sales2026_0914);
@@ -1294,7 +1296,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       initReport();
-      setTimeout(loadAndApplyCloudSales, 400);
     });
   </script>
 

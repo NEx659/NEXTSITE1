@@ -639,9 +639,9 @@
     "addr": "14 หมู่ที่ 12 ตำบลไชยวาน อำเภอไชยวาน จ.อุดรธานี 41290",
     "phone": "064 995 9169",
     "fb": "https://www.facebook.com/JoylyYothakaree",
-    "gmaps": "https://www.google.com/maps/search/?api=1&query=ห้างหุ้นส่วนจำกัด+จีรนันท์+พร็อพเพอร์ตี้+ไชยวาน+อุดรธานี",
-    "lat": 17.289,
-    "lng": 103.204
+    "gmaps": "https://maps.app.goo.gl/4HTF4JfAQLsUXeih7",
+    "lat": 17.280851,
+    "lng": 103.2232063
   },
   {
     "name": "ห้างหุ้นส่วนจำกัด วันเดอร์ครีเอชั่น",
@@ -754,5 +754,61 @@
     "gmaps": "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
     "lat": 17.4245,
     "lng": 102.782
+  },
+  {
+    "name": "ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+    "eng": "DNN Construction Ltd., Part.",
+    "regId": "0415567000573",
+    "cap": "1,000,000",
+    "cat": "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
+    "dist": "ประจักษ์ศิลปาคม",
+    "addr": "ประจักษ์ศิลปาคม จ.อุดรธานี",
+    "phone": "063 046 5748",
+    "fb": "https://web.facebook.com/profile.php?id=61576710850214",
+    "gmaps": "https://maps.app.goo.gl/gy9TQgQYzV1jG8VW9",
+    "lat": 17.2623,
+    "lng": 103.0035
+  },
+  {
+    "name": "ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง",
+    "eng": "Kiat Rung Ruang Construction Ltd., Part.",
+    "regId": "0415567000584",
+    "cap": "1,000,000",
+    "cat": "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
+    "dist": "หนองหาน",
+    "addr": "161 หมู่ที่ 15 หนองเม็ก หนองหาน อุดรธานี",
+    "phone": "082 107 0095",
+    "fb": "https://www.facebook.com/share/1aqk4bpUDJ/?mibextid=wwXIfr",
+    "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+    "lat": 17.3882,
+    "lng": 103.1895
+  },
+  {
+    "name": "บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด",
+    "eng": "Entrust Construction Co., Ltd.",
+    "regId": "0415567000595",
+    "cap": "1,000,000",
+    "cat": "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
+    "dist": "เมืองอุดรธานี",
+    "addr": "117 ถ.ประชารักษา ต.หมากแข้ง อ.เมืองอุดรธานี จ.อุดรธานี",
+    "phone": "064 942 4298",
+    "fb": "https://www.facebook.com/ENTRUST.CONST/?locale=th_TH",
+    "gmaps": "https://maps.app.goo.gl/wMZTox8VEfad8XSZ6",
+    "lat": 17.4037,
+    "lng": 102.7900
+  },
+  {
+    "name": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
+    "eng": "Mosaic Design and Construction Ltd., Part.",
+    "regId": "0415567000606",
+    "cap": "1,000,000",
+    "cat": "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
+    "dist": "เมืองอุดรธานี",
+    "addr": "เมืองอุดรธานี จ.อุดรธานี",
+    "phone": "081 954 4006",
+    "fb": "https://web.facebook.com/p/Mosaic-design-construction-100083320623771/?_rdc=1&_rdr",
+    "gmaps": "https://maps.app.goo.gl/dh4xE6DSzbkn5a547",
+    "lat": 17.4031,
+    "lng": 102.7744
   }
 ]
