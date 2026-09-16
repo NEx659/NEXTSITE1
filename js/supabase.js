@@ -139,6 +139,7 @@ async function logoutSalesUser() {
   }
   currentSalesUser = null;
   localStorage.removeItem('nextsite_cached_user');
+  document.body.classList.add('auth-locked');
   updateAuthHeaderUI();
   if (typeof applyFilters === 'function') {
     applyFilters();
@@ -147,8 +148,8 @@ async function logoutSalesUser() {
     showStatusToast('ออกจากระบบเรียบร้อยแล้ว');
   }
   setTimeout(() => {
-    openLoginModal();
-  }, 300);
+    openLoginModal(true);
+  }, 100);
 }
 
 /**
@@ -290,24 +291,28 @@ function updateAuthHeaderUI() {
 // Auto check existing session on load
 async function checkCurrentSession() {
   const client = supabaseClient || initSupabase();
-  if (!client) return;
+  let foundUser = null;
 
   try {
-    const { data: { session } } = await client.auth.getSession();
-    if (session && session.user) {
-      await loadSalesUserProfile(session.user.id, session.user.email);
-    } else {
-      // Check cache
+    if (client && client.auth) {
+      const { data: { session } } = await client.auth.getSession();
+      if (session && session.user) {
+        foundUser = await loadSalesUserProfile(session.user.id, session.user.email);
+      }
+    }
+    
+    if (!foundUser) {
       const cached = localStorage.getItem('nextsite_cached_user');
       if (cached) {
         try {
-          currentSalesUser = JSON.parse(cached);
-          updateAuthHeaderUI();
+          const parsed = JSON.parse(cached);
+          if (parsed && parsed.email) {
+            currentSalesUser = parsed;
+            foundUser = parsed;
+          }
         } catch (e) {
           currentSalesUser = null;
         }
-      } else {
-        currentSalesUser = null;
       }
     }
   } catch (err) {
@@ -315,7 +320,15 @@ async function checkCurrentSession() {
     currentSalesUser = null;
   }
 
-  updateAuthHeaderUI();
+  if (currentSalesUser) {
+    document.body.classList.remove('auth-locked');
+    updateAuthHeaderUI();
+    closeLoginModal(true);
+  } else {
+    document.body.classList.add('auth-locked');
+    updateAuthHeaderUI();
+    openLoginModal(true);
+  }
 }
 
 // ==========================================
@@ -729,18 +742,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Modal UI Helpers
-function openLoginModal() {
+function openLoginModal(enforce = false) {
   const modal = document.getElementById('sales-login-modal');
   if (modal) {
     modal.style.display = 'flex';
     const errEl = document.getElementById('login-error-msg');
     if (errEl) errEl.style.display = 'none';
+
+    const btnCancel = document.getElementById('btn-login-cancel');
+    const btnCloseX = document.getElementById('btn-login-close-x');
+    
+    if (!currentSalesUser || enforce) {
+      document.body.classList.add('auth-locked');
+      if (btnCancel) btnCancel.style.display = 'none';
+      if (btnCloseX) btnCloseX.style.display = 'none';
+    } else {
+      if (btnCancel) btnCancel.style.display = 'block';
+      if (btnCloseX) btnCloseX.style.display = 'block';
+    }
   }
 }
 
-function closeLoginModal() {
+function closeLoginModal(force = false) {
+  if (!currentSalesUser && !force) {
+    const errEl = document.getElementById('login-error-msg');
+    if (errEl) {
+      errEl.textContent = '🔒 กรุณาเข้าสู่ระบบก่อนเข้าใช้งานระบบ SCG Sales Intelligence';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
   const modal = document.getElementById('sales-login-modal');
   if (modal) modal.style.display = 'none';
+  if (currentSalesUser) {
+    document.body.classList.remove('auth-locked');
+  }
 }
 
 function fillDemoUser(email, pass) {
@@ -752,12 +788,20 @@ function fillDemoUser(email, pass) {
 
 async function handleSalesLoginForm(event) {
   if (event && event.preventDefault) event.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const pass = document.getElementById('login-password').value;
+  const email = (document.getElementById('login-email').value || '').trim();
+  const pass = (document.getElementById('login-password').value || '').trim();
   const btnSubmit = document.getElementById('btn-login-submit');
   const errEl = document.getElementById('login-error-msg');
 
   if (errEl) errEl.style.display = 'none';
+  if (!email || !pass) {
+    if (errEl) {
+      errEl.textContent = '⚠️ กรุณากรอกอีเมลและรหัสผ่านให้ครบถ้วน';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+
   if (btnSubmit) {
     btnSubmit.disabled = true;
     btnSubmit.textContent = 'กำลังตรวจสอบ...';
@@ -765,11 +809,12 @@ async function handleSalesLoginForm(event) {
 
   try {
     const user = await loginSalesUser(email, pass);
-    closeLoginModal();
+    document.body.classList.remove('auth-locked');
+    closeLoginModal(true);
     if (typeof showStatusToast === 'function') {
-      showStatusToast(`ยินดีต้อนรับ ${user.fullName} (พื้นที่: ${user.assignedProvince})`);
+      showStatusToast(`🎉 ยินดีต้อนรับ ${user.fullName} (${user.title || user.assignedProvince})`);
     } else {
-      alert(`ยินดีต้อนรับ ${user.fullName} (พื้นที่: ${user.assignedProvince})`);
+      alert(`🎉 ยินดีต้อนรับ ${user.fullName} (${user.title || user.assignedProvince})`);
     }
   } catch (err) {
     if (errEl) {

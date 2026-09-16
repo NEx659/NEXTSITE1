@@ -732,6 +732,16 @@ function getCompanyCrmLog(companyId) {
 }
 
 function saveCompanyCrmLog(companyId, logData) {
+  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+    if (typeof showStatusToast === 'function') {
+      showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนบันทึกข้อมูล');
+    }
+    if (typeof openLoginModal === 'function') {
+      openLoginModal(true);
+    }
+    return;
+  }
+
   try {
     const logs = getAllCrmLogs();
     const existing = logs[companyId] || {};
@@ -779,6 +789,15 @@ function renderCrmStatusBadge(status = 'pending', companyId = null) {
 }
 
 function quickSaveInlineCrmNote(companyId, noteText, showToast = false) {
+  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+    if (typeof showStatusToast === 'function') {
+      showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนบันทึกโน้ต');
+    }
+    if (typeof openLoginModal === 'function') {
+      openLoginModal(true);
+    }
+    return;
+  }
   saveCompanyCrmLog(companyId, { note: noteText });
   if (showToast) {
     showStatusToast(`☁️ บันทึกโน้ต CRM ขึ้น Cloud เรียบร้อย`);
@@ -787,6 +806,15 @@ function quickSaveInlineCrmNote(companyId, noteText, showToast = false) {
 
 function openFollowUpModal(companyId, focusNote = true, event) {
   if (event && event.stopPropagation) event.stopPropagation();
+  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+    if (typeof showStatusToast === 'function') {
+      showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนบันทึกการติดตาม');
+    }
+    if (typeof openLoginModal === 'function') {
+      openLoginModal(true);
+    }
+    return;
+  }
   const modal = document.getElementById('company-followup-modal') || document.getElementById('followup-modal');
   if (!modal) return;
   
