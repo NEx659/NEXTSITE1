@@ -65,9 +65,9 @@ const SCG_SYSTEM_USERS = [
     password: 'scg12345',
     fullName: 'คุณคีตวรรษ',
     title: 'Sales supervisor Udon',
-    role: 'sales',
+    role: 'manager',
     assignedProvince: 'อุดรธานี',
-    avatar: '👤'
+    avatar: '👔'
   },
   {
     email: 'pannipan@scg.com',
@@ -154,22 +154,42 @@ async function logoutSalesUser() {
 
 /**
  * Check if current user is permitted to delete or edit a specific item/photo
- * - Supervisor (Manager: คุณพรรณิภา) -> Can delete/edit anything
- * - Sales Author -> Can delete/edit their own items
+ * - Supervisor/Manager (คุณพรรณิภา, คุณคีตวรรษ) -> Can edit/delete anything
+ * - Sales Author -> Can delete/edit their own items (matched by email or full name)
  * - Other Sales Reps -> Cannot delete/edit items created by teammates
  */
-function canCurrentUserDeleteOrEditItem(ownerEmail) {
+function canCurrentUserDeleteOrEditItem(ownerIdentifier) {
   if (!currentSalesUser) {
     return false;
   }
-  // Master Supervisor Permission
-  if (currentSalesUser.role === 'manager' || currentSalesUser.email.toLowerCase() === 'pannipan@scg.com') {
+  
+  // 1. Master Supervisor / Manager Permissions
+  if (
+    currentSalesUser.role === 'manager' || 
+    currentSalesUser.role === 'supervisor' ||
+    currentSalesUser.email.toLowerCase() === 'pannipan@scg.com' ||
+    currentSalesUser.email.toLowerCase() === 'keetavas@scg.com' ||
+    (currentSalesUser.fullName && (currentSalesUser.fullName.includes('พรรณิภา') || currentSalesUser.fullName.includes('คีตวรรษ')))
+  ) {
     return true;
   }
-  if (!ownerEmail) {
+
+  // If no owner recorded yet (empty note / unassigned), anyone can edit/create
+  if (!ownerIdentifier || String(ownerIdentifier).trim() === '') {
     return true;
   }
-  return currentSalesUser.email.toLowerCase() === String(ownerEmail).trim().toLowerCase();
+
+  const normOwner = String(ownerIdentifier).trim().toLowerCase();
+  const userEmail = (currentSalesUser.email || '').trim().toLowerCase();
+  const userName = (currentSalesUser.fullName || '').trim().toLowerCase();
+
+  // 2. Author match (by email or full name)
+  return (
+    normOwner === userEmail ||
+    normOwner === userName ||
+    (userName && normOwner.includes(userName)) ||
+    (normOwner && userName.includes(normOwner))
+  );
 }
 
 /**

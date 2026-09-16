@@ -177,6 +177,12 @@ function setCompanyTag(companyId, tag, event) {
     event.stopPropagation();
   }
 
+  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+    if (typeof showStatusToast === 'function') showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนเปลี่ยนสถานะ Focus');
+    if (typeof openLoginModal === 'function') openLoginModal(true);
+    return;
+  }
+
   const normalizedTag = String(tag || 'new').trim().toLowerCase();
   const comp = allCompanies.find(c => c.id === companyId);
   if (comp) {
@@ -742,17 +748,30 @@ function saveCompanyCrmLog(companyId, logData) {
     return;
   }
 
+  const logs = getAllCrmLogs();
+  const existing = logs[companyId] || {};
+  const hasExistingContent = (existing.note && String(existing.note).trim().length > 0) || (Array.isArray(existing.photos) && existing.photos.length > 0);
+
+  // Ownership protection check - ONLY lock if actual text note or photo content already exists!
+  if (hasExistingContent && existing.createdBy) {
+    if (typeof canCurrentUserDeleteOrEditItem === 'function' && !canCurrentUserDeleteOrEditItem(existing.createdBy)) {
+      const ownerName = existing.salesRep || existing.createdBy;
+      if (typeof showStatusToast === 'function') {
+        showStatusToast(`🔒 ข้อมูลนี้บันทึกโดย ${ownerName} (คุณไม่มีสิทธิ์แก้ไขหรือบันทึกทับ)`);
+      }
+      return;
+    }
+  }
+
   try {
-    const logs = getAllCrmLogs();
-    const existing = logs[companyId] || {};
-    const uEmail = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.email : (existing.createdBy || 'somchai@scg.com');
-    const uName = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.fullName : (existing.salesRep || 'คุณสมชาย');
+    const uEmail = currentSalesUser.email;
+    const uName = currentSalesUser.fullName;
 
     const updatedRecord = {
       ...existing,
       ...logData,
-      createdBy: existing.createdBy || uEmail,
-      salesRep: logData.salesRep || uName,
+      createdBy: (hasExistingContent && existing.createdBy) ? existing.createdBy : uEmail,
+      salesRep: (hasExistingContent && existing.salesRep) ? existing.salesRep : (logData.salesRep || uName),
       lastUpdated: new Date().toISOString()
     };
     logs[companyId] = updatedRecord;
@@ -837,29 +856,55 @@ function openFollowUpModal(companyId, focusNote = true, event) {
   if (distEl) distEl.textContent = (company.district || 'เมือง') + ', จ.' + (company.province || 'อุดรธานี');
 
   const crmLog = getCompanyCrmLog(company.id);
+  const hasFollowupContent = (crmLog.note && String(crmLog.note).trim().length > 0) || (Array.isArray(crmLog.photos) && crmLog.photos.length > 0);
+  const canEditFollowup = !hasFollowupContent || (!crmLog.createdBy || (typeof canCurrentUserDeleteOrEditItem === 'function' && canCurrentUserDeleteOrEditItem(crmLog.createdBy)));
 
   selectCrmStatus(crmLog.status || 'pending');
 
   const noteInput = document.getElementById('followup-note-input') || document.getElementById('crm-modal-note');
-  if (noteInput) noteInput.value = crmLog.note || '';
+  if (noteInput) {
+    noteInput.value = crmLog.note || '';
+    noteInput.readOnly = !canEditFollowup;
+    noteInput.style.background = canEditFollowup ? '#FFFFFF' : '#F1F5F9';
+    noteInput.style.color = canEditFollowup ? '#0F172A' : '#475569';
+    noteInput.style.cursor = canEditFollowup ? 'text' : 'not-allowed';
+  }
 
   const dateInput = document.getElementById('followup-next-date');
-  if (dateInput) dateInput.value = crmLog.nextDate || '';
+  if (dateInput) {
+    dateInput.value = crmLog.nextDate || '';
+    dateInput.disabled = !canEditFollowup;
+  }
 
   const repInput = document.getElementById('followup-sales-rep');
-  if (repInput) repInput.value = crmLog.salesRep || (window.currentSalesUser ? window.currentSalesUser.fullName : 'ทีมขาย SCG อุดรธานี');
+  if (repInput) {
+    repInput.value = crmLog.salesRep || (window.currentSalesUser ? window.currentSalesUser.fullName : 'ทีมขาย SCG อุดรธานี');
+    repInput.disabled = !canEditFollowup;
+  }
 
   const prodCheckboxes = document.querySelectorAll('input[name="followup-prod"]');
   prodCheckboxes.forEach(cb => {
     cb.checked = (crmLog.products || []).indexOf(cb.value) !== -1;
+    cb.disabled = !canEditFollowup;
   });
+
+  document.querySelectorAll('.crm-status-box').forEach(b => {
+    b.style.pointerEvents = canEditFollowup ? 'auto' : 'none';
+    b.style.opacity = canEditFollowup ? '1' : '0.6';
+    b.style.cursor = canEditFollowup ? 'pointer' : 'not-allowed';
+  });
+
+  const saveBtn = document.querySelector('button[onclick="saveFollowUpLog()"]');
+  if (saveBtn) {
+    saveBtn.style.display = canEditFollowup ? 'inline-flex' : 'none';
+  }
 
   modal.style.display = 'flex';
   modal.style.visibility = 'visible';
   modal.style.opacity = '1';
   modal.style.zIndex = '2147483647';
 
-  if (focusNote !== false && noteInput) {
+  if (focusNote !== false && noteInput && canEditFollowup) {
     setTimeout(() => {
       noteInput.focus();
       noteInput.selectionStart = noteInput.selectionEnd = noteInput.value.length;
@@ -1045,6 +1090,13 @@ function toggleTargetFollowup(companyId, event) {
     if (event.stopPropagation) event.stopPropagation();
     if (event.preventDefault) event.preventDefault();
   }
+
+  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+    if (typeof showStatusToast === 'function') showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนทำรายการ');
+    if (typeof openLoginModal === 'function') openLoginModal(true);
+    return;
+  }
+
   const log = getCompanyCrmLog(companyId);
   const isTargeted = !(log.wantFollowup === true);
   saveCompanyCrmLog(companyId, { wantFollowup: isTargeted });
@@ -1263,6 +1315,11 @@ function renderTable() {
       isSalesAssessed = true;
     }
 
+    // Check ownership & edit permission for this company
+    const hasActualCrmData = (companyCrmLog.note && String(companyCrmLog.note).trim().length > 0) || (Array.isArray(companyCrmLog.photos) && companyCrmLog.photos.length > 0);
+    const canEditCompany = !hasActualCrmData || (!companyCrmLog.createdBy || (typeof canCurrentUserDeleteOrEditItem === 'function' && canCurrentUserDeleteOrEditItem(companyCrmLog.createdBy)));
+    const ownerName = companyCrmLog.salesRep || companyCrmLog.createdBy || 'เซลส์ท่านอื่น';
+
     const tr = document.createElement('tr');
     tr.id = `company-row-${company.id}`;
     tr.dataset.companyId = company.id;
@@ -1295,8 +1352,8 @@ function renderTable() {
             ` : ''}
           </div>
           
-          <!-- Sales Tag Selector Buttons: Focus / Non-Focus / New -->
-          <div class="inline-tag-selector" onclick="event.stopPropagation();" style="display: inline-flex; align-items: center; gap: 3px; background: #F1F5F9; padding: 2px 4px; border-radius: 6px; border: 1px solid #CBD5E1; width: fit-content;">
+          <!-- Sales Tag Selector Buttons: Focus / Non-Focus / New (Editable by everyone) -->
+          <div class="inline-tag-selector" onclick="event.stopPropagation();" style="display: inline-flex; align-items: center; gap: 3px; background: #F1F5F9; padding: 2px 4px; border-radius: 6px; border: 1px solid #CBD5E1; width: fit-content;" title="คลิกเพื่อเปลี่ยนกลุ่มสถานะ (Focus / Non-Focus / New)">
             <button type="button" 
                     title="ตั้งเป็น Focus (เป้าหมายหลัก)"
                     onclick="setCompanyTag('${company.id}', 'focus', event)" 
@@ -1408,8 +1465,7 @@ function renderTable() {
               <button type="button" onclick="toggleTargetFollowup('${company.id}', event)" 
                 title="คลิกเพื่อยกเลิกการปักหมุดต้องการติดตาม" 
                 style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 3px 10px; border-radius: 6px; border: 1.5px solid #2563EB; background: #EFF6FF; color: #1D4ED8; font-size: 0.72rem; font-weight: 800; cursor: pointer; box-shadow: 0 1px 3px rgba(37,99,235,0.2); transition: all 0.15s ease;"
-                onmouseover="this.style.background='#DBEAFE'; this.style.transform='scale(1.03)';" 
-                onmouseout="this.style.background='#EFF6FF'; this.style.transform='scale(1)';">
+                onmouseover="this.style.background='#DBEAFE'; this.style.transform='scale(1.03)';" onmouseout="this.style.background='#EFF6FF'; this.style.transform='scale(1)';">
                 <span>🎯</span>
                 <span>ต้องการติดตาม</span>
                 <span style="font-size: 0.65rem; background: #2563EB; color: #FFFFFF; border-radius: 9999px; padding: 0 4px; margin-left: 2px;">✓</span>
@@ -1417,10 +1473,9 @@ function renderTable() {
             `
             : `
               <button type="button" onclick="toggleTargetFollowup('${company.id}', event)" 
-                title="คลิกเพื่อปักหมุดว่า 'ต้องการติดตาม' บริษัทนี้" 
+                title="คลิกเพื่อปักหมุดว่า ต้องการติดตาม บริษัทนี้" 
                 style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 3px 10px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #475569; font-size: 0.72rem; font-weight: 700; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition: all 0.15s ease;"
-                onmouseover="this.style.borderColor='#3B82F6'; this.style.color='#1D4ED8'; this.style.background='#EFF6FF'; this.style.transform='scale(1.03)';" 
-                onmouseout="this.style.borderColor='#CBD5E1'; this.style.color='#475569'; this.style.background='#FFFFFF'; this.style.transform='scale(1)';">
+                onmouseover="this.style.borderColor='#3B82F6'; this.style.color='#1D4ED8'; this.style.background='#EFF6FF'; this.style.transform='scale(1.03)';" onmouseout="this.style.borderColor='#CBD5E1'; this.style.color='#475569'; this.style.background='#FFFFFF'; this.style.transform='scale(1)';">
                 <span style="color: #94A3B8;">📌</span>
                 <span>ต้องการติดตาม</span>
               </button>
@@ -2009,20 +2064,93 @@ function openCompanyProjectsModal(companyOrId) {
 
   // Load and Render Sales CRM Notes for Company
   const log = getCompanyCrmLog(comp.id);
+  const hasActualContent = (log.note && String(log.note).trim().length > 0) || (Array.isArray(log.photos) && log.photos.length > 0);
+  const isCreatorOrAdmin = !log.createdBy || (typeof canCurrentUserDeleteOrEditItem === 'function' && canCurrentUserDeleteOrEditItem(log.createdBy));
+  const canEditModal = !hasActualContent || isCreatorOrAdmin;
+  const ownerName = log.salesRep || log.createdBy || 'เซลส์ท่านอื่น';
+
   const noteTextarea = document.getElementById('modal-company-sales-note');
   const noteStatus = document.getElementById('modal-crm-note-status-indicator');
   const noteLastUpdated = document.getElementById('modal-crm-note-last-updated');
 
   if (noteTextarea) {
     noteTextarea.value = log.note || '';
+    if (!canEditModal) {
+      noteTextarea.readOnly = true;
+      noteTextarea.style.background = '#F1F5F9';
+      noteTextarea.style.color = '#475569';
+      noteTextarea.style.cursor = 'not-allowed';
+      noteTextarea.style.border = '1.5px solid #CBD5E1';
+    } else {
+      noteTextarea.readOnly = false;
+      noteTextarea.style.background = '#FFFFFF';
+      noteTextarea.style.color = '#0F172A';
+      noteTextarea.style.cursor = 'text';
+      noteTextarea.style.border = '1.5px solid #CBD5E1';
+    }
   }
+
   if (noteStatus) {
-    noteStatus.innerHTML = '<span style="color: #16A34A;">✅ พร้อมบันทึก</span>';
+    if (!canEditModal) {
+      noteStatus.innerHTML = `<span style="color: #9333EA; font-weight: 800; background: #FAF5FF; padding: 3px 10px; border-radius: 6px; border: 1px solid #E9D5FF; font-size: 0.72rem;">🔒 บันทึกโดย ${ownerName} (คุณอ่านได้อย่างเดียว)</span>`;
+    } else {
+      noteStatus.innerHTML = '<span style="color: #16A34A; font-weight: 700;">✅ พร้อมบันทึก</span>';
+    }
   }
+
   if (noteLastUpdated) {
     noteLastUpdated.textContent = log.lastUpdated 
       ? `บันทึกล่าสุด: ${new Date(log.lastUpdated).toLocaleString('th-TH')}`
       : 'บันทึกล่าสุด: ยังไม่มีประวัติ';
+  }
+
+  // Quick Note Tag Buttons Lock/Unlock
+  document.querySelectorAll('.btn-quick-note-tag').forEach(btn => {
+    btn.style.pointerEvents = canEditModal ? 'auto' : 'none';
+    btn.style.opacity = canEditModal ? '1' : '0.45';
+    btn.style.cursor = canEditModal ? 'pointer' : 'not-allowed';
+  });
+
+  // Opportunity Level Selector Buttons Lock/Unlock
+  ['btn-opp-high', 'btn-opp-medium', 'btn-opp-low'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      btn.style.pointerEvents = canEditModal ? 'auto' : 'none';
+      btn.style.opacity = canEditModal ? '1' : '0.55';
+      btn.style.cursor = canEditModal ? 'pointer' : 'not-allowed';
+    }
+  });
+
+  // Modal tag selector buttons are editable by everyone
+  ['focus', 'non-focus', 'new'].forEach(t => {
+    const btn = document.getElementById(`btn-status-${t}`);
+    if (btn) {
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+      btn.title = `ตั้งเป็น ${t === 'focus' ? 'Focus (เป้าหมายหลัก)' : (t === 'non-focus' ? 'Non-Focus (ทั่วไป)' : 'New (เข้าใหม่)')}`;
+    }
+  });
+
+  // Photo upload button lock/unlock
+  const photoUploadBtn = document.querySelector('button[onclick*="modal-company-photo-input"]');
+  if (photoUploadBtn) {
+    photoUploadBtn.style.pointerEvents = canEditModal ? 'auto' : 'none';
+    photoUploadBtn.style.opacity = canEditModal ? '1' : '0.5';
+    photoUploadBtn.style.cursor = canEditModal ? 'pointer' : 'not-allowed';
+    photoUploadBtn.title = canEditModal ? 'อัปโหลดรูปภาพหน้างาน' : `🔒 บันทึกโดย ${ownerName} (ล็อกการอัปโหลด)`;
+  }
+
+  // Clear & Save manual buttons in modal
+  const clearBtn = document.querySelector('button[onclick="clearCompanyNote()"]');
+  const saveBtn = document.querySelector('button[onclick="saveCompanyNoteManually()"]');
+  if (clearBtn) {
+    clearBtn.style.pointerEvents = canEditModal ? 'auto' : 'none';
+    clearBtn.style.opacity = canEditModal ? '1' : '0.4';
+  }
+  if (saveBtn) {
+    saveBtn.style.pointerEvents = canEditModal ? 'auto' : 'none';
+    saveBtn.style.opacity = canEditModal ? '1' : '0.4';
   }
 
   // Render Opportunity Level Buttons
@@ -3299,12 +3427,29 @@ function isInternalOrNonConstructionPost(text) {
   if (!text) return false;
   const t = String(text).toLowerCase();
 
+  // 1. ตรวจจับโพสต์เนื่องในโอกาส / วันสำคัญ / ถวายพระพร / วันหยุดนักขัตฤกษ์
+  if (/เนื่องใน(?:โอกาส|วาระ|ศุภวาระ|วัน)/i.test(t)) {
+    return true; // ปฏิเสธโพสต์แนว "เนื่องในโอกาสวัน..." ทันที
+  }
+
+  const holidayAndGreetingTerms = [
+    'เนื่องในโอกาส', 'เนื่องในวัน', 'เนื่องในวาระ', 'เนื่องในศุภวาระ',
+    'ทรงพระเจริญ', 'ถวายพระพร', 'น้อมรำลึก', 'น้อมสำนึกในพระมหากรุณาธิคุณ', 'กราบถวายบังคม', 'วันเฉลิมพระชนมพรรษา', 'วันคล้ายวันพระราชสมภพ',
+    'วันสำคัญทางศาสนา', 'วันพระ', 'วันวิสาขบูชา', 'วันมาฆบูชา', 'วันอาสาฬหบูชา', 'วันเข้าพรรษา', 'วันออกพรรษา',
+    'วันแม่แห่งชาติ', 'วันพ่อแห่งชาติ', 'วันครู', 'วันเด็กแห่งชาติ', 'วันแรงงาน', 'วันรัฐธรรมนูญ', 'วันปิยมหาราช', 'วันจักรี', 'วันฉัตรมงคล', 'วันนวมินทรมหาราช',
+    'สวัสดีปีใหม่', 'สุขสันต์วันสงกรานต์', 'สวัสดีวันสงกรานต์', 'วันหยุดนักขัตฤกษ์', 'หยุดทำการ', 'ปิดทำการ', 'แจ้งวันหยุด', 'วันหยุดยาว'
+  ];
+
+  if (holidayAndGreetingTerms.some(term => t.includes(term))) {
+    return true;
+  }
+
+  // 2. กิจกรรมภายในบริษัท / นักศึกษาฝึกงาน / สมัครงาน / ดูดวง
   const internalTerms = [
     'การฝึกงาน', 'ฝึกงาน', 'จบฝึกงาน', 'นักศึกษาฝึกงาน', 'สหกิจศึกษา', 'เลี้ยงส่ง', 'น้องๆฝึกงาน',
     'สุขสันต์วันเกิด', 'hbd', 'วันเกิด', 'ทำบุญบริษัท', 'ทำบุญออฟฟิศ', 'เลี้ยงพระ', 'ถวายเพล',
     'รับสมัครงาน', 'เปิดรับสมัคร', 'ตำแหน่งงานว่าง', 'walk-in', 'สัมมนา', 'อบรมสัมมนา',
     'งานเลี้ยงบริษัท', 'งานสังสรรค์', 'outing', 'staff party', 'กิจกรรมบริษัท', 'csr',
-    'สวัสดีปีใหม่', 'สุขสันต์วันสงกรานต์', 'สวัสดีวันสงกรานต์', 'วันหยุดนักขัตฤกษ์', 'หยุดทำการ',
     'ฤกษ์ดี', 'ฤกษ์มงคล', 'วันมงคล', 'ฤกษ์สร้างบ้าน', 'เทวีฤกษ์', 'ภูมิปาโลฤกษ์', 'มหัทธโนฤกษ์', 'ราชาฤกษ์',
     'ดูดวง', 'ฮวงจุ้ย', 'เกร็ดความรู้', 'สาระน่ารู้', 'ทริคดีๆ', 'ทริคสร้างบ้าน'
   ];
