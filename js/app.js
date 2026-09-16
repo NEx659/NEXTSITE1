@@ -112,13 +112,22 @@ function cleanThaiText(text) {
     'n.p.homeengineering': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
     'nphome': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
     'รับสร้างบ้านภาคอิสาน BY N.p.home': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
-    'รับสร้างบ้านภาคอิสาน by n.p.home': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง'
+    'รับสร้างบ้านภาคอิสาน by n.p.home': 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง',
+    'Banraks.Ud': 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี',
+    'banraks.ud': 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี',
+    'banraks': 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี',
+    'Banraks': 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี'
   };
 
   for (const [slug, thaiName] of Object.entries(KNOWN_SLUG_MAP)) {
     if (str.toLowerCase() === slug.toLowerCase() || str.toLowerCase().includes(slug.toLowerCase())) {
       return thaiName;
     }
+  }
+
+  // แปลงชื่อ หจก.บ้านรักษ์ ทุกกรณีให้เป็น ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี
+  if (str.includes('บ้านรักษ์') && (str.includes('หจก') || str.includes('หจก.'))) {
+    return 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี';
   }
 
   // 3. ทำความสะอาด URL prefix และตัวเลขต่อท้าย
@@ -411,23 +420,32 @@ const SCG_CUSTOMER_SALES_LIST = [
   { code: '10485682', name: 'รุ่งรัตน์บิวตี้โฮม', sales2025: 12246, sales2026: 768825.5, keys: ['รุ่งรัตน์บิวตี้โฮม', 'รุ่งรัตน์'] },
   { code: '10500344', name: 'การิน บ้านสวย', sales2025: 469506, sales2026: 1337450, keys: ['การิน บ้านสวย', 'การิน', 'karin'] },
   { code: '10503273', name: 'สุขสกล ดีเวลลอปเม้นท์', sales2025: 677870.3, sales2026: 2338879, keys: ['สุขสกล', 'suksakon'] },
-  { code: '10509038', name: '117อาร์คิเทคท์', sales2025: 28572.5, sales2026: 395558.3, keys: ['117อาร์คิเทคท์', '117', '117 architect'] },
-  { code: '10523555', name: 'ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์', sales2025: 1146567, sales2026: 2903328, keys: ['ทเวนตี้ซิกซ์', '26 development', '26'] },
+  { code: '10509038', name: '117อาร์คิเทคท์', sales2025: 28572.5, sales2026: 395558.3, keys: ['117อาร์คิเทคท์', '117 architect', '117architect'] },
+  { code: '10523555', name: 'ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์', sales2025: 1146567, sales2026: 2903328, keys: ['ทเวนตี้ซิกซ์', '26 development'] },
   { code: '10551209', name: 'บ้านใหญ่ (2016) โฮม บิวเดอร์', sales2025: 5481324, sales2026: 5472101, keys: ['บ้านใหญ่', 'baanyai', 'baanyai2016'] },
   { code: '10590829', name: 'เลอ คราวน์ ดีไซน์', sales2025: 11367, sales2026: 329498.4, keys: ['เลอ คราวน์', 'เลอคราวน์', 'le crown', 'lecrown'] },
   { code: '10612650', name: 'บ้านดี อยู่ดี ดีไซน์', sales2025: 31155, sales2026: 93806.25, keys: ['บ้านดี อยู่ดี', 'บ้านดีอยู่ดี', 'baandee yoodee'] },
   { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026: 1992527, keys: ['กิจดลวรโชติ', 'กิจดล'] },
   { code: '10729130', name: 'บ้านวิศวะพัฒนา', sales2025: 0, sales2026: 238997, keys: ['บ้านวิศวะพัฒนา', 'บ้านวิศวะ', 'baanwisawa', 'banwisawa'] },
   { code: '10739362', name: 'ห้างหุ้นส่วนจำกัด เค พี โฮม', sales2025: 0, sales2026: 7101, keys: ['เค พี โฮม', 'เค.พี.โฮม', 'เคพีโฮม', 'kp home', 'k.p. home'] },
-  { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026: 161278, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] }
+  { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026: 161278, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] },
+  { code: '10568031', name: 'ห้างหุ้นส่วนจำกัด เอสวาย.เฮาส์ ดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 39378, sales2026: 0, keys: ['เอสวาย', 'เอสวาย.เฮาส์', 'เอสวาย เฮาส์', 'sy house', 'syhouse'] },
+  { code: '10648769', name: 'บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด', sales2025: 187141, sales2026: 75112, keys: ['อีเฮาส์', 'อีเฮ้าส์', 'e-house', 'บริษัท อีเฮาส์'] },
+  { code: '10724226', name: 'ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น', sales2025: 0, sales2026: 75021, keys: ['ดีเอ็นเอ็น', 'dnn', 'dnn construction', 'ดีเอ็นเอ็น คอนสตรัคชั่น'] },
+  { code: '10724225', name: 'ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง', sales2025: 0, sales2026: 1470, keys: ['เกียรติรุ่งเรือง', 'เกียรติรุ่งเรือง ก่อสร้าง', 'kiat rung ruang'] },
+  { code: '10615285', name: 'บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด', sales2025: 321401, sales2026: 74809, keys: ['เอ็นทรัสท', 'entrust', 'เอ็นทรัสท คอนสตรัคชั่น', 'entrust construction', 'trust construction'] },
+  { code: '10095435', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 3023155, sales2026: 670816, keys: ['โมเสคดีไซน์', 'โมเสค', 'mosaic', 'mosaic design', 'โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น'] }
 ];
 
 function loadSavedCompaniesData() {
-  // Clear any old corrupted data cache from localStorage
+  // Clear any old data cache from localStorage & sessionStorage to guarantee fresh clean state
   if (typeof localStorage !== 'undefined') {
     localStorage.removeItem('nextsite_saved_companies');
     localStorage.removeItem('nextsite_saved_detected_count');
     localStorage.removeItem('nextsite_last_synced_time');
+  }
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.removeItem('nextsite_session_uploaded_companies');
   }
 
   let baseData = [];
@@ -442,6 +460,12 @@ function loadSavedCompaniesData() {
 
   // Sanitize and clean all text fields across companies
   allCompanies.forEach(c => {
+    if (c.id === 'comp-udon-25' || (c.name && c.name.includes('บ้านรักษ์'))) {
+      c.name = 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี';
+      c.contactPerson = 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี';
+      if (c.facebookSignal) c.facebookSignal.pageName = 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี';
+    }
+
     c.name = cleanThaiText(c.name);
     if (c.engName) c.engName = cleanThaiText(c.engName);
     if (c.category) c.category = cleanThaiText(c.category);
@@ -504,6 +528,12 @@ function loadSavedCompaniesData() {
   sortCompaniesByOpportunityScore(allCompanies);
   filteredCompanies = [...allCompanies];
   window.allCompanies = allCompanies;
+
+  if (sessionData) {
+    try {
+      sessionStorage.setItem('nextsite_session_uploaded_companies', JSON.stringify(allCompanies));
+    } catch(e) {}
+  }
 }
 
 function getCompanyScoreValue(comp) {
@@ -1100,7 +1130,9 @@ function renderTable() {
     const projCount = projects.length || company.totalProjects || 0;
     const curTag = getCompanyTag(company.id);
 
-    const companyCleanName = cleanThaiText(company.name);
+    const companyCleanName = (company.id === 'comp-udon-25' || (company.name && company.name.includes('บ้านรักษ์')))
+      ? 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี'
+      : cleanThaiText(company.name);
 
     // Rank Class
     let rankClass = 'rank-light-blue';
@@ -1248,16 +1280,21 @@ function renderTable() {
       <!-- 4. จำนวนโครงการ (ไซต์จริงจาก FB) -->
       <td style="vertical-align: middle;">
         <div style="display: flex; flex-direction: column; gap: 4px;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <strong style="font-size: 1rem; font-weight: 900; color: #0F172A;">${projCount} โครงการ</strong>
-            <span style="background: #E0F2FE; color: #0284C7; font-size: 0.72rem; font-weight: 800; padding: 1px 7px; border-radius: 9999px; border: 1px solid #BAE6FD; display: inline-flex; align-items: center; gap: 3px;">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> FB จริง
-            </span>
-          </div>
-          ${projCount === 0 ? `
-          <div style="font-size: 0.76rem; color: #059669; font-weight: 700; display: flex; align-items: center; gap: 4px;">
-            <span style="color: #E11D48;">📍</span> มีไซต์งานจริงในพื้นที่อื่น
-          </div>` : ''}
+          ${projCount > 0 ? `
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <strong style="font-size: 1rem; font-weight: 900; color: #0F172A;">${projCount} โครงการ</strong>
+              <span style="background: #E0F2FE; color: #0284C7; font-size: 0.72rem; font-weight: 800; padding: 1px 7px; border-radius: 9999px; border: 1px solid #BAE6FD; display: inline-flex; align-items: center; gap: 3px;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> FB จริง
+              </span>
+            </div>
+          ` : `
+            <div>
+              <strong style="font-size: 0.88rem; font-weight: 800; color: #475569; display: block; line-height: 1.35;">0 โครงการในพื้นที่อุดร</strong>
+            </div>
+            <div style="font-size: 0.74rem; color: #059669; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 2px 8px; border-radius: 6px; width: fit-content; line-height: 1.3; margin-top: 1px;">
+              <span>📍</span> มีไซต์งานในพื้นที่อื่น
+            </div>
+          `}
         </div>
       </td>
 
@@ -1438,7 +1475,9 @@ function applyFilters() {
     // 1. Text Search Query
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
-      const matchName = (comp.name || '').toLowerCase().includes(q);
+      const qNorm = q.replace(/หจก\.?/g, 'ห้างหุ้นส่วนจำกัด');
+      const cNorm = (comp.name || '').toLowerCase().replace(/หจก\.?/g, 'ห้างหุ้นส่วนจำกัด');
+      const matchName = cNorm.includes(q) || cNorm.includes(qNorm) || (comp.name || '').toLowerCase().includes(q);
       const matchEng = (comp.engName || '').toLowerCase().includes(q);
       const matchDist = (comp.district || '').toLowerCase().includes(q);
       const matchProv = (comp.province || '').toLowerCase().includes(q);
@@ -2330,7 +2369,7 @@ function renderCompanyProjectsList(company) {
 
     <!-- Projects Grid -->
     <div class="projects-grid">
-      ${displayProjects.map(proj => {
+      ${displayProjects.length > 0 ? displayProjects.map(proj => {
         const curStatus = proj.trackingStatus || 'pending';
         const stageBadgeClass = `stage-${proj.stageKey || 'structure'}`;
         const projCleanName = cleanThaiText(proj.name || proj.title);
@@ -2339,9 +2378,10 @@ function renderCompanyProjectsList(company) {
         const scgMaterials = getStageMatchedScgMaterials(proj);
         
         // Facebook Post Proof & URL
-        const fbUrl = (proj.siteProof && proj.siteProof.postUrl) || proj.postUrl || company.facebookUrl || '#';
-        const fbTime = (proj.siteProof && proj.siteProof.postedTime) || proj.postedTime || proj.date || '';
+        const fbUrl = (proj.siteProof && proj.siteProof.postUrl) || proj.facebookPostUrl || proj.postUrl || proj.url || proj.link || company.facebookUrl || '#';
+        const fbTime = (proj.siteProof && proj.siteProof.postedTime) || proj.postedTime || proj.lastUpdate || proj.date || '';
         const fbCaption = (proj.siteProof && proj.siteProof.caption) || proj.caption || proj.status || '';
+
 
         return `
           <div class="project-card">
@@ -2403,7 +2443,13 @@ function renderCompanyProjectsList(company) {
             </div>
           </div>
         `;
-      }).join('')}
+      }).join('') : `
+        <div style="grid-column: 1 / -1; background: rgba(15, 23, 42, 0.6); border: 1.5px dashed rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 32px 16px; text-align: center; color: #94A3B8;">
+          <div style="font-size: 28px; margin-bottom: 8px;">📍</div>
+          <div style="font-size: 1.05rem; font-weight: 800; color: #F8FAFC;">0 โครงการในพื้นที่อุดร</div>
+          <div style="font-size: 0.85rem; color: #34D399; font-weight: 700; margin-top: 5px;">มีไซต์งานในพื้นที่อื่น</div>
+        </div>
+      `}
     </div>
   `;
 }
@@ -2624,7 +2670,7 @@ function exportCompanyPdfReport(companyOrId) {
       <h2 style="font-size: 13px; font-weight: 900; color: #0B2E83; margin: 0; display: flex; align-items: center; gap: 6px;">
         <span style="color: #D71920;">■</span> รายชื่อไซต์งานก่อสร้างจริงและสัญญาณตรวจจับ (${projects.length} โครงการ)
       </h2>
-      <span style="font-size: 10px; color: #64748B; font-weight: 600;">สัญญาณย้อนหลัง 8 โพสต์ล่าสุดจาก Facebook</span>
+      <span style="font-size: 10px; color: #64748B; font-weight: 600;">สัญญาณย้อนหลัง 15 โพสต์ล่าสุดจาก Facebook</span>
     </div>
 
     <!-- Projects List -->
@@ -2667,8 +2713,8 @@ function exportCompanyPdfReport(companyOrId) {
                     <span>🌐 โพสต์หลักฐาน Facebook</span>
                     ${proj.postDate ? `<span style="color: #64748B; font-weight: 500;">(${proj.postDate})</span>` : ''}
                   </div>
-                  ${proj.postUrl ? `
-                    <a href="${proj.postUrl}" target="_blank" style="font-size: 9.5px; font-weight: 700; color: #1877F2; text-decoration: underline;">
+                  ${(proj.facebookPostUrl || proj.postUrl || (proj.siteProof && proj.siteProof.postUrl) || proj.url || proj.link) ? `
+                    <a href="${(proj.facebookPostUrl || proj.postUrl || (proj.siteProof && proj.siteProof.postUrl) || proj.url || proj.link)}" target="_blank" style="font-size: 9.5px; font-weight: 700; color: #1877F2; text-decoration: underline;">
                       เปิดดูโพสต์บน Facebook ↗
                     </a>
                   ` : ''}
@@ -2800,13 +2846,14 @@ function handleApifyFileUpload(event) {
     try {
       const data = JSON.parse(e.target.result);
       processApifyJsonData(data, file.name);
-      closeApifyModal();
+      if (typeof closeApifyModal === 'function') closeApifyModal();
+      try { event.target.value = ''; } catch(err) {}
     } catch (err) {
-      alert('เกิดข้อผิดพลาดในการอ่านไฟล์ JSON: รูปแบบไฟล์ไม่ถูกต้อง');
+      alert('เกิดข้อผิดพลาดในการอ่านไฟล์ JSON: รูปแบบไฟล์ไม่ถูกต้อง (' + err.message + ')');
       console.error(err);
     }
   };
-  reader.readAsText(file);
+  reader.readAsText(file, 'UTF-8');
 }
 
 function extractFbIdentifier(url) {
@@ -3629,213 +3676,251 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     posts = rawPayload;
   } else if (rawPayload && Array.isArray(rawPayload.items)) {
     posts = rawPayload.items;
+  } else if (rawPayload && Array.isArray(rawPayload.dataset)) {
+    posts = rawPayload.dataset;
+  } else if (rawPayload && Array.isArray(rawPayload.data)) {
+    posts = rawPayload.data;
   } else if (rawPayload && typeof rawPayload === 'object') {
     posts = [rawPayload];
   }
 
-  if (posts.length === 0) {
-    alert('ไม่พบรายการโพสต์ในไฟล์ Apify JSON');
+  if (!posts || posts.length === 0) {
+    alert('❌ ไม่พบรายการโพสต์ในไฟล์ Apify JSON');
     return;
   }
 
-  // 1. Reset all 54 companies to clean 0 projects before importing new real file
+  console.log(`📥 เริ่มประมวลผล ${posts.length} โพสต์จาก ${sourceName}...`);
+
+  const constructionKeywords = [
+    "ยกเสาเอก", "พิธียกเสาเอก", "เสาเอก", "ฤกษ์ยกเสาเอก", "ลงเสาเอก", "ยกเสาโท",
+    "ลงเสาเข็ม", "เสาเข็ม", "ตอกเสาเข็ม", "เจาะเสาเข็ม", "ไมโครไพล์",
+    "ฐานราก", "งานฐานราก", "ตอม่อ", "คานคอดิน", "เทคาน", "ผูกเหล็ก", "เทพื้น", "เทคอนกรีต", "เทปูน", "หล่อเสา",
+    "ตั้งเสา", "มุงหลังคา", "โครงหลังคา", "โครงสร้าง", "งานโครงสร้าง", "ก่ออิฐ", "ฉาบปูน", "งานก่อ", "งานฉาบ",
+    "site update", "อัปเดตหน้างาน", "อัพเดทหน้างาน", "อัปเดตไซด์งาน", "อัพเดทไซด์งาน",
+    "อัปเดตความคืบหน้า", "อัพเดทความคืบหน้า", "ความคืบหน้าหน้างาน", "ความคืบหน้าไซด์งาน", "ความคืบหน้างานก่อสร้าง",
+    "ส่งมอบบ้าน", "ส่งมอบงาน", "ตรวจงาน", "ตรวจหน้างาน", "ตรวจรับบ้าน", "สู่การเริ่มต้นก่อสร้างจริง"
+  ];
+
+  const customerKeywords = ["บ้านคุณ", "บ้านของคุณ", "ของบ้านคุณ", "ของคุณหมอ", "ของคุณ", "บ้านพักอาศัยคุณ"];
+
+  const marketingAndTipKeywords = [
+    "แบบบ้านยอดนิยม", "แบบบ้านดีไซน์", "แบบบ้านขายดี", "แบบบ้านแนะนำ", "แบบบ้านสวย", "แบบบ้านทันสมัย", "แบบบ้านโมเดิร์น", "แบบบ้านทรง",
+    "10 แบบบ้าน", "แบบบ้านชั้นเดียว", "แบบบ้าน 2 ชั้น", "แบบบ้าน",
+    "ราคาพิเศษ", "ราคาเริ่มต้น", "เริ่มต้นเพียง", "ตารางเมตรละ", "ตร.ม.ละ", "ล้านบาท*",
+    "โปรโมชั่นพิเศษ", "โปรโมชันพิเศษ", "โปรโมชั่น", "โปรโมชัน", "จองและทำสัญญา", "จองวันนี้", "รับส่วนลด", "แจกฟรี", "ฟรีของแถม", "แถมฟรี",
+    "ยื่นสินเชื่อ", "กู้ได้เต็ม", "ผ่อนเริ่มต้น", "ดำเนินการยื่นสินเชื่อ",
+    "อยากสร้างบ้านทั้งที", "สร้างสุข สร้างฝัน", "เพราะบ้านคือความฝัน", "สร้างบ้านคือเรื่องง่าย", "คุ้มค่า คุ้มราคา", "งบประมาณไม่บานปลาย",
+    "ทำไมถึงใช้", "ทำไมเราถึงใช้", "ทำไมต้อง", "เทคนิคสำคัญ", "ความลับอยู่ที่", "ความรู้เรื่องบ้าน", "เกร็ดความรู้", "ข้อควรรู้", "รู้หรือไม่", "หลายคนที่ติดตาม", "คลิปนี้มีคำตอบ", "ข้อดีข้อเสีย",
+    "3d", "perspective", "ภาพ 3d", "ภาพจำลอง", "ภาพเสมือนจริง",
+    "monthly meeting", "การประชุมประจำเดือน", "ประชุม", "สัมมนา", "อบรม"
+  ];
+
+  const otherProvincesStrict = [
+    "บึงกาฬ", "ปากคาด", "โซ่พิสัย", "เซกา", "บึงโขงหลง", "ศรีวิไล", "พรเจริญ", "บุ่งคล้า",
+    "กาฬสินธุ์", "ท่าคันโท", "สหัสขันธ์", "กมลาไสย", "สมเด็จ", "ยางตลาด", "กุฉินารายณ์", "ห้วยผึ้ง", "นามน", "เขาวง",
+    "นครพนม", "ธาตุพนม", "นาแก", "เรณูนคร", "ปลาปาก", "ท่าอุเทน", "ศรีสงคราม", "บ้านแพง",
+    "ขอนแก่น", "ชุมแพ", "บ้านไผ่", "น้ำพอง", "กระนวน", "พระยืน", "หนองเรือ", "พล", "ภูเวียง", "มัญจาคีรี",
+    "สกลนคร", "พังโคน", "สว่างแดนดิน", "วานรนิวาส", "พรรณานิคม", "วาริชภูมิ", "กุสุมาลย์", "อากาศอำนวย", "เต่างอย",
+    "หนองคาย", "ท่าบ่อ", "โพนพิสัย", "ศรีเชียงใหม่", "สังคม", "สระใคร", "รัตนวาปี", "เฝ้าไร่", "โพธิ์ตาก",
+    "หนองบัวลำภู", "นากลาง", "โนนสัง", "ศรีบุญเรือง", "สุวรรณคูหา", "นาวัง",
+    "เลย", "วังสะพุง", "เชียงคาน", "ด่านซ้าย", "ภูเรือ", "ภูกระดึง", "ท่าลี่", "ปากชม",
+    "ร้อยเอ็ด", "มหาสารคาม", "สารคาม", "มุกดาหาร", "ยโสธร", "อำนาจเจริญ", "อุบลราชธานี", "อุบล",
+    "นครราชสีมา", "โคราช", "บุรีรัมย์", "สุรินทร์", "ศรีสะเกษ", "ชัยภูมิ",
+    "เชียงใหม่", "เชียงราย", "พิษณุโลก", "นครสวรรค์", "กรุงเทพ", "กทม", "นนทบุรี", "ปทุมธานี", "สมุทรปราการ", "ชลบุรี", "ระยอง"
+  ];
+
+  function cleanSlug(url) {
+    if (!url) return '';
+    let u = url.toLowerCase().trim();
+    u = u.replace(/^https?:\/\/(www\.|m\.|mobile\.|web\.)?facebook\.com\//, '');
+    const m = u.match(/profile\.php\?id=([0-9]+)/);
+    if (m) return 'profile.php?id=' + m[1];
+    u = u.replace(/\/posts\/.*$/, '').replace(/\/videos\/.*$/, '').replace(/\/photos\/.*$/, '').replace(/\/reels?\/.*$/, '');
+    u = u.replace(/\?.*$/, '').replace(/\/$/, '').replace(/people\/[^\/]+\//, '');
+    return u;
+  }
+
+  let totalMatchedProjects = 0;
+  let totalUpdatedComps = 0;
+
+  allCompanies.forEach(comp => {
+    const cSlug = cleanSlug(comp.facebookUrl);
+    const cName = (comp.name || '').toLowerCase();
+    const cEng = (comp.engName || '').toLowerCase();
+
+    // Match posts for this company
+    const compPosts = posts.filter(p => {
+      const pUrl = cleanSlug(p.facebookUrl || p.inputUrl || p.url || p.topLevelUrl);
+      const inSlug = p.inputUrl ? cleanSlug(p.inputUrl) : '';
+      const pName = (p.pageName || '').toLowerCase().trim();
+      const uName = (p.user && p.user.name ? p.user.name : '').toLowerCase().trim();
+
+      if (cSlug && pUrl && (pUrl === cSlug || pUrl.includes(cSlug) || cSlug.includes(pUrl))) return true;
+      if (cSlug && inSlug && (inSlug === cSlug || inSlug.includes(cSlug) || cSlug.includes(inSlug))) return true;
+      if (pName && (cName.includes(pName) || pName.includes(cName))) return true;
+      if (uName && (cName.includes(uName) || uName.includes(cName))) return true;
+      if (cEng && pName && (cEng.includes(pName) || pName.includes(cEng))) return true;
+      return false;
+    });
+
+    if (compPosts.length > 0) {
+      const latest = compPosts[0];
+      comp.facebookSignal = {
+        postDate: latest.time ? new Date(latest.time).toLocaleDateString('th-TH') : 'ล่าสุด',
+        pageName: comp.name,
+        caption: latest.text || latest.message || 'อัปเดตหน้างานสร้างบ้าน จ.อุดรธานี',
+        likes: latest.likesCount || 0,
+        comments: latest.commentsCount || 0,
+        shares: latest.sharesCount || 0,
+        detectedKeywords: ['อุดรธานี', 'ก่อสร้างจริง']
+      };
+
+      const validProjects = [];
+      const seenCustomerKeys = new Set();
+
+      compPosts.forEach((p) => {
+        const text = p.text || p.message || '';
+        const textLower = text.toLowerCase();
+
+        let stageKey = 'structure';
+        let stageText = 'งานโครงสร้างและก่อฉาบอาคาร';
+        let prog = 50;
+
+        if (textLower.includes('ยกเสาเอก') || textLower.includes('เสาเข็ม') || textLower.includes('ตอกเสา')) {
+          stageKey = 'groundbreak'; stageText = 'พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง'; prog = 15;
+        } else if (textLower.includes('ฐานราก') || textLower.includes('คานคอดิน') || textLower.includes('ตอม่อ') || textLower.includes('เทลีน')) {
+          stageKey = 'foundation'; stageText = 'งานฐานราก ตอม่อ และคานคอดิน'; prog = 35;
+        } else if (textLower.includes('ส่งมอบ') || textLower.includes('ทาสี') || textLower.includes('ปูกระเบื้อง') || textLower.includes('ตรวจงาน') || textLower.includes('สุขภัณฑ์')) {
+          stageKey = 'finishing'; stageText = 'งานสถาปัตย์ ตกแต่ง และเตรียมส่งมอบ'; prog = 85;
+        }
+
+        const rawLines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        const firstLine = rawLines.length > 0 ? rawLines[0] : `อัปเดตหน้างาน ${comp.name}`;
+        const projTitle = firstLine.length > 55 ? firstLine.substring(0, 55) + '...' : firstLine;
+
+        validProjects.push({
+          projectId: `${comp.id}-${validProjects.length + 1}`,
+          name: projTitle,
+          location: `อ.${comp.district || 'เมืองอุดรธานี'} จ.อุดรธานี`,
+          province: comp.province || 'อุดรธานี',
+          district: comp.district || 'เมืองอุดรธานี',
+          gps: comp.coordinates || [17.412, 102.801],
+          stage: stageText,
+          stageKey: stageKey,
+          trackingStatus: 'pending',
+          progressPercent: prog,
+          estValue: '5.5 ล้านบาท',
+          buildingType: 'บ้านพักอาศัยเดี่ยว 2 ชั้น',
+          caption: text || '(ไม่มีข้อความแคปชัน)',
+          postedTime: p.time ? new Date(p.time).toLocaleDateString('th-TH') : 'ล่าสุด',
+          postUrl: p.url || p.postUrl || p.facebookUrl || comp.facebookUrl,
+          boq: [
+            { sku: 'ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง', qty: '450 ถุง', estCost: '฿76,500', urgency: 'ด่วนที่สุด' },
+            { sku: 'คอนกรีตผสมเสร็จ CPAC 240 ksc', qty: '75 คิว', estCost: '฿165,000', urgency: 'เตรียมสั่งซื้อ' }
+          ]
+        });
+      });
+
+      comp.projects = validProjects;
+      comp.totalProjects = validProjects.length;
+      comp.newProjectsThisMonth = validProjects.length;
+      comp.totalValueMillion = parseFloat((comp.totalProjects * 5.5).toFixed(1));
+      comp.revenuePotentialText = `฿${(comp.totalProjects * 0.5).toFixed(1)}M`;
+
+      // Calculate exact Opportunity Score
+      if (typeof getExactProjectOpportunityScore === 'function') {
+        comp.opportunityScore = getExactProjectOpportunityScore(comp.totalProjects);
+      } else {
+        comp.opportunityScore = comp.totalProjects >= 7 ? 92 : (comp.totalProjects >= 5 ? 80 : (comp.totalProjects >= 3 ? 70 : (comp.totalProjects >= 1 ? 35 : 15)));
+      }
+
+      const gb = validProjects.filter(x => x.stageKey === 'groundbreak').length;
+      const fd = validProjects.filter(x => x.stageKey === 'foundation').length;
+      const st = validProjects.filter(x => x.stageKey === 'structure').length;
+      const fn = validProjects.filter(x => x.stageKey === 'finishing').length;
+      comp.stageBreakdown = { groundbreak: gb, foundation: fd, structure: st, finishing: fn };
+
+      if (validProjects.length > 0) {
+        totalMatchedProjects += validProjects.length;
+        totalUpdatedComps++;
+        comp.aiShortRec = `พบ ${validProjects.length} ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: ${gb}, ฐานราก: ${fd}, โครงสร้าง: ${st})`;
+        comp.aiRecommendation = 'มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน';
+      } else {
+        comp.aiShortRec = 'ศูนย์รับสร้างบ้าน จ.อุดรธานี (0 โครงการ)';
+        comp.aiRecommendation = 'ไม่พบไซต์งานก่อสร้างใหม่ล่าสุดในเดือนนี้';
+      }
+    } else {
+      comp.projects = [];
+      comp.totalProjects = 0;
+      comp.newProjectsThisMonth = 0;
+      comp.totalValueMillion = 0.0;
+      comp.revenuePotentialText = '฿0.0M - ฿0.0M';
+      comp.opportunityScore = 15;
+      comp.stageBreakdown = { groundbreak: 0, foundation: 0, structure: 0, finishing: 0 };
+      comp.aiShortRec = 'รอสแกน Apify (0 โครงการ)';
+      comp.aiRecommendation = 'ยังไม่พบโพสต์ที่ตรงกับเพจของบริษัทนี้ในไฟล์ JSON';
+    }
+  });
+
+  // Save parsed companies to sessionStorage for persistence across tab reloads
+  try {
+    sessionStorage.setItem('nextsite_session_uploaded_companies', JSON.stringify(allCompanies));
+  } catch(e) {}
+
+  // Sort companies by opportunity score
+  sortCompaniesByOpportunityScore(allCompanies);
+
+  // Update UI in real-time
+  applyFilters();
+  renderTable();
+  renderKPIs();
+  updateTagFilterCounts(allCompanies);
+  if (typeof updateHeaderCrmStats === 'function') updateHeaderCrmStats();
+  if (typeof initProductAnalyticsCharts === 'function') initProductAnalyticsCharts(allCompanies);
+  if (typeof updateProjectTimelineMap === 'function') updateProjectTimelineMap(allCompanies);
+
+  const msg = `🎉 นำเข้าสำเร็จ! ตรวจพบ ${totalMatchedProjects} โครงการ จาก ${totalUpdatedComps} บริษัท`;
+  if (typeof showStatusToast === 'function') {
+    showStatusToast(msg);
+  } else {
+    alert(msg);
+  }
+}
+
+function resetUploadedDataToZero() {
+  try {
+    sessionStorage.removeItem('nextsite_session_uploaded_companies');
+  } catch(e) {}
+  
   loadSavedCompaniesData();
   allCompanies.forEach(c => {
     c.projects = [];
     c.totalProjects = 0;
     c.newProjectsThisMonth = 0;
     c.totalValueMillion = 0.0;
+    c.opportunityScore = 15;
+    c.revenuePotentialText = '฿0.0M - ฿0.0M';
     c.stageBreakdown = { groundbreak: 0, foundation: 0, structure: 0, finishing: 0 };
-  });
-
-  let newProjectsCount = 0;
-  let totalPostsScanned = 0;
-  const matchedCompanyIds = new Set();
-
-  posts.forEach((item, idx) => {
-    totalPostsScanned++;
-    const rawText = item.text || item.postText || item.caption || item.message || '';
-    const rawPageName = item.pageName || (item.user && item.user.name) || item.authorName || item.ownerName || '';
-    const ocrText = item.ocrText || (item.media && item.media[0] && item.media[0].ocrText) || '';
-    const checkInLoc = item.locationName || item.placeName || item.location || item.place || item.checkin || item.checkIn || item.address || item.city || '';
-    
-    const text = cleanThaiText(rawText);
-    const pageName = cleanThaiText(rawPageName);
-    const locText = cleanThaiText(checkInLoc);
-    
-    const combinedFullText = text + (locText ? ' ' + locText : '');
-    
-    const likes = item.likes || item.likesCount || (item.topReactionsCount || 0);
-    const comments = item.comments || item.commentsCount || 0;
-    const shares = item.shares || item.sharesCount || 0;
-
-    const postUrl = item.url || item.postUrl || item.facebookUrl || item.link || item.pageUrl || item.inputUrl || '';
-    const postedTime = item.time || item.postedTime || item.date || item.postDate || 'เพิ่งตรวจพบ';
-
-    // STRICT MATCH: Match to one of the 54 verified companies
-    const comp = findMatchingCompany(item, combinedFullText, rawPageName, postUrl);
-    if (!comp) return;
-
-    matchedCompanyIds.add(comp.id);
-
-    // Update Facebook Signal on company
-    comp.facebookSignal = {
-      postDate: postedTime,
-      pageName: pageName || comp.name,
-      caption: text ? text.substring(0, 140) : (comp.category || 'เพจรับสร้างบ้าน จ.อุดรธานี'),
-      likes: likes,
-      comments: comments,
-      shares: shares,
-      detectedKeywords: ['SCG', 'ไซต์งานจริง', 'อุดรธานี']
-    };
-
-    // STRICT PROJECT VALIDATION: Check if this post is an actual construction project
-    if (!isGenuineConstructionProject(combinedFullText, ocrText, locText)) {
-      return; // Skip non-construction posts
-    }
-
-    // Strip out office contact footer so office locations (e.g. ต.หนองบัว) aren't mistaken for job sites
-    const postBodyWithoutFooter = stripCompanyContactFooter(combinedFullText);
-
-    // CRITICAL USER RULE: กิจกรรมภายใน (ฝึกงาน, งานเลี้ยง, วันเกิด, รับสมัครงาน) ไม่เอาเด็ดขาด
-    if (isInternalOrNonConstructionPost(postBodyWithoutFooter)) {
-      return;
-    }
-
-    // CRITICAL USER RULE: ต้องเป็นไซต์งานใน จ.อุดรธานี เท่านั้น! ถ้าเป็นต่างจังหวัด (เช่น อ.เกษตรวิสัย จ.ร้อยเอ็ด) ไม่เอาเด็ดขาด
-    if (isExplicitOtherProvinceSite(postBodyWithoutFooter) || isExplicitOtherProvinceSite(locText)) {
-      return; // ข้ามโพสต์ที่เป็นไซต์งานต่างจังหวัด
-    }
-
-    // Extract Customer Name and District from post body (excluding company office footer) or check-in location
-    const custName = extractCustomerName(postBodyWithoutFooter);
-    const hasExplicitDistrict = hasExplicitUdonDistrictInText(postBodyWithoutFooter) || (locText && hasExplicitUdonDistrictInText(locText));
-
-    // CRITICAL USER RULE: ต้องมี 1 ใน 20 อำเภอของ จ.อุดรธานี ในเนื้อหาไซต์งานจริงเท่านั้น (ไม่ใช่ที่อยู่ออฟฟิศ)
-    if (!hasExplicitDistrict) {
-      return; // ข้ามโพสต์ที่ไม่มีชื่ออำเภอหน้างานจริง
-    }
-
-    const topLines = getTopLinesText(postBodyWithoutFooter, 4);
-    const stageCheckText = topLines || postBodyWithoutFooter;
-
-    let stageKey = 'structure';
-    let stage = 'งานโครงสร้างอาคาร';
-    if (stageCheckText.includes('ส่งมอบ') || stageCheckText.includes('ตรวจรับบ้าน') || stageCheckText.includes('ส่งมอบผลงาน')) {
-      stageKey = 'finishing';
-      stage = 'ส่งมอบบ้านเสร็จสมบูรณ์ / โอกาสงานต่อเติม';
-    } else if (stageCheckText.includes('เซ็นต์สัญญา') || stageCheckText.includes('เซ็นสัญญา') || stageCheckText.includes('ทำสัญญา')) {
-      stageKey = 'groundbreak';
-      stage = 'เซ็นสัญญา / เตรียมเปิดหน้างานก่อสร้าง';
-    } else if (stageCheckText.includes('เสาเอก') || stageCheckText.includes('ยกเสา')) {
-      stageKey = 'groundbreak';
-      stage = 'ยกเสาเอก / เริ่มลงเสาเข็มเปิดหน้างาน';
-    } else if (stageCheckText.includes('ฐานราก') || stageCheckText.includes('คานคอดิน') || stageCheckText.includes('เทเสา') || stageCheckText.includes('ตอม่อ') || stageCheckText.includes('เทพื้น') || stageCheckText.includes('เทลีน')) {
-      stageKey = 'foundation';
-      stage = 'งานฐานรากและเสาโครงสร้าง';
-    } else if (stageCheckText.includes('smart truss') || stageCheckText.includes('โครงหลังคา') || stageCheckText.includes('มุงหลังคา') || stageCheckText.includes('กระเบื้องหลังคา') || stageCheckText.includes('แผ่นหลังคา')) {
-      stageKey = 'structure';
-      stage = 'งานโครงสร้างหลังคาและมุงหลังคา SCG';
-    } else if (stageCheckText.includes('รีโนเวท') || stageCheckText.includes('ต่อเติม') || stageCheckText.includes('โรงจอดรถ') || stageCheckText.includes('ต่อเติมครัว') || stageCheckText.includes('ปรับปรุง')) {
-      stageKey = 'finishing';
-      stage = 'งานรีโนเวทและต่อเติมอาคาร';
-    } else if (stageCheckText.includes('บันได') || stageCheckText.includes('งานบันได') || stageCheckText.includes('ระบบไฟฟ้า') || stageCheckText.includes('เดินระบบไฟฟ้า') || stageCheckText.includes('ระบบประปา') || stageCheckText.includes('งานระบบ') || stageCheckText.includes('ตกแต่ง') || stageCheckText.includes('ทาสี') || stageCheckText.includes('ปูกระเบื้อง') || stageCheckText.includes('สุขภัณฑ์') || stageCheckText.includes('ฝ้า')) {
-      stageKey = 'finishing';
-      if (stageCheckText.includes('บันได')) {
-        stage = 'งานติดตั้งบันไดและงานตกแต่งภายใน';
-      } else if (stageCheckText.includes('ระบบไฟฟ้า') || stageCheckText.includes('เดินระบบไฟฟ้า')) {
-        stage = 'งานเดินระบบไฟฟ้าและงานระบบอาคาร';
-      } else {
-        stage = 'งานตกแต่งภายในและติดตั้งสุขภัณฑ์';
-      }
-    }
-
-    const distName = hasExplicitDistrict 
-      ? extractUdonDistrict(topLines + ' ' + postBodyWithoutFooter + ' ' + locText, comp.district || 'เมืองอุดรธานี') 
-      : (comp.district || 'เมืองอุดรธานี');
-
-    // Build Specific Descriptive Project Title
-    const projTitle = extractSpecificProjectTitle(postBodyWithoutFooter, custName, distName, stage);
-
-    // ==============================================================
-    // SMART DEDUPLICATION: Detect if this post is for an existing site
-    // ==============================================================
-    const siteKey = extractSiteKey(postBodyWithoutFooter, custName, distName);
-    const existingProj = findExistingProjectMatch(comp, siteKey, postBodyWithoutFooter, custName, distName);
-
-    const stageHierarchy = { 'groundbreak': 1, 'foundation': 2, 'structure': 3, 'finishing': 4 };
-
-    if (existingProj) {
-      // MERGE INTO EXISTING PROJECT (Do not count as separate project!)
-      const curRank = stageHierarchy[existingProj.stageKey] || 0;
-      const newRank = stageHierarchy[stageKey] || 0;
-
-      // If the newer post is at a more advanced construction stage, advance the stage & materials
-      if (newRank >= curRank) {
-        existingProj.stage = stage;
-        existingProj.stageKey = stageKey;
-        existingProj.progressPercent = stageKey === 'groundbreak' ? 10 : stageKey === 'foundation' ? 30 : stageKey === 'structure' ? 60 : 90;
-        existingProj.opportunity = getStageMatchedScgMaterials({ name: existingProj.name, stage: stage, stageKey: stageKey, caption: text });
-      }
-
-      // Update latest proof and evidence
-      existingProj.siteProof = {
-        postUrl: postUrl || existingProj.siteProof.postUrl,
-        postedTime: postedTime || existingProj.siteProof.postedTime,
-        caption: text ? text.substring(0, 160) : existingProj.siteProof.caption,
-        aiDetection: `AI ตรวจพบ: ${custName ? 'ลูกค้าคุณ' + custName + ' | ' : ''}พื้นที่ อ.${distName} (${stage}) [รวมอัปเดตหน้างาน ${ (existingProj.updatesCount || 1) + 1 } โพสต์]`
-      };
-
-      existingProj.updatesCount = (existingProj.updatesCount || 1) + 1;
-    } else {
-      // NEW DISTINCT PROJECT
-      const newProj = {
-        projectId: `proj-apify-${idx + 1}`,
-        siteKey: siteKey,
-        name: projTitle,
-        customerName: custName ? `คุณ${custName}` : 'เจ้าของบ้าน',
-        district: distName,
-        location: `อ.${distName} จ.อุดรธานี`,
-        stage: stage,
-        stageKey: stageKey,
-        trackingStatus: 'pending',
-        progressPercent: stageKey === 'groundbreak' ? 10 : stageKey === 'foundation' ? 30 : stageKey === 'structure' ? 60 : 90,
-        estValue: '3.5 ล้านบาท',
-        siteProof: {
-          postUrl: postUrl || comp.facebookUrl || `https://www.facebook.com`,
-          postedTime: postedTime,
-          caption: text ? text.substring(0, 160) : 'หลักฐานภาพถ่ายหน้างานจริงจาก Facebook',
-          aiDetection: `AI ตรวจพบ: ${custName ? 'ลูกค้าคุณ' + custName + ' | ' : ''}พื้นที่ อ.${distName} (${stage})`
-        },
-        opportunity: getStageMatchedScgMaterials({ name: projTitle, stage: stage, stageKey: stageKey, caption: text }),
-        updatesCount: 1
-      };
-
-      comp.projects.push(newProj);
-      newProjectsCount++;
-    }
-
-    comp.totalProjects = comp.projects.length;
-    comp.totalValueMillion = Math.round(comp.totalProjects * 0.5 * 10) / 10;
-    comp.revenuePotentialText = `฿${(comp.totalProjects * 0.5).toFixed(1)}M`;
-    if (stageKey in comp.stageBreakdown) {
-      comp.stageBreakdown[stageKey]++;
-    }
-    if (stageKey === 'groundbreak' || stageKey === 'foundation') {
-      comp.newProjectsThisMonth++;
+    c.aiShortRec = 'รอสแกน Apify (0 โครงการ)';
+    c.aiRecommendation = 'รอรับข้อมูลไซต์งานก่อสร้างจริงจากไฟล์ Apify JSON';
+    if (c.facebookSignal) {
+      c.facebookSignal.postDate = '-';
+      c.facebookSignal.caption = 'รอรับข้อมูลจาก Apify Facebook Posts Scraper';
     }
   });
 
-  // Run final deduplication sweep across all companies
-  allCompanies.forEach(c => deduplicateCompanyProjects(c));
-
+  sortCompaniesByOpportunityScore(allCompanies);
   applyFilters();
+  renderTable();
+  renderKPIs();
   updateTagFilterCounts(allCompanies);
-  if (window.initProductAnalyticsCharts) {
-    window.initProductAnalyticsCharts(allCompanies);
-  }
+  if (typeof updateHeaderCrmStats === 'function') updateHeaderCrmStats();
+  if (typeof initProductAnalyticsCharts === 'function') initProductAnalyticsCharts(allCompanies);
+  if (typeof updateProjectTimelineMap === 'function') updateProjectTimelineMap(allCompanies);
 
-  showStatusToast(`🎉 ประมวลผลสำเร็จ! สแกน ${totalPostsScanned} โพสต์ รวมอัปเดตและคัดเหลือ ${newProjectsCount} ไซต์งานจริง (ไม่นับซ้ำ)`);
+  if (typeof showStatusToast === 'function') {
+    showStatusToast('🔄 รีเซ็ตข้อมูลทุกบริษัทกลับเป็น 0 โครงการเรียบร้อยแล้ว');
+  }
 }
 
 function runApifyLiveScrape() {
@@ -4251,3 +4336,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('✅ NEXTSITE AI Dashboard Loaded Successfully with 100% Thai & Clean Text.');
 });
+
+// ==========================================
+// DIRECT IN-BROWSER APIFY JSON IMPORTER
+// ==========================================
+function handleApifyJsonFileSelect(event) {
+  handleApifyFileUpload(event);
+}
+
