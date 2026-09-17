@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Test CRM Status Isolation</title>
+</head>
+<body>
+  <div id="user-crm-status-summary-bar">
+    <span id="user-cnt-want-followup">0</span>
+    <span id="user-cnt-following">0</span>
+  </div>
+  <div id="results"></div>
+
+  <!-- Include dependencies -->
+  <script src="../js/data.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+
+  <script>
+    const out = document.getElementById('results');
+    function log(msg) {
+      const p = document.createElement('p');
+      p.textContent = msg;
+      out.appendChild(p);
+      console.log(msg);
+    }
+
+    try {
+      // 1. Clear previous test CRM logs
+      localStorage.removeItem('nextsite_crm_followup_logs');
+      localStorage.removeItem('nextsite_crm_logs_v1');
+      localStorage.removeItem('nextsite_crm_logs_v2');
+
+      // 2. Set current user = Keetavas
+      window.currentSalesUser = {
+        id: 'usr_keetavas',
+        email: 'keetavas@scg.com',
+        fullName: 'คุณคีตวรรษ',
+        role: 'manager'
+      };
+
+      // 3. Mark 5 companies as wantFollowup for Keetavas using actual UDON_COMPANIES ids
+      const compIds = UDON_COMPANIES.slice(0, 5).map(c => c.id);
+      compIds.forEach(id => {
+        saveCompanyCrmLog(id, {
+          wantFollowup: true,
+          wantFollowupBy: 'keetavas@scg.com',
+          createdBy: 'keetavas@scg.com',
+          salesRep: 'คุณคีตวรรษ'
+        });
+      });
+
+      // Also record 1 follow-up note for Keetavas
+      saveCompanyCrmLog(compIds[0], {
+        note: 'เข้าพบผู้บริหารเรียบร้อย เสนอโปรโมชั่นกระเบื้องหลังคา SCG',
+        status: 'followup',
+        createdBy: 'keetavas@scg.com',
+        salesRep: 'คุณคีตวรรษ'
+      });
+
+      // Update UI counts
+      updateUserCrmStatusSummary();
+
+      const cntWantKeetavas = document.getElementById('user-cnt-want-followup')?.textContent;
+      const cntFollowKeetavas = document.getElementById('user-cnt-following')?.textContent;
+      log(`[Keetavas Logged In] Want Followup Count: ${cntWantKeetavas} (Expected: 5), Following Count: ${cntFollowKeetavas} (Expected: 1)`);
+
+      // 4. Now simulate Somchai logging in
+      window.currentSalesUser = {
+        id: 'usr_somchai',
+        email: 'somchai@scg.com',
+        fullName: 'คุณสมชาย',
+        role: 'sales'
+      };
+
+      // Before Somchai adds anything, what is Somchai's count?
+      updateUserCrmStatusSummary();
+      const cntWantSomchaiInitial = document.getElementById('user-cnt-want-followup')?.textContent;
+      log(`[Somchai Logged In Initial] Want Followup Count: ${cntWantSomchaiInitial} (Expected: 0)`);
+
+      // Somchai marks 3 different companies
+      const somchaiCompIds = UDON_COMPANIES.slice(10, 13).map(c => c.id);
+      somchaiCompIds.forEach(id => {
+        saveCompanyCrmLog(id, {
+          wantFollowup: true,
+          wantFollowupBy: 'somchai@scg.com',
+          createdBy: 'somchai@scg.com',
+          salesRep: 'คุณสมชาย'
+        });
+      });
+
+      updateUserCrmStatusSummary();
+      const cntWantSomchaiAfter = document.getElementById('user-cnt-want-followup')?.textContent;
+      log(`[Somchai After Marking 3] Want Followup Count: ${cntWantSomchaiAfter} (Expected: 3)`);
+
+      // 5. Switch back to Keetavas
+      window.currentSalesUser = {
+        id: 'usr_keetavas',
+        email: 'keetavas@scg.com',
+        fullName: 'คุณคีตวรรษ',
+        role: 'manager'
+      };
+      updateUserCrmStatusSummary();
+      const cntWantKeetavasFinal = document.getElementById('user-cnt-want-followup')?.textContent;
+      log(`[Keetavas Switched Back] Want Followup Count: ${cntWantKeetavasFinal} (Expected: 5, NOT 8!)`);
+
+      if (cntWantKeetavasFinal === '5' && cntWantSomchaiAfter === '3' && cntWantSomchaiInitial === '0') {
+        log('>>> ALL USER ISOLATION TESTS PASSED 100% <<<');
+      } else {
+        log('>>> TEST FAILED <<<');
+      }
+    } catch(err) {
+      log('Error: ' + err.message);
+    }
+  </script>
+</body>
+</html>

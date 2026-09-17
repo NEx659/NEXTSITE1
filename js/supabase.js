@@ -280,6 +280,7 @@ function canCurrentUserEditCompany(company) {
  * Update UI for Auth State in Header
  */
 function updateAuthHeaderUI() {
+  window.currentSalesUser = currentSalesUser;
   const container = document.getElementById('user-auth-section');
   if (!container) return;
 
@@ -305,6 +306,10 @@ function updateAuthHeaderUI() {
         <span>🔐 เข้าสู่ระบบ (เซลส์ / หัวหน้า)</span>
       </button>
     `;
+  }
+
+  if (typeof updateUserCrmStatusSummary === 'function') {
+    updateUserCrmStatusSummary();
   }
 }
 
@@ -424,19 +429,22 @@ async function loadAndApplyCloudTags() {
   }
 }
 
-/**
- * Save / Update company tag (Focus / Non-Focus / New) to Supabase
- */
-async function updateCloudCompanyTag(companyId, newTag) {
+async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
   const client = supabaseClient || initSupabase();
   if (!client) return false;
 
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  const email = userEmail || (activeUser ? activeUser.email : null);
   const normalizedTag = String(newTag || 'new').trim().toLowerCase();
 
   try {
     let { data, error } = await client
       .from('companies')
-      .update({ tag: normalizedTag, updated_at: new Date().toISOString() })
+      .update({ 
+        tag: normalizedTag, 
+        crm_sales_rep: activeUser ? activeUser.fullName : undefined,
+        updated_at: new Date().toISOString() 
+      })
       .eq('id', companyId)
       .select('id');
 
@@ -444,6 +452,7 @@ async function updateCloudCompanyTag(companyId, newTag) {
       const payload = {
         id: companyId,
         tag: normalizedTag,
+        crm_sales_rep: activeUser ? activeUser.fullName : undefined,
         province: 'อุดรธานี'
       };
       if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
@@ -461,7 +470,7 @@ async function updateCloudCompanyTag(companyId, newTag) {
       console.error('❌ Update Tag Error in Supabase:', error.message);
       return false;
     }
-    console.log(`☁️ Synced tag '${normalizedTag}' for ${companyId} to Supabase`);
+    console.log(`☁️ Synced tag '${normalizedTag}' for ${companyId} (${email}) to Supabase`);
     return true;
   } catch (err) {
     console.error('❌ Update Tag Exception:', err);
@@ -743,6 +752,9 @@ async function loadAndApplyCloudCrmLogs() {
       }
       if (typeof updateHeaderCrmStats === 'function') {
         updateHeaderCrmStats();
+      }
+      if (typeof updateUserCrmStatusSummary === 'function') {
+        updateUserCrmStatusSummary();
       }
       console.log(`☁️ Synced ${updatedCount} CRM notes from Supabase Cloud successfully!`);
     }

@@ -165,7 +165,7 @@ function renderMapMarkers(companies, onMarkerClick) {
         </div>
 
         <div style="display: flex; gap: 6px;">
-          <a href="${company.googleMapsUrl || company.gmaps || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(cleanName + ' ' + (cleanDist || '') + ' อุดรธานี'))}" target="_blank" rel="noopener noreferrer" style="
+          <a href="${(typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[company.id]) || company.googleMapsUrl || company.gmaps || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(cleanName + ' ' + (cleanDist || '') + ' อุดรธานี'))}" target="_blank" rel="noopener noreferrer" style="
             flex: 1;
             background: #F1F5F9;
             color: #334155;

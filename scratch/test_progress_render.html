@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Progress Bar Rendering</title>
+</head>
+<body>
+  <div id="modal-projects-section-container"></div>
+  <div id="modal-top-stage-filter-buttons"></div>
+
+  <!-- Include dependencies -->
+  <script src="../js/data.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+
+  <script>
+    const sampleComp = {
+      id: 'test-comp-1',
+      name: 'บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จำกัด',
+      projects: [
+        {
+          name: '🏡 วันนี้ 07.09.2569',
+          location: 'อ.เมืองอุดรธานี จ.อุดรธานี',
+          stage: 'พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง',
+          stageKey: 'groundbreak',
+          caption: '🏡 วันนี้ 07.09.2569 ⏰ ฤกษ์งามยามดี เวลา 09.49 น. 🙏 ได้ฤกษ์ ยกเสาเอก-เสาโท 🏡 บ้านของ คุณน้อย ศิริรัตน์ ✨ ขออวยพ...'
+        },
+        {
+          name: 'งานหล่อตอม่อและเทคานคอดิน',
+          location: 'อ.กุมภวาปี จ.อุดรธานี',
+          stage: 'งานฐานรากและคานคอดิน',
+          stageKey: 'foundation',
+          caption: 'เทคานคอดินเรียบร้อย พร้อมเตรียมตั้งเสาชั้น 1'
+        },
+        {
+          name: 'งานมุงหลังคาและงานโครงสร้างชั้น 2',
+          location: 'อ.เพ็ญ จ.อุดรธานี',
+          stage: 'งานโครงสร้างและมุงหลังคา',
+          stageKey: 'structure',
+          caption: 'ติดตั้งโครงหลังคา C-Truss พร้อมมุงกระเบื้องหลังคา SCG'
+        },
+        {
+          name: 'งานปูกระเบื้องและติดตั้งสุขภัณฑ์',
+          location: 'อ.เมืองอุดรธานี จ.อุดรธานี',
+          stage: 'งานสถาปัตย์และตกแต่งภายใน',
+          stageKey: 'finishing',
+          caption: 'ปูกระเบื้องห้องน้ำและติดตั้งสุขภัณฑ์ COTTO'
+        },
+        {
+          name: 'ส่งมอบบ้านและตรวจรับมอบงวดสุดท้าย',
+          location: 'อ.หนองหาน จ.อุดรธานี',
+          stage: 'ส่งมอบบ้านสมบูรณ์ 100%',
+          stageKey: 'handover',
+          caption: 'ตรวจรับบ้านและส่งมอบกุญแจให้ลูกค้าเรียบร้อย'
+        }
+      ]
+    };
+
+    renderCompanyProjectsList(sampleComp);
+  </script>
+</body>
+</html>

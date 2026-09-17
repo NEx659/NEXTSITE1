@@ -140,10 +140,29 @@ function cleanThaiText(text) {
 }
 
 // ==========================================
-// 2. TAG MANAGEMENT (Focus / Non-Focus / New)
+// 2. TAG MANAGEMENT (Focus / Non-Focus / New - Per User Isolation)
 // ==========================================
-function loadCompanyTagsMap() {
+function getUserTagsStorageKey(email) {
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  const targetEmail = (email || (activeUser ? activeUser.email : '')) || '';
+  const norm = targetEmail.toLowerCase().trim().replace(/[^a-z0-9]/g, '_');
+  return norm ? `nextsite_company_tags_${norm}` : STORAGE_KEY_COMPANY_TAGS;
+}
+
+function loadCompanyTagsMap(customEmail = null) {
   try {
+    const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+    const email = customEmail || (activeUser ? activeUser.email : null);
+    
+    if (email) {
+      const userKey = getUserTagsStorageKey(email);
+      const userSaved = localStorage.getItem(userKey);
+      if (userSaved) {
+        return JSON.parse(userSaved);
+      }
+      return {};
+    }
+
     const saved = localStorage.getItem(STORAGE_KEY_COMPANY_TAGS);
     if (saved) return JSON.parse(saved);
   } catch (e) {
@@ -152,16 +171,23 @@ function loadCompanyTagsMap() {
   return {};
 }
 
-function saveCompanyTagsMap(tagMap) {
+function saveCompanyTagsMap(tagMap, customEmail = null) {
   try {
+    const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+    const email = customEmail || (activeUser ? activeUser.email : null);
+
+    if (email) {
+      const userKey = getUserTagsStorageKey(email);
+      localStorage.setItem(userKey, JSON.stringify(tagMap));
+    }
     localStorage.setItem(STORAGE_KEY_COMPANY_TAGS, JSON.stringify(tagMap));
   } catch (e) {
     console.warn('Failed to save company tags to localStorage', e);
   }
 }
 
-function getCompanyTag(companyId) {
-  const tagMap = loadCompanyTagsMap();
+function getCompanyTag(companyId, customEmail = null) {
+  const tagMap = loadCompanyTagsMap(customEmail);
   const raw = tagMap[companyId];
   if (raw) return String(raw).trim().toLowerCase();
 
@@ -177,14 +203,16 @@ function setCompanyTag(companyId, tag, event) {
     event.stopPropagation();
   }
 
-  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+
+  if (!activeUser) {
     if (typeof showStatusToast === 'function') showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนเปลี่ยนสถานะ Focus');
     if (typeof openLoginModal === 'function') openLoginModal(true);
     return;
   }
 
   const normalizedTag = String(tag || 'new').trim().toLowerCase();
-  const comp = allCompanies.find(c => c.id === companyId);
+  const comp = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies.find(c => c.id === companyId) : null;
   if (comp) {
     comp.tag = normalizedTag;
   }
@@ -192,19 +220,19 @@ function setCompanyTag(companyId, tag, event) {
   // Territory permission check
   if (typeof window.canCurrentUserEditCompany === 'function' && comp) {
     if (!window.canCurrentUserEditCompany(comp)) {
-      const userProv = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser.assignedProvince : 'อื่น';
+      const userProv = activeUser.assignedProvince || 'อื่น';
       showStatusToast(`🔒 ไม่มีสิทธิ์แก้ไขข้อมูล ${comp.province || 'พื้นที่นี้'} (คุณได้รับมอบหมายเฉพาะ จ.${userProv})`);
       return;
     }
   }
 
-  const tagMap = loadCompanyTagsMap();
+  const tagMap = loadCompanyTagsMap(activeUser.email);
   tagMap[companyId] = normalizedTag;
-  saveCompanyTagsMap(tagMap);
+  saveCompanyTagsMap(tagMap, activeUser.email);
 
   // Sync to Supabase Cloud in real-time
   if (typeof updateCloudCompanyTag === 'function') {
-    updateCloudCompanyTag(companyId, normalizedTag);
+    updateCloudCompanyTag(companyId, normalizedTag, activeUser.email);
   }
 
   applyFilters();
@@ -215,7 +243,7 @@ function setCompanyTag(companyId, tag, event) {
     'non-focus': '⚪ Non-Focus (ทั่วไป)',
     'new': '✨ New (เข้าใหม่)'
   };
-  showStatusToast(`☁️ บันทึกป้ายเป็น ${tagNames[normalizedTag] || normalizedTag} ขึ้น Cloud เรียบร้อย`);
+  showStatusToast(`☁️ บันทึกป้ายเป็น ${tagNames[normalizedTag] || normalizedTag} สำหรับ ${activeUser.fullName || activeUser.email} เรียบร้อย`);
 }
 
 // ==========================================
@@ -325,6 +353,135 @@ function updateTagFilterCounts(companies) {
   if (elNonFocus) elNonFocus.textContent = nonFocusCount;
   if (elNew) elNew.textContent = newCount;
 }
+
+/**
+ * Real-time User CRM Status Summary (Strictly filtered for the logged-in email/user)
+ */
+function updateUserCrmStatusSummary() {
+  const cntWantEl = document.getElementById('user-cnt-want-followup');
+  const cntFollowingEl = document.getElementById('user-cnt-following');
+  if (!cntWantEl && !cntFollowingEl) return;
+
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+
+  if (!activeUser || !activeUser.email) {
+    if (cntWantEl) cntWantEl.textContent = '0';
+    if (cntFollowingEl) cntFollowingEl.textContent = '0';
+    return;
+  }
+
+  const uEmail = (activeUser.email || '').toLowerCase().trim();
+  const uName = (activeUser.fullName || '').toLowerCase().trim();
+
+  const compList = (typeof allCompanies !== 'undefined' && allCompanies && allCompanies.length > 0)
+    ? allCompanies
+    : ((typeof UDON_COMPANIES !== 'undefined' && UDON_COMPANIES) ? UDON_COMPANIES : []);
+
+  let wantCount = 0;
+  let followingCount = 0;
+
+  const logs = (typeof getAllCrmLogs === 'function') ? getAllCrmLogs() : {};
+
+  compList.forEach(comp => {
+    // If activeDistrict is selected and not 'all', match province
+    if (typeof activeDistrict !== 'undefined' && activeDistrict && activeDistrict !== 'all') {
+      const compProv = (comp.province || '').replace(/^จ\./, '').trim();
+      const targetProv = activeDistrict.replace(/^จ\./, '').trim();
+      if (compProv && targetProv && compProv !== targetProv) return;
+    }
+
+    const log = logs[comp.id] || {};
+    const logCreatedBy = (log.createdBy || log.createdByEmail || '').toLowerCase().trim();
+    const logSalesRep = (log.salesRep || '').toLowerCase().trim();
+    const wantBy = (log.wantFollowupBy || '').toLowerCase().trim();
+    const wantUsers = Array.isArray(log.wantFollowupUsers) ? log.wantFollowupUsers.map(x => String(x).toLowerCase().trim()) : [];
+
+    // Is this company targeted (ต้องการติดตาม) by current logged-in user?
+    const isTargetedByMe = (log.wantFollowup === true) && (
+      (wantBy && wantBy === uEmail) ||
+      (wantUsers.includes(uEmail)) ||
+      (!wantBy && logCreatedBy === uEmail) ||
+      (!wantBy && uName && (logSalesRep.includes(uName) || uName.includes(logSalesRep)))
+    );
+
+    if (isTargetedByMe) {
+      wantCount++;
+    }
+
+    // Has current logged-in user recorded actual follow-up note, photo, or in-progress status?
+    const hasFollowedUp = (log.note && log.note.trim().length > 0) || 
+                          (Array.isArray(log.photos) && log.photos.length > 0) || 
+                          ['followup', 'won', 'quote_sent'].includes(log.status);
+
+    const isFollowedByMe = hasFollowedUp && (
+      (logCreatedBy === uEmail) ||
+      (uName && logSalesRep && (logSalesRep.includes(uName) || uName.includes(logSalesRep)))
+    );
+
+    if (isFollowedByMe) {
+      followingCount++;
+    }
+  });
+
+  if (cntWantEl) cntWantEl.textContent = wantCount;
+  if (cntFollowingEl) cntFollowingEl.textContent = followingCount;
+}
+
+/**
+ * Filter table by user's personal CRM follow-up status (Toggle on click)
+ */
+function filterByUserCrmStatus(statusType) {
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  if (!activeUser) {
+    if (typeof showStatusToast === 'function') showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนกรองข้อมูลตามผู้ใช้');
+    if (typeof openLoginModal === 'function') openLoginModal(true);
+    return;
+  }
+
+  const btnWant = document.getElementById('user-filter-want-btn');
+  const btnFollowing = document.getElementById('user-filter-following-btn');
+
+  if (statusType === 'want') {
+    if (activeFollowupStatusFilter === 'user-want') {
+      activeFollowupStatusFilter = 'all';
+      if (btnWant) {
+        btnWant.style.background = '#FFFFFF';
+        btnWant.style.borderColor = '#BFDBFE';
+      }
+    } else {
+      activeFollowupStatusFilter = 'user-want';
+      if (btnWant) {
+        btnWant.style.background = '#DBEAFE';
+        btnWant.style.borderColor = '#2563EB';
+      }
+      if (btnFollowing) {
+        btnFollowing.style.background = '#FFFFFF';
+        btnFollowing.style.borderColor = '#BBF7D0';
+      }
+    }
+  } else if (statusType === 'following') {
+    if (activeFollowupStatusFilter === 'user-following') {
+      activeFollowupStatusFilter = 'all';
+      if (btnFollowing) {
+        btnFollowing.style.background = '#FFFFFF';
+        btnFollowing.style.borderColor = '#BBF7D0';
+      }
+    } else {
+      activeFollowupStatusFilter = 'user-following';
+      if (btnFollowing) {
+        btnFollowing.style.background = '#DCFCE7';
+        btnFollowing.style.borderColor = '#16A34A';
+      }
+      if (btnWant) {
+        btnWant.style.background = '#FFFFFF';
+        btnWant.style.borderColor = '#BFDBFE';
+      }
+    }
+  }
+
+  applyFilters();
+}
+
 
 function handleSetCompanyTag(tag) {
   if (activeSelectedCompany) {
@@ -453,22 +610,96 @@ const SCG_CUSTOMER_SALES_LIST = [
   { code: '10095435', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 3023155, sales2026: 670816, keys: ['โมเสคดีไซน์', 'โมเสค', 'mosaic', 'mosaic design', 'โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น'] }
 ];
 
+const COMPANY_MAPS_MASTER = {
+  'comp-udon-01': 'https://maps.app.goo.gl/foPzw9N15CtSM9hMA',
+  'comp-udon-02': 'https://maps.app.goo.gl/12Ta5Yv63awVkTs17',
+  'comp-udon-03': 'https://maps.app.goo.gl/LpY6wzxXPWZWwvH18',
+  'comp-udon-04': 'https://maps.app.goo.gl/MLNixirLwdTEhJ4R6',
+  'comp-udon-05': 'https://maps.app.goo.gl/Yyz2TFS9NF6oMZVW9',
+  'comp-udon-06': 'https://maps.app.goo.gl/Si9W8xBUCZAw7RwA7',
+  'comp-udon-07': 'https://maps.app.goo.gl/NWcMbKHfNiNPdfhb8',
+  'comp-udon-08': 'https://maps.app.goo.gl/FVFGk8KDANrwb91Y8',
+  'comp-udon-09': 'https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9',
+  'comp-udon-10': 'https://maps.app.goo.gl/553uWoK43EjVwNZA7',
+  'comp-udon-11': 'https://maps.app.goo.gl/TY33ErVrdAXybZZRA',
+  'comp-udon-12': 'https://maps.app.goo.gl/bAsJtsjYjtdoCWybA',
+  'comp-udon-13': 'https://maps.app.goo.gl/qYcyFG52xWpkT5D4A',
+  'comp-udon-14': 'https://maps.app.goo.gl/mEK2YhfSVGFHKcat9',
+  'comp-udon-15': 'https://maps.app.goo.gl/eanpALRZt3C4DJFF9',
+  'comp-udon-16': 'https://maps.app.goo.gl/JHcPaso62g7RL2yz6',
+  'comp-udon-17': 'https://maps.app.goo.gl/8XeunP9KgTB8zPyC9',
+  'comp-udon-18': 'https://maps.app.goo.gl/ciHZXcwHN3bHQH6Z6',
+  'comp-udon-19': 'https://maps.app.goo.gl/ZBx4wcz8XLtY6ZaU8',
+  'comp-udon-20': 'https://maps.app.goo.gl/jaEv7S9hQd4k6BtC6',
+  'comp-udon-21': 'https://maps.app.goo.gl/EwJXZoaML2cEZwYZ7',
+  'comp-udon-22': 'https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130',
+  'comp-udon-23': 'https://maps.app.goo.gl/akUxDHyGEwG19reH8',
+  'comp-udon-24': 'https://maps.app.goo.gl/Vu7M4NUqxycvShmn9',
+  'comp-udon-25': 'https://maps.app.goo.gl/FZn8CZd8TZEupkLW9',
+  'comp-udon-26': 'https://maps.app.goo.gl/1KYvUz75czBcHm8v5',
+  'comp-udon-27': 'https://maps.app.goo.gl/XyrAGFjdebLLkp5q9',
+  'comp-udon-28': 'https://maps.app.goo.gl/7z72u7gtyswCyU6o6',
+  'comp-udon-29': 'https://maps.app.goo.gl/q2HdGPacB4MeHS8d6',
+  'comp-udon-30': 'https://maps.app.goo.gl/NSJJDZPRKru1owkr7',
+  'comp-udon-31': 'https://maps.app.goo.gl/xhY5ipfir6RTRXLR9',
+  'comp-udon-32': 'https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7',
+  'comp-udon-33': 'https://maps.app.goo.gl/YGKZB6pezKPSYnMb6',
+  'comp-udon-34': 'https://maps.app.goo.gl/Lk82k26BAtuWnUC8A',
+  'comp-udon-35': 'https://maps.app.goo.gl/ZrCewx5vJA86nzjXA',
+  'comp-udon-36': 'https://maps.app.goo.gl/5ovdiUtuVGVLiR5X8',
+  'comp-udon-37': 'https://maps.app.goo.gl/6TVPLFqkx5AYSZo17',
+  'comp-udon-38': 'https://maps.app.goo.gl/5jEQcsqDhYCNDPyM9',
+  'comp-udon-39': 'https://maps.app.goo.gl/CJnV3h68YzfEJkHx9',
+  'comp-udon-40': 'https://maps.app.goo.gl/VtnWrKj3HnsiaX9C6',
+  'comp-udon-41': 'https://maps.app.goo.gl/fBRFeUPfffZhQcPK7',
+  'comp-udon-42': 'https://maps.app.goo.gl/44eCAxmwPMNrigGx5',
+  'comp-udon-43': 'https://maps.app.goo.gl/NirnCDaBB2bk9fH98',
+  'comp-udon-44': 'https://maps.app.goo.gl/sHQRySpumVDgvr1s8',
+  'comp-udon-45': 'https://maps.app.goo.gl/nMzQ5MA5Jn4h5qdXA',
+  'comp-udon-46': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
+  'comp-udon-47': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250',
+  'comp-udon-48': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000',
+  'comp-udon-49': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000',
+  'comp-udon-50': 'https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9',
+  'comp-udon-51': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240',
+  'comp-udon-52': 'https://maps.app.goo.gl/eovsgPjYBYryDXgo8',
+  'comp-udon-53': 'https://maps.app.goo.gl/GspwiRGDg3YJTW896',
+  'comp-udon-54': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
+  'comp-udon-55': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
+  'comp-udon-56': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
+  'comp-udon-57': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
+  'comp-udon-58': 'https://maps.app.goo.gl/LEX12WYqLSQy2Xo2A'
+};
+
+if (typeof window !== 'undefined') {
+  window.COMPANY_MAPS_MASTER = COMPANY_MAPS_MASTER;
+}
+
 function loadSavedCompaniesData() {
-  // Clear any old data cache from localStorage & sessionStorage to guarantee fresh clean state
-  if (typeof localStorage !== 'undefined') {
-    localStorage.removeItem('nextsite_saved_companies');
-    localStorage.removeItem('nextsite_saved_detected_count');
-    localStorage.removeItem('nextsite_last_synced_time');
-  }
-  if (typeof sessionStorage !== 'undefined') {
-    sessionStorage.removeItem('nextsite_session_uploaded_companies');
+  let baseData = [];
+  let hasSessionUploadedData = false;
+
+  try {
+    if (typeof sessionStorage !== 'undefined') {
+      const saved = sessionStorage.getItem('nextsite_session_uploaded_companies');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          baseData = parsed;
+          hasSessionUploadedData = true;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('SessionStorage parse error:', e);
   }
 
-  let baseData = [];
-  if (typeof window !== 'undefined' && Array.isArray(window.UDON_COMPANIES) && window.UDON_COMPANIES.length > 0) {
-    baseData = window.UDON_COMPANIES;
-  } else if (typeof window !== 'undefined' && Array.isArray(window.MASTER_COMPANIES) && window.MASTER_COMPANIES.length > 0) {
-    baseData = window.MASTER_COMPANIES;
+  if (!hasSessionUploadedData) {
+    if (typeof window !== 'undefined' && Array.isArray(window.UDON_COMPANIES) && window.UDON_COMPANIES.length > 0) {
+      baseData = window.UDON_COMPANIES;
+    } else if (typeof window !== 'undefined' && Array.isArray(window.MASTER_COMPANIES) && window.MASTER_COMPANIES.length > 0) {
+      baseData = window.MASTER_COMPANIES;
+    }
   }
 
   // Deep clone
@@ -476,6 +707,11 @@ function loadSavedCompaniesData() {
 
   // Sanitize and clean all text fields across companies
   allCompanies.forEach(c => {
+    // 100% strict sync of company Google Maps link
+    if (COMPANY_MAPS_MASTER[c.id]) {
+      c.googleMapsUrl = COMPANY_MAPS_MASTER[c.id];
+      c.gmaps = COMPANY_MAPS_MASTER[c.id];
+    }
     if (c.id === 'comp-udon-25' || (c.name && c.name.includes('บ้านรักษ์'))) {
       c.name = 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี';
       c.contactPerson = 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี';
@@ -500,6 +736,23 @@ function loadSavedCompaniesData() {
         if (p.stage) p.stage = cleanThaiText(p.stage);
         if (p.location) p.location = cleanThaiText(p.location);
       });
+    }
+
+    // Default clean state: when no JSON file is uploaded, all companies MUST be 0 projects
+    if (!hasSessionUploadedData) {
+      c.projects = [];
+      c.totalProjects = 0;
+      c.newProjectsThisMonth = 0;
+      c.totalValueMillion = 0.0;
+      c.opportunityScore = 15;
+      c.revenuePotentialText = '฿0.0M - ฿0.0M';
+      c.stageBreakdown = { groundbreak: 0, foundation: 0, structure: 0, finishing: 0 };
+      c.aiShortRec = 'รอสแกน Apify (0 โครงการ)';
+      c.aiRecommendation = 'รอรับข้อมูลไซต์งานก่อสร้างจริงจากไฟล์ Apify JSON';
+      if (c.facebookSignal) {
+        c.facebookSignal.postDate = '-';
+        c.facebookSignal.caption = 'รอรับข้อมูลจาก Apify Facebook Posts Scraper';
+      }
     }
 
     // Auto-match SCG Customer Sales 2025 vs 2026
@@ -557,12 +810,6 @@ function loadSavedCompaniesData() {
   sortCompaniesByOpportunityScore(allCompanies);
   filteredCompanies = [...allCompanies];
   window.allCompanies = allCompanies;
-
-  if (sessionData) {
-    try {
-      sessionStorage.setItem('nextsite_session_uploaded_companies', JSON.stringify(allCompanies));
-    } catch(e) {}
-  }
 }
 
 function getCompanyScoreValue(comp) {
@@ -738,7 +985,9 @@ function getCompanyCrmLog(companyId) {
 }
 
 function saveCompanyCrmLog(companyId, logData) {
-  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+
+  if (!activeUser) {
     if (typeof showStatusToast === 'function') {
       showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนบันทึกข้อมูล');
     }
@@ -764,8 +1013,8 @@ function saveCompanyCrmLog(companyId, logData) {
   }
 
   try {
-    const uEmail = currentSalesUser.email;
-    const uName = currentSalesUser.fullName;
+    const uEmail = activeUser.email;
+    const uName = activeUser.fullName;
 
     const updatedRecord = {
       ...existing,
@@ -777,6 +1026,10 @@ function saveCompanyCrmLog(companyId, logData) {
     logs[companyId] = updatedRecord;
     localStorage.setItem(STORAGE_KEY_CRM_LOGS, JSON.stringify(logs));
     localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+
+    if (typeof updateUserCrmStatusSummary === 'function') {
+      updateUserCrmStatusSummary();
+    }
 
     // Asynchronously save to Supabase Cloud
     if (typeof window.saveCloudCrmLog === 'function') {
@@ -1051,14 +1304,14 @@ function renderKPIs() {
   if (elTotalProjectsSub) elTotalProjectsSub.textContent = `รวม ${totalProjects} โครงการที่กำลังก่อสร้าง`;
   
   // Dynamic Province Label Synchronization
-  const isAllProv = (activeDistrict === 'all');
-  const provLabel = isAllProv ? 'ทุกจังหวัด' : `จ.${cleanThaiText(activeDistrict)}`;
-  const provLabelShort = isAllProv ? 'ทุกจังหวัด' : cleanThaiText(activeDistrict);
+  const isAllProv = (activeDistrict === 'all' || !activeDistrict);
+  const cleanName = cleanThaiText(activeDistrict);
+  const provLabel = isAllProv ? 'ทุกจังหวัด' : (cleanName.startsWith('จ.') ? cleanName : `จ.${cleanName}`);
 
   // 1. Synchronize KPI Card 4 Title (มูลค่าโอกาสทางธุรกิจรวม)
   const elTotalValTitle = document.getElementById('kpi-total-value-title');
   if (elTotalValTitle) {
-    elTotalValTitle.textContent = `มูลค่าโอกาสทางธุรกิจรวม (${provLabelShort})`;
+    elTotalValTitle.textContent = `มูลค่าโอกาสทางธุรกิจรวม (${provLabel})`;
   }
 
   // 2. Synchronize KPI Card 1 Subtext (ครอบคลุมทั่ว จ....)
@@ -1070,7 +1323,7 @@ function renderKPIs() {
   // 3. Synchronize Product Demand Section Header
   const elProdDemandProv = document.getElementById('product-demand-province-label');
   if (elProdDemandProv) {
-    elProdDemandProv.textContent = isAllProv ? 'ทุกจังหวัด' : provLabel;
+    elProdDemandProv.textContent = provLabel;
   }
 
   // 4. Synchronize Project Count Badge
@@ -1078,7 +1331,7 @@ function renderKPIs() {
     if (isAllProv) {
       elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการทุกจังหวัด <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
     } else {
-      elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการใน${provLabel} <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
+      elProvinceTotalProjectsBadge.innerHTML = `จำนวนโครงการ ${provLabel} <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">${totalProjects}</span> โครงการ`;
     }
   } else if (elProvinceTotalProjectsCount) {
     elProvinceTotalProjectsCount.textContent = totalProjects;
@@ -1091,7 +1344,8 @@ function toggleTargetFollowup(companyId, event) {
     if (event.preventDefault) event.preventDefault();
   }
 
-  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  if (!activeUser) {
     if (typeof showStatusToast === 'function') showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนทำรายการ');
     if (typeof openLoginModal === 'function') openLoginModal(true);
     return;
@@ -1099,8 +1353,21 @@ function toggleTargetFollowup(companyId, event) {
 
   const log = getCompanyCrmLog(companyId);
   const isTargeted = !(log.wantFollowup === true);
-  saveCompanyCrmLog(companyId, { wantFollowup: isTargeted });
+  const uEmail = activeUser.email;
+  const uName = activeUser.fullName;
+
+  saveCompanyCrmLog(companyId, { 
+    wantFollowup: isTargeted,
+    wantFollowupBy: isTargeted ? uEmail : null,
+    createdBy: (log.createdBy || uEmail),
+    createdByEmail: (log.createdByEmail || uEmail),
+    salesRep: (log.salesRep || uName)
+  });
   
+  if (typeof updateUserCrmStatusSummary === 'function') {
+    updateUserCrmStatusSummary();
+  }
+
   if (typeof renderTable === 'function') {
     renderTable();
   }
@@ -1381,8 +1648,8 @@ function renderTable() {
         <div style="display: flex; flex-direction: column; gap: 2px;">
           <div style="font-weight: 800; color: #0F172A; font-size: 0.88rem; display: flex; align-items: center; gap: 4px;">
             <span>${cleanThaiText(company.district) || 'เมืองอุดรธานี'}</span>
-            ${(company.googleMapsUrl || company.gmaps) ? `
-              <a href="${company.googleMapsUrl || company.gmaps}" target="_blank" onclick="event.stopPropagation();" title="เปิดดูหมุดพิกัดจริงบน Google Maps (${cleanThaiText(company.name)})" style="color: #EA4335; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+            ${(COMPANY_MAPS_MASTER[company.id] || company.googleMapsUrl || company.gmaps) ? `
+              <a href="${COMPANY_MAPS_MASTER[company.id] || company.googleMapsUrl || company.gmaps}" target="_blank" onclick="event.stopPropagation();" title="เปิดดูหมุดพิกัดจริงบน Google Maps (${cleanThaiText(company.name)})" style="color: #EA4335; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
                 📍
               </a>
             ` : ''}
@@ -1582,22 +1849,96 @@ function renderTable() {
 // ==========================================
 // 8. FILTERS & SEARCH LOGIC
 // ==========================================
+function normalizeSearchText(str) {
+  if (!str) return '';
+  return String(str)
+    .toLowerCase()
+    .replace(/หจก\.?/g, '')
+    .replace(/ห้างหุ้นส่วนจำกัด/g, '')
+    .replace(/บริษัท/g, '')
+    .replace(/จำกัด/g, '')
+    .replace(/บ\./g, '')
+    .replace(/[^a-z0-9\u0E00-\u0E7F]/g, '');
+}
+
+function handleSearchInputChange(val) {
+  searchQuery = val || '';
+  const clearBtn = document.getElementById('search-clear-btn');
+  if (clearBtn) {
+    clearBtn.style.display = searchQuery.trim().length > 0 ? 'block' : 'none';
+  }
+  applyFilters();
+}
+
+function clearSearchInput() {
+  const input = document.getElementById('search-input') || document.getElementById('company-search-input');
+  if (input) {
+    input.value = '';
+    input.focus();
+  }
+  handleSearchInputChange('');
+}
+
+if (typeof window !== 'undefined') {
+  window.handleSearchInputChange = handleSearchInputChange;
+  window.clearSearchInput = clearSearchInput;
+  window.normalizeSearchText = normalizeSearchText;
+}
+
 function applyFilters() {
   filteredCompanies = allCompanies.filter(comp => {
-    // 1. Text Search Query
-    if (searchQuery.trim()) {
-      const q = searchQuery.trim().toLowerCase();
-      const qNorm = q.replace(/หจก\.?/g, 'ห้างหุ้นส่วนจำกัด');
-      const cNorm = (comp.name || '').toLowerCase().replace(/หจก\.?/g, 'ห้างหุ้นส่วนจำกัด');
-      const matchName = cNorm.includes(q) || cNorm.includes(qNorm) || (comp.name || '').toLowerCase().includes(q);
-      const matchEng = (comp.engName || '').toLowerCase().includes(q);
-      const matchDist = (comp.district || '').toLowerCase().includes(q);
-      const matchProv = (comp.province || '').toLowerCase().includes(q);
-      const matchPhone = (comp.phone || '').toLowerCase().includes(q);
-      const matchProj = comp.projects && comp.projects.some(p => (p.name || '').toLowerCase().includes(q) || (p.location || '').toLowerCase().includes(q));
-      const matchKw = comp.facebookSignal && comp.facebookSignal.detectedKeywords && comp.facebookSignal.detectedKeywords.some(k => k.toLowerCase().includes(q));
+    // 1. Text Search Query (Full Multi-field & Fuzzy Match)
+    if (searchQuery && searchQuery.trim()) {
+      const rawQ = searchQuery.trim().toLowerCase();
+      const normQ = normalizeSearchText(searchQuery);
 
-      if (!matchName && !matchEng && !matchDist && !matchProv && !matchPhone && !matchProj && !matchKw) {
+      const rawName = (comp.name || '').toLowerCase();
+      const normName = normalizeSearchText(comp.name);
+
+      const rawEng = (comp.engName || '').toLowerCase();
+      const normEng = normalizeSearchText(comp.engName);
+
+      const rawContact = (comp.contactPerson || '').toLowerCase();
+      const normContact = normalizeSearchText(comp.contactPerson);
+
+      const rawDist = (comp.district || '').toLowerCase();
+      const normDist = normalizeSearchText(comp.district);
+
+      const rawProv = (comp.province || '').toLowerCase();
+      const normProv = normalizeSearchText(comp.province);
+
+      const rawAddr = (comp.address || '').toLowerCase();
+      const normAddr = normalizeSearchText(comp.address);
+
+      const rawCat = (comp.category || '').toLowerCase();
+      const normCat = normalizeSearchText(comp.category);
+
+      const phoneClean = (comp.phone || '').replace(/[^0-9]/g, '');
+      const queryPhoneClean = rawQ.replace(/[^0-9]/g, '');
+      const matchPhone = (queryPhoneClean && queryPhoneClean.length >= 3 && phoneClean.includes(queryPhoneClean)) || (comp.phone || '').toLowerCase().includes(rawQ);
+
+      const scgCodeStr = (String(comp.scgCode || '') + ' ' + String(comp.scgCustomerCode || '') + ' ' + String(comp.id || '')).toLowerCase();
+      const matchScg = scgCodeStr.includes(rawQ);
+
+      const matchName = rawName.includes(rawQ) || (normQ && normName.includes(normQ));
+      const matchEng = rawEng.includes(rawQ) || (normQ && normEng.includes(normQ));
+      const matchContact = rawContact.includes(rawQ) || (normQ && normContact.includes(normQ));
+      const matchDist = rawDist.includes(rawQ) || (normQ && normDist.includes(normQ));
+      const matchProv = rawProv.includes(rawQ) || (normQ && normProv.includes(normQ));
+      const matchAddr = rawAddr.includes(rawQ) || (normQ && normAddr.includes(normQ));
+      const matchCat = rawCat.includes(rawQ) || (normQ && normCat.includes(normQ));
+
+      const matchProj = comp.projects && comp.projects.some(p => {
+        const pName = (p.name || '').toLowerCase();
+        const pLoc = (p.location || '').toLowerCase();
+        return pName.includes(rawQ) || pLoc.includes(rawQ) || (normQ && normalizeSearchText(p.name).includes(normQ)) || (normQ && normalizeSearchText(p.location).includes(normQ));
+      });
+
+      const matchKw = comp.facebookSignal && comp.facebookSignal.detectedKeywords && comp.facebookSignal.detectedKeywords.some(k => k.toLowerCase().includes(rawQ));
+      const matchFbPage = comp.facebookSignal && comp.facebookSignal.pageName && comp.facebookSignal.pageName.toLowerCase().includes(rawQ);
+      const matchFbCaption = comp.facebookSignal && comp.facebookSignal.caption && comp.facebookSignal.caption.toLowerCase().includes(rawQ);
+
+      if (!matchName && !matchEng && !matchContact && !matchDist && !matchProv && !matchAddr && !matchCat && !matchPhone && !matchScg && !matchProj && !matchKw && !matchFbPage && !matchFbCaption) {
         return false;
       }
     }
@@ -1649,13 +1990,35 @@ function applyFilters() {
       if (tag !== activeCompanyTagFilter) return false;
     }
 
-    // 7. Follow-up Status Filter (CRM Status: All / Targeted / Followed / Pending)
+    // 7. Follow-up Status Filter (CRM Status: All / Targeted / Followed / Pending / User-Specific)
     if (activeFollowupStatusFilter !== 'all') {
       const log = getCompanyCrmLog(comp.id);
+      const isTargeted = (log.wantFollowup === true);
       const hasFollowedUp = (log.note && log.note.trim().length > 0) || 
                             (Array.isArray(log.photos) && log.photos.length > 0) || 
                             ['followup', 'won', 'quote_sent'].includes(log.status);
 
+      const uEmail = (typeof currentSalesUser !== 'undefined' && currentSalesUser && currentSalesUser.email) ? currentSalesUser.email.toLowerCase().trim() : '';
+      const uName = (typeof currentSalesUser !== 'undefined' && currentSalesUser && currentSalesUser.fullName) ? currentSalesUser.fullName.toLowerCase().trim() : '';
+      const logCreatedBy = (log.createdBy || log.createdByEmail || '').toLowerCase().trim();
+      const logSalesRep = (log.salesRep || '').toLowerCase().trim();
+      const wantBy = (log.wantFollowupBy || '').toLowerCase().trim();
+      const wantUsers = Array.isArray(log.wantFollowupUsers) ? log.wantFollowupUsers.map(x => String(x).toLowerCase().trim()) : [];
+
+      const isTargetedByMe = (log.wantFollowup === true) && (
+        (wantBy && wantBy === uEmail) ||
+        (wantUsers.includes(uEmail)) ||
+        (!wantBy && logCreatedBy === uEmail) ||
+        (!wantBy && uName && (logSalesRep.includes(uName) || uName.includes(logSalesRep)))
+      );
+
+      const isFollowedByMe = hasFollowedUp && (
+        (logCreatedBy === uEmail) ||
+        (uName && logSalesRep && (logSalesRep.includes(uName) || uName.includes(logSalesRep)))
+      );
+
+      if (activeFollowupStatusFilter === 'user-want' && !isTargetedByMe) return false;
+      if (activeFollowupStatusFilter === 'user-following' && !isFollowedByMe) return false;
       if (activeFollowupStatusFilter === 'targeted' && !log.wantFollowup) return false;
       if (activeFollowupStatusFilter === 'followed' && !hasFollowedUp) return false;
       if (activeFollowupStatusFilter === 'pending' && hasFollowedUp) return false;
@@ -1673,9 +2036,10 @@ function applyFilters() {
   // Dynamically update Report summary badge to match selected province
   const reportBadge = document.getElementById('badge-report-summary');
   if (reportBadge) {
-    const isAll = (activeDistrict === 'all');
+    const isAll = (activeDistrict === 'all' || !activeDistrict);
     const count = filteredCompanies.length;
-    const provLabel = isAll ? 'ทุกจังหวัด' : `จ.${cleanThaiText(activeDistrict)}`;
+    const cleanName = cleanThaiText(activeDistrict);
+    const provLabel = isAll ? 'ทุกจังหวัด' : (cleanName.startsWith('จ.') ? cleanName : `จ.${cleanName}`);
     
     // Set dynamic link to report.html
     let provParam = 'all';
@@ -1707,6 +2071,11 @@ function applyFilters() {
   // Update map markers
   if (window.mapModule && typeof window.mapModule.renderCompanyMarkers === 'function') {
     window.mapModule.renderCompanyMarkers(filteredCompanies);
+  }
+
+  // Update real-time user CRM status summary
+  if (typeof updateUserCrmStatusSummary === 'function') {
+    updateUserCrmStatusSummary();
   }
 
   if (typeof updateStickyOffsets === 'function') {
@@ -2044,7 +2413,7 @@ function openCompanyProjectsModal(companyOrId) {
 
   // Google Maps Navigation Link
   if (elGmapsLink) {
-    let mapsUrl = comp.googleMapsUrl || comp.gmaps;
+    let mapsUrl = (typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[comp.id]) || comp.googleMapsUrl || comp.gmaps;
     if (!mapsUrl && comp.coordinates && comp.coordinates.length === 2 && comp.coordinates[0]) {
       mapsUrl = `https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`;
     } else if (!mapsUrl) {
@@ -2052,7 +2421,7 @@ function openCompanyProjectsModal(companyOrId) {
     }
     elGmapsLink.href = mapsUrl;
     if (elGmapsText) {
-      elGmapsText.textContent = `เปิด Google Maps (${cleanThaiText(comp.district) || 'พิกัดสำนักงาน'})`;
+      elGmapsText.textContent = `เปิด Google Maps (พิกัดสำนักงาน)`;
     }
   }
 
@@ -2527,6 +2896,90 @@ function getStageMatchedScgMaterials(proj) {
   return 'ปูนโครงสร้าง SCG, คอนกรีตผสมเสร็จ CPAC, อิฐมวลเบา Q-CON, ปูนเสือมอร์ตาร์ฉาบอิฐมวลเบา';
 }
 
+/**
+ * Calculate Project Progress Percentage & Info based on construction stage
+ * 1. เริ่มงาน / วางผัง / ยกเสาเอก: 10% – 15% (🟡 เหลืองส้ม #F59E0B)
+ * 2. งานฐานราก & คานคอดิน: 30% – 35% (🟠 ส้มอิฐ #EA580C)
+ * 3. งานโครงสร้าง & หลังคา: 50% – 60% (🔵 น้ำเงิน/ม่วง #3B82F6)
+ * 4. งานสถาปัตย์ & ตกแต่ง: 75% – 85% (🟢 เขียวมรกต #10B981)
+ * 5. งานส่งมอบบ้าน / ตรวจรับ: 98% (❇️ เขียวเข้ม #16A34A)
+ */
+function getProjectProgressInfo(proj) {
+  if (!proj) {
+    return {
+      percent: 50,
+      percentText: '50%',
+      stageLabel: 'งานโครงสร้าง & หลังคา',
+      color: '#3B82F6',
+      bgGradient: 'linear-gradient(90deg, #2563EB, #60A5FA)'
+    };
+  }
+
+  const text = (String(proj.name || proj.title || '') + ' ' + String(proj.stage || '') + ' ' + String(proj.status || '') + ' ' + String(proj.caption || '')).toLowerCase();
+  const stageKey = proj.stageKey || '';
+
+  // 5. งานส่งมอบบ้าน / ตรวจรับ (98% - ❇️ เขียวเข้ม #16A34A)
+  if (text.includes('ส่งมอบ') || text.includes('ตรวจรับ') || text.includes('เสร็จสมบูรณ์') || text.includes('งวดสุดท้าย') || text.includes('ทำความสะอาด') || stageKey === 'handover' || stageKey === 'completed') {
+    return {
+      percent: 98,
+      percentText: '98%',
+      stageLabel: 'งานส่งมอบบ้าน / ตรวจรับ',
+      color: '#16A34A',
+      bgGradient: 'linear-gradient(90deg, #15803D, #22C55E)'
+    };
+  }
+
+  // 4. งานสถาปัตย์ & ตกแต่ง (75% – 85% - 🟢 เขียวมรกต #10B981)
+  if (text.includes('ปูกระเบื้อง') || text.includes('กระเบื้อง') || text.includes('สุขภัณฑ์') || text.includes('tile') || text.includes('ห้องน้ำ') || text.includes('ทาสี') || text.includes('ตกแต่ง') || text.includes('ฝ้า') || text.includes('ฉาบปูน') || text.includes('สถาปัตย์') || stageKey === 'finishing') {
+    const isLateFinish = text.includes('ทาสี') || text.includes('สุขภัณฑ์') || text.includes('ตกแต่ง');
+    const p = isLateFinish ? 85 : 75;
+    return {
+      percent: p,
+      percentText: `${p}%`,
+      stageLabel: 'งานสถาปัตย์ & ตกแต่ง',
+      color: '#10B981',
+      bgGradient: 'linear-gradient(90deg, #059669, #34D399)'
+    };
+  }
+
+  // 1. เริ่มงาน / วางผัง / ยกเสาเอก (10% – 15% - 🟡 เหลืองส้ม #F59E0B)
+  if (text.includes('เสาเอก') || text.includes('เสาโท') || text.includes('ลงเสาเข็ม') || text.includes('เจาะเสาเข็ม') || text.includes('วางผัง') || text.includes('เริ่มงาน') || text.includes('ยกเสา') || stageKey === 'groundbreak') {
+    const isPile = text.includes('เสาเข็ม') || text.includes('วางผัง');
+    const p = isPile ? 15 : 10;
+    return {
+      percent: p,
+      percentText: `${p}%`,
+      stageLabel: 'เริ่มงาน / วางผัง / ยกเสาเอก',
+      color: '#F59E0B',
+      bgGradient: 'linear-gradient(90deg, #D97706, #FBBF24)'
+    };
+  }
+
+  // 2. งานฐานราก & คานคอดิน (30% – 35% - 🟠 ส้มอิฐ #EA580C)
+  if (text.includes('ฐานราก') || text.includes('ตอม่อ') || text.includes('คานคอดิน') || text.includes('เทพื้น') || text.includes('ขุดดิน') || stageKey === 'foundation') {
+    const isBeam = text.includes('คานคอดิน') || text.includes('เทพื้น');
+    const p = isBeam ? 35 : 30;
+    return {
+      percent: p,
+      percentText: `${p}%`,
+      stageLabel: 'งานฐานราก & คานคอดิน',
+      color: '#EA580C',
+      bgGradient: 'linear-gradient(90deg, #C2410C, #FB923C)'
+    };
+  }
+
+  // 3. งานโครงสร้าง & หลังคา (50% – 60% - 🔵 น้ำเงิน/ม่วง #3B82F6)
+  const isRoof = text.includes('หลังคา') || text.includes('มุงหลังคา') || text.includes('ชั้น 2') || text.includes('ชั้นสอง');
+  const p = isRoof ? 60 : 50;
+  return {
+    percent: p,
+    percentText: `${p}%`,
+    stageLabel: 'งานโครงสร้าง & หลังคา',
+    color: '#3B82F6',
+    bgGradient: 'linear-gradient(90deg, #1D4ED8, #60A5FA)'
+  };
+}
+
 function renderCompanyProjectsList(company) {
   const container = document.getElementById('modal-projects-section-container');
   if (!container) return;
@@ -2578,18 +3031,17 @@ function renderCompanyProjectsList(company) {
     <!-- Projects Grid -->
     <div class="projects-grid">
       ${displayProjects.length > 0 ? displayProjects.map(proj => {
-        const curStatus = proj.trackingStatus || 'pending';
         const stageBadgeClass = `stage-${proj.stageKey || 'structure'}`;
         const projCleanName = cleanThaiText(proj.name || proj.title);
         const projCleanLocation = cleanThaiText(proj.location || proj.district || 'อุดรธานี');
         const projCleanStage = cleanThaiText(proj.stage);
         const scgMaterials = getStageMatchedScgMaterials(proj);
+        const progressInfo = getProjectProgressInfo(proj);
         
         // Facebook Post Proof & URL
         const fbUrl = (proj.siteProof && proj.siteProof.postUrl) || proj.facebookPostUrl || proj.postUrl || proj.url || proj.link || company.facebookUrl || '#';
         const fbTime = (proj.siteProof && proj.siteProof.postedTime) || proj.postedTime || proj.lastUpdate || proj.date || '';
         const fbCaption = (proj.siteProof && proj.siteProof.caption) || proj.caption || proj.status || '';
-
 
         return `
           <div class="project-card">
@@ -2633,21 +3085,32 @@ function renderCompanyProjectsList(company) {
               </div>
             ` : ''}
 
-            <!-- Project Tracking Status Switcher -->
-            <div class="tracking-status-group" style="margin-top: 0.65rem; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.14);">
-              <span style="font-size: 0.7rem; font-weight: 700; color: #CBD5E1; margin-left: 4px;">สถานะ:</span>
-              <button type="button" class="tracking-btn btn-pending ${curStatus === 'pending' ? 'active' : ''}" onclick="setProjectTrackingStatus('${company.id}', '${proj.projectId || proj.id}', 'pending', event)">
-                ⏳ รอติดตาม
-              </button>
-              <button type="button" class="tracking-btn btn-followup ${curStatus === 'followup' ? 'active' : ''}" onclick="setProjectTrackingStatus('${company.id}', '${proj.projectId || proj.id}', 'followup', event)">
-                📞 นัดหมาย
-              </button>
-              <button type="button" class="tracking-btn btn-quote ${curStatus === 'quote_sent' ? 'active' : ''}" onclick="setProjectTrackingStatus('${company.id}', '${proj.projectId || proj.id}', 'quote_sent', event)">
-                📄 ส่งใบเสนอราคา
-              </button>
-              <button type="button" class="tracking-btn btn-won ${curStatus === 'won' ? 'active' : ''}" onclick="setProjectTrackingStatus('${company.id}', '${proj.projectId || proj.id}', 'won', event)">
-                🎉 ปิดการขาย
-              </button>
+            <!-- ระยะโครงการ (Project Progress Bar) -->
+            <div class="project-progress-container" style="margin-top: 0.75rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; padding: 8px 12px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-size: 0.8rem;">🏗️</span>
+                  <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">ระยะโครงการ</span>
+                  <span style="font-size: 0.7rem; color: #94A3B8; font-weight: 600;">(${progressInfo.stageLabel})</span>
+                </div>
+                <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(0, 0, 0, 0.4); border: 1px solid ${progressInfo.color}; padding: 2px 8px; border-radius: 9999px;">
+                  <span style="font-size: 0.82rem; font-weight: 900; color: ${progressInfo.color};">${progressInfo.percentText}</span>
+                </div>
+              </div>
+
+              <!-- Progress Track Bar -->
+              <div style="position: relative; width: 100%; height: 8px; background: rgba(255, 255, 255, 0.12); border-radius: 9999px; overflow: hidden;">
+                <div style="width: ${progressInfo.percent}%; height: 100%; background: ${progressInfo.bgGradient}; border-radius: 9999px; transition: width 0.4s ease; box-shadow: 0 0 8px ${progressInfo.color}88;"></div>
+              </div>
+
+              <!-- Milestone Stepper Markers -->
+              <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.64rem; font-weight: 700; color: #64748B;">
+                <span style="${progressInfo.percent >= 10 ? `color: #F59E0B; font-weight: 800;` : ''}">10-15% เสาเอก</span>
+                <span style="${progressInfo.percent >= 30 ? `color: #EA580C; font-weight: 800;` : ''}">30-35% ฐานราก</span>
+                <span style="${progressInfo.percent >= 50 ? `color: #3B82F6; font-weight: 800;` : ''}">50-60% โครงสร้าง</span>
+                <span style="${progressInfo.percent >= 75 ? `color: #10B981; font-weight: 800;` : ''}">75-85% ตกแต่ง</span>
+                <span style="${progressInfo.percent >= 98 ? `color: #16A34A; font-weight: 800;` : ''}">98% ส่งมอบ</span>
+              </div>
             </div>
           </div>
         `;
@@ -4592,18 +5055,22 @@ function loadSampleHistoricalApifyDataset() {
 }
 
 function resetToInitialVerifiedData() {
-  if (confirm('คุณต้องการรีเซ็ตข้อมูลโครงการก่อสร้าง Facebook กลับเป็นค่าเริ่มต้นหรือไม่? (สถานะ Focus/Non-Focus, โน้ต และรูปภาพของเซลส์จะยังคงอยู่ 100%)')) {
+  if (confirm('คุณต้องการรีเซ็ตข้อมูลโครงการก่อสร้าง Facebook กลับเป็น 0 โครงการหรือไม่? (สถานะ Focus/Non-Focus, โน้ต และรูปภาพของเซลส์จะยังคงอยู่ 100%)')) {
     localStorage.removeItem(STORAGE_KEY_PROJECT_STATUSES);
     try {
       sessionStorage.removeItem('nextsite_session_uploaded_companies');
     } catch(e) {}
     loadSavedCompaniesData();
     applyFilters();
+    renderTable();
+    renderKPIs();
     updateTagFilterCounts(allCompanies);
+    if (typeof updateHeaderCrmStats === 'function') updateHeaderCrmStats();
     if (window.initProductAnalyticsCharts) {
       window.initProductAnalyticsCharts(allCompanies);
     }
-    showStatusToast('🔄 รีเซ็ตข้อมูลโครงการก่อสร้างเรียบร้อย (คงป้าย Focus, โน้ต และรูปภาพของเซลส์ไว้ 100%)');
+    if (typeof updateProjectTimelineMap === 'function') updateProjectTimelineMap(allCompanies);
+    showStatusToast('🔄 รีเซ็ตข้อมูลทุกบริษัทกลับเป็น 0 โครงการเรียบร้อยแล้ว');
   }
 }
 
@@ -4820,11 +5287,16 @@ function startFacebookCrawlerTicker() {
 // ==========================================
 function setupEventListeners() {
   // 1. Search Input
-  const searchInput = document.getElementById('search-input');
+  const searchInput = document.getElementById('search-input') || document.getElementById('company-search-input');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      applyFilters();
+      handleSearchInputChange(e.target.value);
+    });
+    searchInput.addEventListener('keyup', (e) => {
+      handleSearchInputChange(e.target.value);
+    });
+    searchInput.addEventListener('change', (e) => {
+      handleSearchInputChange(e.target.value);
     });
   }
 
@@ -4925,11 +5397,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductAnalyticsCharts(allCompanies);
   }
 
+  // Synchronize initial activeDistrict with district-filter dropdown
+  const districtSelect = document.getElementById('district-filter') || document.getElementById('district-select');
+  if (districtSelect && districtSelect.value) {
+    activeDistrict = districtSelect.value;
+  }
+
   updateSubDistrictDropdown();
   updateTagFilterCounts(allCompanies);
   updateHeaderCrmStats();
-  renderKPIs();
-  renderTable();
+  applyFilters();
   initSalesVisibilityState();
   initProductDemandCollapseState();
 

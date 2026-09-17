@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Test User Tag Isolation</title>
+</head>
+<body>
+  <div id="results"></div>
+
+  <!-- Include dependencies -->
+  <script src="../js/data.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+
+  <script>
+    const out = document.getElementById('results');
+    function log(msg) {
+      const p = document.createElement('p');
+      p.textContent = msg;
+      out.appendChild(p);
+      console.log(msg);
+    }
+
+    try {
+      // Find "บ้านใหญ่" in UDON_COMPANIES
+      const baanyaiComp = UDON_COMPANIES.find(c => c.name.includes('บ้านใหญ่')) || UDON_COMPANIES[0];
+      const testCompId = baanyaiComp.id;
+      log(`Testing with company: ${baanyaiComp.name} (${testCompId})`);
+
+      // 1. Keetavas logs in
+      window.currentSalesUser = {
+        id: 'usr_keetavas',
+        email: 'keetavas@scg.com',
+        fullName: 'คุณคีตวรรษ',
+        role: 'manager'
+      };
+
+      // Keetavas sets tag = 'focus'
+      setCompanyTag(testCompId, 'focus');
+      const tagKeetavas1 = getCompanyTag(testCompId);
+      log(`[Keetavas Logged In] Tag for ${baanyaiComp.name}: ${tagKeetavas1} (Expected: focus)`);
+
+      // 2. Simulate refresh / reload under Keetavas
+      const loadedTagKeetavas = loadCompanyTagsMap('keetavas@scg.com')[testCompId];
+      log(`[Keetavas After Refresh / Reopen] Tag: ${loadedTagKeetavas} (Expected: focus)`);
+
+      // 3. Somchai logs in
+      window.currentSalesUser = {
+        id: 'usr_somchai',
+        email: 'somchai@scg.com',
+        fullName: 'คุณสมชาย',
+        role: 'sales'
+      };
+
+      const tagSomchaiInitial = getCompanyTag(testCompId);
+      log(`[Somchai Logged In] Tag for ${baanyaiComp.name}: ${tagSomchaiInitial} (Expected: new, NOT focus!)`);
+
+      // Somchai sets tag = 'non-focus'
+      setCompanyTag(testCompId, 'non-focus');
+      const tagSomchaiAfter = getCompanyTag(testCompId);
+      log(`[Somchai Marked Non-Focus] Tag: ${tagSomchaiAfter} (Expected: non-focus)`);
+
+      // 4. Switch back to Keetavas
+      window.currentSalesUser = {
+        id: 'usr_keetavas',
+        email: 'keetavas@scg.com',
+        fullName: 'คุณคีตวรรษ',
+        role: 'manager'
+      };
+      const tagKeetavasFinal = getCompanyTag(testCompId);
+      log(`[Keetavas Switched Back] Tag for ${baanyaiComp.name}: ${tagKeetavasFinal} (Expected: focus)`);
+
+      if (tagKeetavas1 === 'focus' && loadedTagKeetavas === 'focus' && tagSomchaiInitial === 'new' && tagSomchaiAfter === 'non-focus' && tagKeetavasFinal === 'focus') {
+        log('>>> ALL USER TAG ISOLATION & PERSISTENCE TESTS PASSED 100% <<<');
+      } else {
+        log('>>> TEST FAILED <<<');
+      }
+    } catch(err) {
+      log('Error: ' + err.message);
+    }
+  </script>
+</body>
+</html>

@@ -412,6 +412,11 @@
           <span>📥 อัปโหลด Apify JSON</span>
         </button>
 
+        <!-- Reset Button: Reset all to 0 projects -->
+        <button onclick="resetUploadedDataToZero()" style="background: rgba(255, 255, 255, 0.12); color: #F1F5F9; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="รีเซ็ตข้อมูลโครงการทั้งหมดเป็น 0">
+          <span>🔄 รีเซ็ต (0 โครงการ)</span>
+        </button>
+
         <!-- Supabase Cloud Sync Button -->
         <button id="btn-cloud-sync" onclick="syncAllLocalCompaniesToSupabase(allCompanies)" style="background: rgba(16, 185, 129, 0.18); color: #34D399; border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="ซิงค์รายชื่อบริษัทและสถานะทั้งหมดขึ้น Cloud Database Supabase">
           <span>☁️ ซิงค์ขึ้น Supabase</span>
@@ -450,7 +455,7 @@
     <section class="kpi-grid">
       <!-- KPI 1: Total Companies Detected -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('total')"
-        title="คลิกเพื่อดูสรุปภาพรวม 56 บริษัท จ.อุดรธานี">
+        title="คลิกเพื่อดูสรุปภาพรวม 58 บริษัท">
         <div class="kpi-header">
           <span class="kpi-title">จำนวนบริษัทที่ตรวจพบทั้งหมด</span>
           <div class="kpi-icon-wrap">
@@ -461,7 +466,7 @@
           </div>
         </div>
         <div class="kpi-value-row">
-          <span id="kpi-total-companies" class="kpi-value">56</span>
+          <span id="kpi-total-companies" class="kpi-value">58</span>
           <span class="kpi-unit">บริษัท</span>
         </div>
         <div class="kpi-subtext">
@@ -495,7 +500,7 @@
 
       <!-- KPI 3: High Opportunity Companies -->
       <div class="kpi-card highlight clickable-card" onclick="openKpiModal('high')"
-        title="คลิกเพื่อดู Top 5 บริษัทเร่งด่วนอันดับต้นๆ">
+        title="คลิกเพื่อดู Top บริษัทเร่งด่วนอันดับต้นๆ">
         <div class="kpi-header">
           <span class="kpi-title">บริษัทที่มีโอกาสสูง (Top Priority)</span>
           <div class="kpi-icon-wrap red">
@@ -510,7 +515,7 @@
           <span class="kpi-unit">บริษัทเร่งด่วน</span>
         </div>
         <div class="kpi-subtext">
-          <strong style="color: var(--primary-red);">มีสัญญาณหน้างานสดใหม่</strong> เซลส์ควรเข้าพบด่วน
+          <strong style="color: var(--primary-red);">รอตรวจจับสัญญาณหน้างาน</strong> (หรืออัปโหลด JSON)
         </div>
         <div class="kpi-click-hint" style="color: var(--primary-red);">กดดูแผนเข้าพบด่วน →</div>
       </div>
@@ -519,7 +524,7 @@
       <div class="kpi-card clickable-card" onclick="openKpiModal('value')"
         title="คลิกเพื่อดูการวิเคราะห์มูลค่าสินค้า SCG รวม">
         <div class="kpi-header">
-          <span class="kpi-title" id="kpi-total-value-title">มูลค่าโอกาสทางธุรกิจรวม (อุดรธานี)</span>
+          <span class="kpi-title" id="kpi-total-value-title">มูลค่าโอกาสทางธุรกิจรวม (จ.อุดรธานี)</span>
           <div class="kpi-icon-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="12" y1="1" x2="12" y2="23" />
@@ -575,13 +580,22 @@
     <!-- Toolbar & Filter Controls -->
     <div class="toolbar-container">
       <!-- Search Input -->
-      <div class="search-box">
+      <div class="search-box" style="position: relative; display: flex; align-items: center;">
         <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2">
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
-        <input type="text" id="search-input" placeholder="ค้นหาชื่อบริษัท, ผู้บริหาร, หรืออำเภอในอุดรธานี...">
+        <input type="text" id="search-input" 
+          oninput="handleSearchInputChange(this.value)" 
+          onkeyup="handleSearchInputChange(this.value)" 
+          placeholder="ค้นหาชื่อบริษัท, ผู้บริหาร, หรืออำเภอในอุดรธานี..."
+          style="padding-right: 2rem;">
+        <button type="button" id="search-clear-btn" onclick="clearSearchInput()" 
+          title="ล้างคำค้นหา"
+          style="display: none; position: absolute; right: 8px; background: none; border: none; font-size: 1rem; color: #94A3B8; cursor: pointer; padding: 2px 6px;">
+          ✕
+        </button>
       </div>
 
       <!-- Filters -->
@@ -611,7 +625,7 @@
           <option value="all">ทุกจังหวัด</option>
           
           <optgroup label="📍 ภาคตะวันออกเฉียงเหนือ (20 จังหวัด)">
-            <option value="อุดรธานี">อุดรธานี</option>
+            <option value="อุดรธานี" selected>อุดรธานี</option>
             <option value="ขอนแก่น">ขอนแก่น</option>
             <option value="นครราชสีมา">นครราชสีมา</option>
             <option value="อุบลราชธานี">อุบลราชธานี</option>
@@ -752,6 +766,23 @@
       </div>
 
       <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <!-- User CRM Status Badges (Personalized for current logged-in user) -->
+        <div id="user-crm-status-summary-bar" style="display: inline-flex; align-items: center; gap: 6px; background: #F8FAFC; padding: 3px 8px; border-radius: 9999px; border: 1.5px solid #E2E8F0; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+          <span style="font-size: 0.72rem; font-weight: 700; color: #64748B; margin-right: 2px;">📌 บันทึกโดยฉัน:</span>
+          <button id="user-filter-want-btn" type="button" class="user-crm-pill-btn" onclick="filterByUserCrmStatus('want')"
+            title="คลิกเพื่อดูเฉพาะบริษัทที่คุณปักหมุด 'ต้องการติดตาม'"
+            style="display: inline-flex; align-items: center; gap: 5px; background: #FFFFFF; border: 1.2px solid #BFDBFE; color: #1D4ED8; padding: 3px 9px; border-radius: 9999px; font-size: 0.76rem; font-weight: 800; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 1px 2px rgba(37,99,235,0.08);">
+            <span>🎯 ต้องการติดตาม</span>
+            <span id="user-cnt-want-followup" style="background: #2563EB; color: #FFFFFF; font-size: 0.7rem; font-weight: 800; padding: 1px 6px; border-radius: 9999px; min-width: 16px; text-align: center;">0</span>
+          </button>
+          <button id="user-filter-following-btn" type="button" class="user-crm-pill-btn" onclick="filterByUserCrmStatus('following')"
+            title="คลิกเพื่อดูเฉพาะบริษัทที่คุณได้ 'บันทึกการเข้าพบ/ติดตามแล้ว'"
+            style="display: inline-flex; align-items: center; gap: 5px; background: #FFFFFF; border: 1.2px solid #BBF7D0; color: #15803D; padding: 3px 9px; border-radius: 9999px; font-size: 0.76rem; font-weight: 800; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 1px 2px rgba(22,163,74,0.08);">
+            <span>⏳ กำลังติดตาม</span>
+            <span id="user-cnt-following" style="background: #16A34A; color: #FFFFFF; font-size: 0.7rem; font-weight: 800; padding: 1px 6px; border-radius: 9999px; min-width: 16px; text-align: center;">0</span>
+          </button>
+        </div>
+
         <!-- Privacy Toggle Button: ซ่อน/แสดง ยอดขายเพื่อคุยกับลูกค้า (Icon Only) -->
         <button id="btn-toggle-sales-columns" type="button" onclick="toggleSalesColumnsVisibility()"
           title="ซ่อน/แสดง ยอดซื้อขาย (โหมดคุยกับลูกค้า)"
@@ -763,7 +794,7 @@
 
         <!-- Total Projects in Province Badge -->
         <div id="province-total-projects-badge" style="font-weight: 800; color: #0F172A; font-size: 0.85rem; white-space: nowrap;">
-          จำนวนโครงการในอุดรธานี <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">0</span> โครงการ
+          จำนวนโครงการ จ.อุดรธานี <span id="province-total-projects-count" style="color: var(--primary-red); font-size: 1.05rem; font-weight: 900;">0</span> โครงการ
         </div>
       </div>
     </div>
@@ -2029,11 +2060,11 @@
     </div>
 
     <!-- App JS modules -->
-    <script src="js/data.js?v=101.0"></script>
-    <script src="js/scoring.js?v=101.0"></script>
-    <script src="js/charts.js?v=101.0"></script>
-    <script src="js/map.js?v=101.0"></script>
-    <script src="js/app.js?v=101.0"></script>
+    <script src="js/data.js?v=20260917_v5"></script>
+    <script src="js/scoring.js?v=20260917_v5"></script>
+    <script src="js/charts.js?v=20260917_v5"></script>
+    <script src="js/map.js?v=20260917_v5"></script>
+    <script src="js/app.js?v=20260917_v5"></script>
 </body>
 </html>
 

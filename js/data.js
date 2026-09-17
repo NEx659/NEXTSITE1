@@ -506,7 +506,7 @@
     {
         "id":  "comp-udon-10",
         "name":  "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จำกัด",
-        "engName":  "TT Design \u0026 Construction 1991 Co., Ltd.",
+        "engName":  "TT Design & Construction 1991 Co., Ltd.",
         "category":  "รับเหมาก่อสร้างและงานสถาปัตยกรรม (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -562,7 +562,7 @@
     {
         "id":  "comp-udon-11",
         "name":  "ห้างหุ้นส่วนจำกัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง",
-        "engName":  "UD.Home Engineering \u0026 Construction Ltd., Part.",
+        "engName":  "UD.Home Engineering & Construction Ltd., Part.",
         "category":  "รับสร้างบ้านโมเดิร์นและงานวิศวกรรม (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -673,14 +673,14 @@
     },
     {
         "id":  "comp-udon-13",
-        "name":  "PP HOUSE CONSTRUCTION \u0026 DESIGN",
-        "engName":  "PP House Construction \u0026 Design",
+        "name":  "PP HOUSE CONSTRUCTION & DESIGN",
+        "engName":  "PP House Construction & Design",
         "category":  "รับสร้างบ้านและออกแบบตกแต่งภายใน (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
         "address":  "เมืองอุดรธานี จ.อุดรธานี",
         "phone":  "087 775 8333",
-        "contactPerson":  "PP HOUSE CONSTRUCTION \u0026 DESIGN",
+        "contactPerson":  "PP HOUSE CONSTRUCTION & DESIGN",
         "totalProjects":  0,
         "newProjectsThisMonth":  0,
         "totalValueMillion":  0,
@@ -709,7 +709,7 @@
         "facebookUrl":  "https://www.facebook.com/pphouseudonthani",
         "facebookSignal":  {
                                "postDate":  "-",
-                               "pageName":  "PP HOUSE CONSTRUCTION \u0026 DESIGN",
+                               "pageName":  "PP HOUSE CONSTRUCTION & DESIGN",
                                "caption":  "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
                                "likes":  0,
                                "comments":  0,
@@ -898,7 +898,7 @@
     {
         "id":  "comp-udon-17",
         "name":  "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด",
-        "engName":  "E-House Construction \u0026 Design Co., Ltd.",
+        "engName":  "E-House Construction & Design Co., Ltd.",
         "category":  "รับสร้างบ้านและสถาปัตยกรรมอีสานประยุกต์ (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -954,7 +954,7 @@
     {
         "id":  "comp-udon-18",
         "name":  "ห้างหุ้นส่วนจำกัด สันต์สิริ ดีไซน์ แอนด์ บิลด์",
-        "engName":  "Sunsiri Design \u0026 Build Ltd., Part.",
+        "engName":  "Sunsiri Design & Build Ltd., Part.",
         "category":  "รับเหมาก่อสร้างและออกแบบบ้านครบวงจร (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -1208,8 +1208,8 @@
                             17.362,
                             103.118
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=ห้างหุ้นส่วนจำกัด+กิจดลวรโชติ1+หนองหาน+อุดรธานี",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=ห้างหุ้นส่วนจำกัด+กิจดลวรโชติ1+หนองหาน+อุดรธานี",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
         "facebookUrl":  "https://www.facebook.com/firstlandtown",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1402,7 +1402,7 @@
     {
         "id":  "comp-udon-26",
         "name":  "บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)",
-        "engName":  "Kittisak Construction \u0026 Design (Office Baansuan)",
+        "engName":  "Kittisak Construction & Design (Office Baansuan)",
         "category":  "รับสร้างบ้านและงานสถาปัตยกรรม (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -1488,8 +1488,8 @@
                             17.411,
                             102.808
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/G1C2sU6fDKPiCzbg6",
-        "gmaps":  "https://maps.app.goo.gl/G1C2sU6fDKPiCzbg6",
+        "googleMapsUrl":  "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+        "gmaps":  "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
         "facebookUrl":  "https://www.facebook.com/banwisawa",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1656,8 +1656,8 @@
                             17.431,
                             102.831
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/RACSBs46UeBzcEmKA",
-        "gmaps":  "https://maps.app.goo.gl/RACSBs46UeBzcEmKA",
+        "googleMapsUrl":  "https://maps.app.goo.gl/NSJJDZPRKru1owkr7",
+        "gmaps":  "https://maps.app.goo.gl/NSJJDZPRKru1owkr7",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61575470735221",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1712,8 +1712,8 @@
                             17.4175,
                             102.7935
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/NSJJDZPRKru1owkr7",
-        "gmaps":  "https://maps.app.goo.gl/NSJJDZPRKru1owkr7",
+        "googleMapsUrl":  "https://maps.app.goo.gl/xhY5ipfir6RTRXLR9",
+        "gmaps":  "https://maps.app.goo.gl/xhY5ipfir6RTRXLR9",
         "facebookUrl":  "https://www.facebook.com/baanyaiteam",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1768,8 +1768,8 @@
                             17.3995,
                             102.775
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/xhY5ipfir6RTRXLR9",
-        "gmaps":  "https://maps.app.goo.gl/xhY5ipfir6RTRXLR9",
+        "googleMapsUrl":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
+        "gmaps":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
         "facebookUrl":  "https://www.facebook.com/PATN2021",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1794,7 +1794,7 @@
     {
         "id":  "comp-udon-33",
         "name":  "บริษัท ป. รุ่งเรือง พีเอสพีเอส จำกัด",
-        "engName":  "PA \u0026 TN Ltd., Part.",
+        "engName":  "PA & TN Ltd., Part.",
         "category":  "รับเหมาก่อสร้างและต่อเติมอาคาร (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -1824,8 +1824,8 @@
                             17.424,
                             102.788
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
-        "gmaps":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
+        "googleMapsUrl":  "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
+        "gmaps":  "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
         "facebookUrl":  "https://www.facebook.com/housebuildingsunphage",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1880,8 +1880,8 @@
                             17.4135,
                             102.819
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
-        "gmaps":  "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
+        "googleMapsUrl":  "https://maps.app.goo.gl/Lk82k26BAtuWnUC8A",
+        "gmaps":  "https://maps.app.goo.gl/Lk82k26BAtuWnUC8A",
         "facebookUrl":  "https://www.facebook.com/SYHOUSECONSTRUCTION",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1906,7 +1906,7 @@
     {
         "id":  "comp-udon-35",
         "name":  "IDYLLIC Construction",
-        "engName":  "SY House Design \u0026 Construction Ltd., Part.",
+        "engName":  "SY House Design & Construction Ltd., Part.",
         "category":  "รับสร้างบ้าน ออกแบบโมเดิร์น (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -1936,8 +1936,8 @@
                             17.407,
                             102.8025
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/Lk82k26BAtuWnUC8A",
-        "gmaps":  "https://maps.app.goo.gl/Lk82k26BAtuWnUC8A",
+        "googleMapsUrl":  "https://maps.app.goo.gl/ZrCewx5vJA86nzjXA",
+        "gmaps":  "https://maps.app.goo.gl/ZrCewx5vJA86nzjXA",
         "facebookUrl":  "https://www.facebook.com/idyllicons",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -1992,8 +1992,8 @@
                             17.4205,
                             102.766
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/ZrCewx5vJA86nzjXA",
-        "gmaps":  "https://maps.app.goo.gl/ZrCewx5vJA86nzjXA",
+        "googleMapsUrl":  "https://maps.app.goo.gl/5ovdiUtuVGVLiR5X8",
+        "gmaps":  "https://maps.app.goo.gl/5ovdiUtuVGVLiR5X8",
         "facebookUrl":  "https://www.facebook.com/N.P.HomeEngineering",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2048,8 +2048,8 @@
                             17.416,
                             102.828
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/5ovdiUtuVGVLiR5X8",
-        "gmaps":  "https://maps.app.goo.gl/5ovdiUtuVGVLiR5X8",
+        "googleMapsUrl":  "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
+        "gmaps":  "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61579292830014",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2104,8 +2104,8 @@
                             17.385,
                             102.805
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/bL7RqF7sHMSfYYzR6",
-        "gmaps":  "https://maps.app.goo.gl/bL7RqF7sHMSfYYzR6",
+        "googleMapsUrl":  "https://maps.app.goo.gl/5jEQcsqDhYCNDPyM9",
+        "gmaps":  "https://maps.app.goo.gl/5jEQcsqDhYCNDPyM9",
         "facebookUrl":  "https://www.facebook.com/CivilProEngineering",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2160,8 +2160,8 @@
                             17.433,
                             102.801
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
-        "gmaps":  "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
+        "googleMapsUrl":  "https://maps.app.goo.gl/CJnV3h68YzfEJkHx9",
+        "gmaps":  "https://maps.app.goo.gl/CJnV3h68YzfEJkHx9",
         "facebookUrl":  "https://www.facebook.com/ArchitectureINTDesign",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2186,7 +2186,7 @@
     {
         "id":  "comp-udon-40",
         "name":  "บริษัท เอ เฮ้าส์ บิวเดอร์ จำกัด",
-        "engName":  "Civil Pro Engineering \u0026 Construction",
+        "engName":  "Civil Pro Engineering & Construction",
         "category":  "บริการรับเหมาก่อสร้างและวิศวกรรมอาคาร (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
@@ -2216,8 +2216,8 @@
                             17.4145,
                             102.7725
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/5jEQcsqDhYCNDPyM9",
-        "gmaps":  "https://maps.app.goo.gl/5jEQcsqDhYCNDPyM9",
+        "googleMapsUrl":  "https://maps.app.goo.gl/VtnWrKj3HnsiaX9C6",
+        "gmaps":  "https://maps.app.goo.gl/VtnWrKj3HnsiaX9C6",
         "facebookUrl":  "https://www.facebook.com/ahouse.builder",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2272,8 +2272,8 @@
                             17.4095,
                             102.7845
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/CJnV3h68YzfEJkHx9",
-        "gmaps":  "https://maps.app.goo.gl/CJnV3h68YzfEJkHx9",
+        "googleMapsUrl":  "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
+        "gmaps":  "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100090611883896",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2328,8 +2328,8 @@
                             17.4275,
                             102.7915
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/VtnWrKj3HnsiaX9C6",
-        "gmaps":  "https://maps.app.goo.gl/VtnWrKj3HnsiaX9C6",
+        "googleMapsUrl":  "https://maps.app.goo.gl/44eCAxmwPMNrigGx5",
+        "gmaps":  "https://maps.app.goo.gl/44eCAxmwPMNrigGx5",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61556687065111",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2384,8 +2384,8 @@
                             17.4015,
                             102.8165
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
-        "gmaps":  "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
+        "googleMapsUrl":  "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
+        "gmaps":  "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100069404124717",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2440,8 +2440,8 @@
                             17.4185,
                             102.8065
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/44eCAxmwPMNrigGx5",
-        "gmaps":  "https://maps.app.goo.gl/44eCAxmwPMNrigGx5",
+        "googleMapsUrl":  "https://maps.app.goo.gl/sHQRySpumVDgvr1s8",
+        "gmaps":  "https://maps.app.goo.gl/sHQRySpumVDgvr1s8",
         "facebookUrl":  "https://www.facebook.com/JoylyYothakaree",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2496,8 +2496,8 @@
                             17.394,
                             102.79
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
-        "gmaps":  "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
+        "googleMapsUrl":  "https://maps.app.goo.gl/nMzQ5MA5Jn4h5qdXA",
+        "gmaps":  "https://maps.app.goo.gl/nMzQ5MA5Jn4h5qdXA",
         "facebookUrl":  "https://www.facebook.com/WonderCreation2017",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2526,7 +2526,7 @@
         "category":  "รับสร้างบ้านและอสังหาริมทรัพย์ (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "ไชยวาน",
-        "address":  "14 หมู่ที่ 12 ตำบลไชยวาน อำเภอไชยวาน จ.อุดรธานี 41290",
+        "address":  "160 หมู่ที่ 6 บ้านชัย บ้านดุง อุดรธานี",
         "phone":  "064 995 9169",
         "contactPerson":  "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จำกัด",
         "totalProjects":  0,
@@ -2552,8 +2552,8 @@
                             17.280851,
                             103.2232063
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/4HTF4JfAQLsUXeih7",
-        "gmaps":  "https://maps.app.goo.gl/4HTF4JfAQLsUXeih7",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100066777634252",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2582,7 +2582,7 @@
         "category":  "รับสร้างบ้านและงานดีไซน์สร้างสรรค์ (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
-        "address":  "เมืองอุดรธานี จ.อุดรธานี",
+        "address":  "104 หมู่บ้าน หนองบึงมอ หมู่ที่ 4 ตำบลเชียงเพ็ง อำเภอกุดจับ จ.อุดรธานี 41250",
         "phone":  "089 499 0140",
         "contactPerson":  "ห้างหุ้นส่วนจำกัด ฟ้าสว่างการโยธา",
         "totalProjects":  0,
@@ -2608,8 +2608,8 @@
                             17.4255,
                             102.7785
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/nMzQ5MA5Jn4h5qdXA",
-        "gmaps":  "https://maps.app.goo.gl/nMzQ5MA5Jn4h5qdXA",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100089616662993",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2634,11 +2634,11 @@
     {
         "id":  "comp-udon-48",
         "name":  "ห้างหุ้นส่วนจำกัด บ้านดี อุดร",
-        "engName":  "Peerapat 999 Building \u0026 Service House Co., Ltd.",
+        "engName":  "Peerapat 999 Building & Service House Co., Ltd.",
         "category":  "รับสร้างบ้านและบริการงานก่อสร้าง (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "บ้านดุง",
-        "address":  "Amphoe Ban Dung, Thailand, 41190",
+        "address":  "447 หมู่ที่ 7 ตำบลหมูม่น อำเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000",
         "phone":  "094 621 5444",
         "contactPerson":  "ห้างหุ้นส่วนจำกัด บ้านดี อุดร",
         "totalProjects":  0,
@@ -2664,8 +2664,8 @@
                             17.698,
                             103.259
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=บริษัท+พีรพัฒน์+999+บิวล์ดิ้ง+แอนด์+เซอร์วิสเฮ้าส์+จำกัด+บ้านดุง+อุดรธานี",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=บริษัท+พีรพัฒน์+999+บิวล์ดิ้ง+แอนด์+เซอร์วิสเฮ้าส์+จำกัด+บ้านดุง+อุดรธานี",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61565401665404",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2694,7 +2694,7 @@
         "category":  "รับเหมางานโยธาและสร้างบ้าน (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "กุดจับ",
-        "address":  "104 หมู่บ้าน หนองบึงมอ หมู่ที่ 4 ตำบลเชียงเพ็ง อำเภอกุดจับ จ.อุดรธานี 41250",
+        "address":  "702 หมู่ 2 สามพร้าว อ.เมือง จ.อุดรธานี 41000",
         "phone":  "094 526 6168",
         "contactPerson":  "บริษัท นิติพันธ์เฮ้าส์ ยูดี จำกัด",
         "totalProjects":  0,
@@ -2720,8 +2720,8 @@
                             17.427,
                             102.571
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=ห้างหุ้นส่วนจำกัด+ฟ้าสว่างการโยธา+กุดจับ+อุดรธานี",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=ห้างหุ้นส่วนจำกัด+ฟ้าสว่างการโยธา+กุดจับ+อุดรธานี",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61555396955045",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2776,8 +2776,8 @@
                             17.458,
                             102.783
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=ห้างหุ้นส่วนจำกัด+บ้านดี-อุดร+หมูม่น+เมืองอุดรธานี",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=ห้างหุ้นส่วนจำกัด+บ้านดี-อุดร+หมูม่น+เมืองอุดรธานี",
+        "googleMapsUrl":  "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
+        "gmaps":  "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100034948943142",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2806,7 +2806,7 @@
         "category":  "รับสร้างบ้านและบริการออกแบบ (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
-        "address":  "702 หมู่ 2 สามพร้าว, Udon Thani, Thailand, 41000",
+        "address":  "75 หมู่ 2 ต.โนนสะอาด อำเภอโนนสะอาด จังหวัดอุดรธานี 41240",
         "phone":  "092-412-3987",
         "contactPerson":  "รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน",
         "totalProjects":  0,
@@ -2832,8 +2832,8 @@
                             17.432,
                             102.851
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=บริษัท+นิติพันธ์เฮ้าส์+ยูดี+จำกัด+สามพร้าว+อุดรธานี",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=บริษัท+นิติพันธ์เฮ้าส์+ยูดี+จำกัด+สามพร้าว+อุดรธานี",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100084354175964",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2888,8 +2888,8 @@
                             17.2796,
                             103.0337
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
-        "gmaps":  "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
+        "googleMapsUrl":  "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
+        "gmaps":  "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
         "facebookUrl":  "https://www.facebook.com/bandee.udee",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -2944,8 +2944,8 @@
                             16.968,
                             102.905
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=รุ่งรัตน์บิวตี้โฮม+รับเหมาสร้างบ้าน+โนนสะอาด+อุดรธานี",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=รุ่งรัตน์บิวตี้โฮม+รับเหมาสร้างบ้าน+โนนสะอาด+อุดรธานี",
+        "googleMapsUrl":  "https://maps.app.goo.gl/GspwiRGDg3YJTW896",
+        "gmaps":  "https://maps.app.goo.gl/GspwiRGDg3YJTW896",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100069382099777",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -3000,8 +3000,8 @@
                             17.4245,
                             102.782
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
-        "gmaps":  "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl":  "https://www.facebook.com/siarchitecture",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -3030,7 +3030,7 @@
         "category":  "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "ประจักษ์ศิลปาคม",
-        "address":  "ประจักษ์ศิลปาคม จ.อุดรธานี",
+        "address":  "263 หมู่บ้าน นาม่วง หมู่ที่ 1 นาม่วง ประจักษ์ศิลปาคม อุดรธานี",
         "phone":  "063 046 5748",
         "contactPerson":  "ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น",
         "totalProjects":  0,
@@ -3056,8 +3056,8 @@
                             17.2623,
                             103.0035
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/gy9TQgQYzV1jG8VW9",
-        "gmaps":  "https://maps.app.goo.gl/gy9TQgQYzV1jG8VW9",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61576710850214",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -3112,8 +3112,8 @@
                             17.3882,
                             103.1895
                         ],
-        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=61558614631187",
         "facebookSignal":  {
                                "postDate":  "-",
@@ -3142,7 +3142,7 @@
         "category":  "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
-        "address":  "117 ถ.ประชารักษา ต.หมากแข้ง อ.เมืองอุดรธานี จ.อุดรธานี",
+        "address":  "161 หมู่ที่ 15 หนองเม็ก หนองหาน อุดรธานี",
         "phone":  "064 942 4298",
         "contactPerson":  "บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด",
         "totalProjects":  0,
@@ -3168,9 +3168,9 @@
                             17.4037,
                             102.7900
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/wMZTox8VEfad8XSZ6",
-        "gmaps":  "https://maps.app.goo.gl/wMZTox8VEfad8XSZ6",
-        "facebookUrl":  "https://www.facebook.com/ENTRUST.CONST",
+        "googleMapsUrl":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps":  "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "facebookUrl":  "https://www.facebook.com/ENTRUST.CONST/?locale=th_TH",
         "facebookSignal":  {
                                "postDate":  "-",
                                "pageName":  "บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด",
@@ -3224,9 +3224,9 @@
                             17.4031,
                             102.7744
                         ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/dh4xE6DSzbkn5a547",
-        "gmaps":  "https://maps.app.goo.gl/dh4xE6DSzbkn5a547",
-        "facebookUrl":  "https://www.facebook.com/profile.php?id=100083320623771",
+        "googleMapsUrl":  "https://maps.app.goo.gl/LEX12WYqLSQy2Xo2A",
+        "gmaps":  "https://maps.app.goo.gl/LEX12WYqLSQy2Xo2A",
+        "facebookUrl":  "https://www.facebook.com/ENTRUST.CONST/?locale=th_TH",
         "facebookSignal":  {
                                "postDate":  "-",
                                "pageName":  "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
