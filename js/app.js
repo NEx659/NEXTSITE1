@@ -738,6 +738,9 @@ function loadSavedCompaniesData() {
       });
     }
 
+    // Apply persistent user company tag (Focus / Non-Focus / New)
+    c.tag = (typeof getCompanyTag === 'function') ? getCompanyTag(c.id) : (c.tag || 'new');
+
     // Default clean state: when no JSON file is uploaded, all companies MUST be 0 projects
     if (!hasSessionUploadedData) {
       c.projects = [];

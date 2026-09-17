@@ -9,6 +9,15 @@ const SUPABASE_KEY = 'sb_publishable_liiIUZc31VQik5axueUVAg_GrH1-Sr4';
 let supabaseClient = null;
 let currentSalesUser = null; // { id, email, fullName, assignedProvince, role }
 
+// Immediate synchronous restoration of cached user session
+try {
+  const cachedUserStr = localStorage.getItem('nextsite_cached_user');
+  if (cachedUserStr) {
+    currentSalesUser = JSON.parse(cachedUserStr);
+    window.currentSalesUser = currentSalesUser;
+  }
+} catch (e) {}
+
 // Initialize Supabase Client
 function initSupabase() {
   if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
@@ -402,19 +411,24 @@ async function loadAndApplyCloudTags() {
     }
 
     if (data && data.length > 0) {
-      const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap() : {};
+      const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+      const userEmail = activeUser ? activeUser.email : null;
+      const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap(userEmail) : {};
+      
+      let changed = false;
       data.forEach(item => {
         if (item.id && item.tag) {
           const norm = String(item.tag).trim().toLowerCase();
-          tagMap[item.id] = norm;
-          if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
-            const comp = allCompanies.find(c => c.id === item.id);
-            if (comp) comp.tag = norm;
+          // Protect local selections: ONLY apply from cloud if no local tag has been explicitly set
+          if (!tagMap[item.id]) {
+            tagMap[item.id] = norm;
+            changed = true;
           }
         }
       });
-      if (typeof saveCompanyTagsMap === 'function') {
-        saveCompanyTagsMap(tagMap);
+
+      if (changed && typeof saveCompanyTagsMap === 'function') {
+        saveCompanyTagsMap(tagMap, userEmail);
       }
       if (typeof applyFilters === 'function') {
         applyFilters();
@@ -422,7 +436,7 @@ async function loadAndApplyCloudTags() {
       if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
         updateTagFilterCounts(window.allCompanies);
       }
-      console.log(`☁️ Synced ${data.length} tags from Supabase Cloud successfully!`);
+      console.log(`☁️ Synced tags from Supabase Cloud successfully!`);
     }
   } catch (err) {
     console.warn('⚠️ Supabase Tag Sync Exception:', err);

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+  <meta charset="UTF-8">
+  <title>Test Refresh Persistence of Focus Tags</title>
+</head>
+<body>
+  <div id="results"><p>Company 1: บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จำกัด BAANYAI(2016) (comp-udon-31)</p><p>Company 2: ดรีมอัพรับสร้างบ้าน หน้ากองบิน23 Dream Up House Builder (comp-udon-02)</p><p>Company 3: บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด (comp-udon-03)</p><p>Initial tags set -&gt; Comp1: focus, Comp2: non-focus, Comp3: focus</p><p>--- Simulating Page Refresh (Re-running initialization &amp; cloud sync) ---</p><p>After Refresh &amp; Cloud Sync -&gt; Comp1: focus (Expected: focus), Comp2: non-focus (Expected: non-focus), Comp3: focus (Expected: focus)</p><p>&gt;&gt;&gt; REFRESH PERSISTENCE TEST PASSED 100% &lt;&lt;&lt;</p></div>
+
+  <!-- Include dependencies -->
+  <script src="../js/data.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+
+  <script>
+    const out = document.getElementById('results');
+    function log(msg) {
+      const p = document.createElement('p');
+      p.textContent = msg;
+      out.appendChild(p);
+      console.log(msg);
+    }
+
+    async function runTest() {
+      try {
+        // Step 1: Set cached user to Keetavas
+        const userKeetavas = {
+          id: 'usr_keetavas',
+          email: 'keetavas@scg.com',
+          fullName: 'คุณคีตวรรษ',
+          role: 'manager',
+          assignedProvince: 'อุดรธานี'
+        };
+        localStorage.setItem('nextsite_cached_user', JSON.stringify(userKeetavas));
+        window.currentSalesUser = userKeetavas;
+
+        // Step 2: Pick 3 companies and mark them
+        const testComp1 = UDON_COMPANIES.find(c => c.name.includes('บ้านใหญ่')) || UDON_COMPANIES[0];
+        const testComp2 = UDON_COMPANIES[1];
+        const testComp3 = UDON_COMPANIES[2];
+
+        log(`Company 1: ${testComp1.name} (${testComp1.id})`);
+        log(`Company 2: ${testComp2.name} (${testComp2.id})`);
+        log(`Company 3: ${testComp3.name} (${testComp3.id})`);
+
+        setCompanyTag(testComp1.id, 'focus');
+        setCompanyTag(testComp2.id, 'non-focus');
+        setCompanyTag(testComp3.id, 'focus');
+
+        log(`Initial tags set -> Comp1: ${getCompanyTag(testComp1.id)}, Comp2: ${getCompanyTag(testComp2.id)}, Comp3: ${getCompanyTag(testComp3.id)}`);
+
+        // Step 3: Simulate a Page Refresh (F5 / Re-opening site)
+        log('--- Simulating Page Refresh (Re-running initialization & cloud sync) ---');
+        
+        // Re-read cached user as happens on refresh
+        const cachedUser = JSON.parse(localStorage.getItem('nextsite_cached_user'));
+        window.currentSalesUser = cachedUser;
+
+        // Re-run loadSavedCompaniesData
+        loadSavedCompaniesData();
+
+        // Re-run loadAndApplyCloudTags (which was previously overwriting tags)
+        await loadAndApplyCloudTags();
+
+        // Check tags after refresh
+        const tag1After = getCompanyTag(testComp1.id);
+        const tag2After = getCompanyTag(testComp2.id);
+        const tag3After = getCompanyTag(testComp3.id);
+
+        log(`After Refresh & Cloud Sync -> Comp1: ${tag1After} (Expected: focus), Comp2: ${tag2After} (Expected: non-focus), Comp3: ${tag3After} (Expected: focus)`);
+
+        if (tag1After === 'focus' && tag2After === 'non-focus' && tag3After === 'focus') {
+          log('>>> REFRESH PERSISTENCE TEST PASSED 100% <<<');
+        } else {
+          log('>>> REFRESH PERSISTENCE TEST FAILED <<<');
+        }
+      } catch (err) {
+        log('Error: ' + err.message);
+      }
+    }
+
+    runTest();
+  </script><div id="status-toast-container"><div class="status-toast"><span>🔔</span> <span>☁️ บันทึกป้ายเป็น 🎯 Focus (เป้าหมายหลัก) สำหรับ คุณคีตวรรษ เรียบร้อย</span></div><div class="status-toast"><span>🔔</span> <span>☁️ บันทึกป้ายเป็น ⚪ Non-Focus (ทั่วไป) สำหรับ คุณคีตวรรษ เรียบร้อย</span></div><div class="status-toast"><span>🔔</span> <span>☁️ บันทึกป้ายเป็น 🎯 Focus (เป้าหมายหลัก) สำหรับ คุณคีตวรรษ เรียบร้อย</span></div></div>
+
+
+</body></html>
