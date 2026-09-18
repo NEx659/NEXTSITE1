@@ -1,0 +1,129 @@
+﻿{
+    "id":  "comp-udon-27",
+    "name":  "บริษัท บ้านวิศวะพัฒนา จํากัด",
+    "engName":  "Baanwisawa Construction Ltd., Part.",
+    "category":  "รับสร้างบ้านตามหลักวิศวกรรม (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "เมืองอุดรธานี",
+    "address":  "เมืองอุดรธานี จ.อุดรธานี",
+    "phone":  "092 744 9253",
+    "contactPerson":  "บริษัท บ้านวิศวะพัฒนา จำกัด",
+    "totalProjects":  2,
+    "newProjectsThisMonth":  2,
+    "totalValueMillion":  11,
+    "growthRate":  40,
+    "areaExpansion":  "เมืองอุดรธานี",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415561023456",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  0,
+                           "structure":  2,
+                           "finishing":  0
+                       },
+    "latestTimelineStage":  "groundbreak",
+    "revenuePotentialText":  "฿1.0M",
+    "coordinates":  [
+                        17.411,
+                        102.808
+                    ],
+    "googleMapsUrl":  "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+    "gmaps":  "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+    "facebookUrl":  "https://www.facebook.com/banwisawa",
+    "facebookSignal":  {
+                           "postDate":  "31/8/2569",
+                           "pageName":  "บริษัท บ้านวิศวะพัฒนา จํากัด",
+                           "caption":  "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
+                           "likes":  0,
+                           "comments":  0,
+                           "shares":  0,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-27-1",
+                         "name":  "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร ...",
+                         "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.411,
+                                     102.808
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
+                         "postedTime":  "31/8/2569",
+                         "postUrl":  "https://www.facebook.com/reel/1043529308313395/",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-27-2",
+                         "name":  "ขอขอบพระคุณกองทุนเฉลียวอยู่วิทยานุสรณ์",
+                         "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.411,
+                                     102.808
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "ขอขอบพระคุณกองทุนเฉลียวอยู่วิทยานุสรณ์\nโดยคุณปนัดดา อยู่วิทยา\n.\nที่ได้บริจาคงบประมาณในการก่อสร้างปรับปรุง\nอาคารสนามเด็กเล่น ณ โรงพยาบาลศรีนครินทร์\nคณะแพทย์ศาสตร์ มหาวิทยาลัยขอนแก่น\n.\nก่อสร้างโดย บริษัท บ้านวิศวะพัฒนา จำกัด\nซึ่งวันที่ 13 สิงหาคม 2569 ได้ทำการ\nส่งมอบอาคารให้กับทางโรงพยาบาลศรีนครินทร์\nเพื่อให้ได้ใช้ประโยชน์ต่อไป\n------------------------------------------\n📍 คิดถึงงานก่อสร้าง คิดถึงบ้านวิศวะ\nสนใจโทร : 080-748-8844 (คุณไก่)\nเรายินดีให้บริการค่ะ\n.\n#บ้านวิศวะ #บ้านวิศวะอุดร #กองทุนเฉลียวอยู่วิทยานุสรณ์ #โรงพยาบาลศรีนครินทร์ #ขอนแก่น #สนามเด็กเล่น #Khonkaen",
+                         "postedTime":  "13/8/2569",
+                         "postUrl":  "https://www.facebook.com/banwisawa/posts/pfbid0D1WJGd4tXPSywG8rXXHBzLVJWS2LDk2vbFeseaRgbwgoU891TpsUnZ7nJwCdwWK5l",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 2 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+    "aiRecommendation":  "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+    "salesActionPlan":  [
+
+                        ],
+    "tag":  "new",
+    "opportunityScore":  35,
+    "scgCode":  "10729130",
+    "sales2025":  0,
+    "sales2026":  238997
+}

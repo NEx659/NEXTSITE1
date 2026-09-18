@@ -1,0 +1,219 @@
+{
+  "id": "comp-udon-12",
+  "name": "บริษัท มายด์ โฮม แอสเสท จํากัด",
+  "engName": "Mind Home Asset Co., Ltd.",
+  "category": "รับสร้างบ้านและพัฒนาอสังหาริมทรัพย์ (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
+  "phone": "063 723 9988 / 088 755 0079",
+  "contactPerson": "คุณมายด์ (063-723-9988), ทีมวิศวกรสถาปัตย์ (088-755-0079)",
+  "totalProjects": 4,
+  "newProjectsThisMonth": 4,
+  "totalValueMillion": 54.0,
+  "growthRate": 40,
+  "areaExpansion": "เมืองอุดรธานี, ขอนแก่น, สว่างแดนดิน, ศรีบุญเรือง",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0415561008901",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 1,
+    "foundation": 0,
+    "structure": 1,
+    "finishing": 2
+  },
+  "latestTimelineStage": "structure",
+  "revenuePotentialText": "฿8.5M",
+  "coordinates": [
+    17.402,
+    102.779
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/bAsJtsjYjtdoCWybA",
+  "gmaps": "https://maps.app.goo.gl/bAsJtsjYjtdoCWybA",
+  "facebookUrl": "https://www.facebook.com/MindHome.Grand",
+  "facebookSignal": {
+    "postDate": "15/9/2569",
+    "pageName": "บริษัท มายด์ โฮม แอสเสท จํากัด",
+    "caption": "เพราะบ้านคุณภาพเริ่มต้นตั้งแต่ วิธีก่ออิฐ🧱✨ ทีมงานได้รับการเทรนและสาธิตวิธีก่ออิฐมวลเบาจาก Q-CON SCG โดยตรง โทร: 063-7239988",
+    "likes": 32,
+    "comments": 6,
+    "shares": 4,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "ก่อสร้างจริง"
+    ]
+  },
+  "projects": [
+    {
+      "projectId": "comp-udon-12-1",
+      "name": "โครงการคฤหาสน์หรู 3 ชั้น พื้นที่ 389 ตร.ม. อ.เมืองอุดรธานี",
+      "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.402,
+        102.779
+      ],
+      "stage": "งานมุงหลังคา ก่ออิฐมวลเบา Q-CON และติดตั้งระบบ SCG Active AIR Quality",
+      "stageKey": "structure",
+      "trackingStatus": "pending",
+      "progressPercent": 50,
+      "estValue": "13.0 ล้านบาท",
+      "buildingType": "คฤหาสน์หรู 3 ชั้น พื้นที่ 389 ตร.ม.",
+      "caption": "🏗️ บ้าน 3 ชั้น พื้นที่ 389 ตร.ม. อ.เมืองอุดรธานี ความคืบหน้า 60 วัน โครงหลังคา Smart Truss, SCG Active AIR Quality, อิฐมวลเบา Q-CON โทร: 063-7239988",
+      "postedTime": "1/9/2569",
+      "postUrl": "https://www.facebook.com/MindHome.Grand/posts/pfbid036Hd8ies9P6mpJcPMybsoMJvfZ5YrL86NC9Y1iAQLRdacbcuMJWFFFYwMSCXXqxTel",
+      "boq": [
+        {
+          "sku": "ระบบเครื่องเติมอากาศบริสุทธิ์ SCG Active AIR Quality (Positive Pressure)",
+          "qty": "1 ชุด",
+          "estCost": "฿125,000",
+          "urgency": "ติดตั้งตามสเปก"
+        },
+        {
+          "sku": "โครงหลังคาสำเร็จรูป SCG Smart Truss",
+          "qty": "1 ชุดอาคาร",
+          "estCost": "฿180,000",
+          "urgency": "ส่งมอบแล้ว"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO Grand Luxury Series",
+          "qty": "5 ชุด",
+          "estCost": "฿145,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "ปูนฉาบอิฐมวลเบา เสือ มอร์ตาร์ ลูกดิ่ง",
+          "qty": "400 ถุง",
+          "estCost": "฿68,000",
+          "urgency": "ด่วนที่สุด"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-12-2",
+      "name": "โครงการก่อสร้างโรงแรม KINN HOTEL อ.เมือง จ.ขอนแก่น",
+      "location": "ถนนมิตรภาพ ต.ในเมือง อ.เมือง จ.ขอนแก่น",
+      "province": "ขอนแก่น",
+      "district": "เมืองขอนแก่น",
+      "gps": [
+        16.432,
+        102.823
+      ],
+      "stage": "งานตอกเสาเข็ม เทฐานรากคอนกรีต และหล่อเสาตอม่อ",
+      "stageKey": "groundbreak",
+      "trackingStatus": "pending",
+      "progressPercent": 15,
+      "estValue": "28.0 ล้านบาท",
+      "buildingType": "อาคารโรงแรมและพาณิชยกรรม",
+      "caption": "พิธียกเสาเอกเสาโท KINN HOTEL อำเภอเมืองขอนแก่น จังหวัดขอนแก่น โครงการโรงแรมที่ลูกค้าไว้วางใจให้ MIND HOME ดูแลเป็นครั้งที่ 2 โทร: 063-7239988",
+      "postedTime": "24/8/2569",
+      "postUrl": "https://www.facebook.com/MindHome.Grand/posts/pfbid0pHSwjQGkbjqMyRDzugurnZz1Wwim84oiZhc4G95zzbXeJYDPE5AvicSAci94qJf2l",
+      "boq": [
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC 280-320 ksc งานฐานรากและเสา-คานอาคารโรงแรม",
+          "qty": "350 คิว",
+          "estCost": "฿805,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "เหล็กเส้นเสริมคอนกรีต มอก. โรงใหญ่ ตราช้าง SCG",
+          "qty": "35 ตัน",
+          "estCost": "฿840,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "แผ่นพื้นคอนกรีตอัดแรง CPAC Hollow Core",
+          "qty": "650 ตร.ม.",
+          "estCost": "฿247,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-12-3",
+      "name": "โครงการ Wanwisa & Terry House อ.ศรีบุญเรือง จ.หนองบัวลำภู",
+      "location": "ต.เมืองใหม่ อ.ศรีบุญเรือง จ.หนองบัวลำภู",
+      "province": "หนองบัวลำภู",
+      "district": "ศรีบุญเรือง",
+      "gps": [
+        16.965,
+        102.285
+      ],
+      "stage": "งานฉาบปูน งานร้อยท่อสายไฟ และงานเตรียมปูกระเบื้อง",
+      "stageKey": "finishing",
+      "trackingStatus": "pending",
+      "progressPercent": 65,
+      "estValue": "6.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น สไตล์ Modern Luxury",
+      "caption": "Wanwisa & Terry House 📍 อ.ศรีบุญเรือง จ.หนองบัวลำภู งานฉาบปูนและงานระบบ MEP โทร: 063-7239988",
+      "postedTime": "14/9/2569",
+      "postUrl": "https://www.facebook.com/MindHome.Grand/posts/pfbid027VC52yXkBmZvTo72qt4KF9NaKGLerCm61Nufu3LpCLnB4oLApxj2RGZ5yQvo8zWol",
+      "boq": [
+        {
+          "sku": "กระเบื้องปูพื้น COTTO & บุญถาวร Luxury Collection",
+          "qty": "250 ตร.ม.",
+          "estCost": "฿95,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO Touchless Series",
+          "qty": "3 ชุด",
+          "estCost": "฿42,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-12-4",
+      "name": "โครงการบ้านเดี่ยวหรู 2 ชั้น อ.สว่างแดนดิน จ.สกลนคร",
+      "location": "อ.สว่างแดนดิน จ.สกลนคร",
+      "province": "สกลนคร",
+      "district": "สว่างแดนดิน",
+      "gps": [
+        17.475,
+        103.458
+      ],
+      "stage": "ตรวจเช็กความเรียบร้อยรอบสุดท้ายและทดสอบระบบก่อนส่งมอบ",
+      "stageKey": "finishing",
+      "trackingStatus": "pending",
+      "progressPercent": 95,
+      "estValue": "6.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น สไตล์ Luxury",
+      "caption": "🏡 ใกล้ถึงวันส่งมอบบ้าน 📍 อ.สว่างแดนดิน จ.สกลนคร โครงหลังคา Smart Truss, สุขภัณฑ์ COTTO โทร: 063-7239988",
+      "postedTime": "8/9/2569",
+      "postUrl": "https://www.facebook.com/MindHome.Grand/posts/pfbid02mFqY9XQ6C6Vxmf699Q7ZTrGLkd7LGR3bsMGXWRtiA9gDFi9Naxa941XrGvdNSUFHl",
+      "boq": [
+        {
+          "sku": "ชุดสุขภัณฑ์และอุปกรณ์ตกแต่งห้องน้ำ COTTO Premium",
+          "qty": "4 ชุด",
+          "estCost": "฿52,000",
+          "urgency": "ส่งมอบแล้ว"
+        }
+      ]
+    }
+  ],
+  "aiShortRec": "พบ 4 โปรเจกต์หรู Active จริง (คฤหาสน์ 3 ชั้นอุดรฯ, โรงแรม KINN HOTEL ขอนแก่น ฿28M, หนองบัวลำภู, สกลนคร) ยอดซื้อ SCG รวมกว่า ฿2.51M",
+  "aiRecommendation": "ลูกค้าระดับ Tier-1 Key Regional Builder (10335064) แนะนำเร่งล็อกยอดคอนกรีต CPAC 350 คิว และเหล็กเส้นตราช้าง 35 ตัน สำหรับโรงแรม KINN HOTEL ขอนแก่น ด่วน",
+  "customDiagnostic": "บริษัท มายด์ โฮม แอสเสท จํากัด (MIND HOME) เป็นลูกค้าระดับยุทธศาสตร์ Tier-1 ชั้นนำของภาคอีสาน มียอดสั่งซื้อ SCG ปี 2025 สูงถึง <strong>฿2,514,378</strong> และปี 2026 ทำยอดไปแล้ว <strong>฿1,361,324</strong> (SCG Code 10335064) มีความสัมพันธ์ลึกซึ้งกับ SCG (ได้รับ Certified Training จาก Q-CON โดยตรง, ใช้ SCG Smart Truss, สุขภัณฑ์ COTTO และติดตั้งระบบ SCG Active AIR Quality) ปัจจุบันได้รับงานใหญ่โครงการสร้างโรงแรม KINN HOTEL ขอนแก่น (฿28M) และคฤหาสน์ 3 ชั้นในเมืองอุดรฯ",
+  "customRecommendations": [
+    "<strong>คอนกรีตผสมเสร็จ CPAC 280-320 ksc (350 คิว) & เหล็กเส้นตราช้าง SCG (35 ตัน):</strong> ล็อกสเปกส่งตรงหน้างานโรงแรม KINN HOTEL อ.เมืองขอนแก่น",
+    "<strong>ระบบนวัตกรรมบ้านสุขภาพ SCG Active AIR Quality & Smart Living:</strong> ขยายผลการติดตั้งสู่บ้านหรูทุกหลังของ Mind Home เพื่อยกระดับมูลค่าโครงการ",
+    "<strong>แผ่นพื้นคอนกรีต Hollow Core CPAC & ฉนวนกันเสียง SCG Acoustic:</strong> นำเสนอโซลูชันกันเสียงสำหรับห้องพักโรงแรม KINN HOTEL",
+    "<strong>ชุดกระเบื้องและสุขภัณฑ์ COTTO Grand Luxury Series:</strong> ปิดยอด Finishing ร่วมกับบุญถาวรสำหรับคฤหาสน์ 3 ชั้น อุดรธานี และไซต์ศรีบุญเรือง"
+  ],
+  "salesActionPlan": [
+    "ประสานงาน CPAC Plant ขอนแก่น และวิศวกร Mind Home (088-755-0079) เพื่อล็อกคิวเทคอนกรีตฐานรากและคานโรงแรม KINN HOTEL",
+    "เข้าพบคุณมายด์ (063-723-9988) เพื่อนำเสนอแพ็กเกจฉนวนกันเสียง SCG Acoustic Wall และสุขภัณฑ์ COTTO Hotel Collection",
+    "จัดทำเคสตัวอย่างพรีเมียมร่วมกับไซต์คฤหาสน์ 3 ชั้น อุดรธานี ที่ติดตั้ง SCG Active AIR Quality",
+    "อำนวยความสะดวกด้านโลจิสติกส์จัดส่งวัสดุข้ามจังหวัด (อุดรฯ - ขอนแก่น - สกลนคร - หนองบัวลำภู) แบบครบวงจร"
+  ],
+  "tag": "focus",
+  "opportunityScore": 95,
+  "scgCode": "10335064",
+  "sales2025": 2514378,
+  "sales2026": 1361324
+}

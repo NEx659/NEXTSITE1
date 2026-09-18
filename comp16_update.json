@@ -1,0 +1,123 @@
+{
+  "id": "comp-udon-16",
+  "name": "บริษัท 117อาร์คิเทคท์ จํากัด",
+  "engName": "117 ARCHITECT CO., LTD.",
+  "category": "รับสร้างบ้านและออกแบบสถาปัตยกรรม (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "117 หมู่ 4 ซอยสุขคณา ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
+  "phone": "089 615 9559",
+  "contactPerson": "คุณพงษ์ศักดิ์ เรืองศิวะกุล (089-615-9559) - สถาปนิกและกรรมการผู้จัดการ",
+  "totalProjects": 1,
+  "newProjectsThisMonth": 1,
+  "totalValueMillion": 3.5,
+  "growthRate": 1284,
+  "areaExpansion": "เมืองอุดรธานี",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0415561009876",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 0,
+    "foundation": 1,
+    "structure": 0,
+    "finishing": 0
+  },
+  "latestTimelineStage": "foundation",
+  "revenuePotentialText": "฿1.2M",
+  "coordinates": [
+    17.414,
+    102.783
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/Phongsak117",
+  "gmaps": "https://maps.app.goo.gl/Phongsak117",
+  "facebookUrl": "https://www.facebook.com/PhongsakRuangsiwakun",
+  "facebookSignal": {
+    "postDate": "10/9/2569",
+    "pageName": "บริษัท 117อาร์คิเทคท์ จํากัด",
+    "caption": "Site Update - งานเทคอนกรีตฐานราก บ้านคุณกนกวรรณ ซอยสุขคณา อ.เมืองอุดรธานี โดย 117อาร์คิเทคท์ โทร: 089-615-9559",
+    "likes": 28,
+    "comments": 4,
+    "shares": 2,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "ก่อสร้างจริง"
+    ]
+  },
+  "projects": [
+    {
+      "projectId": "comp-udon-16-1",
+      "name": "โครงการบ้านพักอาศัยเดี่ยว 1 ชั้น คุณกนกวรรณ กอบุญช่วย 📍 ซอยสุขคณา",
+      "location": "ซอยสุขคณา ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.414,
+        102.783
+      ],
+      "stage": "งานเทคอนกรีตฐานราก ตอม่อ และหล่อคานคอดิน",
+      "stageKey": "foundation",
+      "trackingStatus": "pending",
+      "progressPercent": 25,
+      "estValue": "3.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 1 ชั้น สไตล์ Modern",
+      "caption": "Site Update - งานก่อสร้างบ้านพักอาศัย 1 ชั้น ของคุณกนกวรรณและครอบครัว ที่ตั้ง : ซอยสุขคณา อ.เมืองอุดรธานี งานเทคอนกรีตฐานราก โดย 117อาร์คิเทคท์ โทร: 089-615-9559",
+      "postedTime": "10/9/2569",
+      "postUrl": "https://www.facebook.com/PhongsakRuangsiwakun/posts/pfbid02uLnV3Jx8vpqjgMMcQUJKF6jUw5XSZCA3pe2Hd5rJbNkFYNGcx8GJYyLhX6dkuE53l",
+      "boq": [
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานคานคอดินและพื้น",
+          "qty": "45 คิว",
+          "estCost": "฿99,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+          "qty": "220 ถุง",
+          "estCost": "฿37,400",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ปูนเสือ สกิมโค้ท (Tiger Skim Coat) สีเทา/ขาว",
+          "qty": "180 ถุง",
+          "estCost": "฿34,200",
+          "urgency": "ตรงสเปกของแถม"
+        },
+        {
+          "sku": "กระเบื้องหลังคาคอนกรีต SCG / แผ่นหลังคา SCG",
+          "qty": "160 ตร.ม.",
+          "estCost": "฿56,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO Standard Collection",
+          "qty": "2 ชุด",
+          "estCost": "฿26,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    }
+  ],
+  "aiShortRec": "พบ 1 ไซต์งาน Active จริงใน อ.เมืองอุดรธานี (ไซต์บ้านคุณกนกวรรณ ซ.สุขคณา งานเทฐานราก 25%) ยอดซื้อ SCG เติบโต +1,284% YoY",
+  "aiRecommendation": "สถาปนิกผู้รับเหมาสเกลงานเร็วและมีจุดขายสกิมโค้ททั้งหลัง แนะนำเร่งล็อกสเปกคอนกรีต CPAC 45 คิว และปูนเสือ สกิมโค้ท สำหรับไซต์ซอยสุขคณาด่วน",
+  "customDiagnostic": "บริษัท 117อาร์คิเทคท์ จํากัด เป็นสตูดิโอสถาปนิกและผู้รับเหมาสร้างบ้านคุณภาพสูงในเขตเมืองอุดรธานี มียอดซื้อ SCG เติบโตอย่างก้าวกระโดดจาก ฿28,572.5 สู่ <strong>฿395,558.3</strong> ในปี 2026 (+1,284.4% YoY, SCG Code 10509038) ชูจุดขายรับประกันโครงสร้าง 15 ปีและแถมฟรีงานฉาบ Skim Coat ทั้งหลัง มีไซต์งานจริงกำลังเทฐานรากและคานคอดินในซอยสุขคณา อ.เมืองอุดรธานี",
+  "customRecommendations": [
+    "<strong>คอนกรีตผสมเสร็จ CPAC 240 ksc (45 คิว):</strong> ล็อกสเปกส่งตรงหน้างานซอยสุขคณา อ.เมืองอุดรธานี สำหรับเทคานคอดินและพื้นอาคาร",
+    "<strong>ปูนเสือ สกิมโค้ท (Tiger Skim Coat):</strong> นำเสนอเป็นสเปกมาตรฐานของ 117 Architect สำหรับการันตีงานฉาบผิวเนียนเรียบทั้งหลัง",
+    "<strong>กระเบื้องหลังคา SCG & ชุดสุขภัณฑ์ COTTO:</strong> จัดทำสเปกชีตเสนอคุณพงษ์ศักดิ์สำหรับงานมุงหลังคาและห้องน้ำ",
+    "<strong>โซลูชันระบบรั้วสำเร็จรูป SCG Precast Fence:</strong> เสริมพอร์ตโฟลิโอบริการงานรั้วและงานต่อเติมรีโนเวท"
+  ],
+  "salesActionPlan": [
+    "เข้าพบคุณพงษ์ศักดิ์ เรืองศิวะกุล (089-615-9559) เพื่อนำเสนอราคาและจองคิวรถคอนกรีต CPAC เทคานไซต์ซอยสุขคณา",
+    "จัดส่งตัวอย่างและราคาโครงการ ปูนเสือ สกิมโค้ท เพื่อบรรจุลงในสเปกมาตรฐานของบริษัท",
+    "นำเสนอแคตตาล็อกสุขภัณฑ์ COTTO และระบบรั้วสำเร็จรูป SCG Precast",
+    "ประสานงานจัดส่งวัสดุตรงจากตัวแทนจำหน่าย SCG ในเขตเทศบาลนครอุดรธานี"
+  ],
+  "tag": "focus",
+  "opportunityScore": 85,
+  "scgCode": "10509038",
+  "sales2025": 28572.5,
+  "sales2026": 395558.3
+}

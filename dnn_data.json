@@ -1,0 +1,163 @@
+﻿{
+    "id":  "comp-udon-55",
+    "name":  "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+    "engName":  "DNN Construction Ltd., Part.",
+    "category":  "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "ประจักษ์ศิลปาคม",
+    "address":  "263 หมู่บ้าน นาม่วง หมู่ที่ 1 นาม่วง ประจักษ์ศิลปาคม อุดรธานี",
+    "phone":  "063 046 5748",
+    "contactPerson":  "ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+    "totalProjects":  3,
+    "newProjectsThisMonth":  3,
+    "totalValueMillion":  16.5,
+    "growthRate":  40,
+    "areaExpansion":  "เมืองอุดรธานี",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415567000573",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  0,
+                           "structure":  3,
+                           "finishing":  0
+                       },
+    "latestTimelineStage":  "groundbreak",
+    "revenuePotentialText":  "฿1.5M",
+    "coordinates":  [
+                        17.2623,
+                        103.0035
+                    ],
+    "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+    "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+    "facebookUrl":  "https://www.facebook.com/profile.php?id=61576710850214",
+    "facebookSignal":  {
+                           "postDate":  "9/9/2569",
+                           "pageName":  "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+                           "caption":  "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
+                           "likes":  0,
+                           "comments":  0,
+                           "shares":  0,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-55-1",
+                         "name":  "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡",
+                         "location":  "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "ประจักษ์ศิลปาคม",
+                         "gps":  [
+                                     17.2623,
+                                     103.0035
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
+                         "postedTime":  "9/9/2569",
+                         "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0Kum6FQAu12yv28DbFeKXjrbSVwNw2DjTMuxeZnhDgr3ENccQEXHVuzxXHZ9J9YiMl\u0026id=61576710850214",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-55-2",
+                         "name":  "อัปเดตหน้างานบ้านคุณเปี๊ยก 🏡✨ 27/08/2026",
+                         "location":  "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "ประจักษ์ศิลปาคม",
+                         "gps":  [
+                                     17.2623,
+                                     103.0035
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "อัปเดตหน้างานบ้านคุณเปี๊ยก 🏡✨ 27/08/2026\n#DNNConstruction\n#รับสร้างบ้านอุดรธานี\n#ปรึกษาสร้างบ้านฟรี",
+                         "postedTime":  "27/8/2569",
+                         "postUrl":  "https://www.facebook.com/reel/3701290223342894/",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-55-3",
+                         "name":  "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเร...",
+                         "location":  "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "ประจักษ์ศิลปาคม",
+                         "gps":  [
+                                     17.2623,
+                                     103.0035
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเรา 🙏🏠\nเซ็นสัญญาและรับมัดจำเรียบร้อย เตรียมเริ่มสร้างบ้านหลังใหม่ในปี 2027\n\n#DNNConstruction #รับสร้างบ้าน #สร้างบ้านอุดรธานี",
+                         "postedTime":  "25/8/2569",
+                         "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid02fCqSNv3LZyevgiMA1q3hdR8wjeKPafDvsTf3wcGvHAn5mNH5rBev95UjGPFKDrKpl\u0026id=61576710850214",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 3 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 3)",
+    "aiRecommendation":  "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+    "salesActionPlan":  [
+
+                        ],
+    "tag":  "new",
+    "opportunityScore":  70,
+    "scgCode":  "10724226",
+    "sales2025":  0,
+    "sales2026":  75021
+}

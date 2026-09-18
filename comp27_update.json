@@ -1,0 +1,157 @@
+{
+  "id": "comp-udon-27",
+  "name": "บริษัท บ้านวิศวะพัฒนา จํากัด",
+  "engName": "Baan Witsawa Phatthana Co., Ltd.",
+  "category": "รับสร้างบ้านและงานวิศวกรรมอาคาร (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "168/18 หมู่ 4 ถนนรอบเมือง ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
+  "phone": "080 748 8844 / 042 182 358",
+  "contactPerson": "คุณไก่ (080-748-8844) - ฝ่ายขายและประสานงาน, ทีมวิศวกร (081-974-9844)",
+  "totalProjects": 2,
+  "newProjectsThisMonth": 2,
+  "totalValueMillion": 18.5,
+  "growthRate": 100,
+  "areaExpansion": "เมืองอุดรธานี, ขอนแก่น, อำนาจเจริญ",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0415563001853",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 1,
+    "foundation": 0,
+    "structure": 1,
+    "finishing": 0
+  },
+  "latestTimelineStage": "groundbreak",
+  "revenuePotentialText": "฿3.5M",
+  "coordinates": [
+    17.411,
+    102.808
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+  "gmaps": "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+  "facebookUrl": "https://www.facebook.com/banwisawa",
+  "facebookSignal": {
+    "postDate": "3/9/2569",
+    "pageName": "บริษัท บ้านวิศวะพัฒนา จํากัด",
+    "caption": "🎉 เปิดหน้างานสร้างบ้าน อ.เมือง จ.อุดรธานี พื้นที่ 276 ตร.ม. 4 ห้องนอน 4 ห้องน้ำ บ้านวิศวะ โทร: 080-748-8844 (คุณไก่)",
+    "likes": 35,
+    "comments": 6,
+    "shares": 3,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "ก่อสร้างจริง"
+    ]
+  },
+  "projects": [
+    {
+      "projectId": "comp-udon-27-1",
+      "name": "โครงการบ้านพักอาศัยเดี่ยวพรีเมียม 2 ชั้น พื้นที่ 276 ตร.ม. 📍 อ.เมือง จ.อุดรธานี",
+      "location": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.411,
+        102.808
+      ],
+      "stage": "เปิดหน้างาน วางผัง ขุดหลุมฐานรากและเทคอนกรีตตอม่อ",
+      "stageKey": "groundbreak",
+      "trackingStatus": "pending",
+      "progressPercent": 15,
+      "estValue": "6.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น (พื้นที่ 276 ตร.ม.)",
+      "caption": "🎉 เปิดหน้างานสร้างบ้าน อ.เมือง จ.อุดรธานี พื้นที่ 276 ตร.ม. 4 ห้องนอน 4 ห้องน้ำ 1 ห้องนั่งเล่น 1 ห้องครัว 1 ห้องทานข้าว คิดถึงงานก่อสร้าง คิดถึงบ้านวิศวะ โทร: 080-748-8844 (คุณไก่)",
+      "postedTime": "3/9/2569",
+      "postUrl": "https://www.facebook.com/banwisawa/posts/pfbid02yj8q2ZNLwh3U5SHSFY9FKayTvRadLr6WSdconSnXqzPaWhJu2zBKMtkjDeEvFmMJl",
+      "boq": [
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานคานคอดินและเสา",
+          "qty": "70 คิว",
+          "estCost": "฿154,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+          "qty": "320 ถุง",
+          "estCost": "฿54,400",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "แผ่นพื้นคอนกรีตสำเร็จรูป CPAC Smart Slab",
+          "qty": "180 ตร.ม.",
+          "estCost": "฿45,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO Modern Luxury Series",
+          "qty": "4 ชุด",
+          "estCost": "฿58,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "ฉนวนกันความร้อน SCG STAY COOL หนา 75 มม.",
+          "qty": "40 ม้วน",
+          "estCost": "฿22,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-27-2",
+      "name": "โครงการก่อสร้างอาคารอเนกประสงค์และห้องน้ำ รร.อนุบาลชานุมาน (1,100 ตร.ม.)",
+      "location": "โรงเรียนอนุบาลชานุมาน อ.ชานุมาน จ.อำนาจเจริญ",
+      "province": "อำนาจเจริญ",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        16.0,
+        105.0
+      ],
+      "stage": "งานโครงสร้างเหล็ก งานก่อผนัง และงานระบบสุขาภิบาล",
+      "stageKey": "structure",
+      "trackingStatus": "pending",
+      "progressPercent": 60,
+      "estValue": "12.0 ล้านบาท",
+      "buildingType": "อาคารอเนกประสงค์และห้องน้ำสาธารณะ (1,100 ตร.ม.)",
+      "caption": "📍 UPDATE! การก่อสร้างอาคารอเนกประสงค์ และห้องน้ำ โรงเรียนอนุบาลชานุมาน จ.อำนาจเจริญ พื้นที่กว่า 1,100 ตร.ม. บ้านวิศวะ โทร: 080-748-8844",
+      "postedTime": "2/9/2569",
+      "postUrl": "https://www.facebook.com/banwisawa/posts/pfbid0bTBTvDkfmGiZSoMJPyNWL7rKZ9ckBjq6muyaxKXn3BumcSPquFzLRpdw8zZfqv4Ul",
+      "boq": [
+        {
+          "sku": "แผ่นยิปซัมตราช้างและแผ่น SCG สมาร์ทบอร์ด",
+          "qty": "250 แผ่น",
+          "estCost": "฿65,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์และก๊อกน้ำ COTTO Commercial Collection",
+          "qty": "12 ชุด",
+          "estCost": "฿96,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    }
+  ],
+  "aiShortRec": "พบ 2 ไซต์ Active จริง (บ้านเดี่ยวพรีเมียม 276 ตร.ม. อ.เมืองอุดรฯ เปิดหน้างานใหม่ และอาคารโรงเรียน 1,100 ตร.ม.) ลูกค้าใหม่ SCG ฿238.9K",
+  "aiRecommendation": "ลูกค้ารายใหม่ศักยภาพงานพรีเมียมและอาคารสาธารณะ แนะนำเร่งล็อกสเปกคอนกรีตผสมเสร็จ CPAC 70 คิว สำหรับไซต์ใหม่เมืองอุดรฯ และสุขภัณฑ์ COTTO ด่วน",
+  "customDiagnostic": "บริษัท บ้านวิศวะพัฒนา จํากัด (บ้านวิศวะ) เป็นบริษัทรับสร้างบ้านและวิศวกรรมอาคารคุณภาพสูงใน จ.อุดรธานี เพิ่งเปิดรหัสคู่ค้า SCG สำเร็จในปี 2026 (SCG Code 10729130) มียอดสั่งซื้อสะสม <strong>฿238,997</strong> มีความเชี่ยวชาญทั้งงานบ้านพักอาศัยระดับพรีเมียม (เปิดไซต์ใหม่ 276 ตร.ม. ในเขต อ.เมืองอุดรฯ) และงานอาคารสาธารณะขนาดใหญ่ (อาคาร 1,100 ตร.ม. และงานปรับปรุง รพ.ศรีนครินทร์ ขอนแก่น) มีโอกาสสูงในการขยายยอดซื้อคอนกรีต CPAC, แผ่นพื้น Smart Slab, แผ่นสมาร์ทบอร์ด และสุขภัณฑ์ COTTO Commercial",
+  "customRecommendations": [
+    "<strong>คอนกรีตผสมเสร็จ CPAC 240 ksc (70 คิว):</strong> ล็อกสเปกส่งตรงหน้างานไซต์บ้านใหม่ 276 ตร.ม. อ.เมืองอุดรธานี สำหรับเทคานคอดิน เสา และพื้น",
+    "<strong>ชุดสุขภัณฑ์และก๊อกน้ำ COTTO Modern Luxury Series (4 ชุด):</strong> จัดทำ Mood Board สุขภัณฑ์พรีเมียมเสนอคุณไก่สำหรับบ้านเดี่ยว 276 ตร.ม.",
+    "<strong>แผ่น SCG สมาร์ทบอร์ดและยิปซัมตราช้าง (250 แผ่น):</strong> นำเสนอราคาโครงการสำหรับอาคารอเนกประสงค์ 1,100 ตร.ม.",
+    "<strong>ชุดสุขภัณฑ์ COTTO Commercial Collection (12 ชุด):</strong> นำเสนอแพ็กเกจสุขภัณฑ์ประหยัดน้ำและทนทานสำหรับงานอาคารสาธารณะ"
+  ],
+  "salesActionPlan": [
+    "โทรนัดหมายคุณไก่ (080-748-8844) เพื่อเสนอราคาคอนกรีต CPAC 240 ksc และแผ่นพื้น Smart Slab สำหรับไซต์ใหม่เมืองอุดรธานี",
+    "จัดทำใบเสนอราคาสุขภัณฑ์ COTTO Modern Luxury 4 ชุด สำหรับบ้าน 276 ตร.ม.",
+    "ประสานงานส่งมอบตัวอย่างแผ่น SCG Smartboard และยิปซัมตราช้างให้ทีมวิศวกรบ้านวิศวะ (081-974-9844)",
+    "มอบสิทธิประโยชน์โปรแกรม SCG Family VIP Builder สำหรับลูกค้ารายใหม่"
+  ],
+  "tag": "focus",
+  "opportunityScore": 88,
+  "scgCode": "10729130",
+  "sales2025": 0,
+  "sales2026": 238997
+}
