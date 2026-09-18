@@ -3069,11 +3069,11 @@ function getProjectProgressInfo(proj) {
     };
   }
 
-  const text = (String(proj.name || proj.title || '') + ' ' + String(proj.stage || '') + ' ' + String(proj.status || '') + ' ' + String(proj.caption || '')).toLowerCase();
   const stageKey = proj.stageKey || '';
+  const explicitPercent = Number(proj.progressPercent);
 
-  // 5. งานส่งมอบบ้าน / ตรวจรับ (98%) -> จบงานแล้ว
-  if (text.includes('ส่งมอบ') || text.includes('ตรวจรับ') || text.includes('เสร็จสมบูรณ์') || text.includes('งวดสุดท้าย') || text.includes('ทำความสะอาด') || text.includes('ปิดจ๊อบ') || stageKey === 'handover' || stageKey === 'completed') {
+  // Check if explicitly completed/handed over whole project
+  if (stageKey === 'handover' || stageKey === 'completed' || explicitPercent >= 98) {
     return {
       percent: 98,
       percentText: '98%',
@@ -3081,6 +3081,53 @@ function getProjectProgressInfo(proj) {
       stageLabel: 'งานส่งมอบบ้าน / ตรวจรับ (จบงานแล้ว)',
       color: '#16A34A',
       bgGradient: 'linear-gradient(90deg, #15803D, #22C55E)'
+    };
+  }
+
+  const text = (String(proj.name || proj.title || '') + ' ' + String(proj.stage || '') + ' ' + String(proj.status || '') + ' ' + String(proj.caption || '')).toLowerCase();
+
+  // Distinguish between sub-stage milestone delivery (ส่งมอบงานงวด/ระบบ) vs full house handover (ส่งมอบบ้าน/ส่งมอบกุญแจ)
+  const isSubStageHandover = text.includes('ส่งมอบงานระบบ') || text.includes('ส่งมอบงวด') || text.includes('ส่งมอบงานงวด') || text.includes('ส่งมอบงานฉาบ') || text.includes('ส่งมอบงานโครงสร้าง') || text.includes('พร้อมสำหรับขั้นตอนงานต่อไป') || text.includes('เตรียมงานงวดต่อไป') || text.includes('งวดถัดไป');
+  const isFullHandover = (text.includes('ส่งมอบบ้าน') || text.includes('ส่งมอบกุญแจ') || text.includes('ส่งมอบแล้วเสร็จ') || text.includes('ตรวจรับบ้าน') || text.includes('ตรวจรับมอบ') || text.includes('เสร็จสมบูรณ์ 100%') || text.includes('ปิดจ๊อบ')) && !isSubStageHandover;
+
+  if (isFullHandover) {
+    return {
+      percent: 98,
+      percentText: '98%',
+      isCompleted: true,
+      stageLabel: 'งานส่งมอบบ้าน / ตรวจรับ (จบงานแล้ว)',
+      color: '#16A34A',
+      bgGradient: 'linear-gradient(90deg, #15803D, #22C55E)'
+    };
+  }
+
+  // Prioritize explicit percent if defined on project object
+  if (!isNaN(explicitPercent) && explicitPercent > 0) {
+    let label = 'งานโครงสร้าง & หลังคา';
+    let color = '#3B82F6';
+    let bg = 'linear-gradient(90deg, #1D4ED8, #60A5FA)';
+
+    if (explicitPercent <= 15 || stageKey === 'groundbreak') {
+      label = 'เริ่มงาน / วางผัง / ยกเสาเอก';
+      color = '#F59E0B';
+      bg = 'linear-gradient(90deg, #D97706, #FBBF24)';
+    } else if (explicitPercent <= 35 || stageKey === 'foundation') {
+      label = 'งานฐานราก & คานคอดิน';
+      color = '#EA580C';
+      bg = 'linear-gradient(90deg, #C2410C, #FB923C)';
+    } else if (explicitPercent >= 70 || stageKey === 'finishing') {
+      label = 'งานสถาปัตย์ & ตกแต่ง';
+      color = '#10B981';
+      bg = 'linear-gradient(90deg, #059669, #34D399)';
+    }
+
+    return {
+      percent: explicitPercent,
+      percentText: `${explicitPercent}%`,
+      isCompleted: false,
+      stageLabel: label,
+      color: color,
+      bgGradient: bg
     };
   }
 
@@ -3144,13 +3191,13 @@ function renderCompanyProjectsList(company) {
   if (!container) return;
 
   const rawProjects = company.projects || [];
-  // คัดกรองโครงการ 98% หรือ โครงการที่จบงาน/ส่งมอบแล้วออกทั้งหมด
+  // คัดกรองเฉพาะโครงการที่จบงานสมบูรณ์ 100%/ส่งมอบบ้านแล้ว (>=98%) ออก
   const projects = rawProjects.filter(p => {
     if (!p) return false;
+    if (p.stageKey === 'handover' || p.stageKey === 'completed') return false;
+    if (typeof p.progressPercent === 'number' && p.progressPercent >= 98) return false;
     const prog = getProjectProgressInfo(p);
-    if (prog.percent >= 98 || prog.isCompleted || p.stageKey === 'handover' || p.stageKey === 'completed') return false;
-    const txt = (String(p.name || '') + ' ' + String(p.stage || '') + ' ' + String(p.caption || '')).toLowerCase();
-    if (typeof isCompletedOrHandoverText === 'function' && isCompletedOrHandoverText(txt)) return false;
+    if (prog.percent >= 98 || prog.isCompleted) return false;
     return true;
   });
 
@@ -4096,13 +4143,19 @@ function isInternalOrNonConstructionPost(text) {
 function isCompletedOrHandoverText(text) {
   if (!text) return false;
   let clean = String(text);
+  
+  // ยกเว้นการส่งมอบงวดงานย่อย / งานระบบ / งานระหว่างทำ ที่ไม่ใช่การส่งมอบบ้านทั้งหลัง
+  if (/(?:ส่งมอบงานระบบ|ส่งมอบระบบ|ส่งมอบงวด|ส่งมอบงานงวด|ส่งมอบงานโครงสร้าง|ส่งมอบงานฐานราก|ส่งมอบงานเทพื้น|ส่งมอบงานฝ้า|ส่งมอบงานก่อ|พร้อมสำหรับขั้นตอน|ขั้นตอนต่อไป)/i.test(clean)) {
+    return false;
+  }
+
   // ตัดสโลแกนการตลาดออก เช่น "ดูแลตั้งแต่เริ่มจนส่งมอบ"
   clean = clean.replace(/(?:ดูแล|บริการ|ใส่ใจ|ตั้งแต่|ตั้งแต่วันแรก|จากวันแรก|เริ่มงาน|วางผัง)\s*(?:จนถึง|จน|ถึง)?\s*(?:วัน)?\s*(?:ส่งมอบ|รับกุญแจ)/gi, '');
   clean = clean.replace(/ออกแบบจนส่งมอบ/gi, '');
   clean = clean.replace(/รับประกันหลังส่งมอบ/gi, '');
 
   const completedKeywords = [
-    "ส่งมอบบ้าน", "ส่งมอบงาน", "ส่งมอบเรียบร้อย", "ส่งมอบแล้ว", "ส่งมอบกุญแจ", "ส่งมอบผลงาน",
+    "ส่งมอบบ้าน", "ส่งมอบกุญแจ", "ส่งมอบผลงานบ้าน",
     "พิธีส่งมอบ", "พิธีมอบบ้าน", "ตรวจรับบ้าน", "ตรวจรับมอบ", "รับมอบบ้าน", "รับกุญแจบ้าน",
     "ปิดจ๊อบ", "เสร็จสมบูรณ์ 100%", "เสร็จสมบูรณ์100%", "สร้างเสร็จสมบูรณ์", "ส่งมอบบ้านพักอาศัย",
     "งวดสุดท้ายพร้อมส่งมอบ", "handover", "hand over", "completed house", "finish house", "100% ส่งมอบ",
@@ -4115,7 +4168,7 @@ function isCompletedOrHandoverText(text) {
     }
   }
 
-  if (/(?:ส่งมอบ|ตรวจรับ|รับมอบ)\s*(?:บ้าน|งาน|ไซต์|โครงการ|ผลงาน|กุญแจ)/i.test(clean)) {
+  if (/(?:ส่งมอบ|ตรวจรับ|รับมอบ)\s*(?:บ้าน|กุญแจ|บ้านพักอาศัย|ผลงานบ้าน)/i.test(clean)) {
     return true;
   }
   if (/(?:เสร็จสมบูรณ์|100%|ปิดจ๊อบ)\s*(?:พร้อมส่งมอบ|ส่งมอบ|ตรวจรับ)/i.test(clean)) {
@@ -5910,6 +5963,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleApifyJsonFileSelect(event) {
   handleApifyFileUpload(event);
 }
+
+
 
 
 
