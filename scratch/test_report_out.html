@@ -1,0 +1,2698 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTSITE AI — Sales Summary Report (รายงานสรุปยอดขาย 2025 vs 2026)</title>
+  <meta name="description" content="รายงานสรุปยอดขายบริษัทรับสร้างบ้าน SCG Construction Intelligence System 2025 vs 2026">
+
+  <!-- Google Fonts: Prompt, Inter & Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Prompt:wght@300;400;500;600;700;800;900&amp;family=Sarabun:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css?v=69.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: #F1F5F9;
+      color: #0F172A;
+      zoom: 0.85;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-navbar {
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .report-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    .report-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .excel-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Sarabun', 'Inter', sans-serif;
+    }
+
+    .excel-table th {
+      background: #002060 !important;
+      color: #FFFFFF !important;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      border: 1px solid #001A4E;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .excel-table td {
+      padding: 10px 16px;
+      font-size: 0.90rem;
+      border: 1px solid #CBD5E1;
+    }
+
+    .excel-table tbody tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    .excel-table tbody tr:hover {
+      background: #EFF6FF !important;
+    }
+
+    .excel-table tfoot td {
+      background: #002060 !important;
+      color: #FFFFFF !important;
+      font-weight: 900;
+      padding: 12px 16px;
+      border: 1px solid #001A4E;
+      font-size: 0.95rem;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: none;
+    }
+
+    .btn-back {
+      background: #F1F5F9;
+      color: #334155;
+      border: 1.5px solid #CBD5E1;
+    }
+    .btn-back:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+    }
+
+    .btn-excel {
+      background: #10B981;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(16,185,129,0.3);
+    }
+    .btn-excel:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-print {
+      background: #3B82F6;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+    }
+    .btn-print:hover {
+      background: #2563EB;
+      transform: translateY(-1px);
+    }
+
+    @media print {
+      body {
+        zoom: 1;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .report-navbar, .filter-toolbar, .no-print {
+        display: none !important;
+      }
+      .report-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .report-card {
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+      }
+
+      /* When printing AI Strategy */
+      body.printing-ai-strategy .report-container,
+      body.printing-ai-strategy .report-card,
+      body.printing-ai-strategy .app-header,
+      body.printing-ai-strategy .main-wrapper,
+      body.printing-ai-strategy #sales-report-modal {
+        display: none !important;
+      }
+
+      body.printing-ai-strategy #ai-strategy-modal {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        background: #FFFFFF !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      body.printing-ai-strategy #ai-strategy-modal > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        animation: none !important;
+      }
+
+      body.printing-ai-strategy #ai-strategy-printable-area {
+        overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 10px 0 !important;
+        background: #FFFFFF !important;
+      }
+
+      body.printing-ai-strategy #ai-strategy-modal button {
+        display: none !important;
+      }
+
+      /* Clean page breaking */
+      body.printing-ai-strategy div[style*="border-radius"],
+      body.printing-ai-strategy .kpi-grid,
+      body.printing-ai-strategy .report-card {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="auth-locked">
+
+  <!-- Top Navbar -->
+  <header class="report-navbar">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+        <div style="background: #D9251D; color: #FFFFFF; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; box-shadow: 0 2px 6px rgba(217,37,29,0.35);">
+          N
+        </div>
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 900; color: #0F172A; letter-spacing: -0.02em;">
+            NEXTSITE <span style="color: #D9251D;">AI</span>
+          </div>
+          <div style="font-size: 0.70rem; color: #64748B; font-weight: 700;">
+            SCG CONSTRUCTION INTELLIGENCE REPORT
+          </div>
+        </div>
+      </a>
+      <div style="width: 1px; height: 26px; background: #CBD5E1; margin: 0 6px;"></div>
+      <div style="font-size: 0.95rem; font-weight: 800; color: #1E40AF; display: flex; align-items: center; gap: 6px;">
+        <span>📊 รายงานสรุปยอดขายบริษัทรับสร้างบ้าน (2025 vs 2026)</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <a href="index.html" class="btn-action btn-back" id="btn-back-dashboard">⬅️ กลับหน้าหลัก Dashboard (อุดรธานี)</a>
+      <button type="button" id="btn-report-cloud-sync" onclick="loadAndApplyCloudSales(true)" class="btn-action" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1.5px solid rgba(16, 185, 129, 0.4);" title="คลิกเพื่อดึงยอดขายล่าสุดจาก Supabase Cloud">
+        ☁️ ดึงยอดจาก Supabase
+      </button>
+      <button type="button" onclick="exportToExcelCsv()" class="btn-action btn-excel">
+        📥 ส่งออก Excel (CSV)
+      </button>
+      <button type="button" onclick="window.print()" class="btn-action btn-print">
+        🖨️ สั่งพิมพ์รายงาน
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="report-container">
+
+    <!-- KPI Summary Row -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px;">
+      
+      <!-- Card 1: Companies Count -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">🏢 จำนวนบริษัทในรายงาน</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #0F172A;" id="kpi-company-count">57 บริษัท</div>
+        <div style="font-size: 0.72rem; color: #3B82F6; font-weight: 700; margin-top: 2px;">บริษัทรับสร้างบ้านทั้งหมด</div>
+      </div>
+
+      <!-- Card 2: Sales 2025 -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">💰 ยอดขายรวมปี 2025</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #1E293B;" id="kpi-sales-2025">฿22,189,778</div>
+        <div style="font-size: 0.72rem; color: #64748B; font-weight: 700; margin-top: 2px;">ฐานยอดซื้อจริง SCG ปี 2568</div>
+      </div>
+
+      <!-- Card 3: Sales 2026 -->
+      <div style="background: #FFFFFF; border: 1.5px solid #BBF7D0; background: linear-gradient(to bottom, #FFFFFF, #F0FDF4); border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #166534; font-weight: 700; margin-bottom: 4px;">🚀 ยอดขายรวมปี 2026 (ล่าสุด)</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #16A34A;" id="kpi-sales-2026">฿28,538,388</div>
+        <div style="font-size: 0.72rem; color: #166534; font-weight: 700; margin-top: 2px;">ข้อมูลสะสม ณ วันที่ 15.09.2569</div>
+      </div>
+
+      <!-- Card 4: YoY Growth Rate -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-bottom: 4px;">📈 อัตราการเติบโต YoY</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #16A34A;" id="kpi-growth-rate">+28.6%</div>
+        <div style="font-size: 0.72rem; color: #64748B; font-weight: 700; margin-top: 2px;">เทียบ 2026 vs 2025</div>
+      </div>
+
+    </div>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="filter-toolbar" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 12px 18px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <!-- Province Dropdown (All Provinces) -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">📍 จังหวัด:</label>
+          <select id="select-province" onchange="onProvinceChange()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 800; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none; max-width: 220px;">
+            <option value="all">ทุกจังหวัด (ทั้งหมด)</option>
+            
+            <optgroup label="📍 ภาคตะวันออกเฉียงเหนือ (20 จังหวัด)">
+              <option value="อุดรธานี" selected="">จ.อุดรธานี</option>
+              <option value="สกลนคร">จ.สกลนคร</option>
+              <option value="ขอนแก่น">จ.ขอนแก่น</option>
+              <option value="นครราชสีมา">จ.นครราชสีมา (โคราช)</option>
+              <option value="อุบลราชธานี">จ.อุบลราชธานี</option>
+              <option value="หนองคาย">จ.หนองคาย</option>
+              <option value="หนองบัวลำภู">จ.หนองบัวลำภู</option>
+              <option value="เลย">จ.เลย</option>
+              <option value="บึงกาฬ">จ.บึงกาฬ</option>
+              <option value="นครพนม">จ.นครพนม</option>
+              <option value="มุกดาหาร">จ.มุกดาหาร</option>
+              <option value="กาฬสินธุ์">จ.กาฬสินธุ์</option>
+              <option value="มหาสารคาม">จ.มหาสารคาม</option>
+              <option value="ร้อยเอ็ด">จ.ร้อยเอ็ด</option>
+              <option value="ยโสธร">จ.ยโสธร</option>
+              <option value="อำนาจเจริญ">จ.อำนาจเจริญ</option>
+              <option value="บุรีรัมย์">จ.บุรีรัมย์</option>
+              <option value="สุรินทร์">จ.สุรินทร์</option>
+              <option value="ศรีสะเกษ">จ.ศรีสะเกษ</option>
+              <option value="ชัยภูมิ">จ.ชัยภูมิ</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคเหนือ">
+              <option value="เชียงใหม่">จ.เชียงใหม่</option>
+              <option value="เชียงราย">จ.เชียงราย</option>
+              <option value="ลำปาง">จ.ลำปาง</option>
+              <option value="ลำพูน">จ.ลำพูน</option>
+              <option value="พะเยา">จ.พะเยา</option>
+              <option value="แพร่">จ.แพร่</option>
+              <option value="น่าน">จ.น่าน</option>
+              <option value="แม่ฮ่องสอน">จ.แม่ฮ่องสอน</option>
+              <option value="ตาก">จ.ตาก</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคตะวันออก">
+              <option value="ชลบุรี">จ.ชลบุรี</option>
+              <option value="ระยอง">จ.ระยอง</option>
+              <option value="ฉะเชิงเทรา">จ.ฉะเชิงเทรา</option>
+              <option value="จันทบุรี">จ.จันทบุรี</option>
+              <option value="ตราด">จ.ตราด</option>
+              <option value="ปราจีนบุรี">จ.ปราจีนบุรี</option>
+              <option value="นครนายก">จ.นครนายก</option>
+              <option value="สระแก้ว">จ.สระแก้ว</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคใต้">
+              <option value="ภูเก็ต">จ.ภูเก็ต</option>
+              <option value="สงขลา">จ.สงขลา (หาดใหญ่)</option>
+              <option value="สุราษฎร์ธานี">จ.สุราษฎร์ธานี</option>
+              <option value="นครศรีธรรมราช">จ.นครศรีธรรมราช</option>
+              <option value="กระบี่">จ.กระบี่</option>
+              <option value="ตรัง">จ.ตรัง</option>
+              <option value="ชุมพร">จ.ชุมพร</option>
+              <option value="พัทลุง">จ.พัทลุง</option>
+              <option value="พังงา">จ.พังงา</option>
+              <option value="ระนอง">จ.ระนอง</option>
+              <option value="สตูล">จ.สตูล</option>
+              <option value="ยะลา">จ.ยะลา</option>
+              <option value="ปัตตานี">จ.ปัตตานี</option>
+              <option value="นราธิวาส">จ.นราธิวาส</option>
+            </optgroup>
+
+            <optgroup label="📍 ภาคตะวันตก">
+              <option value="ราชบุรี">จ.ราชบุรี</option>
+              <option value="เพชรบุรี">จ.เพชรบุรี</option>
+              <option value="กาญจนบุรี">จ.กาญจนบุรี</option>
+              <option value="ประจวบคีรีขันธ์">จ.ประจวบคีรีขันธ์</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Sort dropdown -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">📊 เรียงลำดับ:</label>
+          <select id="select-sort-type" onchange="renderReportTable()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 800; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none;">
+            <option value="growth_desc" selected="">🚀 เติบโต YoY สูงสุด (มาก ➡️ น้อย)</option>
+            <option value="sales26_0914_desc">💰 ยอดขายข้อมูลปัจจุบัน สูงสุด</option>
+            <option value="sales25_desc">📅 ยอดขายปี 2025 สูงสุด</option>
+            <option value="total_desc">📈 ยอดขายรวมสูงสุด (2025 + 2026)</option>
+            <option value="growth_asc">📉 เติบโต YoY ต่ำสุด (น้อย ➡️ มาก)</option>
+            <option value="name_asc">🔤 ชื่อบริษัท (ก - ฮ)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Search Input & AI Insights Button -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <div style="position: relative; min-width: 280px;">
+          <input type="text" id="search-input" oninput="renderReportTable()" placeholder="🔍 ค้นหาชื่อบริษัท หรือ รหัสลูกค้า..." style="width: 100%; padding: 8px 14px; font-size: 0.85rem; border: 1.5px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; outline: none;">
+        </div>
+
+        <!-- AI Strategy Insights Button -->
+        <button type="button" id="btn-ai-strategy-insights" onclick="openAiStrategyModal()" style="background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #2563EB 100%); color: #FFFFFF; border: none; padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; box-shadow: 0 3px 12px rgba(124, 58, 237, 0.35); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); user-select: none;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 18px rgba(124, 58, 237, 0.45)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 12px rgba(124, 58, 237, 0.35)';">
+          <span style="font-size: 1.1rem; animation: pulse 1.5s infinite;">✨</span>
+          <span>คำแนะนำ &amp; บทวิเคราะห์จาก AI</span>
+          <span style="background: rgba(255, 255, 255, 0.22); font-size: 0.7rem; padding: 2px 7px; border-radius: 9999px; font-weight: 700;">ประจำเดือน ก.ย. 69</span>
+        </button>
+      </div>
+
+    </div>
+
+
+
+    <!-- Data Table Card (Excel View) -->
+    <div class="report-card">
+      <div style="background: #002060; color: #FFFFFF; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <div style="font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span>📋</span>
+          <span id="table-header-title">ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.อุดรธานี</span>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #BAE6FD;">(เฉพาะบริษัทที่มีข้อมูลใน NEXTSITE เท่านั้น)</span>
+        </div>
+        <div style="font-size: 0.78rem; color: #93C5FD; font-weight: 700;" id="table-header-date">
+          ข้อมูลล่าสุด ณ วันที่ 15.09.2569
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="excel-table">
+          <thead>
+            <tr>
+              <th style="width: 55px; text-align: center; cursor: pointer; user-select: none;" onclick="setSortColumn('growth')" title="คลิกเพื่อเรียง">ลำดับ</th>
+              <th style="text-align: left; width: 44%; cursor: pointer; user-select: none;" onclick="setSortColumn('name')" title="คลิกเพื่อเรียงตามชื่อบริษัท">บริษัท <span id="sort-icon-name" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 17%; cursor: pointer; user-select: none;" onclick="setSortColumn('sales25')" title="คลิกเพื่อเรียงตามยอดขาย 2025">2025 <span id="sort-icon-sales25" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 20%; cursor: pointer; user-select: none;" onclick="setSortColumn('sales26_0914')" title="คลิกเพื่อเรียงตามยอดขาย">ข้อมูลปัจจุบัน (15.09.2569) <span id="sort-icon-sales26_0914" style="font-size: 0.8rem; opacity: 0.7;"></span></th>
+              <th style="text-align: right; width: 15%; cursor: pointer; user-select: none; background: #001740;" onclick="setSortColumn('growth')" title="คลิกเพื่อเรียงตามอัตราเติบโต YoY">เติบโต YoY <span id="sort-icon-growth" style="font-size: 0.8rem; color: #FDE047;"> ▼</span></th>
+            </tr>
+          </thead>
+          <tbody id="report-table-body">
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">1</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-27&amp;scgCode=10729130" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท บ้านวิศวะพัฒนา จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท บ้านวิศวะพัฒนา จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-27&amp;scgCode=10729130" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท บ้านวิศวะพัฒนา จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10729130</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #0F172A;">
+              ฿238,997
+            </td>
+            <td style="text-align: right;">
+              <span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">2</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-03&amp;scgCode=10727085" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-03&amp;scgCode=10727085" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10727085</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #0F172A;">
+              ฿161,278
+            </td>
+            <td style="text-align: right;">
+              <span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">3</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-55&amp;scgCode=10724226" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-55&amp;scgCode=10724226" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10724226</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #0F172A;">
+              ฿75,021
+            </td>
+            <td style="text-align: right;">
+              <span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">4</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-20&amp;scgCode=10739362" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เค พี โฮม ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด เค พี โฮม
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-20&amp;scgCode=10739362" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เค พี โฮม ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10739362</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #0F172A;">
+              ฿7,101
+            </td>
+            <td style="text-align: right;">
+              <span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">5</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-56&amp;scgCode=10724225" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-56&amp;scgCode=10724225" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10724225</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #0F172A;">
+              ฿1,470
+            </td>
+            <td style="text-align: right;">
+              <span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">6</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-51&amp;scgCode=10485682" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-51&amp;scgCode=10485682" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10485682</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿12,246
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿768,825.50
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+6178.2%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">7</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-46&amp;scgCode=10369218" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-46&amp;scgCode=10369218" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10369218</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿3,282
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿162,877.80
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+4862.8%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">8</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-01&amp;scgCode=10590829" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท เลอ คราวน์ ดีไซน์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท เลอ คราวน์ ดีไซน์ จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-01&amp;scgCode=10590829" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท เลอ คราวน์ ดีไซน์ จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10590829</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿11,367
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿329,498.40
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+2798.7%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">9</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-16&amp;scgCode=10509038" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท 117อาร์คิเทคท์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท 117อาร์คิเทคท์ จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-16&amp;scgCode=10509038" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท 117อาร์คิเทคท์ จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10509038</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿28,572.50
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿395,558.30
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+1284.4%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">10</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-45&amp;scgCode=10351579" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด วันเดอร์ครีเอชั่น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด วันเดอร์ครีเอชั่น
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-45&amp;scgCode=10351579" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด วันเดอร์ครีเอชั่น ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10351579</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿14,345.30
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿127,081
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+785.9%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">11</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-44&amp;scgCode=10349378" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด จีรนันท์ พร็อพเพอร์ตี้ ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด จีรนันท์ พร็อพเพอร์ตี้
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-44&amp;scgCode=10349378" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด จีรนันท์ พร็อพเพอร์ตี้ ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10349378</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿31,873
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿181,379
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+469.1%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">12</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-22&amp;scgCode=10640153" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ กิจดลวรโชติ1 ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  กิจดลวรโชติ1
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-22&amp;scgCode=10640153" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ กิจดลวรโชติ1 ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10640153</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿438,100
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿1,992,527
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+354.8%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">13</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-09&amp;scgCode=10503273" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท สุขสกล ดีเวลลอปเม้นท์ จำกัด NASIT HOME ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท สุขสกล ดีเวลลอปเม้นท์ จำกัด NASIT HOME
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-09&amp;scgCode=10503273" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท สุขสกล ดีเวลลอปเม้นท์ จำกัด NASIT HOME ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10503273</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿677,870.30
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿2,338,879
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+245.0%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">14</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-52&amp;scgCode=10612650" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด บ้านดี อยู่ดี ดีไซน์ ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด บ้านดี อยู่ดี ดีไซน์
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-52&amp;scgCode=10612650" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด บ้านดี อยู่ดี ดีไซน์ ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10612650</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿31,155
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿93,806.25
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+201.1%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">15</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-28&amp;scgCode=10500344" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท การิน บ้านสวย จำกัด (Karin Bansuay) ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท การิน บ้านสวย จำกัด (Karin Bansuay)
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-28&amp;scgCode=10500344" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท การิน บ้านสวย จำกัด (Karin Bansuay) ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10500344</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿469,506
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿1,337,450
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+184.9%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">16</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-48&amp;scgCode=10400409" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด บ้านดี อุดร ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด บ้านดี อุดร
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-48&amp;scgCode=10400409" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด บ้านดี อุดร ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10400409</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿423,136.50
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿1,198,975
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+183.4%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">17</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-08&amp;scgCode=10523555" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-08&amp;scgCode=10523555" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10523555</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿1,146,567
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿2,903,328
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+153.2%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">18</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-10&amp;scgCode=10482913" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-10&amp;scgCode=10482913" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10482913</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿1,570,146.44
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿3,396,188.25
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+116.3%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">19</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-50&amp;scgCode=10484743" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-50&amp;scgCode=10484743" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10484743</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿151,787.50
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿189,440
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+24.8%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">20</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-04&amp;scgCode=10108161" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท โมเดิร์น ดี (อุดรธานี) จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท โมเดิร์น ดี (อุดรธานี) จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-04&amp;scgCode=10108161" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท โมเดิร์น ดี (อุดรธานี) จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10108161</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿1,069,432
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿1,208,551
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+13.0%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">21</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-11&amp;scgCode=10369220" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-11&amp;scgCode=10369220" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10369220</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿2,151,623
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿2,222,685
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+3.3%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">22</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-47&amp;scgCode=10383888" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ฟ้าสว่างการโยธา ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด ฟ้าสว่างการโยธา
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-47&amp;scgCode=10383888" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ฟ้าสว่างการโยธา ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10383888</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿553,824
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #16A34A;">
+              ฿569,818
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #16A34A;">+2.9%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">23</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-31&amp;scgCode=10551209" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จำกัด BAANYAI(2016) ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จำกัด BAANYAI(2016)
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-31&amp;scgCode=10551209" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จำกัด BAANYAI(2016) ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10551209</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿5,481,324
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿5,472,101
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-0.2%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">24</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-49&amp;scgCode=10461104" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท นิติพันธ์เฮ้าส์ ยูดี จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท นิติพันธ์เฮ้าส์ ยูดี จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-49&amp;scgCode=10461104" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท นิติพันธ์เฮ้าส์ ยูดี จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10461104</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿1,289,592
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿852,291
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-33.9%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">25</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-12&amp;scgCode=10335064" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท มายด์ โฮม แอสเสท จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท มายด์ โฮม แอสเสท จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-12&amp;scgCode=10335064" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท มายด์ โฮม แอสเสท จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10335064</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿2,514,378
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿1,361,324
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-45.9%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">26</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-17&amp;scgCode=10648769" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-17&amp;scgCode=10648769" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10648769</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿187,141
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿75,112
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-59.9%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">27</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-57&amp;scgCode=10615285" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-57&amp;scgCode=10615285" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10615285</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿321,401
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿74,809
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-76.7%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">28</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-05&amp;scgCode=10280647" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท มหารุ่งโรจน์โฮมบิลเดอร์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท มหารุ่งโรจน์โฮมบิลเดอร์ จำกัด
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-05&amp;scgCode=10280647" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท มหารุ่งโรจน์โฮมบิลเดอร์ จำกัด ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10280647</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿3,461,247
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿783,850
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-77.4%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">29</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-43&amp;scgCode=10126345" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด หล้าก่ำ ทรัพย์เจริญยิ่ง ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด หล้าก่ำ ทรัพย์เจริญยิ่ง
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-43&amp;scgCode=10126345" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด หล้าก่ำ ทรัพย์เจริญยิ่ง ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10126345</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿110,483
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              ฿18,166
+            </td>
+            <td style="text-align: right;">
+              <span style="font-weight: 800; color: #DC2626;">-83.6%</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">30</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-34&amp;scgCode=10568031" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เอสวาย.เฮาส์ ดีไซน์ แอนด์ คอนสตรัคชั่น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด เอสวาย.เฮาส์ ดีไซน์ แอนด์ คอนสตรัคชั่น
+                </a>
+                
+          <a href="index.html?companyId=comp-udon-34&amp;scgCode=10568031" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เอสวาย.เฮาส์ ดีไซน์ แอนด์ คอนสตรัคชั่น ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส 10568031</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #1E293B;">
+              ฿39,378
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #DC2626;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">31</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-02&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ดรีมอัพรับสร้างบ้าน หน้ากองบิน23 Dream Up House Builder ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ดรีมอัพรับสร้างบ้าน หน้ากองบิน23 Dream Up House Builder
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">32</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-06&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ฟังก์ชั่น ดีไซน์ คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท ฟังก์ชั่น ดีไซน์ คอนสตรัคชั่น จำกัด
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">33</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-07&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ กัปตันซีวิล รับสร้างบ้าน อุดรธานี ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  กัปตันซีวิล รับสร้างบ้าน อุดรธานี
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">34</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-13&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ PP HOUSE CONSTRUCTION &amp; DESIGN ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  PP HOUSE CONSTRUCTION &amp; DESIGN
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">35</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-14&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ รับสร้างบ้านอุดรธานี By Concept Engineering ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  รับสร้างบ้านอุดรธานี By Concept Engineering
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">36</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-15&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ศูนย์รับสร้างบ้านอุดรธานี โฟร เอสเตท 4ESTATE ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ศูนย์รับสร้างบ้านอุดรธานี โฟร เอสเตท 4ESTATE
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">37</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-18&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด สันต์สิริ ดีไซน์ แอนด์ บิลด์ ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด สันต์สิริ ดีไซน์ แอนด์ บิลด์
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">38</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-19&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ Little Home รับสร้างบ้าน ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  Little Home รับสร้างบ้าน
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">39</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-21&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด คิดดีเฮาส์คอนสทรัคชั่น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด คิดดีเฮาส์คอนสทรัคชั่น
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">40</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-23&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ อภิญญา ก่อสร้าง Apinya Construction ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  อภิญญา ก่อสร้าง Apinya Construction
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">41</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-24&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ฟู่เฮ้าส์ อินทีเรีย ดีไซน์ FU House Interior Design ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด ฟู่เฮ้าส์ อินทีเรีย ดีไซน์ FU House Interior Design
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">42</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-25&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">43</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-26&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน) ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">44</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-29&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จำกัด
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">45</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-30&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท แพลน ดี คอนสตรัคชั่น จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท แพลน ดี คอนสตรัคชั่น จำกัด
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">46</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-32&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด พีเอ แอนด์ ทีเอ็น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด พีเอ แอนด์ ทีเอ็น
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">47</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-33&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท ป. รุ่งเรือง พีเอสพีเอส จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท ป. รุ่งเรือง พีเอสพีเอส จำกัด
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">48</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-35&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ IDYLLIC Construction ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  IDYLLIC Construction
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">49</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-36&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">50</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-37&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด ปิยภัทร125 คอนสตรัคชั่น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด ปิยภัทร125 คอนสตรัคชั่น
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">51</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-38&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ CIVIL PRO – ENGINEERING | CONSTRUCTION ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  CIVIL PRO – ENGINEERING | CONSTRUCTION
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">52</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-39&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ รับสร้างบ้าน INT Design ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  รับสร้างบ้าน INT Design
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">53</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-40&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท เอ เฮ้าส์ บิวเดอร์ จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท เอ เฮ้าส์ บิวเดอร์ จำกัด
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">54</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-41&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ บริษัท มารีญาก่อสร้าง จำกัด ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  บริษัท มารีญาก่อสร้าง จำกัด
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">55</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-42&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ซีที การก่อสร้าง ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ซีที การก่อสร้าง
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">56</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-53&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เอสดี เฮ้าส์ ดีไซน์ ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด เอสดี เฮ้าส์ ดีไซน์
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">57</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="index.html?companyId=comp-udon-54&amp;scgCode=" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ห้างหุ้นส่วนจำกัด เอสไอ อาร์คิเทคเชอร์ แอนด์ คอนสตรัคชั่น ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ห้างหุ้นส่วนจำกัด เอสไอ อาร์คิเทคเชอร์ แอนด์ คอนสตรัคชั่น
+                </a>
+                
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right; font-weight: 900; color: #94A3B8;">
+              -
+            </td>
+            <td style="text-align: right;">
+              <span style="color: #94A3B8;">-</span>
+            </td>
+          </tr>
+        </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" style="text-align: left;" id="tfoot-label">รวมทั้งสิ้น (57 บริษัท)</td>
+              <td style="text-align: right;" id="tfoot-2025">฿22,189,778</td>
+              <td style="text-align: right; color: #86EFAC;" id="tfoot-2026-0914">฿28,538,388</td>
+              <td style="text-align: right; color: #FDE047;" id="tfoot-growth">+28.6%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div style="margin-top: 16px; font-size: 0.76rem; color: #64748B; text-align: center; padding-bottom: 24px;">
+      SCG NEXTSITE AI Intelligence System • วิเคราะห์ข้อมูลยอดขายและโอกาสทางธุรกิจรับสร้างบ้าน 20 จังหวัดภาคอีสาน
+    </div>
+
+  </main>
+
+  <!-- Load Data Files & Supabase Client -->
+  <script src="js/data.js?v=98.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js?v=98.0"></script>
+  
+  <script>
+    // SCG ACTUAL CUSTOMER SALES DATA LIST (Master Map)
+    // Structure:
+    // - sales2025: ยอดขายปี 2025
+    // - sales2026_0914: ยอดขาย ณ วันที่ 14.09.2569 (หรือ sales2026)
+    // - sales2026_0930: ยอดขาย ณ วันที่ 30.09.2569 (อัพเดทสิ้นเดือนกันยายน)
+    // - sales2026_1030: ยอดขาย ณ วันที่ 30.10.2569 (อัพเดทสิ้นเดือนตุลาคม)
+    const SCG_CUSTOMER_SALES_LIST = [
+      { code: '10051168', name: 'เอเฮ้าส์ บิวเดอร์', sales2025: 15209, sales2026_0914: 22100, sales2026_0930: null, sales2026_1030: null, keys: ['เอเฮ้าส์', 'เอ-เฮ้าส์', 'a-house', 'a house'] },
+      { code: '10108161', name: 'โมเดิร์น ดี (อุดรธานี)', sales2025: 1069432, sales2026_0914: 1208551, sales2026_0930: null, sales2026_1030: null, keys: ['โมเดิร์น ดี', 'โมเดิร์นดี', 'modernde', 'modern de', 'modern-de'] },
+      { code: '10126345', name: 'หล้าก่ำ ทรัพย์เจริญยิ่ง', sales2025: 110483, sales2026_0914: 18166, sales2026_0930: null, sales2026_1030: null, keys: ['หล้าก่ำ', 'ทรัพย์เจริญยิ่ง'] },
+      { code: '10280647', name: 'มหารุ่งโรจน์โฮมบิลเดอร์', sales2025: 3461247, sales2026_0914: 783850, sales2026_0930: null, sales2026_1030: null, keys: ['มหารุ่งโรจน์', 'maharungroj'] },
+      { code: '10335064', name: 'มายด์ โฮม แอสเสท', sales2025: 2514378, sales2026_0914: 1361324, sales2026_0930: null, sales2026_1030: null, keys: ['มายด์ โฮม', 'มายด์โฮม', 'mind home', 'mindhome'] },
+      { code: '10349378', name: 'จีรนันท์ พร็อพเพอร์ตี้', sales2025: 31873, sales2026_0914: 181379, sales2026_0930: null, sales2026_1030: null, keys: ['จีรนันท์', 'jeeranun'] },
+      { code: '10351579', name: 'วันเดอร์ครีเอชั่น', sales2025: 14345.3, sales2026_0914: 127081, sales2026_0930: null, sales2026_1030: null, keys: ['วันเดอร์ครีเอชั่น', 'วันเดอร์', 'wonder creation', 'wondercreation'] },
+      { code: '10369218', name: 'พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้า', sales2025: 3282, sales2026_0914: 162877.8, sales2026_0930: null, sales2026_1030: null, keys: ['พีรพัฒน์', 'peerapat'] },
+      { code: '10369220', name: 'ยูดี.โฮมส์ เอ็นจิเนียริ่ง', sales2025: 2151623, sales2026_0914: 2222685, sales2026_0930: null, sales2026_1030: null, keys: ['ยูดี.โฮมส์', 'ยูดี โฮมส์', 'ยูดีโฮมส์', 'ud home', 'ud.homes', 'udhome'] },
+      { code: '10380747', name: 'จุฑามาศ ขุลีดี', sales2025: 2531813, sales2026_0914: 243723, sales2026_0930: null, sales2026_1030: null, keys: ['จุฑามาศ ขุลีดี', 'จุฑามาศ'] },
+      { code: '10383888', name: 'ฟ้าสว่างการโยธา', sales2025: 553824, sales2026_0914: 569818, sales2026_0930: null, sales2026_1030: null, keys: ['ฟ้าสว่าง', 'fasawang'] },
+      { code: '10400409', name: 'บ้านดี-อุดร', sales2025: 423136.5, sales2026_0914: 1198975, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี-อุดร', 'บ้านดี อุดร', 'บ้านดีอุดร', 'baan-d', 'baan d'] },
+      { code: '10461104', name: 'นิติพันธ์ เปือยยะ', sales2025: 1289592, sales2026_0914: 852291, sales2026_0930: null, sales2026_1030: null, keys: ['นิติพันธ์', 'nitipan'] },
+      { code: '10482913', name: 'ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991', sales2025: 1570146.44, sales2026_0914: 3396188.25, sales2026_0930: null, sales2026_1030: null, keys: ['ทีที ดีไซน์', 'ทีทีดีไซน์', 'tt design', 'ttdesign'] },
+      { code: '10484743', name: 'ช.รุ่งอรุณ คอนสตรัคชั่น', sales2025: 151787.5, sales2026_0914: 189440, sales2026_0930: null, sales2026_1030: null, keys: ['ช.รุ่งอรุณ', 'รุ่งอรุณ คอนสตรัคชั่น', 'รุ่งอรุณ'] },
+      { code: '10485682', name: 'รุ่งรัตน์บิวตี้โฮม', sales2025: 12246, sales2026_0914: 768825.5, sales2026_0930: null, sales2026_1030: null, keys: ['รุ่งรัตน์บิวตี้โฮม', 'รุ่งรัตน์'] },
+      { code: '10500344', name: 'การิน บ้านสวย', sales2025: 469506, sales2026_0914: 1337450, sales2026_0930: null, sales2026_1030: null, keys: ['การิน บ้านสวย', 'การิน', 'karin'] },
+      { code: '10503273', name: 'สุขสกล ดีเวลลอปเม้นท์', sales2025: 677870.3, sales2026_0914: 2338879, sales2026_0930: null, sales2026_1030: null, keys: ['สุขสกล', 'suksakon'] },
+      { code: '10509038', name: '117อาร์คิเทคท์', sales2025: 28572.5, sales2026_0914: 395558.3, sales2026_0930: null, sales2026_1030: null, keys: ['117อาร์คิเทคท์', '117 architect', '117architect'] },
+      { code: '10523555', name: 'ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์', sales2025: 1146567, sales2026_0914: 2903328, sales2026_0930: null, sales2026_1030: null, keys: ['ทเวนตี้ซิกซ์', '26 development'] },
+      { code: '10551209', name: 'บ้านใหญ่ (2016) โฮม บิวเดอร์', sales2025: 5481324, sales2026_0914: 5472101, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านใหญ่', 'baanyai', 'baanyai2016'] },
+      { code: '10590829', name: 'เลอ คราวน์ ดีไซน์', sales2025: 11367, sales2026_0914: 329498.4, sales2026_0930: null, sales2026_1030: null, keys: ['เลอ คราวน์', 'เลอคราวน์', 'le crown', 'lecrown'] },
+      { code: '10612650', name: 'บ้านดี อยู่ดี ดีไซน์', sales2025: 31155, sales2026_0914: 93806.25, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านดี อยู่ดี', 'บ้านดีอยู่ดี', 'baandee yoodee'] },
+      { code: '10640153', name: 'กิจดลวรโชติ1', sales2025: 438100, sales2026_0914: 1992527, sales2026_0930: null, sales2026_1030: null, keys: ['กิจดลวรโชติ', 'กิจดล'] },
+      { code: '10729130', name: 'บ้านวิศวะพัฒนา', sales2025: 0, sales2026_0914: 238997, sales2026_0930: null, sales2026_1030: null, keys: ['บ้านวิศวะพัฒนา', 'บ้านวิศวะ', 'baanwisawa', 'banwisawa'] },
+      { code: '10739362', name: 'ห้างหุ้นส่วนจำกัด เค พี โฮม', sales2025: 0, sales2026_0914: 7101, sales2026_0930: null, sales2026_1030: null, keys: ['เค พี โฮม', 'เค.พี.โฮม', 'เคพีโฮม', 'kp home', 'k.p. home'] },
+      { code: '10727085', name: 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', sales2025: 0, sales2026_0914: 161278, sales2026_0930: null, sales2026_1030: null, keys: ['น่าอยู่เฮ้าส์', 'น่าอยู่เฮ้าส์ คอนสตรัคชั่น', 'น่าอยู่', 'nayoo', 'nayoohouse'] },
+      { code: '10568031', name: 'ห้างหุ้นส่วนจำกัด เอสวาย.เฮาส์ ดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 39378, sales2026_0914: 0, sales2026_0930: null, sales2026_1030: null, keys: ['เอสวาย', 'เอสวาย.เฮาส์', 'เอสวาย เฮาส์', 'sy house', 'syhouse'] },
+      { code: '10648769', name: 'บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด', sales2025: 187141, sales2026_0914: 75112, sales2026_0930: null, sales2026_1030: null, keys: ['อีเฮาส์', 'อีเฮ้าส์', 'e-house', 'บริษัท อีเฮาส์'] },
+      { code: '10724226', name: 'ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น', sales2025: 0, sales2026_0914: 75021, sales2026_0930: null, sales2026_1030: null, keys: ['ดีเอ็นเอ็น', 'dnn', 'dnn construction', 'ดีเอ็นเอ็น คอนสตรัคชั่น'] },
+      { code: '10724225', name: 'ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง', sales2025: 0, sales2026_0914: 1470, sales2026_0930: null, sales2026_1030: null, keys: ['เกียรติรุ่งเรือง', 'เกียรติรุ่งเรือง ก่อสร้าง', 'kiat rung ruang'] },
+      { code: '10615285', name: 'บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด', sales2025: 321401, sales2026_0914: 74809, sales2026_0930: null, sales2026_1030: null, keys: ['เอ็นทรัสท', 'entrust', 'เอ็นทรัสท คอนสตรัคชั่น', 'entrust construction', 'trust construction'] },
+      { code: '10095435', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 3023155, sales2026_0914: 670816, sales2026_0930: null, sales2026_1030: null, keys: ['โมเสคดีไซน์', 'โมเสค', 'mosaic', 'mosaic design', 'โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น'] }
+    ];
+
+    let masterReportList = [];
+
+    function initReport() {
+      // Parse URL param for province
+      const urlParams = new URLSearchParams(window.location.search);
+      const provParam = urlParams.get('province');
+      
+      const provSelect = document.getElementById('select-province');
+      if (provParam) {
+        if (provParam.toLowerCase().includes('sakon') || provParam === 'สกลนคร') {
+          provSelect.value = 'สกลนคร';
+        } else if (provParam.toLowerCase().includes('udon') || provParam === 'อุดรธานี') {
+          provSelect.value = 'อุดรธานี';
+        } else if (provParam === 'all') {
+          provSelect.value = 'all';
+        } else {
+          try {
+            provSelect.value = decodeURIComponent(provParam);
+          } catch(e) {
+            provSelect.value = provParam;
+          }
+        }
+      }
+
+      // Base companies dataset
+      let baseList = [];
+      if (typeof window.UDON_COMPANIES !== 'undefined' && Array.isArray(window.UDON_COMPANIES)) {
+        baseList = JSON.parse(JSON.stringify(window.UDON_COMPANIES));
+      }
+
+      // Map sales
+      masterReportList = baseList.map(c => {
+        const cName = (c.name || '').toLowerCase();
+        const match = SCG_CUSTOMER_SALES_LIST.find(item => {
+          if (item.keys && item.keys.some(k => cName.includes(k))) return true;
+          if (cName.includes(item.name.toLowerCase())) return true;
+          return false;
+        });
+
+        if (match) {
+          c.scgCode = match.code;
+          c.sales2025 = Number(match.sales2025) || 0;
+          c.sales2026_0914 = Number(match.sales2026_0914 != null ? match.sales2026_0914 : match.sales2026) || 0;
+          c.sales2026_0930 = match.sales2026_0930 != null ? Number(match.sales2026_0930) : null;
+          c.sales2026_1030 = match.sales2026_1030 != null ? Number(match.sales2026_1030) : null;
+        } else {
+          c.scgCode = c.scgCustomerCode || null;
+          c.sales2025 = Number(c.sales2025) || 0;
+          c.sales2026_0914 = Number(c.sales2026_0914 != null ? c.sales2026_0914 : c.sales2026) || 0;
+          c.sales2026_0930 = c.sales2026_0930 != null ? Number(c.sales2026_0930) : null;
+          c.sales2026_1030 = c.sales2026_1030 != null ? Number(c.sales2026_1030) : null;
+        }
+
+        // Determine latest 2026 sales for growth comparison
+        c.sales2026_latest = (c.sales2026_1030 != null && c.sales2026_1030 > 0) ? c.sales2026_1030 :
+                             ((c.sales2026_0930 != null && c.sales2026_0930 > 0) ? c.sales2026_0930 : c.sales2026_0914);
+
+        return c;
+      });
+
+      onProvinceChange();
+    }
+
+    function onProvinceChange() {
+      const prov = document.getElementById('select-province').value;
+      const titleEl = document.getElementById('table-header-title');
+      const backBtn = document.getElementById('btn-back-dashboard');
+      
+      if (prov === 'สกลนคร') {
+        titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.สกลนคร';
+        backBtn.href = 'NEX SAKON.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (สกลนคร)';
+      } else if (prov === 'อุดรธานี') {
+        titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.อุดรธานี';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (อุดรธานี)';
+      } else if (prov === 'all') {
+        titleEl.textContent = 'ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน ทุกจังหวัด';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard';
+      } else {
+        titleEl.textContent = `ตารางเปรียบเทียบยอดขายบริษัทรับสร้างบ้าน จ.${prov}`;
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard';
+      }
+
+      renderReportTable();
+    }
+
+    let currentSort = 'growth_desc';
+
+    function getGrowthValue(c) {
+      const s25 = Number(c.sales2025) || 0;
+      const s26 = Number(c.sales2026_latest != null ? c.sales2026_latest : c.sales2026_0914) || 0;
+      if (s25 > 0 && s26 > 0) {
+        return ((s26 - s25) / s25) * 100;
+      }
+      if (s26 > 0 && s25 === 0) {
+        return 999999999; // ลูกค้าใหม่ปี 2026 เติบโตสูงสุด
+      }
+      if (s26 === 0 && s25 > 0) {
+        return -100; // ยอดตก 100%
+      }
+      return -999999999; // ไม่มียอดขาย
+    }
+
+    function setSortColumn(col) {
+      const selectSort = document.getElementById('select-sort-type');
+      if (col === 'growth') {
+        currentSort = (currentSort === 'growth_desc') ? 'growth_asc' : 'growth_desc';
+      } else if (col === 'sales26_0914') {
+        currentSort = (currentSort === 'sales26_0914_desc') ? 'sales26_0914_asc' : 'sales26_0914_desc';
+      } else if (col === 'sales26_0930') {
+        currentSort = (currentSort === 'sales26_0930_desc') ? 'sales26_0930_asc' : 'sales26_0930_desc';
+      } else if (col === 'sales26_1030') {
+        currentSort = (currentSort === 'sales26_1030_desc') ? 'sales26_1030_asc' : 'sales26_1030_desc';
+      } else if (col === 'sales25') {
+        currentSort = (currentSort === 'sales25_desc') ? 'sales25_asc' : 'sales25_desc';
+      } else if (col === 'name') {
+        currentSort = (currentSort === 'name_asc') ? 'name_desc' : 'name_asc';
+      } else {
+        currentSort = 'growth_desc';
+      }
+      if (selectSort) {
+        selectSort.value = currentSort;
+      }
+      renderReportTable();
+    }
+
+    function renderReportTable() {
+      const selectedProv = document.getElementById('select-province') ? document.getElementById('select-province').value : 'all';
+      const filterTypeEl = document.getElementById('select-filter-type');
+      const filterType = filterTypeEl ? filterTypeEl.value : 'all';
+      const searchQ = (document.getElementById('search-input') ? document.getElementById('search-input').value : '').trim().toLowerCase();
+      const sortVal = document.getElementById('select-sort-type') ? document.getElementById('select-sort-type').value : currentSort;
+
+      // Update header sort icons
+      const iconName = document.getElementById('sort-icon-name');
+      const iconS25 = document.getElementById('sort-icon-sales25');
+      const iconS26_0914 = document.getElementById('sort-icon-sales26_0914');
+      const iconS26_0930 = document.getElementById('sort-icon-sales26_0930');
+      const iconS26_1030 = document.getElementById('sort-icon-sales26_1030');
+      const iconGrowth = document.getElementById('sort-icon-growth');
+      
+      if (iconName) iconName.textContent = sortVal === 'name_asc' ? ' ▲' : (sortVal === 'name_desc' ? ' ▼' : '');
+      if (iconS25) iconS25.textContent = sortVal === 'sales25_desc' ? ' ▼' : (sortVal === 'sales25_asc' ? ' ▲' : '');
+      if (iconS26_0914) iconS26_0914.textContent = sortVal === 'sales26_0914_desc' ? ' ▼' : (sortVal === 'sales26_0914_asc' ? ' ▲' : '');
+      if (iconS26_0930) iconS26_0930.textContent = sortVal === 'sales26_0930_desc' ? ' ▼' : (sortVal === 'sales26_0930_asc' ? ' ▲' : '');
+      if (iconS26_1030) iconS26_1030.textContent = sortVal === 'sales26_1030_desc' ? ' ▼' : (sortVal === 'sales26_1030_asc' ? ' ▲' : '');
+      if (iconGrowth) iconGrowth.textContent = sortVal === 'growth_desc' ? ' ▼' : (sortVal === 'growth_asc' ? ' ▲' : '');
+
+      let list = masterReportList.filter(c => {
+        // 1. Province Filter
+        if (selectedProv !== 'all') {
+          const prov = c.province || 'อุดรธานี';
+          if (!prov.includes(selectedProv)) return false;
+        }
+
+        const s25 = Number(c.sales2025) || 0;
+        const s26 = Number(c.sales2026_latest != null ? c.sales2026_latest : c.sales2026_0914) || 0;
+
+        // 2. Filter Type
+        if (filterType === 'has_sales') {
+          if (s25 === 0 && s26 === 0) return false;
+        } else if (filterType === 'growth_up') {
+          if (s26 <= s25 || s26 === 0) return false;
+        }
+
+        // 3. Search Query
+        if (searchQ) {
+          const name = (c.name || '').toLowerCase();
+          const code = (c.scgCode || '').toLowerCase();
+          if (!name.includes(searchQ) && !code.includes(searchQ)) return false;
+        }
+
+        return true;
+      });
+
+      // Sort: Default highest YoY growth first
+      list.sort((a, b) => {
+        const s25A = Number(a.sales2025) || 0;
+        const s25B = Number(b.sales2025) || 0;
+        const s26_0914_A = Number(a.sales2026_0914) || 0;
+        const s26_0914_B = Number(b.sales2026_0914) || 0;
+        const s26_0930_A = Number(a.sales2026_0930) || 0;
+        const s26_0930_B = Number(b.sales2026_0930) || 0;
+        const s26_1030_A = Number(a.sales2026_1030) || 0;
+        const s26_1030_B = Number(b.sales2026_1030) || 0;
+
+        const latestA = Number(a.sales2026_latest != null ? a.sales2026_latest : a.sales2026_0914) || 0;
+        const latestB = Number(b.sales2026_latest != null ? b.sales2026_latest : b.sales2026_0914) || 0;
+
+        const totalA = latestA + s25A;
+        const totalB = latestB + s25B;
+        const gA = getGrowthValue(a);
+        const gB = getGrowthValue(b);
+
+        if (sortVal === 'growth_desc') {
+          if (gB !== gA) return gB - gA;
+          if (latestB !== latestA) return latestB - latestA;
+          return totalB - totalA;
+        } else if (sortVal === 'growth_asc') {
+          if (gA !== gB) return gA - gB;
+          if (latestA !== latestB) return latestA - latestB;
+          return totalA - totalB;
+        } else if (sortVal === 'sales26_0914_desc') {
+          if (s26_0914_B !== s26_0914_A) return s26_0914_B - s26_0914_A;
+          return s25B - s25A;
+        } else if (sortVal === 'sales26_0914_asc') {
+          if (s26_0914_A !== s26_0914_B) return s26_0914_A - s26_0914_B;
+          return s25A - s25B;
+        } else if (sortVal === 'sales26_0930_desc') {
+          if (s26_0930_B !== s26_0930_A) return s26_0930_B - s26_0930_A;
+          return s26_0914_B - s26_0914_A;
+        } else if (sortVal === 'sales26_0930_asc') {
+          if (s26_0930_A !== s26_0930_B) return s26_0930_A - s26_0930_B;
+          return s26_0914_A - s26_0914_B;
+        } else if (sortVal === 'sales26_1030_desc') {
+          if (s26_1030_B !== s26_1030_A) return s26_1030_B - s26_1030_A;
+          return s26_0930_B - s26_0930_A;
+        } else if (sortVal === 'sales26_1030_asc') {
+          if (s26_1030_A !== s26_1030_B) return s26_1030_A - s26_1030_B;
+          return s26_0930_A - s26_0930_B;
+        } else if (sortVal === 'sales25_desc') {
+          if (s25B !== s25A) return s25B - s25A;
+          return latestB - latestA;
+        } else if (sortVal === 'sales25_asc') {
+          if (s25A !== s25B) return s25A - s25B;
+          return latestA - latestB;
+        } else if (sortVal === 'total_desc') {
+          if (totalB !== totalA) return totalB - totalA;
+          return latestB - latestA;
+        } else if (sortVal === 'name_asc') {
+          return (a.name || '').localeCompare(b.name || '', 'th');
+        } else if (sortVal === 'name_desc') {
+          return (b.name || '').localeCompare(a.name || '', 'th');
+        }
+        return gB - gA;
+      });
+
+      let sum2025 = 0;
+      let sum2026_0914 = 0;
+      let sum2026_0930 = 0;
+      let count2026_0930 = 0;
+      let sum2026_1030 = 0;
+      let count2026_1030 = 0;
+      let sumLatest = 0;
+
+      const tbody = document.getElementById('report-table-body');
+      tbody.innerHTML = list.map((c, idx) => {
+        const s25 = Number(c.sales2025) || 0;
+        const s26_0914 = Number(c.sales2026_0914) || 0;
+        const s26_0930 = c.sales2026_0930 != null ? Number(c.sales2026_0930) : null;
+        const s26_1030 = c.sales2026_1030 != null ? Number(c.sales2026_1030) : null;
+        const s26_latest = Number(c.sales2026_latest != null ? c.sales2026_latest : s26_0914) || 0;
+
+        sum2025 += s25;
+        sum2026_0914 += s26_0914;
+        if (s26_0930 != null) {
+          sum2026_0930 += s26_0930;
+          count2026_0930++;
+        }
+        if (s26_1030 != null) {
+          sum2026_1030 += s26_1030;
+          count2026_1030++;
+        }
+        sumLatest += s26_latest;
+
+        let growthHtml = '<span style="color: #94A3B8;">-</span>';
+        if (s25 > 0 && s26_latest > 0) {
+          const growth = ((s26_latest - s25) / s25) * 100;
+          const isUp = growth >= 0;
+          growthHtml = `<span style="font-weight: 800; color: ${isUp ? '#16A34A' : '#DC2626'};">${isUp ? '+' : ''}${growth.toFixed(1)}%</span>`;
+        } else if (s26_latest > 0 && s25 === 0) {
+          growthHtml = '<span style="background: #E0F2FE; color: #0369A1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">New 2026</span>';
+        }
+
+        const targetPage = (c.province && c.province.includes('สกลนคร')) ? 'NEX SAKON.html' : 'index.html';
+        const targetUrl = `${targetPage}?companyId=${encodeURIComponent(c.id || '')}&scgCode=${encodeURIComponent(c.scgCode || '')}`;
+
+        const codeBadge = c.scgCode ? `
+          <a href="${targetUrl}" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ${c.name} ในหน้าหลัก" style="display: inline-flex; align-items: center; gap: 3px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; font-size: 0.74rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; text-decoration: none; transition: all 0.15s ease; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#3B82F6'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none';">
+            <span>รหัส ${c.scgCode}</span>
+            <span style="font-size: 0.65rem; color: #3B82F6;">↗</span>
+          </a>
+        ` : '';
+
+        // Determine 14.09.2569 color
+        let color0914 = '#0F172A';
+        if (s26_0914 === 0 && s25 === 0) {
+          color0914 = '#94A3B8';
+        } else if (s25 > 0 && s26_0914 < s25) {
+          color0914 = '#DC2626'; // แดง
+        } else if (s26_0914 > s25 && s25 > 0) {
+          color0914 = '#16A34A'; // เขียว
+        }
+
+        return `
+          <tr>
+            <td style="text-align: center; font-weight: 700; color: #64748B;">${idx + 1}</td>
+            <td style="font-weight: 700; color: #0F172A;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+                <a href="${targetUrl}" title="คลิกเพื่อเปิดดูรายละเอียดและกลยุทธ์ AI ของ ${c.name} ในหน้าหลัก" style="color: #0F172A; text-decoration: none; transition: color 0.15s ease;" onmouseover="this.style.color='#1E40AF'; this.style.textDecoration='underline';" onmouseout="this.style.color='#0F172A'; this.style.textDecoration='none';">
+                  ${c.name}
+                </a>
+                ${codeBadge}
+              </div>
+            </td>
+            <td style="text-align: right; font-weight: 800; color: ${s25 > 0 ? '#1E293B' : '#94A3B8'};">
+              ${s25 > 0 ? '฿' + s25.toLocaleString('th-TH', {minimumFractionDigits: (s25 % 1 !== 0 ? 2 : 0), maximumFractionDigits: 2}) : '-'}
+            </td>
+            <td style="text-align: right; font-weight: 900; color: ${color0914};">
+              ${s26_0914 > 0 ? '฿' + s26_0914.toLocaleString('th-TH', {minimumFractionDigits: (s26_0914 % 1 !== 0 ? 2 : 0), maximumFractionDigits: 2}) : '-'}
+            </td>
+            <td style="text-align: right;">
+              ${growthHtml}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Update KPIs
+      document.getElementById('kpi-company-count').textContent = list.length + ' บริษัท';
+      document.getElementById('kpi-sales-2025').textContent = '฿' + sum2025.toLocaleString('th-TH', {maximumFractionDigits: 0});
+      document.getElementById('kpi-sales-2026').textContent = '฿' + sumLatest.toLocaleString('th-TH', {maximumFractionDigits: 0});
+
+      let totalGrowth = 0;
+      if (sum2025 > 0) {
+        totalGrowth = ((sumLatest - sum2025) / sum2025) * 100;
+      }
+      const growthEl = document.getElementById('kpi-growth-rate');
+      const isUp = totalGrowth >= 0;
+      growthEl.textContent = `${isUp ? '+' : ''}${totalGrowth.toFixed(1)}%`;
+      growthEl.style.color = isUp ? '#16A34A' : '#DC2626';
+
+      // Update Footers
+      document.getElementById('tfoot-label').textContent = `รวมทั้งสิ้น (${list.length} บริษัท)`;
+      document.getElementById('tfoot-2025').textContent = '฿' + sum2025.toLocaleString('th-TH', {maximumFractionDigits: 0});
+      document.getElementById('tfoot-2026-0914').textContent = '฿' + sum2026_0914.toLocaleString('th-TH', {maximumFractionDigits: 0});
+      document.getElementById('tfoot-growth').textContent = `${isUp ? '+' : ''}${totalGrowth.toFixed(1)}%`;
+
+      // Auto update AI Strategy insights if modal is currently open
+      const aiModal = document.getElementById('ai-strategy-modal');
+      if (aiModal && aiModal.style.display === 'flex') {
+        generateDynamicAiStrategyAnalysis();
+      }
+    }
+
+    function exportToExcelCsv() {
+      const selectedProv = document.getElementById('select-province').value;
+      const provName = selectedProv === 'all' ? 'All_Provinces' : selectedProv;
+
+      let csvContent = "\uFEFFลำดับ,บริษัท,รหัสลูกค้า SCG,ยอดขาย 2025 (บาท),ยอดขาย ข้อมูลปัจจุบัน (15.09.2569) (บาท),อัตราเติบโต YoY (%)\n";
+
+      let sum2025 = 0;
+      let sum26_0914 = 0;
+
+      const rows = document.querySelectorAll('#report-table-body tr');
+      rows.forEach((r, idx) => {
+        const cells = r.querySelectorAll('td');
+        if (cells.length >= 5) {
+          const nameText = cells[1].innerText.replace(/\n/g, ' ').replace(/"/g, '""');
+          const s25Text = cells[2].innerText.replace(/[^0-9.-]+/g,"") || 0;
+          const s26_0914Text = cells[3].innerText.replace(/[^0-9.-]+/g,"") || 0;
+          const growthText = cells[4].innerText.trim();
+          
+          sum2025 += Number(s25Text);
+          sum26_0914 += Number(s26_0914Text);
+
+          let code = '';
+          const codeMatch = nameText.match(/รหัส\s*([0-9]+)/);
+          if (codeMatch) code = codeMatch[1];
+          const cleanName = nameText.replace(/รหัส\s*[0-9]+.*$/, '').trim();
+
+          csvContent += `"${idx + 1}","${cleanName}","${code}",${s25Text},${s26_0914Text},"${growthText}"\n`;
+        }
+      });
+
+      let totalGrowth = sum2025 > 0 ? (((sum26_0914 - sum2025) / sum2025) * 100).toFixed(1) + "%" : "-";
+      csvContent += `"","รวมทั้งสิ้น (${rows.length} บริษัท)","",${sum2025},${sum26_0914},"${totalGrowth}"\n`;
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `SCG_Sales_Report_${provName}_2025_2026.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    async function loadAndApplyCloudSales(manualClick = false) {
+      const syncBtn = document.getElementById('btn-report-cloud-sync');
+      if (manualClick && syncBtn) {
+        syncBtn.innerHTML = '<span>⏳ กำลังดึงข้อมูล...</span>';
+      }
+
+      try {
+        if (typeof fetchCloudCustomerSales === 'function') {
+          const cloudData = await fetchCloudCustomerSales();
+          if (cloudData && Array.isArray(cloudData) && cloudData.length > 0) {
+            let updatedCount = 0;
+            masterReportList.forEach(c => {
+              const scgId = c.scgCode || c.scgCustomerCode;
+              if (!scgId) return; // ข้ามบริษัทที่ไม่ใช่ลูกค้า SCG เพื่อไม่ให้ยอดผิดพลาด
+
+              const cloudMatch = cloudData.find(item => item.scg_customer_id && item.scg_customer_id === scgId);
+
+              if (cloudMatch) {
+                if (cloudMatch.sales_2025 != null) c.sales2025 = Number(cloudMatch.sales_2025);
+                if (cloudMatch.sales_2026_0914 != null) c.sales2026_0914 = Number(cloudMatch.sales_2026_0914);
+                if (cloudMatch.sales_2026_0930 != null) c.sales2026_0930 = Number(cloudMatch.sales_2026_0930);
+                if (cloudMatch.sales_2026_1030 != null) c.sales2026_1030 = Number(cloudMatch.sales_2026_1030);
+
+                c.sales2026_latest = (c.sales2026_1030 != null && c.sales2026_1030 > 0) ? c.sales2026_1030 :
+                                     ((c.sales2026_0930 != null && c.sales2026_0930 > 0) ? c.sales2026_0930 : c.sales2026_0914);
+                updatedCount++;
+              }
+            });
+
+            renderReportTable();
+            if (manualClick) {
+              alert(`🎉 ดึงข้อมูลยอดขายล่าสุดจาก Supabase Cloud เรียบร้อยแล้ว (${updatedCount} บริษัท)!`);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Could not auto load cloud sales:', err);
+        if (manualClick) alert('⚠️ ไม่สามารถเชื่อมต่อ Supabase ได้: ' + err.message);
+      } finally {
+        if (syncBtn) {
+          syncBtn.innerHTML = '<span>☁️ ดึงยอดจาก Supabase</span>';
+        }
+      }
+    }
+
+    // ==========================================
+    // AI STRATEGY & ADVISORY DYNAMIC ENGINE
+    // ==========================================
+    function formatBahtCurrency(val) {
+      if (val == null || isNaN(val)) return '฿0';
+      return '฿' + Number(val).toLocaleString('th-TH', { maximumFractionDigits: 0 });
+    }
+
+    function formatShortBaht(val) {
+      const num = Number(val) || 0;
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(2) + ' ล้านบาท';
+      } else if (num >= 100000) {
+        return (num / 100000).toFixed(2) + ' แสนบาท';
+      } else if (num >= 10000) {
+        return (num / 10000).toFixed(1) + ' หมื่นบาท';
+      }
+      return '฿' + num.toLocaleString('th-TH') + ' บาท';
+    }
+
+    function formatShortBahtPure(val) {
+      const num = Number(val) || 0;
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(2) + 'M';
+      } else if (num >= 100000) {
+        return (num / 100000).toFixed(2) + 'แสน';
+      } else if (num >= 10000) {
+        return (num / 10000).toFixed(1) + 'หมื่น';
+      }
+      return '฿' + num.toLocaleString('th-TH');
+    }
+
+    function generateDynamicAiStrategyAnalysis() {
+      const container = document.getElementById('ai-strategy-printable-area');
+      const subtitleEl = document.getElementById('ai-strategy-subtitle');
+      if (!container) return;
+
+      const selectedProv = document.getElementById('select-province') ? document.getElementById('select-province').value : 'all';
+      const provName = selectedProv === 'all' ? 'ทุกจังหวัด' : `จ.${selectedProv}`;
+
+      // Get dataset for current province (or all)
+      let list = masterReportList.filter(c => {
+        if (selectedProv !== 'all') {
+          const prov = c.province || 'อุดรธานี';
+          if (!prov.includes(selectedProv)) return false;
+        }
+        return true;
+      });
+
+      // Update subtitle
+      if (subtitleEl) {
+        subtitleEl.textContent = `วิเคราะห์โครงสร้างตลาดและพฤติกรรมการซื้ออัตโนมัติ • เปรียบเทียบยอดขายปี 2025 vs 2026 (พื้นที่: ${provName} • ข้อมูลล่าสุด ณ วันที่ 14 ก.ย. 2569)`;
+      }
+
+      // Calculations
+      let sum2025 = 0;
+      let sum2026 = 0;
+      
+      const growthEngines = []; // s26 > s25 && s25 > 0
+      const newCustomers = [];  // s25 === 0 && s26 > 0
+      const churnAlerts = [];   // s26 < s25
+      const stableAccounts = []; // s25 === s26 || anchor
+
+      list.forEach(c => {
+        const s25 = Number(c.sales2025) || 0;
+        const s26 = Number(c.sales2026_latest != null ? c.sales2026_latest : c.sales2026_0914) || 0;
+        sum2025 += s25;
+        sum2026 += s26;
+
+        const diff = s26 - s25;
+        const growthPct = s25 > 0 ? (diff / s25) * 100 : (s26 > 0 ? 999999 : 0);
+
+        const item = {
+          name: c.name,
+          scgCode: c.scgCode,
+          s25: s25,
+          s26: s26,
+          diff: diff,
+          growthPct: growthPct,
+          id: c.id
+        };
+
+        if (s25 === 0 && s26 > 0) {
+          newCustomers.push(item);
+        } else if (s26 > s25 && s25 > 0) {
+          growthEngines.push(item);
+        } else if (s26 < s25) {
+          churnAlerts.push(item);
+        } else if (s25 > 0 || s26 > 0) {
+          stableAccounts.push(item);
+        }
+      });
+
+      // Sort collections
+      growthEngines.sort((a, b) => b.diff - a.diff);
+      newCustomers.sort((a, b) => b.s26 - a.s26);
+      churnAlerts.sort((a, b) => a.diff - b.diff); // lowest (most negative) first
+
+      const totalGrowthGain = growthEngines.reduce((acc, x) => acc + x.diff, 0);
+      const totalNewSales = newCustomers.reduce((acc, x) => acc + x.s26, 0);
+      const totalChurnLoss = Math.abs(churnAlerts.reduce((acc, x) => acc + x.diff, 0));
+      const netChange = sum2026 - sum2025;
+      const netChangePct = sum2025 > 0 ? (netChange / sum2025) * 100 : 0;
+
+      // Top Anchor (highest single 2026 account)
+      const sortedBy2026 = [...list].sort((a, b) => {
+        const sA = Number(a.sales2026_latest != null ? a.sales2026_latest : a.sales2026_0914) || 0;
+        const sB = Number(b.sales2026_latest != null ? b.sales2026_latest : b.sales2026_0914) || 0;
+        return sB - sA;
+      });
+      const topAnchor = sortedBy2026[0];
+      const topAnchorSales = topAnchor ? (Number(topAnchor.sales2026_latest != null ? topAnchor.sales2026_latest : topAnchor.sales2026_0914) || 0) : 0;
+      const topAnchorName = topAnchor ? topAnchor.name : '-';
+
+      const topGrowthNames = growthEngines.slice(0, 4).map(x => x.name).join(', ') || 'ไม่มี';
+      const topChurnNames = churnAlerts.slice(0, 3).map(x => x.name).join(', ') || 'ไม่มี';
+      const topNewNames = newCustomers.map(x => x.name).join(', ') || 'ไม่มี';
+
+      container.innerHTML = `
+        <!-- Summary KPI Metrics Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 22px;">
+          
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #16A34A; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">🚀 กลุ่มดาวรุ่ง (Growth Engines)</div>
+            <div style="font-size: 1.25rem; font-weight: 900; color: #16A34A; margin-top: 4px;">+${formatShortBaht(totalGrowthGain)}</div>
+            <div style="font-size: 0.72rem; color: #15803D; font-weight: 600; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${topGrowthNames}">
+              ${growthEngines.length} บริษัท: ${topGrowthNames}
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #0284C7; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">✨ ลูกค้าใหม่เปิดบิล 2026 (New Acquired)</div>
+            <div style="font-size: 1.25rem; font-weight: 900; color: #0284C7; margin-top: 4px;">+${formatShortBaht(totalNewSales)}</div>
+            <div style="font-size: 0.72rem; color: #0369A1; font-weight: 600; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${topNewNames}">
+              ${newCustomers.length} ราย: ${topNewNames}
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #DC2626; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">🚨 ยอดหลุดหาย (At-Risk / Churn)</div>
+            <div style="font-size: 1.25rem; font-weight: 900; color: #DC2626; margin-top: 4px;">-${formatShortBaht(totalChurnLoss)}</div>
+            <div style="font-size: 0.72rem; color: #B91C1C; font-weight: 600; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${topChurnNames}">
+              ${churnAlerts.length} บริษัท: ${topChurnNames}
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; border-left: 4px solid #7C3AED; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #64748B;">📈 สถานะตลาดรวม 2026 vs 2025</div>
+            <div style="font-size: 1.25rem; font-weight: 900; color: ${netChange >= 0 ? '#16A34A' : '#DC2626'}; margin-top: 4px;">
+              ${netChange >= 0 ? '+' : ''}${formatShortBaht(netChange)} (${netChange >= 0 ? '+' : ''}${netChangePct.toFixed(1)}%)
+            </div>
+            <div style="font-size: 0.72rem; color: #6B21A8; font-weight: 600; margin-top: 2px;">
+              ยอดรวม 2026: ฿${sum2026.toLocaleString('th-TH', {maximumFractionDigits:0})} บาท
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 1: Market Structure Analysis -->
+        <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 20px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.2rem;">📊</span>
+              <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A;">1. บทวิเคราะห์โครงสร้างยอดขาย (Market Structure Analysis)</h3>
+            </div>
+            <span style="font-size: 0.74rem; background: #EEF2FF; color: #4338CA; padding: 2px 8px; border-radius: 6px; font-weight: 700;">วิเคราะห์สดอัตโนมัติตามยอดจริง</span>
+          </div>
+          
+          <p style="font-size: 0.86rem; color: #334155; line-height: 1.6; margin-top: 0;">
+            ผลการวิเคราะห์ข้อมูลยอดขายล่าสุดในพื้นที่ <strong>${provName}</strong> พบการกระจายตัวของกลุ่มลูกค้า 3 มิติเชิงกลยุทธ์:
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 14px;">
+            
+            <!-- Box A: Growth Engines -->
+            <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column;">
+              <div style="font-weight: 800; color: #166534; font-size: 0.88rem; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <span>🚀 กลุ่มดาวรุ่งพุ่งแรง (${growthEngines.length} บริษัท)</span>
+                <span style="font-size: 0.72rem; background: #DCFCE7; padding: 1px 6px; border-radius: 4px; font-weight: 700;">+${formatShortBaht(totalGrowthGain)}</span>
+              </div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 0.8rem; color: #14532D; line-height: 1.75; flex: 1; max-height: 280px; overflow-y: auto;">
+                ${growthEngines.length > 0 ? growthEngines.map(item => `
+                  <li>
+                    <strong>${item.name}:</strong> ${formatShortBahtPure(item.s25)} ➔ ${formatShortBahtPure(item.s26)}
+                    <span style="color:#16A34A; font-weight:800;">(+${item.growthPct.toFixed(1)}%)</span>
+                  </li>
+                `).join('') : '<li style="color: #64748B;">ไม่มีรายการ</li>'}
+              </ul>
+            </div>
+
+            <!-- Box B: New 2026 Customers -->
+            <div style="background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 10px; padding: 14px; display: flex; flex-direction: column;">
+              <div style="font-weight: 800; color: #0369A1; font-size: 0.88rem; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <span>✨ ลูกค้าเปิดบิลใหม่ 2026 (${newCustomers.length} ราย)</span>
+                <span style="font-size: 0.72rem; background: #E0F2FE; color:#0369A1; padding: 1px 6px; border-radius: 4px; font-weight: 700;">+${formatShortBaht(totalNewSales)}</span>
+              </div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 0.8rem; color: #075985; line-height: 1.75; flex: 1; max-height: 280px; overflow-y: auto;">
+                ${newCustomers.length > 0 ? newCustomers.map(item => `
+                  <li>
+                    <strong>${item.name}:</strong> ยอดเปิดบิล <strong>${formatBahtCurrency(item.s26)}</strong>
+                    <span style="background:#E0F2FE; color:#0284C7; font-size:0.72rem; padding:1px 5px; border-radius:4px; font-weight:800;">New 2026</span>
+                  </li>
+                `).join('') : '<li style="color: #64748B;">ยังไม่มีลูกค้าเปิดบิลใหม่</li>'}
+              </ul>
+            </div>
+
+            <!-- Box C: Red Alert Churn -->
+            <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 10px; padding: 14px; display: flex; flex-direction: column;">
+              <div style="font-weight: 800; color: #991B1B; font-size: 0.88rem; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <span>🚨 ยอดหลุดหาย / เสี่ยงสูญเสีย (${churnAlerts.length} บริษัท)</span>
+                <span style="font-size: 0.72rem; background: #FEE2E2; color:#991B1B; padding: 1px 6px; border-radius: 4px; font-weight: 700;">-${formatShortBaht(totalChurnLoss)}</span>
+              </div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 0.8rem; color: #7F1D1D; line-height: 1.75; flex: 1; max-height: 280px; overflow-y: auto;">
+                ${churnAlerts.length > 0 ? churnAlerts.map(item => `
+                  <li>
+                    <strong>${item.name}:</strong> ${formatShortBahtPure(item.s25)} ➔ ${formatShortBahtPure(item.s26)}
+                    <span style="color:#DC2626; font-weight:800;">(${item.growthPct.toFixed(1)}%)</span>
+                    <span style="font-size: 0.74rem; color: #991B1B; font-weight: 600;">(⚠️ หายไป ${formatShortBaht(Math.abs(item.diff))})</span>
+                  </li>
+                `).join('') : '<li style="color: #16A34A; font-weight: 600;">ยอดขายเติบโตทุกราย ไม่มียอดหลุดหาย</li>'}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 2: Key Hypotheses -->
+        <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 20px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+            <span style="font-size: 1.2rem;">💡</span>
+            <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A;">2. ข้อสังเกตและสมมติฐานเชิงกลยุทธ์จาก AI (Key Strategic Hypotheses)</h3>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px 14px; border-radius: 8px;">
+              <span style="font-size: 1.2rem; line-height: 1;">🚀</span>
+              <div style="font-size: 0.83rem; color: #14532D; line-height: 1.55;">
+                <strong>1. แรงขับเคลื่อนหลักจากกลุ่มดาวรุ่ง & ลูกค้าใหม่:</strong> มียอดการเติบโตเพิ่มขึ้นจากกลุ่มขยายตัวถึง <strong>+${formatShortBaht(totalGrowthGain + totalNewSales)}</strong> โดยเฉพาะกลุ่มลูกค้าใหม่ปี 2026 (${newCustomers.map(x => x.name).join(', ') || 'ไม่มี'}) ที่เริ่มสั่งซื้อ SCG ในปีนี้อย่างเป็นรูปธรรม
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #FFFBEB; border: 1px solid #FDE68A; padding: 12px 14px; border-radius: 8px;">
+              <span style="font-size: 1.2rem; line-height: 1;">⚠️</span>
+              <div style="font-size: 0.83rem; color: #78350F; line-height: 1.55;">
+                <strong>2. รูรั่วยอดขายที่ต้องเร่งกู้คืนทันที:</strong> ยอดที่หลุดหายไปรวมกว่า <strong>${formatShortBaht(totalChurnLoss)}</strong> จากกลุ่มลูกค้าชะลอตัว (${churnAlerts.map(x => x.name).slice(0, 3).join(', ') || '-'}) ทีมขายต้องเข้าตรวจสอบด่วนว่า <em>"ไซต์งานก่อสร้างลดลงจริง"</em> หรือ <em>"เปลี่ยนไปใช้คอนกรีต/ปูนตราอื่น หรือซื้อผ่านร้านค้าตัวแทนอื่น"</em>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 12px 14px; border-radius: 8px;">
+              <span style="font-size: 1.2rem; line-height: 1;">🏛️</span>
+              <div style="font-size: 0.83rem; color: #1E40AF; line-height: 1.55;">
+                <strong>3. การรักษาฐานลูกค้าเสาหลัก (Anchor Tier):</strong> บริษัทอย่าง <strong>${topAnchorName}</strong> (ยอดรวมปี 2026: <strong>${formatBahtCurrency(topAnchorSales)}</strong>) ยังคงเป็นรากฐานสำคัญ ต้องรักษาความสัมพันธ์ระดับผู้บริหารและสนับสนุนงานจัดส่งหน้าไซต์อย่างต่อเนื่อง
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 3: Actionable Sales Playbook -->
+        <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+            <span style="font-size: 1.2rem;">🎯</span>
+            <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0F172A;">3. แผนปฏิบัติการทีมขาย 4 ขั้นตอน (Actionable Sales Playbook)</h3>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 14px;">
+            
+            <!-- Action 1 -->
+            <div style="border: 1.5px solid #FCA5A5; background: #FFF5F5; border-radius: 10px; padding: 14px;">
+              <div style="font-size: 0.88rem; font-weight: 800; color: #991B1B; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span style="background: #DC2626; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">1</span>
+                <span>แผนกู้ยอดด่วน "Win-Back Rescue" (ด่วนที่สุด)</span>
+              </div>
+              <div style="font-size: 0.79rem; color: #7F1D1D; line-height: 1.55;">
+                • <strong>เป้าหมาย:</strong> ${churnAlerts.map(x => x.name).slice(0, 4).join(', ') || 'ลูกค้ายอดชะลอตัว'}<br>
+                • <strong>แนวทาง:</strong> เซลส์เข้าพบเจ้าของ/ฝ่ายจัดซื้อสัปดาห์นี้ หากติดเรื่องราคา/เครดิต ให้ร่วมมือกับตัวแทนจำหน่ายจัด Volume Rebate หรือนำเสนอโซลูชันลดแรงงาน เช่น คอนกรีตผสมเสร็จ CPAC
+              </div>
+            </div>
+
+            <!-- Action 2 -->
+            <div style="border: 1.5px solid #86EFAC; background: #F0FDF4; border-radius: 10px; padding: 14px;">
+              <div style="font-size: 0.88rem; font-weight: 800; color: #166534; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span style="background: #16A34A; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">2</span>
+                <span>แผนล็อกสัญญาระยะยาว "VIP Lock-in" (รักษาฐานโต)</span>
+              </div>
+              <div style="font-size: 0.79rem; color: #14532D; line-height: 1.55;">
+                • <strong>เป้าหมาย:</strong> ${growthEngines.map(x => x.name).slice(0, 4).join(', ') || 'กลุ่มดาวรุ่ง'}<br>
+                • <strong>แนวทาง:</strong> เสนอ <em>SCG Partner Privileges</em> มีทีมวิศวกรและผู้เชี่ยวชาญเข้าช่วยตรวจไซต์งาน + สนับสนุนป้าย Co-Branding หน้าไซต์งานจริง เพื่อล็อกให้ใช้ SCG 100%
+              </div>
+            </div>
+
+            <!-- Action 3 -->
+            <div style="border: 1.5px solid #BAE6FD; background: #F0F9FF; border-radius: 10px; padding: 14px;">
+              <div style="font-size: 0.88rem; font-weight: 800; color: #0369A1; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span style="background: #0284C7; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">3</span>
+                <span>แผนขยายยอดลูกค้าใหม่ "New Client Nurturing" (โอกาสทอง)</span>
+              </div>
+              <div style="font-size: 0.79rem; color: #075985; line-height: 1.55;">
+                • <strong>เป้าหมาย:</strong> ${newCustomers.map(x => x.name).join(', ') || 'ลูกค้าเปิดบิลใหม่ปี 2026'}<br>
+                • <strong>แนวทาง:</strong> ติดตามงวดงานก่อสร้างถัดไปอย่างต่อเนื่อง เสนอ Cross-Selling พ่วงสินค้า <em>ระบบหลังคา SCG NeuTile + อิฐมวลเบา Q-CON + กระเบื้อง/สุขภัณฑ์ COTTO</em> เพื่อดัน Ticket Size
+              </div>
+            </div>
+
+            <!-- Action 4 -->
+            <div style="border: 1.5px solid #FDE047; background: #FEFCE8; border-radius: 10px; padding: 14px;">
+              <div style="font-size: 0.88rem; font-weight: 800; color: #854D0E; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span style="background: #CA8A04; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">4</span>
+                <span>เจาะไซต์งานตั้งแต่เริ่มเทฐานราก (Early-Stage Hunting)</span>
+              </div>
+              <div style="font-size: 0.79rem; color: #713F12; line-height: 1.55;">
+                • <strong>เป้าหมาย:</strong> ไซต์งานที่ตรวจพบสัญญาณโพสต์ Facebook ในระบบ NEXTSITE<br>
+                • <strong>แนวทาง:</strong> ใช้ระบบคัดกรองไซต์สเตจ <em>Groundbreak & Foundation (วางผัง/เทตอม่อ)</em> เข้าเจาะก่อนคู่แข่ง จะมีโอกาสปิดดีลปูนเทคานและโครงสร้างได้สูงกว่าถึง 80%
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function openAiStrategyModal() {
+      const modal = document.getElementById('ai-strategy-modal');
+      if (modal) {
+        generateDynamicAiStrategyAnalysis();
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeAiStrategyModal() {
+      const modal = document.getElementById('ai-strategy-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function printAiStrategyReport() {
+      generateDynamicAiStrategyAnalysis();
+      document.body.classList.add('printing-ai-strategy');
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.body.classList.remove('printing-ai-strategy');
+        }, 1200);
+      }, 50);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initReport();
+    });
+  </script>
+
+  <!-- ========================================== -->
+  <!-- AI STRATEGY & SALES ADVISORY MODAL -->
+  <!-- ========================================== -->
+  <div id="ai-strategy-modal" class="modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(6px); z-index: 99999; align-items: center; justify-content: center; padding: 20px;" onclick="if(event.target === this) closeAiStrategyModal()">
+    <div style="background: #FFFFFF; width: 100%; max-width: 980px; max-height: 92vh; border-radius: 18px; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45); display: flex; flex-direction: column; overflow: hidden; border: 1.5px solid #CBD5E1; animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
+      
+      <!-- Modal Header: AI Gradient -->
+      <div style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 40%, #1E3A8A 100%); color: #FFFFFF; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #6366F1;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);">
+            ✨
+          </div>
+          <div>
+            <div style="font-size: 1.15rem; font-weight: 800; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;">
+              <span>บทวิเคราะห์กลยุทธ์ยอดขาย &amp; คำแนะนำประจำเดือนจาก AI</span>
+              <span style="background: #ECFDF5; color: #065F46; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-weight: 800; border: 1px solid #A7F3D0;">SCG Udon Thani Intelligence</span>
+            </div>
+            <div id="ai-strategy-subtitle" style="font-size: 0.78rem; color: #C7D2FE; font-weight: 600; margin-top: 2px;">
+              วิเคราะห์โครงสร้างตลาดและพฤติกรรมการซื้อ • ฉบับเปรียบเทียบยอดขายปี 2025 vs 2026 (ประจำรอบ 14 กันยายน 2569)
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button type="button" onclick="printAiStrategyReport()" style="background: rgba(255,255,255,0.15); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+            🖨️ พิมพ์บทวิเคราะห์
+          </button>
+          <button type="button" onclick="closeAiStrategyModal()" style="background: transparent; color: #FFFFFF; border: none; font-size: 1.4rem; width: 34px; height: 34px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='transparent'">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable Insights - Generated Dynamically by AI Engine) -->
+      <div id="ai-strategy-printable-area" style="flex: 1; overflow-y: auto; padding: 24px; background: #F8FAFC; font-family: 'Prompt', 'Inter', sans-serif;">
+        <!-- Dynamically rendered by generateDynamicAiStrategyAnalysis() -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div style="background: #F1F5F9; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #CBD5E1; flex-wrap: wrap; gap: 10px;">
+        <div style="font-size: 0.76rem; color: #64748B; display: flex; align-items: center; gap: 6px;">
+          <span>🤖</span>
+          <span>ระบบวิเคราะห์และคำนวณกลยุทธ์อัตโนมัติแบบ Real-time ตามฐานข้อมูลยอดขายล่าสุด</span>
+        </div>
+        <button type="button" onclick="closeAiStrategyModal()" style="background: #1E293B; color: #FFFFFF; border: none; padding: 7px 20px; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer;">
+          ปิดหน้าต่าง
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</body></html>

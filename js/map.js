@@ -1,4 +1,4 @@
-/**
+﻿/**
  * NEXTSITE AI - Leaflet Map Integration for Udon Thani (จ.อุดรธานี)
  * แสดงหมุดสีและตัวเลข Opportunity Score ตามเกณฑ์จริง:
  * - สีแดง (92 คะแนน / 7+ โครงการ)

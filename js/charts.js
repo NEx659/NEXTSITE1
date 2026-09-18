@@ -1,4 +1,4 @@
-/**
+﻿/**
  * NEXTSITE AI - SCG Product Analytics & Summary Charts Engine
  * แสดงสรุปยอดสินค้าในหน้าแรก และเปิดดูกราฟเจาะลึกเมื่อคลิกรายสินค้า
  */

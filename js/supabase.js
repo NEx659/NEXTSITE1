@@ -1,4 +1,4 @@
-/**
+﻿/**
  * NEXTSITE AI - Supabase Cloud Database & Authentication Client
  * Handles real-time cloud synchronization, user territory login, and status updates.
  */

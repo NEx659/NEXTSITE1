@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Mosaic Clean Matching</title>
+</head>
+<body>
+  <div id="test-output"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/app.js"></script>
+
+  <script>
+    // Test matching Apify item for Mosaic Design
+    loadSavedCompaniesData();
+    
+    // Simulate Apify post from Mosaic Design
+    const mosaicPost = {
+      facebookUrl: 'https://www.facebook.com/profile.php?id=100083320623771',
+      pageUrl: 'https://www.facebook.com/profile.php?id=100083320623771',
+      user: { id: '100083320623771', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น' },
+      text: 'อัปเดตหน้างานสร้างบ้าน อ.เมืองอุดรธานี เทคานคอดินเรียบร้อย #โมเสคดีไซน์',
+      postUrl: 'https://www.facebook.com/100083320623771/posts/123456789'
+    };
+
+    const matchedComp = findMatchingCompany(mosaicPost, mosaicPost.text, mosaicPost.user.name, mosaicPost.postUrl);
+
+    // Simulate Trust Construction post
+    const trustPost = {
+      facebookUrl: 'https://www.facebook.com/ENTRUST.CONST',
+      pageUrl: 'https://www.facebook.com/ENTRUST.CONST',
+      user: { id: '100063688192080', name: 'บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด' },
+      text: 'Update Site. Project | Trust construction Builder',
+      postUrl: 'https://www.facebook.com/ENTRUST.CONST/posts/999888'
+    };
+    const matchedTrust = findMatchingCompany(trustPost, trustPost.text, trustPost.user.name, trustPost.postUrl);
+
+    const out = document.getElementById('test-output');
+    out.innerText = JSON.stringify({
+      mosaicPostMatchedTo: matchedComp ? matchedComp.id + ' (' + matchedComp.name + ')' : 'NONE',
+      trustPostMatchedTo: matchedTrust ? matchedTrust.id + ' (' + matchedTrust.name + ')' : 'NONE'
+    }, null, 2);
+  </script>
+</body>
+</html>

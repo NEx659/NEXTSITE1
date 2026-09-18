@@ -407,19 +407,45 @@
         <!-- Hidden file input for Apify JSON upload -->
         <input type="file" id="direct-apify-file-input" accept=".json" style="display: none;" onchange="handleApifyFileUpload(event)">
         
-        <!-- Red Action Button: Upload Apify JSON -->
-        <button onclick="document.getElementById('direct-apify-file-input').click()" style="background: #D9251D; color: #FFFFFF; border: none; border-radius: 8px; padding: 6px 14px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(217,37,29,0.4); transition: all 0.2s ease;" title="คลิกเพื่อเลือกไฟล์ Apify JSON ที่บันทึกไว้">
-          <span>📥 อัปโหลด Apify JSON</span>
+        <!-- Red Action Icon Button: Upload Apify JSON -->
+        <button onclick="document.getElementById('direct-apify-file-input').click()" 
+          class="header-icon-btn"
+          style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #EF4444, #B91C1C); color: #FFFFFF; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 3px 10px rgba(220, 38, 38, 0.4); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);" 
+          title="📥 อัปโหลด Apify JSON"
+          onmouseover="this.style.transform='scale(1.08) translateY(-1px)'; this.style.boxShadow='0 5px 14px rgba(220, 38, 38, 0.6)';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 10px rgba(220, 38, 38, 0.4)';">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
         </button>
 
-        <!-- Reset Button: Reset all to 0 projects -->
-        <button onclick="resetUploadedDataToZero()" style="background: rgba(255, 255, 255, 0.12); color: #F1F5F9; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="รีเซ็ตข้อมูลโครงการทั้งหมดเป็น 0">
-          <span>🔄 รีเซ็ต (0 โครงการ)</span>
+        <!-- Reset Icon Button: Reset all to 0 projects -->
+        <button onclick="resetUploadedDataToZero()" 
+          class="header-icon-btn"
+          style="width: 38px; height: 38px; border-radius: 10px; background: rgba(255, 255, 255, 0.12); color: #F1F5F9; border: 1.5px solid rgba(255, 255, 255, 0.25); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);" 
+          title="🔄 รีเซ็ตข้อมูลโครงการทั้งหมดเป็น 0"
+          onmouseover="this.style.background='rgba(255, 255, 255, 0.22)'; this.style.transform='scale(1.08) translateY(-1px) rotate(45deg)';"
+          onmouseout="this.style.background='rgba(255, 255, 255, 0.12)'; this.style.transform='none';">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
         </button>
 
-        <!-- Supabase Cloud Sync Button -->
-        <button id="btn-cloud-sync" onclick="syncAllLocalCompaniesToSupabase(allCompanies)" style="background: rgba(16, 185, 129, 0.18); color: #34D399; border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s ease;" title="ซิงค์รายชื่อบริษัทและสถานะทั้งหมดขึ้น Cloud Database Supabase">
-          <span>☁️ ซิงค์ขึ้น Supabase</span>
+        <!-- Supabase Cloud Sync Icon Button -->
+        <button id="btn-cloud-sync" onclick="syncAllLocalCompaniesToSupabase(allCompanies)" 
+          class="header-icon-btn"
+          style="width: 38px; height: 38px; border-radius: 10px; background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1.5px solid rgba(52, 211, 153, 0.6); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);" 
+          title="☁️ ซิงค์ขึ้น Supabase Cloud"
+          onmouseover="this.style.background='rgba(16, 185, 129, 0.35)'; this.style.transform='scale(1.08) translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(16, 185, 129, 0.45)';"
+          onmouseout="this.style.background='rgba(16, 185, 129, 0.2)'; this.style.transform='none'; this.style.boxShadow='0 2px 8px rgba(16, 185, 129, 0.25)';">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            <polyline points="16 16 12 12 8 16"/>
+            <line x1="12" y1="12" x2="12" y2="21"/>
+          </svg>
         </button>
 
         <!-- User Authentication & Profile Section -->

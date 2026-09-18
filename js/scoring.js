@@ -121,12 +121,23 @@ function getProcessedCompanies() {
   }
 
   const processed = companiesSource.map(company => {
-    const actualProjectsCount = (company.projects && company.projects.length) ? company.projects.length : (company.totalProjects || 0);
+    // กรองเฉพาะโครงการที่ยังไม่จบงาน (< 98%)
+    const activeProjects = (company.projects && Array.isArray(company.projects)) ? company.projects.filter(p => {
+      if (!p) return false;
+      const txt = (String(p.name || '') + ' ' + String(p.stage || '') + ' ' + String(p.caption || '')).toLowerCase();
+      if (txt.includes('ส่งมอบ') || txt.includes('ตรวจรับ') || txt.includes('เสร็จสมบูรณ์') || txt.includes('งวดสุดท้าย') || txt.includes('ทำความสะอาด') || txt.includes('ปิดจ๊อบ') || p.stageKey === 'handover' || p.stageKey === 'completed' || p.progressPercent >= 98) {
+        return false;
+      }
+      return true;
+    }) : [];
+
+    const actualProjectsCount = (company.projects && Array.isArray(company.projects)) ? activeProjects.length : (company.totalProjects || 0);
     const scgTargetMillion = (actualProjectsCount * 0.5); // โครงการละ 500,000 บาท = 0.5 ล้านบาท
     const calculatedRevenueText = `฿${scgTargetMillion.toFixed(1)}M`;
 
     const updatedCompany = {
       ...company,
+      projects: activeProjects,
       totalProjects: actualProjectsCount,
       totalValueMillion: scgTargetMillion,
       revenuePotentialText: calculatedRevenueText
