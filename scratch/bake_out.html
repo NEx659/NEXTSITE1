@@ -1,4 +1,40 @@
-﻿var UDON_COMPANIES = [
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Bake Data</title>
+</head>
+<body>
+  <div id="output">DONE: 164 active projects</div>
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    async function runBake() {
+      try {
+        const response = await fetch('dataset.json');
+        const rawJson = await response.json();
+        const postList = Array.isArray(rawJson) ? rawJson : (rawJson.items || rawJson.data || [rawJson]);
+        console.log("Raw posts count:", postList.length);
+        processApifyJsonData(rawJson, 'Apify Dataset 2026-09-16');
+        const updated = allCompanies;
+        const totalP = updated.reduce((acc, c) => acc + (c.projects ? c.projects.length : 0), 0);
+        
+        const pre = document.createElement('pre');
+        pre.id = 'baked-json';
+        pre.textContent = 'var UDON_COMPANIES = ' + JSON.stringify(updated, null, 4) + ';';
+        document.body.appendChild(pre);
+        
+        document.getElementById('output').textContent = 'DONE: ' + totalP + ' active projects';
+      } catch (err) {
+        document.getElementById('output').textContent = 'ERROR: ' + err.message;
+        console.error(err);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', runBake);
+  </script>
+
+
+<div id="status-toast-container"></div><pre id="baked-json">var UDON_COMPANIES = [
     {
         "id": "comp-udon-08",
         "name": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
@@ -38,7 +74,7 @@
         "facebookSignal": {
             "postDate": "31/8/2569",
             "pageName": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
-            "caption": "Design & Build  By TWENTYSIX.HOUSE— Udonthani",
+            "caption": "Design &amp; Build  By TWENTYSIX.HOUSE— Udonthani",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -50,7 +86,7 @@
         "projects": [
             {
                 "projectId": "comp-udon-08-1",
-                "name": "Design & Build  By TWENTYSIX.HOUSE— Udonthani",
+                "name": "Design &amp; Build  By TWENTYSIX.HOUSE— Udonthani",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
@@ -64,7 +100,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Design & Build  By TWENTYSIX.HOUSE— Udonthani",
+                "caption": "Design &amp; Build  By TWENTYSIX.HOUSE— Udonthani",
                 "postedTime": "31/8/2569",
                 "postUrl": "https://www.facebook.com/reel/1602887421568403/",
                 "boq": [
@@ -84,7 +120,7 @@
             },
             {
                 "projectId": "comp-udon-08-2",
-                "name": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิด...",
+                "name": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 &amp; 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิด...",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
@@ -98,7 +134,7 @@
                 "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิดต่างมีคาแรกเตอร์เป็นของตัวเอง ทั้งสี ผิวสัมผัส และเมื่อถูกนำมาวางอยู่ด้วยกัน สิ่งเหล่านี้ก็กลายเป็นส่วนหนึ่งของภาษาที่จะใช้เล่าเรื่อง…. \n\nวันนี้เป็นอีกวันที่ คุณดรีมและคุณมะปราง ตั้งใจเลือกและตัดสินใจทุกรายละเอียด ที่จะสามารถถ่ายทอดตัวตนและเจตนารมณ์ของ ร้านอาหารเเจ่วฮ้อนมิตรภักดี เพื่อส่งต่อความรู้สึกนี้ไปให้ถึงลูกค้าทุกคนตั้งแต่ก้าวแรกที่เดินเข้ามา \n\nอดใจรออีกนิด แล้วมาพบกับแจ่วฮ้อนมิตรภักดีโฉมใหม่เร็วๆนี้ \n\n#แจ่วฮ้อนมิตรภักดี #แจ่วฮ้อนอุดรธานี\n\nTWENTYSIX.HOUSE Design\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#TwentysixHouse #InteriorDesign #BuiltIn #ออกแบบตกแต่งภายใน #รับสร้างบ้านอุดรธานี",
+                "caption": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 &amp; 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิดต่างมีคาแรกเตอร์เป็นของตัวเอง ทั้งสี ผิวสัมผัส และเมื่อถูกนำมาวางอยู่ด้วยกัน สิ่งเหล่านี้ก็กลายเป็นส่วนหนึ่งของภาษาที่จะใช้เล่าเรื่อง…. \n\nวันนี้เป็นอีกวันที่ คุณดรีมและคุณมะปราง ตั้งใจเลือกและตัดสินใจทุกรายละเอียด ที่จะสามารถถ่ายทอดตัวตนและเจตนารมณ์ของ ร้านอาหารเเจ่วฮ้อนมิตรภักดี เพื่อส่งต่อความรู้สึกนี้ไปให้ถึงลูกค้าทุกคนตั้งแต่ก้าวแรกที่เดินเข้ามา \n\nอดใจรออีกนิด แล้วมาพบกับแจ่วฮ้อนมิตรภักดีโฉมใหม่เร็วๆนี้ \n\n#แจ่วฮ้อนมิตรภักดี #แจ่วฮ้อนอุดรธานี\n\nTWENTYSIX.HOUSE Design\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#TwentysixHouse #InteriorDesign #BuiltIn #ออกแบบตกแต่งภายใน #รับสร้างบ้านอุดรธานี",
                 "postedTime": "27/8/2569",
                 "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0yajA2B9rtViJ66PTksnWC1DvM9RyZvY2WjuT66P25fvYPJoW8hpoNxSHeBLY3mvZl",
                 "boq": [
@@ -336,7 +372,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡 The beginning of a home is not the day you move in.\n\nIt begins the day you decide to place your trust in someone to help turn your dream into reality. ✨\n\nAnother meaningful day and another important milestone as we celebrated the traditional Thai pillar-raising ceremony for the home of Khun Jane & Eri.\n\nTWENTYSIX.HOUSE would like to sincerely thank you for allowing us to be part of this special chapter in your life.\n\n🔸 We take care of every detail, from the pillar-raising ceremony, auspicious ceremonial items, tables, tents, to arranging the Brahmin priest.\n🔸 Building a home should begin with blessings and positive meaning for the future.\n🔸 At TWENTYSIX.HOUSE, we give our full attention to every project, whether large or small.\n \n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\n\nTWENTYSIX.HOUSE Design 🤍💙\n\n……………………………………….\n\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
+                "caption": "🏡 The beginning of a home is not the day you move in.\n\nIt begins the day you decide to place your trust in someone to help turn your dream into reality. ✨\n\nAnother meaningful day and another important milestone as we celebrated the traditional Thai pillar-raising ceremony for the home of Khun Jane &amp; Eri.\n\nTWENTYSIX.HOUSE would like to sincerely thank you for allowing us to be part of this special chapter in your life.\n\n🔸 We take care of every detail, from the pillar-raising ceremony, auspicious ceremonial items, tables, tents, to arranging the Brahmin priest.\n🔸 Building a home should begin with blessings and positive meaning for the future.\n🔸 At TWENTYSIX.HOUSE, we give our full attention to every project, whether large or small.\n \n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\n\nTWENTYSIX.HOUSE Design 🤍💙\n\n……………………………………….\n\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
                 "postedTime": "27/6/2569",
                 "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0mxMZChfYD3g1uwXaxwdRp4qLh7eMAmPaxG91QEK88Lpm3E4ACXA2SCB5cbLUd6H7l",
                 "boq": [
@@ -397,8 +433,8 @@
             17.280851,
             103.2232063
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl": "https://www.facebook.com/profile.php?id=100066777634252",
         "facebookSignal": {
             "postDate": "13/9/2569",
@@ -431,7 +467,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ksc. โครงสร้างมั่นคงแข็งแรง \n☎️0946215444 รับต่อเติมบ้านในอุดร\n#หมู่บ้านอภิทาวน์ #รับต่อเติมบ้านในอุดร #รับเหมาก่อสร้าง #ต่อเติมอุดร #อุดรต่อเติมบ้าน #รีโนเวทอุดร #อุดรรีโนเวท",
                 "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qwa36vphbynrXKV61oQ9x7F45Le12JatksqAkqqV4DvzBQGWKZH5VLQPoHi35sAxl&id=100066777634252",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qwa36vphbynrXKV61oQ9x7F45Le12JatksqAkqqV4DvzBQGWKZH5VLQPoHi35sAxl&amp;id=100066777634252",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -533,7 +569,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "รางระบายน้ำ ขนาด 30cm. เกร้าท์ปูนท้องราง ภายนอกและภายใน เพื่อป้องกันน้ำซึมเข้าและซึมออก 🧑‍🔧ทีมงาน พีรพัฒน์ 999💯",
                 "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0yzkgEmCH8X8AgqfLaqzfiqeNKSqZRfgZERodnAPtDxJjz4Wqqwomsyhn33Y3kqqcl&id=100066777634252",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0yzkgEmCH8X8AgqfLaqzfiqeNKSqZRfgZERodnAPtDxJjz4Wqqwomsyhn33Y3kqqcl&amp;id=100066777634252",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -567,7 +603,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "ทีมงานพีรพัฒน์ 999 💯 งานก่อสร้าง แท่นถังตกตะกอน รับน้ำหนักปลอดภัย 4,000 kg/m2 🧑‍🔧🏠😍\n#ก่อสร้าง #รับเหมาก่อสร้าง #รับต่อเติมบ้านในอุดร #ถังตกตะกอน",
                 "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0DbFazUvMEHPayA6Av3R966ydQ2tmZJwdDbB6LN5BgArTD2YXj3c4b5CLMSgQzewAl&id=100066777634252",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0DbFazUvMEHPayA6Av3R966ydQ2tmZJwdDbB6LN5BgArTD2YXj3c4b5CLMSgQzewAl&amp;id=100066777634252",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -796,7 +832,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "บ้านที่ใช่ อยู่เมื่อไรก็มีความสุข\n\n#สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านอุดรธานี\n#รับสร้างบ้านหนองบัวลำภู\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านมหาสารคาม\n#รับสร้างบ้านภาคอีสาน",
                 "postedTime": "17/7/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0apVBJ8APq8mV8BkvKqhzt5SpNEucRARcqR6uQvYTz71xipRiwapo7NxhniezYMXjl&id=100034948943142",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0apVBJ8APq8mV8BkvKqhzt5SpNEucRARcqR6uQvYTz71xipRiwapo7NxhniezYMXjl&amp;id=100034948943142",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -898,7 +934,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏠 บ้านหนึ่งหลัง ใช้เวลาสร้างไม่กี่เดือน แต่จะเก็บเรื่องราวไปอีกหลายสิบปี …#Nordic House Style\n\n#สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น\n\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านอุดรธานี\n#รับสร้างบ้านหนองบัวลำภู\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านมหาสารคาม\n#รับสร้างบ้านภาคอีสาน",
                 "postedTime": "22/6/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid08dvKQ2aCrMGyvsyQr32uuEHw3gbCCwvzroRL4DR2qeHsZRtXTAQ1rf7MVnP1b1kWl&id=100034948943142",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid08dvKQ2aCrMGyvsyQr32uuEHw3gbCCwvzroRL4DR2qeHsZRtXTAQ1rf7MVnP1b1kWl&amp;id=100034948943142",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -932,7 +968,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "ท้องฟ้าที่สดใสและโครงสร้างที่ค่อย ๆ สมบูรณ์ขึ้นทีละส่วน….#สร้างด้วยใจใส่ใจทุกขั้นตอน #สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น\n\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านอุดรธานี\n#รับสร้างบ้านหนองบัวลำภู\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านมหาสารคาม\n#รับสร้างบ้านภาคอีสาน",
                 "postedTime": "17/6/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid033fvx19YBsnCVf19FjmRprHAaP36jiBTSUt2Ghtc9DMfFaybZKVJtjwSCNxvDgqPil&id=100034948943142",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid033fvx19YBsnCVf19FjmRprHAaP36jiBTSUt2Ghtc9DMfFaybZKVJtjwSCNxvDgqPil&amp;id=100034948943142",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -1292,7 +1328,7 @@
     {
         "id": "comp-udon-10",
         "name": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด",
-        "engName": "TT Design & Construction 1991 Co., Ltd.",
+        "engName": "TT Design &amp; Construction 1991 Co., Ltd.",
         "category": "รับเหมาก่อสร้างและงานสถาปัตยกรรม (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -1356,7 +1392,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨\nทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น \n\nOwner : คุณโหน่ง\nlocation : อ.เมือง จ.อุดรธานี\n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
                 "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&id=100057515256596",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&amp;id=100057515256596",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -1388,7 +1424,7 @@
                 "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "พาอัปเดตบ้านสไตล์ Modern Classic พื้นที่ใช้สอย 365 ตร.ม. \n\nกับขั้นตอนงานปูกระเบื้องทั้งพื้นบ้านและห้องน้ำ เพราะแนวกระเบื้อง ระดับพื้น และรอยต่อทุกจุด ล้วนส่งผลต่อความสวยงามและการใช้งานในระยะยาว\n\nTT Design & Construction\nใส่ใจทุกขั้นตอน เพื่อคุณภาพที่ตรวจสอบได้ 🏡\n\n#รับสร้างบ้าน #บ้านโมเดิร์นคลาสสิก #งานปูกระเบื้อง #อัปเดตหน้างาน #CEOOnsite #TTDesignAndConstruction",
+                "caption": "พาอัปเดตบ้านสไตล์ Modern Classic พื้นที่ใช้สอย 365 ตร.ม. \n\nกับขั้นตอนงานปูกระเบื้องทั้งพื้นบ้านและห้องน้ำ เพราะแนวกระเบื้อง ระดับพื้น และรอยต่อทุกจุด ล้วนส่งผลต่อความสวยงามและการใช้งานในระยะยาว\n\nTT Design &amp; Construction\nใส่ใจทุกขั้นตอน เพื่อคุณภาพที่ตรวจสอบได้ 🏡\n\n#รับสร้างบ้าน #บ้านโมเดิร์นคลาสสิก #งานปูกระเบื้อง #อัปเดตหน้างาน #CEOOnsite #TTDesignAndConstruction",
                 "postedTime": "10/9/2569",
                 "postUrl": "https://www.facebook.com/reel/1440415724648857/",
                 "boq": [
@@ -1422,9 +1458,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ทีมผู้เชี่ยวชาญจาก SCG \nเข้าแนะนำผลิตภัณฑ์ ปูนเสือ สกิมโคท 🐅\n\nให้ความรู้เกี่ยวกับคุณสมบัติและแนวทางการใช้งานที่ถูกต้องแก่ทีมงาน TT Design & Construction” เพื่อให้ผนังเรียบเนียน ได้คุณภาพ และสวยงามก่อนเข้าสู่งานสี\n\n“ตราเสือ” 🐅 เป็นแบรนด์ผลิตภัณฑ์ภายใต้กลุ่ม SCG อยู่ในกลุ่มธุรกิจ เอสซีจี ซีเมนต์แอนด์กรีนโซลูชันส์\n\nบ้านที่มีคุณภาพ เริ่มต้นจากความรู้ ความเข้าใจ และความใส่ใจในทุกขั้นตอน 👷🏻‍♂️👷🏻‍♂️💯\n\nOwner : คุณสุทิน คุณอิ๋ว\nlocation : อ.กุดจับ จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น #TTDesignAndConstruction #SCGPrestige #มาตรฐานงานหลังคา #สร้างบ้านอุดรธานี #รับสร้างบ้าน #บ้านพรีเมียม",
+                "caption": "ทีมผู้เชี่ยวชาญจาก SCG \nเข้าแนะนำผลิตภัณฑ์ ปูนเสือ สกิมโคท 🐅\n\nให้ความรู้เกี่ยวกับคุณสมบัติและแนวทางการใช้งานที่ถูกต้องแก่ทีมงาน TT Design &amp; Construction” เพื่อให้ผนังเรียบเนียน ได้คุณภาพ และสวยงามก่อนเข้าสู่งานสี\n\n“ตราเสือ” 🐅 เป็นแบรนด์ผลิตภัณฑ์ภายใต้กลุ่ม SCG อยู่ในกลุ่มธุรกิจ เอสซีจี ซีเมนต์แอนด์กรีนโซลูชันส์\n\nบ้านที่มีคุณภาพ เริ่มต้นจากความรู้ ความเข้าใจ และความใส่ใจในทุกขั้นตอน 👷🏻‍♂️👷🏻‍♂️💯\n\nOwner : คุณสุทิน คุณอิ๋ว\nlocation : อ.กุดจับ จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น #TTDesignAndConstruction #SCGPrestige #มาตรฐานงานหลังคา #สร้างบ้านอุดรธานี #รับสร้างบ้าน #บ้านพรีเมียม",
                 "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid027FRxoSS9DEoiECwfdptbqre2FNwMadCHV8sW8QP39esC1xkkYArpZ4eTQxakykULl&id=100057515256596",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid027FRxoSS9DEoiECwfdptbqre2FNwMadCHV8sW8QP39esC1xkkYArpZ4eTQxakykULl&amp;id=100057515256596",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -1476,7 +1512,7 @@
             },
             {
                 "projectId": "comp-udon-10-5",
-                "name": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design & Construction",
+                "name": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design &amp; Construction",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
@@ -1490,7 +1526,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design & Construction \nขอบคุณทาง คู่ยงฮวด สำหรับคำเชิญเข้าร่วมงานเลี้ยงขอบคุณลูกค้าคนสำคัญ บรรยากาศอบอุ่น สนุก และเป็นกันเองมากค่ะ\n\nพิเศษกว่านั้น…ทีมงานของเรายังได้เป็นหนึ่งในผู้โชคดี รับของรางวัลติดมือกลับบ้านด้วย 🎉",
+                "caption": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design &amp; Construction \nขอบคุณทาง คู่ยงฮวด สำหรับคำเชิญเข้าร่วมงานเลี้ยงขอบคุณลูกค้าคนสำคัญ บรรยากาศอบอุ่น สนุก และเป็นกันเองมากค่ะ\n\nพิเศษกว่านั้น…ทีมงานของเรายังได้เป็นหนึ่งในผู้โชคดี รับของรางวัลติดมือกลับบ้านด้วย 🎉",
                 "postedTime": "5/9/2569",
                 "postUrl": "https://www.facebook.com/reel/1248233144101707/",
                 "boq": [
@@ -1526,7 +1562,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "อัปเดต: งานบันไดไม้ประดู่แท้ อีกหนึ่งงานเฉพาะทางที่เราออกแบบและใส่ใจในทุกรายละเอียด ตั้งแต่วัสดุธรรมชาติ งานฝีมือ โทนสี สัดส่วน ไปจนถึงการติดตั้ง\n\nขั้นตอนต้องอาศัยความละเอียด เพื่อให้งานบันไดกลมกลืนกับดีไซน์ของบ้านทั้งหลัง และสะท้อนเอกลักษณ์เฉพาะตัวของเจ้าของบ้านได้อย่างลงตัว\n\nOwner : คุณนวพรรณ\nlocation : อ.เมือง จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
                 "postedTime": "4/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02mqamzuyMDUfMDjXuuQMeatyGiYo3kYPuA3pT1aTzjDGWJrDkcq3UBYwe1hqR87EFl&id=100057515256596",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02mqamzuyMDUfMDjXuuQMeatyGiYo3kYPuA3pT1aTzjDGWJrDkcq3UBYwe1hqR87EFl&amp;id=100057515256596",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2535,8 +2571,8 @@
             17.4037,
             102.79
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl": "https://www.facebook.com/ENTRUST.CONST/?locale=th_TH",
         "facebookSignal": {
             "postDate": "11/9/2569",
@@ -2700,7 +2736,7 @@
     {
         "id": "comp-udon-17",
         "name": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
-        "engName": "E House Construction & Design Co., Ltd.",
+        "engName": "E House Construction &amp; Design Co., Ltd.",
         "category": "รับสร้างบ้านและสถาปัตยกรรมอีสานประยุกต์ (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -2959,7 +2995,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
                 "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0TiKxbFnxAY97Y4g3aoCk6A4XARojgPof7NZmi4tDNPbbd7DsDwZvqR343Avf9QD2l&id=100069404124717",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0TiKxbFnxAY97Y4g3aoCk6A4XARojgPof7NZmi4tDNPbbd7DsDwZvqR343Avf9QD2l&amp;id=100069404124717",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2993,7 +3029,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🎉🎊เซ็นสัญญา จองคิวสร้าง พร้อมเตรียมยกเสาเอกเสาโท  ๑๑/๑๑/๒๕๖๙\n🏡บ้านทรงปั้นหยา  ของคุณบุญธรรมครับ\n\nพิกัด📍 อำเภอประจักษ์ศิลปาคม  จังหวัดอุดรธานี  ครับ😊\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
                 "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid09nkqg4UH1pQJjgX8TTJa8wn3Y4KxLqLjb2p9YYPFGZn3LqqeDaCCpLhRXT1nr1tMl&id=100069404124717",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid09nkqg4UH1pQJjgX8TTJa8wn3Y4KxLqLjb2p9YYPFGZn3LqqeDaCCpLhRXT1nr1tMl&amp;id=100069404124717",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3027,7 +3063,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🎊ฤกษ์งามยามดี 🎉\n๙ เดือน กันยายน   ๒๕๖๙ เวลา ๐๘.๐๙\nพิธียกเสาเอกเสาโท ครับ\n🏡บ้านทรงปั้นหยา  ของคุณเรืองเดช ครับ\n\nพิกัด📍อำเภอหนองหาน จังหวัด อุดรธานี ครับ\n\n🙏🏻ขอขอบพระคุณลูกค้าที่ไว้วางใจทีมงาน\nหจก. หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
                 "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qniy6WgxQTrVk9mgDpyuEGDgRG7d5tem7k6BNuoT2AFPerZz4JVVwTUcHV7VJdoQl&id=100069404124717",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qniy6WgxQTrVk9mgDpyuEGDgRG7d5tem7k6BNuoT2AFPerZz4JVVwTUcHV7VJdoQl&amp;id=100069404124717",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3120,8 +3156,8 @@
             17.2623,
             103.0035
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl": "https://www.facebook.com/profile.php?id=61576710850214",
         "facebookSignal": {
             "postDate": "9/9/2569",
@@ -3154,7 +3190,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
                 "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Kum6FQAu12yv28DbFeKXjrbSVwNw2DjTMuxeZnhDgr3ENccQEXHVuzxXHZ9J9YiMl&id=61576710850214",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Kum6FQAu12yv28DbFeKXjrbSVwNw2DjTMuxeZnhDgr3ENccQEXHVuzxXHZ9J9YiMl&amp;id=61576710850214",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3222,7 +3258,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเรา 🙏🏠\nเซ็นสัญญาและรับมัดจำเรียบร้อย เตรียมเริ่มสร้างบ้านหลังใหม่ในปี 2027\n\n#DNNConstruction #รับสร้างบ้าน #สร้างบ้านอุดรธานี",
                 "postedTime": "25/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02fCqSNv3LZyevgiMA1q3hdR8wjeKPafDvsTf3wcGvHAn5mNH5rBev95UjGPFKDrKpl&id=61576710850214",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02fCqSNv3LZyevgiMA1q3hdR8wjeKPafDvsTf3wcGvHAn5mNH5rBev95UjGPFKDrKpl&amp;id=61576710850214",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3349,7 +3385,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏡วันนี้ 07.09.2569\n🕤ฤกษ์งามยามดี เวลา 09.49 น.\n🙏ได้ฤกษ์ ยกเสาเอก–เสาโท\n🏡บ้านของ คุณน้อย ศิริรัตน์ ✨\nขออวยพรให้บ้านหลังนี้\n🏡 อยู่แล้วร่มเย็นเป็นสุข\n💰 เงินทองไหลมาเทมา มีแต่ความเจริญรุ่งเรือง\n❤️ ครอบครัวอบอุ่น มีความสุขตลอดไป\n🙏 ขอให้ทุกขั้นตอนของการสร้างบ้านราบรื่น สำเร็จสมความตั้งใจนะคะ\nขอบพระคุณคุณน้อยที่ไว้วางใจให้ซีทีการก่อสร้างดูแลบ้านหลังนี้ค่ะ ❤️\n\n#ยกเสาเอกเสาโท #ฤกษ์งามยามดี #บ้านคุณน้อยศิริรัตน์ #สร้างบ้านด้วยความใส่ใจ #ซีทีการก่อสร้าง",
                 "postedTime": "7/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid05iXzfgykx2Z9S4YQyR1NWsN6hxJ5SnhDFGV6RnQn77meHZvNU46Tg1jztMt62PdSl&id=61556687065111",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid05iXzfgykx2Z9S4YQyR1NWsN6hxJ5SnhDFGV6RnQn77meHZvNU46Tg1jztMt62PdSl&amp;id=61556687065111",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3383,7 +3419,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏡 ขอบคุณสำหรับความไว้วางใจค่ะ\nอีกหนึ่งผลงานออกแบบบ้านจาก ซีที การก่อสร้าง ใส่ใจทุกรายละเอียด ตั้งแต่การออกแบบ จนถึงการก่อสร้างบ้านในฝันให้เป็นจริง ✨\n📞 สอบถาม/ปรึกษางานก่อสร้าง\n091-546-5189 | 064-363-6645\n\n#ซีทีการก่อสร้าง #รับสร้างบ้าน #ออกแบบบ้าน #บ้านในฝัน #งานก่อสร้าง #อุดรธานี",
                 "postedTime": "28/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0nxEg67g6F9mVz2Em22q4SxwgUUX1S31HcKPGECHQhDqMKLfhUHobezqHGVVKSr6Sl&id=61556687065111",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0nxEg67g6F9mVz2Em22q4SxwgUUX1S31HcKPGECHQhDqMKLfhUHobezqHGVVKSr6Sl&amp;id=61556687065111",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3417,7 +3453,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "วันดี เวลาดี ฤกษ์ดี 🏡✨25.06.69🗓️\nซีที การก่อสร้าง ขอแสดงความยินดีกับเจ้าของบ้านหลังใหม่ ขอให้บ้านหลังนี้เป็นศูนย์รวมแห่งความสุข ความรัก และความอบอุ่น อยู่แล้วร่ำรวย ค้าขายเจริญรุ่งเรือง สุขภาพแข็งแรงคิดหวังสิ่งใดขอให้สมปรารถนาทุกประการ 🙏 ขอบพระคุณลูกค้าที่ไว้วางใจให้ซีที การก่อสร้าง ได้เป็นส่วนหนึ่งในการสร้างบ้านแห่งความสุขหลังนี้ ❤️\n📞 091-5465189\n📞 064-3636645\n\n#ซีทีการก่อสร้าง #ขึ้นบ้านใหม่ #สร้างบ้านอุดรธานี #รับสร้างบ้าน #บ้านในฝัน #งานก่อสร้างคุณภาพ",
                 "postedTime": "25/6/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0AAP1UBueq38AVS8voRpFcKHtp9AF38VhSFRKP8vhHSmSh7akhakk82TwzBrDxf2kl&id=61556687065111",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0AAP1UBueq38AVS8voRpFcKHtp9AF38VhSFRKP8vhHSmSh7akhakk82TwzBrDxf2kl&amp;id=61556687065111",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3451,7 +3487,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🎉 อีกหนึ่งผลงาน งานป้ายที่ช่วยเพิ่มภาพลักษณ์ให้องค์กร ดูทันสมัย สวยงาม และน่าเชื่อถือ 🔨 ซีที การก่อสร้าง รับงานก่อสร้างและตกแต่งครบวงจร\n\n📱 091-5465189\n📱 064-3636645\n\n#ซีทีการก่อสร้าง #รับสร้างบ้าน #งานต่อเติมทุกชนิด  #รับทำป้ายทุกประเภท #งานดีมีคุณภาพ #สร้างด้วยใจ",
                 "postedTime": "17/6/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02LwpqKeNnAxuy85zDZ5vZS2Gvcq31SJCbMaiJymJTfNikaVMzuTdCsDbCwme1FC5Rl&id=61556687065111",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02LwpqKeNnAxuy85zDZ5vZS2Gvcq31SJCbMaiJymJTfNikaVMzuTdCsDbCwme1FC5Rl&amp;id=61556687065111",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3510,8 +3546,8 @@
             17.3882,
             103.1895
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87+161+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+15+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B9%87%E0%B8%81+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl": "https://www.facebook.com/profile.php?id=61558614631187",
         "facebookSignal": {
             "postDate": "30/8/2569",
@@ -3544,7 +3580,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏠ปักหมุดอีกหลังเซ็นสัญญาจองคิวก่อสร้างล่วงหน้าขอบคุณที่ไว้ใจทีมงานเราได้รับใช้ \n\n             ✅จอวคิวก่อสร้างบ้านพักอาศัย1 ชั้น พื้นที่ใช้สอย169 ตารางเมตร \n           \n\n           🙏Owner คุณ Su Brachetti🙏\n\n📍บ้านหนองเม็ก ตำบลหนองเม็ก อำเภอหนองหาน จังหวัดอุดรธานี\n\n☎️0821070095 ช่างบาส\n\n#เกียรติรุ่งเรืองก่อสร้าง\n#รับสร้างบ้านภาคอีสาน\n#รีโนเวท\n#รับสร้างบ้านอุดร\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านหนองบัวลำภู\n#รับต่อเติมบ้าน\n#รับสร้างบ้านอำเภอหนองหาน",
                 "postedTime": "30/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02yoPrxToZ9fM7jpfKa5NXymoasncwk2Xip1mpkzHKwfVNpZvfFHFXk5paVpy4QrH6l&id=61558614631187",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02yoPrxToZ9fM7jpfKa5NXymoasncwk2Xip1mpkzHKwfVNpZvfFHFXk5paVpy4QrH6l&amp;id=61558614631187",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3612,7 +3648,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏠อัพเดทหน้างาน งานฝ้าเพดานเสร็จแล้ว ลูกค้าได้เลือกกระเบื้องและสีบ้านเรียบร้อย พร้อมกับลูกค้าให้ทางเราทำต่อเติมครัวเพิ่ม ลุยยยขอบคุณที่ไว้ใจทีมงานเราครับ🙏 \n\n               ✅บ้านพักอาศัยค.ส.ล.1 ชั้น 3 ห้องนอน2ห้องน้ำ 1ห้องโถง พื้นที่ 70ตารางเมตร\n           \n\n           🙏Owner คุณ เกษมณี  ผิวพรรณ 🙏\n\n📍บ้านดอนหายโศก ตำบลดอนหายโศก อำเภอหนองหาน จังหวัดอุดรธานี\n\n☎️0821070095 ช่างบาส\n   \n#เกียรติรุ่งเรืองก่อสร้าง\n#รับสร้างบ้านภาคอีสาน\n#รีโนเวท\n#รับสร้างบ้านอุดร\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านหนองบัวลำภู\n#รับต่อเติมบ้าน\n#รับสร้างบ้านอำเภอหนองหาน",
                 "postedTime": "25/5/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0p2GVXEN5ZJz8j2poumN6GAYXWyeDdgxUdtDWy3PLCfzBBWUgE4qzNRYWdV6uZJQLl&id=61558614631187",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0p2GVXEN5ZJz8j2poumN6GAYXWyeDdgxUdtDWy3PLCfzBBWUgE4qzNRYWdV6uZJQLl&amp;id=61558614631187",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3646,7 +3682,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏠✅อัพเดทหน้างานหลังจากรอไฟฟ้ามานานได้เวลาขึ้นงานหลังคาแล้วลุยยยยย \n\n              ✅บ้านพักอาศัยค.ส.ล.1 ชั้นกึ่งร้านขายของ  2 ห้องนอน1ห้องน้ำ 1ห้องโถง พื้นที่ 117ตารางเมตร\n           \n\n           🙏Owner คุณ พรณภัส  กูลมา 🙏\n\n📍บ้านหนองตอ ตำบลเชียงยืน อำเภอเมือง จังหวัดอุดรธานี\n\n☎️0821070095 ช่างบาส\n\n#เกียรติรุ่งเรืองก่อสร้าง\n#รับสร้างบ้านภาคอีสาน\n#รีโนเวท\n#รับสร้างบ้านอุดร\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านหนองบัวลำภู\n#รับต่อเติมบ้าน\n#รับสร้างบ้านอำเภอหนองหาน",
                 "postedTime": "25/5/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02FNLztaVSBWSKZhNFzXgkwQNP1QyiH57j5iZ9vCtNC3X9Zy1BaZ36LoV9UGje3Lw5l&id=61558614631187",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02FNLztaVSBWSKZhNFzXgkwQNP1QyiH57j5iZ9vCtNC3X9Zy1BaZ36LoV9UGje3Lw5l&amp;id=61558614631187",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3966,7 +4002,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🌧️วันนี้เรามีเกร็ดความรู้ 6 เคล็ดลับ การดูแลบ้านหน้าฝนมาฝากค่ะ☔️\n\n#บ้านในฝันของคุณคือความภูมิใจของเรา🏡\n\nสนใจสร้างบ้าน ติดต่อสอบถามรายละเอียด :\n☎️ Tel : 089 615 9559\n📩 E-mail : 117architect@gmail.com  \n📩 Line : 117architect\n📩 Inbox : https://www.facebook.com/359779854451767/\n🏠 Facebook : https://www.facebook.com/PhongsakRuangsiwakun\n      IG : https://www.instagram.com/117architect\n      YouTube : https://www.youtube.com/@117architect7\n      Tiktok : https://www.tiktok.com/@117architect?_r=1&_t=ZS-96mdGKMD1Ck",
+                "caption": "🌧️วันนี้เรามีเกร็ดความรู้ 6 เคล็ดลับ การดูแลบ้านหน้าฝนมาฝากค่ะ☔️\n\n#บ้านในฝันของคุณคือความภูมิใจของเรา🏡\n\nสนใจสร้างบ้าน ติดต่อสอบถามรายละเอียด :\n☎️ Tel : 089 615 9559\n📩 E-mail : 117architect@gmail.com  \n📩 Line : 117architect\n📩 Inbox : https://www.facebook.com/359779854451767/\n🏠 Facebook : https://www.facebook.com/PhongsakRuangsiwakun\n      IG : https://www.instagram.com/117architect\n      YouTube : https://www.youtube.com/@117architect7\n      Tiktok : https://www.tiktok.com/@117architect?_r=1&amp;_t=ZS-96mdGKMD1Ck",
                 "postedTime": "28/8/2569",
                 "postUrl": "https://www.facebook.com/PhongsakRuangsiwakun/posts/pfbid02TDVg4XeHeF2heVeGDViLF8BvJWzmeCzSmjbGwKYwx9Q8iiDpM9J8Z5uRjxnhM1Aql",
                 "boq": [
@@ -4154,8 +4190,8 @@
             17.362,
             103.118
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
         "facebookUrl": "https://www.facebook.com/firstlandtown",
         "facebookSignal": {
             "postDate": "15/9/2569",
@@ -4281,8 +4317,8 @@
             17.427,
             102.571
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000",
         "facebookUrl": "https://www.facebook.com/profile.php?id=61555396955045",
         "facebookSignal": {
             "postDate": "1/9/2569",
@@ -4349,7 +4385,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "“พิธียกเสาเอก–เสาโทผ่านไปด้วยดี ขอให้บ้านหลังนี้เป็นจุดเริ่มต้นของความสำเร็จครั้งใหม่ มั่นคง แข็งแรง และมั่งคั่งตลอดไป“\n  🏠#นิติพันธ์สร้างบ้านอุดรธานี#🏠\n      📍คุยง่าย ทำจริง ไม่ทิ้งงาน 📍\n 🏡เจ้าของบ้านแฮปปี้ คนสร้างก็มีความสุข💯💯💯\n       🙏ขอขอบพระคุณครับ🙏\n ที่ไว้ใจทีมงานนิติพันธ์สร้างบ้านอุดรธานี 😍😍\n       📌รับงานโซนอิสาน📌\n #อุดรธานี #ขอนแก่น #หนองคาย #สกลนคร #เลย #หนองบัวลำภู #กาฬสินธุ์ #บึงกาฬ #นครพนม\n☎️ 092-4123987 คุณนิติพันธ์\n☎️ 062-1627265  คุณริน\n☎️ 098-8519935 คุณแบงค์",
                 "postedTime": "25/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02wdUYanbQjiZz1zV7uzu5PB83VX3DJZaDaTt9XQbrPEQSf7u6W4AEiAhdxVo93WgKl&id=61555396955045",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02wdUYanbQjiZz1zV7uzu5PB83VX3DJZaDaTt9XQbrPEQSf7u6W4AEiAhdxVo93WgKl&amp;id=61555396955045",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -4378,7 +4414,7 @@
     {
         "id": "comp-udon-35",
         "name": "IDYLLIC Construction",
-        "engName": "SY House Design & Construction Ltd., Part.",
+        "engName": "SY House Design &amp; Construction Ltd., Part.",
         "category": "รับสร้างบ้าน ออกแบบโมเดิร์น (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -4569,7 +4605,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "งานโครงสร้างต้องได้มาตรฐาน 💯💯\nแต่ต้องคง concept สวยงาม ใช้งานได้จริง ถูกต้อง ถูกใจ จ้า 👍👍 \nทีมงานพร้อมจัดให้ 😊😊\nรอชม และฝากติดตามผลงานนะคะ \nทีมงานเคพีโฮม รับสร้างบ้านและบิวท์อิน  🏠\n☎️📌☎️📌☎️ คุณชัยธวัช  \n086-0539306,0952164459 🤙🤙",
                 "postedTime": "5/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid031uVUw3bb4rFjFWewBnMyXMQQL4obSWMj6f92qnAJtEshoBpHXdzanspAqMQvibKUl&id=100066713327564",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid031uVUw3bb4rFjFWewBnMyXMQQL4obSWMj6f92qnAJtEshoBpHXdzanspAqMQvibKUl&amp;id=100066713327564",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -4668,7 +4704,7 @@
         "facebookSignal": {
             "postDate": "12/6/2569",
             "pageName": "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
-            "caption": "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า\nDesign By . Peesapat Saen In , PA&TN TEAM",
+            "caption": "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า\nDesign By . Peesapat Saen In , PA&amp;TN TEAM",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -4694,7 +4730,7 @@
                 "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า\nDesign By . Peesapat Saen In , PA&TN TEAM",
+                "caption": "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า\nDesign By . Peesapat Saen In , PA&amp;TN TEAM",
                 "postedTime": "12/6/2569",
                 "postUrl": "https://www.facebook.com/PATN2021/posts/pfbid02hHQMZRdRekrWUBQRvruCspa1aEpBxRJB1mom4jQ6HQ8iqQwDSjLkYrZNfGasGpgwl",
                 "boq": [
@@ -4761,7 +4797,7 @@
         "facebookSignal": {
             "postDate": "24/8/2569",
             "pageName": "เธซเนเธฒเธเธซเธธเนเธเธชเนเธงเธเธเธณเธเธฑเธ” เนเธกเน€เธชเธเธ”เธตเนเธเธเน เนเธญเธเธ”เน เธเธญเธเธชเธ•เธฃเธฑเธเธเธฑเนเธ",
-            "caption": "Complete 6 months later\nProject เล็กๆน่ารักๆ   ด้วยข้อจำกัดทางด้านพื้นที่ เวลา และงบประมาณ ที่ดิน เล็กแคบติดถนน การทำงานต้อง สะดวกรวดเร็วง่ายต่อการสร้าง ต้องระวังไม่กระทบข้างเคียง เพราะ บ้านถูกปลวกกินทุกหลัง  ต้องระวังการก่อสร้างเป็นพิเศษ\n.\n\nDesign & built  : \nMosaic design & construction \nLocation : udonthani",
+            "caption": "Complete 6 months later\nProject เล็กๆน่ารักๆ   ด้วยข้อจำกัดทางด้านพื้นที่ เวลา และงบประมาณ ที่ดิน เล็กแคบติดถนน การทำงานต้อง สะดวกรวดเร็วง่ายต่อการสร้าง ต้องระวังไม่กระทบข้างเคียง เพราะ บ้านถูกปลวกกินทุกหลัง  ต้องระวังการก่อสร้างเป็นพิเศษ\n.\n\nDesign &amp; built  : \nMosaic design &amp; construction \nLocation : udonthani",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -4787,7 +4823,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Complete 6 months later\nProject เล็กๆน่ารักๆ   ด้วยข้อจำกัดทางด้านพื้นที่ เวลา และงบประมาณ ที่ดิน เล็กแคบติดถนน การทำงานต้อง สะดวกรวดเร็วง่ายต่อการสร้าง ต้องระวังไม่กระทบข้างเคียง เพราะ บ้านถูกปลวกกินทุกหลัง  ต้องระวังการก่อสร้างเป็นพิเศษ\n.\n\nDesign & built  : \nMosaic design & construction \nLocation : udonthani",
+                "caption": "Complete 6 months later\nProject เล็กๆน่ารักๆ   ด้วยข้อจำกัดทางด้านพื้นที่ เวลา และงบประมาณ ที่ดิน เล็กแคบติดถนน การทำงานต้อง สะดวกรวดเร็วง่ายต่อการสร้าง ต้องระวังไม่กระทบข้างเคียง เพราะ บ้านถูกปลวกกินทุกหลัง  ต้องระวังการก่อสร้างเป็นพิเศษ\n.\n\nDesign &amp; built  : \nMosaic design &amp; construction \nLocation : udonthani",
                 "postedTime": "24/8/2569",
                 "postUrl": "https://www.facebook.com/reel/2489325094869503/",
                 "boq": [
@@ -4851,8 +4887,8 @@
             17.432,
             102.851
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240",
         "facebookUrl": "https://www.facebook.com/profile.php?id=100084354175964",
         "facebookSignal": {
             "postDate": "12/9/2569",
@@ -4885,7 +4921,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "📣 #ประกาศปิดรับงานก่อสร้างชั่วคราว 📣 \n\nเนื่องจากขณะนี้ คิวงานจองยกเสาเต็มยาว\nถึงเดือนธันวาคม 2569 เรียบร้อยแล้ว 🏡✨\nทางบริษัทจึงขอ #ปิดรับเคสใหม่ชั่วคราว \nเพื่อดูแลและบริหารงานของลูกค้าที่อยู่ในคิว\nให้เป็นไปตามแผนและมีคุณภาพมากที่สุด\n\nหากมีคิวช่างว่าง หรือมีคิวหลุดจอง\nทางบริษัทจะแจ้ง เปิดรับเคสเพิ่มเติมอีกครั้ง\nผ่านทางหน้าเพจ\n\n🙏 #กราบขอบพระคุณลูกค้าทุกท่านจากใจ 🙏\nที่ให้ความไว้วางใจและเลือกใช้บริการสร้างบ้านกับ\n🏡🏡 ห้างหุ้นส่วนจำกัดรุ่งรัตน์บิวตี้โฮม 🏡🏡\n\nด้วยดีเสมอมา ทุกความไว้วางใจของลูกค้า \nคือกำลังใจสำคัญที่ทำให้เราตั้งใจพัฒนางาน\nและดูแลบ้านทุกหลังให้ดีที่สุดค่ะ 🤍🏡\n\nแล้วพบกันอีกครั้งเมื่อเปิดรับคิวใหม่ค่ะ \n\n📞 สอบถามข้อมูลเพิ่มเติม ติดต่อได้ที่\nFacebook https://www.facebook.com/share/17si2DzJVW/?mibextid=wwXIfr\nคุณกิ๊ฟ☎️ 098-134-5273\n📱 LINE ID : 2530gip\nคุณอุ้ม☎️ 098-435-0263\n📱 LINE ID : 2530um",
                 "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid023v27rWoH4q5ZhJ6wkxKZ8gtWDTiqjNNH54t52B5TY11aw8s4n6Bj5LV4scDRmRUgl&id=100084354175964",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid023v27rWoH4q5ZhJ6wkxKZ8gtWDTiqjNNH54t52B5TY11aw8s4n6Bj5LV4scDRmRUgl&amp;id=100084354175964",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -4950,7 +4986,7 @@
         "facebookSignal": {
             "postDate": "9/7/2569",
             "pageName": "บริษัท เลอ คราวน์ ดีไซน์ จํากัด",
-            "caption": "🏗️ 𝙎𝙞𝙩𝙚 𝙐𝙥𝙙𝙖𝙩𝙚 09.07.2026 :  งานก่ออิฐมอญห้องน้ำ และอิฐมวลเบาผนังทั่วไป>>>บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี 🏗️\n\n❤️เพราะเราใส่ใจตั้งแต่ขั้นตอนโครงสร้าง ออกแบบและก่อสร้างตามมาตรฐานวิศวกรรม เพื่อให้คุณมั่นใจได้ว่าบ้านของคุณแข็งแรง ปลอดภัย อยู่ได้อย่างยั่งยืน ❤️\n📌พื้นที่ใช้สอยมากถึง 180 ตร.ม.\n📌ฟังก์ชั่นการใช้งานครบครัน\n________________________________\nปรึกษาสร้างบ้านหรือสอบถามข้อมูลเพิ่มเติม\nโทร 1 ☎️ : 082-345-8999\n🟩 Line Official : https://lin.ee/l38RgVA\n🔗 Line ID : https://line.me/ti/p/cWohRy2u5y\nรับชมผลงานรีวิวสร้างบ้าน\nYoutube📱: https://www.youtube.com/@lecrowndesign\nIG📷 : lecrown.udon\nMail✉ : lecrowndesign@gmail.com\nWebsite🌎 : www.lecrowndesign.com\n________________________________\n#รับเหมาก่อสร้างอุดรธานี #รับสร้างบ้านอุดรธานี #รับสร้างบ้านนครพนม #รับสร้างบ้านขอนแก่น #รับสร้างบ้านหนองคาย #รับสร้างบ้านอีสาน #สร้างบ้านอุดรธานี #รับออกแบบตกแต่งภายในอุดรธานี #บริษัทรับสร้างบ้านอุดรธานี #รับออกแบบบ้านอุดรธานี #รับเขียนแบบบ้านอุดรธานี #แบบบ้านสวย #ออกแบบบ้าน #สถาปนิกออกแบบบ้านอุดรธานี #รับสร้างบ้านโซนภาคอีสาน #รับเหมาก่อสร้างภาคอีสาน #รับปรับปรุงต่อเติมบ้านอุดรธานี #LeCrownDesign #เลอคราวน์ดีไซน์รับเหมาก่อสร้างครบวงจร #รับตกแต่งภายใน",
+            "caption": "🏗️ 𝙎𝙞𝙩𝙚 𝙐𝙥𝙙𝙖𝙩𝙚 09.07.2026 :  งานก่ออิฐมอญห้องน้ำ และอิฐมวลเบาผนังทั่วไป&gt;&gt;&gt;บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี 🏗️\n\n❤️เพราะเราใส่ใจตั้งแต่ขั้นตอนโครงสร้าง ออกแบบและก่อสร้างตามมาตรฐานวิศวกรรม เพื่อให้คุณมั่นใจได้ว่าบ้านของคุณแข็งแรง ปลอดภัย อยู่ได้อย่างยั่งยืน ❤️\n📌พื้นที่ใช้สอยมากถึง 180 ตร.ม.\n📌ฟังก์ชั่นการใช้งานครบครัน\n________________________________\nปรึกษาสร้างบ้านหรือสอบถามข้อมูลเพิ่มเติม\nโทร 1 ☎️ : 082-345-8999\n🟩 Line Official : https://lin.ee/l38RgVA\n🔗 Line ID : https://line.me/ti/p/cWohRy2u5y\nรับชมผลงานรีวิวสร้างบ้าน\nYoutube📱: https://www.youtube.com/@lecrowndesign\nIG📷 : lecrown.udon\nMail✉ : lecrowndesign@gmail.com\nWebsite🌎 : www.lecrowndesign.com\n________________________________\n#รับเหมาก่อสร้างอุดรธานี #รับสร้างบ้านอุดรธานี #รับสร้างบ้านนครพนม #รับสร้างบ้านขอนแก่น #รับสร้างบ้านหนองคาย #รับสร้างบ้านอีสาน #สร้างบ้านอุดรธานี #รับออกแบบตกแต่งภายในอุดรธานี #บริษัทรับสร้างบ้านอุดรธานี #รับออกแบบบ้านอุดรธานี #รับเขียนแบบบ้านอุดรธานี #แบบบ้านสวย #ออกแบบบ้าน #สถาปนิกออกแบบบ้านอุดรธานี #รับสร้างบ้านโซนภาคอีสาน #รับเหมาก่อสร้างภาคอีสาน #รับปรับปรุงต่อเติมบ้านอุดรธานี #LeCrownDesign #เลอคราวน์ดีไซน์รับเหมาก่อสร้างครบวงจร #รับตกแต่งภายใน",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -4976,7 +5012,7 @@
                 "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏗️ 𝙎𝙞𝙩𝙚 𝙐𝙥𝙙𝙖𝙩𝙚 09.07.2026 :  งานก่ออิฐมอญห้องน้ำ และอิฐมวลเบาผนังทั่วไป>>>บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี 🏗️\n\n❤️เพราะเราใส่ใจตั้งแต่ขั้นตอนโครงสร้าง ออกแบบและก่อสร้างตามมาตรฐานวิศวกรรม เพื่อให้คุณมั่นใจได้ว่าบ้านของคุณแข็งแรง ปลอดภัย อยู่ได้อย่างยั่งยืน ❤️\n📌พื้นที่ใช้สอยมากถึง 180 ตร.ม.\n📌ฟังก์ชั่นการใช้งานครบครัน\n________________________________\nปรึกษาสร้างบ้านหรือสอบถามข้อมูลเพิ่มเติม\nโทร 1 ☎️ : 082-345-8999\n🟩 Line Official : https://lin.ee/l38RgVA\n🔗 Line ID : https://line.me/ti/p/cWohRy2u5y\nรับชมผลงานรีวิวสร้างบ้าน\nYoutube📱: https://www.youtube.com/@lecrowndesign\nIG📷 : lecrown.udon\nMail✉ : lecrowndesign@gmail.com\nWebsite🌎 : www.lecrowndesign.com\n________________________________\n#รับเหมาก่อสร้างอุดรธานี #รับสร้างบ้านอุดรธานี #รับสร้างบ้านนครพนม #รับสร้างบ้านขอนแก่น #รับสร้างบ้านหนองคาย #รับสร้างบ้านอีสาน #สร้างบ้านอุดรธานี #รับออกแบบตกแต่งภายในอุดรธานี #บริษัทรับสร้างบ้านอุดรธานี #รับออกแบบบ้านอุดรธานี #รับเขียนแบบบ้านอุดรธานี #แบบบ้านสวย #ออกแบบบ้าน #สถาปนิกออกแบบบ้านอุดรธานี #รับสร้างบ้านโซนภาคอีสาน #รับเหมาก่อสร้างภาคอีสาน #รับปรับปรุงต่อเติมบ้านอุดรธานี #LeCrownDesign #เลอคราวน์ดีไซน์รับเหมาก่อสร้างครบวงจร #รับตกแต่งภายใน",
+                "caption": "🏗️ 𝙎𝙞𝙩𝙚 𝙐𝙥𝙙𝙖𝙩𝙚 09.07.2026 :  งานก่ออิฐมอญห้องน้ำ และอิฐมวลเบาผนังทั่วไป&gt;&gt;&gt;บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี 🏗️\n\n❤️เพราะเราใส่ใจตั้งแต่ขั้นตอนโครงสร้าง ออกแบบและก่อสร้างตามมาตรฐานวิศวกรรม เพื่อให้คุณมั่นใจได้ว่าบ้านของคุณแข็งแรง ปลอดภัย อยู่ได้อย่างยั่งยืน ❤️\n📌พื้นที่ใช้สอยมากถึง 180 ตร.ม.\n📌ฟังก์ชั่นการใช้งานครบครัน\n________________________________\nปรึกษาสร้างบ้านหรือสอบถามข้อมูลเพิ่มเติม\nโทร 1 ☎️ : 082-345-8999\n🟩 Line Official : https://lin.ee/l38RgVA\n🔗 Line ID : https://line.me/ti/p/cWohRy2u5y\nรับชมผลงานรีวิวสร้างบ้าน\nYoutube📱: https://www.youtube.com/@lecrowndesign\nIG📷 : lecrown.udon\nMail✉ : lecrowndesign@gmail.com\nWebsite🌎 : www.lecrowndesign.com\n________________________________\n#รับเหมาก่อสร้างอุดรธานี #รับสร้างบ้านอุดรธานี #รับสร้างบ้านนครพนม #รับสร้างบ้านขอนแก่น #รับสร้างบ้านหนองคาย #รับสร้างบ้านอีสาน #สร้างบ้านอุดรธานี #รับออกแบบตกแต่งภายในอุดรธานี #บริษัทรับสร้างบ้านอุดรธานี #รับออกแบบบ้านอุดรธานี #รับเขียนแบบบ้านอุดรธานี #แบบบ้านสวย #ออกแบบบ้าน #สถาปนิกออกแบบบ้านอุดรธานี #รับสร้างบ้านโซนภาคอีสาน #รับเหมาก่อสร้างภาคอีสาน #รับปรับปรุงต่อเติมบ้านอุดรธานี #LeCrownDesign #เลอคราวน์ดีไซน์รับเหมาก่อสร้างครบวงจร #รับตกแต่งภายใน",
                 "postedTime": "9/7/2569",
                 "postUrl": "https://www.facebook.com/PHC.ud/posts/pfbid02rU2BVqUHJy1D6ihsdBnFRekumQYA5HRXUFqATa6f6Df4NintbDjGoFcRFGaoZ2WYl",
                 "boq": [
@@ -5007,7 +5043,7 @@
     {
         "id": "comp-udon-48",
         "name": "ห้างหุ้นส่วนจํากัด บ้านดี อุดร",
-        "engName": "Peerapat 999 Building & Service House Co., Ltd.",
+        "engName": "Peerapat 999 Building &amp; Service House Co., Ltd.",
         "category": "รับสร้างบ้านและบริการงานก่อสร้าง (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "บ้านดุง",
@@ -5037,8 +5073,8 @@
             17.698,
             103.259
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
         "facebookUrl": "https://www.facebook.com/profile.php?id=61565401665404",
         "facebookSignal": {
             "postDate": "27/8/2569",
@@ -5071,7 +5107,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏗️ อัปเดตหน้างาน นาทราย–หนองสำโรง\n\nเดินหน้าอย่างต่อเนื่องค่ะ 💪🏻✨\nวันนี้เริ่มงาน โครงหลังคาและงานก่ออิฐ\nสำหรับ บ้านหลังที่ 2 และหลังที่ 3 🏡\n\nงานค่อย ๆ เป็นรูปเป็นร่างขึ้นทุกวัน\nใส่ใจในทุกขั้นตอน เพื่อให้ได้บ้านที่แข็งแรง สวยงาม และมีคุณภาพ ❤️\n\nบ้านดี–อุดร\nสร้างบ้านด้วยความตั้งใจ ใส่ใจทุกหลังค่ะ 🏠🔨\n\n#อัปเดตหน้างาน #บ้านดีอุดร #นาทรายหนองสำโรง #สร้างบ้าน #บ้านคุณภาพ",
                 "postedTime": "27/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0FXX75b9ZkjD7UY8UbNAxTEtq7LunNg4Dax9xgkvUcmQkDTVSm37YNn1tecm2WktFl&id=61565401665404",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0FXX75b9ZkjD7UY8UbNAxTEtq7LunNg4Dax9xgkvUcmQkDTVSm37YNn1tecm2WktFl&amp;id=61565401665404",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5130,8 +5166,8 @@
             17.4255,
             102.7785
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
         "facebookUrl": "https://www.facebook.com/profile.php?id=100089616662993",
         "facebookSignal": {
             "postDate": "7/9/2569",
@@ -5379,7 +5415,7 @@
     {
         "id": "comp-udon-11",
         "name": "ห้างหุ้นส่วนจํากัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง",
-        "engName": "UD.Home Engineering & Construction Ltd., Part.",
+        "engName": "UD.Home Engineering &amp; Construction Ltd., Part.",
         "category": "รับสร้างบ้านโมเดิร์นและงานวิศวกรรม (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -5663,7 +5699,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "อัปเดตหน้างาน 🏡✨\nงานก่อสร้างบ้านชั้นเดียว สไตล์โมเดิร์น \nเริ่มทำงานเพิ่มเติมของโรงรถและรั้วครับ\nตัวบ้านเริ่มงานติดตั้งระบบหลอดไฟและเริ่มทาสีภายในอาคาร\n\nทุกขั้นตอนดำเนินงานด้วยความใส่ใจ เพื่อให้บ้านออกมาสวยงาม แข็งแรง และตรงตามแบบที่ลูกค้าตั้งใจ\n\nFunction Design\nสร้างบ้านคุณภาพ ใส่ใจทุกรายละเอียด ตั้งแต่โครงสร้างจนถึงงานตกแต่ง พร้อมอัปเดตความคืบหน้าให้ลูกค้าติดตามได้ทุกขั้นตอน",
                 "postedTime": "2/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0wxG7L6wuh3yjLecc5qjkt9jKwpXv4FfpyNzQCjrEUtNQvRcuqg5qL22MW3EEeVW1l&id=100077712244902",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0wxG7L6wuh3yjLecc5qjkt9jKwpXv4FfpyNzQCjrEUtNQvRcuqg5qL22MW3EEeVW1l&amp;id=100077712244902",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5697,7 +5733,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "อัปเดตความคืบหน้า : โครงการโชว์รูมอุดรเซ็นเตอร์ฟิล์ม\nเมื่อเราก่อผนังเสร็จเรียบร้อย\nจะดำเนินงานติดตั้งตะข่ายกรงไก่กันร้าวของผนังและ￼\nจับเซี้ยมผนัง เพื่อเตรียมที่จะเริ่มงานฉาบในขั้นตอนต่อไปครับ\n￼",
                 "postedTime": "2/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0nJZMaxek7pULna9DXdD6MMcMuWwvaPpF3SQS7k9vuswM6oCyZ2U6TMjjJcwpYhAgl&id=100077712244902",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0nJZMaxek7pULna9DXdD6MMcMuWwvaPpF3SQS7k9vuswM6oCyZ2U6TMjjJcwpYhAgl&amp;id=100077712244902",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5833,7 +5869,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏗️ งานก่อผนังด้วย Eco Block \nอีกหนึ่งขั้นตอนสำคัญของงานก่อสร้างที่หลายคนอาจไม่ค่อยได้เห็น คือการก่อผนังภายในอาคาร ซึ่งโครงการนี้เราเลือกใช้ อิฐคอนกรีตบล็อกเบา Eco Block ในบางส่วนของอาคาร โดยคำนึงถึงความเหมาะสมของการใช้งานและงบประมาณของโครงการ\n\n#จุดเด่นของอิฐ Eco Block\n✅ น้ำหนักเบากว่าคอนกรีตบล็อกทั่วไป ช่วยลดภาระโครงสร้าง\n✅ ขนาดได้มาตรฐาน ก่อได้รวดเร็ว ลดระยะเวลาก่อสร้าง\n✅ ผิวเรียบ ใช้ปูนฉาบน้อยกว่าผนังก่อทั่วไป\n✅ สามารถเซาะร่องเดินระบบไฟฟ้าและประปาได้ง่าย\n✅ ราคาประหยัดเมื่อเทียบกับวัสดุก่อผนังบางประเภท\n\n#สิ่งที่ต้องเข้าใจ\n🔸 การกันความร้อนและกันเสียงอาจไม่เทียบเท่าอิฐมวลเบาบางชนิด\n🔸 ต้องก่อตามคู่มือของผู้ผลิตอย่างถูกวิธี ทั้งการเข้ามุม การยึดกับเสาเอ็นและคานเอ็น รวมถึงการเว้นรอยต่อที่เหมาะสม\n🔸 คุณภาพของผนังไม่ได้ขึ้นอยู่กับอิฐเพียงอย่างเดียว แต่ขึ้นอยู่กับ \"ฝีมือช่างและขั้นตอนการก่อสร้าง\" ด้วยเช่นกัน\n\nสำหรับทีมงาน Function Design เราให้ความสำคัญกับทุกขั้นตอน ตั้งแต่วัสดุที่เลือกใช้ ไปจนถึงวิธีการติดตั้ง เพื่อให้งานที่ส่งมอบมีคุณภาพ แข็งแรง และใช้งานได้อย่างยาวนาน\n\n🏠 เพราะบ้านที่ดี เริ่มต้นจากรายละเอียดที่ถูกต้องตั้งแต่วันแรกของการก่อสร้าง\n\n#FunctionDesign #สร้างบ้านอย่างเป็นระบบ #EcoBlock #ก่ออิฐ #รับสร้างบ้านอุดรธานี #งานก่อสร้างคุณภาพ #DesignAndBuild #สร้างบ้านครบวงจร",
                 "postedTime": "13/7/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0JXATjqBDs3eDkdpBgXG1RMCZrcY8NztHKHKXsCaEJZBapkL1yxPmJaNEgcmTvZX7l&id=100077712244902",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0JXATjqBDs3eDkdpBgXG1RMCZrcY8NztHKHKXsCaEJZBapkL1yxPmJaNEgcmTvZX7l&amp;id=100077712244902",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5926,7 +5962,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "รองพื้นไว้ก่อน 🩷",
                 "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jeMWW2c56cPYqiVKdAGsqzYoE1UCm57pdJTCf2UZuSzGtpVkFSoMvDRFfca4JaFGl&id=100090611883896",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jeMWW2c56cPYqiVKdAGsqzYoE1UCm57pdJTCf2UZuSzGtpVkFSoMvDRFfca4JaFGl&amp;id=100090611883896",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5994,7 +6030,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "เช้านี้ตรวจ งานปูกระเบื้องผนัง",
                 "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0fbZ2uXZiwj5Y92n5jYWSfXXBXRDYrdpCtqR4HMtd32jaV3ezHyL8281YDzk73JA8l&id=100090611883896",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0fbZ2uXZiwj5Y92n5jYWSfXXBXRDYrdpCtqR4HMtd32jaV3ezHyL8281YDzk73JA8l&amp;id=100090611883896",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6028,7 +6064,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "ฝ้าภายในเริ่มแล้วววววว😶‍🌫️\n| มารีญาก่อสร้าง | ผู้ช่วยสร้างบ้านที่คุณวางใจ\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณพ่อคุณแม่)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
                 "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl&id=100090611883896",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl&amp;id=100090611883896",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6062,7 +6098,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "งานสกีมภายใน😶‍🌫️\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณมายด์)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
                 "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil&id=100090611883896",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil&amp;id=100090611883896",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6189,7 +6225,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🚗โรงรถ ขนาด 9.00M X 6.00 M",
                 "postedTime": "28/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid031BSpZ22MeEAsPjPWyxDmaiHy9JXdgnG5eSkR9JNBtzFr5EUnyHwL46mxKpByoqy6l&id=100089807310821",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid031BSpZ22MeEAsPjPWyxDmaiHy9JXdgnG5eSkR9JNBtzFr5EUnyHwL46mxKpByoqy6l&amp;id=100089807310821",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6291,7 +6327,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏗️🏠 งานต่อเติม อาคาร อบต.บ้านเหล่า อ.เพ็ญ จ. อุดรธานี",
                 "postedTime": "8/7/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid029bj2YNLspGWKdKmZGgiErHEoPg5gDLuk1Wu5XLrhwtan4JkKy6Xg9M8ybQC88zn5l&id=100089807310821",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid029bj2YNLspGWKdKmZGgiErHEoPg5gDLuk1Wu5XLrhwtan4JkKy6Xg9M8ybQC88zn5l&amp;id=100089807310821",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6418,7 +6454,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "งานฝ้า+ผนังเบา \n\nขอบคุณลูกค้าที่ไว้ใจ ให้เราได้ดูแลคะ🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ 0997496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
                 "postedTime": "16/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YsEdKxW77LXWB4pn9B2XEtkKRtvRGm37jjpBQwthtWEMTpvgD9TejF9hmZVmHQkKl&id=61579292830014",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YsEdKxW77LXWB4pn9B2XEtkKRtvRGm37jjpBQwthtWEMTpvgD9TejF9hmZVmHQkKl&amp;id=61579292830014",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6452,7 +6488,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "ขอบพระคุณลูกค้า ที่ไว้ใจให้เราได้ดูแล 🙏🏻🙏🏻 \n\n☎️☎️ติดต่อ-สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ \n099-7496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
                 "postedTime": "15/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jEBtST6fMqnU2BWdCp12EvHZ7wmRdYMx6K5Zm3TzDnXgC9cji1t316R4TcJi88xl&id=61579292830014",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jEBtST6fMqnU2BWdCp12EvHZ7wmRdYMx6K5Zm3TzDnXgC9cji1t316R4TcJi88xl&amp;id=61579292830014",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -6549,7 +6585,7 @@
     {
         "id": "comp-udon-18",
         "name": "ห้างหุ้นส่วนจํากัด สันต์สิริ ดีไซน์ แอนด์ บิลด์",
-        "engName": "Sunsiri Design & Build Ltd., Part.",
+        "engName": "Sunsiri Design &amp; Build Ltd., Part.",
         "category": "รับเหมาก่อสร้างและออกแบบบ้านครบวงจร (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -6585,7 +6621,7 @@
         "facebookSignal": {
             "postDate": "6/9/2569",
             "pageName": "ห้างหุ้นส่วนจํากัด สันต์สิริ ดีไซน์ แอนด์ บิลด์",
-            "caption": "✅ NEW PROJECT | UDON THANI\nOwner: พี่แอ๋ว • พี่ติ๊ก\n\nสวยมากกกก กอไก่ล้านตัว 😄\n\nอีกหนึ่งโปรเจกต์บ้านพักอาศัย\nมูลค่างาน 5.xx m\n✓ ออกแบบเรียบร้อย\n✓ เขียนแบบก่อสร้างเรียบร้อย\n📍 เตรียมเริ่มก่อสร้างเดือนหน้า\nตั้งใจดูแลทุกขั้นตอน\nตั้งแต่รายละเอียดในแบบ ไปจนถึงงานจริงหน้างานครับ\nSUNSIRI DESIGN & BUILD",
+            "caption": "✅ NEW PROJECT | UDON THANI\nOwner: พี่แอ๋ว • พี่ติ๊ก\n\nสวยมากกกก กอไก่ล้านตัว 😄\n\nอีกหนึ่งโปรเจกต์บ้านพักอาศัย\nมูลค่างาน 5.xx m\n✓ ออกแบบเรียบร้อย\n✓ เขียนแบบก่อสร้างเรียบร้อย\n📍 เตรียมเริ่มก่อสร้างเดือนหน้า\nตั้งใจดูแลทุกขั้นตอน\nตั้งแต่รายละเอียดในแบบ ไปจนถึงงานจริงหน้างานครับ\nSUNSIRI DESIGN &amp; BUILD",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -6611,7 +6647,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "✅ NEW PROJECT | UDON THANI\nOwner: พี่แอ๋ว • พี่ติ๊ก\n\nสวยมากกกก กอไก่ล้านตัว 😄\n\nอีกหนึ่งโปรเจกต์บ้านพักอาศัย\nมูลค่างาน 5.xx m\n✓ ออกแบบเรียบร้อย\n✓ เขียนแบบก่อสร้างเรียบร้อย\n📍 เตรียมเริ่มก่อสร้างเดือนหน้า\nตั้งใจดูแลทุกขั้นตอน\nตั้งแต่รายละเอียดในแบบ ไปจนถึงงานจริงหน้างานครับ\nSUNSIRI DESIGN & BUILD",
+                "caption": "✅ NEW PROJECT | UDON THANI\nOwner: พี่แอ๋ว • พี่ติ๊ก\n\nสวยมากกกก กอไก่ล้านตัว 😄\n\nอีกหนึ่งโปรเจกต์บ้านพักอาศัย\nมูลค่างาน 5.xx m\n✓ ออกแบบเรียบร้อย\n✓ เขียนแบบก่อสร้างเรียบร้อย\n📍 เตรียมเริ่มก่อสร้างเดือนหน้า\nตั้งใจดูแลทุกขั้นตอน\nตั้งแต่รายละเอียดในแบบ ไปจนถึงงานจริงหน้างานครับ\nSUNSIRI DESIGN &amp; BUILD",
                 "postedTime": "6/9/2569",
                 "postUrl": "https://www.facebook.com/sunsirigroup/posts/pfbid0QUbVYsQNJ2UWgELuCYATd6y5vitF4p5oxZCQLjjbAuZLXNaCR5GGc1sbtgqySJBGl",
                 "boq": [
@@ -6713,7 +6749,7 @@
                 "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "จากกระดาษ...สู่บ้าน\nต้นเดือน สิงหาคม วันดี \nเซ็นสัญญาเริ่มต้นอีก 1 โปรเจกต์\n\n🏡 บ้านพักอาศัย 1 ชั้น จังหวัด :อุดรธานี\n\nกระดาษไม่กี่แผ่นในวันนี้ อีกไม่นานจะกลายเป็นบ้านที่เต็มไปด้วยเรื่องราว\nขอบคุณ น้าพิน ครับ 🙏\n\nบริษัท สันต์สิริ ดีไซน์ แอนด์ บิลด์\nSUNSIRI DESIGN & BUILD\nรับออกแบบ • เขียนแบบ • ก่อสร้าง • รีโนเวท • ตกแต่งภายใน\n📞 096-009-0036",
+                "caption": "จากกระดาษ...สู่บ้าน\nต้นเดือน สิงหาคม วันดี \nเซ็นสัญญาเริ่มต้นอีก 1 โปรเจกต์\n\n🏡 บ้านพักอาศัย 1 ชั้น จังหวัด :อุดรธานี\n\nกระดาษไม่กี่แผ่นในวันนี้ อีกไม่นานจะกลายเป็นบ้านที่เต็มไปด้วยเรื่องราว\nขอบคุณ น้าพิน ครับ 🙏\n\nบริษัท สันต์สิริ ดีไซน์ แอนด์ บิลด์\nSUNSIRI DESIGN &amp; BUILD\nรับออกแบบ • เขียนแบบ • ก่อสร้าง • รีโนเวท • ตกแต่งภายใน\n📞 096-009-0036",
                 "postedTime": "1/8/2569",
                 "postUrl": "https://www.facebook.com/sunsirigroup/posts/pfbid02i9rmrHxQQ1nnZCMJfHWxRC1PV3M4o6764m1GdTgAUBZRrmMgRvqECKNgDBQNt35Dl",
                 "boq": [
@@ -6969,8 +7005,8 @@
             17.4245,
             102.782
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl": "https://www.facebook.com/siarchitecture",
         "facebookSignal": {
             "postDate": "16/8/2569",
@@ -7134,7 +7170,7 @@
     {
         "id": "comp-udon-33",
         "name": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จํากัด",
-        "engName": "PA & TN Ltd., Part.",
+        "engName": "PA &amp; TN Ltd., Part.",
         "category": "รับเหมาก่อสร้างและต่อเติมอาคาร (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -7295,7 +7331,7 @@
     {
         "id": "comp-udon-40",
         "name": "บริษัท เอ เฮ้าส์ บิวเดอร์ จํากัด",
-        "engName": "Civil Pro Engineering & Construction",
+        "engName": "Civil Pro Engineering &amp; Construction",
         "category": "บริการรับเหมาก่อสร้างและวิศวกรรมอาคาร (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -7486,7 +7522,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "อัพเดทหน้างานก่อสร้าง งานผนังก่ออิฐ🏠🏗️\n 📍บ้านคุณธนาภรณ์ อ.กุมภวาปี จ.อุดรธานี",
                 "postedTime": "31/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid023DcUDXYfaDujw1qy4pp5YKb9hfSh87ZgKw47JSWiZXdaqHkWi36xWJfy9eaAFS9Zl&id=61575470735221",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid023DcUDXYfaDujw1qy4pp5YKb9hfSh87ZgKw47JSWiZXdaqHkWi36xWJfy9eaAFS9Zl&amp;id=61575470735221",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -7672,7 +7708,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏡บ้าน สไตล์นอร์ดิกผสมโมเดริน์￼ร่วมสมัย🏠🤎\nถูกออกแบบให้ดูเรียบง่ายเน้นใช้สีน้ำตาลให้ดูอบอุ่นและออกแบบให้ทุกพื้นที่เชื่อมต่อกับวิวธรรมชาติหลังบ้าน\n\n✨พื้นที่ใช้สอย 140ตร.ม.\n3ห้องนอน | 3ห้องน้ำ\n✨พร้อมระเบียงนั่งเล่นหลังบ้านเอาไว้ทำกิจกรรมทานอาหารตอนเย็นกับครอบครัว🏠\n\n📍อ. เมืองจังหวัดอุดรธานี \n\nอีกหนึ่งบ้านที่เราใส่ใจทั้งฟังก์ชัน บรรยากาศ และรายละเอียดของการอยู่อาศัย 🤍\n#SDHouseรับสร้างบ้านอุดรธานี📌",
                 "postedTime": "3/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02Lpcn4GZeu2abGrJZTTWBFhcDrePpHdxioz1FUXuHwZ3N3N4EGzNDCheotsWi6L5Hl&id=100069382099777",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02Lpcn4GZeu2abGrJZTTWBFhcDrePpHdxioz1FUXuHwZ3N3N4EGzNDCheotsWi6L5Hl&amp;id=100069382099777",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -7701,7 +7737,7 @@
     {
         "id": "comp-udon-26",
         "name": "บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)",
-        "engName": "Kittisak Construction & Design (Office Baansuan)",
+        "engName": "Kittisak Construction &amp; Design (Office Baansuan)",
         "category": "รับสร้างบ้านและงานสถาปัตยกรรม (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
@@ -7865,14 +7901,14 @@
     },
     {
         "id": "comp-udon-13",
-        "name": "PP HOUSE CONSTRUCTION & DESIGN",
-        "engName": "PP House Construction & Design",
+        "name": "PP HOUSE CONSTRUCTION &amp; DESIGN",
+        "engName": "PP House Construction &amp; Design",
         "category": "รับสร้างบ้านและออกแบบตกแต่งภายใน (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
         "address": "เมืองอุดรธานี จ.อุดรธานี",
         "phone": "087 775 8333",
-        "contactPerson": "PP HOUSE CONSTRUCTION & DESIGN",
+        "contactPerson": "PP HOUSE CONSTRUCTION &amp; DESIGN",
         "totalProjects": 6,
         "newProjectsThisMonth": 6,
         "totalValueMillion": 33,
@@ -7901,7 +7937,7 @@
         "facebookUrl": "https://www.facebook.com/pphouseudonthani",
         "facebookSignal": {
             "postDate": "30/8/2569",
-            "pageName": "PP HOUSE CONSTRUCTION & DESIGN",
+            "pageName": "PP HOUSE CONSTRUCTION &amp; DESIGN",
             "caption": "งานละเอียดมากครับ",
             "likes": 0,
             "comments": 0,
@@ -8422,7 +8458,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏠 สไตล์โมเดิร์น 2 ชั้น 4 ห้องนอน \n2 ห้องน้ำ  พร้อมโรงจอดรถ\n\n💰 ประมาณ 2.5 – 3.0 ล้านบาท",
                 "postedTime": "29/5/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02GeHDcYokr8SDTuPiHDCXNHYvVvhMpct5GcffZDai68sxdFnAHqgyQNbfaaLSk4mMl&id=100063894943820",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02GeHDcYokr8SDTuPiHDCXNHYvVvhMpct5GcffZDai68sxdFnAHqgyQNbfaaLSk4mMl&amp;id=100063894943820",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -8456,7 +8492,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "CONCEPT DESIGN \n\n🏠 บ้าน 2 ชั้น สไตล์โมเดิร์น\nพื้นที่ใช้สอย: ~150 ตร.ม. \n\nราคาประมาณเริ่มต้น 2.4-2.6",
                 "postedTime": "28/5/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0kBv68biwPxZnFjianqGK2AG4CtSRKxSSViZSkRSbgFHtFgNuvswqbRBvij7pEmTNl&id=100063894943820",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0kBv68biwPxZnFjianqGK2AG4CtSRKxSSViZSkRSbgFHtFgNuvswqbRBvij7pEmTNl&amp;id=100063894943820",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -8490,7 +8526,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "🏠 บ้านชั้นเดียว 84 ตร.ม.\n 2 ห้องนอน 2 ห้องน้ำ 1 ห้องนั่งเล่น 1 ห้องครัว\nงบประมาณ 1.2-1.4 ล้าน\n\nจุดเด่นของแปลนนี้\n\n* แยกโซนพักผ่อนกับโซนครัวชัดเจน\n* ห้องนอนใหญ่มีความเป็นส่วนตัว\n* เหมาะกับบ้านขนาดประมาณ 8×12 เมตร\n\nโซนกลางบ้าน\n\n* จากห้องนั่งเล่น เดินเข้าไปจะเป็นโถงเล็ก\n* แยกซ้าย–ขวาเป็น:\n    * ห้องนอนเล็ก (Bedroom 1)\n    * ห้องน้ำกลาง (Bathroom 1) ใช้ร่วม\n\nโซนด้านขวาของบ้าน\n\n* ห้องนอนใหญ่ (Master Bedroom) อยู่มุมเงียบ\n* มี ห้องน้ำในตัว (Bathroom 2)\n\nโซนด้านหลัง\n\n* ต่อจากห้องนั่งเล่น/โถง → เป็น ห้องครัว (Kitchen) อยู่ด้านหลังบ้าน\n* อาจมีประตูออกหลังบ้านสำหรับซักล้าง",
                 "postedTime": "27/5/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02akmkp1btqPcEeFgMmc7aLijcXA7oYVEQb2dHxNtAeb9fGmBRDBfyEaE68E4iMtUzl&id=100063894943820",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02akmkp1btqPcEeFgMmc7aLijcXA7oYVEQb2dHxNtAeb9fGmBRDBfyEaE68E4iMtUzl&amp;id=100063894943820",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -8583,7 +8619,7 @@
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
                 "caption": "ทีมงานอภิญญาก่อสร้าง ให้คำปรึกษางานก่อสร้าง ดูหน้างานจริง พร้อมแนะนำแบบที่เหมาะกับงบประมาณลูกค้า\n\n📞 ติดต่อสอบถาม: 087-2305900\n\n#ทีมงานอภิญญาก่อสร้าง #รับเหมาก่อสร้าง #ออกแบบบ้าน #ก่อสร้างครบวงจร",
                 "postedTime": "18/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid021zQadPTcGp5LrQXC9T2HoJZfT5RaCruQeL8HtLtqeHHVn2VME2R3yhfCbBoWUhEil&id=100044457354233",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid021zQadPTcGp5LrQXC9T2HoJZfT5RaCruQeL8HtLtqeHHVn2VME2R3yhfCbBoWUhEil&amp;id=100044457354233",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -8682,7 +8718,7 @@
         "facebookSignal": {
             "postDate": "29/7/2569",
             "pageName": "CIVIL PRO – ENGINEERING | CONSTRUCTION",
-            "caption": "โครงการ : Clearing งานวางระบบระบายน้ำถนน คสล.\nสถานที่ก่อสร้าง : อ.เมือง จ.อุดรธานี\nก่อสร้างโดย : CiviL Pro Engineering & พินิจอุดรก่อสร้าง\n----------------------------\n👉👉สนใจสร้างบ้านสวยๆ คุณภาพ ราคาเป็นกันเอง \n ☎️โทร :  064-107-1055\n📍พิกัดที่ตั้งสำนักงาน📍: https://goo.gl/maps/urnm8f2mCcLmTHho8\n----------------------------\n👉บริการพิเศษ สำหรับลูกค้าคนพิเศษ👈\n🌟ให้คำปรึกษาฟรี\n🌟บริการออกแบบบ้านตามความต้องการและงบประมาณของลูกค้า\n🌟ให้คำปรึกษาด้านการกู้สินเชื่อ\n🌟ดำเนินการยื่นขออนุญาติก่อสร้าง\n🌟ดำเนินการยื่นขอน้ำประปา\n🌟ดำเนินการยื่นขอไฟฟ้า\n🌟ดำเนินการขอทะเบียนบ้าน\n🛠วัสดุมาตรฐานทั้งหลัง สร้างจริงไม่หนีงาน งบไม่บานปลาย\n=====================\n#สร้างบ้านสวยด้วยคุณภาพ #CivilPRO #รับสร้างบ้าน #สร้างบ้านอุดร #บ้านคุณภาพ #รับเหมาก่อสร้าง",
+            "caption": "โครงการ : Clearing งานวางระบบระบายน้ำถนน คสล.\nสถานที่ก่อสร้าง : อ.เมือง จ.อุดรธานี\nก่อสร้างโดย : CiviL Pro Engineering &amp; พินิจอุดรก่อสร้าง\n----------------------------\n👉👉สนใจสร้างบ้านสวยๆ คุณภาพ ราคาเป็นกันเอง \n ☎️โทร :  064-107-1055\n📍พิกัดที่ตั้งสำนักงาน📍: https://goo.gl/maps/urnm8f2mCcLmTHho8\n----------------------------\n👉บริการพิเศษ สำหรับลูกค้าคนพิเศษ👈\n🌟ให้คำปรึกษาฟรี\n🌟บริการออกแบบบ้านตามความต้องการและงบประมาณของลูกค้า\n🌟ให้คำปรึกษาด้านการกู้สินเชื่อ\n🌟ดำเนินการยื่นขออนุญาติก่อสร้าง\n🌟ดำเนินการยื่นขอน้ำประปา\n🌟ดำเนินการยื่นขอไฟฟ้า\n🌟ดำเนินการขอทะเบียนบ้าน\n🛠วัสดุมาตรฐานทั้งหลัง สร้างจริงไม่หนีงาน งบไม่บานปลาย\n=====================\n#สร้างบ้านสวยด้วยคุณภาพ #CivilPRO #รับสร้างบ้าน #สร้างบ้านอุดร #บ้านคุณภาพ #รับเหมาก่อสร้าง",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -8708,7 +8744,7 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "โครงการ : Clearing งานวางระบบระบายน้ำถนน คสล.\nสถานที่ก่อสร้าง : อ.เมือง จ.อุดรธานี\nก่อสร้างโดย : CiviL Pro Engineering & พินิจอุดรก่อสร้าง\n----------------------------\n👉👉สนใจสร้างบ้านสวยๆ คุณภาพ ราคาเป็นกันเอง \n ☎️โทร :  064-107-1055\n📍พิกัดที่ตั้งสำนักงาน📍: https://goo.gl/maps/urnm8f2mCcLmTHho8\n----------------------------\n👉บริการพิเศษ สำหรับลูกค้าคนพิเศษ👈\n🌟ให้คำปรึกษาฟรี\n🌟บริการออกแบบบ้านตามความต้องการและงบประมาณของลูกค้า\n🌟ให้คำปรึกษาด้านการกู้สินเชื่อ\n🌟ดำเนินการยื่นขออนุญาติก่อสร้าง\n🌟ดำเนินการยื่นขอน้ำประปา\n🌟ดำเนินการยื่นขอไฟฟ้า\n🌟ดำเนินการขอทะเบียนบ้าน\n🛠วัสดุมาตรฐานทั้งหลัง สร้างจริงไม่หนีงาน งบไม่บานปลาย\n=====================\n#สร้างบ้านสวยด้วยคุณภาพ #CivilPRO #รับสร้างบ้าน #สร้างบ้านอุดร #บ้านคุณภาพ #รับเหมาก่อสร้าง",
+                "caption": "โครงการ : Clearing งานวางระบบระบายน้ำถนน คสล.\nสถานที่ก่อสร้าง : อ.เมือง จ.อุดรธานี\nก่อสร้างโดย : CiviL Pro Engineering &amp; พินิจอุดรก่อสร้าง\n----------------------------\n👉👉สนใจสร้างบ้านสวยๆ คุณภาพ ราคาเป็นกันเอง \n ☎️โทร :  064-107-1055\n📍พิกัดที่ตั้งสำนักงาน📍: https://goo.gl/maps/urnm8f2mCcLmTHho8\n----------------------------\n👉บริการพิเศษ สำหรับลูกค้าคนพิเศษ👈\n🌟ให้คำปรึกษาฟรี\n🌟บริการออกแบบบ้านตามความต้องการและงบประมาณของลูกค้า\n🌟ให้คำปรึกษาด้านการกู้สินเชื่อ\n🌟ดำเนินการยื่นขออนุญาติก่อสร้าง\n🌟ดำเนินการยื่นขอน้ำประปา\n🌟ดำเนินการยื่นขอไฟฟ้า\n🌟ดำเนินการขอทะเบียนบ้าน\n🛠วัสดุมาตรฐานทั้งหลัง สร้างจริงไม่หนีงาน งบไม่บานปลาย\n=====================\n#สร้างบ้านสวยด้วยคุณภาพ #CivilPRO #รับสร้างบ้าน #สร้างบ้านอุดร #บ้านคุณภาพ #รับเหมาก่อสร้าง",
                 "postedTime": "29/7/2569",
                 "postUrl": "https://www.facebook.com/CivilProEngineering/posts/pfbid0i5boPcRMd5D2HdR1AwYpJWhdbuto9DuBwDF8jtzbdZettC2bvVu7NYmwhwzMe3YRl",
                 "boq": [
@@ -8956,4 +8992,4 @@
         "sales2025": 0,
         "sales2026": 0
     }
-];
+];</pre></body></html>
