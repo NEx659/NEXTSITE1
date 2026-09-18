@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Verify comp-45</title>
+</head>
+<body>
+    <div id="res"></div>
+    <script src="../js/data.js"></script>
+    <script>
+        const c = UDON_COMPANIES.find(x => x.id === 'comp-udon-45');
+        document.getElementById('res').innerText = JSON.stringify({
+            id: c.id,
+            name: c.name,
+            totalProjects: c.totalProjects,
+            projectsLength: c.projects.length,
+            aiShortRec: c.aiShortRec
+        }, null, 2);
+    </script>
+</body>
+</html>

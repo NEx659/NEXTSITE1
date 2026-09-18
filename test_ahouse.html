@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test A-House Verification</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script src="../js/data.js"></script>
+    <script>
+        const c = UDON_COMPANIES.find(x => x.id === 'comp-udon-40');
+        const res = {
+            id: c.id,
+            name: c.name,
+            totalProjects: c.totalProjects,
+            totalValueMillion: c.totalValueMillion,
+            projectsCount: c.projects.length,
+            projects: c.projects.map(p => ({
+                id: p.projectId,
+                name: p.name,
+                stageKey: p.stageKey,
+                stage: p.stage,
+                location: p.location,
+                postUrl: p.postUrl
+            }))
+        };
+        document.getElementById('output').innerText = JSON.stringify(res, null, 2);
+    </script>
+</body>
+</html>

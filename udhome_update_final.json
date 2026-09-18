@@ -1,0 +1,380 @@
+{
+  "company": {
+    "id": "comp-udon-11",
+    "name": "ห้างหุ้นส่วนจํากัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง",
+    "engName": "UD.Homes Engineering Ltd., Part.",
+    "category": "ศูนย์รับสร้างบ้านมาตรฐานสูงครบวงจร (TSIC 41001)",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "address": "151 ม.2 ถ.เลี่ยงเมืองอุดร-หนองบัวลำภู ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
+    "phone": "042-113301, 083-599-2109",
+    "contactPerson": "ทีมงานวิศวกรและฝ่ายขาย ยูดี.โฮมส์ (083-599-2109)",
+    "totalProjects": 8,
+    "newProjectsThisMonth": 7,
+    "totalValueMillion": 32.8,
+    "growthRate": 65.0,
+    "areaExpansion": "เมืองอุดรธานี, เพ็ญ, ภูพาน, วานรนิวาส, พังโคน",
+    "verificationStatus": {
+      "isVerified": true,
+      "confidence": "100%",
+      "evidenceSource": "Facebook Page | DBD: 0413557000851",
+      "permitStatus": "TSIC 41001"
+    },
+    "stageBreakdown": {
+      "groundbreak": 2,
+      "foundation": 3,
+      "structure": 1,
+      "finishing": 2
+    },
+    "latestTimelineStage": "foundation",
+    "revenuePotentialText": "฿4.5M",
+    "coordinates": [
+      17.378,
+      102.798
+    ],
+    "googleMapsUrl": "https://maps.app.goo.gl/2i5T4enHoRQENZQC6",
+    "gmaps": "https://maps.app.goo.gl/2i5T4enHoRQENZQC6",
+    "facebookUrl": "https://www.facebook.com/UD.HomeEn",
+    "facebookSignal": {
+      "postDate": "15/9/2569",
+      "pageName": "UD.Home : รับสร้างบ้าน",
+      "caption": "ฤกษ์งามยามดี ยกเสาเอก–เสาโท อ.เพ็ญ จ.อุดรธานี 3.xx ลบ. & เปิดตัว New Chapter สำนักงานใหญ่ 3 ชั้น 708 ตร.ม.",
+      "likes": 26,
+      "comments": 5,
+      "shares": 4,
+      "detectedKeywords": [
+        "อุดรธานี",
+        "รับสร้างบ้าน",
+        "เสาเอก",
+        "สกลนคร",
+        "เพ็ญ"
+      ]
+    },
+    "projects": [
+      {
+        "projectId": "comp-udon-11-1",
+        "siteKey": "udhome_site_phen_noon",
+        "name": "โครงการก่อสร้างบ้านพักอาศัยคุณนุ่น (พิธียกเสาเอก-เสาโท) 📍 อ.เพ็ญ จ.อุดรธานี",
+        "location": "อ.เพ็ญ จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เพ็ญ",
+        "gps": [
+          17.658,
+          102.985
+        ],
+        "stage": "พิธียกเสาเอก-เสาโท เริ่มงานเทคอนกรีตฐานรากและเสาตอม่อ",
+        "stageKey": "foundation",
+        "trackingStatus": "active",
+        "progressPercent": 15,
+        "estValue": "3.5 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยชั้นเดียว/สองชั้นพรีเมียม",
+        "caption": "🌼 14.09.69 | ฤกษ์ดี ยกเสาเอก–เสาโท 🌼 ฤกษ์งามยามดี พิธียกเสาเอกบ้านลูกค้าที่น่ารักของเราอีกหนึ่งหลังค่ะ 🏠✨ 📍 หน้างาน อ.เพ็ญ จ.อุดรธานี งบก่อสร้าง 3.xx ลบ ยินดีกับคุณนุ่นและครอบครัวมากๆ เลยนะคะ",
+        "postedTime": "14/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid02mLeDZCy5CXRYsdd5gLi4SJwChrBpSqFMrBDFYNyQ3tmiPEqrqVdTNMLCsbkHRSLNl",
+        "boq": [
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานฐานรากและตอม่อ",
+            "qty": "45 คิว",
+            "estCost": "฿85,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "เหล็กเส้นข้ออ้อย SD40 SCG / โรงใหญ่ มอก.",
+            "qty": "6.5 ตัน",
+            "estCost": "฿160,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ปูนซีเมนต์ปอร์ตแลนด์ Type 1 ตราช้าง SCG",
+            "qty": "120 ถุง",
+            "estCost": "฿21,600",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-2",
+        "siteKey": "udhome_site_hq_new_chapter",
+        "name": "โครงการก่อสร้างสำนักงานใหญ่ UD.Home New Chapter 3 ชั้น (708 ตร.ม.) 📍 ถ.เลี่ยงเมืองอุดรธานี",
+        "location": "ถ.เลี่ยงเมือง ต.บ้านจั่น อ.เมือง จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.378,
+          102.798
+        ],
+        "stage": "เริ่มเตรียมงานก่อสร้างอาคารสำนักงานใหญ่ 3 ชั้น พื้นที่ 708 ตร.ม.",
+        "stageKey": "groundbreak",
+        "trackingStatus": "active",
+        "progressPercent": 10,
+        "estValue": "12.0 ล้านบาท",
+        "buildingType": "อาคารสำนักงานและโชว์รูม 3 ชั้น (Commercial HQ)",
+        "caption": "✨ NEW CHAPTER — ก้าวใหม่ของ UD.Home ✨ 🩵ครบรอบ 10 ปี 🩵 ออฟฟิศใหม่ ทำเลเดิม ติดถนนใหญ่รอบเมืองอุดรธานี สำนักงานใหม่ขนาด 3 ชั้น บนที่ดิน 118 ตร.ว. พื้นที่ใช้สอยรวมกว่า 708 ตร.ม. ⏳ ระยะเวลาก่อสร้างประมาณ 1 ปี",
+        "postedTime": "12/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid02GqXe3RYYU6SWm4dLYVYYDzujSQ8EJscnc5zAbJLZh2JrSCmxSBy5BZACFLRxtWZ5l",
+        "boq": [
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC กำลังอัดสูง 280-320 ksc",
+            "qty": "180 คิว",
+            "estCost": "฿378,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ระบบผนังมวลเบา Q-CON & ปูนก่อ-ฉาบ เสือมอร์ตาร์ XPERT",
+            "qty": "1 โครงการ",
+            "estCost": "฿240,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          },
+          {
+            "sku": "ชุดสุขภัณฑ์และก๊อกน้ำ COTTO Commercial Series ครบชุด",
+            "qty": "12 ชุด",
+            "estCost": "฿150,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-3",
+        "siteKey": "udhome_site_phuphan_commercial",
+        "name": "โครงการอาคารพาณิชย์ 2 ชั้น คุณเล็ก คุณโอ๋ 📍 อ.ภูพาน จ.สกลนคร",
+        "location": "อ.ภูพาน จ.สกลนคร",
+        "province": "สกลนคร",
+        "district": "ภูพาน",
+        "gps": [
+          16.985,
+          103.955
+        ],
+        "stage": "จบงานโครงสร้าง 20 วัน กำลังเตรียมงานมุงหลังคาและงานก่อฉาบ",
+        "stageKey": "structure",
+        "trackingStatus": "active",
+        "progressPercent": 50,
+        "estValue": "3.0 ล้านบาท",
+        "buildingType": "อาคารพาณิชย์ 2 ชั้น",
+        "caption": "✨เพราะผลงาน คือคำตอบที่ชัดเจนที่สุด✨ ระยะเวลาเพียง 20 วัน จบงานโครงสร้างอาคารพานิชย์ 2 ชั้นของคุณเล็ก คุณโอ๋เรียบร้อย พร้อมลุยงานหลังคาและงานก่อฉาบแล้วค่า 🩵🏠 📌 หน้างาน อ.ภูพาน จ.สกลนคร งบก่อสร้าง 3 ลบ.",
+        "postedTime": "12/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid022edYcKcjCjPetZQUTdrbfdWw1cVCdKW5cSXzCdkkN7TdgdipqgEGXcJ2vTBhiq1Jl",
+        "boq": [
+          {
+            "sku": "กระเบื้องหลังคาลอนคู่ SCG / เมทัลชีท พร้อมฉนวนกันความร้อน",
+            "qty": "1 ชุด",
+            "estCost": "฿75,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ปูนซีเมนต์สำเร็จรูป เสือ มอร์ตาร์ ก่อ-ฉาบทั่วไป",
+            "qty": "200 ถุง",
+            "estCost": "฿29,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "อิฐมวลเบา Q-CON หนา 7.5 ซม.",
+            "qty": "1,200 ก้อน",
+            "estCost": "฿31,200",
+            "urgency": "ด่วนที่สุด"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-4",
+        "siteKey": "udhome_site_phen_piling",
+        "name": "โครงการบ้านพักอาศัย งานวางผังตีหมุดและตอกเสาเข็ม 📍 อ.เพ็ญ จ.อุดรธานี",
+        "location": "อ.เพ็ญ จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เพ็ญ",
+        "gps": [
+          17.652,
+          102.981
+        ],
+        "stage": "งานวางผังตีหมุดและตอกเสาเข็มคอนกรีตอัดแรง",
+        "stageKey": "groundbreak",
+        "trackingStatus": "active",
+        "progressPercent": 10,
+        "estValue": "3.5 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยเดี่ยวพรีเมียม",
+        "caption": "🏗️ อัพเดตงานวางผังตีหมุดและตอกเสาเข็ม 📍 หน้างาน อ.เพ็ญ จ.อุดรธานี งบก่อสร้าง 3.XX ลบ.",
+        "postedTime": "11/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid0GBJjXiHayKYcwsK6phRUMYSmryaSBtg1dKctUMJ3Azwv7Njc57oP1ZSLZ8kK7wuQl",
+        "boq": [
+          {
+            "sku": "เสาเข็มคอนกรีตอัดแรง CPAC I-Shape",
+            "qty": "28 ต้น",
+            "estCost": "฿62,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานตัดหัวเข็มและฐานราก",
+            "qty": "35 คิว",
+            "estCost": "฿66,500",
+            "urgency": "ด่วนที่สุด"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-5",
+        "siteKey": "udhome_site_wanon_footing",
+        "name": "โครงการบ้านพักอาศัย งานเทคอนกรีตฐานราก 📍 อ.วานรนิวาส จ.สกลนคร",
+        "location": "อ.วานรนิวาส จ.สกลนคร",
+        "province": "สกลนคร",
+        "district": "วานรนิวาส",
+        "gps": [
+          17.625,
+          103.755
+        ],
+        "stage": "งานเทคอนกรีตฐานรากและคานคอดิน",
+        "stageKey": "foundation",
+        "trackingStatus": "active",
+        "progressPercent": 20,
+        "estValue": "4.2 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยสองชั้นขนาดใหญ่",
+        "caption": "งานเทคอนกรีตฐานราก 📍 หน้างาน อ.วานรนิวาส จ.สกลนคร งบก่อสร้าง 4.2 ลบ.",
+        "postedTime": "9/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid02mLeDZCy5CXRYsdd5gLi4SJwChrBpSqFMrBDFYNyQ3tmiPEqrqVdTNMLCsbkHRSLNl",
+        "boq": [
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc (ฐานราก-คานคอดิน)",
+            "qty": "55 คิว",
+            "estCost": "฿104,500",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "เหล็กเส้นข้ออ้อย SD40 SCG ขนาด 12-16 มม.",
+            "qty": "7.5 ตัน",
+            "estCost": "฿187,500",
+            "urgency": "ด่วนที่สุด"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-6",
+        "siteKey": "udhome_site_mueang_dino_contemporary",
+        "name": "โครงการบ้าน 2 ชั้น Contemporary Style คุณน้ำ คุณดีโน่ 📍 อ.เมือง จ.อุดรธานี",
+        "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.412,
+          102.785
+        ],
+        "stage": "งานก่อฉาบ ติดตั้งระบบท่อ ระบบไฟ และเตรียมงานสุขภัณฑ์",
+        "stageKey": "finishing",
+        "trackingStatus": "active",
+        "progressPercent": 75,
+        "estValue": "6.0 ล้านบาท",
+        "buildingType": "บ้านพักอาศัย 2 ชั้น Contemporary (4 นอน 5 น้ำ 2 โถง 2 ครัว 2 จอด)",
+        "caption": "🏠บ้าน 2 ชั้น Contemporary Style ฟังก์ชั่น 4 ห้องนอน 5 ห้องน้ำ 2 ห้องรับแขก 2 ห้องครัว 2 ที่จอดรถ งบก่อสร้าง 6 ล้านบาท ขอขอบพระคุณ คุณน้ำ และคุณดีโน่ มากๆเลยนะคะที่ไว้ใจ UD.Home",
+        "postedTime": "4/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid02mLeDZCy5CXRYsdd5gLi4SJwChrBpSqFMrBDFYNyQ3tmiPEqrqVdTNMLCsbkHRSLNl",
+        "boq": [
+          {
+            "sku": "ชุดสุขภัณฑ์และก๊อกน้ำ COTTO Modern Series ครบเซต 5 ห้องน้ำ",
+            "qty": "5 ชุด",
+            "estCost": "฿95,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "กระเบื้องปูพื้นและผนัง COTTO Grand Porcelain",
+            "qty": "350 ตร.ม.",
+            "estCost": "฿140,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ระบบฝ้าเพดานยิปซัมตราช้าง SCG และฉนวน Stay Cool",
+            "qty": "1 ชุด",
+            "estCost": "฿48,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-7",
+        "siteKey": "udhome_site_elderly_doctor_c",
+        "name": "โครงการบ้านพักผู้สูงอายุของคุณหมอซี (พิธียกเสาเอก) 📍 อ.เมือง จ.อุดรธานี",
+        "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.428,
+          102.772
+        ],
+        "stage": "พิธียกเสาเอก เริ่มงานโครงสร้างและฐานรากบ้าน Universal Design",
+        "stageKey": "foundation",
+        "trackingStatus": "active",
+        "progressPercent": 15,
+        "estValue": "4.8 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยเพื่อผู้สูงอายุ (Elderly Care Home)",
+        "caption": "🌼 28.08.69 | ฤกษ์ดี ยกเสาเอก–เสาโท 🌼 อีกหนึ่งก้าวสำคัญของการสร้างบ้าน 🏠✨ พิธียกเสา โครงการบ้านพักผู้สูงอายุของคุณหมอซีค่ะ 📌 หน้างาน อ.เมือง จ.อุดรธานี งบก่อสร้าง 4.8 ลบ.",
+        "postedTime": "28/8/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid02hL8jZj8thWX8DbBnT8SEbCSL8ohxATvNGXzmkSufBUHLtM6s2pzWbNqqnYDt2JKVl",
+        "boq": [
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานฐานรากและพื้น",
+            "qty": "60 คิว",
+            "estCost": "฿114,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "สุขภัณฑ์และราวจับผู้สูงอายุ COTTO Care / Universal Design",
+            "qty": "4 ชุด",
+            "estCost": "฿88,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          },
+          {
+            "sku": "กระเบื้องปูพื้นกันลื่น COTTO R11 (Anti-Slip)",
+            "qty": "180 ตร.ม.",
+            "estCost": "฿72,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-11-8",
+        "siteKey": "udhome_site_phangkhon_masonry",
+        "name": "โครงการบ้านพักอาศัย งานก่อฉาบและวางระบบท่อ 📍 อ.พังโคน จ.สกลนคร",
+        "location": "อ.พังโคน จ.สกลนคร",
+        "province": "สกลนคร",
+        "district": "พังโคน",
+        "gps": [
+          17.385,
+          103.715
+        ],
+        "stage": "งานก่อผนัง วางระบบท่อน้ำดี-น้ำเสีย และเตรียมฉาบ",
+        "stageKey": "finishing",
+        "trackingStatus": "active",
+        "progressPercent": 65,
+        "estValue": "2.8 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยชั้นเดียวสไตล์โมเดิร์น",
+        "caption": "งานก่อฉาบและวางระบบท่อ 📍 หน้างาน อ.พังโคน จ.สกลนคร",
+        "postedTime": "6/9/2569",
+        "postUrl": "https://www.facebook.com/UD.HomeEn/posts/pfbid02mLeDZCy5CXRYsdd5gLi4SJwChrBpSqFMrBDFYNyQ3tmiPEqrqVdTNMLCsbkHRSLNl",
+        "boq": [
+          {
+            "sku": "ท่อและข้อต่อ PVC SCG สำหรับระบบประปา-สุขาภิบาล",
+            "qty": "1 ชุด",
+            "estCost": "฿28,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ปูนซีเมนต์สำเร็จรูป เสือ มอร์ตาร์ ฉาบละเอียด",
+            "qty": "140 ถุง",
+            "estCost": "฿21,000",
+            "urgency": "ด่วนที่สุด"
+          }
+        ]
+      }
+    ],
+    "aiShortRec": "ติดตาม 8 โครงการใหญ่ทั่วอุดรฯ-สกลนคร (สร้าง HQ ใหม่ 3 ชั้น + บ้านคุณหมอ 4.8M + บ้านคุณดีโน่ 6M)",
+    "aiRecommendation": "ยูดี.โฮมส์ เอ็นจิเนียริ่ง (SCG Code: 10369220) มียอดสั่งซื้อสะสมปี 2026 สูงถึง ฿2,222,685 (+3.3% YoY) มีงานก่อสร้างระดับพรีเมียมพร้อมกันถึง 8 ไซต์งาน โดยเฉพาะสำนักงานใหญ่แห่งใหม่ 3 ชั้น (708 ตร.ม.), บ้านพักผู้สูงอายุคุณหมอซี (4.8 ลบ.) และบ้านคุณน้ำ-คุณดีโน่ (6.0 ลบ.) แนะนำเร่งล็อกสเปกคอนกรีต CPAC, กระเบื้อง/สุขภัณฑ์ COTTO Care และระบบก่อฉาบเสือมอร์ตาร์",
+    "salesActionPlan": [
+      "ติดต่อคุณผู้บริหาร/ฝ่ายจัดซื้อ ยูดี.โฮมส์ (083-599-2109, 042-113301) เสนอแพ็กเกจคอนกรีต CPAC ล็อตใหญ่สำหรับสำนักงานใหญ่ 3 ชั้น (708 ตร.ม.)",
+      "นำเสนอคอลเลกชัน COTTO Care & Universal Design (สุขภัณฑ์+ราวจับ+กระเบื้อง R11) สำหรับไซต์บ้านพักผู้สูงอายุคุณหมอซี (4.8M)",
+      "จัดทำใบเสนอราคาเหมาเซตกระเบื้อง COTTO Grand Porcelain และสุขภัณฑ์ 5 ห้องน้ำสำหรับบ้านคุณดีโน่ (6M) อ.เมืองอุดรธานี",
+      "ประสานงานส่งคอนกรีต CPAC และเหล็กเส้น SCG เข้าไซต์ยกเสาเอก อ.เพ็ญ (คุณนุ่น 3.5M)"
+    ],
+    "tag": "verified",
+    "opportunityScore": 95,
+    "scgCode": "10369220",
+    "sales2025": 2151623,
+    "sales2026": 2222685
+  },
+  "strategyJs": "  'comp-udon-11': {\n    customDiagnostic: 'ห้างหุ้นส่วนจํากัด ยูดี.โฮมส์ เอ็นจิเนียริ่ง (UD.Home : รับสร้างบ้าน) เป็นผู้รับเหมาและศูนย์รับสร้างบ้านระดับ Tier-1 ใน จ.อุดรธานีและสกลนคร (SCG Code: <strong>10369220</strong>) มียอดซื้อสะสมปี 2026 อยู่ที่ <strong>฿2,222,685</strong> มีผลงานคุณภาพมากกว่า 200 หลัง ปัจจุบันกำลังก่อสร้างสำนักงานใหญ่แห่งใหม่ 3 ชั้น (708 ตร.ม.) พร้อมไซต์บ้านเดี่ยวหรูอีก 7 หลัง (บ้านคุณดีโน่ 6M, บ้านคุณหมอซี 4.8M, ไซต์อ.เพ็ญ 2 หลัง, ไซต์สกลนคร 3 หลัง)',\n    customRecommendations: [\n      '<strong>คอนกรีตผสมเสร็จ CPAC กำลังอัดสูง 280-320 ksc:</strong> ล็อกสเปกเทฐานรากและโครงสร้างอาคารสำนักงานใหญ่ 3 ชั้น (708 ตร.ม.) และไซต์บ้านเดี่ยวทั่วอุดรฯ-สกลนคร',\n      '<strong>ชุดสุขภัณฑ์และอุปกรณ์ผู้สูงอายุ COTTO Care Solution:</strong> นำเสนอสุขภัณฑ์ระบบ Universal Design และกระเบื้อง R11 กันลื่นสำหรับบ้านคุณหมอซี (4.8 ล้านบาท)',\n      '<strong>กระเบื้องปูพื้น COTTO Grand Porcelain & สุขภัณฑ์ Modern:</strong> เสนอแพ็กเกจเหมา 5 ห้องน้ำและพื้นโถงใหญ่บ้านคุณดีโน่ (6 ล้านบาท)',\n      '<strong>ระบบผนังมวลเบา Q-CON & ปูนฉาบเสือมอร์ตาร์ XPERT:</strong> นำเสนอโซลูชันผนังกันความร้อนและลดเวลาทำงานสำหรับอาคารพาณิชย์ภูพานและไซต์งานทุกหลัง'\n    ]\n  },"
+}

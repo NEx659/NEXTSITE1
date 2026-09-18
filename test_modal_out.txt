@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Test Modal E House DOM Cards</title>
+</head>
+<body class="auth-locked">
+  <div id="company-detail-modal" class="modal-backdrop" style="display: flex;">
+    <div id="modal-score-card" class="detail-score-card sales-intelligence-card" style="background: rgb(255, 255, 255); border: 1.5px solid rgb(203, 213, 225); border-radius: 12px; padding: 1.1rem; box-shadow: rgba(15, 23, 42, 0.05) 0px 2px 10px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 6px; border-bottom: 1.5px solid #E2E8F0;">
+          <div>
+            <div style="font-size: 0.72rem; font-weight: 800; color: #0B2E83; text-transform: uppercase; letter-spacing: 0.3px; display: flex; align-items: center; gap: 4px;">
+              <span>📊 ประวัติการซื้อขาย SCG &amp; AI ADVISOR</span>
+            </div>
+            <div style="font-size: 0.95rem; font-weight: 900; color: #0F172A; margin-top: 1px;">
+              วิเคราะห์พฤติกรรมยอดซื้อ &amp; กลยุทธ์ทีมขาย
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.72rem; font-weight: 800; padding: 3px 9px; border-radius: 9999px; background: #F0FDF4; color: #16A34A; border: 1px solid #86EFAC;">
+              🚀 ยอดซื้อเติบโต +3% (ลูกค้าคนสำคัญ)
+            </div>
+          </div>
+        </div>
+
+        <!-- YoY Comparison Grid -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 10px;">
+          <div>
+            <div style="font-size: 0.68rem; color: #64748B; font-weight: 700;">ยอดซื้อ SCG 2025</div>
+            <div style="font-size: 0.92rem; font-weight: 900; color: #1E293B; margin-top: 1px;">
+              ฿553,824
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 0.68rem; color: #64748B; font-weight: 700;">ยอดซื้อ SCG 2026</div>
+            <div style="font-size: 0.92rem; font-weight: 900; color: #16A34A; margin-top: 1px;">
+              ฿569,818
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.68rem; color: #64748B; font-weight: 700;">แนวโน้ม YoY</div>
+            <div style="font-size: 0.88rem; font-weight: 900; color: #16A34A; margin-top: 1px;">
+              +3% (+฿15,994)
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Root-Cause Diagnostic Box -->
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 8px 10px;">
+          <div style="font-size: 0.73rem; font-weight: 800; color: #166534; margin-bottom: 3px; display: flex; align-items: center; gap: 4px;">
+            <span>🔍 AI วินิจฉัยสาเหตุ (Root-Cause Analysis):</span>
+          </div>
+          <div style="font-size: 0.73rem; color: #334155; line-height: 1.4;">
+            ผู้รับเหมามีความเชื่อมั่นในวัสดุ SCG สูงมาก ยอดสั่งซื้อปี 2026 เพิ่มขึ้นเป็น <strong>฿569,818</strong> (+3% YoY) มีการขยายงานและสั่งซื้อต่อเนื่อง
+          </div>
+        </div>
+
+        <!-- Actionable Recommendations -->
+        <div style="background: #FFFFFF; border: 1.5px solid #BFDBFE; border-radius: 8px; padding: 8px 10px; box-shadow: 0 1px 3px rgba(30, 64, 175, 0.04);">
+          <div style="font-size: 0.73rem; font-weight: 800; color: #1E40AF; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+            <span>💡 AI แนะนำแนวทางปฏิบัติการขาย (Actionable Strategy):</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            
+              <div style="display: flex; align-items: flex-start; gap: 5px; font-size: 0.71rem; color: #1E293B; line-height: 1.35;">
+                <span style="color: #2563EB; font-weight: 800; margin-top: 1px;">•</span>
+                <div><strong>Upsell สินค้าระดับพรีเมียม:</strong> นำเสนอกระเบื้องหลังคา Excella / Prestige, ไม้สังเคราะห์ SCG D-COR</div>
+              </div>
+            
+              <div style="display: flex; align-items: flex-start; gap: 5px; font-size: 0.71rem; color: #1E293B; line-height: 1.35;">
+                <span style="color: #2563EB; font-weight: 800; margin-top: 1px;">•</span>
+                <div><strong>ล็อกสัญญาคู่ค้าประจำปี:</strong> ทำข้อตกลงจัดส่งวัสดุตลอดโครงการเพื่อป้องกันคู่แข่งเข้ามาแทรก</div>
+              </div>
+            
+              <div style="display: flex; align-items: flex-start; gap: 5px; font-size: 0.71rem; color: #1E293B; line-height: 1.35;">
+                <span style="color: #2563EB; font-weight: 800; margin-top: 1px;">•</span>
+                <div><strong>ให้บริการ VIP Support:</strong> ส่งทีมเทคนิค SCG ช่วยถอดแบบและคำนวณ BOQ โครงการใหม่</div>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal-top-stage-filter-buttons">
+      <button type="button" class="stage-tab-btn active" onclick="filterModalProjects('all')">
+        ทั้งหมด (2)
+      </button>
+      <button type="button" class="stage-tab-btn " onclick="filterModalProjects('groundbreak')">
+        เสาเอก (0)
+      </button>
+      <button type="button" class="stage-tab-btn " onclick="filterModalProjects('foundation')">
+        ฐานราก (0)
+      </button>
+      <button type="button" class="stage-tab-btn " onclick="filterModalProjects('structure')">
+        โครงสร้าง (1)
+      </button>
+      <button type="button" class="stage-tab-btn " onclick="filterModalProjects('finishing')">
+        ตกแต่ง (1)
+      </button>
+    </div>
+    <div id="modal-projects-section-container">
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+      <h3 class="section-title" style="margin-bottom: 0;">
+        <span class="indicator"></span> รายชื่อไซต์งานก่อสร้างจริง (2 โครงการ)
+      </h3>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      
+          <div class="project-card">
+            <div class="project-card-header">
+              <div>
+                <div class="project-title" style="color: #FFFFFF; font-size: 0.94rem; font-weight: 800;">โครงการก่อสร้างบ้านพักอาศัย (งานโครงสร้างเสร็จ เตรียมมุงหลังคา SCG และก่อผนัง)</div>
+                <div style="font-size: 0.74rem; color: #94A3B8; margin-top: 3px;">
+                  📍 <span style="color: #CBD5E1;">อ.กุดจับ จ.อุดรธานี</span>
+                </div>
+              </div>
+              <span class="project-stage-badge stage-structure">
+                งานโครงสร้างเสร็จเรียบร้อย เตรียมติดตั้งโครงหลังคา Smart Truss และมุงแผ่นหลังคา SCG
+              </span>
+            </div>
+
+            <!-- รายการวัสดุ SCG ที่สอดคล้องกับสเตจงานจริง (ไม่มีตัวเลขสมมติ) -->
+            <div style="margin-top: 0.65rem; padding: 0.6rem 0.8rem; background: #FFFFFF; border: 1px solid #FECACA; border-left: 3.5px solid #DC2626; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+              <div style="font-size: 0.74rem; font-weight: 800; color: #991B1B; margin-bottom: 3px; display: flex; align-items: center; gap: 4px;">
+                📦 รายการวัสดุ SCG ที่สอดคล้องกับสเตจงานจริง:
+              </div>
+              <div style="font-size: 0.76rem; color: #0F172A; font-weight: 600; line-height: 1.45;">
+                กระเบื้องหลังคา SCG, ฉนวน STAY COOL, โครงหลังคา C-Truss, อุปกรณ์ครอบหลังคา Dry-Tech System
+              </div>
+            </div>
+
+            <!-- Facebook Post Proof & Link Button -->
+            <div style="margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px dashed rgba(255, 255, 255, 0.18); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02uqQ4meLC132KD99mSe5Qs5TLKN7LztoQpeTmrhwtkD4rsEjbwkUZC8kw3K4FXQ41l&amp;id=100089616662993" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; background: #1877F2; color: #FFFFFF; border-radius: 6px; font-size: 0.76rem; font-weight: 700; text-decoration: none; transition: all 0.15s ease; box-shadow: 0 2px 5px rgba(24, 119, 242, 0.35);" onmouseover="this.style.background='#166FE5'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#1877F2'; this.style.transform='none';">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>🔗 เปิดดูโพสต์หลักฐาน Facebook ↗</span>
+              </a>
+              <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 600;">📅 7/9/2569</span>
+            </div>
+
+            
+              <div style="font-size: 0.72rem; color: #E2E8F0; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); padding: 6px 9px; border-radius: 6px; margin-top: 6px; line-height: 1.4;">
+                💬 <span style="font-style: italic;">"จบงานโครงสร้างเรียบร้อยค่ะ 👍 เตรียมเข้าสู่งานติดตั้งโครงหลังคาสําเร็จรูป Smart Truss และมุงแผ่นหลังคา SCG มีแ..."</span>
+              </div>
+            
+
+            <!-- ระยะโครงการ (Project Progress Bar) -->
+            <div class="project-progress-container" style="margin-top: 0.75rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; padding: 8px 12px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-size: 0.8rem;">🏗️</span>
+                  <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">ระยะโครงการ</span>
+                  <span style="font-size: 0.7rem; color: #94A3B8; font-weight: 600;">(งานโครงสร้าง &amp; หลังคา)</span>
+                </div>
+                <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(0, 0, 0, 0.4); border: 1px solid #3B82F6; padding: 2px 8px; border-radius: 9999px;">
+                  <span style="font-size: 0.82rem; font-weight: 900; color: #3B82F6;">50%</span>
+                </div>
+              </div>
+
+              <!-- Progress Track Bar -->
+              <div style="position: relative; width: 100%; height: 8px; background: rgba(255, 255, 255, 0.12); border-radius: 9999px; overflow: hidden;">
+                <div style="width: 50%; height: 100%; background: linear-gradient(90deg, #1D4ED8, #60A5FA); border-radius: 9999px; transition: width 0.4s ease; box-shadow: 0 0 8px #3B82F688;"></div>
+              </div>
+
+              <!-- Milestone Stepper Markers (เฉพาะ 4 สเตจงานก่อสร้างที่ขายสินค้าได้จริง) -->
+              <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.64rem; font-weight: 700; color: #64748B;">
+                <span style="color: #F59E0B; font-weight: 800;">10-15% เสาเอก</span>
+                <span style="color: #EA580C; font-weight: 800;">30-35% ฐานราก</span>
+                <span style="color: #3B82F6; font-weight: 800;">50-60% โครงสร้าง</span>
+                <span style="">75-85% ตกแต่ง</span>
+              </div>
+            </div>
+          </div>
+        
+          <div class="project-card">
+            <div class="project-card-header">
+              <div>
+                <div class="project-title" style="color: #FFFFFF; font-size: 0.94rem; font-weight: 800;">โครงการก่อสร้างบ้านพักอาศัย (งานปรับระดับพื้น บันได และสกิมโค้ทผนัง)</div>
+                <div style="font-size: 0.74rem; color: #94A3B8; margin-top: 3px;">
+                  📍 <span style="color: #CBD5E1;">อ.กุดจับ จ.อุดรธานี</span>
+                </div>
+              </div>
+              <span class="project-stage-badge stage-finishing">
+                งานปรับระดับพื้นและบันไดเตรียมปู SPC และงานสกิมโค้ทผนัง
+              </span>
+            </div>
+
+            <!-- รายการวัสดุ SCG ที่สอดคล้องกับสเตจงานจริง (ไม่มีตัวเลขสมมติ) -->
+            <div style="margin-top: 0.65rem; padding: 0.6rem 0.8rem; background: #FFFFFF; border: 1px solid #FECACA; border-left: 3.5px solid #DC2626; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+              <div style="font-size: 0.74rem; font-weight: 800; color: #991B1B; margin-bottom: 3px; display: flex; align-items: center; gap: 4px;">
+                📦 รายการวัสดุ SCG ที่สอดคล้องกับสเตจงานจริง:
+              </div>
+              <div style="font-size: 0.76rem; color: #0F172A; font-weight: 600; line-height: 1.45;">
+                กระเบื้องและสุขภัณฑ์ COTTO, กาวซีเมนต์ไทล์บอนด์, กาวยาแนวอัลตร้าพลาสเตอร์, แผ่นสมาร์ทบอร์ด SCG
+              </div>
+            </div>
+
+            <!-- Facebook Post Proof & Link Button -->
+            <div style="margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px dashed rgba(255, 255, 255, 0.18); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid0bEx33XDunPTyVnj9oUCDPLP7LjF5JSjoDfUxa6rPSPRSXB7fTfRC9JpwnEMKQdN1l&amp;id=100089616662993" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; background: #1877F2; color: #FFFFFF; border-radius: 6px; font-size: 0.76rem; font-weight: 700; text-decoration: none; transition: all 0.15s ease; box-shadow: 0 2px 5px rgba(24, 119, 242, 0.35);" onmouseover="this.style.background='#166FE5'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#1877F2'; this.style.transform='none';">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>🔗 เปิดดูโพสต์หลักฐาน Facebook ↗</span>
+              </a>
+              <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 600;">📅 9/9/2569</span>
+            </div>
+
+            
+              <div style="font-size: 0.72rem; color: #E2E8F0; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); padding: 6px 9px; border-radius: 6px; margin-top: 6px; line-height: 1.4;">
+                💬 <span style="font-style: italic;">"ปรับระดับพื้น &amp; บันไดเตรียมปู SPC และลงสีงานฝ้า สกิมผนังรองานกระเบื้องค่ะ ติดต่อ 095 6258282 คุณฟ้า"</span>
+              </div>
+            
+
+            <!-- ระยะโครงการ (Project Progress Bar) -->
+            <div class="project-progress-container" style="margin-top: 0.75rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 8px; padding: 8px 12px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-size: 0.8rem;">🏗️</span>
+                  <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">ระยะโครงการ</span>
+                  <span style="font-size: 0.7rem; color: #94A3B8; font-weight: 600;">(งานสถาปัตย์ &amp; ตกแต่ง)</span>
+                </div>
+                <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(0, 0, 0, 0.4); border: 1px solid #10B981; padding: 2px 8px; border-radius: 9999px;">
+                  <span style="font-size: 0.82rem; font-weight: 900; color: #10B981;">75%</span>
+                </div>
+              </div>
+
+              <!-- Progress Track Bar -->
+              <div style="position: relative; width: 100%; height: 8px; background: rgba(255, 255, 255, 0.12); border-radius: 9999px; overflow: hidden;">
+                <div style="width: 75%; height: 100%; background: linear-gradient(90deg, #059669, #34D399); border-radius: 9999px; transition: width 0.4s ease; box-shadow: 0 0 8px #10B98188;"></div>
+              </div>
+
+              <!-- Milestone Stepper Markers (เฉพาะ 4 สเตจงานก่อสร้างที่ขายสินค้าได้จริง) -->
+              <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.64rem; font-weight: 700; color: #64748B;">
+                <span style="color: #F59E0B; font-weight: 800;">10-15% เสาเอก</span>
+                <span style="color: #EA580C; font-weight: 800;">30-35% ฐานราก</span>
+                <span style="color: #3B82F6; font-weight: 800;">50-60% โครงสร้าง</span>
+                <span style="color: #10B981; font-weight: 800;">75-85% ตกแต่ง</span>
+              </div>
+            </div>
+          </div>
+        
+    </div>
+  </div>
+  </div>
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      openCompanyProjectsModal('comp-udon-47');
+      setTimeout(() => {
+        const container = document.getElementById('modal-projects-section-container');
+        const cards = container ? container.querySelectorAll('.project-card') : [];
+        const cardDetails = Array.from(cards).map(c => {
+          const title = c.querySelector('.project-name');
+          const stage = c.querySelector('.project-stage-badge');
+          const directBtn = c.querySelector('a[href*="facebook.com"]');
+          return {
+            title: title ? title.textContent.trim() : 'N/A',
+            stage: stage ? stage.textContent.trim() : 'N/A',
+            directUrl: directBtn ? directBtn.getAttribute('href') : 'N/A'
+          };
+        });
+        const pre = document.createElement('pre');
+        pre.id = 'modal-html';
+        pre.textContent = JSON.stringify({
+          cardCount: cards.length,
+          cards: cardDetails
+        }, null, 2);
+        document.body.appendChild(pre);
+      }, 500);
+    });
+  </script>
+
+
+<pre id="modal-html">{
+  "cardCount": 2,
+  "cards": [
+    {
+      "title": "N/A",
+      "stage": "งานโครงสร้างเสร็จเรียบร้อย เตรียมติดตั้งโครงหลังคา Smart Truss และมุงแผ่นหลังคา SCG",
+      "directUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02uqQ4meLC132KD99mSe5Qs5TLKN7LztoQpeTmrhwtkD4rsEjbwkUZC8kw3K4FXQ41l&amp;id=100089616662993"
+    },
+    {
+      "title": "N/A",
+      "stage": "งานปรับระดับพื้นและบันไดเตรียมปู SPC และงานสกิมโค้ทผนัง",
+      "directUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0bEx33XDunPTyVnj9oUCDPLP7LjF5JSjoDfUxa6rPSPRSXB7fTfRC9JpwnEMKQdN1l&amp;id=100089616662993"
+    }
+  ]
+}</pre></body></html>

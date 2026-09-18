@@ -1,0 +1,16 @@
+﻿TOTAL PATN POSTS: 2
+-------------------- POST 1 --------------------
+URL: https://www.facebook.com/PATN2021/posts/pfbid02hHQMZRdRekrWUBQRvruCspa1aEpBxRJB1mom4jQ6HQ8iqQwDSjLkYrZNfGasGpgwl
+FB_URL: https://www.facebook.com/PATN2021
+PAGE_NAME: PATN2021
+TIME: 2026-06-12T09:23:41.000Z | 
+TEXT: เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า
+Design By . Peesapat Saen In , PA&TN TEAM
+
+-------------------- POST 2 --------------------
+URL: https://www.facebook.com/PATN2021/posts/pfbid0ADYj1JSDbKY4UWHVqwqd3AxS3baSwZN6ndoh1vkQxQPDpY1q8r49kveqAmxJYN84l
+FB_URL: https://www.facebook.com/PATN2021
+PAGE_NAME: PATN2021
+TIME: 2026-05-15T02:25:14.000Z | 
+TEXT: 
+

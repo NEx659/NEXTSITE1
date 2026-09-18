@@ -21,11 +21,11 @@ if ($trimmed.StartsWith($prefix)) {
     try {
         $obj = $json | ConvertFrom-Json
         Write-Host "data.js parsed successfully! Count: $($obj.Count)"
-        $c17 = $obj | Where-Object { $_.id -eq 'comp-udon-17' }
-        Write-Host "comp-udon-17 name: $($c17.name)"
-        Write-Host "comp-udon-17 projects count: $($c17.projects.Count)"
-        foreach ($p in $c17.projects) {
-            Write-Host "  -> [$($p.siteKey)] $($p.name) : $($p.postUrl)"
+        $c11 = $obj | Where-Object { $_.id -eq 'comp-udon-11' }
+        Write-Host "comp-udon-11 name: $($c11.name)"
+        Write-Host "comp-udon-11 projects count: $($c11.projects.Count)"
+        foreach ($p in $c11.projects) {
+            Write-Host "  -> [$($p.projectId)] $($p.name) : $($p.postUrl)"
         }
     } catch {
         Write-Host "JSON Parse ERROR in data.js: $($_.Exception.Message)"

@@ -1,0 +1,212 @@
+﻿      },
+      "ocrText": "May be an image of sliding door"
+    }
+  ],
+  "feedbackId": "ZmVlZGJhY2s6MTQxMTUzODU4Nzc0NjU3Mg==",
+  "reactionLikeCount": 1,
+  "paidPartnership": false,
+  "topLevelUrl": "https://www.facebook.com/100066713327564/posts/1411538587746572",
+  "facebookId": "100066713327564",
+  "pageAdLibrary": {
+    "id": "105533857655655",
+    "pamv_comms_data": null
+  },
+  "inputUrl": "https://www.facebook.com/profile.php?id=100066713327564"
+},
+{
+  "inputUrl": "https://www.facebook.com/WonderCreation2017",
+  "error": "no_items",
+  "errorDescription": "Empty or private data for provided input"
+},
+{
+  "facebookUrl": "https://www.facebook.com/profile.php?id=100057515256596",
+  "postId": "1559172109343283",
+  "pageName": "TT-design-construction-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A",
+  "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&id=100057515256596",
+  "time": "2026-09-13T11:34:45.000Z",
+  "timestamp": 1789299285,
+  "user": {
+    "id": "100057515256596",
+    "name": "TT design & construction รับสร้างบ้าน รับออกแบบ",
+    "profileUrl": "https://www.facebook.com/100057515256596",
+    "profilePic": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/615820548_1357861116141051_127465900879688594_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx2048x2048&ctp=s50x50&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TEAvPdgHt3UQ7kNvwFpzeAV&_nc_oc=Adrc2oS8oMjfgoTKpgJ1TBxL1mxZCdkuMZe2-GdJ6N__7rlV3xCDSZVkR3HZvgZ_Weo&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJsPg_IUqO-r_kETyPbb95JbBdGRIRK5EZTOrLbzwkOOQ&oe=6AAFEBFF"
+  },
+  "collaborators": [],
+  "text": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨\nทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น \n\nOwner : คุณโหน่ง\nlocation : อ.เมือง จ.อุดรธานี\n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
+  "textReferences": [
+    {
+      "url": "https://www.facebook.com/hashtag/ttdesignandconstruction?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/ttdesignandconstruction",
+      "id": "1838639072815210"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87",
+      "id": "679602962156459"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%A0%E0%B8%B2%E0%B8%9E?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%A0%E0%B8%B2%E0%B8%9E",
+      "id": "464624403633717"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%9D%E0%B8%B5%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/%E0%B8%9D%E0%B8%B5%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87",
+      "id": "979606525497967"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+      "id": "607920315928755"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%B2%E0%B8%A2?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%B2%E0%B8%A2",
+      "id": "1137148262981390"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%99%E0%B9%81%E0%B8%81%E0%B9%88%E0%B8%99?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%99%E0%B9%81%E0%B8%81%E0%B9%88%E0%B8%99",
+      "id": "864851116876736"
+    }
+  ],
+  "likes": 20,
+  "shares": 2,
+  "topReactionsCount": 2,
+  "media": [
+    {
+      "mediaset_token": "pcb.1559172109343283",
+      "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&id=100057515256596",
+      "comet_product_tag_feed_overlay_renderer": null
+    },
+    {
+      "thumbnail": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/801581579_1559172519343242_76800220849695760_n.jpg?stp=dst-jpg_tt6&cstp=mx1477x1108&ctp=s590x590&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=2SsZ-kOrYv0Q7kNvwGG7goV&_nc_oc=AdqonBJc4Dui1ejbJykIAwnfNXdcRhhdE6yjdNKMTXootjyH8U240mA5UBj2YWYDHWg&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQI8uAkOucdHSyRcfWaE2gPFH5ivyrLb96onIHLbXCus5w&oe=6AAFEE53",
+      "__typename": "Photo",
+      "is_playable": false,
+      "image": {
+        "uri": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/801581579_1559172519343242_76800220849695760_n.jpg?stp=dst-jpg_tt6&cstp=mx1477x1108&ctp=s590x590&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=2SsZ-kOrYv0Q7kNvwGG7goV&_nc_oc=AdqonBJc4Dui1ejbJykIAwnfNXdcRhhdE6yjdNKMTXootjyH8U240mA5UBj2YWYDHWg&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQI8uAkOucdHSyRcfWaE2gPFH5ivyrLb96onIHLbXCus5w&oe=6AAFEE53",
+        "height": 443,
+        "width": 590
+      },
+      "id": "1559166719343822",
+      "__isMedia": "Photo",
+      "photo_cix_screen": null,
+      "copyright_banner_info": null,
+      "owner": {
+        "__typename": "User",
+        "id": "100057515256596"
+      },
+      "ocrText": "No photo description available."
+    },
+    {
+      "thumbnail": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/802811130_1559172569343237_3189254901952963095_n.jpg?stp=dst-jpg_tt6&cstp=mx1108x1477&ctp=s590x590&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ZOu5662sN6IQ7kNvwE00scp&_nc_oc=Ado22Omi0m5gTjIZlj39n7ANsueMGs19NaDdbTyL91nD-w4MMOUCX0JzWH1oKb5e8TE&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJAiqkCHToOj7q2FtfF9RD2KqiRVYNA9OE_Y2dbQ1XpBw&oe=6AB018AC",
+      "__typename": "Photo",
+      "is_playable": false,
+      "image": {
+        "uri": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/802811130_1559172569343237_3189254901952963095_n.jpg?stp=dst-jpg_tt6&cstp=mx1108x1477&ctp=s590x590&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ZOu5662sN6IQ7kNvwE00scp&_nc_oc=Ado22Omi0m5gTjIZlj39n7ANsueMGs19NaDdbTyL91nD-w4MMOUCX0JzWH1oKb5e8TE&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJAiqkCHToOj7q2FtfF9RD2KqiRVYNA9OE_Y2dbQ1XpBw&oe=6AB018AC",
+        "height": 590,
+        "width": 443
+      },
+      "id": "1559166632677164",
+      "__isMedia": "Photo",
+      "photo_cix_screen": null,
+      "copyright_banner_info": null,
+      "owner": {
+        "__typename": "User",
+        "id": "100057515256596"
+      },
+      "ocrText": "May be an image of text that says 'TT TTDESIGN tsan DESIGN 금3'"
+    },
+    {
+      "thumbnail": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/806001429_1559172579343236_6647758960705678475_n.jpg?stp=dst-jpg_tt6&cstp=mx1108x1477&ctp=s590x590&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aHav-sDVSlwQ7kNvwHLn0Lx&_nc_oc=AdrywvfO-Q-fIfoUm74vZ8YaoLXIjlEPD2o9YNCz9d4rC8Kp7mWiOgAkddsGixebfkU&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJeGEOls8c3KrPVPcBT3LfuwGcrvvjaLUEppxvTtPm-yg&oe=6AAFE8AD",
+      "__typename": "Photo",
+      "is_playable": false,
+      "image": {
+        "uri": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/806001429_1559172579343236_6647758960705678475_n.jpg?stp=dst-jpg_tt6&cstp=mx1108x1477&ctp=s590x590&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aHav-sDVSlwQ7kNvwHLn0Lx&_nc_oc=AdrywvfO-Q-fIfoUm74vZ8YaoLXIjlEPD2o9YNCz9d4rC8Kp7mWiOgAkddsGixebfkU&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJeGEOls8c3KrPVPcBT3LfuwGcrvvjaLUEppxvTtPm-yg&oe=6AAFE8AD",
+        "height": 590,
+        "width": 443
+      },
+      "id": "1559167372677090",
+      "__isMedia": "Photo",
+      "photo_cix_screen": null,
+      "copyright_banner_info": null,
+      "owner": {
+        "__typename": "User",
+        "id": "100057515256596"
+      },
+      "ocrText": "May be an image of text"
+    },
+    {
+      "thumbnail": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/801938875_1559172602676567_3435997799001458707_n.jpg?stp=dst-jpg_tt6&cstp=mx1477x1108&ctp=s590x590&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=rsJLGqVkrYEQ7kNvwG08ueG&_nc_oc=AdpiaGTF_w5scVVkTiOeljS9k7yNAcoauW_5gdhIkBCm947qkDtMur3YMjaPwYB7RqU&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQKYeXVZzg3QBTHqOz86z6QyNYNR86GlaS4A0l8Vh0bLWA&oe=6AAFE794",
+      "__typename": "Photo",
+      "is_playable": false,
+      "image": {
+        "uri": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/801938875_1559172602676567_3435997799001458707_n.jpg?stp=dst-jpg_tt6&cstp=mx1477x1108&ctp=s590x590&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=rsJLGqVkrYEQ7kNvwG08ueG&_nc_oc=AdpiaGTF_w5scVVkTiOeljS9k7yNAcoauW_5gdhIkBCm947qkDtMur3YMjaPwYB7RqU&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQKYeXVZzg3QBTHqOz86z6QyNYNR86GlaS4A0l8Vh0bLWA&oe=6AAFE794",
+        "height": 443,
+        "width": 590
+      },
+      "id": "1559167442677083",
+      "__isMedia": "Photo",
+      "photo_cix_screen": null,
+      "copyright_banner_info": null,
+      "owner": {
+        "__typename": "User",
+        "id": "100057515256596"
+      },
+      "ocrText": "May be an image of text that says 'TT DESIGN AUHT'"
+    },
+    {
+      "thumbnail": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/808123920_1559172609343233_2640296305739649521_n.jpg?stp=dst-jpg_tt6&cstp=mx1477x1108&ctp=s590x590&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JrzsseN5HnEQ7kNvwFr3KLT&_nc_oc=AdrP9I3quovI0oxJ2qGnfcRi-fypLfZETGTcDvj4vByt_l4Kni-FQoPJV5ohhWPkPk8&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJUR8WV5asM7bkPBU5d5UMESUGmT-BmHaZppIgwC4Lh6g&oe=6AB00BD7",
+      "__typename": "Photo",
+      "is_playable": false,
+      "image": {
+        "uri": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/808123920_1559172609343233_2640296305739649521_n.jpg?stp=dst-jpg_tt6&cstp=mx1477x1108&ctp=s590x590&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JrzsseN5HnEQ7kNvwFr3KLT&_nc_oc=AdrP9I3quovI0oxJ2qGnfcRi-fypLfZETGTcDvj4vByt_l4Kni-FQoPJV5ohhWPkPk8&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJUR8WV5asM7bkPBU5d5UMESUGmT-BmHaZppIgwC4Lh6g&oe=6AB00BD7",
+        "height": 443,
+        "width": 590
+      },
+      "id": "1559167436010417",
+      "__isMedia": "Photo",
+      "photo_cix_screen": null,
+      "copyright_banner_info": null,
+      "owner": {
+        "__typename": "User",
+        "id": "100057515256596"
+      },
+      "ocrText": "May be an image of text that says 'TT DESIGN 20 HP0O'"
+    }
+  ],
+  "feedbackId": "ZmVlZGJhY2s6MTU1OTE3MjEwOTM0MzI4Mw==",
+  "reactionLikeCount": 18,
+  "reactionLoveCount": 2,
+  "paidPartnership": false,
+  "topLevelUrl": "https://www.facebook.com/100057515256596/posts/1559172109343283",
+  "facebookId": "100057515256596",
+  "pageAdLibrary": {
+    "id": "104873667746560",
+    "pamv_comms_data": null
+  },
+  "inputUrl": "https://www.facebook.com/profile.php?id=100057515256596"
+},
+{
+  "facebookUrl": "https://www.facebook.com/profile.php?id=100057515256596",
+  "postId": "1558391169421377",
+  "pageName": "TT-design-construction-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A",
+  "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid0g8EwUUePpAV8kj4BvsD2spbV9rdX6ExsH7YTb64hnnE2Yv7vWaKhcPVijUjawCrQl&id=100057515256596",
+  "time": "2026-09-12T13:07:19.000Z",
+  "timestamp": 1789218439,
+  "user": {
+    "id": "100057515256596",
+    "name": "TT design & construction รับสร้างบ้าน รับออกแบบ",
+    "profileUrl": "https://www.facebook.com/100057515256596",
+    "profilePic": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/615820548_1357861116141051_127465900879688594_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx2048x2048&ctp=s50x50&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TEAvPdgHt3UQ7kNvwFpzeAV&_nc_oc=Adrc2oS8oMjfgoTKpgJ1TBxL1mxZCdkuMZe2-GdJ6N__7rlV3xCDSZVkR3HZvgZ_Weo&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=KSN8cyTQnUqcAG3xJyxuuQ&_nc_ss=73289&oh=00_AQJsPg_IUqO-r_kETyPbb95JbBdGRIRK5EZTOrLbzwkOOQ&oe=6AAFEBFF"
+  },
+  "collaborators": [],
+  "text": "TT Design & Construction ขอขอบพระคุณ คุณเอสและคุณปุ๋ม ที่มอบความไว้วางใจให้บริษัทดูแลโครงการบ้านพักอาศัย ตั้งแต่ขั้นตอนการออกแบบจนถึงการก่อสร้าง และได้ร่วมลงนามในสัญญาก่อสร้างอย่างเป็นทางการเรียบร้อยแล้ว\n\n📍โครงการ อำเภอเมือง จังหวัดหนองคาย \n✨กำหนดประกอบพิธียกเสาเอก เดือนพฤศจิกายนนี้\n\nขอขอบพระคุณสำหรับความไว้วางใจ บริษัทจะดำเนินงานและดูแลทุกขั้นตอนด้วยความใส่ใจอย่างดีที่สุดค่ะ \n\n#TTDesignAndConstruction\n#ออกแบบและก่อสร้างบ้าน\n#รับสร้างบ้านหนองคาย\n#บ้านคุณภาพมาตรฐานมืออาชีพ\n#ทีมสถาปนิกและวิศวกรมืออาชีพ\n#รับสร้างบ้านอุดรธานี",
+  "textReferences": [
+    {
+      "url": "https://www.facebook.com/hashtag/ttdesignandconstruction?__eep__=6",
+      "mobileUrl": "https://m.facebook.com/hashtag/ttdesignandconstruction",
+      "id": "1838639072815210"
+    },
+    {
+      "url": "https://www.facebook.com/hashtag/%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0

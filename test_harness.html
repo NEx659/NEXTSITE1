@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Error Check</title>
+</head>
+<body>
+  <div id="errors" style="white-space: pre; color: red;"></div>
+  <script>
+    window.allErrors = [];
+    window.onerror = function(msg, url, line, col, error) {
+      window.allErrors.push({ msg: msg, url: url, line: line, col: col, stack: error ? error.stack : '' });
+      document.getElementById('errors').textContent += '\n' + msg + ' at ' + url + ':' + line + ':' + col;
+    };
+    console.error = function() {
+      window.allErrors.push({ msg: Array.from(arguments).join(' ') });
+      document.getElementById('errors').textContent += '\nCONSOLE.ERROR: ' + Array.from(arguments).join(' ');
+    };
+  </script>
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/map.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.id = 'status-result';
+        div.textContent = 'ERRORS_COUNT: ' + window.allErrors.length + ' | COMPANIES_LOADED: ' + (typeof UDON_COMPANIES !== 'undefined' ? UDON_COMPANIES.length : 'UNDEFINED');
+        document.body.appendChild(div);
+      }, 500);
+    });
+  </script>
+</body>
+</html>
