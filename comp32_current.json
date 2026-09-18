@@ -1,0 +1,95 @@
+﻿{
+    "id":  "comp-udon-32",
+    "name":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
+    "engName":  "Baanyai (2016) Home Builder Co., Ltd.",
+    "category":  "รับสร้างบ้านหลังใหญ่และพรีเมียม (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "เมืองอุดรธานี",
+    "address":  "เมืองอุดรธานี จ.อุดรธานี",
+    "phone":  "098 585 8741",
+    "contactPerson":  "ห้างหุ้นส่วนจำกัด พีเอ แอนด์ ทีเอ็น",
+    "totalProjects":  1,
+    "newProjectsThisMonth":  1,
+    "totalValueMillion":  5.5,
+    "growthRate":  40,
+    "areaExpansion":  "เมืองอุดรธานี",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415559028901",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  0,
+                           "structure":  0,
+                           "finishing":  1
+                       },
+    "latestTimelineStage":  "groundbreak",
+    "revenuePotentialText":  "฿0.5M",
+    "coordinates":  [
+                        17.3995,
+                        102.775
+                    ],
+    "googleMapsUrl":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
+    "gmaps":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
+    "facebookUrl":  "https://www.facebook.com/PATN2021",
+    "facebookSignal":  {
+                           "postDate":  "12/6/2569",
+                           "pageName":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
+                           "caption":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า\nDesign By . Peesapat Saen In , PA\u0026TN TEAM",
+                           "likes":  0,
+                           "comments":  0,
+                           "shares":  0,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-32-1",
+                         "name":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า",
+                         "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.3995,
+                                     102.775
+                                 ],
+                         "stage":  "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                         "stageKey":  "finishing",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  80,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า\nDesign By . Peesapat Saen In , PA\u0026TN TEAM",
+                         "postedTime":  "12/6/2569",
+                         "postUrl":  "https://www.facebook.com/PATN2021/posts/pfbid02hHQMZRdRekrWUBQRvruCspa1aEpBxRJB1mom4jQ6HQ8iqQwDSjLkYrZNfGasGpgwl",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 1 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 0)",
+    "aiRecommendation":  "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+    "salesActionPlan":  [
+
+                        ],
+    "tag":  "new",
+    "opportunityScore":  35,
+    "scgCode":  "10551209",
+    "sales2025":  5481324,
+    "sales2026":  5472101
+}

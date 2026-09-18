@@ -1,0 +1,276 @@
+{
+  "company": {
+    "id": "comp-udon-50",
+    "name": "บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จํากัด",
+    "engName": "Cho Rungaroon Construction Co., Ltd.",
+    "category": "รับสร้างบ้านและงานก่อสร้างอาคารครบวงจร (TSIC 41001)",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "address": "447 หมู่ที่ 7 ต.หมูม่น อ.เมือง จ.อุดรธานี 41000",
+    "phone": "088 975 1064",
+    "contactPerson": "ช่างอา (088-975-1064) / ช่างตรี (083-149-6759)",
+    "totalProjects": 5,
+    "newProjectsThisMonth": 5,
+    "totalValueMillion": 14.6,
+    "growthRate": 55.0,
+    "areaExpansion": "เมืองอุดรธานี, กุมภวาปี, หมูม่น, บ้านตาด",
+    "verificationStatus": {
+      "isVerified": true,
+      "confidence": "100%",
+      "evidenceSource": "Facebook Page | DBD: 0415565046789",
+      "permitStatus": "TSIC 41001"
+    },
+    "stageBreakdown": {
+      "groundbreak": 0,
+      "foundation": 1,
+      "structure": 2,
+      "finishing": 2
+    },
+    "latestTimelineStage": "foundation",
+    "revenuePotentialText": "฿2.2M",
+    "coordinates": [
+      17.458,
+      102.783
+    ],
+    "googleMapsUrl": "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
+    "gmaps": "https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9",
+    "facebookUrl": "https://www.facebook.com/profile.php?id=100034948943142",
+    "facebookSignal": {
+      "postDate": "2/9/2569",
+      "pageName": "บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จํากัด",
+      "caption": "อากาศร้อนๆ กับปูนเหนียวข้น…บรรยากาศงานเทตอม่อวันนี้ #รับสร้างบ้านอุดรธานี #สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น โทร 088-975-1064 ช่างอา",
+      "likes": 21,
+      "comments": 4,
+      "shares": 0,
+      "detectedKeywords": [
+        "อุดรธานี",
+        "ก่อสร้างจริง"
+      ]
+    },
+    "projects": [
+      {
+        "projectId": "comp-udon-50-1",
+        "siteKey": "rungaroon_site_kumpawapi_contemporary",
+        "name": "โครงการก่อสร้างบ้านพักอาศัยสไตล์ Contemporary 📍 อ.กุมภวาปี จ.อุดรธานี",
+        "location": "อ.กุมภวาปี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "กุมภวาปี",
+        "gps": [
+          17.114,
+          103.018
+        ],
+        "stage": "งานก่อสร้างบ้านเดี่ยว 2 นอน 3 น้ำ 1 โถง พร้อมเคาน์เตอร์บาร์ (ส่งมอบพร้อมเข้าอยู่)",
+        "stageKey": "finishing",
+        "trackingStatus": "pending",
+        "progressPercent": 95,
+        "estValue": "2.0 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยสไตล์ Contemporary (งบไม่เกิน 2 ล้านบาท)",
+        "caption": "🏡บ้านสไตล์คอนเทมโพรารี่ 2 ห้องนอน 3 ห้องน้ำ 1 ห้องโถง พร้อมเคาน์เตอร์บาร์ 💵ในงบไม่เกิน2ล้านพร้อมเข้าอยู่ได้เลย 📍อ.กุมภวาปี จ.อุดรธานี วัสดุงานคุณภาพ SCG และแบรนด์ที่ได้มาตรฐาน โทร. 088-975-1064 ช่างอา / 083-149-6759 ตรี / 095-836-1416 ส้ม",
+        "postedTime": "27/7/2569",
+        "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid05NzCaeXCcUrb9YYfC7fttkCPGTqt61cPZkyG7b73xazeV7Lbgcz5CpdvZbDocKJZl&id=100034948943142",
+        "boq": [
+          {
+            "sku": "กระเบื้องปูพื้น COTTO & สุขภัณฑ์ COTTO ครบชุด 3 ห้องน้ำ",
+            "qty": "1 ชุด",
+            "estCost": "฿68,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ปูนซีเมนต์สำเร็จรูป SCG & กาวซีเมนต์ COTTO สำหรับงานปูกระเบื้อง",
+            "qty": "70 ถุง",
+            "estCost": "฿24,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ฝ้าและผนังสมาร์ทบอร์ด SCG หนา 4-6 มม.",
+            "qty": "110 แผ่น",
+            "estCost": "฿18,500",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-50-2",
+        "siteKey": "rungaroon_site_footing_concrete",
+        "name": "โครงการก่อสร้างบ้านพักอาศัย งานเทคอนกรีตฐานรากและตอม่อ 📍 จ.อุดรธานี",
+        "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.458,
+          102.783
+        ],
+        "stage": "งานเทคอนกรีตผสมเสร็จ CPAC ฐานรากและตอม่อ คสล.",
+        "stageKey": "foundation",
+        "trackingStatus": "pending",
+        "progressPercent": 30,
+        "estValue": "3.5 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยเดี่ยว คสล.",
+        "caption": "อากาศร้อนๆ กับปูนเหนียวข้น…บรรยากาศงานเทตอม่อวันนี้ บันทึกหน้างานก่อสร้างจริง โทร. 088-975-1064 ช่างอา / 083-149-6759 ตรี",
+        "postedTime": "2/9/2569",
+        "postUrl": "https://www.facebook.com/reel/1286808714514871/",
+        "boq": [
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานเทฐานราก-ตอม่อ",
+            "qty": "45 คิว",
+            "estCost": "฿99,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "เหล็กเส้นข้ออ้อย SD40 SCG",
+            "qty": "8 ตัน",
+            "estCost": "฿192,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ปูนซีเมนต์ไฮดรอลิก SCG สำหรับงานโครงสร้าง",
+            "qty": "200 ถุง",
+            "estCost": "฿34,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-50-3",
+        "siteKey": "rungaroon_site_structure_roof",
+        "name": "โครงการก่อสร้างบ้านพักอาศัย งานโครงสร้าง คสล. และโครงหลังคาเหล็ก 📍 จ.อุดรธานี",
+        "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.458,
+          102.783
+        ],
+        "stage": "งานโครงสร้างเสาคาน คสล. และติดตั้งโครงหลังคาเหล็กรับกระเบื้อง SCG",
+        "stageKey": "structure",
+        "trackingStatus": "pending",
+        "progressPercent": 55,
+        "estValue": "3.8 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+        "caption": "ท้องฟ้าที่สดใสและโครงสร้างที่ค่อย ๆ สมบูรณ์ขึ้นทีละส่วน….#สร้างด้วยใจใส่ใจทุกขั้นตอน #สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น โทร. 088-975-1064 ช่างอา / 083-149-6759 ตรี",
+        "postedTime": "17/6/2569",
+        "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid033fvx19YBsnCVf19FjmRprHAaP36jiBTSUt2Ghtc9DMfFaybZKVJtjwSCNxvDgqPil&id=100034948943142",
+        "boq": [
+          {
+            "sku": "กระเบื้องหลังคา SCG และอุปกรณ์ครอบแห้ง Dry-Tech",
+            "qty": "1,500 แผ่น",
+            "estCost": "฿112,500",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ฉนวนกันความร้อน SCG STAY COOL หนา 75-150 มม.",
+            "qty": "40 ม้วน",
+            "estCost": "฿18,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ปูนซีเมนต์ปอร์ตแลนด์ SCG ประเภท 1",
+            "qty": "250 ถุง",
+            "estCost": "฿42,500",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-50-4",
+        "siteKey": "rungaroon_site_nordic_house",
+        "name": "โครงการก่อสร้างบ้านพักอาศัยสไตล์ Nordic House 📍 จ.อุดรธานี",
+        "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.458,
+          102.783
+        ],
+        "stage": "งานก่อสร้างสถาปัตยกรรมและมุงหลังคาทรงจั่วสูง Nordic Style",
+        "stageKey": "structure",
+        "trackingStatus": "pending",
+        "progressPercent": 70,
+        "estValue": "2.8 ล้านบาท",
+        "buildingType": "บ้านเดี่ยวชั้นเดียวสไตล์ Nordic House Style",
+        "caption": "🏠 บ้านหนึ่งหลัง ใช้เวลาสร้างไม่กี่เดือน แต่จะเก็บเรื่องราวไปอีกหลายสิบปี …#Nordic House Style #สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น โทร. 088-975-1064 ช่างอา / 083-149-6759 ตรี",
+        "postedTime": "22/6/2569",
+        "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid08dvKQ2aCrMGyvsyQr32uuEHw3gbCCwvzroRL4DR2qeHsZRtXTAQ1rf7MVnP1b1kWl&id=100034948943142",
+        "boq": [
+          {
+            "sku": "กระเบื้องหลังคาคอนกรีต SCG นิวสไตล์ หรือ SCG Prestige",
+            "qty": "1,200 แผ่น",
+            "estCost": "฿90,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "แผ่นผนังตกแต่งและไม้ฝา SCG D-COR",
+            "qty": "80 แผ่น",
+            "estCost": "฿28,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "แผ่นยิปซัมตราช้างพลัส SCG สำหรับงานฝ้าเพดาน",
+            "qty": "90 แผ่น",
+            "estCost": "฿15,300",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-50-5",
+        "siteKey": "rungaroon_site_bathroom_3style",
+        "name": "โครงการบ้านพักอาศัย งานตกแต่งห้องน้ำและสุขภัณฑ์ 3 สไตล์ 📍 จ.อุดรธานี",
+        "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "gps": [
+          17.458,
+          102.783
+        ],
+        "stage": "งานปูกระเบื้องบุผนัง ปูพื้น และติดตั้งชุดสุขภัณฑ์ COTTO 3 ห้อง 3 สไตล์",
+        "stageKey": "finishing",
+        "trackingStatus": "pending",
+        "progressPercent": 88,
+        "estValue": "2.5 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยเดี่ยว",
+        "caption": "บ้าน 3 ห้องน้ำ 3 สไตล์ งานปูกระเบื้องและติดตั้งสุขภัณฑ์เกรดพรีเมียม #สร้างบ้านคุณภาพ #รุ่งอรุณคอนสตรัคชั่น โทร. 088-975-1064 ช่างอา / 083-149-6759 ตรี / 095-836-1416 ส้ม",
+        "postedTime": "12/7/2569",
+        "postUrl": "https://www.facebook.com/reel/1031384166040412/",
+        "boq": [
+          {
+            "sku": "ชุดสุขภัณฑ์ COTTO และก๊อกน้ำประหยัดน้ำ",
+            "qty": "3 ชุด",
+            "estCost": "฿45,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "กระเบื้องปูพื้นและผนัง COTTO ลายหินอ่อนและโมเดิร์น",
+            "qty": "1 ชุด",
+            "estCost": "฿52,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "กาวยาแนวและกาวซีเมนต์ COTTO ป้องกันเชื้อรา",
+            "qty": "30 ถุง",
+            "estCost": "฿9,900",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      }
+    ],
+    "aiShortRec": "พบ 5 ไซต์บ้านเดี่ยว Active จริงใน จ.อุดรธานี (อ.กุมภวาปี, อ.เมือง) ช่างเปิดรับวัสดุ SCG/COTTO เต็มรูปแบบ แนะนำเจาะ Total Solution",
+    "aiRecommendation": "ผู้รับเหมาสร้างบ้านคุณภาพช่างฝีมือดี (088-975-1064 ช่างอา) มีงานเทคอนกรีตฐานราก งานขึ้นโครงหลังคา และงานสุขภัณฑ์ COTTO ทั่ว จ.อุดรธานี แนะนำเสนอแพ็กเกจคอนกรีต CPAC และระบบหลังคา SCG ครบวงจร",
+    "customDiagnostic": "บริษัทรับสร้างบ้านคุณภาพที่มุ่งเน้นบ้านเดี่ยวสไตล์ Contemporary และ Nordic House ในงบประมาณ 1-4 ล้านบาท พร้อมควบคุมคุณภาพวัสดุมาตรฐาน SCG มีไซต์งานเทคอนกรีตฐานราก ตอม่อ โครงสร้างหลังคา และงานฟินิชชิ่งกระจายตัวใน อ.กุมภวาปี และ อ.เมือง จ.อุดรธานี",
+    "customRecommendations": [
+      "<strong>คอนกรีตผสมเสร็จ CPAC 240 ksc & เหล็กเส้น SCG SD40:</strong> นำเสนอคอนกรีต CPAC สำหรับงานเทฐานรากและคานคอดิน พร้อมบริการจัดส่งตรงหน้างาน",
+      "<strong>ระบบหลังคา SCG & ฉนวน STAY COOL:</strong> นำเสนอระบบกระเบื้องหลังคา SCG Prestige / CPAC พร้อมอุปกรณ์ครอบแห้ง Dry-Tech สำหรับบ้านทรง Nordic และ Contemporary",
+      "<strong>กระเบื้องและสุขภัณฑ์ COTTO:</strong> ต่อยอดงานห้องน้ำ 3 สไตล์ ด้วยชุดสุขภัณฑ์ประหยัดน้ำ COTTO และกระเบื้องปูพื้น/บุผนังลวดลายโมเดิร์น",
+      "<strong>ปูนซีเมนต์สำเร็จรูป SCG และเคมีภัณฑ์ก่อสร้าง:</strong> สนับสนุนปูนฉาบ ปูนก่อ และกาวซีเมนต์ COTTO สำหรับงานสถาปัตยกรรมทุกไซต์"
+    ],
+    "salesActionPlan": [
+      "ติดต่อช่างอา (088-975-1064) หรือช่างตรี (083-149-6759) เพื่อนำเสนอแพ็กเกจคอนกรีต CPAC สำหรับไซต์งานฐานราก",
+      "ส่งแคตตาล็อกระบบหลังคา SCG Nordic และฉนวน STAY COOL ให้ทีมสถาปนิกและผู้ควบคุมงาน",
+      "ประสานร้านผู้แทนจำหน่าย SCG ในพื้นที่จัดส่งตัวอย่างกระเบื้อง COTTO และชุดสุขภัณฑ์สำหรับไซต์งานใหม่",
+      "นัดหมายเข้าเยี่ยมชมหน้างานร่วมกับทีมเทคนิค SCG เพื่อสนับสนุนการแก้ปัญหาหน้างานก่อสร้าง"
+    ],
+    "tag": "focus",
+    "opportunityScore": 88
+  },
+  "strategyJs": "  'comp-udon-50': {\n    customDiagnostic: 'บริษัทรับสร้างบ้านคุณภาพที่มุ่งเน้นบ้านเดี่ยวสไตล์ Contemporary และ Nordic House ในงบประมาณ 1-4 ล้านบาท พร้อมควบคุมคุณภาพวัสดุมาตรฐาน SCG มีไซต์งานเทคอนกรีตฐานราก ตอม่อ โครงสร้างหลังคา และงานฟินิชชิ่งกระจายตัวใน อ.กุมภวาปี และ อ.เมือง จ.อุดรธานี',\n    customRecommendations: [\n      '<strong>คอนกรีตผสมเสร็จ CPAC 240 ksc & เหล็กเส้น SCG SD40:</strong> นำเสนอคอนกรีต CPAC สำหรับงานเทฐานรากและคานคอดิน พร้อมบริการจัดส่งตรงหน้างาน',\n      '<strong>ระบบหลังคา SCG & ฉนวน STAY COOL:</strong> นำเสนอระบบกระเบื้องหลังคา SCG Prestige / CPAC พร้อมอุปกรณ์ครอบแห้ง Dry-Tech สำหรับบ้านทรง Nordic และ Contemporary',\n      '<strong>กระเบื้องและสุขภัณฑ์ COTTO:</strong> ต่อยอดงานห้องน้ำ 3 สไตล์ ด้วยชุดสุขภัณฑ์ประหยัดน้ำ COTTO และกระเบื้องปูพื้น/บุผนังลวดลายโมเดิร์น',\n      '<strong>ปูนซีเมนต์สำเร็จรูป SCG และเคมีภัณฑ์ก่อสร้าง:</strong> สนับสนุนปูนฉาบ ปูนก่อ และกาวซีเมนต์ COTTO สำหรับงานสถาปัตยกรรมทุกไซต์'\n    ]\n  },"
+}

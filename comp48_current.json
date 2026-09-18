@@ -1,0 +1,95 @@
+﻿{
+    "id":  "comp-udon-48",
+    "name":  "ห้างหุ้นส่วนจํากัด บ้านดี อุดร",
+    "engName":  "Peerapat 999 Building \u0026 Service House Co., Ltd.",
+    "category":  "รับสร้างบ้านและบริการงานก่อสร้าง (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "บ้านดุง",
+    "address":  "447 หมู่ที่ 7 ตําบลหมูม่น อําเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000",
+    "phone":  "094 621 5444",
+    "contactPerson":  "ห้างหุ้นส่วนจำกัด บ้านดี อุดร",
+    "totalProjects":  1,
+    "newProjectsThisMonth":  1,
+    "totalValueMillion":  5.5,
+    "growthRate":  40,
+    "areaExpansion":  "เมืองอุดรธานี",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415563044567",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  0,
+                           "structure":  1,
+                           "finishing":  0
+                       },
+    "latestTimelineStage":  "groundbreak",
+    "revenuePotentialText":  "฿0.5M",
+    "coordinates":  [
+                        17.698,
+                        103.259
+                    ],
+    "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+    "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+    "facebookUrl":  "https://www.facebook.com/profile.php?id=61565401665404",
+    "facebookSignal":  {
+                           "postDate":  "27/8/2569",
+                           "pageName":  "ห้างหุ้นส่วนจํากัด บ้านดี อุดร",
+                           "caption":  "🏗️ อัปเดตหน้างาน นาทราย–หนองสำโรง\n\nเดินหน้าอย่างต่อเนื่องค่ะ 💪🏻✨\nวันนี้เริ่มงาน โครงหลังคาและงานก่ออิฐ\nสำหรับ บ้านหลังที่ 2 และหลังที่ 3 🏡\n\nงานค่อย ๆ เป็นรูปเป็นร่างขึ้นทุกวัน\nใส่ใจในทุกขั้นตอน เพื่อให้ได้บ้านที่แข็งแรง สวยงาม และมีคุณภาพ ❤️\n\nบ้านดี–อุดร\nสร้างบ้านด้วยความตั้งใจ ใส่ใจทุกหลังค่ะ 🏠🔨\n\n#อัปเดตหน้างาน #บ้านดีอุดร #นาทรายหนองสำโรง #สร้างบ้าน #บ้านคุณภาพ",
+                           "likes":  0,
+                           "comments":  0,
+                           "shares":  0,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-48-1",
+                         "name":  "🏗️ อัปเดตหน้างาน นาทราย–หนองสำโรง",
+                         "location":  "อ.บ้านดุง จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "บ้านดุง",
+                         "gps":  [
+                                     17.698,
+                                     103.259
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "🏗️ อัปเดตหน้างาน นาทราย–หนองสำโรง\n\nเดินหน้าอย่างต่อเนื่องค่ะ 💪🏻✨\nวันนี้เริ่มงาน โครงหลังคาและงานก่ออิฐ\nสำหรับ บ้านหลังที่ 2 และหลังที่ 3 🏡\n\nงานค่อย ๆ เป็นรูปเป็นร่างขึ้นทุกวัน\nใส่ใจในทุกขั้นตอน เพื่อให้ได้บ้านที่แข็งแรง สวยงาม และมีคุณภาพ ❤️\n\nบ้านดี–อุดร\nสร้างบ้านด้วยความตั้งใจ ใส่ใจทุกหลังค่ะ 🏠🔨\n\n#อัปเดตหน้างาน #บ้านดีอุดร #นาทรายหนองสำโรง #สร้างบ้าน #บ้านคุณภาพ",
+                         "postedTime":  "27/8/2569",
+                         "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0FXX75b9ZkjD7UY8UbNAxTEtq7LunNg4Dax9xgkvUcmQkDTVSm37YNn1tecm2WktFl\u0026id=61565401665404",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 1 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 1)",
+    "aiRecommendation":  "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+    "salesActionPlan":  [
+
+                        ],
+    "tag":  "new",
+    "opportunityScore":  35,
+    "scgCode":  "10369218",
+    "sales2025":  3282,
+    "sales2026":  162877.8
+}

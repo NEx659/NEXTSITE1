@@ -1,0 +1,180 @@
+[
+  {
+    "projectId": "comp-udon-10-1",
+    "siteKey": "tt_site_khun_nong_muang",
+    "name": "โครงการก่อสร้างบ้านพักอาศัย Modern Classic Luxury คุณโหน่ง 📍 อ.เมือง จ.อุดรธานี",
+    "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "gps": [17.423, 102.815],
+    "stage": "งานทาสีจริงภายนอก และเก็บรายละเอียดองค์ประกอบสถาปัตยกรรม (คุณโหน่ง)",
+    "stageKey": "finishing",
+    "trackingStatus": "pending",
+    "progressPercent": 85,
+    "estValue": "4.5 ล้านบาท",
+    "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น Modern Classic Luxury",
+    "caption": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨 ทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น Owner : คุณโหน่ง location : อ.เมือง จ.อุดรธานี โทร 091-6868536 คุณทิพย์ LINE : @TT1991",
+    "postedTime": "13/9/2569",
+    "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&id=100057515256596",
+    "boq": [
+      {
+        "sku": "สีทาภายนอก Super Premium และเคมีภัณฑ์เคลือบเงา SCG",
+        "qty": "20 ถัง",
+        "estCost": "฿38,000",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "ชุดสุขภัณฑ์ COTTO Touchless & ก๊อกน้ำเซนเซอร์",
+        "qty": "4 ชุด",
+        "estCost": "฿64,000",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "บัวประดับและคิ้วสถาปัตย์ SCG D-COR",
+        "qty": "60 ท่อน",
+        "estCost": "฿15,000",
+        "urgency": "เตรียมสั่งซื้อ"
+      }
+    ]
+  },
+  {
+    "projectId": "comp-udon-10-2",
+    "siteKey": "tt_site_suthin_kudchap",
+    "name": "โครงการก่อสร้างบ้านพักอาศัย คุณสุทิน & คุณอิ๋ว (SCG Skim Coat Demo Site) 📍 อ.กุดจับ จ.อุดรธานี",
+    "location": "อ.กุดจับ จ.อุดรธานี",
+    "province": "อุดรธานี",
+    "district": "กุดจับ",
+    "gps": [17.423, 102.815],
+    "stage": "ทีมผู้เชี่ยวชาญ SCG เข้าแนะนำและสาธิตปูนเสือ สกิมโคท (คุณสุทิน คุณอิ๋ว)",
+    "stageKey": "structure",
+    "trackingStatus": "pending",
+    "progressPercent": 60,
+    "estValue": "3.8 ล้านบาท",
+    "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+    "caption": "ทีมผู้เชี่ยวชาญจาก SCG เข้าแนะนำผลิตภัณฑ์ ปูนเสือ สกิมโคท 🐅 ให้ความรู้เกี่ยวกับคุณสมบัติและแนวทางการใช้งานที่ถูกต้องแก่ทีมงาน TT Design & Construction เพื่อให้ผนังเรียบเนียน ได้คุณภาพ Owner : คุณสุทิน คุณอิ๋ว location : อ.กุดจับ จ.อุดรธานี โทร 091-6868536 คุณทิพย์ LINE : @TT1991",
+    "postedTime": "9/9/2569",
+    "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid027FRxoSS9DEoiECwfdptbqre2FNwMadCHV8sW8QP39esC1xkkYArpZ4eTQxakykULl&id=100057515256596",
+    "boq": [
+      {
+        "sku": "ปูนเสือ สกิมโค้ท (Tiger Skim Coat) สูตรผสมสำเร็จ",
+        "qty": "180 ถุง",
+        "estCost": "฿41,400",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "กระเบื้องหลังคา SCG Prestige พร้อมอุปกรณ์ครอบแห้ง Dry-Tech",
+        "qty": "1,850 แผ่น",
+        "estCost": "฿138,750",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "ฉนวนกันความร้อน SCG STAY COOL หนา 75-150 มม.",
+        "qty": "65 ม้วน",
+        "estCost": "฿29,250",
+        "urgency": "เตรียมสั่งซื้อ"
+      }
+    ]
+  },
+  {
+    "projectId": "comp-udon-10-3",
+    "siteKey": "tt_site_luxury_800sqm_muang",
+    "name": "โครงการคฤหาสน์หรู Modern Classic Luxury Residence (800 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี",
+    "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "gps": [17.423, 102.815],
+    "stage": "งานโครงสร้าง คสล. และงานสถาปัตยกรรมคฤหาสน์ 800 ตร.ม.",
+    "stageKey": "structure",
+    "trackingStatus": "pending",
+    "progressPercent": 50,
+    "estValue": "15.0 ล้านบาท",
+    "buildingType": "คฤหาสน์หรู Modern Classic Luxury (800 ตร.ม.)",
+    "caption": "SITE UPDATE | Modern Classic Luxury Residence 800 ตร.ม. EP.2 อีกหนึ่งความคืบหน้าของบ้านพักอาศัยสไตล์ Modern Classic Luxury พื้นที่ใช้สอยกว่า 800 ตารางเมตร โทร 091-6868536 คุณทิพย์ LINE : @TT1991",
+    "postedTime": "7/9/2569",
+    "postUrl": "https://www.facebook.com/reel/4626604687610763/",
+    "boq": [
+      {
+        "sku": "ปูนซีเมนต์ปอร์ตแลนด์ SCG ประเภท 1 งานโครงสร้าง",
+        "qty": "600 ถุง",
+        "estCost": "฿102,000",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "เหล็กเส้นข้ออ้อย SD40 SCG",
+        "qty": "18 ตัน",
+        "estCost": "฿432,000",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "กระเบื้องหลังคาเซรามิก SCG EXCELLA หรือ SCG Prestige",
+        "qty": "1 ชุด",
+        "estCost": "฿285,000",
+        "urgency": "เตรียมสั่งซื้อ"
+      }
+    ]
+  },
+  {
+    "projectId": "comp-udon-10-4",
+    "siteKey": "tt_site_tile_365sqm_muang",
+    "name": "โครงการก่อสร้างบ้านเดี่ยว Modern Classic (365 ตร.ม.) งานปูกระเบื้อง 📍 อ.เมือง จ.อุดรธานี",
+    "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "gps": [17.423, 102.815],
+    "stage": "งานปูกระเบื้องทั้งพื้นบ้านและห้องน้ำตามมาตรฐานวิศวกรรม (365 ตร.ม.)",
+    "stageKey": "finishing",
+    "trackingStatus": "pending",
+    "progressPercent": 75,
+    "estValue": "5.5 ล้านบาท",
+    "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น สไตล์ Modern Classic (365 ตร.ม.)",
+    "caption": "พาอัปเดตบ้านสไตล์ Modern Classic พื้นที่ใช้สอย 365 ตร.ม. กับขั้นตอนงานปูกระเบื้องทั้งพื้นบ้านและห้องน้ำ เพราะแนวกระเบื้อง ระดับพื้น และรอยต่อทุกจุด ล้วนส่งผลต่อความสวยงามและการใช้งานระยะยาว โทร 091-6868536 คุณทิพย์ LINE : @TT1991",
+    "postedTime": "10/9/2569",
+    "postUrl": "https://www.facebook.com/reel/1440415724648857/",
+    "boq": [
+      {
+        "sku": "กาวซีเมนต์ COTTO ฉลากแดง / SCG และกาวยาแนวป้องกันเชื้อรา",
+        "qty": "90 ถุง",
+        "estCost": "฿29,700",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "กระเบื้องปูพื้นและกระเบื้องบุผนัง COTTO ลายหินอ่อน",
+        "qty": "1 ชุด",
+        "estCost": "฿85,000",
+        "urgency": "ด่วนที่สุด"
+      }
+    ]
+  },
+  {
+    "projectId": "comp-udon-10-5",
+    "siteKey": "tt_site_nawapan_stairs_muang",
+    "name": "โครงการก่อสร้างบ้านพักอาศัย คุณนวพรรณ งานบันไดไม้ประดู่แท้ 📍 อ.เมือง จ.อุดรธานี",
+    "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "gps": [17.423, 102.815],
+    "stage": "งานติดตั้งบันไดไม้ประดู่แท้และตกแต่งงานไม้ประณีต (คุณนวพรรณ)",
+    "stageKey": "finishing",
+    "trackingStatus": "pending",
+    "progressPercent": 80,
+    "estValue": "4.2 ล้านบาท",
+    "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+    "caption": "อัปเดต: งานบันไดไม้ประดู่แท้ อีกหนึ่งงานเฉพาะทางที่เราออกแบบและใส่ใจในทุกรายละเอียด ตั้งแต่วัสดุธรรมชาติ งานฝีมือ โทนสี สัดส่วน ไปจนถึงการติดตั้ง Owner : คุณนวพรรณ location : อ.เมือง จ.อุดรธานี โทร 091-6868536 คุณทิพย์ LINE : @TT1991",
+    "postedTime": "4/9/2569",
+    "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02mqamzuyMDUfMDjXuuQMeatyGiYo3kYPuA3pT1aTzjDGWJrDkcq3UBYwe1hqR87EFl&id=100057515256596",
+    "boq": [
+      {
+        "sku": "แผ่นยิปซัมตราช้างพลัส และขอบปิดมุมสำเร็จรูป SCG",
+        "qty": "120 แผ่น",
+        "estCost": "฿20,400",
+        "urgency": "ด่วนที่สุด"
+      },
+      {
+        "sku": "เคมีภัณฑ์เคลือบเงาไม้และโพลียูรีเทนคุณภาพสูง",
+        "qty": "1 ชุด",
+        "estCost": "฿14,500",
+        "urgency": "ด่วนที่สุด"
+      }
+    ]
+  }
+]

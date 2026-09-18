@@ -1,0 +1,95 @@
+﻿{
+    "id":  "comp-udon-43",
+    "name":  "ห้างหุ้นส่วนจํากัด หล้าก่ํา ทรัพย์เจริญยิ่ง",
+    "engName":  "Mariya Construction Co., Ltd.",
+    "category":  "รับเหมาก่อสร้างบ้านและอาคารพาณิชย์ (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "เมืองอุดรธานี",
+    "address":  "เมืองอุดรธานี จ.อุดรธานี",
+    "phone":  "088 877 2899",
+    "contactPerson":  "ห้างหุ้นส่วนจำกัด หล้าก่ำ ทรัพย์เจริญยิ่ง",
+    "totalProjects":  1,
+    "newProjectsThisMonth":  1,
+    "totalValueMillion":  5.5,
+    "growthRate":  40,
+    "areaExpansion":  "เมืองอุดรธานี",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415561039012",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  0,
+                           "structure":  1,
+                           "finishing":  0
+                       },
+    "latestTimelineStage":  "groundbreak",
+    "revenuePotentialText":  "฿0.5M",
+    "coordinates":  [
+                        17.4015,
+                        102.8165
+                    ],
+    "googleMapsUrl":  "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
+    "gmaps":  "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
+    "facebookUrl":  "https://www.facebook.com/profile.php?id=100069404124717",
+    "facebookSignal":  {
+                           "postDate":  "10/9/2569",
+                           "pageName":  "ห้างหุ้นส่วนจํากัด หล้าก่ํา ทรัพย์เจริญยิ่ง",
+                           "caption":  "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
+                           "likes":  0,
+                           "comments":  0,
+                           "shares":  0,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-43-1",
+                         "name":  "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ",
+                         "location":  "อ.ไชยวาน จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "ไชยวาน",
+                         "gps":  [
+                                     17.4015,
+                                     102.8165
+                                 ],
+                         "stage":  "งานโครงสร้างและก่อฉาบอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  50,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                         "caption":  "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
+                         "postedTime":  "10/9/2569",
+                         "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0TiKxbFnxAY97Y4g3aoCk6A4XARojgPof7NZmi4tDNPbbd7DsDwZvqR343Avf9QD2l\u0026id=100069404124717",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "450 ถุง",
+                                         "estCost":  "฿76,500",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                                         "qty":  "75 คิว",
+                                         "estCost":  "฿165,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 1 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 1)",
+    "aiRecommendation":  "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+    "salesActionPlan":  [
+
+                        ],
+    "tag":  "new",
+    "opportunityScore":  35,
+    "scgCode":  "10126345",
+    "sales2025":  110483,
+    "sales2026":  18166
+}

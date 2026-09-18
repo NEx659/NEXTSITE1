@@ -1,0 +1,259 @@
+﻿{
+    "id":  "comp-udon-57",
+    "name":  "บริษัท เอ็นทรัสท คอนสตรัคชั่น จํากัด",
+    "engName":  "Entrust Construction Co., Ltd.",
+    "category":  "รับสร้างบ้าน งานรีโนเวท และตกแต่งภายในครบวงจร (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "เมืองอุดรธานี",
+    "address":  "161 หมู่ที่ 15 หนองเม็ก หนองหาน อุดรธานี",
+    "phone":  "064 942 4298",
+    "contactPerson":  "คุณยศ / ภาณุวัฒน์ พรหมวงค์ (064-9424298)",
+    "totalProjects":  5,
+    "newProjectsThisMonth":  5,
+    "totalValueMillion":  18.5,
+    "growthRate":  50,
+    "areaExpansion":  "เมืองอุดรธานี, หนองหาน, บ้านจั่น",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415567000595",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  0,
+                           "structure":  2,
+                           "finishing":  3
+                       },
+    "latestTimelineStage":  "finishing",
+    "revenuePotentialText":  "฿540K",
+    "coordinates":  [
+                        17.4037,
+                        102.79
+                    ],
+    "googleMapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+    "gmaps":  "https://www.google.com/maps/search/?api=1\u0026query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%97+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+    "facebookUrl":  "https://www.facebook.com/ENTRUST.CONST/?locale=th_TH",
+    "facebookSignal":  {
+                           "postDate":  "11/9/2569",
+                           "pageName":  "บริษัท เอ็นทรัสท คอนสตรัคชั่น จํากัด",
+                           "caption":  "A place to come home to, and simply be. Project K.Tle อ.เมืองอุดรธานี โทร 064-9424298 คุณยศ",
+                           "likes":  0,
+                           "comments":  0,
+                           "shares":  0,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-57-1",
+                         "name":  "โครงการก่อสร้างบ้านพักอาศัยคุณอาร์ม (Project K.ARM) อ.เมืองอุดรธานี",
+                         "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.4037,
+                                     102.79
+                                 ],
+                         "stage":  "งานก่ออิฐ ฉาบปูน และงานระบบไฟฟ้า/ท่อสุขาภิบาล",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  60,
+                         "estValue":  "5.5 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 2 ชั้น Modern Minimalist",
+                         "caption":  "Update Site: Project K.ARM อ.เมือง จ.อุดรธานี ออกแบบและก่อสร้างโดย Trust Construction โทร 064-9424298 คุณยศ",
+                         "postedTime":  "8/9/2569",
+                         "postUrl":  "https://www.facebook.com/ENTRUST.CONST/posts/pfbid02SzwF3DrCsycauhUJU1xRfUu7LWTj8HqE4aABQZydmYodGeCjsvyzpptoNX52rhhBl",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนเสือ มอร์ตาร์ ฉาบละเอียด \u0026 ปูนโครงสร้าง SCG",
+                                         "qty":  "320 ถุง",
+                                         "estCost":  "฿44,800",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc เทพื้นรอบบ้าน",
+                                         "qty":  "40 คิว",
+                                         "estCost":  "฿88,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ฉนวนกันความร้อน SCG STAY COOL หนา 75 มม.",
+                                         "qty":  "50 ม้วน",
+                                         "estCost":  "฿18,500",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-57-2",
+                         "name":  "โครงการรีโนเวท \u0026 ตกแต่งสถาปัตย์บ้านคุณเติ้ล (Project K.Tle) อ.เมืองอุดรธานี",
+                         "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.4037,
+                                     102.79
+                                 ],
+                         "stage":  "งานรื้อถอนปรับผัง ก่อผนังเบา และงานปูพื้นกระเบื้องมินิมอล",
+                         "stageKey":  "finishing",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  40,
+                         "estValue":  "3.8 ล้านบาท",
+                         "buildingType":  "งานรีโนเวทและตกแต่งภายในบ้านพักอาศัย",
+                         "caption":  "A place to come home to, and simply be. Project K.Tle location: Udonthani Status: Design \u0026 Construction โทร 064-9424298 คุณยศ",
+                         "postedTime":  "11/9/2569",
+                         "postUrl":  "https://www.facebook.com/ENTRUST.CONST/posts/pfbid0F5duMZGyjREeGxNu3meEFV8hieSApMwAPkWu7RaCdaa5MUvY1uVR9hqDwvqQvXG1l",
+                         "boq":  [
+                                     {
+                                         "sku":  "แผ่นสมาร์ทบอร์ด SCG 8-12 มม. ผนังเบา \u0026 ฝ้าซ่อนไฟ",
+                                         "qty":  "85 แผ่น",
+                                         "estCost":  "฿21,250",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "กระเบื้อง COTTO Modern Minimalist (Matt Stone)",
+                                         "qty":  "120 ตร.ม.",
+                                         "estCost":  "฿48,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "กาวซีเมนต์และกาวยาแนว COTTO",
+                                         "qty":  "30 ถุง",
+                                         "estCost":  "฿7,500",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-57-3",
+                         "name":  "โครงการต่อเติมเคาน์เตอร์ครัวปูนและลานซักล้างมินิมอล อ.หนองหาน จ.อุดรธานี",
+                         "location":  "อ.หนองหาน จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "หนองหาน",
+                         "gps":  [
+                                     17.4037,
+                                     102.79
+                                 ],
+                         "stage":  "งานเคาน์เตอร์ครัวรูปตัว L งานปูกระเบื้อง และติดตั้งไม้ระแนงบังตา",
+                         "stageKey":  "finishing",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  80,
+                         "estValue":  "1.2 ล้านบาท",
+                         "buildingType":  "งานต่อเติมบ้านพักอาศัย",
+                         "caption":  "งานต่อเติมครัวปูนและลานซักล้างมินิมอล โซนหนองหาน อุดรธานี โทร 064-9424298 คุณยศ",
+                         "postedTime":  "28/7/2569",
+                         "postUrl":  "https://www.facebook.com/ENTRUST.CONST",
+                         "boq":  [
+                                     {
+                                         "sku":  "ไม้ระแนงบังตา SCG Smartwood (เซาะร่องมินิมอล)",
+                                         "qty":  "70 แผ่น",
+                                         "estCost":  "฿14,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ปูนเสือ มอร์ตาร์ ก่อ-ฉาบ ครัวสำเร็จรูป",
+                                         "qty":  "45 ถุง",
+                                         "estCost":  "฿5,850",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "กระเบื้องท็อปเคาน์เตอร์และกระเบื้องพื้น COTTO",
+                                         "qty":  "55 ตร.ม.",
+                                         "estCost":  "฿24,750",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-57-4",
+                         "name":  "โครงการกั้นผนังเบา \u0026 Walk-in Closet โซนบ้านจั่น อุดรธานี",
+                         "location":  "ต.บ้านจั่น อ.เมือง จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.4037,
+                                     102.79
+                                 ],
+                         "stage":  "งานโครงคร่าวโลหะ ProWall และกรุแผ่นยิปซัมตราช้างพลัส",
+                         "stageKey":  "finishing",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  75,
+                         "estValue":  "1.5 ล้านบาท",
+                         "buildingType":  "งานตกแต่งภายใน Interior \u0026 Built-in",
+                         "caption":  "งานติดตั้งผนังเบายิปซัมฉาบเรียบ และกั้นห้อง Walk-in Closet โซนบ้านจั่น อุดรธานี โทร 064-9424298 คุณยศ",
+                         "postedTime":  "18/7/2569",
+                         "postUrl":  "https://www.facebook.com/ENTRUST.CONST",
+                         "boq":  [
+                                     {
+                                         "sku":  "แผ่นยิปซัมตราช้างพลัส 9 มม. + โครง ProBalance",
+                                         "qty":  "100 แผ่น",
+                                         "estCost":  "฿17,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ปูนฉาบรอยต่อยิปซัมตราช้างและผ้าเทป",
+                                         "qty":  "15 ถุง",
+                                         "estCost":  "฿3,450",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-57-5",
+                         "name":  "โครงการรีโนเวทคาเฟ่ \u0026 อาคารพาณิชย์ อ.เมือง จ.อุดรธานี",
+                         "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "เมืองอุดรธานี",
+                         "gps":  [
+                                     17.4037,
+                                     102.79
+                                 ],
+                         "stage":  "งานฉาบผนังตกแต่งปูนเปลือย และงานปรับระดับพื้นทางเข้า",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  70,
+                         "estValue":  "2.2 ล้านบาท",
+                         "buildingType":  "อาคารพาณิชย์ / คาเฟ่",
+                         "caption":  "งานฉาบตกแต่งผนังปูนเปลือยและงานพื้น Microcement โครงการคาเฟ่ อ.เมือง จ.อุดรธานี โทร 064-9424298 คุณยศ",
+                         "postedTime":  "5/7/2569",
+                         "postUrl":  "https://www.facebook.com/ENTRUST.CONST",
+                         "boq":  [
+                                     {
+                                         "sku":  "ปูนเสือ สกิมโค้ท / ปูนฉาบแต่งผิว SCG Loft",
+                                         "qty":  "35 ถุง",
+                                         "estCost":  "฿8,750",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ปูนปรับระดับพื้น Self-Leveling SCG",
+                                         "qty":  "25 ถุง",
+                                         "estCost":  "฿5,750",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 5 ไซต์งานรีโนเวท สร้างบ้านมินิมอล และต่อเติมจริงใน จ.อุดรธานี (อ.เมือง, หนองหาน, บ้านจั่น) เน้นสินค้ากลุ่ม Finishing \u0026 Smartwood",
+    "aiRecommendation":  "ลูกค้ารับสร้างบ้านและรีโนเวทสไตล์ Modern Minimalist (10615285) แนะนำเจาะสินค้า High-Margin แผ่นสมาร์ทบอร์ด SCG, ปูนเสือ สกิมโค้ท, ไม้ระแนง Smartwood และกระเบื้อง COTTO ด่วน",
+    "customDiagnostic":  "บริษัทออกแบบและรับสร้างบ้านสไตล์ Modern Minimalist, รีโนเวท และงานตกแต่งภายในครบวงจร (Trust Construction) คุมงานโดยทีมวิศวกรและสถาปนิกอินทีเรีย มียอดซื้อสินค้า SCG ต่อเนื่อง (SCG Code 10615285) มีไซต์งานเด่นทั้งในเขต อ.เมืองอุดรธานี และ อ.หนองหาน มีความต้องการสินค้ากลุ่ม Finishing, ผนังเบา, ไม้ระแนงตกแต่ง และกระเบื้องพรีเมียมสูงมาก",
+    "customRecommendations":  [
+                                  "\u003cstrong\u003eแผ่นสมาร์ทบอร์ด SCG \u0026 แผ่นยิปซัมตราช้างพลัส:\u003c/strong\u003e นำเสนอโซลูชันระบบผนังเบาและฝ้าเพดานหลืบซ่อนไฟสำหรับงานรีโนเวทบ้านคุณเติ้ล (K.Tle) และงาน Interior โซนบ้านจั่น",
+                                  "\u003cstrong\u003eไม้ระแนงบังตาและไม้ตกแต่ง SCG Smartwood:\u003c/strong\u003e เจาะกลุ่มงานต่อเติมระแนงมินิมอลและงานเคาน์เตอร์ครัวปูน โซน อ.หนองหาน",
+                                  "\u003cstrong\u003eปูนเสือ สกิมโค้ท (Tiger Skim Coat) \u0026 SCG Loft:\u003c/strong\u003e ล็อกสเปกปูนฉาบผิวเรียบเนียนพิเศษและปูนฉาบแต่งผิวลอฟท์สำหรับงานรีโนเวทคาเฟ่และบ้านพักอาศัยคุณอาร์ม (K.ARM)",
+                                  "\u003cstrong\u003eกระเบื้องและสุขภัณฑ์ดีไซน์มินิมอล COTTO:\u003c/strong\u003e นำเสนอชุดกระเบื้องลายหินธรรมชาติผิวด้าน (Matt Surface) และสุขภัณฑ์ประหยัดน้ำดีไซน์เรียบหรู"
+                              ],
+    "salesActionPlan":  [
+                            "เข้าพบคุณยศ (064-942-4298) เพื่อนำเสนอแคตตาล็อก SCG Minimalist Finishing Solution และเปิดวงเงินเครดิตคู่ค้า",
+                            "จัดส่งตัวอย่างไม้ระแนง SCG Smartwood และสีกระเบื้อง COTTO ให้ทีมสถาปนิกนำเสนอในขั้นตอนออกแบบ 3D",
+                            "ประสานงานจัดส่งปูนเสือ สกิมโค้ท, ปูนเสือ มอร์ตาร์ และแผ่นยิปซัมตราช้าง ตรงสู่ไซต์งาน อ.เมือง และ อ.หนองหาน",
+                            "นำเสนอโซลูชันคอนกรีตผสมเสร็จ CPAC สำหรับงานเทพื้นปรับระดับและงานต่อเติมรอบบ้าน"
+                        ],
+    "tag":  "focus",
+    "opportunityScore":  86,
+    "scgCode":  "10615285",
+    "sales2025":  321401,
+    "sales2026":  74809
+}

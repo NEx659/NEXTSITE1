@@ -1,0 +1,209 @@
+{
+  "id": "comp-udon-01",
+  "name": "บริษัท เลอ คราวน์ ดีไซน์ จํากัด",
+  "engName": "Le Crown Design Co., Ltd.",
+  "category": "รับสร้างบ้านหรูและคฤหาสน์พรีเมียม (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "ต.บ้านเลื่อม อ.เมือง จ.อุดรธานี 41000",
+  "phone": "082 345 8999 / 095 212 8999",
+  "contactPerson": "ทีมบริหารโครงการ เลอ คราวน์ ดีไซน์ (082-345-8999 / Line: @lecrown)",
+  "totalProjects": 3,
+  "newProjectsThisMonth": 3,
+  "totalValueMillion": 15.5,
+  "growthRate": 2798,
+  "areaExpansion": "เมืองอุดรธานี, ขอนแก่น, นครพนม",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0415565002579",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 0,
+    "foundation": 0,
+    "structure": 2,
+    "finishing": 1
+  },
+  "latestTimelineStage": "finishing",
+  "revenuePotentialText": "฿1.8M",
+  "coordinates": [
+    17.428,
+    102.788
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/95T5YmKq6v1bNfK69",
+  "gmaps": "https://maps.app.goo.gl/95T5YmKq6v1bNfK69",
+  "facebookUrl": "https://www.facebook.com/PHC.ud",
+  "facebookSignal": {
+    "postDate": "16/8/2569",
+    "pageName": "บริษัท เลอ คราวน์ ดีไซน์ จำกัด",
+    "caption": "🏗️ Site Update: ฉาบภายในแล้วเสร็จ เตรียมงานฉาบภายนอก งานประปา ร้อยสายไฟ บ้านพักอาศัย คสล. 2 ชั้น MODERN GABLE (419 ตร.ม.) โทร: 082-345-8999",
+    "likes": 38,
+    "comments": 7,
+    "shares": 4,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "ก่อสร้างจริง"
+    ]
+  },
+  "projects": [
+    {
+      "projectId": "comp-udon-01-1",
+      "name": "คฤหาสน์หรู 2 ชั้น สไตล์ MODERN GABLE (419 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี",
+      "location": "ต.บ้านเลื่อม อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.428,
+        102.788
+      ],
+      "stage": "งานฉาบปูนภายในแล้วเสร็จ เตรียมฉาบภายนอก เดินท่อประปาและร้อยสายไฟ",
+      "stageKey": "finishing",
+      "trackingStatus": "pending",
+      "progressPercent": 65,
+      "estValue": "7.8 ล้านบาท",
+      "buildingType": "คฤหาสน์หรู 2 ชั้น MODERN GABLE (พื้นที่ 419 ตร.ม., 4 นอน 6 น้ำ)",
+      "caption": "🏗️ Site Update 16.08.2026 : ฉาบภายในแล้วเสร็จ เตรียมงานฉาบภายนอก งานประปา ร้อยสายไฟ บ้านพักอาศัย คสล. 2 ชั้น สไตล์ MODERN GABLE พื้นที่ใช้สอย 419 ตร.ม. โทร: 082-345-8999",
+      "postedTime": "16/8/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02CaPNknaZZwo17sHctBhvpyjD76ywJ6NAWfodQNq6PAzp6E4ZBbHag2SXLQSwVK7jl&id=100055115448746",
+      "boq": [
+        {
+          "sku": "ปูนเสือ มอร์ตาร์ ฉาบละเอียดภายนอก-ภายใน",
+          "qty": "280 ถุง",
+          "estCost": "฿39,200",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์และอุปกรณ์ห้องน้ำ COTTO Luxury Modern Series (6 ชุด)",
+          "qty": "6 ชุด",
+          "estCost": "฿88,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "กระเบื้องปูพื้นบุผนัง COTTO Grand Porcelain 60x120 ซม.",
+          "qty": "250 ตร.ม.",
+          "estCost": "฿137,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ฉนวนกันความร้อน SCG STAY COOL หนา 75-150 มม.",
+          "qty": "60 ม้วน",
+          "estCost": "฿36,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "แผ่นยิปซัมตราช้างพลัส 9 มม. งานฝ้าหลืบซ่อนไฟและ Walk-in Closet",
+          "qty": "140 แผ่น",
+          "estCost": "฿23,800",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-01-2",
+      "name": "โครงการก่อสร้างบ้านพักอาศัยเดี่ยว คสล. 2 ชั้น (180 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.428,
+        102.788
+      ],
+      "stage": "งานก่ออิฐมวลเบา ฉาบปูนผนัง และเตรียมงานสถาปัตย์",
+      "stageKey": "structure",
+      "trackingStatus": "pending",
+      "progressPercent": 60,
+      "estValue": "3.2 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น (180 ตร.ม.)",
+      "caption": "🏗️ Site Update : งานฉาบผนัง บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี พื้นที่ใช้สอย 180 ตร.ม. โทร: 082-345-8999",
+      "postedTime": "18/7/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02j9rE7uijMrSWpHgJigTDhy1qLrYsNAbGBjtrZYnov9swQqfsDwNGQDGnCFWeBo2gl&id=100055115448746",
+      "boq": [
+        {
+          "sku": "ปูนเสือ มอร์ตาร์ ฉาบละเอียด & ปูนกาวซีเมนต์ SCG",
+          "qty": "150 ถุง",
+          "estCost": "฿21,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO Modern Collection",
+          "qty": "3 ชุด",
+          "estCost": "฿34,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "กระเบื้องปูพื้น COTTO Matt Stone Series",
+          "qty": "110 ตร.ม.",
+          "estCost": "฿44,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "สีทาอาคารและเคมีภัณฑ์กันซึม SCG",
+          "qty": "10 ถัง",
+          "estCost": "฿19,500",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-01-3",
+      "name": "โครงการก่อสร้างงานโครงสร้าง คสล. บ้านพักอาศัยพรีเมียม 📍 อ.เมือง จ.อุดรธานี",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.428,
+        102.788
+      ],
+      "stage": "งานโครงสร้างเสา-คาน คสล. และงานพื้นสำเร็จรูป",
+      "stageKey": "structure",
+      "trackingStatus": "pending",
+      "progressPercent": 45,
+      "estValue": "4.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยวพรีเมียม 2 ชั้น",
+      "caption": "🏗️ Site Update : ภาพอัปเดตหน้างานโครงสร้าง คสล. คานคอดินและเสาอาคาร อ.เมือง จ.อุดรธานี โทร: 082-345-8999",
+      "postedTime": "13/7/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02kgrZfrBx9FWiXWs6vT8eVbibTaFB2WeaxYTmQiXdb91H6g3VYjp41P865mMHSMCol&id=100055115448746",
+      "boq": [
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc งานเสาและคาน คสล.",
+          "qty": "55 คิว",
+          "estCost": "฿121,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+          "qty": "250 ถุง",
+          "estCost": "฿42,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "แผ่นพื้นคอนกรีตสำเร็จรูป CPAC Smart Slab",
+          "qty": "150 ตร.ม.",
+          "estCost": "฿37,500",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    }
+  ],
+  "aiShortRec": "ลูกค้ารับสร้างบ้านหรูสัญญา SCG 100% ยอดซื้อพุ่ง ฿329.5K (+2,798% YoY) มี 3 ไซต์ใน อ.เมือง (คฤหาสน์ 419 ตร.ม., บ้าน 180 ตร.ม., งานโครงสร้าง 45%)",
+  "aiRecommendation": "ยกระดับเป็น SCG Brand Ambassador ประจำอุดรธานี เร่งล็อกสเปกกระเบื้อง COTTO 60x120 แผ่นใหญ่ และสุขภัณฑ์ Luxury 6 ชุด ด่วน",
+  "customDiagnostic": "บริษัท เลอ คราวน์ ดีไซน์ จำกัด (Le Crown Design) เป็นบริษัทรับสร้างบ้านหรูและพรีเมียมที่มีจุดขายชัดเจนที่สุดในการระบุในสัญญาว่า <strong>\"ใช้วัสดุมาตรฐาน SCG เอสซีจี ทั้งหลัง\"</strong> ส่งผลให้ยอดซื้อเติบโตอย่างมหาศาลจาก ฿11.3K ในปี 2025 พุ่งเป็น <strong>฿329,498.4 (+2,798.7% YoY)</strong> ในปี 2026 (SCG Code 10590829) มีไซต์งานจริงระดับพรีเมียมใน อ.เมืองอุดรธานี รวม 3 โครงการ (คฤหาสน์ MODERN GABLE 419 ตร.ม., บ้านพักอาศัย 180 ตร.ม., งานโครงสร้าง คสล.) ลูกค้ามีกำลังซื้อสูงและต้องการสินค้าเกรดพรีเมียมของ SCG/COTTO ครบวงจร",
+  "customRecommendations": [
+    "<strong>กระเบื้อง COTTO Grand Porcelain 60x120 ซม. & สุขภัณฑ์ Luxury Series:</strong> นำเสนอ Mood Board ระดับพรีเมียมสำหรับ 6 ห้องน้ำในคฤหาสน์ MODERN GABLE 419 ตร.ม.",
+    "<strong>ฉนวนกันความร้อน SCG STAY COOL หนา 75-150 มม.:</strong> ล็อกสเปกฉนวนใต้หลังคาทรงจั่ว MODERN GABLE เพื่อการันตีบ้านเย็นประหยัดพลังงาน",
+    "<strong>คอนกรีตผสมเสร็จ CPAC 240 ksc & แผ่นพื้น Smart Slab:</strong> ส่งตรงหน้างานโครงสร้างไซต์ใหม่ในเขต อ.เมืองอุดรธานี",
+    "<strong>ปูนเสือ มอร์ตาร์ ฉาบละเอียดพิเศษ & ยิปซัมตราช้างพลัส:</strong> จัดทำโปรโมชันโครงการพิเศษสำหรับงานฝ้าหลืบซ่อนไฟและตกแต่งภายใน"
+  ],
+  "salesActionPlan": [
+    "เข้าพบทีมงานผู้บริหาร เลอ คราวน์ ดีไซน์ (082-345-8999) เพื่อมอบป้ายรับรอง SCG Strategic Partner และจัดทำสัญญาพันธมิตร",
+    "จัดทำ Specbook สุขภัณฑ์ COTTO Luxury Collection สำหรับเสนอต่อเจ้าของบ้านคฤหาสน์ 419 ตร.ม.",
+    "ประสานงานจัดส่งปูนเสือ มอร์ตาร์ และกระเบื้อง COTTO 60x120 ซม. เข้าไซต์งาน อ.เมืองอุดรธานี ทันที",
+    "สนับสนุนสื่อประชาสัมพันธ์ร่วม (Co-Marketing) ชูจุดขาย \"สร้างบ้านหรูกับ Le Crown ใช้วัสดุ SCG แท้ 100%\""
+  ],
+  "tag": "focus",
+  "opportunityScore": 95,
+  "scgCode": "10590829",
+  "sales2025": 11367,
+  "sales2026": 329498.4
+}

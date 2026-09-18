@@ -1,0 +1,157 @@
+{
+  "id": "comp-udon-22",
+  "name": "ห้างหุ้นส่วนจำกัด กิจดลวรโชติ1",
+  "engName": "Kitdon Worachot 1 Ltd., Part.",
+  "category": "รับสร้างบ้านและอาคารครบวงจร (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "หนองหาน",
+  "address": "ต.โพนงาม อ.หนองหาน จ.อุดรธานี 41130",
+  "phone": "094 282 5999 / 084 790 2555",
+  "contactPerson": "คุณชุติเดช กิจดลวรโชติ / เฮียเฟิร์ส (094-282-5999) - ผู้ก่อตั้งและบริหารโครงการ",
+  "totalProjects": 2,
+  "newProjectsThisMonth": 2,
+  "totalValueMillion": 5.7,
+  "growthRate": 355,
+  "areaExpansion": "เมืองอุดรธานี, หนองหาน, กุดจับ, ขอนแก่น, โคราช",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0413567000086",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 0,
+    "foundation": 0,
+    "structure": 1,
+    "finishing": 1
+  },
+  "latestTimelineStage": "finishing",
+  "revenuePotentialText": "฿2.5M",
+  "coordinates": [
+    17.362,
+    103.105
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/6j9kP7tqMZZfLp4C6",
+  "gmaps": "https://maps.app.goo.gl/6j9kP7tqMZZfLp4C6",
+  "facebookUrl": "https://www.facebook.com/firstlandtown",
+  "facebookSignal": {
+    "postDate": "13/9/2569",
+    "pageName": "คนสร้างบ้านอุดรธานี (First Land & Town)",
+    "caption": "หน้างานบ้านดงคำ จ.อุดรธานี กำลังเดินทางถึงขั้นตอนปูกระเบื้องและทาสีแล้ว ลุยครับทีมงานเฮียเฟิร์สสู้ๆ โทร: 094-282-5999",
+    "likes": 42,
+    "comments": 8,
+    "shares": 5,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "ก่อสร้างจริง"
+    ]
+  },
+  "projects": [
+    {
+      "projectId": "comp-udon-22-1",
+      "name": "โครงการก่อสร้างบ้านพักอาศัยบ้านดงคำ 📍 จ.อุดรธานี",
+      "location": "บ้านดงคำ ต.โพนงาม อ.หนองหาน จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "หนองหาน",
+      "gps": [
+        17.362,
+        103.105
+      ],
+      "stage": "งานปูกระเบื้องพื้น-ผนัง และงานทาสีตกแต่งตัวบ้าน",
+      "stageKey": "finishing",
+      "trackingStatus": "pending",
+      "progressPercent": 80,
+      "estValue": "3.2 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว Modern Contemporary",
+      "caption": "หน้างานบ้านดงคำ จ.อุดรธานี กำลังเดินทางถึงขั้นตอนปูกระเบื้องและทาสีแล้ว ลุยครับทีมงานเฮียเฟิร์สสู้ๆ✌️✌️ โทร 094-282-5999",
+      "postedTime": "13/9/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02NwG4ws8ZTUuvizJcaBXQfQtx7G7WaJgqg1kwYZoe2dqbPUgU9AvTA7ZkBaoW5Bdgl&id=100071192678651",
+      "boq": [
+        {
+          "sku": "กระเบื้องปูพื้นบุผนัง COTTO Matt Series & Glazed Porcelain",
+          "qty": "140 ตร.ม.",
+          "estCost": "฿56,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "กาวซีเมนต์และกาวยาแนว COTTO Tile Adhesive",
+          "qty": "35 ถุง",
+          "estCost": "฿8,750",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO และอุปกรณ์ห้องน้ำครบเซ็ต",
+          "qty": "3 ชุด",
+          "estCost": "฿36,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "สีทาอาคารและเคมีภัณฑ์ตกแต่ง SCG",
+          "qty": "12 ถัง",
+          "estCost": "฿24,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-22-2",
+      "name": "โครงการก่อสร้างบ้านคุณกุล ผังสามกุดจับ 📍 อ.กุดจับ จ.อุดรธานี",
+      "location": "ผังสามกุดจับ อ.กุดจับ จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "กุดจับ",
+      "gps": [
+        17.425,
+        102.585
+      ],
+      "stage": "งานระบบท่อร้อยสายไฟฟ้า งานฝ้าเพดาน และงานก่อฉาบ",
+      "stageKey": "structure",
+      "trackingStatus": "pending",
+      "progressPercent": 65,
+      "estValue": "2.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 1 ชั้น คสล. ทรงปั้นหยา",
+      "caption": "🏠 อัปเดตหน้างานคุณกุล ผังสามกุดจับ ส่งมอบงานระบบไฟฟ้าเรียบร้อยครับ ⚡️ งานเดินท่อและร้อยสายไฟ เก็บแนวเรียบร้อย พร้อมสำหรับขั้นตอนงานต่อไป โทร 094-282-5999",
+      "postedTime": "8/9/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02Z7KgEsxsSJx4nUxF6kWfPbuL7sbConR9K95aErLqDFk72yYdB2YcKDUDsxsVfY6ql&id=100071192678651",
+      "boq": [
+        {
+          "sku": "แผ่นยิปซัมตราช้างพลัส 9 มม. พร้อมโครงคร่าว ProBalance SCG",
+          "qty": "90 แผ่น",
+          "estCost": "฿15,300",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ปูนเสือ มอร์ตาร์ ฉาบละเอียดพิเศษ",
+          "qty": "160 ถุง",
+          "estCost": "฿22,400",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ฉนวนกันความร้อน SCG STAY COOL หนา 75 มม.",
+          "qty": "35 ม้วน",
+          "estCost": "฿12,950",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    }
+  ],
+  "aiShortRec": "ลูกค้าระดับ VIP Hyper-Growth (+354.8% YoY ยอดซื้อ ฿1.99M) มีไซต์งานอุดรธานี 2 แห่ง (บ้านดงคำ 80%, กุดจับ 65%) และไซต์งานทั่วอีสาน",
+  "aiRecommendation": "แนะนำยกระดับเป็นลูกค้าระดับ Regional Key Account สนับสนุนระบบขนส่งข้ามจังหวัด พร้อมล็อกสเปกแพ็กเกจกระเบื้องสุขภัณฑ์ COTTO ด่วน",
+  "customDiagnostic": "ห้างหุ้นส่วนจำกัด กิจดลวรโชติ1 (คนสร้างบ้านอุดรธานี / เฮียเฟิร์ส) มียอดสั่งซื้อสินค้า SCG เติบโตอย่างก้าวกระโดดจาก ฿438.1K ในปี 2025 เป็น <strong>฿1,992,527 (+354.8% YoY)</strong> ในปี 2026 (SCG Code 10640153) จากการขยายฐานรับสร้างบ้านทั่วภาคอีสาน มีไซต์งานเด่นใน จ.อุดรธานี ทั้งบ้านดงคำ และบ้านคุณกุล อ.กุดจับ รวมถึงไซต์งานต่างจังหวัด (โคราช, ขอนแก่น, ชัยภูมิ, มุกดาหาร) การันตีคุณภาพงานด้วยวัสดุ SCG/CPAC มีความพร้อมสูงในการล็อกสเปกโซลูชัน COTTO และฉนวน STAY COOL ระยะยาว",
+  "customRecommendations": [
+    "<strong>ระบบสั่งซื้อและขนส่งข้ามจังหวัด (Cross-Regional Logistics):</strong> สนับสนุนการสั่งซื้อคอนกรีต CPAC และวัสดุโครงสร้าง SCG จากสำนักงานใหญ่ส่งตรงสู่ทุกไซต์งานทั่วภาคอีสาน",
+    "<strong>แพ็กเกจกระเบื้องและสุขภัณฑ์ COTTO (Tile & Sanitary Solution):</strong> ล็อกสเปกสุขภัณฑ์ COTTO สำหรับแบบบ้านมาตรฐานของเฮียเฟิร์ส เพื่อเพิ่มมูลค่าการซื้อเฉลี่ยต่อหลัง",
+    "<strong>แผ่นยิปซัมตราช้างพลัส & ฉนวนกันความร้อน SCG STAY COOL:</strong> นำเสนอโซลูชันบ้านเย็นประหยัดพลังงานสำหรับไซต์งานบ้านคุณกุล อ.กุดจับ และไซต์งานใหม่",
+    "<strong>ปูนเสือ มอร์ตาร์ ฉาบละเอียดพิเศษ:</strong> จัดส่งตรงหน้างานไซต์บ้านดงคำและหนองหานเพื่อความรวดเร็วและควบคุมมาตรฐานผิวผนัง"
+  ],
+  "salesActionPlan": [
+    "เข้าพบคุณชุติเดช / เฮียเฟิร์ส (094-282-5999) เพื่อมอบสิทธิประโยชน์ SCG VIP Builder และจัดทำสัญญาพันธมิตรการค้า",
+    "จัดทำระบบสั่งซื้อส่วนกลาง (Centralized PO) เชื่อมต่อโรงงาน CPAC และดีลเลอร์ปลายทางในแต่ละจังหวัด",
+    "ส่งมอบตัวอย่างกระเบื้อง COTTO Matt Porcelain และแคตตาล็อก STAY COOL ให้ทีมสถาปนิกประจำออฟฟิศ",
+    "มอบป้ายสัญลักษณ์ Co-Branding \"บ้านสร้างด้วยวัสดุคุณภาพ SCG & CPAC\" ติดตั้งหน้างานทุกหลัง"
+  ],
+  "tag": "focus",
+  "opportunityScore": 96,
+  "scgCode": "10640153",
+  "sales2025": 438100,
+  "sales2026": 1992527
+}

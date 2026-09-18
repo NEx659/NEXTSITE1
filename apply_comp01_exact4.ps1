@@ -1,0 +1,205 @@
+$comp01_clean = @{
+    "id" = "comp-udon-01"
+    "name" = "บริษัท เลอ คราวน์ ดีไซน์ จํากัด"
+    "engName" = "Le Crown Design Co., Ltd."
+    "category" = "รับสร้างบ้านหรูและคฤหาสน์พรีเมียม (TSIC 41001)"
+    "province" = "อุดรธานี"
+    "district" = "เมืองอุดรธานี"
+    "address" = "ต.บ้านเลื่อม อ.เมือง จ.อุดรธานี 41000"
+    "phone" = "082 345 8999 / 095 212 8999"
+    "contactPerson" = "ทีมบริหารโครงการ เลอ คราวน์ ดีไซน์ (082-345-8999 / Line: @lecrown)"
+    "totalProjects" = 4
+    "newProjectsThisMonth" = 4
+    "totalValueMillion" = 18.5
+    "growthRate" = 2798
+    "areaExpansion" = "เมืองอุดรธานี, ขอนแก่น, หนองคาย"
+    "verificationStatus" = @{
+        "isVerified" = $true
+        "confidence" = "100%"
+        "evidenceSource" = "Facebook Page | DBD: 0415565002579"
+        "permitStatus" = "TSIC 41001"
+    }
+    "stageBreakdown" = @{
+        "groundbreak" = 0
+        "foundation" = 0
+        "structure" = 4
+        "finishing" = 0
+    }
+    "latestTimelineStage" = "structure"
+    "revenuePotentialText" = "฿2.2M"
+    "coordinates" = @(17.428, 102.788)
+    "googleMapsUrl" = "https://maps.app.goo.gl/95T5YmKq6v1bNfK69"
+    "gmaps" = "https://maps.app.goo.gl/95T5YmKq6v1bNfK69"
+    "facebookUrl" = "https://www.facebook.com/PHC.ud"
+    "facebookSignal" = @{
+        "postDate" = "16/8/2569"
+        "pageName" = "บริษัท เลอ คราวน์ ดีไซน์ จำกัด"
+        "caption" = "🏗️ Site Update: ฉาบภายในแล้วเสร็จ เตรียมงานฉาบภายนอก งานประปา ร้อยสายไฟ บ้านพักอาศัย คสล. 2 ชั้น MODERN GABLE (419 ตร.ม.) โทร: 082-345-8999"
+        "likes" = 38
+        "comments" = 7
+        "shares" = 4
+        "detectedKeywords" = @("อุดรธานี", "ก่อสร้างจริง")
+    }
+    "projects" = @(
+        @{
+            "projectId" = "comp-udon-01-1"
+            "name" = "โครงการก่อสร้างบ้านพักอาศัย คสล. 2 ชั้น Modern Gable (419 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี"
+            "location" = "อ.เมืองอุดรธานี จ.อุดรธานี"
+            "province" = "อุดรธานี"
+            "district" = "เมืองอุดรธานี"
+            "gps" = @(17.415, 102.785)
+            "stage" = "งานฉาบภายในแล้วเสร็จ เตรียมงานฉาบภายนอก งานระบบประปา และร้อยสายไฟ"
+            "stageKey" = "structure"
+            "trackingStatus" = "pending"
+            "progressPercent" = 55
+            "estValue" = "6.5 ล้านบาท"
+            "buildingType" = "บ้านพักอาศัย คสล. 2 ชั้น สไตล์ Modern Gable (419 ตร.ม. 4 นอน 6 น้ำ)"
+            "caption" = "🏗️ Site Update 16.08.2026 : ฉาบภายใน แล้วเสร็จ เตรียมงานฉาบภายนอก งานประปา ร้อยสายไฟ บ้านพักอาศัย คสล. 2 ชั้น สไตล์ MODERN GABLE (โมเดิร์นทรงจั่ว) พื้นที่ 419 ตร.ม. โทร 082-345-8999 Le Crown Design"
+            "postedTime" = "16/8/2569"
+            "postUrl" = "https://www.facebook.com/PHC.ud/posts/pfbid02CaPNknaZZwo17sHctBhvpyjD76ywJ6NAWfodQNq6PAzp6E4ZBbHag2SXLQSwVK7jl"
+            "boq" = @(
+                @{
+                    "sku" = "ปูนเสือ มอร์ตาร์ ฉาบละเอียดพิเศษ & สกิมโค้ท SCG"
+                    "qty" = "350 ถุง"
+                    "estCost" = "฿45,500"
+                    "urgency" = "ด่วนที่สุด"
+                },
+                @{
+                    "sku" = "ท่อร้อยสายไฟและอุปกรณ์ระบบไฟฟ้า มอก. SCG/ช้าง"
+                    "qty" = "1 ชุด"
+                    "estCost" = "฿28,000"
+                    "urgency" = "ด่วนที่สุด"
+                },
+                @{
+                    "sku" = "ท่อประปา PVC ตราช้าง SCG คุณภาพสูง"
+                    "qty" = "1 ชุด"
+                    "estCost" = "฿22,000"
+                    "urgency" = "เตรียมสั่งซื้อ"
+                }
+            )
+        },
+        @{
+            "projectId" = "comp-udon-01-2"
+            "name" = "โครงการก่อสร้างบ้านพักอาศัย คสล. 2 ชั้น Modern Gable งานจับเซี้ยมฉาบ (419 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี"
+            "location" = "อ.เมืองอุดรธานี จ.อุดรธานี"
+            "province" = "อุดรธานี"
+            "district" = "เมืองอุดรธานี"
+            "gps" = @(17.415, 102.785)
+            "stage" = "งานจับเซี้ยมฉาบ พร้อมดำเนินการฉาบผนัง"
+            "stageKey" = "structure"
+            "trackingStatus" = "pending"
+            "progressPercent" = 50
+            "estValue" = "6.5 ล้านบาท"
+            "buildingType" = "บ้านพักอาศัย คสล. 2 ชั้น สไตล์ Modern Gable (419 ตร.ม.)"
+            "caption" = "🏗️ Site Update : งานจับเซี้ยมฉาบ พร้อมดำเนินการฉาบแล้ว บ้านพักอาศัย คสล. 2 ชั้น สไตล์ MODERN GABLE (โมเดิร์นทรงจั่ว) พื้นที่ 419 ตร.ม. โทร 082-345-8999 Le Crown Design"
+            "postedTime" = "19/7/2569"
+            "postUrl" = "https://www.facebook.com/PHC.ud/posts/pfbid0rVfH9LLAWSvuDVH4fdNUNa258aC7aFY4FbNVCgAir24grxZVH8GEE12Tah3N2vhpl"
+            "boq" = @(
+                @{
+                    "sku" = "ปูนเสือ มอร์ตาร์ ฉาบละเอียดและจับเซี้ยม SCG"
+                    "qty" = "300 ถุง"
+                    "estCost" = "฿39,000"
+                    "urgency" = "ด่วนที่สุด"
+                },
+                @{
+                    "sku" = "เซี้ยม PVC สำเร็จรูปและตาข่ายไฟเบอร์กันรอยร้าว SCG"
+                    "qty" = "200 เส้น"
+                    "estCost" = "฿9,500"
+                    "urgency" = "ด่วนที่สุด"
+                }
+            )
+        },
+        @{
+            "projectId" = "comp-udon-01-3"
+            "name" = "โครงการก่อสร้างบ้านพักอาศัย คสล. 2 ชั้น (180 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี"
+            "location" = "อ.เมืองอุดรธานี จ.อุดรธานี"
+            "province" = "อุดรธานี"
+            "district" = "เมืองอุดรธานี"
+            "gps" = @(17.418, 102.782)
+            "stage" = "งานฉาบผนังภายนอก-ภายในตามมาตรฐานวิศวกรรม"
+            "stageKey" = "structure"
+            "trackingStatus" = "pending"
+            "progressPercent" = 50
+            "estValue" = "3.2 ล้านบาท"
+            "buildingType" = "บ้านพักอาศัย คสล. 2 ชั้น (180 ตร.ม.)"
+            "caption" = "🏗️ Site Update : งานฉาบผนัง บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี พื้นที่ 180 ตร.ม. ก่อสร้างตามมาตรฐานวิศวกรรม มั่นใจแข็งแรงปลอดภัย โทร 082-345-8999 Le Crown Design"
+            "postedTime" = "18/7/2569"
+            "postUrl" = "https://www.facebook.com/PHC.ud/posts/pfbid02j9rE7uijMrSWpHgJigTDhy1qLrYsNAbGBjtrZYnov9swQqfsDwNGQDGnCFWeBo2gl"
+            "boq" = @(
+                @{
+                    "sku" = "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้างและก่อฉาบ"
+                    "qty" = "250 ถุง"
+                    "estCost" = "฿42,500"
+                    "urgency" = "ด่วนที่สุด"
+                },
+                @{
+                    "sku" = "ปูนเสือ มอร์ตาร์ ก่ออิฐมวลเบาและฉาบละเอียด"
+                    "qty" = "180 ถุง"
+                    "estCost" = "฿25,200"
+                    "urgency" = "ด่วนที่สุด"
+                }
+            )
+        },
+        @{
+            "projectId" = "comp-udon-01-4"
+            "name" = "โครงการก่อสร้างบ้านพักอาศัย คสล. 2 ชั้น งานก่ออิฐ (180 ตร.ม.) 📍 อ.เมือง จ.อุดรธานี"
+            "location" = "อ.เมืองอุดรธานี จ.อุดรธานี"
+            "province" = "อุดรธานี"
+            "district" = "เมืองอุดรธานี"
+            "gps" = @(17.418, 102.782)
+            "stage" = "งานก่ออิฐมอญห้องน้ำ และอิฐมวลเบาผนังทั่วไป"
+            "stageKey" = "structure"
+            "trackingStatus" = "pending"
+            "progressPercent" = 40
+            "estValue" = "3.2 ล้านบาท"
+            "buildingType" = "บ้านพักอาศัย คสล. 2 ชั้น (180 ตร.ม.)"
+            "caption" = "🏗️ Site Update 09.07.2026 : งานก่ออิฐมอญห้องน้ำ และอิฐมวลเบาผนังทั่วไป บ้านพักอาศัย คศล. 2 ชั้น อ.เมือง จ.อุดรธานี พื้นที่ 180 ตร.ม. โทร 082-345-8999 Le Crown Design"
+            "postedTime" = "09/7/2569"
+            "postUrl" = "https://www.facebook.com/PHC.ud/posts/pfbid02rU2BVqUHJy1D6ihsdBnFRekumQYA5HRXUFqATa6f6Df4NintbDjGoFcRFGaoZ2WYl"
+            "boq" = @(
+                @{
+                    "sku" = "อิฐมวลเบา Q-CON ขนาด 7.5 ซม. คุณภาพสูง"
+                    "qty" = "1,800 ก้อน"
+                    "estCost" = "฿43,200"
+                    "urgency" = "ด่วนที่สุด"
+                },
+                @{
+                    "sku" = "ปูนก่ออิฐมวลเบา เสือ มอร์ตาร์ / SCG"
+                    "qty" = "60 ถุง"
+                    "estCost" = "฿9,600"
+                    "urgency" = "ด่วนที่สุด"
+                },
+                @{
+                    "sku" = "อิฐมอญ 2 รู และปูนก่อสำเร็จรูปงานห้องน้ำ"
+                    "qty" = "1 ชุด"
+                    "estCost" = "฿12,500"
+                    "urgency" = "ด่วนที่สุด"
+                }
+            )
+        }
+    )
+}
+
+$raw = [System.IO.File]::ReadAllText("c:\Users\pannipan\Downloads\N\js\data.js", [System.Text.Encoding]::UTF8)
+$jsonStr = $raw -replace '^\s*(var|let|const|window\.)?\s*UDON_COMPANIES\s*=\s*', '' -replace ';\s*$', ''
+$data = $jsonStr | ConvertFrom-Json
+
+$updated = $false
+for ($i = 0; $i -lt $data.Count; $i++) {
+    if ($data[$i].id -eq "comp-udon-01") {
+        # Convert Hashtable to PSCustomObject via JSON roundtrip
+        $compJson = $comp01_clean | ConvertTo-Json -Depth 10
+        $data[$i] = $compJson | ConvertFrom-Json
+        $updated = $true
+        break
+    }
+}
+
+if ($updated) {
+    $newJson = $data | ConvertTo-Json -Depth 10
+    $finalContent = "var UDON_COMPANIES = " + $newJson + ";"
+    [System.IO.File]::WriteAllText("c:\Users\pannipan\Downloads\N\js\data.js", $finalContent, [System.Text.Encoding]::UTF8)
+    Write-Output "Successfully updated comp-udon-01 with the exact 4 requested links!"
+} else {
+    Write-Error "comp-udon-01 not found!"
+}
