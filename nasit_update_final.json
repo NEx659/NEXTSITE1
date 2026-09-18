@@ -1,0 +1,263 @@
+{
+  "company": {
+    "id": "comp-udon-09",
+    "name": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
+    "engName": "Suksakon Development Co., Ltd. (NASIT HOME)",
+    "category": "รับสร้างบ้านและออกแบบบ้านคุณภาพ (TSIC 41001)",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "address": "เมืองอุดรธานี จ.อุดรธานี (สำนักงานใหญ่ อุดรธานี)",
+    "phone": "080 598 9223",
+    "contactPerson": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จำกัด NASIT HOME (080-598-9223)",
+    "totalProjects": 4,
+    "newProjectsThisMonth": 4,
+    "totalValueMillion": 22.3,
+    "growthRate": 245.0,
+    "areaExpansion": "กุมภวาปี, ศรีธาตุ, สร้างคอม, เมืองอุดรธานี",
+    "verificationStatus": {
+      "isVerified": true,
+      "confidence": "100%",
+      "evidenceSource": "Facebook Page (nasithouseanddesign) | DBD: 0415563006789",
+      "permitStatus": "TSIC 41001"
+    },
+    "stageBreakdown": {
+      "groundbreak": 1,
+      "foundation": 0,
+      "structure": 1,
+      "finishing": 2
+    },
+    "latestTimelineStage": "finishing",
+    "revenuePotentialText": "฿4.8M",
+    "coordinates": [
+      17.415,
+      102.805
+    ],
+    "googleMapsUrl": "https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9",
+    "gmaps": "https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9",
+    "facebookUrl": "https://www.facebook.com/nasithouseanddesign",
+    "facebookSignal": {
+      "postDate": "15/9/2569",
+      "pageName": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
+      "caption": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ อัปเดตหน้างาน อ.กุมภวาปี จ.อุดรธานี บ้านพักอาศัยพื้นที่ใช้สอยกว่า 500 ตร.ม. พร้อมโรงจอดรถ สระว่ายน้ำ วันนี้ทีม SCG เข้ามาสาธิต ปูนสกิมเสือ ถึงหน้างานจริง โทร 080-598-9223",
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "detectedKeywords": [
+        "อุดรธานี",
+        "ก่อสร้างจริง",
+        "กุมภวาปี",
+        "SCG",
+        "ปูนสกิมเสือ"
+      ]
+    },
+    "projects": [
+      {
+        "projectId": "comp-udon-09-1",
+        "siteKey": "nasit_mansion_kumphawapi_500sqm",
+        "name": "โครงการคฤหาสน์หรู Modern Luxury 500+ ตร.ม. พร้อมสระว่ายน้ำ 📍 อ.กุมภวาปี จ.อุดรธานี",
+        "location": "อ.กุมภวาปี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "กุมภวาปี",
+        "gps": [
+          17.115,
+          103.018
+        ],
+        "stage": "งานสกิมผิวและเตรียมงานสีภายใน (ไซต์สาธิตปูนสกิมเสือ SCG)",
+        "stageKey": "finishing",
+        "trackingStatus": "pending",
+        "progressPercent": 80,
+        "estValue": "12.5 ล้านบาท",
+        "buildingType": "คฤหาสน์หรู 2 ชั้น 500 ตร.ม. พร้อมสระว่ายน้ำและเรือนรับรอง",
+        "caption": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ\n\nอัปเดตหน้างาน อ.กุมภวาปี จ.อุดรธานี บ้านพักอาศัยพื้นที่ใช้สอยกว่า 500 ตร.ม. พร้อมโรงจอดรถ สระว่ายน้ำ อาคารประกอบ และงานรั้วรอบโครงการ\n\nปัจจุบันงานฝ้าเพดานแล้วเสร็จเรียบร้อย และกำลังเตรียมเข้าสู่ งานสกิมผิวและงานสีภายใน 🎨\nวันนี้ทีม SCG เข้ามาสาธิตการใช้งาน ปูนสกิมเสือ ถึงหน้างานจริง ให้กับทีมช่าง ทีมควบคุมงาน และผู้บริหารของ NASIT HOME\n\n☎️ 080-598-9223 | NASIT HOME",
+        "postedTime": "15/9/2569",
+        "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0gEuJPc3Yc4ThAQeewzqssVfmuq1JgDZ9NM4s2VLgPXN2Xh3b8Zd1PBxyN8wp19abl",
+        "boq": [
+          {
+            "sku": "ปูนสกิมโค้ท เสือ มอร์ตาร์ ลูกดิ่งเทา/ขาว SCG",
+            "qty": "120 ถุง",
+            "estCost": "฿28,500",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "สีรองพื้นปูนใหม่ & สีทาภายใน TOA Organic / Dulux EasyCare",
+            "qty": "35 ถัง",
+            "estCost": "฿68,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "กระเบื้องปูสระว่ายน้ำ COTTO Glass Mosaics & ยาแนวกันตะไคร่",
+            "qty": "150 ตร.ม.",
+            "estCost": "฿85,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          },
+          {
+            "sku": "ชุดสุขภัณฑ์และ Rain Shower COTTO Smart Series",
+            "qty": "5 ชุด",
+            "estCost": "฿120,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-09-2",
+        "siteKey": "nasit_cherlisha_kumphawapi",
+        "name": "โครงการบ้านพักอาศัยสไตล์คลาสสิกหรู คุณเฌอลิชา 📍 อ.กุมภวาปี จ.อุดรธานี",
+        "location": "อ.กุมภวาปี จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "กุมภวาปี",
+        "gps": [
+          17.118,
+          103.022
+        ],
+        "stage": "งานฝ้าหลุมซ่อนไฟ คิ้วบัวไม้จริง และผนัง Double Volume",
+        "stageKey": "finishing",
+        "trackingStatus": "pending",
+        "progressPercent": 75,
+        "estValue": "4.8 ล้านบาท",
+        "buildingType": "บ้านพักอาศัย 2 ชั้น Classic Luxury Double Volume",
+        "caption": "อัปเดตงานก่อสร้างบ้านพักอาศัยคุณเฌอลิชา อ.กุมภวาปี 🏛️✨ งานฝ้าหลุมซ่อนไฟ คิ้วบัวไม้จริง และผนัง Double Volume สไตล์คลาสสิก ทีมช่างกำลังเก็บรายละเอียดงานไม้และผิวผนังอย่างประณีต ติดต่อสร้างบ้าน NASIT HOME โทร 080-598-9223",
+        "postedTime": "14/9/2569",
+        "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid09vWZrT4GvpXxe1zjYVfNt57kJRtrK7t4JtuKHaGg4cE3cCCfbuSCf3PZts2sn1phl",
+        "boq": [
+          {
+            "sku": "ไม้ฝ้าและคิ้วบัวสถาปัตยกรรม SCG D-COR / บัวไม้สัก",
+            "qty": "85 ท่อน",
+            "estCost": "฿42,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "แผ่นยิปซัมกันชื้น SCG ตราช้าง สำหรับฝ้าหลุมซ่อนไฟ",
+            "qty": "180 แผ่น",
+            "estCost": "฿32,400",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ชุดโคมไฟ Chandelier & ไฟ LED Strip ซ่อนฝ้า 3000K",
+            "qty": "1 ชุดใหญ่ + 80 ม.",
+            "estCost": "฿45,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          },
+          {
+            "sku": "สีพ่นคิ้วบัวและสีรองพื้นกันยางไม้",
+            "qty": "12 แกลลอน",
+            "estCost": "฿18,500",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-09-3",
+        "siteKey": "nasit_srithat_xpert",
+        "name": "โครงการก่อสร้างบ้านพักอาศัย อ.ศรีธาตุ (ไซต์สาธิตปูนเสือมอร์ตาร์ XPERT) 📍 อ.ศรีธาตุ จ.อุดรธานี",
+        "location": "อ.ศรีธาตุ จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "ศรีธาตุ",
+        "gps": [
+          17.065,
+          103.325
+        ],
+        "stage": "งานก่อฉาบผนังอิฐมวลเบาด้วยปูนเสือมอร์ตาร์ XPERT SCG",
+        "stageKey": "structure",
+        "trackingStatus": "pending",
+        "progressPercent": 50,
+        "estValue": "3.2 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น Modern Contemporary",
+        "caption": "โครงการบ้านพักอาศัย อ.ศรีธาตุ 🧱 ทาง SCG นำนวัตกรรม ปูนเสือมอร์ตาร์ XPERT มาสาธิตการฉาบผนังอิฐมวลเบา ให้ผิวเรียบเนียน ยึดเกาะแน่น ไม่แตกร้าว เพื่อคุณภาพสูงสุดของลูกค้า NASIT HOME โทร 080-598-9223",
+        "postedTime": "10/9/2569",
+        "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0XSfyvjvVGGfHtGABKRzeyqe1SR5X1xoueZVihrw1gdhj2FGkDAubrtkDmerBaUDHl",
+        "boq": [
+          {
+            "sku": "ปูนฉาบอิฐมวลเบา เสือ มอร์ตาร์ XPERT SCG",
+            "qty": "250 ถุง",
+            "estCost": "฿38,750",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "ตาข่ายไฟเบอร์เสริมแรงกันรอยร้าวรอยต่อวงกบ Fiber Mesh SCG",
+            "qty": "15 ม้วน",
+            "estCost": "฿9,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "น้ำยาประสานคอนกรีตและทารองพื้นก่อนฉาบ",
+            "qty": "8 แกลลอน",
+            "estCost": "฿7,200",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "หน้าต่าง UPVC สำเร็จรูป SCG Windsor Smart Series",
+            "qty": "12 ชุด",
+            "estCost": "฿65,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      },
+      {
+        "projectId": "comp-udon-09-4",
+        "siteKey": "nasit_sangkhom_100sqm",
+        "name": "โครงการบ้านพักอาศัยชั้นเดียว Contemporary (100+ ตร.ม.) 📍 อ.สร้างคอม จ.อุดรธานี",
+        "location": "อ.สร้างคอม จ.อุดรธานี",
+        "province": "อุดรธานี",
+        "district": "สร้างคอม",
+        "gps": [
+          17.742,
+          103.055
+        ],
+        "stage": "งานปรับหน้าดิน วางผัง และขุดหลุมฐานราก",
+        "stageKey": "groundbreak",
+        "trackingStatus": "pending",
+        "progressPercent": 20,
+        "estValue": "1.8 ล้านบาท",
+        "buildingType": "บ้านพักอาศัยชั้นเดียว Contemporary 100+ ตร.ม.",
+        "caption": "เริ่มต้นโครงการใหม่ บ้านพักอาศัยชั้นเดียว Contemporary พื้นที่ 100+ ตร.ม. อ.สร้างคอม จ.อุดรธานี เข้าเคลียร์พื้นที่ ขุดหลุมฐานราก และวางผังอาคาร พร้อมทีมวิศวกรควบคุมงานมาตรฐาน สนใจสร้างบ้านโทร 080-598-9223",
+        "postedTime": "15/9/2569",
+        "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0gXimLpGqaFqXhtKyvM36aT77xTxjHqKaqoXob74JZu19DJZ1fBFJwzK1VfyP7Txol",
+        "boq": [
+          {
+            "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc Cylinder เทฐานรากและคานคอดิน",
+            "qty": "35 คิว",
+            "estCost": "฿77,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "เหล็กเส้นข้ออ้อย SD40 SCG TATA / บลส",
+            "qty": "3.5 ตัน",
+            "estCost": "฿91,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "แผ่นพลาสติกปูพื้นกันชื้น PE & ทรายหยาบถมรองก้นหลุม",
+            "qty": "10 ม้วน + 4 คันรถ",
+            "estCost": "฿14,000",
+            "urgency": "ด่วนที่สุด"
+          },
+          {
+            "sku": "เสาเข็มหกเหลี่ยมกลวง / เข็มตอกเสริมโครงสร้าง",
+            "qty": "40 ต้น",
+            "estCost": "฿22,000",
+            "urgency": "เตรียมสั่งซื้อ"
+          }
+        ]
+      }
+    ],
+    "customDiagnostic": "บริษัทรับสร้างบ้านพรีเมียมคุณภาพสูง (NASIT HOME) เติบโตก้าวกระโดด ยอดซื้อ SCG ปี 2026 สูงถึง <strong>฿2,338,879 (+245.0% YoY)</strong> มีไซต์คฤหาสน์ 500 ตร.ม. พร้อมสระว่ายน้ำที่ อ.กุมภวาปี ซึ่งทีมเทคนิค SCG เข้า On-site สาธิตปูนสกิมเสือ และไซต์สาธิตปูนเสือมอร์ตาร์ XPERT ที่ อ.ศรีธาตุ เป็นลูกค้าระดับ Strategic Partner ของ SCG ใน จ.อุดรธานี",
+    "customRecommendations": [
+      "<strong>ปูนสกิมเสือ SCG & ปูนเสือมอร์ตาร์ XPERT:</strong> ต่อยอดจากการสาธิตหน้างานจริงที่ อ.กุมภวาปี และ อ.ศรีธาตุ สู่การทำสัญญาเหมาล็อตใหญ่สำหรับทุกไซต์โครงการของ NASIT HOME",
+      "<strong>กระเบื้องสระว่ายน้ำ COTTO Glass Mosaic & ยาแนวกันตะไคร่:</strong> นำเสนอโซลูชันกระเบื้องโมเสกแก้ว COTTO สำหรับสระว่ายน้ำคฤหาสน์ 500 ตร.ม. อ.กุมภวาปี",
+      "<strong>สุขภัณฑ์ COTTO Smart Series & Rain Shower:</strong> ล็อกสเปกสุขภัณฑ์ระดับไฮเอนด์ 5 ชุด สำหรับคฤหาสน์หรูและบ้านสไตล์คลาสสิก",
+      "<strong>คอนกรีตผสมเสร็จ CPAC 240 ksc & เหล็กข้ออ้อย SCG:</strong> วางแผนจัดส่งคอนกรีตฐานรากและเสาเข็มสำหรับโครงการใหม่ อ.สร้างคอม"
+    ],
+    "salesActionPlan": [
+      "ประสานงานทีมเทคนิค SCG เข้าติดตามผลการฉาบปูนสกิมเสือที่ไซต์คฤหาสน์ 500 ตร.ม. กุมภวาปี และปิดการขายล็อตใหญ่ 120 ถุง",
+      "ส่งใบเสนอราคากระเบื้อง COTTO Glass Mosaic และสุขภัณฑ์ Smart Series ให้ฝ่ายจัดซื้อ NASIT HOME (080-598-9223)",
+      "จองคิวรถโม่คอนกรีต CPAC ล่วงหน้าสำหรับงานเทฐานรากไซต์สร้างคอม 100+ ตร.ม.",
+      "จัดทำข้อเสนอเครดิตเทอมพิเศษและสะสมคะแนน SCG Family สำหรับโครงการไตรมาสถัดไป"
+    ],
+    "tag": "focus",
+    "opportunityScore": 96,
+    "scgCode": "10503273",
+    "sales2025": 677870.3,
+    "sales2026": 2338879
+  },
+  "strategyJs": "  'comp-udon-09': {\n    companyId: 'comp-udon-09',\n    salesTargetPitch: 'นำเสนอแพ็กเกจนวัตกรรมปูนเสือมอร์ตาร์ XPERT, ปูนสกิมเสือ SCG, กระเบื้องพรีเมียม COTTO และสุขภัณฑ์สำหรับคฤหาสน์ 500 ตร.ม. กุมภวาปี, บ้านคลาสสิกเฌอลิชา และไซต์สร้างคอม',\n    painPoints: ['โครงการระดับ Luxury สเปกสูง ต้องการงานผิวผนังสกิมโค้ทและงานฝ้าหลุมที่เนี้ยบไร้รอยต่อ', 'ต้องการการสนับสนุนด้านเทคนิคและการสาธิตหน้างานจริงจากผู้เชี่ยวชาญ SCG'],\n    tailoredOffer: 'บริการทีมเทคนิค SCG เข้า On-site Demonstration (ปูนสกิมเสือ/XPERT) ต่อเนื่อง พร้อมส่วนลดเครดิตเทอมกลุ่มสุขภัณฑ์กระเบื้อง COTTO Luxury',\n    actionSteps: [\n      'ติดต่อฝ่ายจัดซื้อ/ผู้บริหาร (080-598-9223) เพื่อประสานงานจัดส่งปูนสกิมเสือ SCG ล็อตใหญ่เข้าหน้างานกุมภวาปี 500 ตร.ม.',\n      'นำเสนอแคตตาล็อกกระเบื้องสระว่ายน้ำ COTTO Glass Mosaic และสุขภัณฑ์ Luxury ให้โครงการคฤหาสน์กุมภวาปี',\n      'ประสานงานฝ่ายเทคนิค CPAC เตรียมคิวคอนกรีตฐานรากสำหรับไซต์ใหม่ อ.สร้างคอม'\n    ]\n  },"
+}
