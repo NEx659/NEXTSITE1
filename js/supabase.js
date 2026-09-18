@@ -1,4 +1,4 @@
-﻿/**
+/**
  * NEXTSITE AI - Supabase Cloud Database & Authentication Client
  * Handles real-time cloud synchronization, user territory login, and status updates.
  */
@@ -111,7 +111,16 @@ async function loginSalesUser(email, password) {
       };
       localStorage.setItem('nextsite_cached_user', JSON.stringify(currentSalesUser));
       updateAuthHeaderUI();
+      if (typeof syncUserTagsToCompanies === 'function') {
+        syncUserTagsToCompanies(sysUser.email);
+      }
       if (typeof applyFilters === 'function') applyFilters();
+      if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+        updateTagFilterCounts(window.allCompanies);
+      }
+      if (typeof loadAndApplyCloudTags === 'function') {
+        loadAndApplyCloudTags();
+      }
       return currentSalesUser;
     } else {
       throw new Error('รหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบรหัสผ่านอีกครั้ง');
@@ -128,6 +137,13 @@ async function loginSalesUser(email, password) {
       });
       if (data && data.user) {
         await loadSalesUserProfile(data.user.id, data.user.email);
+        if (typeof syncUserTagsToCompanies === 'function') {
+          syncUserTagsToCompanies(data.user.email);
+        }
+        if (typeof applyFilters === 'function') applyFilters();
+        if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+          updateTagFilterCounts(window.allCompanies);
+        }
         return currentSalesUser;
       }
     } catch(e) {}
@@ -150,8 +166,14 @@ async function logoutSalesUser() {
   localStorage.removeItem('nextsite_cached_user');
   document.body.classList.add('auth-locked');
   updateAuthHeaderUI();
+  if (typeof syncUserTagsToCompanies === 'function') {
+    syncUserTagsToCompanies('guest');
+  }
   if (typeof applyFilters === 'function') {
     applyFilters();
+  }
+  if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+    updateTagFilterCounts(window.allCompanies);
   }
   if (typeof showStatusToast === 'function') {
     showStatusToast('ออกจากระบบเรียบร้อยแล้ว');
@@ -401,6 +423,10 @@ async function loadAndApplyCloudTags() {
   if (!client) return;
 
   try {
+    const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+    const userEmail = activeUser ? activeUser.email : null;
+    if (!userEmail) return;
+
     const { data, error } = await client
       .from('companies')
       .select('id, tag');
@@ -411,16 +437,14 @@ async function loadAndApplyCloudTags() {
     }
 
     if (data && data.length > 0) {
-      const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-      const userEmail = activeUser ? activeUser.email : null;
       const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap(userEmail) : {};
       
       let changed = false;
       data.forEach(item => {
         if (item.id && item.tag) {
           const norm = String(item.tag).trim().toLowerCase();
-          // Protect local selections: ONLY apply from cloud if no local tag has been explicitly set
-          if (!tagMap[item.id]) {
+          // Only populate if not yet defined in local user storage
+          if (typeof tagMap[item.id] === 'undefined') {
             tagMap[item.id] = norm;
             changed = true;
           }
@@ -430,13 +454,16 @@ async function loadAndApplyCloudTags() {
       if (changed && typeof saveCompanyTagsMap === 'function') {
         saveCompanyTagsMap(tagMap, userEmail);
       }
+      if (typeof syncUserTagsToCompanies === 'function') {
+        syncUserTagsToCompanies(userEmail);
+      }
       if (typeof applyFilters === 'function') {
         applyFilters();
       }
       if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
         updateTagFilterCounts(window.allCompanies);
       }
-      console.log(`☁️ Synced tags from Supabase Cloud successfully!`);
+      console.log(`☁️ Synced tags from Supabase Cloud successfully for ${userEmail}!`);
     }
   } catch (err) {
     console.warn('⚠️ Supabase Tag Sync Exception:', err);
@@ -456,7 +483,7 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
       .from('companies')
       .update({ 
         tag: normalizedTag, 
-        crm_sales_rep: activeUser ? activeUser.fullName : undefined,
+        crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
         updated_at: new Date().toISOString() 
       })
       .eq('id', companyId)
@@ -466,7 +493,7 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
       const payload = {
         id: companyId,
         tag: normalizedTag,
-        crm_sales_rep: activeUser ? activeUser.fullName : undefined,
+        crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
         province: 'อุดรธานี'
       };
       if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
@@ -481,13 +508,13 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
     }
 
     if (error) {
-      console.error('❌ Update Tag Error in Supabase:', error.message);
+      console.warn('⚠️ Update Tag in Supabase:', error.message);
       return false;
     }
     console.log(`☁️ Synced tag '${normalizedTag}' for ${companyId} (${email}) to Supabase`);
     return true;
   } catch (err) {
-    console.error('❌ Update Tag Exception:', err);
+    console.warn('❌ Update Tag Exception:', err);
     return false;
   }
 }

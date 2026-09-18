@@ -141,31 +141,39 @@ function cleanThaiText(text) {
 }
 
 // ==========================================
-// 2. TAG MANAGEMENT (Focus / Non-Focus / New - Per User Isolation)
+// 2. TAG MANAGEMENT (Focus / Non-Focus / New - Per User Isolation & Instant Persistence)
 // ==========================================
 function getUserTagsStorageKey(email) {
   const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-  const targetEmail = (email || (activeUser ? activeUser.email : '')) || '';
-  const norm = targetEmail.toLowerCase().trim().replace(/[^a-z0-9]/g, '_');
-  return norm ? `nextsite_company_tags_${norm}` : STORAGE_KEY_COMPANY_TAGS;
+  const targetEmail = (email !== null && typeof email !== 'undefined') ? email : (activeUser ? activeUser.email : '');
+  if (!targetEmail || targetEmail === 'guest') {
+    return STORAGE_KEY_COMPANY_TAGS;
+  }
+  const norm = String(targetEmail).toLowerCase().trim().replace(/[^a-z0-9]/g, '_');
+  return `nextsite_company_tags_${norm}`;
 }
 
 function loadCompanyTagsMap(customEmail = null) {
   try {
     const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-    const email = customEmail || (activeUser ? activeUser.email : null);
+    const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
     
-    if (email) {
-      const userKey = getUserTagsStorageKey(email);
-      const userSaved = localStorage.getItem(userKey);
-      if (userSaved) {
+    const userKey = getUserTagsStorageKey(email);
+    const userSaved = localStorage.getItem(userKey);
+    if (userSaved) {
+      try {
         return JSON.parse(userSaved);
-      }
-      return {};
+      } catch (e) {}
     }
 
-    const saved = localStorage.getItem(STORAGE_KEY_COMPANY_TAGS);
-    if (saved) return JSON.parse(saved);
+    if (!email || email === 'guest') {
+      const saved = localStorage.getItem(STORAGE_KEY_COMPANY_TAGS);
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {}
+      }
+    }
   } catch (e) {
     console.warn('Failed to load company tags from localStorage', e);
   }
@@ -175,20 +183,41 @@ function loadCompanyTagsMap(customEmail = null) {
 function saveCompanyTagsMap(tagMap, customEmail = null) {
   try {
     const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-    const email = customEmail || (activeUser ? activeUser.email : null);
+    const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
+    const jsonStr = JSON.stringify(tagMap || {});
 
-    if (email) {
-      const userKey = getUserTagsStorageKey(email);
-      localStorage.setItem(userKey, JSON.stringify(tagMap));
+    const userKey = getUserTagsStorageKey(email);
+    localStorage.setItem(userKey, jsonStr);
+
+    if (!email || email === 'guest') {
+      localStorage.setItem(STORAGE_KEY_COMPANY_TAGS, jsonStr);
     }
-    localStorage.setItem(STORAGE_KEY_COMPANY_TAGS, JSON.stringify(tagMap));
   } catch (e) {
     console.warn('Failed to save company tags to localStorage', e);
   }
 }
 
+function syncUserTagsToCompanies(customEmail = null) {
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
+  const tagMap = loadCompanyTagsMap(email);
+
+  if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
+    allCompanies.forEach(c => {
+      const savedTag = tagMap[c.id];
+      if (savedTag) {
+        c.tag = String(savedTag).trim().toLowerCase();
+      } else {
+        c.tag = 'new';
+      }
+    });
+  }
+}
+
 function getCompanyTag(companyId, customEmail = null) {
-  const tagMap = loadCompanyTagsMap(customEmail);
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
+  const tagMap = loadCompanyTagsMap(email);
   const raw = tagMap[companyId];
   if (raw) return String(raw).trim().toLowerCase();
 
@@ -205,34 +234,21 @@ function setCompanyTag(companyId, tag, event) {
   }
 
   const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-
-  if (!activeUser) {
-    if (typeof showStatusToast === 'function') showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนเปลี่ยนสถานะ Focus');
-    if (typeof openLoginModal === 'function') openLoginModal(true);
-    return;
-  }
-
+  const userEmail = activeUser ? activeUser.email : 'guest';
   const normalizedTag = String(tag || 'new').trim().toLowerCase();
+
   const comp = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies.find(c => c.id === companyId) : null;
   if (comp) {
     comp.tag = normalizedTag;
   }
-  
-  // Territory permission check
-  if (typeof window.canCurrentUserEditCompany === 'function' && comp) {
-    if (!window.canCurrentUserEditCompany(comp)) {
-      const userProv = activeUser.assignedProvince || 'อื่น';
-      showStatusToast(`🔒 ไม่มีสิทธิ์แก้ไขข้อมูล ${comp.province || 'พื้นที่นี้'} (คุณได้รับมอบหมายเฉพาะ จ.${userProv})`);
-      return;
-    }
-  }
 
-  const tagMap = loadCompanyTagsMap(activeUser.email);
+  // Load and save user-specific tag map
+  const tagMap = loadCompanyTagsMap(userEmail);
   tagMap[companyId] = normalizedTag;
-  saveCompanyTagsMap(tagMap, activeUser.email);
+  saveCompanyTagsMap(tagMap, userEmail);
 
-  // Sync to Supabase Cloud in real-time
-  if (typeof updateCloudCompanyTag === 'function') {
+  // Sync to Supabase Cloud in real-time if logged in
+  if (activeUser && typeof updateCloudCompanyTag === 'function') {
     updateCloudCompanyTag(companyId, normalizedTag, activeUser.email);
   }
 
@@ -244,7 +260,8 @@ function setCompanyTag(companyId, tag, event) {
     'non-focus': '⚪ Non-Focus (ทั่วไป)',
     'new': '✨ New (เข้าใหม่)'
   };
-  showStatusToast(`☁️ บันทึกป้ายเป็น ${tagNames[normalizedTag] || normalizedTag} สำหรับ ${activeUser.fullName || activeUser.email} เรียบร้อย`);
+  const userName = activeUser ? (activeUser.fullName || activeUser.email) : 'บราวเซอร์นี้';
+  showStatusToast(`💾 จำสถานะเป็น ${tagNames[normalizedTag] || normalizedTag} สำหรับ ${userName} เรียบร้อย`);
 }
 
 // ==========================================
@@ -4640,7 +4657,8 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       '📌', '📍 ที่ตั้งสำนักงาน', '📍 ที่อยู่สำนักงาน', '📍 แผนที่สำนักงาน', '📍 พิกัดสำนักงาน',
       'ที่ตั้ง สำนักงาน', 'ที่ตั้งสำนักงาน', 'สำนักงานใหญ่', 'ออฟฟิศตั้งอยู่', 'ที่อยู่สำนักงาน',
       '____________________', '“ ใส่ใจทุกรายละเอียด', '● ปรึกษาฟรี', '● ประเมิณหน้างานฟรี', '● ประเมินหน้างานฟรี', 'Contact for work',
-      'สนใจติดต่อ', 'ติดต่อสอบถาม', 'สอบถามเพิ่มเติม', 'โทร 0', 'Tel:', 'Line ID', '#รับสร้างบ้าน', '#พื้นที่ให้บริการ', '#DREAM UP'
+      'สนใจติดต่อ', 'ติดต่อสอบถาม', 'สอบถามเพิ่มเติม', 'โทร 0', 'Tel:', 'Line ID', '#รับสร้างบ้าน', '#พื้นที่ให้บริการ', '#DREAM UP',
+      '#รับสร้างบ้านอุดร', '#รับสร้างบ้านหนองคาย', '#รับสร้างบ้านขอนแก่น', '#รับสร้างบ้านสกลนคร'
     ];
     for (const fm of footerMarkers) {
       const idx = bodyText.indexOf(fm);
@@ -4649,9 +4667,29 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       }
     }
 
+    // ตัดบรรทัด Hashtag (#...) ทั้งหมดออกจาก bodyText เพื่อป้องกันการเข้าใจผิดเรื่องพื้นที่ให้บริการ
+    bodyText = bodyText.replace(/#[^\s\n]+/g, '').trim();
+
     const lines = bodyText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
 
-    // 2. ตรวจสอบบรรทัดที่ระบุ พิกัด / หน้างาน / สถานที่ก่อสร้าง / ส่งมอบบ้าน / โครงการบ้าน / Site location
+    // 2. ตรวจสอบว่าในบรรทัด สถานที่ก่อสร้าง / พิกัด / หน้างาน / Location ระบุ จ.อุดรธานี หรืออำเภอ/ตำบลในอุดรชัดเจนหรือไม่
+    let isExplicitUdonSite = false;
+    for (const line of lines) {
+      if (/(?:📍|พิกัด|หน้างาน|สถานที่ก่อสร้าง|สถานที่|ที่ตั้งโครงการ|โลเคชั่น|location|site\s*location|บ้านพักอาศัย|โครงการบ้าน|สร้างบ้านที่|บ้านคุณ)/i.test(line)) {
+        if (line.includes('อุดร') || line.includes('อุดรธานี') || line.toLowerCase().includes('udon')) {
+          isExplicitUdonSite = true;
+          break;
+        }
+        for (const dist of udonDistrictsList) {
+          if (line.includes(dist)) {
+            isExplicitUdonSite = true;
+            break;
+          }
+        }
+      }
+    }
+
+    // 3. ตรวจสอบบรรทัดที่ระบุ พิกัด / หน้างาน / สถานที่ก่อสร้าง ว่าชี้ไปจังหวัดอื่นหรือไม่
     for (const line of lines) {
       if (/(?:📍|พิกัด|หน้างาน|สถานที่ก่อสร้าง|สถานที่|ที่ตั้งโครงการ|โลเคชั่น|location|site\s*location|ส่งมอบบ้าน|บ้านพักอาศัย|โครงการบ้าน|สร้างบ้านที่|บ้านคุณ)/i.test(line)) {
         // หากบรรทัดนี้ระบุจังหวัดอื่น หรือต่างประเทศ (เช่น Vientiane, Laos)
@@ -4659,7 +4697,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
           const provRegex = (prov === 'เลย' || prov === 'อุบล' || prov === 'กทม' || prov === 'ลาว') 
             ? new RegExp(`(?:จ\\.|จังหวัด|ประเทศ)?\\s*${prov}`, 'i')
             : new RegExp(prov, 'i');
-          if (provRegex.test(line) && !line.toLowerCase().includes('udon')) {
+          if (provRegex.test(line) && !line.includes('อุดร') && !line.toLowerCase().includes('udon')) {
             return true; // คัดออกทันที เป็นหน้างานต่างจังหวัด/ต่างประเทศ
           }
         }
@@ -4672,32 +4710,36 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         }
       }
 
-      // ตรวจสอบการระบุ จ.xxx หรือ อ.xxx หรือ ประเทศเพื่อนบ้านชัดเจนในแต่ละบรรทัดของเนื้อหาไซต์งาน
-      for (const prov of otherProvincesList) {
-        const provRegex = new RegExp(`(?:จ\\.|จังหวัด|location\\s*[:\\|]|site\\s*location\\s*[:\\|])?\\s*${prov}`, 'i');
-        if (provRegex.test(line) && !line.toLowerCase().includes('udon')) {
-          return true; // คัดออกทันที
+      // ตรวจสอบการระบุ จ.xxx หรือ อ.xxx หรือ ประเทศเพื่อนบ้านชัดเจนในแต่ละบรรทัดของเนื้อหาไซต์งาน (ถ้าไม่ใช่ไซต์อุดรที่ระบุชัดเจน)
+      if (!isExplicitUdonSite) {
+        for (const prov of otherProvincesList) {
+          const provRegex = new RegExp(`(?:จ\\.|จังหวัด|location\\s*[:\\|]|site\\s*location\\s*[:\\|])\\s*${prov}`, 'i');
+          if (provRegex.test(line) && !line.includes('อุดร') && !line.toLowerCase().includes('udon')) {
+            return true; // คัดออกทันที
+          }
         }
-      }
-      for (const dist of outsideDistrictsList) {
-        const distRegex = new RegExp(`(?:อ\\.|อำเภอ)\\s*${dist}`, 'i');
-        if (distRegex.test(line) && !line.includes('อุดร')) {
-          return true; // คัดออกทันที
+        for (const dist of outsideDistrictsList) {
+          const distRegex = new RegExp(`(?:อ\\.|อำเภอ)\\s*${dist}`, 'i');
+          if (distRegex.test(line) && !line.includes('อุดร')) {
+            return true; // คัดออกทันที
+          }
         }
       }
     }
 
-    // 3. ตรวจสอบภาพรวมของ bodyText (ที่ตัด Footer สำนักงานออกแล้ว)
-    for (const prov of otherProvincesList) {
-      const provRegex = new RegExp(`(?:จ\\.|จังหวัด|หน้างาน|พิกัด|location|site\\s*location)\\s*[:\\s\\|]*${prov}`, 'i');
-      if (provRegex.test(bodyText) && !bodyText.toLowerCase().includes('udon')) {
-        return true; // คัดออกทันที
+    // 4. ตรวจสอบภาพรวมของ bodyText (ถ้าไม่ใช่ไซต์อุดรที่ระบุชัดเจน)
+    if (!isExplicitUdonSite) {
+      for (const prov of otherProvincesList) {
+        const provRegex = new RegExp(`(?:จ\\.|จังหวัด|หน้างาน|พิกัด|location|site\\s*location)\\s*[:\\s\\|]+${prov}`, 'i');
+        if (provRegex.test(bodyText) && !bodyText.includes('อุดร') && !bodyText.toLowerCase().includes('udon')) {
+          return true; // คัดออกทันที
+        }
       }
-    }
-    for (const dist of outsideDistrictsList) {
-      const distRegex = new RegExp(`(?:อ\\.|อำเภอ|หน้างาน|พิกัด)\\s*[:\\s]*${dist}`, 'i');
-      if (distRegex.test(bodyText) && !bodyText.includes('อุดร')) {
-        return true; // คัดออกทันที
+      for (const dist of outsideDistrictsList) {
+        const distRegex = new RegExp(`(?:อ\\.|อำเภอ|หน้างาน|พิกัด)\\s*[:\\s]+${dist}`, 'i');
+        if (distRegex.test(bodyText) && !bodyText.includes('อุดร')) {
+          return true; // คัดออกทันที
+        }
       }
     }
 
@@ -4705,26 +4747,41 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
   }
 
   // =========================================================
-  // STEP 2 FILTER: คัดโพสต์ประกาศวันหยุด / วันสำคัญออก
+  // STEP 2 FILTER: คัดโพสต์ถวายพระพร / วันสำคัญ / วันหยุดนักขัตฤกษ์ / ไว้อาลัย ออก 100%
   // =========================================================
-  function isHolidayAnnouncement(post) {
+  function isRoyalAuspiciousHolidayOrGreetingPost(post) {
     const text = post.text || post.message || '';
     if (!text) return false;
 
-    // ข้อยกเว้น: สโลแกนเช่น "การพัฒนา ไม่มีวันหยุด" ของโครงการก่อสร้างสำนักงาน
-    if (text.includes('การพัฒนา ไม่มีวันหยุด') || text.includes('ไม่มีวันหยุด')) {
-      if (text.includes('สำนักงานใหม่') || text.includes('ก่อสร้าง')) {
-        return false;
-      }
+    // 1. ถวายพระพรชัยมงคล / วันเฉลิมพระชนมพรรษา / วันสำคัญของราชวงศ์ (คัดออก 100% ไม่มีข้อยกเว้น)
+    const royalRegex = /(?:ทรงพระเจริญ|ด้วยเกล้าด้วยกระหม่อม|ข้าพระพุทธเจ้า|วันเฉลิมพระชนมพรรษา|เฉลิมพระชนมพรรษา|พระชนมพรรษา|พระบาทสมเด็จพระ|สมเด็จพระเจ้าอยู่หัว|สมเด็จพระนางเจ้า|พระบรมราชชนนีพันปีหลวง|สมเด็จพระกนิษฐาธิราชเจ้า|กรมสมเด็จพระเทพ|พระวชิรเกล้าเจ้าอยู่หัว|พระบรมราชสมภพ|วันคล้ายวันสวรรคต|วันนวมินทรมหาราช|วันปิยมหาราช|วันจักรี|วันฉัตรมงคล|วันรัฐธรรมนูญ|ถวายพระพร|ลงนามถวายพระพร|รัชกาลที่|ขอพระองค์ทรงพระเจริญ)/i;
+    if (royalRegex.test(text)) {
+      return true;
     }
 
-    const holidayRegex = /(?:แจ้งวันหยุด|วันหยุดนักขัตฤกษ์|ประกาศวันหยุด|หยุดทำการ|ปิดทำการ|สุขสันต์วันแม่|วันแม่แห่งชาติ|Happy Mother's Day|สุขสันต์วันสงกรานต์|สวัสดีปีใหม่|วันหยุดยาว)/i;
+    // 2. ไว้อาลัย / แสดงความเสียใจ / งานฌาปนกิจ
+    const condolenceRegex = /(?:ขอแสดงความเสียใจ|ร่วมไว้อาลัย|ขอแสดงความอาลัย|สู่สุคติ|ฌาปนกิจ|งานพระราชทานเพลิงศพ|พิธีสวดพระอภิธรรม|อาลัยยิ่ง|ขอแสดงความยินดีกับบัณฑิต)/i;
+    if (condolenceRegex.test(text)) {
+      return true;
+    }
+
+    // 3. วันหยุดเทศกาล / คำอวยพรตามประเพณี
+    const holidayRegex = /(?:แจ้งวันหยุด|วันหยุดนักขัตฤกษ์|ประกาศวันหยุด|หยุดทำการ|ปิดทำการ|วันหยุดยาว|เปิดทำการปกติ|สุขสันต์วันแม่|วันแม่แห่งชาติ|Happy Mother's Day|สุขสันต์วันพ่อ|วันพ่อแห่งชาติ|สุขสันต์วันสงกรานต์|วันสงกรานต์|สวัสดีปีใหม่|สุขสันต์วันปีใหม่|Happy New Year|HNY|Merry Christmas|สุขสันต์วันคริสต์มาส|วันเด็กแห่งชาติ|วันครู|วันแรงงาน|วันตรุษจีน|ซินเจียยู่อี่|วันสารทจีน|วันลอยกระทง|วันวิสาขบูชา|วันมาฆบูชา|วันอาสาฬหบูชา|วันเข้าพรรษา|วันออกพรรษา)/i;
     if (holidayRegex.test(text)) {
+      // ข้อยกเว้น: สโลแกนเช่น "การพัฒนา ไม่มีวันหยุด" ของโครงการก่อสร้างสำนักงาน
+      if (text.includes('การพัฒนา ไม่มีวันหยุด') || text.includes('ไม่มีวันหยุด')) {
+        if (text.includes('สำนักงานใหม่') || text.includes('ก่อสร้าง')) {
+          return false;
+        }
+      }
       if (!/เทคาน|ฐานราก|ยกเสาเอก|เสาเข็ม|มุงหลังคา|ฉาบปูน|ตอกเสาเข็ม/i.test(text)) {
         return true;
       }
     }
     return false;
+  }
+  function isHolidayAnnouncement(post) {
+    return isRoyalAuspiciousHolidayOrGreetingPost(post);
   }
 
   // =========================================================
@@ -4982,17 +5039,36 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     const text = post.text || post.message || '';
     if (!text) return false;
 
+    // ตัดข้อความ footer / template การตลาดออกก่อนตรวจ
+    let body = text;
+    const footerMarkers = [
+      '📌', '📍 ที่ตั้งสำนักงาน', '📍 ที่อยู่สำนักงาน', '📍 แผนที่สำนักงาน', '📍 พิกัดสำนักงาน',
+      'ที่ตั้ง สำนักงาน', 'ที่ตั้งสำนักงาน', 'สำนักงานใหญ่', 'ออฟฟิศตั้งอยู่', 'ที่อยู่สำนักงาน',
+      'บริการพิเศษ', '👉บริการพิเศษ', '👉ช่องทางการติดต่อ👈', 'สนใจติดต่อ', 'ติดต่อสอบถาม',
+      'สอบถามเพิ่มเติม', 'โทร 0', 'Tel:', 'Line ID', '#รับสร้างบ้าน', '#พื้นที่ให้บริการ', '#DREAM UP', '#A_HOUSE_BUILDER'
+    ];
+    for (const fm of footerMarkers) {
+      const idx = body.indexOf(fm);
+      if (idx > 10) body = body.substring(0, idx);
+    }
+
+    // ถ้ามีหัวข้ออัปเดตหน้างานก่อสร้างจริงและระบุไซต์งานชัดเจน ให้คงไว้
+    if (/(?:อัฟเดทงาน|อัปเดตงาน|ความคืบหน้างาน|พิธียกเสาเอก|ยกเสาเอก|สถานที่ก่อสร้าง|พิกัดหน้างาน|พิกัดก่อสร้าง)\s*[:\s]/i.test(body) &&
+        /(?:งานพื้น|งานเสา|เข้าแบบคาน|เทคาน|ฐานราก|ตอม่อ|ก่ออิฐ|งานก่อ|ฉาบปูน|งานฉาบ|ทาสี|มุงหลังคา|โครงหลังคา|ปูกระเบื้อง|เสาเอก)/i.test(body)) {
+      return false;
+    }
+
     let matchCount = 0;
     for (const kw of corporateServicePromoKeywords) {
-      if (text.includes(kw)) {
+      if (body.includes(kw)) {
         matchCount++;
       }
     }
 
     if (matchCount > 0) {
       // ตรวจสอบว่ามีงานก่อสร้างหน้างานจริงที่เฉพาะเจาะจงไซต์งานหรือไม่
-      const hasSpecificSiteWork = /(?:พิธียกเสาเอก|ยกเสาเอก|ตอกเสาเข็ม|ลงเสาเข็ม|เจาะเสาเข็ม|ขุดฐานราก|เทตอม่อ|เทคานคอดิน|เทคาน|เทพื้น|เทคอนกรีตพื้น|ขึ้นโครงหลังคา|มุงหลังคา|ก่ออิฐมวลเบา|ก่ออิฐมอญ|งานก่ออิฐ|ฉาบปูน|งานปูกระเบื้อง|งานฝ้า|เดินระบบไฟฟ้า)/i.test(text);
-      const hasSpecificCustomer = /(?:บ้านคุณ|ลูกค้าคุณ|Project\s*\||Owner\s*[:\s]|บ้านพักอาศัยคุณ|บ้านพักคุณ)/i.test(text);
+      const hasSpecificSiteWork = /(?:พิธียกเสาเอก|ยกเสาเอก|ตอกเสาเข็ม|ลงเสาเข็ม|เจาะเสาเข็ม|ขุดฐานราก|เทตอม่อ|เทคานคอดิน|เทคาน|เทพื้น|งานพื้น|งานเสา|เข้าแบบคาน|เทคอนกรีตพื้น|ขึ้นโครงหลังคา|มุงหลังคา|ก่ออิฐมวลเบา|ก่ออิฐมอญ|งานก่ออิฐ|ฉาบปูน|งานปูกระเบื้อง|งานฝ้า|เดินระบบไฟฟ้า|งานทาสี|ทาสี)/i.test(body);
+      const hasSpecificCustomer = /(?:บ้านคุณ|ลูกค้าคุณ|Project\s*\||Owner\s*[:\s]|บ้านพักอาศัยคุณ|บ้านพักคุณ|สถานที่ก่อสร้าง|พิกัดหน้างาน|พิกัด)/i.test(body);
 
       // ถ้าเป็นโพสต์บรรยาย แนะนำบริการ หรือไม่มีไซต์งาน/ชื่อเจ้าของบ้านเฉพาะเจาะจง -> คัดออกทันที
       if (!hasSpecificSiteWork || !hasSpecificCustomer) {
@@ -5067,15 +5143,23 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
 
         // 1. Generate Site/Project Key for same-site deduplication
         let siteKey = '';
-        const projectMatch = text.match(/Project\s*\|\s*(?:K\.|คุณ)?\s*([a-zA-Z0-9_\-]+)/i);
-        if (projectMatch) {
-          siteKey = 'cust_' + projectMatch[1].toLowerCase().trim();
-        } else {
-          const custMatch = text.match(/(?:บ้านคุณ|บ้านพักอาศัยคุณ|บ้านพักคุณ|ลูกค้าคุณ|คุณ)\s*([ก-๙a-zA-Z]+)/);
-          if (custMatch) {
-            const cName = custMatch[1].replace(/เเ/g, 'แ').trim();
-            if (!/^(?:ภาพ|งาน|สร้าง|ดี|เรา|ท่าน|ทุกท่าน|พี่|น้อง|ใหม่|เก่า|ครับ|ค่ะ|อุดร|คุณภาพ|มาตรฐาน|ลูกค้า|ออกแบบ|ไว้วางใจ|บริการ|สัญญา)$/.test(cName)) {
-              siteKey = 'cust_' + cName;
+        const locMatch = text.match(/(?:สถานที่ก่อสร้าง|พิกัดหน้างาน|พิกัดก่อสร้าง)\s*[:\s]*([^\n]+)/i);
+        if (locMatch) {
+          const cleanLoc = locMatch[1].replace(/[^a-zA-Z0-9ก-๙]/g, '_').substring(0, 40);
+          siteKey = 'loc_' + cleanLoc;
+        }
+
+        if (!siteKey) {
+          const projectMatch = text.match(/Project\s*\|\s*(?:K\.|คุณ)?\s*([a-zA-Z0-9_\-]+)/i);
+          if (projectMatch) {
+            siteKey = 'cust_' + projectMatch[1].toLowerCase().trim();
+          } else {
+            const custMatch = text.match(/(?:บ้านคุณ|บ้านพักอาศัยคุณ|บ้านพักคุณ|ลูกค้าคุณ)\s*([ก-๙a-zA-Z]+)/);
+            if (custMatch) {
+              const cName = custMatch[1].replace(/เเ/g, 'แ').trim();
+              if (!/^(?:ภาพ|งาน|สร้าง|ดี|เรา|ท่าน|ทุกท่าน|พี่|น้อง|ใหม่|เก่า|ครับ|ค่ะ|อุดร|คุณภาพ|มาตรฐาน|ลูกค้า|ออกแบบ|ไว้วางใจ|บริการ|สัญญา)$/.test(cName)) {
+                siteKey = 'cust_' + cName;
+              }
             }
           }
         }
@@ -5123,6 +5207,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         let locText = `อ.${pDistrict} จ.อุดรธานี`;
         if (text.includes('หนองขอนกว้าง')) locText = 'ต.หนองขอนกว้าง อ.เมือง จ.อุดรธานี';
         else if (text.includes('บ้านจั่น')) locText = 'ต.บ้านจั่น อ.เมือง จ.อุดรธานี';
+        else if (text.includes('นาดี') || text.includes('ศรีเชียงใหม่')) locText = 'ต.นาดี อ.เมือง จ.อุดรธานี';
         else if (text.includes('หมูม่น')) locText = 'ต.หมูม่น อ.เมือง จ.อุดรธานี';
         else if (text.includes('สามพร้าว')) locText = 'ต.สามพร้าว อ.เมือง จ.อุดรธานี';
         else if (text.includes('หมากแข้ง')) locText = 'ต.หมากแข้ง อ.เมือง จ.อุดรธานี';
