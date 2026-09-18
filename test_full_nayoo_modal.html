@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Full Nayoo Modal</title>
+</head>
+<body>
+  <div id="company-detail-modal" class="modal-backdrop">
+    <div id="modal-company-name"></div>
+    <div id="modal-company-category"></div>
+    <div id="modal-phone"></div>
+    <div id="modal-growth-rate"></div>
+    <div id="modal-address"></div>
+    <a id="modal-gmaps-link"><span id="modal-gmaps-text"></span></a>
+    <div id="modal-score-card"></div>
+    <div id="modal-top-stage-filter-buttons"></div>
+    <div id="modal-projects-section-container"></div>
+    <textarea id="modal-company-sales-note"></textarea>
+    <div id="modal-crm-note-status-indicator"></div>
+    <div id="modal-crm-note-last-updated"></div>
+    <div id="modal-company-photos-container"></div>
+  </div>
+  <script src="../js/data.js?v=20260918_v27"></script>
+  <script src="../js/scoring.js?v=20260918_v27"></script>
+  <script src="../js/supabase.js?v=20260918_v27"></script>
+  <script src="../js/app.js?v=20260918_v27"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      openCompanyProjectsModal('comp-udon-03');
+      setTimeout(() => {
+        const container = document.getElementById('modal-projects-section-container');
+        const cards = container ? container.querySelectorAll('.project-card') : [];
+        const result = Array.from(cards).map((c, i) => ({
+          cardIndex: i + 1,
+          name: c.querySelector('.project-name') ? c.querySelector('.project-name').textContent.trim() : '',
+          stage: c.querySelector('.project-stage-badge') ? c.querySelector('.project-stage-badge').textContent.trim() : '',
+          fbLink: c.querySelector('a[href*="facebook"]') ? c.querySelector('a[href*="facebook"]').href : ''
+        }));
+        const pre = document.createElement('pre');
+        pre.id = 'modal-rendered-cards';
+        pre.textContent = JSON.stringify({
+          totalRenderedCards: cards.length,
+          projects: result
+        }, null, 2);
+        document.body.appendChild(pre);
+      }, 600);
+    });
+  </script>
+</body>
+</html>

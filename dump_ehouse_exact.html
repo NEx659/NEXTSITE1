@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+  <pre id="out"></pre>
+  <script>
+    async function run() {
+      const resp = await fetch('dataset.json');
+      const items = await resp.json();
+      
+      const ehouseSpecific = items.filter(p => {
+        const pn = (p.pageName || (p.user && p.user.name) || '').toLowerCase();
+        const url = (p.url || '').toLowerCase();
+        const txt = (p.text || '').toLowerCase();
+        return pn.includes('ehouse') || pn.includes('อีเฮาส์') || pn.includes('esarnthai') || url.includes('esarnthaihouse') || txt.includes('e house') || txt.includes('อีเฮาส์') || txt.includes('094-8289263') || txt.includes('ehouseconstruction');
+      });
+
+      const res = ehouseSpecific.map((p, idx) => ({
+        index: idx + 1,
+        time: p.time,
+        url: p.url,
+        pageName: p.pageName || (p.user && p.user.name),
+        text: p.text
+      }));
+      document.getElementById('out').textContent = JSON.stringify(res, null, 2);
+    }
+    window.addEventListener('DOMContentLoaded', run);
+  </script>
+</body>
+</html>

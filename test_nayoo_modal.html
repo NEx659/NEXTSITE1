@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Modal Nayoo House DOM Cards</title>
+</head>
+<body>
+  <div id="company-detail-modal" class="modal-backdrop">
+    <div id="modal-score-card"></div>
+    <div id="modal-top-stage-filter-buttons"></div>
+    <div id="modal-projects-section-container"></div>
+  </div>
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      openCompanyProjectsModal('comp-udon-03');
+      setTimeout(() => {
+        const container = document.getElementById('modal-projects-section-container');
+        const cards = container ? container.querySelectorAll('.project-card') : [];
+        const cardNames = Array.from(cards).map(c => {
+          const title = c.querySelector('.project-name');
+          const stage = c.querySelector('.project-stage-badge');
+          return {
+            title: title ? title.textContent.trim() : 'N/A',
+            stage: stage ? stage.textContent.trim() : 'N/A'
+          };
+        });
+        const pre = document.createElement('pre');
+        pre.id = 'modal-html';
+        pre.textContent = JSON.stringify({
+          cardCount: cards.length,
+          cards: cardNames
+        }, null, 2);
+        document.body.appendChild(pre);
+      }, 500);
+    });
+  </script>
+</body>
+</html>
