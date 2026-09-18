@@ -1,0 +1,191 @@
+{
+  "id": "comp-udon-17",
+  "name": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
+  "engName": "E House Construction & Design Co., Ltd.",
+  "category": "รับสร้างบ้านและสถาปัตยกรรมอีสานประยุกต์ (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "ถนนมิตรภาพ ต.หมากแข้ง อ.เมือง จ.อุดรธานี 41000",
+  "phone": "094 828 9263 / 064 192 4559",
+  "contactPerson": "คุณเอ๊ะ (094-828-9263) - ฝ่ายขายและ BOQ, ทีมวิศวกรและสถาปนิก (064-192-4559)",
+  "totalProjects": 3,
+  "newProjectsThisMonth": 3,
+  "totalValueMillion": 16.5,
+  "growthRate": 40,
+  "areaExpansion": "เมืองอุดรธานี",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0415562013456",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 0,
+    "foundation": 0,
+    "structure": 1,
+    "finishing": 2
+  },
+  "latestTimelineStage": "finishing",
+  "revenuePotentialText": "฿3.5M",
+  "coordinates": [
+    17.398,
+    102.802
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/8XeunP9KgTB8zPyC9",
+  "gmaps": "https://maps.app.goo.gl/8XeunP9KgTB8zPyC9",
+  "facebookUrl": "https://www.facebook.com/esarnthaihouse",
+  "facebookSignal": {
+    "postDate": "8/9/2569",
+    "pageName": "บริษัท อีเฮาส์ คอนสตรัคชั่น จำกัด",
+    "caption": "อัพเดท : งานเดินไฟฟ้าร้อยท่อ อาคารพาณิชย์และคาเฟ่ 3 ชั้น อุดรธานี\nบริษัท อีเฮาส์ คอนสตรัคชั่น จำกัด โทร: 094-8289263 (คุณเอ๊ะ)",
+    "likes": 15,
+    "comments": 3,
+    "shares": 2,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "ก่อสร้างจริง"
+    ]
+  },
+  "projects": [
+    {
+      "projectId": "comp-udon-17-1",
+      "name": "โครงการก่อสร้างอาคารพาณิชย์และคาเฟ่ 3 ชั้น โซนใจกลางเมืองอุดรธานี",
+      "location": "เขตเทศบาลนครอุดรธานี อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.405,
+        102.795
+      ],
+      "stage": "งานเดินระบบไฟฟ้า ร้อยท่อฝังผนัง และเตรียมติดตั้งฝ้าเพดาน/ผนังตกแต่ง",
+      "stageKey": "structure",
+      "trackingStatus": "pending",
+      "progressPercent": 60,
+      "estValue": "7.0 ล้านบาท",
+      "buildingType": "อาคารพาณิชย์และคาเฟ่ 3 ชั้น สไตล์ Modern",
+      "caption": "อัพเดท : งานเดินไฟฟ้าร้อยท่อ อาคารพาณิชย์และคาเฟ่ 3 ชั้น อุดรธานี โดยทีมงานมืออาชีพ E House โทร: 094-8289263",
+      "postedTime": "8/9/2569",
+      "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid0uYgzfrkqPoHMDDAfzxkgof5sJywLdbzNbS8ddQbMwEzemvbP98BdCjRE8n1npE7Fl",
+      "boq": [
+        {
+          "sku": "แผ่นยิปซัมตราช้าง SCG ชนิดทนชื้น (Moisture Shield 9 มม.) พร้อมโครงคร่าวโลหะช้าง",
+          "qty": "180 แผ่น",
+          "estCost": "฿46,800",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ฉนวนกันความร้อนและซับเสียง SCG Acoustic Panel / STAY COOL 100 มม.",
+          "qty": "50 ม้วน",
+          "estCost": "฿32,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ชุดสุขภัณฑ์ COTTO Commercial Collection สำหรับคาเฟ่",
+          "qty": "6 ชุด",
+          "estCost": "฿68,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "กระเบื้องปูพื้น COTTO ลายหินขัด (Terrazzo Series) 60x60 ซม.",
+          "qty": "220 ตร.ม.",
+          "estCost": "฿85,800",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-17-2",
+      "name": "โครงการบ้านพักอาศัยเดี่ยวตกแต่งภายในสไตล์มินิมอล โซนเมืองอุดรธานี",
+      "location": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.398,
+        102.802
+      ],
+      "stage": "งานตกแต่งภายใน ติดตั้งงาน Built-in ปูพื้นไม้ และเก็บรายละเอียด",
+      "stageKey": "finishing",
+      "trackingStatus": "pending",
+      "progressPercent": 80,
+      "estValue": "5.0 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น สไตล์ Minimalist",
+      "caption": "Update : มินิมอลสไตล์ งาน Built-in ตกแต่งภายใน อุดรธานี ติดต่อ E House โทร: 094-8289263 (คุณเอ๊ะ)",
+      "postedTime": "7/9/2569",
+      "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid02QGULb9jDpKon1danLpzqSskYxoZLKURYDsCajaMgn3J4X24mR8LwKZuvPVBUsmaal",
+      "boq": [
+        {
+          "sku": "ไม้ตกแต่งผนัง SCG D-COR ไม้ระแนงตกแต่งภายในโทนสีอบอุ่น",
+          "qty": "80 แผ่น",
+          "estCost": "฿38,400",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "กระเบื้องยาง SPC COTTO ลายไม้ธรรมชาติพร้อมระบบคลิกล็อก",
+          "qty": "160 ตร.ม.",
+          "estCost": "฿88,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "ชุดก๊อกน้ำและสุขภัณฑ์ COTTO Modern Minimalist Series",
+          "qty": "3 ชุด",
+          "estCost": "฿39,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-17-3",
+      "name": "โครงการบ้านเดี่ยวพักอาศัยโมเดิร์น 2 ชั้น งานฉาบ Skim Coat & ทาสี",
+      "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.412,
+        102.788
+      ],
+      "stage": "งานฉาบปรับผิวบาง Skim Coat ผนังภายนอก-ภายใน และงานเตรียมผิวทาสี",
+      "stageKey": "finishing",
+      "trackingStatus": "pending",
+      "progressPercent": 70,
+      "estValue": "4.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น สไตล์ Modern",
+      "caption": "รีวิวงานฉาบ สกิม ทาสีบ้านผ่านแสงกระทบ สวยเนียนกริ๊บ โดยทีมงาน E House Construction โทร: 094-8289263",
+      "postedTime": "3/9/2569",
+      "postUrl": "https://www.facebook.com/reel/1793509581772008/",
+      "boq": [
+        {
+          "sku": "ปูนเสือ สกิมโค้ท (Tiger Skim Coat) ผิวบางพิเศษ",
+          "qty": "250 ถุง",
+          "estCost": "฿47,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ปูนกาวซีเมนต์ COTTO ไทล์ฟิกซ์ และปูนยาแนวกันเชื้อรา",
+          "qty": "60 ถุง",
+          "estCost": "฿14,400",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    }
+  ],
+  "aiShortRec": "พบ 3 ไซต์งาน Active จริงใน อ.เมืองอุดรธานี (คาเฟ่ 3 ชั้น, งานบิวท์อินมินิมอล, งานฉาบสกิมโค้ท) SCG Code 10648769",
+  "aiRecommendation": "บริษัทปรับเน้นงานอาคารพาณิชย์และงาน Finishing บิวท์อิน แนะนำเร่งล็อกสเปกแผ่นยิปซัมช้างทนชื้น + ไม้ตกแต่ง SCG D-COR และสุขภัณฑ์ COTTO Commercial ด่วน",
+  "customDiagnostic": "บริษัทรับสร้างบ้านและออกแบบสถาปัตยกรรมดีไซน์เด่นใน จ.อุดรธานี (E House Construction & Design) มียอดสั่งซื้อ SCG ปี 2026 อยู่ที่ <strong>฿75,112</strong> (SCG Code 10648769, ลดลง -59.86% YoY) สาเหตุหลักเนื่องจากเปลี่ยนมารับงานอาคารพาณิชย์ (คาเฟ่ 3 ชั้น) และงานตกแต่งภายในบิวท์อิน ซึ่งมักสั่งซื้อวัสดุปิดผิวและงานระบบภายนอกระบบ SCG มีโอกาสสูงในการดึงยอดกลับด้วยกลุ่มสินค้า High-Margin ได้แก่ แผ่นยิปซัมทนชื้นตราช้าง, ฉนวนซับเสียง SCG Acoustic, ไม้สังเคราะห์ SCG D-COR, และสุขภัณฑ์ COTTO Commercial",
+  "customRecommendations": [
+    "<strong>แผ่นยิปซัมตราช้างทนชื้น 9 มม. & ฉนวนกันเสียง SCG Acoustic (สำหรับคาเฟ่ 3 ชั้น):</strong> นำเสนอโซลูชันระบบฝ้า-ผนังทนชื้นและซับเสียงตรงสเปกงานอาคารพาณิชย์",
+    "<strong>ชุดสุขภัณฑ์ COTTO Commercial Collection & กระเบื้อง Terrazzo:</strong> จัดทำแพ็กเกจสุขภัณฑ์ประหยัดน้ำและกระเบื้องลายหินขัดยอดนิยมสำหรับร้านคาเฟ่",
+    "<strong>ไม้ตกแต่งผนัง SCG D-COR & กระเบื้องยาง SPC COTTO:</strong> ส่งมอบตัวอย่างไม้ระแนงและ SPC ลายไม้ให้ทีมสถาปนิกใช้สเปกในงานออกแบบ 3D",
+    "<strong>ปูนเสือ สกิมโค้ท (Tiger Skim Coat) ราคาโครงการ:</strong> ล็อกสเปกปูนฉาบผิวเนียนเรียบพิเศษสำหรับโครงการบ้านเดี่ยวสไตล์โมเดิร์น"
+  ],
+  "salesActionPlan": [
+    "เข้าพบคุณเอ๊ะ (094-828-9263) เพื่อเสนอแพ็กเกจยิปซัมทนชื้น + ฉนวน Acoustic + สุขภัณฑ์ COTTO สำหรับไซต์คาเฟ่ 3 ชั้น",
+    "ส่งมอบตัวอย่างไม้สังเคราะห์ SCG D-COR และแคตตาล็อก COTTO SPC ให้ทีมออกแบบ E House",
+    "เสนอราคาสเปกโครงการ ปูนเสือ สกิมโค้ท จัดส่งด่วนตรงถึงหน้างานโซนหมากแข้ง",
+    "เปิดรหัสจัดส่งตรงหน้างานด่วนและประสานงานเครดิตเทอมผ่าน SCG Home บุญถาวร / ตัวแทนจำหน่ายอุดรธานี"
+  ],
+  "tag": "focus",
+  "opportunityScore": 88,
+  "scgCode": "10648769",
+  "sales2025": 187141,
+  "sales2026": 75112
+}
