@@ -1,44 +1,44 @@
 ﻿var UDON_COMPANIES = [
     {
-        "id": "comp-udon-46",
-        "name": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จํากัด",
-        "engName": "Jeeranun Property Ltd., Part.",
-        "category": "รับสร้างบ้านและอสังหาริมทรัพย์ (TSIC 41001)",
+        "id": "comp-udon-44",
+        "name": "ห้างหุ้นส่วนจํากัด จีรนันท์ พร็อพเพอร์ตี้",
+        "engName": "CT Construction Udon Thani",
+        "category": "รับเหมาก่อสร้างและต่อเติมบ้าน (TSIC 41001)",
         "province": "อุดรธานี",
-        "district": "ไชยวาน",
-        "address": "160 หมู่ที่ 6 บ้านชัย บ้านดุง อุดรธานี",
-        "phone": "064 995 9169",
-        "contactPerson": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จำกัด",
-        "totalProjects": 9,
-        "newProjectsThisMonth": 9,
-        "totalValueMillion": 49.5,
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "091 546 5189",
+        "contactPerson": "ห้างหุ้นส่วนจำกัด จีรนันท์ พร็อพเพอร์ตี้",
+        "totalProjects": 7,
+        "newProjectsThisMonth": 7,
+        "totalValueMillion": 38.5,
         "growthRate": 40,
         "areaExpansion": "เมืองอุดรธานี",
         "verificationStatus": {
             "isVerified": true,
             "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415560042345",
+            "evidenceSource": "Facebook Page | DBD: 0415563040123",
             "permitStatus": "TSIC 41001"
         },
         "stageBreakdown": {
-            "groundbreak": 2,
+            "groundbreak": 0,
             "foundation": 0,
             "structure": 7,
             "finishing": 0
         },
         "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿4.5M",
+        "revenuePotentialText": "฿3.5M",
         "coordinates": [
-            17.280851,
-            103.2232063
+            17.4185,
+            102.8065
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=100066777634252",
+        "googleMapsUrl": "https://maps.app.goo.gl/sHQRySpumVDgvr1s8",
+        "gmaps": "https://maps.app.goo.gl/sHQRySpumVDgvr1s8",
+        "facebookUrl": "https://www.facebook.com/JoylyYothakaree",
         "facebookSignal": {
-            "postDate": "13/9/2569",
-            "pageName": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จํากัด",
-            "caption": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ksc. โครงสร้างมั่นคงแข็งแรง \n☎️0946215444 รับต่อเติมบ้านในอุดร\n#หมู่บ้านอภิทาวน์ #รับต่อเติมบ้านในอุดร #รับเหมาก่อสร้าง #ต่อเติมอุดร #อุดรต่อเติมบ้าน #รีโนเวทอุดร #อุดรรีโนเวท",
+            "postDate": "4/9/2569",
+            "pageName": "ห้างหุ้นส่วนจํากัด จีรนันท์ พร็อพเพอร์ตี้",
+            "caption": "Update :  งานปั๊ม พีที สาขาหนองหาน บ้านปูลู❣️\nหน้างานในส่วนของโครงหัวจ่าย : ยกโครงหลังคาเสร็จเรียบร้อย โดยใช้เครน 2 ตัวในการยกโครง \nและสำเร็จไปได้ด้วยดีอีก 1 ขั้นตอน❤️❤️😊\n\n✅️สอบถามราคา ปรึกษาเรื่องก่อสร้างได้ทุกประเภท \n☎️064-9959169 คุณบอย\n\n#รับสร้างบ้านอุดร #รับสร้างบ้านภาคอีสาน #กำแพฝกันดิน #กำแพงคอนกรีตสำเร็จรูป #ช่าง #ช่างก่อสร้าง",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -49,14 +49,116 @@
         },
         "projects": [
             {
-                "projectId": "comp-udon-46-1",
-                "name": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ...",
+                "projectId": "comp-udon-44-1",
+                "name": "Update :  งานปั๊ม พีที สาขาหนองหาน บ้านปูลู❣️",
+                "location": "อ.หนองหาน จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "หนองหาน",
+                "gps": [
+                    17.4185,
+                    102.8065
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "Update :  งานปั๊ม พีที สาขาหนองหาน บ้านปูลู❣️\nหน้างานในส่วนของโครงหัวจ่าย : ยกโครงหลังคาเสร็จเรียบร้อย โดยใช้เครน 2 ตัวในการยกโครง \nและสำเร็จไปได้ด้วยดีอีก 1 ขั้นตอน❤️❤️😊\n\n✅️สอบถามราคา ปรึกษาเรื่องก่อสร้างได้ทุกประเภท \n☎️064-9959169 คุณบอย\n\n#รับสร้างบ้านอุดร #รับสร้างบ้านภาคอีสาน #กำแพฝกันดิน #กำแพงคอนกรีตสำเร็จรูป #ช่าง #ช่างก่อสร้าง",
+                "postedTime": "4/9/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid0mRLfvNxePc8j7czZ5sqCBNcGbBUBpREEb4JBLpc1W3HmTHskRsU5oYpQKjJGV5Z7l",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-44-2",
+                "name": "ลงหน้างานใหม่ @อเมซอน ปั๊ม ปตท.หนองหาน 📍",
+                "location": "อ.หนองหาน จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "หนองหาน",
+                "gps": [
+                    17.4185,
+                    102.8065
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "ลงหน้างานใหม่ @อเมซอน ปั๊ม ปตท.หนองหาน 📍\nรื้องานเก่า ปรับเปลี่ยนโฉมใหม่ ❤️✅️\nรอชมได้เลยนะคร้า😊❤️",
+                "postedTime": "28/8/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid027vXbqzdTZqnRgVRt7yCQkJBr1anFd469jXzsJfMgqzrZkvexNPUfoJAJP4s3hns2l",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-44-3",
+                "name": "UPDATE หน้าบ้านคุณ ชนิกา (พี่เรียม)🏘",
+                "location": "อ.หนองหาน จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "หนองหาน",
+                "gps": [
+                    17.4185,
+                    102.8065
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "UPDATE หน้าบ้านคุณ ชนิกา (พี่เรียม)🏘\nสถานที่ก่อสร้าง : รีสอร์ทโมอาย อ.หนองหาน จ.อุดรธานี\n\nสถาณะหน้างาน ตอนนี้  ทีมช่างไฟเข้าหน้างาน ทะยอยติดตั้งหลอดไฟ ปลํ๊กไฟ โคมไฟ🎊 \n\nสนใจสอบถาม ประเมิณราคาตามแบบที่ลูกค้ามี หรือ ออกแบบบ้านให้ใหม่ก็ได้นะคะ\nโทร 064-9959169",
+                "postedTime": "15/8/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid07nLd3FZdD5nuv4rb7AJcsag1BapWQzyq5GMgeDFTp7N8djeC6Bks3Qa8W8JkxTmVl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-44-4",
+                "name": "UPDATE งานโครงหัวจ่ายปั๊ม พีที",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.280851,
-                    103.2232063
+                    17.4185,
+                    102.8065
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -64,9 +166,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ksc. โครงสร้างมั่นคงแข็งแรง \n☎️0946215444 รับต่อเติมบ้านในอุดร\n#หมู่บ้านอภิทาวน์ #รับต่อเติมบ้านในอุดร #รับเหมาก่อสร้าง #ต่อเติมอุดร #อุดรต่อเติมบ้าน #รีโนเวทอุดร #อุดรรีโนเวท",
-                "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qwa36vphbynrXKV61oQ9x7F45Le12JatksqAkqqV4DvzBQGWKZH5VLQPoHi35sAxl&id=100066777634252",
+                "caption": "UPDATE งานโครงหัวจ่ายปั๊ม พีที\nหน้างาน : ทีมช่างกำลังประกอบเหล็กโครงหลังคาหัวจ่าย สู้ไปกับฝน 🌧️⛈️ฝนก็ไม่เป็นใจ😊\n\n⛪🏘 งานรับสร้างบ้านยังสามารถรับงานได้เรื่อยๆนะคะ ทีมช่างเรามีหลายทีม \nสนใจสอบถามเข้ามาก่อนได้ค่ะ \n☎โทร 064-9959169\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีต #กำแพงคอนกรีตสำเร็จ #สร้างบ้านภาคอีสาน #สร้างบ้านครบวงจร #งานรั้วบ้าน #สร้างบ้าน #งานสร้างบ้าน",
+                "postedTime": "15/8/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid035rBGXS1f59gRU7jNsSvAFegAJiQxe4Lz1giiDRDxWWogdJuJ4Nz7Nn99QWiJHTCql",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -83,82 +185,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-46-2",
-                "name": "📌เสาเข็มไมโครไพล์ 📌 เสาเข็มไมโครไพล์นครพนม เสาเข็มไมโ...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "projectId": "comp-udon-44-5",
+                "name": "ลงหน้างานใหม่ 🎊🎊",
+                "location": "อ.หนองหาน จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
+                "district": "หนองหาน",
                 "gps": [
-                    17.280851,
-                    103.2232063
-                ],
-                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
-                "stageKey": "groundbreak",
-                "trackingStatus": "pending",
-                "progressPercent": 15,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "📌เสาเข็มไมโครไพล์ 📌 เสาเข็มไมโครไพล์นครพนม เสาเข็มไมโครไพล์i22 Safe Load 25t Blow Count 139 ลึก12เมตร เสาเข็มไมโครไพล์เสาเข็มคุณภาพจาก SCG 💯☎️0946215444 อุดรไมโครไพล์ \n #เสาเข็มไมโครไพล์นครพนม #เสาเข็มไมโครไพล์ #อุดรไมโครไพล์ #ขอนแก่นไมโครไพล์ #เสาเข็มไมโครไพล์มหาสารคาม #เสาเข็มไมโครไพล์สกลนคร #เสาเข็มไมโครไพล์บึงกาฬ #เสาเข็มไมโครไพล์หนองคาย #เสาเข็มไมโครไพล์ขอนแก่น #เสาเข็มไมโครไพล์อุดร #เสาเข็มไมโครไพล์หนองบัวลำภู #เสาเข็มไมโครไพล์เลย #เสาเข็มไมโครไพล์ชัยภูมิ #เสาเข็มไมโครไพล์ร้อยเอ็ด #เสาเข็มไมโครไพล์ศรีสะเกษ #เสาเข็มไมโครไพล์บุรีรัม",
-                "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/reel/2472577786559042/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-46-3",
-                "name": "งานต่อเติมครัวหลังบ้านพร้อมลงเสาเข็มไมโครไพล์ เพิ่มพื้น...",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ไชยวาน",
-                "gps": [
-                    17.280851,
-                    103.2232063
-                ],
-                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
-                "stageKey": "groundbreak",
-                "trackingStatus": "pending",
-                "progressPercent": 15,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานต่อเติมครัวหลังบ้านพร้อมลงเสาเข็มไมโครไพล์ เพิ่มพื้นที่ใช้สอยให้มากยิ่งขึ้น #ต่อเติมครัวหลังบ้าน #รีโนเวทอุดร #ต่อเติมอุดร #รับเหมาก่อสร้าง #รับต่อเติมบ้านในอุดร #อุดรต่อเติมบ้าน #ต่อเติมบ้าน",
-                "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1437768288226738/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-46-4",
-                "name": "อนาคตไม่ได้มาจากคำทำนาย แต่มาจากสิ่งที่เราลงมือทำในวันน...",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ไชยวาน",
-                "gps": [
-                    17.280851,
-                    103.2232063
+                    17.4185,
+                    102.8065
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -166,9 +200,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อนาคตไม่ได้มาจากคำทำนาย แต่มาจากสิ่งที่เราลงมือทำในวันนี้\n #พีรพัฒน์999 #รับสร้างบ้าน #รับเหมาก่อสร้าง #รับต่อเติมบ้านในอุดร #อุดรต่อเติมบ้าน #ต่อเติมอุดร #รีโนเวทอุดร",
-                "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1097231546586684/",
+                "caption": "ลงหน้างานใหม่ 🎊🎊\nโครงการ : ก่อสร้าง ปั๊มน้ำมัน  PT สาขาหนองหาน \nเจ้าของโครงการ : ห้างหุ้นส่วนจำกัด ดรากอนแอร์ ปิโตรเลียม\nสถานที่ก่อสร้าง : ถ.นิตโย บ้านปูลู ต.บ้านเชียง อ.หนองหาน จ.อุดรธานี  \n\n✅⛪ทีมงานลงหน้างาน ทดสอบเจาะสำรวจชั้นดิน  และการรับน้ำหนักของชั้นดิน\n🙏ขอบพระคุณผู้ใหญ่ใจดี ที่ให้ความไว้วางใจ เชื่อใจ ในทีมงานของเรานะคะ🙏♥ \n\nงานเล็กงานใหญ่เรารับหมดนะคะ สนใจสอบถามปรึกษาเข้ามาได้\n โทร 064-9959169 (คุณบอย)\nLine : ส่งข้อความและโทรฟรีด้วย LINE กันเถอะ\nhttps://line.me/ti/p/BbgfB5377Q\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีต #กำแพงคอนกรีตสำเร็จ #สร้างบ้านภาคอีสาน #สร้างบ้านครบวงจร #งานรั้วบ้าน #สร้างบ้าน #งานสร้างบ้าน",
+                "postedTime": "6/7/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid02txchCe269fWeVmDovbnuAuk9ABshu4Y8KWH1Ym3dpYU2o8d4xiRruj7PQ2WUEZxcl",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -185,14 +219,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-46-5",
-                "name": "รางระบายน้ำ ขนาด 30cm. เกร้าท์ปูนท้องราง ภายนอกและภายใน...",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
+                "projectId": "comp-udon-44-6",
+                "name": "Update  บ้านเดี่ยว 1 ชั้น 3 ห้องนอน 2 ห้องน้ำ",
+                "location": "อ.ทุ่งฝน จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "ไชยวาน",
+                "district": "ทุ่งฝน",
                 "gps": [
-                    17.280851,
-                    103.2232063
+                    17.4185,
+                    102.8065
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -200,9 +234,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "รางระบายน้ำ ขนาด 30cm. เกร้าท์ปูนท้องราง ภายนอกและภายใน เพื่อป้องกันน้ำซึมเข้าและซึมออก 🧑‍🔧ทีมงาน พีรพัฒน์ 999💯",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0yzkgEmCH8X8AgqfLaqzfiqeNKSqZRfgZERodnAPtDxJjz4Wqqwomsyhn33Y3kqqcl&id=100066777634252",
+                "caption": "Update  บ้านเดี่ยว 1 ชั้น 3 ห้องนอน 2 ห้องน้ำ\nเจ้าของโครงการ : คุณทองวัน\nสถานที่ก่อสร้าง :  อ.ทุ่งฝน  จ.อุดรธานี\n\n✅หน้างานอยู่ในขั้นตอนขึ้นโครงหลังคา มุงหลังคาเรียบร้อย ทีมงานก่อผนังลงหน้างานแล้ว\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีตสำเร็จ #กำแพงคอนกรีต #สร้างบ้านภาคอีสาน #สร้างบ้านครบวงจร #งานรั้วบ้าน #สร้างบ้าน #งานสร้างบ้าน  #ทุ่งฝน #สร้างบ้านทุ่งฝน",
+                "postedTime": "12/6/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid02bC7Hd2hcDUVEqeYssNQaDKrNhbK2UMFTnAhnc5yHGir1FwisiMstpYzeamtZSCHNl",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -219,14 +253,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-46-6",
-                "name": "ทีมงานพีรพัฒน์ 999 💯 งานก่อสร้าง แท่นถังตกตะกอน รับน้ำ...",
+                "projectId": "comp-udon-44-7",
+                "name": "UPdate  บ้านเดี่ยว 1 ชั้น",
                 "location": "อ.ไชยวาน จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "ไชยวาน",
                 "gps": [
-                    17.280851,
-                    103.2232063
+                    17.4185,
+                    102.8065
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -234,111 +268,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ทีมงานพีรพัฒน์ 999 💯 งานก่อสร้าง แท่นถังตกตะกอน รับน้ำหนักปลอดภัย 4,000 kg/m2 🧑‍🔧🏠😍\n#ก่อสร้าง #รับเหมาก่อสร้าง #รับต่อเติมบ้านในอุดร #ถังตกตะกอน",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0DbFazUvMEHPayA6Av3R966ydQ2tmZJwdDbB6LN5BgArTD2YXj3c4b5CLMSgQzewAl&id=100066777634252",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-46-7",
-                "name": "งานขนย้ายเศษวัสดุ #เคลียร์ริ่ง #รถแม็กโคร",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ไชยวาน",
-                "gps": [
-                    17.280851,
-                    103.2232063
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานขนย้ายเศษวัสดุ #เคลียร์ริ่ง #รถแม็กโคร",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1079474234675465/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-46-8",
-                "name": "งานในร่ม วันฝนตก #ฝนตก #งานก่อสร้าง #สร้างบ้าน",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ไชยวาน",
-                "gps": [
-                    17.280851,
-                    103.2232063
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานในร่ม วันฝนตก #ฝนตก #งานก่อสร้าง #สร้างบ้าน",
-                "postedTime": "6/9/2569",
-                "postUrl": "https://www.facebook.com/reel/850671311368403/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-46-9",
-                "name": "📌พยายามครั้งที่ร้อย ยังดีกว่าท้อถอยทั้งที่ยังไม่ได้ทำ\ud83d...",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ไชยวาน",
-                "gps": [
-                    17.280851,
-                    103.2232063
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "📌พยายามครั้งที่ร้อย ยังดีกว่าท้อถอยทั้งที่ยังไม่ได้ทำ💯\n #ฝนตก #พายุ",
-                "postedTime": "31/8/2569",
-                "postUrl": "https://www.facebook.com/reel/1548268593443296/",
+                "caption": "UPdate  บ้านเดี่ยว 1 ชั้น\nเจ้าของโครงการ  : คุณขันติ\nสถานที่ก่อสร้าง : อ.ไชยวาน จ.อุดรธานี\n\nหน้างานอยู่ในขั้นตอน งานโครงสร้าง กำลังขึ้นงานโครงหลังคา\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีตสำเร็จ #กำแพงคอนกรีต #สร้างบ้านภาคอีสาน #งานรั้วบ้าน #สร้างบ้านครบวงจร #สร้างบ้าน #งานสร้างบ้าน  #ไชยวาน #สร้างบ้านไชยวาน",
+                "postedTime": "11/6/2569",
+                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid02KTfAHjtbgwK1o548mYck1WbMbrhGrYbxEarBG99NZvPnP23fa3dgCgkA37XGfwgRl",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -355,7 +287,7 @@
                 ]
             }
         ],
-        "aiShortRec": "พบ 9 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 2, ฐานราก: 0, โครงสร้าง: 7)",
+        "aiShortRec": "พบ 7 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 7)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
@@ -363,1262 +295,6 @@
         "scgCode": "10349378",
         "sales2025": 31873,
         "sales2026": 181379
-    },
-    {
-        "id": "comp-udon-08",
-        "name": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
-        "engName": "Twentysix Development Co., Ltd.",
-        "category": "รับสร้างบ้านสไตล์มินิมอล นอร์ดิก ทันสมัย (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
-        "phone": "099 470 8877",
-        "contactPerson": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จำกัด",
-        "totalProjects": 8,
-        "newProjectsThisMonth": 8,
-        "totalValueMillion": 44,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415564001221",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 1,
-            "foundation": 1,
-            "structure": 5,
-            "finishing": 1
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿4.0M",
-        "coordinates": [
-            17.395,
-            102.812
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/FVFGk8KDANrwb91Y8",
-        "gmaps": "https://maps.app.goo.gl/FVFGk8KDANrwb91Y8",
-        "facebookUrl": "https://www.facebook.com/Twentysix.house",
-        "facebookSignal": {
-            "postDate": "31/8/2569",
-            "pageName": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
-            "caption": "Design & Build  By TWENTYSIX.HOUSE— Udonthani",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-08-1",
-                "name": "Design & Build  By TWENTYSIX.HOUSE— Udonthani",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Design & Build  By TWENTYSIX.HOUSE— Udonthani",
-                "postedTime": "31/8/2569",
-                "postUrl": "https://www.facebook.com/reel/1602887421568403/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-2",
-                "name": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิด...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิดต่างมีคาแรกเตอร์เป็นของตัวเอง ทั้งสี ผิวสัมผัส และเมื่อถูกนำมาวางอยู่ด้วยกัน สิ่งเหล่านี้ก็กลายเป็นส่วนหนึ่งของภาษาที่จะใช้เล่าเรื่อง…. \n\nวันนี้เป็นอีกวันที่ คุณดรีมและคุณมะปราง ตั้งใจเลือกและตัดสินใจทุกรายละเอียด ที่จะสามารถถ่ายทอดตัวตนและเจตนารมณ์ของ ร้านอาหารเเจ่วฮ้อนมิตรภักดี เพื่อส่งต่อความรู้สึกนี้ไปให้ถึงลูกค้าทุกคนตั้งแต่ก้าวแรกที่เดินเข้ามา \n\nอดใจรออีกนิด แล้วมาพบกับแจ่วฮ้อนมิตรภักดีโฉมใหม่เร็วๆนี้ \n\n#แจ่วฮ้อนมิตรภักดี #แจ่วฮ้อนอุดรธานี\n\nTWENTYSIX.HOUSE Design\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#TwentysixHouse #InteriorDesign #BuiltIn #ออกแบบตกแต่งภายใน #รับสร้างบ้านอุดรธานี",
-                "postedTime": "27/8/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0yajA2B9rtViJ66PTksnWC1DvM9RyZvY2WjuT66P25fvYPJoW8hpoNxSHeBLY3mvZl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-3",
-                "name": "จากแบบที่วางไว้..สู่การเริ่มต้นก่อสร้างจริง 🏡 24 สิงหา...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
-                "stageKey": "groundbreak",
-                "trackingStatus": "pending",
-                "progressPercent": 15,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "จากแบบที่วางไว้..สู่การเริ่มต้นก่อสร้างจริง 🏡 24 สิงหาคม 2569 เวลา 09.19 น.ถือเป็นฤกษ์ดี ยามดี ในการยกเสาเอก บ้านของคุณหมอ ออย และคุณโอ๊ต พร้อมครอบครัวและทีมงาน Twentysix.house \n\nขอบพระคุณคุณหมอ คุณโอ๊ต และครอบครัว อีกครั้งสำหรับความไว้วางใจ แล้วเราจะค่อยๆอัปเดตการเติบโตของบ้านหลังนี้ไปด้วยกัน🤍💙\n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\nTWENTYSIX.HOUSE Design \n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
-                "postedTime": "25/8/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02p5m8JVchqGsghPqvG7eY9RScGxSznrysijCEVqgjq73viEggMibYhHd3udRSAMRzl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-4",
-                "name": "บ้านที่น่าอยู่ที่สุด...คือบ้านที่เต็มไปด้วยเสียงหัวเราะ...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "บ้านที่น่าอยู่ที่สุด...คือบ้านที่เต็มไปด้วยเสียงหัวเราะ การใช้ชีวิต และความทรงจำที่งดงาม \n\nขอให้บ้านหลังนี้เป็นจุดเริ่มต้นของอีกหลายเรื่องราวที่มีความหมาย เป็นพื้นที่แห่งความอบอุ่น และเป็นสถานที่ที่ทุกครั้งเมื่อได้กลับมาจะรู้สึกเหมือนได้กลับมาพักใจ\n\nเรายินดีและรู้สึกเป็นเกียรติที่ได้เป็นส่วนหนึ่งของการเดินทางครั้งนี้  💙🤍💚\n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\nTWENTYSIX.HOUSE Design \n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
-                "postedTime": "21/8/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02RWfG4MFMJgKg5oCqfVc28JUVk9Q73Sn3EMjrqr8TpLqbSfLfZ8dz5DgCfBmJNhzsl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-5",
-                "name": "อีกหนึ่งก้าวสำคัญ 🤍💚 ขอบพระคุณ คุณหมอออย และคุณโอ๊ต ส...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อีกหนึ่งก้าวสำคัญ 🤍💚 ขอบพระคุณ คุณหมอออย และคุณโอ๊ต สำหรับความไว้วางใจที่มอบให้กับ TWENTYSIX.HOUSE กว่า 1 ปีที่เราได้พูดคุย ทำความรู้จักกัน แลกเปลี่ยนทั้งความต้องการและรายละเอียดต่างๆ ของบ้าน จนเกิดเป็นความมั่นใจที่จะฝากบ้านในฝันหลังนี้ไว้กับเรา \n\nและวันนี้ก็มาถึง…วันที่ภาพบ้านค่อยๆชัดเจนยิ่งขึ้น จนกลายเป็นแบบที่ทั้งคุณหมอ และคุณโอ๊ตถูกใจ พร้อมที่จะให้ลูกน้อยได้เติบโต\n\nจากนี้คือหน้าที่ของเรา ที่จะดูแลทุกรายละเอียดให้เป็นไปตามแบบแผน ตามความตั้งใจที่เราได้วางไว้ร่วมกัน\n\nจากภาพที่เห็นในวันนี้ สู่บ้านจริงที่เราจะค่อยๆสร้างไปด้วยกัน\n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\n\nTWENTYSIX.HOUSE Design 🤍💙\n……………………………………….\n\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
-                "postedTime": "20/8/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0YsfzJ1AJfStfXYWKRCsVeoK9YzpmSts9DfGpvi7sLygwciu3PCAaVAnHstDrF2Fol",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-6",
-                "name": "Site Update l อัปเดตความคืบหน้าไซต์งาน",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานฐานราก ตอม่อ และคานคอดิน",
-                "stageKey": "foundation",
-                "trackingStatus": "pending",
-                "progressPercent": 35,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Site Update l อัปเดตความคืบหน้าไซต์งาน\n\nจากระดับ ระยะ แนว สู่งานฐานราก โครงสร้าง พื้นที่ ไปจนถึง รูปทรงที่ชัดเจน  เราควบคุมให้ถูกต้องและตรวจสอบทุกๆขั้นตอนเสมอ \n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\nTWENTYSIX.HOUSE Design 🤍💙\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
-                "postedTime": "10/8/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0kBhRNCDPYJ7HmyS2ULZksRfsXnFsYrwSCEYPQUFstS7c37Y8PqBSLv93VBaC1F4Rl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-7",
-                "name": "“เราเลือกที่จะรับสร้างบ้านในจำนวนจำกัด” ไม่ใช่กลยุทธ์ทา...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "“เราเลือกที่จะรับสร้างบ้านในจำนวนจำกัด” ไม่ใช่กลยุทธ์ทางการตลาด แต่เป็นมาตรฐานที่เราได้ให้คำมั่นกับท่านเจ้าของบ้านทุกๆท่านไว้\n\nไม่ใช่เพราะเราสร้างได้ไม่มากพอ แต่เพราะเราเชื่อว่า บ้านทุกหลังควรได้รับการดูแลอย่างเต็มมาตรฐาน ตลอดระยะเวลากว่า 365 วัน ของการก่อสร้าง ทุกขั้นตอนจะได้รับการตรวจสอบอย่างต่อเนื่องและเข้มข้นที่สุด โดยทีมวิศวกร สถาปนิก และทุกคนในทีมของเรา\n\nเพราะสำหรับ Twentysix.House คุณภาพของบ้าน ไม่ได้เกิดขึ้นเฉพาะในวันส่งมอบ แต่เกิดจากความใส่ใจไม่เว้นวัน 💙🤍\n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\n\nTWENTYSIX.HOUSE Design 🤍💙\n……………………………………….\n\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
-                "postedTime": "14/7/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02UHxobDiGq5ZQ8WLhKpaUAPfL9K9jGK1qAMnvL1A7seBzY8ZJkXHJmXzcAYXtGhFJl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-08-8",
-                "name": "🏡 The beginning of a home is not the day you move in.",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.395,
-                    102.812
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡 The beginning of a home is not the day you move in.\n\nIt begins the day you decide to place your trust in someone to help turn your dream into reality. ✨\n\nAnother meaningful day and another important milestone as we celebrated the traditional Thai pillar-raising ceremony for the home of Khun Jane & Eri.\n\nTWENTYSIX.HOUSE would like to sincerely thank you for allowing us to be part of this special chapter in your life.\n\n🔸 We take care of every detail, from the pillar-raising ceremony, auspicious ceremonial items, tables, tents, to arranging the Brahmin priest.\n🔸 Building a home should begin with blessings and positive meaning for the future.\n🔸 At TWENTYSIX.HOUSE, we give our full attention to every project, whether large or small.\n \n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\n\nTWENTYSIX.HOUSE Design 🤍💙\n\n……………………………………….\n\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
-                "postedTime": "27/6/2569",
-                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0mxMZChfYD3g1uwXaxwdRp4qLh7eMAmPaxG91QEK88Lpm3E4ACXA2SCB5cbLUd6H7l",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 8 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 1, ฐานราก: 1, โครงสร้าง: 5)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 92,
-        "scgCode": "10523555",
-        "sales2025": 1146567,
-        "sales2026": 2903328
-    },
-    {
-        "id": "comp-udon-03",
-        "name": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด",
-        "engName": "Nayoo House Construction Co., Ltd.",
-        "category": "รับสร้างบ้านและอาคารพักอาศัย (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี 41000",
-        "phone": "083 669 9994",
-        "contactPerson": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด",
-        "totalProjects": 8,
-        "newProjectsThisMonth": 8,
-        "totalValueMillion": 44,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415564003456",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 8,
-            "finishing": 0
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿4.0M",
-        "coordinates": [
-            17.412,
-            102.801
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/LpY6wzxXPWZWwvH18",
-        "gmaps": "https://maps.app.goo.gl/LpY6wzxXPWZWwvH18",
-        "facebookUrl": "https://www.facebook.com/Nayoohouse",
-        "facebookSignal": {
-            "postDate": "13/9/2569",
-            "pageName": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด",
-            "caption": "น่าอยู่เฮ้าส์รับสร้างบ้านไม่ได้สร้างได้แค่บ้านนะคะเราสามารถสร้างโกดังสวยสวยให้ลูกค้าได้เริ่มต้นที่ 4000 บาทต่อตารางเมตรสนใจติดต่อได้นะคะ  #น่าอยู่เฮ้าส์",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-03-1",
-                "name": "น่าอยู่เฮ้าส์รับสร้างบ้านไม่ได้สร้างได้แค่บ้านนะคะเราสา...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "น่าอยู่เฮ้าส์รับสร้างบ้านไม่ได้สร้างได้แค่บ้านนะคะเราสามารถสร้างโกดังสวยสวยให้ลูกค้าได้เริ่มต้นที่ 4000 บาทต่อตารางเมตรสนใจติดต่อได้นะคะ  #น่าอยู่เฮ้าส์",
-                "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1091290840507145/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-2",
-                "name": "ทีมงานน่าอยู่เฮ้าส์ไม่เคยหยุดพัฒนา 🏡✨",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ทีมงานน่าอยู่เฮ้าส์ไม่เคยหยุดพัฒนา 🏡✨\nเราหมั่นเรียนรู้และอัปเดตทักษะใหม่ ๆ เพื่อยกระดับคุณภาพการสร้างบ้านให้ดียิ่งขึ้น วันนี้ได้รับเกียรติจากทีมงาน SCG มาให้ความรู้และอบรมช่างของเราเพิ่มเติม เพราะบ้านที่ดี เริ่มต้นจากทีมงานที่มีความรู้และใส่ใจในทุกขั้นตอน 💚\n\n#น่าอยู่เฮ้าส์ #รับสร้างบ้านอุดรธานี #ทีมงานมืออาชีพ #พัฒนาฝีมือช่าง #สร้างบ้านคุณภาพ",
-                "postedTime": "8/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1622465409464064/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-3",
-                "name": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอ...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์",
-                "postedTime": "8/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1569054811631492/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-4",
-                "name": "ไม่ว่าคุณจะชอบบ้านสไตล์ไหน มีดาดฟ้า มีมุมพักผ่อน หรือมี...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ไม่ว่าคุณจะชอบบ้านสไตล์ไหน มีดาดฟ้า มีมุมพักผ่อน หรือมีต้นไม้อยู่กลางบ้าน 🌳🏡\nน่าอยู่เฮ้าส์พร้อมออกแบบและสร้างให้ตรงตามสไตล์ที่คุณต้องการ เพราะบ้านในฝันของแต่ละคนไม่เหมือนกัน 💚✨\n\n#น่าอยู่เฮ้าส์ #รับสร้างบ้านอุดรธานี #ออกแบบบ้าน #บ้านในฝัน #สร้างบ้านตามใจคุณ",
-                "postedTime": "7/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1070785272103371/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-5",
-                "name": "🏡 งบไม่ถึงล้าน ก็มีบ้านที่น่าอยู่เป็นของตัวเองได้",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡 งบไม่ถึงล้าน ก็มีบ้านที่น่าอยู่เป็นของตัวเองได้\n\nน่าอยู่เฮ้าส์ รับสร้างบ้านหลากหลายขนาด\nไม่ว่าจะเป็นบ้านหลังใหญ่ หรือบ้านขนาดกะทัดรัดสำหรับครอบครัวเล็ก\nเราดูแลทุกหลังด้วยมาตรฐานเดียวกัน ตั้งแต่แบบจนถึงส่งมอบ 🔑✨\n\n🏠 งบประมาณไม่ถึง 1 ล้านบาท ก็ปรึกษาเราได้\n📐 ช่วยวางแบบและปรับพื้นที่ให้เหมาะกับงบ\n💰 คุยงบก่อนสร้าง ช่วยวางแผนให้ชัดเจน\n👷 ดูแลงานโดยทีมงานมืออาชีพ\n\nสนใจสร้างบ้าน ทักมาคุยงบกับเราได้เลย\nน่าอยู่เฮ้าส์ รับสร้างบ้าน\n\nคิดจะสร้างบ้าน คิดถึงน่าอยู่เฮ้าส์\n📞 081-889-9996\n\n#คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์ #น่าอยู่เฮ้าส์ #รับสร้างบ้านอุดรธานี #รถเครน #รถแม็คโคร #รถหกล้อ #งานก่อสร้างครบวงจร",
-                "postedTime": "4/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1495791395905202/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-6",
-                "name": "🏡✨ อัปเดตความคืบหน้างานก่อสร้างล่าสุด! บ้านสวยใจกลางเม...",
-                "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡✨ อัปเดตความคืบหน้างานก่อสร้างล่าสุด! บ้านสวยใจกลางเมืองอุดรธานี\n​อีกหนึ่งผลงานคุณภาพจากทีมงานมืออาชีพ\n\n โครงการ บ้านพักอาศัย 2 ชั้น (คสล.)\n เจ้สของ : คุณวิมล และ คุณตวงพร เทศวานิช \nตั้งอยู่ : ซอยเวียงพิงค์ ต.หมากแข้ง อ.เมืองอุดรธานี \n\n​ตอนนี้งานโครงสร้างและงานมุงหลังคาเดินหน้าไปอย่างประณีต พร้อมกับงานเดินระบบภายในที่ได้มาตรฐานความปลอดภัย ควบคุมงานทุกขั้นตอนอย่างใกล้ชิดโดยทีมงานวิศวกรและสถาปนิกจาก บ.น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด เพื่อให้ได้บ้านที่แข็งแรง ทนทาน และสวยงามตรงใจเจ้าของบ้านที่สุดครับ 👷‍♂️🛠️\n\n​💰 งบประมาณโครงการ: 4.xx ล้านบาท\n📍 พิกัด: ซอยเวียงพิงค์ ต.หมากแข้ง อ.เมืองอุดรธานี\n​💬 \"อยากมีบ้านในฝันบนที่ดินตัวเอง เริ่มต้นจากศูนย์จนถึงวันเข้าอยู่ ให้เราดูแลคุณนะครับ\"\n​สนใจปรึกษาแบบบ้าน / ประเมินราคา / วางแผนงบประมาณ ติดต่อทีมงานน่าอยู่เฮ้าส์ได้เลยครับ!\n​📞 โทร: 081-889-9996\n​💬 Inbox เพจ: น่าอยู่เฮ้าส์ - รับสร้างบ้านอุดรธานี\n​#น่าอยู่เฮ้าส์ #รับสร้างบ้านอุดรธานี #บ้านสองชั้น #บ้านโครงสร้างคสล #สร้างบ้านตามฝัน #บ้านคุณวิมล #น่าอยู่เฮ้าส์คอนสตรัคชั่น #บ้านวิศวะคอนสตรัคชั่น",
-                "postedTime": "4/9/2569",
-                "postUrl": "https://www.facebook.com/Nayoohouse/posts/pfbid02fGsoYQxzvNFF9uyaskS7uNcN2JgmFEDyuJXiKvgcSS23nUwxKN2QBdgQcwZKgVsrl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-7",
-                "name": "หน้างานจะแคบแค่ไหน ก็ไม่ใช่อุปสรรคสำหรับเรา 🏗️",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "หน้างานจะแคบแค่ไหน ก็ไม่ใช่อุปสรรคสำหรับเรา 🏗️\nทีมงานน่าอยู่เฮ้าส์ พร้อมวางแผนและจัดการทุกพื้นที่อย่างมืออาชีพ\n\n📞 081-889-9996\n#น่าอยู่เฮ้าส์รับสร้างบ้าน #รับสร้างบ้านอุดรธานี #หน้างานแคบเราก็ทำได้ #คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์",
-                "postedTime": "25/8/2569",
-                "postUrl": "https://www.facebook.com/reel/1598421945267325/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-03-8",
-                "name": "เราไม่ได้มีเพียงบริการรับสร้างบ้าน แต่ยังมี รถเครน รถแม...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.412,
-                    102.801
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เราไม่ได้มีเพียงบริการรับสร้างบ้าน แต่ยังมี รถเครน รถแม็คโคร และรถหกล้อ พร้อมใช้สนับสนุนงานก่อสร้าง ช่วยให้ทำงานได้สะดวก รวดเร็ว และควบคุมงานได้อย่างมีประสิทธิภาพ\n\nคิดจะสร้างบ้าน คิดถึงน่าอยู่เฮ้าส์\n📞 081-889-9996\n\n#คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์ #น่าอยู่เฮ้าส์ #รับสร้างบ้านอุดรธานี #รถเครน #รถแม็คโคร #รถหกล้อ #งานก่อสร้างครบวงจร",
-                "postedTime": "20/8/2569",
-                "postUrl": "https://www.facebook.com/reel/28705066192419575/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 8 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 8)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 92,
-        "scgCode": "10727085",
-        "sales2025": 0,
-        "sales2026": 161278
-    },
-    {
-        "id": "comp-udon-10",
-        "name": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด",
-        "engName": "TT Design & Construction 1991 Co., Ltd.",
-        "category": "รับเหมาก่อสร้างและงานสถาปัตยกรรม (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "091 686 8536",
-        "contactPerson": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จำกัด",
-        "totalProjects": 7,
-        "newProjectsThisMonth": 7,
-        "totalValueMillion": 38.5,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415562007890",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 5,
-            "finishing": 2
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿3.5M",
-        "coordinates": [
-            17.423,
-            102.815
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/553uWoK43EjVwNZA7",
-        "gmaps": "https://maps.app.goo.gl/553uWoK43EjVwNZA7",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=100057515256596",
-        "facebookSignal": {
-            "postDate": "13/9/2569",
-            "pageName": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด",
-            "caption": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨\nทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น \n\nOwner : คุณโหน่ง\nlocation : อ.เมือง จ.อุดรธานี\n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-10-1",
-                "name": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨\nทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น \n\nOwner : คุณโหน่ง\nlocation : อ.เมือง จ.อุดรธานี\n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
-                "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&id=100057515256596",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-10-2",
-                "name": "เบื้องหลังวันเซ็นสัญญาสร้างบ้าน 🏡",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เบื้องหลังวันเซ็นสัญญาสร้างบ้าน 🏡\n\nก่อนลงนาม เราทบทวนรายละเอียดแบบ ขอบเขตงาน วัสดุ งวดชำระ และระยะเวลาก่อสร้างร่วมกับลูกค้า เพื่อให้ทุกขั้นตอนชัดเจน โปร่งใส และเข้าใจตรงกันตั้งแต่วันแรก\n\n#TTDesignAndConstruction\n#เบื้องหลังวันเซ็นสัญญา\n#รับออกแบบสร้างบ้าน\n#สร้างบ้านอุดรธานี\n#สร้างบ้านหนองคาย\n#สร้างบ้านขอนแก่น\n#สร้างบ้านสกลนคร",
-                "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1548823803227446/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-10-3",
-                "name": "พาอัปเดตบ้านสไตล์ Modern Classic พื้นที่ใช้สอย 365 ตร.ม...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "พาอัปเดตบ้านสไตล์ Modern Classic พื้นที่ใช้สอย 365 ตร.ม. \n\nกับขั้นตอนงานปูกระเบื้องทั้งพื้นบ้านและห้องน้ำ เพราะแนวกระเบื้อง ระดับพื้น และรอยต่อทุกจุด ล้วนส่งผลต่อความสวยงามและการใช้งานในระยะยาว\n\nTT Design & Construction\nใส่ใจทุกขั้นตอน เพื่อคุณภาพที่ตรวจสอบได้ 🏡\n\n#รับสร้างบ้าน #บ้านโมเดิร์นคลาสสิก #งานปูกระเบื้อง #อัปเดตหน้างาน #CEOOnsite #TTDesignAndConstruction",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1440415724648857/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-10-4",
-                "name": "ทีมผู้เชี่ยวชาญจาก SCG",
-                "location": "อ.กุดจับ จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "กุดจับ",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ทีมผู้เชี่ยวชาญจาก SCG \nเข้าแนะนำผลิตภัณฑ์ ปูนเสือ สกิมโคท 🐅\n\nให้ความรู้เกี่ยวกับคุณสมบัติและแนวทางการใช้งานที่ถูกต้องแก่ทีมงาน TT Design & Construction” เพื่อให้ผนังเรียบเนียน ได้คุณภาพ และสวยงามก่อนเข้าสู่งานสี\n\n“ตราเสือ” 🐅 เป็นแบรนด์ผลิตภัณฑ์ภายใต้กลุ่ม SCG อยู่ในกลุ่มธุรกิจ เอสซีจี ซีเมนต์แอนด์กรีนโซลูชันส์\n\nบ้านที่มีคุณภาพ เริ่มต้นจากความรู้ ความเข้าใจ และความใส่ใจในทุกขั้นตอน 👷🏻‍♂️👷🏻‍♂️💯\n\nOwner : คุณสุทิน คุณอิ๋ว\nlocation : อ.กุดจับ จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น #TTDesignAndConstruction #SCGPrestige #มาตรฐานงานหลังคา #สร้างบ้านอุดรธานี #รับสร้างบ้าน #บ้านพรีเมียม",
-                "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid027FRxoSS9DEoiECwfdptbqre2FNwMadCHV8sW8QP39esC1xkkYArpZ4eTQxakykULl&id=100057515256596",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-10-5",
-                "name": "SITE UPDATE | Modern Classic Luxury Residence 800 ตร.ม....",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "SITE UPDATE | Modern Classic Luxury Residence 800 ตร.ม. EP.2\n\nอีกหนึ่งความคืบหน้าของบ้านพักอาศัยสไตล์ Modern Classic Luxury พื้นที่ใช้สอยกว่า 800 ตารางเมตร\n\n#TTDesignAndConstruction #รับสร้างบ้านอุดรธานี #บ้านหรู800ตรม #ModernClassicLuxury #สร้างบ้านอุดรธานี #LuxuryHome #SiteUpdate",
-                "postedTime": "7/9/2569",
-                "postUrl": "https://www.facebook.com/reel/4626604687610763/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-10-6",
-                "name": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design & Construction",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design & Construction \nขอบคุณทาง คู่ยงฮวด สำหรับคำเชิญเข้าร่วมงานเลี้ยงขอบคุณลูกค้าคนสำคัญ บรรยากาศอบอุ่น สนุก และเป็นกันเองมากค่ะ\n\nพิเศษกว่านั้น…ทีมงานของเรายังได้เป็นหนึ่งในผู้โชคดี รับของรางวัลติดมือกลับบ้านด้วย 🎉",
-                "postedTime": "5/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1248233144101707/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-10-7",
-                "name": "อัปเดต: งานบันไดไม้ประดู่แท้ อีกหนึ่งงานเฉพาะทางที่เราอ...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.423,
-                    102.815
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อัปเดต: งานบันไดไม้ประดู่แท้ อีกหนึ่งงานเฉพาะทางที่เราออกแบบและใส่ใจในทุกรายละเอียด ตั้งแต่วัสดุธรรมชาติ งานฝีมือ โทนสี สัดส่วน ไปจนถึงการติดตั้ง\n\nขั้นตอนต้องอาศัยความละเอียด เพื่อให้งานบันไดกลมกลืนกับดีไซน์ของบ้านทั้งหลัง และสะท้อนเอกลักษณ์เฉพาะตัวของเจ้าของบ้านได้อย่างลงตัว\n\nOwner : คุณนวพรรณ\nlocation : อ.เมือง จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
-                "postedTime": "4/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02mqamzuyMDUfMDjXuuQMeatyGiYo3kYPuA3pT1aTzjDGWJrDkcq3UBYwe1hqR87EFl&id=100057515256596",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 7 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 5)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 92,
-        "scgCode": "10482913",
-        "sales2025": 1570146.44,
-        "sales2026": 3396188.25
-    },
-    {
-        "id": "comp-udon-09",
-        "name": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
-        "engName": "Suksakon Development Co., Ltd. (NASIT HOME)",
-        "category": "รับสร้างบ้านและออกแบบบ้านคุณภาพ (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "080 598 9223",
-        "contactPerson": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จำกัด NASIT HOME",
-        "totalProjects": 7,
-        "newProjectsThisMonth": 7,
-        "totalValueMillion": 38.5,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415563006789",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 5,
-            "finishing": 2
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿3.5M",
-        "coordinates": [
-            17.415,
-            102.805
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9",
-        "gmaps": "https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9",
-        "facebookUrl": "https://www.facebook.com/nasithouseanddesign",
-        "facebookSignal": {
-            "postDate": "15/9/2569",
-            "pageName": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
-            "caption": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ\n\nอัปเดตหน้างาน อ.กุมภวาปี จ.อุดรธานี\nบ้านพักอาศัยพื้นที่ใช้สอยกว่า 500 ตร.ม. พร้อมโรงจอดรถ สระว่ายน้ำ อาคารประกอบ และงานรั้วรอบโครงการ\n\nปัจจุบันงานฝ้าเพดานแล้วเสร็จเรียบร้อย และกำลังเตรียมเข้าสู่ งานสกิมผิวและงานสีภายใน 🎨\n\nวันนี้ทีม SCG เข้ามาสาธิตการใช้งาน ปูนสกิมเสือ ถึงหน้างานจริง ให้กับทีมช่าง ทีมควบคุมงาน และผู้บริหารของ NASIT HOME\n\nตั้งแต่การเตรียมวัสดุ การผสม การลงปูนสกิม ไปจนถึงเทคนิคการทำงาน เพื่อให้ทีมของเราเข้าใจวิธีใช้งานอย่างถูกต้อง และนำไปปรับใช้กับงานจริงได้อย่างมีประสิทธิภาพ\n\nเพราะเราเชื่อว่า วัสดุที่ดี ต้องมาพร้อมกับวิธีการทำงานที่ถูกต้อง\nการพัฒนาฝีมือและอัปเดตความรู้ให้กับทีมช่างอย่างต่อเนื่อง จึงเป็นอีกหนึ่งสิ่งที่เราให้ความสำคัญในทุกหน้างาน 💪🏻\n\nเพื่อให้บ้านทุกหลังไม่ได้มีเพียงความสวยงาม แต่มีคุณภาพและมาตรฐานอยู่ในทุกรายละเอียด\n\nNASIT HOME\n🏠 “สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ”\n\n#NASITHOME #นานาสิทธิ์โฮม #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดร #อัปเดตหน้างาน #SCG #ปูนสกิมเสือ #งานสกิมผิว #งานก่อสร้าง #บ้านคุณภาพ",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-09-1",
-                "name": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ",
-                "location": "อ.กุมภวาปี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "กุมภวาปี",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ\n\nอัปเดตหน้างาน อ.กุมภวาปี จ.อุดรธานี\nบ้านพักอาศัยพื้นที่ใช้สอยกว่า 500 ตร.ม. พร้อมโรงจอดรถ สระว่ายน้ำ อาคารประกอบ และงานรั้วรอบโครงการ\n\nปัจจุบันงานฝ้าเพดานแล้วเสร็จเรียบร้อย และกำลังเตรียมเข้าสู่ งานสกิมผิวและงานสีภายใน 🎨\n\nวันนี้ทีม SCG เข้ามาสาธิตการใช้งาน ปูนสกิมเสือ ถึงหน้างานจริง ให้กับทีมช่าง ทีมควบคุมงาน และผู้บริหารของ NASIT HOME\n\nตั้งแต่การเตรียมวัสดุ การผสม การลงปูนสกิม ไปจนถึงเทคนิคการทำงาน เพื่อให้ทีมของเราเข้าใจวิธีใช้งานอย่างถูกต้อง และนำไปปรับใช้กับงานจริงได้อย่างมีประสิทธิภาพ\n\nเพราะเราเชื่อว่า วัสดุที่ดี ต้องมาพร้อมกับวิธีการทำงานที่ถูกต้อง\nการพัฒนาฝีมือและอัปเดตความรู้ให้กับทีมช่างอย่างต่อเนื่อง จึงเป็นอีกหนึ่งสิ่งที่เราให้ความสำคัญในทุกหน้างาน 💪🏻\n\nเพื่อให้บ้านทุกหลังไม่ได้มีเพียงความสวยงาม แต่มีคุณภาพและมาตรฐานอยู่ในทุกรายละเอียด\n\nNASIT HOME\n🏠 “สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ”\n\n#NASITHOME #นานาสิทธิ์โฮม #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดร #อัปเดตหน้างาน #SCG #ปูนสกิมเสือ #งานสกิมผิว #งานก่อสร้าง #บ้านคุณภาพ",
-                "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0gEuJPc3Yc4ThAQeewzqssVfmuq1JgDZ9NM4s2VLgPXN2Xh3b8Zd1PBxyN8wp19abl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-09-2",
-                "name": "บ้านชั้นเดียวที่พอดีกับการใช้ชีวิต ในพื้นที่ร้อยตารางเม...",
-                "location": "อ.สร้างคอม จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "สร้างคอม",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "บ้านชั้นเดียวที่พอดีกับการใช้ชีวิต ในพื้นที่ร้อยตารางเมตรนิด ๆ 🏡\n\nความน่าอยู่ของบ้าน อาจไม่ได้เริ่มต้นจากพื้นที่ที่กว้างที่สุด แต่อยู่ที่การจัดวางพื้นที่ให้พอดีกับชีวิตของคนในบ้าน\n\nบ้านชั้นเดียวหลังนี้จึงถูกออกแบบบนพื้นที่ใช้สอย 100 ตารางเมตรนิด ๆ แต่บรรจุฟังก์ชันสำหรับครอบครัวไว้อย่างครบถ้วน ทั้ง 3 ห้องนอน 2 ห้องน้ำ ห้องครัว พื้นที่ซักล้าง และโถงรับแขกขนาดใหญ่ ที่ทำหน้าที่เป็นพื้นที่กลางของบ้าน\n\nหน้าบ้านเปิดออกสู่ เฉลียงสำหรับนั่งเล่น เชื่อมพื้นที่ภายในกับสวนและบรรยากาศรอบบ้าน ผ่านประตูและช่องเปิดกระจกขนาดใหญ่ ช่วยให้บ้านขนาดกะทัดรัดรู้สึกโปร่งและสบายขึ้น\n\nรูปทรงภายนอกเลือกความเรียบง่ายของบ้านร่วมสมัย ใช้ สีขาวและเทาอ่อน เป็นพื้น ตัดด้วยกรอบสีเข้ม และแทรก ผิวสัมผัสลายไม้ บริเวณทางเข้า เติมความอบอุ่นให้กับองค์ประกอบที่ดูโมเดิร์น\n\nไม่มีรายละเอียดใดจำเป็นต้องโดดเด่นเกินกัน\nแต่ค่อย ๆ ทำหน้าที่ประกอบกันเป็นบ้านที่เรียบ สบายตา และสะท้อนความชอบของเจ้าของบ้าน\n\nพื้นที่ไม่ต้องมากเกินความจำเป็น\nเพียงออกแบบให้ทุกตารางเมตรมีความหมาย\nก็กลายเป็นบ้านที่พอดีกับครอบครัวได้\n\nอีกหนึ่งโปรเจกต์จาก NASIT HOME\nบ้านร้อยตารางเมตรนิด ๆ กับฟังก์ชันที่ครบ และงบประมาณที่จับต้องได้\n\n📍 อำเภอสร้างคอม จังหวัดอุดรธานี\nจากภาพออกแบบวันนี้ สู่บ้านจริงในอีกไม่นาน\nติดตามชมการก่อสร้างบ้านหลังนี้ไปพร้อมกัน 🏡\n\nNASIT HOME | รับสร้างบ้านอุดรธานี\n“สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ”\n\n#NASITHOME #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #บ้านชั้นเดียว #ออกแบบบ้าน",
-                "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0gXimLpGqaFqXhtKyvM36aT77xTxjHqKaqoXob74JZu19DJZ1fBFJwzK1VfyP7Txol",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-09-3",
-                "name": "Update งานฝ้า | แล้วเสร็จ 100% ✨",
-                "location": "อ.กุมภวาปี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "กุมภวาปี",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Update งานฝ้า | แล้วเสร็จ 100% ✨\nบ้านคุณเฌอลิชา อ.กุมภวาปี จ.อุดรธานี\n\nอีกหนึ่งรายละเอียดของบ้านที่เราให้ความสำคัญ เพราะ “ฝ้าเพดาน” ไม่ได้มีหน้าที่เพียงปิดงานระบบ แต่ยังเป็นองค์ประกอบสำคัญที่ช่วยสร้างมิติและบรรยากาศให้กับบ้าน\n\n🏡 ฝ้าภายใน\nออกแบบเป็นฝ้าหลุม เพิ่มมิติให้พื้นที่ พร้อมตกแต่งด้วย คิ้วบัวไม้จริง งานฝีมือจากช่างไม้ที่เก็บรายละเอียดอย่างประณีต ทำให้งานฝ้ามีความอบอุ่น สวยงาม และมีเอกลักษณ์\n\n🌿 ฝ้าภายนอก\nเลือกใช้ดีไซน์ ฝ้าระแนงเซาะร่อง ช่วยเพิ่มเส้นสายและรายละเอียดทางสถาปัตยกรรม ให้ตัวบ้านดูเรียบร้อยและมีมิติมากขึ้น\n\nเพราะบ้านที่สวย ไม่ได้เกิดจากภาพรวมเพียงอย่างเดียว\nแต่เกิดจาก ความใส่ใจในทุก Detail ตั้งแต่งานโครงสร้าง…จนถึงงานตกแต่งชิ้นเล็ก ๆ\n\nNASIT HOME\nสร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ\nYour trust is our commitment.\n\n#NasitHome #รับสร้างบ้านอุดรธานี #รับสร้างบ้านกุมภวาปี #งานฝ้าเพดาน #ฝ้าหลุม #งานไม้จริง #งานฝีมือช่าง #สร้างบ้านอุดรธานี #บ้านสวยด้วยรายละเอียด",
-                "postedTime": "14/9/2569",
-                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid09vWZrT4GvpXxe1zjYVfNt57kJRtrK7t4JtuKHaGg4cE3cCCfbuSCf3PZts2sn1phl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-09-4",
-                "name": "🏠 “ราคาถูกแค่ไหน…ก็ไม่มีความหมาย ถ้าสุดท้ายบ้านคุณสร้า...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏠 “ราคาถูกแค่ไหน…ก็ไม่มีความหมาย ถ้าสุดท้ายบ้านคุณสร้างไม่เสร็จ”\n\nก่อนสร้างบ้าน หลายคนเริ่มต้นด้วยคำถามว่า\n“ที่ไหนราคาถูกที่สุด?”\n\nแต่สิ่งที่ควรถามให้มากกว่านั้นคือ\n“บริษัทนี้มีศักยภาพพอที่จะพาบ้านของเราไปจนถึงวันส่งมอบหรือไม่?”\n\nเพราะการสร้างบ้านไม่ใช่แค่การเสนอราคาต่อตารางเมตรให้ถูก\nแต่คือการบริหาร เงิน คน วัสดุ เวลา และปัญหาหน้างาน ตลอดหลายเดือนจนบ้านเสร็จจริง\n\nราคาที่ถูกกว่าวันเซ็นสัญญา\nอาจไม่ใช่ราคาที่ “คุ้มกว่า” ในวันสุดท้าย\n\nก่อนตัดสินใจเลือกผู้รับสร้างบ้าน ลองดูให้ลึกกว่าแค่ตัวเลข\nดูผลงานจริง ดูหน้างานจริง ดูทีมงาน ดูระบบการทำงาน\nและที่สำคัญ ดูความน่าเชื่อถือและความรับผิดชอบของบริษัท\n\nเพราะบ้านหนึ่งหลังคือเงินก้อนใหญ่และความฝันของทั้งครอบครัว ❤️\n\nเลือกบริษัทที่ไม่ได้แค่รับปากว่าจะสร้าง\nแต่มีศักยภาพที่จะ “สร้างจบจริง”\n\n🎥 CEO Onsite | สาระเล็ก ๆ ก่อนสร้างบ้าน\nNASIT HOME\nสร้างบ้านสวยด้วยมาตรฐานที่คุณวางใจ\nจริง | ตรง | แท้\n\n#NasitHome #รับสร้างบ้านอุดรธานี #สร้างบ้าน #บริษัทรับสร้างบ้าน #สร้างบ้านอย่างไรไม่ให้โดนทิ้งงาน #CEOOnsite #สร้างบ้านให้จบจริง",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1081037570972009/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-09-5",
-                "name": "🚗 กลับถึงบ้าน ไม่ต้องลงจากรถ…แค่กด ประตูก็เปิดให้เลย",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🚗 กลับถึงบ้าน ไม่ต้องลงจากรถ…แค่กด ประตูก็เปิดให้เลย\n\nพามาดูอีกหนึ่งดีเทลของ บ้านคุณบุญโย กับงานติดตั้ง ประตูที่จอดรถระบบอัตโนมัติ ✨\n\nประตูจุดนี้ไม่ได้มีหน้าที่แค่เปิด–ปิดพื้นที่จอดรถ แต่เป็นอีกหนึ่งองค์ประกอบที่ช่วยเติมทั้ง ความสะดวก ความเป็นส่วนตัว และความพรีเมียม ให้กับบ้าน\n\nตัวประตูเลือกดีไซน์ให้เข้ากับภาพรวมของตัวบ้าน ดูเรียบ หรู และเป็นสัดส่วน พร้อมระบบอัตโนมัติที่ช่วยให้การเข้า–ออกบ้านง่ายขึ้นในทุกวัน\n\nลองนึกภาพเวลาขับรถกลับถึงบ้าน\nไม่ว่าจะเป็นช่วงฝนตก แดดร้อน หรือมีของเต็มมือ เพียงกดเปิดจากภายในรถ ก็สามารถเข้าจอดได้สะดวกขึ้น โดยไม่ต้องลงมาเปิดประตูเอง\n\nสำหรับ NASIT HOME เรามองว่า รายละเอียดเล็ก ๆ คือสิ่งที่ทำให้บ้านหนึ่งหลังแตกต่างกัน\n\nตั้งแต่การออกแบบตำแหน่งประตู ขนาดช่องเปิด การใช้งานร่วมกับพื้นที่จอดรถ ไปจนถึงระบบที่เลือกใช้ ทุกอย่างต้องทำงานร่วมกันและเหมาะกับการใช้ชีวิตของเจ้าของบ้านจริง ๆ\n\nตอนนี้บ้านคุณบุญโยกำลังค่อย ๆ เติมรายละเอียดให้สมบูรณ์ขึ้นอีกขั้น\nและอีกไม่นานก็จะได้เห็นภาพบ้านที่พร้อมสำหรับการใช้ชีวิตจริงแล้วค่ะ 💙\n\nNASIT HOME สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ\n\n📍 รับสร้างบ้านอุดรธานี\n\n#NASITHOME #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #บ้านคุณบุญโย #อัปเดตหน้างาน #ประตูอัตโนมัติ #ประตูที่จอดรถ #บ้านสไตล์พรีเมียม #LuxuryHome #สร้างบ้านที่สะท้อนตัวตน",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid02QYJo6YAYRv4XwtiGQeBdTF4xmTfeyqGuWuExJe7k7mDqTy68h4CoBLgrX3iTcassl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-09-6",
-                "name": "อัปเดตความรู้ใหม่ให้ทีมช่าง 🧱",
-                "location": "อ.ศรีธาตุ จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ศรีธาตุ",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อัปเดตความรู้ใหม่ให้ทีมช่าง 🧱\n\nวันนี้ทีม SCG เข้ามาให้ความรู้และสาธิตการใช้งานจริง\nเสือ มอร์ตาร์ ปูนซีเมนต์สำเร็จรูป จับเซี้ยม สูตร XPERT\nให้กับวิศวกรและทีมช่าง NASIT HOME ณ หน้างาน อ.ศรีธาตุ จ.อุดรธานี\n\nจุดเด่นคือ ผสมน้ำและใช้งานได้ทันที โดยไม่ต้องผสมทรายเพิ่ม\nช่วยลดขั้นตอนการเตรียมวัสดุ ทำงานได้สะดวกและรวดเร็วขึ้น\nพร้อมช่วยให้ทีมช่างควบคุมสัดส่วนและคุณภาพของงานได้ง่ายขึ้น\n\nการสาธิตครั้งนี้จึงไม่ใช่แค่การแนะนำผลิตภัณฑ์\nแต่เป็นการ อัปเดตวิธีการทำงานและเพิ่มความรู้ให้ทีมช่าง\nเพื่อให้สามารถนำไปใช้กับงานก่อสร้างได้อย่างถูกต้องและมีประสิทธิภาพ\n\nเรียนรู้ พัฒนา และนำไปใช้จริง เพื่อคุณภาพงานก่อสร้างที่ดีขึ้น\n\n#NASITHOME #SCG #อัปเดตความรู้ใหม่ #เสือมอร์ตาร์ #ปูนสำเร็จรูป #ปูนจับเซี้ยม #ทีมช่าง #SiteUpdate #สร้างบ้านอุดรธานี",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0XSfyvjvVGGfHtGABKRzeyqe1SR5X1xoueZVihrw1gdhj2FGkDAubrtkDmerBaUDHl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-09-7",
-                "name": "เสร็จ • สำเร็จ • คุณภาพ",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.415,
-                    102.805
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เสร็จ • สำเร็จ • คุณภาพ\n\nMONTHLY MEETING | SEPTEMBER 2026\n\nอีกหนึ่งเดือนของการทำงานที่เราไม่ได้มองเพียงแค่ “งานเสร็จ”\nแต่ให้ความสำคัญกับทุกขั้นตอน เพื่อให้งานที่ส่งมอบออกมา สำเร็จอย่างมีคุณภาพ\n\nการประชุมประจำเดือนของทีม NASIT HOME\nคือช่วงเวลาสำคัญในการทบทวนผลงานที่ผ่านมา\nติดตามความคืบหน้าของแต่ละโครงการ\nวางแผนการทำงานในเดือนถัดไป\nรวมถึงร่วมกันหาแนวทางพัฒนาและแก้ไขปัญหาที่เกิดขึ้นจากหน้างานจริง\n\nเพราะคุณภาพของบ้านหนึ่งหลัง\nไม่ได้เกิดขึ้นจากคนใดคนหนึ่ง\nแต่เกิดจาก การทำงานร่วมกันของทุกทีม\n\nเราจึงเดินหน้าด้วย 3 คำสำคัญ\n\nเสร็จ — งานต้องเป็นไปตามแผน\nสำเร็จ — ทุกขั้นตอนต้องบรรลุเป้าหมาย\nคุณภาพ — ผลงานต้องสร้างความมั่นใจให้กับเจ้าของบ้าน\n\nNASIT HOME\nสร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ\n\n#NASITHOME #ณาศิศโฮม #รับสร้างบ้านอุดรธานี #บริษัทรับสร้างบ้าน #สร้างบ้าน #บ้านสวย #บ้านคุณภาพ",
-                "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0mKzFHyhVDtqLR1r4A8UzpT4DDxKjtfc5xkvro5vhc3zAnrnExNrLV37g7gbLhyygl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 7 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 5)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 92,
-        "scgCode": "10503273",
-        "sales2025": 677870.3,
-        "sales2026": 2338879
     },
     {
         "id": "comp-udon-50",
@@ -1630,9 +306,9 @@
         "address": "447 หมู่ที่ 7 ตําบลหมูม่น อําเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000",
         "phone": "064 271 6343",
         "contactPerson": "บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จำกัด",
-        "totalProjects": 7,
-        "newProjectsThisMonth": 7,
-        "totalValueMillion": 38.5,
+        "totalProjects": 6,
+        "newProjectsThisMonth": 6,
+        "totalValueMillion": 33,
         "growthRate": 40,
         "areaExpansion": "เมืองอุดรธานี",
         "verificationStatus": {
@@ -1644,11 +320,11 @@
         "stageBreakdown": {
             "groundbreak": 0,
             "foundation": 1,
-            "structure": 6,
+            "structure": 5,
             "finishing": 0
         },
         "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿3.5M",
+        "revenuePotentialText": "฿3.0M",
         "coordinates": [
             17.458,
             102.783
@@ -1872,313 +548,16 @@
                         "urgency": "เตรียมสั่งซื้อ"
                     }
                 ]
-            },
-            {
-                "projectId": "comp-udon-50-7",
-                "name": "บ้านที่ใช่ ไม่จำเป็นต้องใหญ่ที่สุด",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.458,
-                    102.783
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "บ้านที่ใช่ ไม่จำเป็นต้องใหญ่ที่สุด\nแต่ต้อง “ลงตัวที่สุด” สำหรับคนอยู่\n\nพาชมบ้าน : Contemporary style ครบทั้งพื้นที่พักผ่อน พื้นที่ใช้งาน \n\n#รับสร้างบ้านครบวงจร\n#รับสร้างบ้านภาคอีสาน\n#รับสร้างบ้านอุดรธานี\n#รับสร้างบ้านหนองคาย\n#รับสร้างบ้านขอนแก่น\n#รับสร้างบ้านหนองบัวลำภู\n#รับสร้างบ้านสกลนคร\n#รับสร้างบ้านมหาสารคาม",
-                "postedTime": "27/5/2569",
-                "postUrl": "https://www.facebook.com/reel/1805049314193931/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
             }
         ],
-        "aiShortRec": "พบ 7 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 1, โครงสร้าง: 6)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 92,
-        "scgCode": "10484743",
-        "sales2025": 151787.5,
-        "sales2026": 189440
-    },
-    {
-        "id": "comp-udon-44",
-        "name": "ห้างหุ้นส่วนจํากัด จีรนันท์ พร็อพเพอร์ตี้",
-        "engName": "CT Construction Udon Thani",
-        "category": "รับเหมาก่อสร้างและต่อเติมบ้าน (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "091 546 5189",
-        "contactPerson": "ห้างหุ้นส่วนจำกัด จีรนันท์ พร็อพเพอร์ตี้",
-        "totalProjects": 6,
-        "newProjectsThisMonth": 6,
-        "totalValueMillion": 33,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415563040123",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 6,
-            "finishing": 0
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿3.0M",
-        "coordinates": [
-            17.4185,
-            102.8065
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/sHQRySpumVDgvr1s8",
-        "gmaps": "https://maps.app.goo.gl/sHQRySpumVDgvr1s8",
-        "facebookUrl": "https://www.facebook.com/JoylyYothakaree",
-        "facebookSignal": {
-            "postDate": "4/9/2569",
-            "pageName": "ห้างหุ้นส่วนจํากัด จีรนันท์ พร็อพเพอร์ตี้",
-            "caption": "Update :  งานปั๊ม พีที สาขาหนองหาน บ้านปูลู❣️\nหน้างานในส่วนของโครงหัวจ่าย : ยกโครงหลังคาเสร็จเรียบร้อย โดยใช้เครน 2 ตัวในการยกโครง \nและสำเร็จไปได้ด้วยดีอีก 1 ขั้นตอน❤️❤️😊\n\n✅️สอบถามราคา ปรึกษาเรื่องก่อสร้างได้ทุกประเภท \n☎️064-9959169 คุณบอย\n\n#รับสร้างบ้านอุดร #รับสร้างบ้านภาคอีสาน #กำแพฝกันดิน #กำแพงคอนกรีตสำเร็จรูป #ช่าง #ช่างก่อสร้าง",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-44-1",
-                "name": "Update :  งานปั๊ม พีที สาขาหนองหาน บ้านปูลู❣️",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.4185,
-                    102.8065
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Update :  งานปั๊ม พีที สาขาหนองหาน บ้านปูลู❣️\nหน้างานในส่วนของโครงหัวจ่าย : ยกโครงหลังคาเสร็จเรียบร้อย โดยใช้เครน 2 ตัวในการยกโครง \nและสำเร็จไปได้ด้วยดีอีก 1 ขั้นตอน❤️❤️😊\n\n✅️สอบถามราคา ปรึกษาเรื่องก่อสร้างได้ทุกประเภท \n☎️064-9959169 คุณบอย\n\n#รับสร้างบ้านอุดร #รับสร้างบ้านภาคอีสาน #กำแพฝกันดิน #กำแพงคอนกรีตสำเร็จรูป #ช่าง #ช่างก่อสร้าง",
-                "postedTime": "4/9/2569",
-                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid0mRLfvNxePc8j7czZ5sqCBNcGbBUBpREEb4JBLpc1W3HmTHskRsU5oYpQKjJGV5Z7l",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-44-2",
-                "name": "ลงหน้างานใหม่ @อเมซอน ปั๊ม ปตท.หนองหาน 📍",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.4185,
-                    102.8065
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ลงหน้างานใหม่ @อเมซอน ปั๊ม ปตท.หนองหาน 📍\nรื้องานเก่า ปรับเปลี่ยนโฉมใหม่ ❤️✅️\nรอชมได้เลยนะคร้า😊❤️",
-                "postedTime": "28/8/2569",
-                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid027vXbqzdTZqnRgVRt7yCQkJBr1anFd469jXzsJfMgqzrZkvexNPUfoJAJP4s3hns2l",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-44-3",
-                "name": "UPDATE หน้าบ้านคุณ ชนิกา (พี่เรียม)🏘",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.4185,
-                    102.8065
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "UPDATE หน้าบ้านคุณ ชนิกา (พี่เรียม)🏘\nสถานที่ก่อสร้าง : รีสอร์ทโมอาย อ.หนองหาน จ.อุดรธานี\n\nสถาณะหน้างาน ตอนนี้  ทีมช่างไฟเข้าหน้างาน ทะยอยติดตั้งหลอดไฟ ปลํ๊กไฟ โคมไฟ🎊 \n\nสนใจสอบถาม ประเมิณราคาตามแบบที่ลูกค้ามี หรือ ออกแบบบ้านให้ใหม่ก็ได้นะคะ\nโทร 064-9959169",
-                "postedTime": "15/8/2569",
-                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid07nLd3FZdD5nuv4rb7AJcsag1BapWQzyq5GMgeDFTp7N8djeC6Bks3Qa8W8JkxTmVl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-44-4",
-                "name": "ลงหน้างานใหม่ 🎊🎊",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.4185,
-                    102.8065
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ลงหน้างานใหม่ 🎊🎊\nโครงการ : ก่อสร้าง ปั๊มน้ำมัน  PT สาขาหนองหาน \nเจ้าของโครงการ : ห้างหุ้นส่วนจำกัด ดรากอนแอร์ ปิโตรเลียม\nสถานที่ก่อสร้าง : ถ.นิตโย บ้านปูลู ต.บ้านเชียง อ.หนองหาน จ.อุดรธานี  \n\n✅⛪ทีมงานลงหน้างาน ทดสอบเจาะสำรวจชั้นดิน  และการรับน้ำหนักของชั้นดิน\n🙏ขอบพระคุณผู้ใหญ่ใจดี ที่ให้ความไว้วางใจ เชื่อใจ ในทีมงานของเรานะคะ🙏♥ \n\nงานเล็กงานใหญ่เรารับหมดนะคะ สนใจสอบถามปรึกษาเข้ามาได้\n โทร 064-9959169 (คุณบอย)\nLine : ส่งข้อความและโทรฟรีด้วย LINE กันเถอะ\nhttps://line.me/ti/p/BbgfB5377Q\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีต #กำแพงคอนกรีตสำเร็จ #สร้างบ้านภาคอีสาน #สร้างบ้านครบวงจร #งานรั้วบ้าน #สร้างบ้าน #งานสร้างบ้าน",
-                "postedTime": "6/7/2569",
-                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid02txchCe269fWeVmDovbnuAuk9ABshu4Y8KWH1Ym3dpYU2o8d4xiRruj7PQ2WUEZxcl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-44-5",
-                "name": "Update  บ้านเดี่ยว 1 ชั้น 3 ห้องนอน 2 ห้องน้ำ",
-                "location": "อ.ทุ่งฝน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ทุ่งฝน",
-                "gps": [
-                    17.4185,
-                    102.8065
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Update  บ้านเดี่ยว 1 ชั้น 3 ห้องนอน 2 ห้องน้ำ\nเจ้าของโครงการ : คุณทองวัน\nสถานที่ก่อสร้าง :  อ.ทุ่งฝน  จ.อุดรธานี\n\n✅หน้างานอยู่ในขั้นตอนขึ้นโครงหลังคา มุงหลังคาเรียบร้อย ทีมงานก่อผนังลงหน้างานแล้ว\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีตสำเร็จ #กำแพงคอนกรีต #สร้างบ้านภาคอีสาน #สร้างบ้านครบวงจร #งานรั้วบ้าน #สร้างบ้าน #งานสร้างบ้าน  #ทุ่งฝน #สร้างบ้านทุ่งฝน",
-                "postedTime": "12/6/2569",
-                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid02bC7Hd2hcDUVEqeYssNQaDKrNhbK2UMFTnAhnc5yHGir1FwisiMstpYzeamtZSCHNl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-44-6",
-                "name": "UPdate  บ้านเดี่ยว 1 ชั้น",
-                "location": "อ.ไชยวาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ไชยวาน",
-                "gps": [
-                    17.4185,
-                    102.8065
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "UPdate  บ้านเดี่ยว 1 ชั้น\nเจ้าของโครงการ  : คุณขันติ\nสถานที่ก่อสร้าง : อ.ไชยวาน จ.อุดรธานี\n\nหน้างานอยู่ในขั้นตอน งานโครงสร้าง กำลังขึ้นงานโครงหลังคา\n\n #กำแพงกันดิน #กำแพงกั้นดิน #สร้างบ้านลูกค้าเหมือนบ้านของเราเอง #สร้างบ้านตามงบประมาณ #สร้างบ้านใหม่ #สร้างบ้านอุดรธานี #กำแพงคอนกรีตสำเร็จ #กำแพงคอนกรีต #สร้างบ้านภาคอีสาน #งานรั้วบ้าน #สร้างบ้านครบวงจร #สร้างบ้าน #งานสร้างบ้าน  #ไชยวาน #สร้างบ้านไชยวาน",
-                "postedTime": "11/6/2569",
-                "postUrl": "https://www.facebook.com/JoylyYothakaree/posts/pfbid02KTfAHjtbgwK1o548mYck1WbMbrhGrYbxEarBG99NZvPnP23fa3dgCgkA37XGfwgRl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 6)",
+        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 1, โครงสร้าง: 5)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
         "opportunityScore": 80,
-        "scgCode": "10349378",
-        "sales2025": 31873,
-        "sales2026": 181379
+        "scgCode": "10484743",
+        "sales2025": 151787.5,
+        "sales2026": 189440
     },
     {
         "id": "comp-udon-20",
@@ -2204,8 +583,8 @@
         "stageBreakdown": {
             "groundbreak": 0,
             "foundation": 1,
-            "structure": 5,
-            "finishing": 0
+            "structure": 4,
+            "finishing": 1
         },
         "latestTimelineStage": "groundbreak",
         "revenuePotentialText": "฿3.0M",
@@ -2265,40 +644,6 @@
             },
             {
                 "projectId": "comp-udon-20-2",
-                "name": "งานโครงสร้างต้องได้มาตรฐาน 💯💯",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.417,
-                    102.81
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานโครงสร้างต้องได้มาตรฐาน 💯💯\nแต่ต้องคง concept สวยงาม ใช้งานได้จริง ถูกต้อง ถูกใจ จ้า 👍👍 \nทีมงานพร้อมจัดให้ 😊😊\nรอชม และฝากติดตามผลงานนะคะ \nทีมงานเคพีโฮม รับสร้างบ้านและบิวท์อิน  🏠\n☎️📌☎️📌☎️ คุณชัยธวัช  \n086-0539306,0952164459 🤙🤙",
-                "postedTime": "5/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid031uVUw3bb4rFjFWewBnMyXMQQL4obSWMj6f92qnAJtEshoBpHXdzanspAqMQvibKUl&id=100066713327564",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-20-3",
                 "name": "😊😊งานเล็ก งานใหญ่ เราทำได้ ขอเพียงลูกค้าติดต่อเรา 😊\ud83d...",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -2332,7 +677,7 @@
                 ]
             },
             {
-                "projectId": "comp-udon-20-4",
+                "projectId": "comp-udon-20-3",
                 "name": "ว่าแต่ตั้งแบบ 🌧 กะมาหาโลด",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -2366,7 +711,7 @@
                 ]
             },
             {
-                "projectId": "comp-udon-20-5",
+                "projectId": "comp-udon-20-4",
                 "name": "💞💞   วันดีดี อีกวัน   💞💞",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -2400,7 +745,7 @@
                 ]
             },
             {
-                "projectId": "comp-udon-20-6",
+                "projectId": "comp-udon-20-5",
                 "name": "วันนี้ท้องฟ้าเป็นใจ เข้าหน้างานใหม่อีกหลัง🏠",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -2432,9 +777,43 @@
                         "urgency": "เตรียมสั่งซื้อ"
                     }
                 ]
+            },
+            {
+                "projectId": "comp-udon-20-6",
+                "name": "Up Date 🏠🏠🎉🎉",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.417,
+                    102.81
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "Up Date 🏠🏠🎉🎉\nโครงการหมู่บ้านศุภาลัยเลคแอนด์พาร์ค อุดรธานี ( บ้านแฝด )\nเจ้าของบ้าน คุณมะนาว🤷‍♀️🤷‍♀️\n#งานต่อเติมโรงจอดรถมุงหลังคาเมทัลชีท pu บลูสโคป โชว์โครง 🎀\n#งานต่อเติมติดตั้งระแนงบังตาพร้อมงานปูกระเบื้อง เพิ่มพื้นที่ใช้งาน🎀\n#งานเคาร์เตอร์ครัวปูน ตัว แอล ตกแต่งท๊อปและติดตั้งบานตู้สำเร็จ🎀\n#เมื่อเจ้าของบ้านอยู่ต่างจังหวัด เลือกไว้ใจในทีมงานเรา ไม่ผิดหวัง 🤟🤟\n# ลูกค้าสามารถติดต่อสอบถามคิวงาน รายละเอียด ได้ที่ ☎️☎️\n086-0539306,095-2164459 คุณชัยธวัช🙋‍♂️\nติดตามเพจได้ที่ 👇👇\nhttps://www.facebook.com/share/1YXY7AnCvr/",
+                "postedTime": "18/8/2569",
+                "postUrl": "https://www.facebook.com/reel/1049505434347852/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
             }
         ],
-        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 1, โครงสร้าง: 5)",
+        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 1, โครงสร้าง: 4)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
@@ -2465,10 +844,10 @@
             "permitStatus": "TSIC 41001"
         },
         "stageBreakdown": {
-            "groundbreak": 1,
+            "groundbreak": 2,
             "foundation": 0,
-            "structure": 2,
-            "finishing": 2
+            "structure": 0,
+            "finishing": 3
         },
         "latestTimelineStage": "groundbreak",
         "revenuePotentialText": "฿2.5M",
@@ -2482,7 +861,7 @@
         "facebookSignal": {
             "postDate": "10/9/2569",
             "pageName": "บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จํากัด BAANYAI(2016)",
-            "caption": "เติบโตต่อไปนะครับทุกท่าน 🙏☺️🙏☺️\n#BAANYAITEAM",
+            "caption": "ᯓ★....การฝึกงานอาจจะจบลง แต่มิตรภาพและความทรงจำดีๆ ยังอยู่เสมอ โชคดีกับการทำงานในอนาคตนะเด็กๆ ประสบการณ์ที่หาจากที่ไหนไม่ได้ เก็บเกี่ยวจากบ้านใหญ่ได้ไม่มากก็น้อย....★ᯓ \nขอให้น้องๆเดินทางไปหาฝันที่ตัวเองคิดไว้  #ไว้พบกันใหม่\n⸻\n.\nFor more information\n- Facebook page : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\n- Instagram : @baanyai_2016\n- Tiktok : Baanyai-2016\n- https://line.me/ti/p/I-2fN6CdQY\n- 098-5858741 K.BIG\n- 090-5849379 K.KAM\n⸻\n.\n#บ้านที่ดีไม่ใช่ใครก็สร้างได้\n#baanyai2016รับสร้างบ้าน \n#BAANYAI2016รับสร้างบ้าน\n#สร้างบ้านใกล้ฉัน\n#BAANYAILUXURYHOMEBUILDER\n#baanyai2016รับสร้างบ้าน\n#รับสร้างบ้านอุดรธานี\n#ตกแต่งภายใน\n#รับออกแบบบ้าน #รับสร้างบ้าน #รับสร้างบ้านหรู\n#อาคารพาณิชย์\n#บริการขอนแก่นอุดรธานีหนองคายหนองบัวลำภู\n#รับสร้างบ้านขอนแก่น \n#BAANYAI2016รับสร้างบ้าน\n#รับสร้างบ้านหนองบัวลำภู\n#รับสร้างบ้านหนองคาย\n@แฟนตัวยง",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -2494,40 +873,6 @@
         "projects": [
             {
                 "projectId": "comp-udon-31-1",
-                "name": "เติบโตต่อไปนะครับทุกท่าน 🙏☺️🙏☺️",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4175,
-                    102.7935
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เติบโตต่อไปนะครับทุกท่าน 🙏☺️🙏☺️\n#BAANYAITEAM",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid0ACnMteWhFjv7MNDs9ngADA9F4k5X4yfsgxPtzgF4UxQ27BSQiT4jfmAUR5gattfRl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-31-2",
                 "name": "ᯓ★....การฝึกงานอาจจะจบลง แต่มิตรภาพและความทรงจำดีๆ ยังอ...",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -2561,8 +906,8 @@
                 ]
             },
             {
-                "projectId": "comp-udon-31-3",
-                "name": "⌛ทุกอย่างจะมาพร้อมเวลาที่ใช่⏳",
+                "projectId": "comp-udon-31-2",
+                "name": "การก่อสร้างที่เป็นมิตรต่อสิ่งแวดล้อม: ทุกก้อนอิฐมีความส...",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
@@ -2576,9 +921,43 @@
                 "progressPercent": 15,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "⌛ทุกอย่างจะมาพร้อมเวลาที่ใช่⏳\n\n       บ้านในฝันหลังนี้ใช้เวลาพูดคุยแนวทางและดูผลงานต่างๆกันเกือบ 3 ปี วันนี้พร้อมแล้ว \nได้ฤกษ์ดี วันดี ยกเสาเอก-เสาโท สร้างบ้าน\n“ วันจันทร์ที่ 14 กันยายน 2569 ”\n⸻\n.\n       | เรื่องมีอยู่ว่าทางคุณหมอทั้งสองได้เข้ามาติดต่อบ้านใหญ่ตั้งแต่เมื่อ 3 ปีที่แล้ว พร้อมทั้งพูดคุยรายละเอียดต่างๆ เข้าใจแนวทางร่วมกันและได้ทำการออกแบบบ้านจนแล้วเสร็จ ใช้เวลาประมาณ 6 เดือนในการทำแบบและสรุปรายละเอียดต่างๆลงตัวครบถ้วน\n⸻\n.\n       แต่เมื่อจังหวะเวลาต่างๆยังไม่ตรงกันหรือเหตุผลใดๆ จึงยังไม่ได้ทำการเริ่มงานก่อสร้างในวันที่แบบแล้วเสร็จ บ้านหลังนี้เลยต้องชะลอการสร้างออกไป แต่คุณหมอก็ย้ำกับเราเสมอว่า “เดี๋ยวคุณหมอจัดการอะไรเรียบร้อยลงตัวแล้วจะติดต่อหาบ้านใหญ่นะครับ”\n⸻\n.\n      ในช่วงเวลาระหว่าง 3 ปีนี้ที่ยังไม่ได้เริ่มดำเนินการก่อสร้าง คุณหมอได้เห็นและเข้าชมชมผลงานของบ้านใหญ่สม่ำเสมอ ติดตามงานก่อสร้างหลังต่างๆที่อยู่แถวบริเวณบ้านคุณหมอ เพราะแถวบ้านคุณหมอมีไซต์งานที่บ้านใหญ่ดูแลงานก่อสร้างอยู่ถึงสามหลัง ห่างกันไม่เกิน 200 เมตร ทำให้คุณหมอได้เห็นขั้นตอนการก่อสร้าง การทำงานต่างๆของบ้านใหญ่อย่างต่อเนื่อง\n⸻\n.\n      จนมาถึงวันที่ 5 มิถุนายน 2569 วันที่บ้านใหญ่รอคอยก็มาถึง คุณหมอได้ติดต่อเข้ามาแจ้งว่า ตอนนี้คุณหมอพร้อมแล้วในการก่อสร้างบ้านในฝัน ทางบ้านใหญ่จึงนัดหมายคุณหมอเข้าพบและสรุปการทำ BOQ ในสัปดาห์ถัดมาและได้พูดคุยกันในรายละเอียดต่างๆ เกี่ยวกับการสร้างบ้าน แผนงานก่อสร้างต่างๆ วัสดุอุปกรณ์ที่คุณหมออยากได้และแจ้งความประสงค์ให้ช่วยดูแลงานส่วนอื่นๆนอกเหนือหลายๆด้าน\nทางบ้านใหญ่จึงแนะนำและดำเนินการต่างๆพร้อมสรุปรายละเอียดต่างๆจนจบ จนมาถึงประโยคนึงที่คุณหมอพูดและทำให้ \" บ้ า น ใ ห ญ่ ซึ้ ง ใ จ อ ย่ า ง ยิ่ ง \"\n⸻\n.\n      ประโยคนั้นคุณหมอกล่าวว่า “ ถ้าผมไม่ได้สร้างบ้านหลังนี้กับทีมงานบ้านใหญ่  ผมก็ว่าจะไม่สร้างบ้านหลังนี้แล้วนะครับคุณบิ๊ก . . . ฝากคุณบิ๊กดูแลด้วยนะครับ “ ทำให้ทีมงานทุกคนซาบซึ้งเป็นอย่างมาก ขอบคุณที่ไว้ใจและมั่นใจบ้านใหญ่ ทางเราจะตั้งใจสร้างบ้านหลังนี้ออกมาให้ดีที่สุดตามที่คุณหมอทั้งสองเชื่อมั่นและควาดหวังไว้\n⸻\n.\n       | ก่อนหน้านี้ ก็มีลูกค้าบ้านใหญ่หลายท่านที่ติดต่อมา ถึงแม้จะทำราคาเสนอให้แล้วแต่ยังไม่ได้ทำการก่อสร้าง เนื่องด้วยปัจจัยหรือจังหวะเวลาต่างๆที่ไม่ลงตัว บ้านใหญ่ก็ยินดีรอลูกค้าทุกท่านตลอด พร้อมให้ชมผลงานในการทำงานในแต่ละช่วงเวลา เมื่อวันไหนลูกค้าทุกท่านพร้อมที่จะสร้างบ้านทางบ้านใหญ่ก็พร้อมจะดูแลเต็มที่เสมอทุกหลัง เพราะทางบ้านใหญ่เข้าใจหัวอกของลูกค้าทุกท่านเป็นอย่างดีว่า การสร้างบ้านแต่ละหลัง ต้องใช้เวลาคิดไตร่ตรองและความพร้อมในหลายๆด้าน ต้องมีเวลาให้กับการสร้างบ้าน เลือกสิ่งที่ต้องการด้วยตัวเอง เข้าดูงานต่อเนื่องเพื่อจะได้บ้านในฝันที่สมบูรณ์แบบตามที่ตามความต้องการที่ลูกค้าวาดฝันไว้เพราะคนเราสร้างบ้านกันแค่หลังเดียวในชีวิตหรือบางคนอาจมากกว่านั้นแล้วแต่ความต้องการแต่ละคน ทุกคนจึงคาดหวังให้ได้บ้านที่ดีและสมบูรณ์แบบที่สุดตามที่หวังไว้\n⸻\n.\n  🙏ทีมบ้านใหญ่ขอบคุณคุณหมอทั้งสองท่านจากใจ🙏\n\n#baanyai2016รับสร้างบ้าน #รับสร้างบ้านอุดรธานี #รับสร้างบ้านขอนแก่น #BAANYAI2016รับสร้างบ้าน #รับสร้างบ้านขอนแก่น #รับสร้างบ้านหนองคาย #รับสร้างบ้านหนองบัวลำภู #สร้างบ้านใกล้ฉัน\n .\n .\n ❗❗หมายเหตุ❗❗\n🔹รับงานก่อสร้างมูลค่า 5.XX ล้านบาทขึ้นไป  ✅\n🔹รับงานบิ้วอินมูลค่า 1.5X ล้านบาทขึ้นไป ✅\n🔹สามารถเข้าชมผลงานจริงได้ (โปรดแจ้งล่วงหน้า)✅\n.\n.\n  Contact / ติดต่อ 📞\n 🔹 https://line.me/ti/p/I-2fN6CdQY\n 🔹 098-5858741 K.BIG\n 🔹 090-5849379 K.KAM\n 🔹 https://www.facebook.com/baanyaiteam/\n. \n. \n Construction By : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\n Desigh By :  BHD\n  \n. \n#baanyai2016รับสร้างบ้าน #รับสร้างบ้านอุดรธานี #ตกแต่งภายใน #รับออกแบบบ้าน #รับสร้างบ้าน #รับสร้างบ้านหรู #อาคารพาณิชย์ #บริการขอนแก่นอุดรธานีหนองคายหนองบัวลำภู #รับสร้างบ้านขอนแก่น #BAANYAI2016รับสร้างบ้าน @ผู้ติดตาม@แฟนตัวยง",
-                "postedTime": "19/8/2569",
-                "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid02dBmC1exwMqF27npFKvEQkURVnH1ZvEDtr8cvSnF6vEfDe8ht6z7rHJobex66Z4iil",
+                "caption": "การก่อสร้างที่เป็นมิตรต่อสิ่งแวดล้อม: ทุกก้อนอิฐมีความสำคัญ 🧱\n\nOnsite Update : \n• งานก่ออิฐแดง  90%\nบ้านใหญ่จะใช้เป็นอิฐแดง 3 รู ใช้ในการก่อ วิธีการก่อจะต้องยึดตามแบบเป็นหลักตรงตามมาตรฐานของบริษัท\n• เริ่มงานกรีดท่อไฟ \nพองานไฟเสร็จก็จะเริ่มฉาบผนังภายใน-ภายนอก ทางบริษัทได้มีการเดินร่วมลูกค้าทุกหลังเพื่อชี้ตำแหน่งในการพ่นแต่ละจุด ปลั๊ก สวิตซ์ ตำแหน่งต่างๆของการกรีดท่อไฟเพื่อตรงกับความต้องการของลูกค้าและเน้นการใช้งานเป็นหลัก หลังจากกรีดไฟเสร็จงานต่อไปก็จะเป็นการฉาบภายในและภายนอกไปตามลำดับ\n• งานสระว่ายน้ำโครงสร้าง 100% \nงานต่อไปเตรียมหน้างานเรื่องปูกระเบื้องและเทสระบบสระว่ายน้ำ\n• เริ่มเจาะเสาเข็มงานรั้วโดยรอบ  งานต่อไปก็จะเริ่มเทฟุตติ้งทำคานรั้วต่อไป\n⸻\n.\nOwner : K.Aon & K. Pum\nLocation : Mueang Udon Thani\nFunction area : 500+ sqm.\nConstruction : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\nDesigh : Wongsakul Architects\n⸻\n.\nFor more information\n- Facebook page : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\n- Instagram : @baanyai_2016\n- Tiktok : Baanyai-2016\n- https://line.me/ti/p/I-2fN6CdQY\n- 098-5858741 K.BIG\n- 090-5849379 K.KAM\n⸻\n.\n#บ้านที่ดีไม่ใช่ใครก็สร้างได้\n#baanyai2016รับสร้างบ้าน \n#BAANYAI2016รับสร้างบ้าน\n#สร้างบ้านใกล้ฉัน\n#BAANYAILUXURYHOMEBUILDER\n#baanyai2016รับสร้างบ้าน\n#รับสร้างบ้านอุดรธานี\n#ตกแต่งภายใน\n#รับออกแบบบ้าน #รับสร้างบ้าน #รับสร้างบ้านหรู\n#อาคารพาณิชย์\n#บริการขอนแก่นอุดรธานีหนองคายหนองบัวลำภู\n#รับสร้างบ้านขอนแก่น \n#BAANYAI2016รับสร้างบ้าน\n#รับสร้างบ้านหนองบัวลำภู\n#รับสร้างบ้านหนองคาย\n@ผู้ติดตาม@แฟนตัวยง",
+                "postedTime": "26/8/2569",
+                "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid02TSVU3t6ZxQmRNznfmtAFJnHFJHh286WjLtzu7moDVGnx9f5WKL24D4E3Rbjnzsa4l",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-31-3",
+                "name": "Beautiful things don’t ask for attention.",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4175,
+                    102.7935
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "Beautiful things don’t ask for attention.\n                สิ่งสวยงามไม่จำเป็นต้องเรียกร้องความสนใจ\n\nOnsite Update :￼\n\n• งานปูพื้นกระเบื้องภายในบ้าน (80%)\nบ้านใหญ่ใช้วิธีการปรับพื้นให้ได้ระดับก่อนแล้วทำการหวีปูนกาวคุณภาพสูงพร้อมทั้งเมื่อปูเสร็จแล้วยังทำการ ตรวจเช็คกระเบื้องที่ปูแล้วตามมาตรฐานบริษัทกำหนด\n\n• งานBuilt-in (40%) \nในบ้านหลังนี้ ทางบริษัทและทางลูกค้าตกลงร่วมกันเลือกใช้เป็นไม้อัดอย่างดีใช้วิธีขึ้นบานโดยทำโครงบานต่างๆ ความแข็งแรงและความทนทานเทียบเท่าไม้ที่ใช้ในปัจจุบัน(HMR)  หน้างานดูสะอาดเรียบร้อยงานดำเนินดำเนินการได้รวดเร็วตามแผน\n\n• งานวางระบบระบายน้ำรอบบ้าน(80%) ￼\nได้ทำการเดินตรวจสอบและวางแผนในการวางท่อพยายามเป็นอย่างดีหาจุดร่วมกับทางลูกค้า เพราะหน้างานของข้ามีพื้นที่จำกัดที่อาจจะไม่ตรงกับหน้างาน ถึงต้องมีการสรุปยืนยันได้ทำแบบยืนยันให้ลูกค้าเข้าใจแต่ดำเนินการได้อย่างต่อเนื่องราบรื่น\n\n• งานติดตั้งประตูหน้าต่างอะลูมิเนียม(80%)\nทางลูกค้าจัดหามาทำงานร่วมกับบริษัท ทางเรา ได้เตรียมก่อปูนที่เรียบร้อยไว้ให้ทีมงานอลูมิเนียม เข้าติดตั้งโดยง่าย อำนวยความสะดวกด้านต่างเพื่อให้งานออกมาสวยงามราบรื่นที่สุด ช่วยดูแลลูกค้าถึงแม้ไม่ใช่งานที่เป็นส่วนที่ไม่ได้รับผิดชอบ แต่เพื่องานที่ดีและมีประสิทธิภาพทาง ทางบางใหญ่ก็ช่วยทำการตรวจเช็ค \n\n• งานเก็บรายละเอียดตรวจสอบจุดบกพร่อง(90%)\nงานเก็บรายละเอียดนี้เป็นสิ่งสำคัญมากต้องใช้ทีมงานรายวันไล่เก็บรายละเอียดต่างๆ ตรวจเช็คซ้ำว่ามีจุดไหนที่ยังทำงานไม่เสร็จ\n\n• งานติดตั้งฝ้าเพดานภายในและภายนอก(90%)\nงานติดตั้งฝ้าเพดานหลังนี้ ฝ้าภายในมีรายละเอียดค่อนข้างเยอะ ต้องมีการสรุปรายละเอียดต่อเนื่องกับทางลูกค้าและสถาปนิก ￼ ส่วนฝ้าภายนอก พื้นที่ทำงานค่อนข้างจำกัดเลยทำให้ ต้องใช้ความละเอียดรอบคอบในการทำงานในทุกๆส่วน\n\n• งานพื้นละคานโครงสร้างเดิมเพื่อเตรียมหน้างานทำถนน￼ทางเข้า(30%)\nทางบ้านใหญ่ได้ทำการรื้อไปบางส่วนแล้วและตอนนี้กำลังเคลียร์แบบว่าลูกค้าจะเลือกใช้วัสดุปูถนน เป็นชนิดอะไร เพื่อจะได้วางแผนในการเทถนนและลดระดับ พื้นที่ต่างๆเพื่อให้แต่ละระดับและเช็ค Slope น้ำ\n\n• งานสีภายในและภายนอกอาคาร (รอฝนหยุดและเช็คความชื้นที่ผนังก่อนเริ่มงาน)\n\nภาพรวมงานตัวบ้าน 70-80% แล้ว\n\n          \nขอบคุณคุณหมอและทีมงานทุกๆท่านที่ร่วมมือร่วมใจกันประสานงานและเข้าสรุปรายละเอียดต่างๆร่วมกันจนงานดำเนินการมาได้อย่างรวดเร็ว อาจมีติดขัดหน้างานหรือจุดบกพร่องใดๆ เพราะรายละเอียดบ้านหลังนี้\nเยอะและซับซ้อน งานคุณภาพสูง ต้องเคลียร์แบบล่วงหน้าและยืนยันกันทุกจุดทุกรายละเอียด แต่ทุกคนก็ร่วมมือกันช่วยกันปรับแก้ เสนอแนวทางต่างๆ จนได้งานออกมาดีตามที่ลูกค้าหวังไว้\n\n** คุณภาพและความรับผิดชอบนำหน้า **\n⸻\n.\nOwner : Dr. Nick & Dr. Jingjoe\nLocation : Mueang Udon Thani\nFunction area : 600+ sqm.\nConstruction : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\nDesigh : Rice Popper Design Studio\n⸻\n.\nFor more information\n- Facebook page : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\n- Instagram : @baanyai_2016\n- Tiktok : Baanyai-2016\n- https://line.me/ti/p/I-2fN6CdQY\n- 098-5858741 K.BIG\n- 090-5849379 K.KAM\n⸻\n.\n#baanyai2016รับสร้างบ้าน \n#BAANYAI2016รับสร้างบ้าน\n#สร้างบ้านใกล้ฉัน\n#BAANYAILUXURYHOMEBUILDER\n#baanyai2016รับสร้างบ้าน\n#รับสร้างบ้านอุดรธานี #ตกแต่งภายใน\n#รับออกแบบบ้าน #รับสร้างบ้าน #รับสร้างบ้านหรู\n#อาคารพาณิชย์\n#บริการขอนแก่นอุดรธานีหนองคายหนองบัวลำภู\n#รับสร้างบ้านขอนแก่น #BAANYAI2016รับสร้างบ้าน #รับสร้างบ้านหนองบัวลำภู #รับสร้างบ้านหนองคาย\n@ผู้ติดตาม@แฟนตัวยง\n\nบ้านที่ดีไม่ใช่ใครก็สร้างได้",
+                "postedTime": "22/8/2569",
+                "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid0392VcEkJ1kGag836nLapTbnSgqkqjoQKCp9P9H2jRL4DL85ca75yVkD79pJbyjXHl",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2596,7 +975,7 @@
             },
             {
                 "projectId": "comp-udon-31-4",
-                "name": "ชัดเจนในเลนเรา 😎🏗💯",
+                "name": "⌛ทุกอย่างจะมาพร้อมเวลาที่ใช่⏳",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
@@ -2604,15 +983,15 @@
                     17.4175,
                     102.7935
                 ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
+                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
+                "stageKey": "groundbreak",
                 "trackingStatus": "pending",
-                "progressPercent": 50,
+                "progressPercent": 15,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ชัดเจนในเลนเรา 😎🏗💯",
-                "postedTime": "6/8/2569",
-                "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid02BLdpFdiddWebEGgHtGmY957vLdiX3JXNWwyuDYj8PseTW3wAj5JiCExkodk3qNvel",
+                "caption": "⌛ทุกอย่างจะมาพร้อมเวลาที่ใช่⏳\n\n       บ้านในฝันหลังนี้ใช้เวลาพูดคุยแนวทางและดูผลงานต่างๆกันเกือบ 3 ปี วันนี้พร้อมแล้ว \nได้ฤกษ์ดี วันดี ยกเสาเอก-เสาโท สร้างบ้าน\n“ วันจันทร์ที่ 14 กันยายน 2569 ”\n⸻\n.\n       | เรื่องมีอยู่ว่าทางคุณหมอทั้งสองได้เข้ามาติดต่อบ้านใหญ่ตั้งแต่เมื่อ 3 ปีที่แล้ว พร้อมทั้งพูดคุยรายละเอียดต่างๆ เข้าใจแนวทางร่วมกันและได้ทำการออกแบบบ้านจนแล้วเสร็จ ใช้เวลาประมาณ 6 เดือนในการทำแบบและสรุปรายละเอียดต่างๆลงตัวครบถ้วน\n⸻\n.\n       แต่เมื่อจังหวะเวลาต่างๆยังไม่ตรงกันหรือเหตุผลใดๆ จึงยังไม่ได้ทำการเริ่มงานก่อสร้างในวันที่แบบแล้วเสร็จ บ้านหลังนี้เลยต้องชะลอการสร้างออกไป แต่คุณหมอก็ย้ำกับเราเสมอว่า “เดี๋ยวคุณหมอจัดการอะไรเรียบร้อยลงตัวแล้วจะติดต่อหาบ้านใหญ่นะครับ”\n⸻\n.\n      ในช่วงเวลาระหว่าง 3 ปีนี้ที่ยังไม่ได้เริ่มดำเนินการก่อสร้าง คุณหมอได้เห็นและเข้าชมชมผลงานของบ้านใหญ่สม่ำเสมอ ติดตามงานก่อสร้างหลังต่างๆที่อยู่แถวบริเวณบ้านคุณหมอ เพราะแถวบ้านคุณหมอมีไซต์งานที่บ้านใหญ่ดูแลงานก่อสร้างอยู่ถึงสามหลัง ห่างกันไม่เกิน 200 เมตร ทำให้คุณหมอได้เห็นขั้นตอนการก่อสร้าง การทำงานต่างๆของบ้านใหญ่อย่างต่อเนื่อง\n⸻\n.\n      จนมาถึงวันที่ 5 มิถุนายน 2569 วันที่บ้านใหญ่รอคอยก็มาถึง คุณหมอได้ติดต่อเข้ามาแจ้งว่า ตอนนี้คุณหมอพร้อมแล้วในการก่อสร้างบ้านในฝัน ทางบ้านใหญ่จึงนัดหมายคุณหมอเข้าพบและสรุปการทำ BOQ ในสัปดาห์ถัดมาและได้พูดคุยกันในรายละเอียดต่างๆ เกี่ยวกับการสร้างบ้าน แผนงานก่อสร้างต่างๆ วัสดุอุปกรณ์ที่คุณหมออยากได้และแจ้งความประสงค์ให้ช่วยดูแลงานส่วนอื่นๆนอกเหนือหลายๆด้าน\nทางบ้านใหญ่จึงแนะนำและดำเนินการต่างๆพร้อมสรุปรายละเอียดต่างๆจนจบ จนมาถึงประโยคนึงที่คุณหมอพูดและทำให้ \" บ้ า น ใ ห ญ่ ซึ้ ง ใ จ อ ย่ า ง ยิ่ ง \"\n⸻\n.\n      ประโยคนั้นคุณหมอกล่าวว่า “ ถ้าผมไม่ได้สร้างบ้านหลังนี้กับทีมงานบ้านใหญ่  ผมก็ว่าจะไม่สร้างบ้านหลังนี้แล้วนะครับคุณบิ๊ก . . . ฝากคุณบิ๊กดูแลด้วยนะครับ “ ทำให้ทีมงานทุกคนซาบซึ้งเป็นอย่างมาก ขอบคุณที่ไว้ใจและมั่นใจบ้านใหญ่ ทางเราจะตั้งใจสร้างบ้านหลังนี้ออกมาให้ดีที่สุดตามที่คุณหมอทั้งสองเชื่อมั่นและควาดหวังไว้\n⸻\n.\n       | ก่อนหน้านี้ ก็มีลูกค้าบ้านใหญ่หลายท่านที่ติดต่อมา ถึงแม้จะทำราคาเสนอให้แล้วแต่ยังไม่ได้ทำการก่อสร้าง เนื่องด้วยปัจจัยหรือจังหวะเวลาต่างๆที่ไม่ลงตัว บ้านใหญ่ก็ยินดีรอลูกค้าทุกท่านตลอด พร้อมให้ชมผลงานในการทำงานในแต่ละช่วงเวลา เมื่อวันไหนลูกค้าทุกท่านพร้อมที่จะสร้างบ้านทางบ้านใหญ่ก็พร้อมจะดูแลเต็มที่เสมอทุกหลัง เพราะทางบ้านใหญ่เข้าใจหัวอกของลูกค้าทุกท่านเป็นอย่างดีว่า การสร้างบ้านแต่ละหลัง ต้องใช้เวลาคิดไตร่ตรองและความพร้อมในหลายๆด้าน ต้องมีเวลาให้กับการสร้างบ้าน เลือกสิ่งที่ต้องการด้วยตัวเอง เข้าดูงานต่อเนื่องเพื่อจะได้บ้านในฝันที่สมบูรณ์แบบตามที่ตามความต้องการที่ลูกค้าวาดฝันไว้เพราะคนเราสร้างบ้านกันแค่หลังเดียวในชีวิตหรือบางคนอาจมากกว่านั้นแล้วแต่ความต้องการแต่ละคน ทุกคนจึงคาดหวังให้ได้บ้านที่ดีและสมบูรณ์แบบที่สุดตามที่หวังไว้\n⸻\n.\n  🙏ทีมบ้านใหญ่ขอบคุณคุณหมอทั้งสองท่านจากใจ🙏\n\n#baanyai2016รับสร้างบ้าน #รับสร้างบ้านอุดรธานี #รับสร้างบ้านขอนแก่น #BAANYAI2016รับสร้างบ้าน #รับสร้างบ้านขอนแก่น #รับสร้างบ้านหนองคาย #รับสร้างบ้านหนองบัวลำภู #สร้างบ้านใกล้ฉัน\n .\n .\n ❗❗หมายเหตุ❗❗\n🔹รับงานก่อสร้างมูลค่า 5.XX ล้านบาทขึ้นไป  ✅\n🔹รับงานบิ้วอินมูลค่า 1.5X ล้านบาทขึ้นไป ✅\n🔹สามารถเข้าชมผลงานจริงได้ (โปรดแจ้งล่วงหน้า)✅\n.\n.\n  Contact / ติดต่อ 📞\n 🔹 https://line.me/ti/p/I-2fN6CdQY\n 🔹 098-5858741 K.BIG\n 🔹 090-5849379 K.KAM\n 🔹 https://www.facebook.com/baanyaiteam/\n. \n. \n Construction By : Baanyai2016 ผู้สร้างบ้านคุณภาพสูง\n Desigh By :  BHD\n  \n. \n#baanyai2016รับสร้างบ้าน #รับสร้างบ้านอุดรธานี #ตกแต่งภายใน #รับออกแบบบ้าน #รับสร้างบ้าน #รับสร้างบ้านหรู #อาคารพาณิชย์ #บริการขอนแก่นอุดรธานีหนองคายหนองบัวลำภู #รับสร้างบ้านขอนแก่น #BAANYAI2016รับสร้างบ้าน @ผู้ติดตาม@แฟนตัวยง",
+                "postedTime": "19/8/2569",
+                "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid02dBmC1exwMqF27npFKvEQkURVnH1ZvEDtr8cvSnF6vEfDe8ht6z7rHJobex66Z4iil",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2663,7 +1042,7 @@
                 ]
             }
         ],
-        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 1, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 2, ฐานราก: 0, โครงสร้าง: 0)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
@@ -2673,15 +1052,15 @@
         "sales2026": 5472101
     },
     {
-        "id": "comp-udon-27",
-        "name": "บริษัท บ้านวิศวะพัฒนา จํากัด",
-        "engName": "Baanwisawa Construction Ltd., Part.",
-        "category": "รับสร้างบ้านตามหลักวิศวกรรม (TSIC 41001)",
+        "id": "comp-udon-10",
+        "name": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด",
+        "engName": "TT Design & Construction 1991 Co., Ltd.",
+        "category": "รับเหมาก่อสร้างและงานสถาปัตยกรรม (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
         "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "092 744 9253",
-        "contactPerson": "บริษัท บ้านวิศวะพัฒนา จำกัด",
+        "phone": "091 686 8536",
+        "contactPerson": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จำกัด",
         "totalProjects": 5,
         "newProjectsThisMonth": 5,
         "totalValueMillion": 27.5,
@@ -2690,28 +1069,28 @@
         "verificationStatus": {
             "isVerified": true,
             "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415561023456",
+            "evidenceSource": "Facebook Page | DBD: 0415562007890",
             "permitStatus": "TSIC 41001"
         },
         "stageBreakdown": {
             "groundbreak": 0,
             "foundation": 0,
-            "structure": 5,
-            "finishing": 0
+            "structure": 4,
+            "finishing": 1
         },
         "latestTimelineStage": "groundbreak",
         "revenuePotentialText": "฿2.5M",
         "coordinates": [
-            17.411,
-            102.808
+            17.423,
+            102.815
         ],
-        "googleMapsUrl": "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
-        "gmaps": "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
-        "facebookUrl": "https://www.facebook.com/banwisawa",
+        "googleMapsUrl": "https://maps.app.goo.gl/553uWoK43EjVwNZA7",
+        "gmaps": "https://maps.app.goo.gl/553uWoK43EjVwNZA7",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=100057515256596",
         "facebookSignal": {
-            "postDate": "31/8/2569",
-            "pageName": "บริษัท บ้านวิศวะพัฒนา จํากัด",
-            "caption": "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
+            "postDate": "13/9/2569",
+            "pageName": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด",
+            "caption": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨\nทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น \n\nOwner : คุณโหน่ง\nlocation : อ.เมือง จ.อุดรธานี\n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -2722,24 +1101,24 @@
         },
         "projects": [
             {
-                "projectId": "comp-udon-27-1",
-                "name": "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร ...",
+                "projectId": "comp-udon-10-1",
+                "name": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.411,
-                    102.808
+                    17.423,
+                    102.815
                 ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
                 "trackingStatus": "pending",
-                "progressPercent": 50,
+                "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
-                "postedTime": "31/8/2569",
-                "postUrl": "https://www.facebook.com/reel/1043529308313395/",
+                "caption": "อัปเดต : งานทาสีจริงภายนอก ✨👨🏻‍🎨\nทีมช่างกำลังเก็บรายละเอียดงานสีตามองค์ประกอบทางสถาปัตยกรรม ช่วยถ่ายทอดความสง่างามของบ้านสไตล์ Modern Classic Luxury ให้ชัดเจนยิ่งขึ้น \n\nOwner : คุณโหน่ง\nlocation : อ.เมือง จ.อุดรธานี\n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
+                "postedTime": "13/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02m5F6adYrJHcYP6nqgKEwfiGsV7C8AQXv59WRuhyNVLMBujSwnL7FV6scBYebAKdSl&id=100057515256596",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2756,14 +1135,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-27-2",
-                "name": "POV : เมื่อจัดซื้ออยากขับรถน้ำมัน #บ้านวิศวะ #บ้านวิศวะ...",
+                "projectId": "comp-udon-10-2",
+                "name": "เบื้องหลังวันเซ็นสัญญาสร้างบ้าน 🏡",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.411,
-                    102.808
+                    17.423,
+                    102.815
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -2771,9 +1150,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "POV : เมื่อจัดซื้ออยากขับรถน้ำมัน #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
-                "postedTime": "25/8/2569",
-                "postUrl": "https://www.facebook.com/reel/2935449966794981/",
+                "caption": "เบื้องหลังวันเซ็นสัญญาสร้างบ้าน 🏡\n\nก่อนลงนาม เราทบทวนรายละเอียดแบบ ขอบเขตงาน วัสดุ งวดชำระ และระยะเวลาก่อสร้างร่วมกับลูกค้า เพื่อให้ทุกขั้นตอนชัดเจน โปร่งใส และเข้าใจตรงกันตั้งแต่วันแรก\n\n#TTDesignAndConstruction\n#เบื้องหลังวันเซ็นสัญญา\n#รับออกแบบสร้างบ้าน\n#สร้างบ้านอุดรธานี\n#สร้างบ้านหนองคาย\n#สร้างบ้านขอนแก่น\n#สร้างบ้านสกลนคร",
+                "postedTime": "12/9/2569",
+                "postUrl": "https://www.facebook.com/reel/1548823803227446/",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2790,14 +1169,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-27-3",
-                "name": "POV : เมื่อเศรษฐกิจไม่ค่อยดี #บ้านวิศวะ #บ้านวิศวะอุดร ...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "projectId": "comp-udon-10-3",
+                "name": "ทีมผู้เชี่ยวชาญจาก SCG",
+                "location": "อ.กุดจับ จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
+                "district": "กุดจับ",
                 "gps": [
-                    17.411,
-                    102.808
+                    17.423,
+                    102.815
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -2805,9 +1184,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "POV : เมื่อเศรษฐกิจไม่ค่อยดี #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
-                "postedTime": "21/8/2569",
-                "postUrl": "https://www.facebook.com/reel/1098963785802299/",
+                "caption": "ทีมผู้เชี่ยวชาญจาก SCG \nเข้าแนะนำผลิตภัณฑ์ ปูนเสือ สกิมโคท 🐅\n\nให้ความรู้เกี่ยวกับคุณสมบัติและแนวทางการใช้งานที่ถูกต้องแก่ทีมงาน TT Design & Construction” เพื่อให้ผนังเรียบเนียน ได้คุณภาพ และสวยงามก่อนเข้าสู่งานสี\n\n“ตราเสือ” 🐅 เป็นแบรนด์ผลิตภัณฑ์ภายใต้กลุ่ม SCG อยู่ในกลุ่มธุรกิจ เอสซีจี ซีเมนต์แอนด์กรีนโซลูชันส์\n\nบ้านที่มีคุณภาพ เริ่มต้นจากความรู้ ความเข้าใจ และความใส่ใจในทุกขั้นตอน 👷🏻‍♂️👷🏻‍♂️💯\n\nOwner : คุณสุทิน คุณอิ๋ว\nlocation : อ.กุดจับ จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น #TTDesignAndConstruction #SCGPrestige #มาตรฐานงานหลังคา #สร้างบ้านอุดรธานี #รับสร้างบ้าน #บ้านพรีเมียม",
+                "postedTime": "9/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid027FRxoSS9DEoiECwfdptbqre2FNwMadCHV8sW8QP39esC1xkkYArpZ4eTQxakykULl&id=100057515256596",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2824,14 +1203,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-27-4",
-                "name": "ขอขอบพระคุณกองทุนเฉลียวอยู่วิทยานุสรณ์",
+                "projectId": "comp-udon-10-4",
+                "name": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design & Construction",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.411,
-                    102.808
+                    17.423,
+                    102.815
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -2839,9 +1218,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ขอขอบพระคุณกองทุนเฉลียวอยู่วิทยานุสรณ์\nโดยคุณปนัดดา อยู่วิทยา\n.\nที่ได้บริจาคงบประมาณในการก่อสร้างปรับปรุง\nอาคารสนามเด็กเล่น ณ โรงพยาบาลศรีนครินทร์\nคณะแพทย์ศาสตร์ มหาวิทยาลัยขอนแก่น\n.\nก่อสร้างโดย บริษัท บ้านวิศวะพัฒนา จำกัด\nซึ่งวันที่ 13 สิงหาคม 2569 ได้ทำการ\nส่งมอบอาคารให้กับทางโรงพยาบาลศรีนครินทร์\nเพื่อให้ได้ใช้ประโยชน์ต่อไป\n------------------------------------------\n📍 คิดถึงงานก่อสร้าง คิดถึงบ้านวิศวะ\nสนใจโทร : 080-748-8844 (คุณไก่)\nเรายินดีให้บริการค่ะ\n.\n#บ้านวิศวะ #บ้านวิศวะอุดร #กองทุนเฉลียวอยู่วิทยานุสรณ์ #โรงพยาบาลศรีนครินทร์ #ขอนแก่น #สนามเด็กเล่น #Khonkaen",
-                "postedTime": "13/8/2569",
-                "postUrl": "https://www.facebook.com/banwisawa/posts/pfbid0D1WJGd4tXPSywG8rXXHBzLVJWS2LDk2vbFeseaRgbwgoU891TpsUnZ7nJwCdwWK5l",
+                "caption": "อีกหนึ่งค่ำคืนดี ๆ ของทีมงาน TT Design & Construction \nขอบคุณทาง คู่ยงฮวด สำหรับคำเชิญเข้าร่วมงานเลี้ยงขอบคุณลูกค้าคนสำคัญ บรรยากาศอบอุ่น สนุก และเป็นกันเองมากค่ะ\n\nพิเศษกว่านั้น…ทีมงานของเรายังได้เป็นหนึ่งในผู้โชคดี รับของรางวัลติดมือกลับบ้านด้วย 🎉",
+                "postedTime": "5/9/2569",
+                "postUrl": "https://www.facebook.com/reel/1248233144101707/",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2858,14 +1237,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-27-5",
-                "name": "เมื่อคนกังวลเรื่องการกินน้ำมัน VS คนที่ไม่กังวลอะไรเลย ...",
+                "projectId": "comp-udon-10-5",
+                "name": "อัปเดต: งานบันไดไม้ประดู่แท้ อีกหนึ่งงานเฉพาะทางที่เราอ...",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.411,
-                    102.808
+                    17.423,
+                    102.815
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -2873,9 +1252,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เมื่อคนกังวลเรื่องการกินน้ำมัน VS คนที่ไม่กังวลอะไรเลย #บ้านวิศวะ #บ้านวิศะอุดร #อุดรธานี #อุดร #Udonthani #Udon #UD",
-                "postedTime": "7/8/2569",
-                "postUrl": "https://www.facebook.com/reel/2485443458633424/",
+                "caption": "อัปเดต: งานบันไดไม้ประดู่แท้ อีกหนึ่งงานเฉพาะทางที่เราออกแบบและใส่ใจในทุกรายละเอียด ตั้งแต่วัสดุธรรมชาติ งานฝีมือ โทนสี สัดส่วน ไปจนถึงการติดตั้ง\n\nขั้นตอนต้องอาศัยความละเอียด เพื่อให้งานบันไดกลมกลืนกับดีไซน์ของบ้านทั้งหลัง และสะท้อนเอกลักษณ์เฉพาะตัวของเจ้าของบ้านได้อย่างลงตัว\n\nOwner : คุณนวพรรณ\nlocation : อ.เมือง จ.อุดรธานี \n - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - \n\n📌 รับสร้างบ้าน เริ่มต้น 3 ลบ. ขึ้นไป \n📩 สอบถามรายละเอียดเพิ่มเติม หรือเข้าชมผลงานจริงได้ทาง Inbox หรือ ☎️โทร 091-6868536 คุณทิพย์\nLINE : @TT1991  \n\n#TTDesignAndConstruction #มาตรฐานงานก่อสร้าง #ควบคุมคุณภาพ  #ฝีมืองานก่อสร้าง #รับสร้างบ้านอุดรธานี #สร้างบ้านหนองคาย #สร้างบ้านขอนแก่น",
+                "postedTime": "4/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02mqamzuyMDUfMDjXuuQMeatyGiYo3kYPuA3pT1aTzjDGWJrDkcq3UBYwe1hqR87EFl&id=100057515256596",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -2892,14 +1271,418 @@
                 ]
             }
         ],
-        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 5)",
+        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 4)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
         "opportunityScore": 80,
-        "scgCode": "10729130",
-        "sales2025": 0,
-        "sales2026": 238997
+        "scgCode": "10482913",
+        "sales2025": 1570146.44,
+        "sales2026": 3396188.25
+    },
+    {
+        "id": "comp-udon-08",
+        "name": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
+        "engName": "Twentysix Development Co., Ltd.",
+        "category": "รับสร้างบ้านสไตล์มินิมอล นอร์ดิก ทันสมัย (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
+        "phone": "099 470 8877",
+        "contactPerson": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จำกัด",
+        "totalProjects": 4,
+        "newProjectsThisMonth": 4,
+        "totalValueMillion": 22,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415564001221",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 1,
+            "foundation": 1,
+            "structure": 1,
+            "finishing": 1
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿2.0M",
+        "coordinates": [
+            17.395,
+            102.812
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/FVFGk8KDANrwb91Y8",
+        "gmaps": "https://maps.app.goo.gl/FVFGk8KDANrwb91Y8",
+        "facebookUrl": "https://www.facebook.com/Twentysix.house",
+        "facebookSignal": {
+            "postDate": "27/8/2569",
+            "pageName": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
+            "caption": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิดต่างมีคาแรกเตอร์เป็นของตัวเอง ทั้งสี ผิวสัมผัส และเมื่อถูกนำมาวางอยู่ด้วยกัน สิ่งเหล่านี้ก็กลายเป็นส่วนหนึ่งของภาษาที่จะใช้เล่าเรื่อง…. \n\nวันนี้เป็นอีกวันที่ คุณดรีมและคุณมะปราง ตั้งใจเลือกและตัดสินใจทุกรายละเอียด ที่จะสามารถถ่ายทอดตัวตนและเจตนารมณ์ของ ร้านอาหารเเจ่วฮ้อนมิตรภักดี เพื่อส่งต่อความรู้สึกนี้ไปให้ถึงลูกค้าทุกคนตั้งแต่ก้าวแรกที่เดินเข้ามา \n\nอดใจรออีกนิด แล้วมาพบกับแจ่วฮ้อนมิตรภักดีโฉมใหม่เร็วๆนี้ \n\n#แจ่วฮ้อนมิตรภักดี #แจ่วฮ้อนอุดรธานี\n\nTWENTYSIX.HOUSE Design\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#TwentysixHouse #InteriorDesign #BuiltIn #ออกแบบตกแต่งภายใน #รับสร้างบ้านอุดรธานี",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-08-1",
+                "name": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิด...",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.395,
+                    102.812
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 & 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิดต่างมีคาแรกเตอร์เป็นของตัวเอง ทั้งสี ผิวสัมผัส และเมื่อถูกนำมาวางอยู่ด้วยกัน สิ่งเหล่านี้ก็กลายเป็นส่วนหนึ่งของภาษาที่จะใช้เล่าเรื่อง…. \n\nวันนี้เป็นอีกวันที่ คุณดรีมและคุณมะปราง ตั้งใจเลือกและตัดสินใจทุกรายละเอียด ที่จะสามารถถ่ายทอดตัวตนและเจตนารมณ์ของ ร้านอาหารเเจ่วฮ้อนมิตรภักดี เพื่อส่งต่อความรู้สึกนี้ไปให้ถึงลูกค้าทุกคนตั้งแต่ก้าวแรกที่เดินเข้ามา \n\nอดใจรออีกนิด แล้วมาพบกับแจ่วฮ้อนมิตรภักดีโฉมใหม่เร็วๆนี้ \n\n#แจ่วฮ้อนมิตรภักดี #แจ่วฮ้อนอุดรธานี\n\nTWENTYSIX.HOUSE Design\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#TwentysixHouse #InteriorDesign #BuiltIn #ออกแบบตกแต่งภายใน #รับสร้างบ้านอุดรธานี",
+                "postedTime": "27/8/2569",
+                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0yajA2B9rtViJ66PTksnWC1DvM9RyZvY2WjuT66P25fvYPJoW8hpoNxSHeBLY3mvZl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-08-2",
+                "name": "จากแบบที่วางไว้..สู่การเริ่มต้นก่อสร้างจริง 🏡 24 สิงหา...",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.395,
+                    102.812
+                ],
+                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
+                "stageKey": "groundbreak",
+                "trackingStatus": "pending",
+                "progressPercent": 15,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "จากแบบที่วางไว้..สู่การเริ่มต้นก่อสร้างจริง 🏡 24 สิงหาคม 2569 เวลา 09.19 น.ถือเป็นฤกษ์ดี ยามดี ในการยกเสาเอก บ้านของคุณหมอ ออย และคุณโอ๊ต พร้อมครอบครัวและทีมงาน Twentysix.house \n\nขอบพระคุณคุณหมอ คุณโอ๊ต และครอบครัว อีกครั้งสำหรับความไว้วางใจ แล้วเราจะค่อยๆอัปเดตการเติบโตของบ้านหลังนี้ไปด้วยกัน🤍💙\n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\nTWENTYSIX.HOUSE Design \n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
+                "postedTime": "25/8/2569",
+                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02p5m8JVchqGsghPqvG7eY9RScGxSznrysijCEVqgjq73viEggMibYhHd3udRSAMRzl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-08-3",
+                "name": "Site Update l อัปเดตความคืบหน้าไซต์งาน",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.395,
+                    102.812
+                ],
+                "stage": "งานฐานราก ตอม่อ และคานคอดิน",
+                "stageKey": "foundation",
+                "trackingStatus": "pending",
+                "progressPercent": 35,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "Site Update l อัปเดตความคืบหน้าไซต์งาน\n\nจากระดับ ระยะ แนว สู่งานฐานราก โครงสร้าง พื้นที่ ไปจนถึง รูปทรงที่ชัดเจน  เราควบคุมให้ถูกต้องและตรวจสอบทุกๆขั้นตอนเสมอ \n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\nTWENTYSIX.HOUSE Design 🤍💙\n……………………………………….\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
+                "postedTime": "10/8/2569",
+                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0kBhRNCDPYJ7HmyS2ULZksRfsXnFsYrwSCEYPQUFstS7c37Y8PqBSLv93VBaC1F4Rl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-08-4",
+                "name": "🏡 The beginning of a home is not the day you move in.",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.395,
+                    102.812
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🏡 The beginning of a home is not the day you move in.\n\nIt begins the day you decide to place your trust in someone to help turn your dream into reality. ✨\n\nAnother meaningful day and another important milestone as we celebrated the traditional Thai pillar-raising ceremony for the home of Khun Jane & Eri.\n\nTWENTYSIX.HOUSE would like to sincerely thank you for allowing us to be part of this special chapter in your life.\n\n🔸 We take care of every detail, from the pillar-raising ceremony, auspicious ceremonial items, tables, tents, to arranging the Brahmin priest.\n🔸 Building a home should begin with blessings and positive meaning for the future.\n🔸 At TWENTYSIX.HOUSE, we give our full attention to every project, whether large or small.\n \n\n“𝑻𝒉𝒆 𝑷𝒓𝒆𝒄𝒊𝒐𝒖𝒔 𝑳𝒊𝒗𝒊𝒏𝒈 𝑭𝒐𝒓 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑮𝒆𝒏𝒆𝒓𝒂𝒕𝒊𝒐𝒏”\n\nTWENTYSIX.HOUSE Design 🤍💙\n\n……………………………………….\n\n🔹 Contact Us\nLine Official : @twenty-six\nCall : 099-470-8877\n\n#รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #รับสร้างบ้านหนองคาย #สร้างบ้านหนองคาย #บ้านหรูอุดรธานี #TwentysixHouse",
+                "postedTime": "27/6/2569",
+                "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0mxMZChfYD3g1uwXaxwdRp4qLh7eMAmPaxG91QEK88Lpm3E4ACXA2SCB5cbLUd6H7l",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 4 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 1, ฐานราก: 1, โครงสร้าง: 1)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 70,
+        "scgCode": "10523555",
+        "sales2025": 1146567,
+        "sales2026": 2903328,
+        "customDiagnostic": "บริษัทรับสร้างบ้านระดับ <strong>High-End / Luxury Segment</strong> สไตล์โมเดิร์น มินิมอล นอร์ดิก (The Precious Living) ลูกค้าส่วนใหญ่เป็นกลุ่มแพทย์ บุคลากรทางการแพทย์ และเจ้าของธุรกิจกำลังซื้อสูง มียอดสั่งซื้อ SCG ปี 2026 เติบโตสูงถึง <strong>฿2,903,328</strong> (+153% YoY) มีงานโครงการคุณภาพสูงต่อเนื่อง",
+        "customRecommendations": [
+            "<strong>คอนกรีตผสมเสร็จ CPAC กำลังอัดสูง:</strong> นำเสนอคอนกรีต CPAC 240 - 280 ksc สำหรับงานฐานรากและโครงสร้างบ้านพักอาศัยระดับพรีเมียม",
+            "<strong>ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง:</strong> ล็อกสเปกใช้งานโครงสร้างอาคารและหล่อเสา-คานทุกไซต์งาน",
+            "<strong>กระเบื้องหลังคาเซรามิก SCG พรีเมียม:</strong> นำเสนอรุ่น Excella / Prestige / NeuStyle ตอบโจทย์ดีไซน์บ้านหรูสไตล์โมเดิร์น",
+            "<strong>วัสดุตกแต่ง SCG D-COR & ฉนวนกันความร้อน:</strong> เจาะกลุ่มงานผนังตกแต่งภายนอกและบิวท์อิน Interior ตอบสนองลูกค้าระดับบน"
+        ]
+    },
+    {
+        "id": "comp-udon-09",
+        "name": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
+        "engName": "Suksakon Development Co., Ltd. (NASIT HOME)",
+        "category": "รับสร้างบ้านและออกแบบบ้านคุณภาพ (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "080 598 9223",
+        "contactPerson": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จำกัด NASIT HOME",
+        "totalProjects": 4,
+        "newProjectsThisMonth": 4,
+        "totalValueMillion": 22,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415563006789",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 2,
+            "finishing": 2
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿2.0M",
+        "coordinates": [
+            17.415,
+            102.805
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9",
+        "gmaps": "https://maps.app.goo.gl/JdU3AU4QqTyyFWhr9",
+        "facebookUrl": "https://www.facebook.com/nasithouseanddesign",
+        "facebookSignal": {
+            "postDate": "15/9/2569",
+            "pageName": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
+            "caption": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ\n\nอัปเดตหน้างาน อ.กุมภวาปี จ.อุดรธานี\nบ้านพักอาศัยพื้นที่ใช้สอยกว่า 500 ตร.ม. พร้อมโรงจอดรถ สระว่ายน้ำ อาคารประกอบ และงานรั้วรอบโครงการ\n\nปัจจุบันงานฝ้าเพดานแล้วเสร็จเรียบร้อย และกำลังเตรียมเข้าสู่ งานสกิมผิวและงานสีภายใน 🎨\n\nวันนี้ทีม SCG เข้ามาสาธิตการใช้งาน ปูนสกิมเสือ ถึงหน้างานจริง ให้กับทีมช่าง ทีมควบคุมงาน และผู้บริหารของ NASIT HOME\n\nตั้งแต่การเตรียมวัสดุ การผสม การลงปูนสกิม ไปจนถึงเทคนิคการทำงาน เพื่อให้ทีมของเราเข้าใจวิธีใช้งานอย่างถูกต้อง และนำไปปรับใช้กับงานจริงได้อย่างมีประสิทธิภาพ\n\nเพราะเราเชื่อว่า วัสดุที่ดี ต้องมาพร้อมกับวิธีการทำงานที่ถูกต้อง\nการพัฒนาฝีมือและอัปเดตความรู้ให้กับทีมช่างอย่างต่อเนื่อง จึงเป็นอีกหนึ่งสิ่งที่เราให้ความสำคัญในทุกหน้างาน 💪🏻\n\nเพื่อให้บ้านทุกหลังไม่ได้มีเพียงความสวยงาม แต่มีคุณภาพและมาตรฐานอยู่ในทุกรายละเอียด\n\nNASIT HOME\n🏠 “สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ”\n\n#NASITHOME #นานาสิทธิ์โฮม #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดร #อัปเดตหน้างาน #SCG #ปูนสกิมเสือ #งานสกิมผิว #งานก่อสร้าง #บ้านคุณภาพ",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-09-1",
+                "name": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ",
+                "location": "อ.กุมภวาปี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "กุมภวาปี",
+                "gps": [
+                    17.415,
+                    102.805
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🏡 บ้านคุณภาพ เริ่มจากทุกขั้นตอนที่เราใส่ใจ\n\nอัปเดตหน้างาน อ.กุมภวาปี จ.อุดรธานี\nบ้านพักอาศัยพื้นที่ใช้สอยกว่า 500 ตร.ม. พร้อมโรงจอดรถ สระว่ายน้ำ อาคารประกอบ และงานรั้วรอบโครงการ\n\nปัจจุบันงานฝ้าเพดานแล้วเสร็จเรียบร้อย และกำลังเตรียมเข้าสู่ งานสกิมผิวและงานสีภายใน 🎨\n\nวันนี้ทีม SCG เข้ามาสาธิตการใช้งาน ปูนสกิมเสือ ถึงหน้างานจริง ให้กับทีมช่าง ทีมควบคุมงาน และผู้บริหารของ NASIT HOME\n\nตั้งแต่การเตรียมวัสดุ การผสม การลงปูนสกิม ไปจนถึงเทคนิคการทำงาน เพื่อให้ทีมของเราเข้าใจวิธีใช้งานอย่างถูกต้อง และนำไปปรับใช้กับงานจริงได้อย่างมีประสิทธิภาพ\n\nเพราะเราเชื่อว่า วัสดุที่ดี ต้องมาพร้อมกับวิธีการทำงานที่ถูกต้อง\nการพัฒนาฝีมือและอัปเดตความรู้ให้กับทีมช่างอย่างต่อเนื่อง จึงเป็นอีกหนึ่งสิ่งที่เราให้ความสำคัญในทุกหน้างาน 💪🏻\n\nเพื่อให้บ้านทุกหลังไม่ได้มีเพียงความสวยงาม แต่มีคุณภาพและมาตรฐานอยู่ในทุกรายละเอียด\n\nNASIT HOME\n🏠 “สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ”\n\n#NASITHOME #นานาสิทธิ์โฮม #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดร #อัปเดตหน้างาน #SCG #ปูนสกิมเสือ #งานสกิมผิว #งานก่อสร้าง #บ้านคุณภาพ",
+                "postedTime": "15/9/2569",
+                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0gEuJPc3Yc4ThAQeewzqssVfmuq1JgDZ9NM4s2VLgPXN2Xh3b8Zd1PBxyN8wp19abl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-09-2",
+                "name": "Update งานฝ้า | แล้วเสร็จ 100% ✨",
+                "location": "อ.กุมภวาปี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "กุมภวาปี",
+                "gps": [
+                    17.415,
+                    102.805
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "Update งานฝ้า | แล้วเสร็จ 100% ✨\nบ้านคุณเฌอลิชา อ.กุมภวาปี จ.อุดรธานี\n\nอีกหนึ่งรายละเอียดของบ้านที่เราให้ความสำคัญ เพราะ “ฝ้าเพดาน” ไม่ได้มีหน้าที่เพียงปิดงานระบบ แต่ยังเป็นองค์ประกอบสำคัญที่ช่วยสร้างมิติและบรรยากาศให้กับบ้าน\n\n🏡 ฝ้าภายใน\nออกแบบเป็นฝ้าหลุม เพิ่มมิติให้พื้นที่ พร้อมตกแต่งด้วย คิ้วบัวไม้จริง งานฝีมือจากช่างไม้ที่เก็บรายละเอียดอย่างประณีต ทำให้งานฝ้ามีความอบอุ่น สวยงาม และมีเอกลักษณ์\n\n🌿 ฝ้าภายนอก\nเลือกใช้ดีไซน์ ฝ้าระแนงเซาะร่อง ช่วยเพิ่มเส้นสายและรายละเอียดทางสถาปัตยกรรม ให้ตัวบ้านดูเรียบร้อยและมีมิติมากขึ้น\n\nเพราะบ้านที่สวย ไม่ได้เกิดจากภาพรวมเพียงอย่างเดียว\nแต่เกิดจาก ความใส่ใจในทุก Detail ตั้งแต่งานโครงสร้าง…จนถึงงานตกแต่งชิ้นเล็ก ๆ\n\nNASIT HOME\nสร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ\nYour trust is our commitment.\n\n#NasitHome #รับสร้างบ้านอุดรธานี #รับสร้างบ้านกุมภวาปี #งานฝ้าเพดาน #ฝ้าหลุม #งานไม้จริง #งานฝีมือช่าง #สร้างบ้านอุดรธานี #บ้านสวยด้วยรายละเอียด",
+                "postedTime": "14/9/2569",
+                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid09vWZrT4GvpXxe1zjYVfNt57kJRtrK7t4JtuKHaGg4cE3cCCfbuSCf3PZts2sn1phl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-09-3",
+                "name": "🚗 กลับถึงบ้าน ไม่ต้องลงจากรถ…แค่กด ประตูก็เปิดให้เลย",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.415,
+                    102.805
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🚗 กลับถึงบ้าน ไม่ต้องลงจากรถ…แค่กด ประตูก็เปิดให้เลย\n\nพามาดูอีกหนึ่งดีเทลของ บ้านคุณบุญโย กับงานติดตั้ง ประตูที่จอดรถระบบอัตโนมัติ ✨\n\nประตูจุดนี้ไม่ได้มีหน้าที่แค่เปิด–ปิดพื้นที่จอดรถ แต่เป็นอีกหนึ่งองค์ประกอบที่ช่วยเติมทั้ง ความสะดวก ความเป็นส่วนตัว และความพรีเมียม ให้กับบ้าน\n\nตัวประตูเลือกดีไซน์ให้เข้ากับภาพรวมของตัวบ้าน ดูเรียบ หรู และเป็นสัดส่วน พร้อมระบบอัตโนมัติที่ช่วยให้การเข้า–ออกบ้านง่ายขึ้นในทุกวัน\n\nลองนึกภาพเวลาขับรถกลับถึงบ้าน\nไม่ว่าจะเป็นช่วงฝนตก แดดร้อน หรือมีของเต็มมือ เพียงกดเปิดจากภายในรถ ก็สามารถเข้าจอดได้สะดวกขึ้น โดยไม่ต้องลงมาเปิดประตูเอง\n\nสำหรับ NASIT HOME เรามองว่า รายละเอียดเล็ก ๆ คือสิ่งที่ทำให้บ้านหนึ่งหลังแตกต่างกัน\n\nตั้งแต่การออกแบบตำแหน่งประตู ขนาดช่องเปิด การใช้งานร่วมกับพื้นที่จอดรถ ไปจนถึงระบบที่เลือกใช้ ทุกอย่างต้องทำงานร่วมกันและเหมาะกับการใช้ชีวิตของเจ้าของบ้านจริง ๆ\n\nตอนนี้บ้านคุณบุญโยกำลังค่อย ๆ เติมรายละเอียดให้สมบูรณ์ขึ้นอีกขั้น\nและอีกไม่นานก็จะได้เห็นภาพบ้านที่พร้อมสำหรับการใช้ชีวิตจริงแล้วค่ะ 💙\n\nNASIT HOME สร้างบ้านสวย ด้วยมาตรฐานที่คุณวางใจ\n\n📍 รับสร้างบ้านอุดรธานี\n\n#NASITHOME #รับสร้างบ้านอุดรธานี #สร้างบ้านอุดรธานี #บ้านคุณบุญโย #อัปเดตหน้างาน #ประตูอัตโนมัติ #ประตูที่จอดรถ #บ้านสไตล์พรีเมียม #LuxuryHome #สร้างบ้านที่สะท้อนตัวตน",
+                "postedTime": "11/9/2569",
+                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid02QYJo6YAYRv4XwtiGQeBdTF4xmTfeyqGuWuExJe7k7mDqTy68h4CoBLgrX3iTcassl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-09-4",
+                "name": "อัปเดตความรู้ใหม่ให้ทีมช่าง 🧱",
+                "location": "อ.ศรีธาตุ จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "ศรีธาตุ",
+                "gps": [
+                    17.415,
+                    102.805
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "อัปเดตความรู้ใหม่ให้ทีมช่าง 🧱\n\nวันนี้ทีม SCG เข้ามาให้ความรู้และสาธิตการใช้งานจริง\nเสือ มอร์ตาร์ ปูนซีเมนต์สำเร็จรูป จับเซี้ยม สูตร XPERT\nให้กับวิศวกรและทีมช่าง NASIT HOME ณ หน้างาน อ.ศรีธาตุ จ.อุดรธานี\n\nจุดเด่นคือ ผสมน้ำและใช้งานได้ทันที โดยไม่ต้องผสมทรายเพิ่ม\nช่วยลดขั้นตอนการเตรียมวัสดุ ทำงานได้สะดวกและรวดเร็วขึ้น\nพร้อมช่วยให้ทีมช่างควบคุมสัดส่วนและคุณภาพของงานได้ง่ายขึ้น\n\nการสาธิตครั้งนี้จึงไม่ใช่แค่การแนะนำผลิตภัณฑ์\nแต่เป็นการ อัปเดตวิธีการทำงานและเพิ่มความรู้ให้ทีมช่าง\nเพื่อให้สามารถนำไปใช้กับงานก่อสร้างได้อย่างถูกต้องและมีประสิทธิภาพ\n\nเรียนรู้ พัฒนา และนำไปใช้จริง เพื่อคุณภาพงานก่อสร้างที่ดีขึ้น\n\n#NASITHOME #SCG #อัปเดตความรู้ใหม่ #เสือมอร์ตาร์ #ปูนสำเร็จรูป #ปูนจับเซี้ยม #ทีมช่าง #SiteUpdate #สร้างบ้านอุดรธานี",
+                "postedTime": "10/9/2569",
+                "postUrl": "https://www.facebook.com/nasithouseanddesign/posts/pfbid0XSfyvjvVGGfHtGABKRzeyqe1SR5X1xoueZVihrw1gdhj2FGkDAubrtkDmerBaUDHl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 4 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 70,
+        "scgCode": "10503273",
+        "sales2025": 677870.3,
+        "sales2026": 2338879,
+        "customDiagnostic": "บริษัทรับสร้างบ้านระดับพรีเมียม (NASIT HOME) มียอดสั่งซื้อ SCG ปี 2026 เติบโตสูงถึง <strong>฿2,338,879 (+245% YoY)</strong> มีความร่วมมือและเปิดรับทีมเทคนิค SCG เข้าสาธิตการใช้งานนวัตกรรมปูนเสือมอร์ตาร์ XPERT และปูนสกิมโค้ทถึงหน้างานจริงอย่างต่อเนื่อง ถือเป็นลูกค้ารายสำคัญกลุ่ม Key Growth ที่มีงานสร้างบ้านหรูและคฤหาสน์กระจายตัวทั่วอุดรธานี",
+        "customRecommendations": [
+            "<strong>คอนกรีตผสมเสร็จ CPAC สำหรับงานสระว่ายน้ำและบ้านหรู:</strong> นำเสนอคอนกรีตกันซึม CPAC Waterproof Concrete และคอนกรีตกำลังอัดสูง 280–320 ksc สำหรับงานโครงสร้างบ้าน 500 ตร.ม. และโครงสร้างสระว่ายน้ำ",
+            "<strong>ปูนซีเมนต์สำเร็จรูป เสือ มอร์ตาร์ ครบวงจร:</strong> ต่อยอดความสำเร็จจากการสาธิตหน้างาน ล็อกสเปก เสือ มอร์ตาร์ XPERT, ปูนฉาบอิฐมวลเบา และปูนสกิมโค้ท สำหรับทุกไซต์งานใน อ.กุมภวาปี และ อ.ศรีธาตุ",
+            "<strong>กระเบื้องหลังคาเซรามิก SCG และฉนวนกันความร้อน Stay Cool:</strong> นำเสนอกระเบื้องหลังคา Excella / Prestige และฉนวนกันความร้อนหนา 150 มม. เสริมจุดขายบ้านสไตล์อังกฤษและบ้านโมเดิร์นหรู",
+            "<strong>ระบบผนังตกแต่ง SCG D-COR & ไม้สังเคราะห์:</strong> เจาะกลุ่มงานตกแต่งผนังภายนอก ซุ้มทางเข้าลายไม้ และบัวประดับตกแต่งสไตล์คลาสสิก"
+        ]
     },
     {
         "id": "comp-udon-57",
@@ -3097,15 +1880,15 @@
         "sales2026": 74809
     },
     {
-        "id": "comp-udon-17",
-        "name": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
-        "engName": "E House Construction & Design Co., Ltd.",
-        "category": "รับสร้างบ้านและสถาปัตยกรรมอีสานประยุกต์ (TSIC 41001)",
+        "id": "comp-udon-46",
+        "name": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จํากัด",
+        "engName": "Jeeranun Property Ltd., Part.",
+        "category": "รับสร้างบ้านและอสังหาริมทรัพย์ (TSIC 41001)",
         "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "064 192 4559",
-        "contactPerson": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด",
+        "district": "ไชยวาน",
+        "address": "160 หมู่ที่ 6 บ้านชัย บ้านดุง อุดรธานี",
+        "phone": "064 995 9169",
+        "contactPerson": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จำกัด",
         "totalProjects": 4,
         "newProjectsThisMonth": 4,
         "totalValueMillion": 22,
@@ -3114,223 +1897,28 @@
         "verificationStatus": {
             "isVerified": true,
             "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415562013456",
+            "evidenceSource": "Facebook Page | DBD: 0415560042345",
             "permitStatus": "TSIC 41001"
         },
         "stageBreakdown": {
-            "groundbreak": 0,
+            "groundbreak": 1,
             "foundation": 0,
-            "structure": 2,
-            "finishing": 2
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿2.0M",
-        "coordinates": [
-            17.398,
-            102.802
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/8XeunP9KgTB8zPyC9",
-        "gmaps": "https://maps.app.goo.gl/8XeunP9KgTB8zPyC9",
-        "facebookUrl": "https://www.facebook.com/esarnthaihouse",
-        "facebookSignal": {
-            "postDate": "14/9/2569",
-            "pageName": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
-            "caption": "“บ้านในฝัน”\nไม่ได้หมายถึงบ้านที่ใหญ่ที่สุด หรือแพงที่สุด\nแต่มันคือบ้านที่เปิดประตูเข้ามาแล้ว\nรู้สึกว่า… อยากกลับมาที่นี่ทุกวัน 🤍\nพื้นที่ที่ลูกได้เติบโต\nพื้นที่ที่พ่อแม่ได้นั่งกินข้าวพร้อมหน้ากัน\nพื้นที่ที่เก็บเรื่องราวเล็ก ๆ ของครอบครัว\nจนกลายเป็นความทรงจำตลอดชีวิต\nเพราะสำหรับเรา\nบ้านไม่ใช่แค่สิ่งปลูกสร้าง แต่คือ “พื้นที่ของความสุข”\nตั้งแต่การออกแบบ\nการเลือกวัสดุ\nการจัดแสงและพื้นที่ใช้สอย\nไปจนถึงรายละเอียดเล็กที่สุดของบ้าน\nเราอยากสร้างให้ทุกตารางเมตร\nเป็นพื้นที่ที่คุณรู้สึกว่า\n“นี่แหละ…บ้านของเรา”",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-17-1",
-                "name": "“บ้านในฝัน”",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.398,
-                    102.802
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "“บ้านในฝัน”\nไม่ได้หมายถึงบ้านที่ใหญ่ที่สุด หรือแพงที่สุด\nแต่มันคือบ้านที่เปิดประตูเข้ามาแล้ว\nรู้สึกว่า… อยากกลับมาที่นี่ทุกวัน 🤍\nพื้นที่ที่ลูกได้เติบโต\nพื้นที่ที่พ่อแม่ได้นั่งกินข้าวพร้อมหน้ากัน\nพื้นที่ที่เก็บเรื่องราวเล็ก ๆ ของครอบครัว\nจนกลายเป็นความทรงจำตลอดชีวิต\nเพราะสำหรับเรา\nบ้านไม่ใช่แค่สิ่งปลูกสร้าง แต่คือ “พื้นที่ของความสุข”\nตั้งแต่การออกแบบ\nการเลือกวัสดุ\nการจัดแสงและพื้นที่ใช้สอย\nไปจนถึงรายละเอียดเล็กที่สุดของบ้าน\nเราอยากสร้างให้ทุกตารางเมตร\nเป็นพื้นที่ที่คุณรู้สึกว่า\n“นี่แหละ…บ้านของเรา”",
-                "postedTime": "14/9/2569",
-                "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid033cDcRVWx9n22uAnYcJLii25J8aiFqh9gNZJMWxaDkwXH2apyZAGUeMibcypu9eEQl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-17-2",
-                "name": "รับสร้างบ้าน โดยทีมงานมืออาชีพ มีประสบการณ์มากกว่า 25 ป...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.398,
-                    102.802
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "รับสร้างบ้าน โดยทีมงานมืออาชีพ มีประสบการณ์มากกว่า 25 ปี ปัจจุบัน ทีมช่างและวิศวกร พร้อมทำงาน",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid02vt1YE8D7FJah4qjRMfY2hQ9MV7nEFwycyKhbm9Uw43bCHKMvRujzav7ePdp46Jckl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-17-3",
-                "name": "“เหนื่อยมาทั้งวัน…แค่เห็นไฟบ้านเปิดรออยู่ ก็อยากกลับถึง...",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.398,
-                    102.802
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "“เหนื่อยมาทั้งวัน…แค่เห็นไฟบ้านเปิดรออยู่ ก็อยากกลับถึงบ้านเร็วขึ้น” 🏡✨\nบ้านสองชั้นกลิ่นอาย Modern Luxury ที่เติมความอบอุ่นด้วยโทนไม้และแสงไฟสีอุ่น เส้นสายเรียบชัด สีขาวตัดเทาเข้ม และกระจกบานใหญ่ ทำให้บ้านดูสง่า แต่ยังรู้สึกผ่อนคลายเมื่อมองเข้ามา\nลองนึกถึงเย็นวันหนึ่ง…จอดรถ เดินผ่านสวนเล็ก ๆ แล้วเปิดประตูเข้าไปเจอคนที่รอเราอยู่ ความสุขของการมีบ้านอาจเริ่มจากช่วงเวลาธรรมดาแบบนี้เอง 🤍\n✨ จุดเด่นที่ชวนให้หลงรัก\n• กระจกบานใหญ่ เปิดมุมมองสู่ภายนอก รับแสงธรรมชาติ และช่วยให้พื้นที่ดูโปร่ง\n• ระแนงแนวตั้งกับฝ้าโทนไม้ เพิ่มมิติให้หน้าบ้าน ลดความแข็งของเส้นสายโมเดิร์น\n• ระเบียงยาวพร้อมราวกระจก ทำให้ด้านหน้าดูต่อเนื่อง เปิดมุมมองได้กว้าง\n• โรงจอดรถในภาพจัดวางรถได้ 4 คัน เชื่อมอยู่ใต้ตัวบ้าน สะดวกต่อการเข้าออก\n• สวนด้านหน้าช่วยเติมความสดชื่น ส่วนไฟซ่อนช่วยขับรายละเอียดบ้านให้เด่นในช่วงค่ำ\n💭 สวยแบบนี้ มีข้อควรคิดอะไรบ้าง?\n• กระจกเยอะ ต้องวางให้สัมพันธ์กับทิศแดด พร้อมเลือกกระจกและม่านให้เหมาะ เพื่อจัดการความร้อนและความเป็นส่วนตัว\n• กระจกชั้นบน ราวระเบียง และระแนง มีรายละเอียดให้ทำความสะอาด จึงควรเผื่อการเข้าถึงเพื่อดูแลตั้งแต่ขั้นออกแบบ\n• ระเบียงเปิดต้องใส่ใจความลาดเอียง การระบายน้ำ และงานกันซึม\n• ที่จอดรถ 4 คันต้องตรวจขนาดใช้งานจริง ทั้งระยะเปิดประตูและพื้นที่ถอยรถ เพราะภาพสวยอย่างเดียวบอกความสะดวกทั้งหมดไม่ได้\nบ้านที่น่าอยู่ คือบ้านที่มองแล้วชอบ และใช้ชีวิตแล้วสบายไปอีกนาน 🌿\nถ้าเป็นบ้านของคุณ…จะเลือกมุมไหนเป็นมุมพักใจ มุมสวนหน้าบ้าน หรือระเบียงชั้นบน? 💬\n#LoftDesign #ModernLuxury #บ้านสองชั้น #บ้านโมเดิร์น #ออกแบบบ้าน #บ้านในฝั",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid036bKGjV8dnBM236DQKxSewNvB2PgvqPZsuCbVPkeV5SmtBJkFztVhPefiqrEcusYel",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-17-4",
-                "name": "รีวิวงานฉาบ สกิม ทาสีบ้านผ่านเเสงกระทบ",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.398,
-                    102.802
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "รีวิวงานฉาบ สกิม ทาสีบ้านผ่านเเสงกระทบ",
-                "postedTime": "3/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1793509581772008/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 4 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 70,
-        "scgCode": "10648769",
-        "sales2025": 187141,
-        "sales2026": 75112
-    },
-    {
-        "id": "comp-udon-43",
-        "name": "ห้างหุ้นส่วนจํากัด หล้าก่ํา ทรัพย์เจริญยิ่ง",
-        "engName": "Mariya Construction Co., Ltd.",
-        "category": "รับเหมาก่อสร้างบ้านและอาคารพาณิชย์ (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "088 877 2899",
-        "contactPerson": "ห้างหุ้นส่วนจำกัด หล้าก่ำ ทรัพย์เจริญยิ่ง",
-        "totalProjects": 4,
-        "newProjectsThisMonth": 4,
-        "totalValueMillion": 22,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415561039012",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 2,
-            "foundation": 0,
-            "structure": 2,
+            "structure": 3,
             "finishing": 0
         },
         "latestTimelineStage": "groundbreak",
         "revenuePotentialText": "฿2.0M",
         "coordinates": [
-            17.4015,
-            102.8165
+            17.280851,
+            103.2232063
         ],
-        "googleMapsUrl": "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
-        "gmaps": "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=100069404124717",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%9D%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%9D%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=100066777634252",
         "facebookSignal": {
-            "postDate": "10/9/2569",
-            "pageName": "ห้างหุ้นส่วนจํากัด หล้าก่ํา ทรัพย์เจริญยิ่ง",
-            "caption": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
+            "postDate": "13/9/2569",
+            "pageName": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จํากัด",
+            "caption": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ksc. โครงสร้างมั่นคงแข็งแรง \n☎️0946215444 รับต่อเติมบ้านในอุดร\n#หมู่บ้านอภิทาวน์ #รับต่อเติมบ้านในอุดร #รับเหมาก่อสร้าง #ต่อเติมอุดร #อุดรต่อเติมบ้าน #รีโนเวทอุดร #อุดรรีโนเวท",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -3341,14 +1929,48 @@
         },
         "projects": [
             {
-                "projectId": "comp-udon-43-1",
-                "name": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ",
+                "projectId": "comp-udon-46-1",
+                "name": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ...",
+                "location": "โครงการอภิทาวน์ อ.เมือง จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.280851,
+                    103.2232063
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "คาน คสล.20×60cm.  เหล็กDB16 ปลอกRB9 @16 cm. คอนกรีต280 ksc. โครงสร้างมั่นคงแข็งแรง \n☎️0946215444 รับต่อเติมบ้านในอุดร\n#หมู่บ้านอภิทาวน์ #รับต่อเติมบ้านในอุดร #รับเหมาก่อสร้าง #ต่อเติมอุดร #อุดรต่อเติมบ้าน #รีโนเวทอุดร #อุดรรีโนเวท",
+                "postedTime": "13/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qwa36vphbynrXKV61oQ9x7F45Le12JatksqAkqqV4DvzBQGWKZH5VLQPoHi35sAxl&id=100066777634252",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-46-2",
+                "name": "ต่อเติมครัว",
                 "location": "อ.ไชยวาน จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "ไชยวาน",
                 "gps": [
-                    17.4015,
-                    102.8165
+                    17.280851,
+                    103.2232063
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -3356,9 +1978,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0TiKxbFnxAY97Y4g3aoCk6A4XARojgPof7NZmi4tDNPbbd7DsDwZvqR343Avf9QD2l&id=100069404124717",
+                "caption": "ต่อเติมครัว",
+                "postedTime": "13/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Wbrbp9ZEHFNYRQirHgQSMbShUDj18BzwkegLRZrLzNXFgrpEFEGB5Qs7RyhZVoHJl&id=100066777634252",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3375,14 +1997,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-43-2",
-                "name": "🎉🎊เซ็นสัญญา จองคิวสร้าง พร้อมเตรียมยกเสาเอกเสาโท  ๑๑/...",
-                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                "projectId": "comp-udon-46-3",
+                "name": "งานต่อเติมครัวหลังบ้านพร้อมลงเสาเข็มไมโครไพล์ เพิ่มพื้น...",
+                "location": "อ.ไชยวาน จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "ประจักษ์ศิลปาคม",
+                "district": "ไชยวาน",
                 "gps": [
-                    17.4015,
-                    102.8165
+                    17.280851,
+                    103.2232063
                 ],
                 "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
                 "stageKey": "groundbreak",
@@ -3390,9 +2012,9 @@
                 "progressPercent": 15,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🎉🎊เซ็นสัญญา จองคิวสร้าง พร้อมเตรียมยกเสาเอกเสาโท  ๑๑/๑๑/๒๕๖๙\n🏡บ้านทรงปั้นหยา  ของคุณบุญธรรมครับ\n\nพิกัด📍 อำเภอประจักษ์ศิลปาคม  จังหวัดอุดรธานี  ครับ😊\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid09nkqg4UH1pQJjgX8TTJa8wn3Y4KxLqLjb2p9YYPFGZn3LqqeDaCCpLhRXT1nr1tMl&id=100069404124717",
+                "caption": "งานต่อเติมครัวหลังบ้านพร้อมลงเสาเข็มไมโครไพล์ เพิ่มพื้นที่ใช้สอยให้มากยิ่งขึ้น #ต่อเติมครัวหลังบ้าน #รีโนเวทอุดร #ต่อเติมอุดร #รับเหมาก่อสร้าง #รับต่อเติมบ้านในอุดร #อุดรต่อเติมบ้าน #ต่อเติมบ้าน",
+                "postedTime": "12/9/2569",
+                "postUrl": "https://www.facebook.com/reel/1437768288226738/",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3409,48 +2031,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-43-3",
-                "name": "🎊ฤกษ์งามยามดี 🎉",
-                "location": "อ.หนองหาน จ.อุดรธานี",
+                "projectId": "comp-udon-46-4",
+                "name": "รางระบายน้ำ ขนาด 30cm. เกร้าท์ปูนท้องราง ภายนอกและภายใน...",
+                "location": "อ.ไชยวาน จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "หนองหาน",
+                "district": "ไชยวาน",
                 "gps": [
-                    17.4015,
-                    102.8165
-                ],
-                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
-                "stageKey": "groundbreak",
-                "trackingStatus": "pending",
-                "progressPercent": 15,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🎊ฤกษ์งามยามดี 🎉\n๙ เดือน กันยายน   ๒๕๖๙ เวลา ๐๘.๐๙\nพิธียกเสาเอกเสาโท ครับ\n🏡บ้านทรงปั้นหยา  ของคุณเรืองเดช ครับ\n\nพิกัด📍อำเภอหนองหาน จังหวัด อุดรธานี ครับ\n\n🙏🏻ขอขอบพระคุณลูกค้าที่ไว้วางใจทีมงาน\nหจก. หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
-                "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Qniy6WgxQTrVk9mgDpyuEGDgRG7d5tem7k6BNuoT2AFPerZz4JVVwTUcHV7VJdoQl&id=100069404124717",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-43-4",
-                "name": "🏡บ้านทรงปั้นหยา ✨สไตล์คอนเทมโพรารี✨",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4015,
-                    102.8165
+                    17.280851,
+                    103.2232063
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -3458,9 +2046,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡บ้านทรงปั้นหยา ✨สไตล์คอนเทมโพรารี✨\n💲ในงบสร้าง 1.57 ล้านบาท\n📍ฟังก์ชั่น \n3 ห้องนอน\n2 ห้องน้ำ\n1 ห้องโถงรับแขก\n1 ครัว\n📌พื้นที่ใช้สอย 110 ตารางเมตร\nพื้นบ้านยกสูง 1 เมตร \n#เเบบบ้านทรงปั้นหยา #เเบบ3D\n#บ้านทรงปั้นหยา #รับสร้างบ้าน  #อยากมีบ้าน  #อยากสร้างบ้าน",
-                "postedTime": "6/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1043271718546054/",
+                "caption": "รางระบายน้ำ ขนาด 30cm. เกร้าท์ปูนท้องราง ภายนอกและภายใน เพื่อป้องกันน้ำซึมเข้าและซึมออก 🧑‍🔧ทีมงาน พีรพัฒน์ 999💯",
+                "postedTime": "11/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0yzkgEmCH8X8AgqfLaqzfiqeNKSqZRfgZERodnAPtDxJjz4Wqqwomsyhn33Y3kqqcl&id=100066777634252",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -3477,209 +2065,14 @@
                 ]
             }
         ],
-        "aiShortRec": "พบ 4 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 2, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiShortRec": "พบ 4 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 1, ฐานราก: 0, โครงสร้าง: 3)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
         "opportunityScore": 70,
-        "scgCode": "10126345",
-        "sales2025": 110483,
-        "sales2026": 18166
-    },
-    {
-        "id": "comp-udon-55",
-        "name": "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
-        "engName": "DNN Construction Ltd., Part.",
-        "category": "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "ประจักษ์ศิลปาคม",
-        "address": "263 หมู่บ้าน นาม่วง หมู่ที่ 1 นาม่วง ประจักษ์ศิลปาคม อุดรธานี",
-        "phone": "063 046 5748",
-        "contactPerson": "ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น",
-        "totalProjects": 4,
-        "newProjectsThisMonth": 4,
-        "totalValueMillion": 22,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415567000573",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 4,
-            "finishing": 0
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿2.0M",
-        "coordinates": [
-            17.2623,
-            103.0035
-        ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=61576710850214",
-        "facebookSignal": {
-            "postDate": "9/9/2569",
-            "pageName": "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
-            "caption": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-55-1",
-                "name": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡",
-                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ประจักษ์ศิลปาคม",
-                "gps": [
-                    17.2623,
-                    103.0035
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
-                "postedTime": "9/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Kum6FQAu12yv28DbFeKXjrbSVwNw2DjTMuxeZnhDgr3ENccQEXHVuzxXHZ9J9YiMl&id=61576710850214",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-55-2",
-                "name": "อัปเดตหน้างานบ้านคุณเปี๊ยก 🏡✨ 27/08/2026",
-                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ประจักษ์ศิลปาคม",
-                "gps": [
-                    17.2623,
-                    103.0035
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อัปเดตหน้างานบ้านคุณเปี๊ยก 🏡✨ 27/08/2026\n#DNNConstruction\n#รับสร้างบ้านอุดรธานี\n#ปรึกษาสร้างบ้านฟรี",
-                "postedTime": "27/8/2569",
-                "postUrl": "https://www.facebook.com/reel/3701290223342894/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-55-3",
-                "name": "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเร...",
-                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ประจักษ์ศิลปาคม",
-                "gps": [
-                    17.2623,
-                    103.0035
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเรา 🙏🏠\nเซ็นสัญญาและรับมัดจำเรียบร้อย เตรียมเริ่มสร้างบ้านหลังใหม่ในปี 2027\n\n#DNNConstruction #รับสร้างบ้าน #สร้างบ้านอุดรธานี",
-                "postedTime": "25/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02fCqSNv3LZyevgiMA1q3hdR8wjeKPafDvsTf3wcGvHAn5mNH5rBev95UjGPFKDrKpl&id=61576710850214",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-55-4",
-                "name": "Congratulations on your new home 🏡🥳",
-                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "ประจักษ์ศิลปาคม",
-                "gps": [
-                    17.2623,
-                    103.0035
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "Congratulations on your new home 🏡🥳",
-                "postedTime": "25/6/2569",
-                "postUrl": "https://www.facebook.com/reel/1044357541372338/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 4 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 4)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 70,
-        "scgCode": "10724226",
-        "sales2025": 0,
-        "sales2026": 75021
+        "scgCode": "10349378",
+        "sales2025": 31873,
+        "sales2026": 181379
     },
     {
         "id": "comp-udon-42",
@@ -4558,6 +2951,496 @@
         "sales2026": 569818
     },
     {
+        "id": "comp-udon-17",
+        "name": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
+        "engName": "E House Construction & Design Co., Ltd.",
+        "category": "รับสร้างบ้านและสถาปัตยกรรมอีสานประยุกต์ (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "064 192 4559",
+        "contactPerson": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด",
+        "totalProjects": 3,
+        "newProjectsThisMonth": 3,
+        "totalValueMillion": 16.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415562013456",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 2,
+            "finishing": 1
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿1.5M",
+        "coordinates": [
+            17.398,
+            102.802
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/8XeunP9KgTB8zPyC9",
+        "gmaps": "https://maps.app.goo.gl/8XeunP9KgTB8zPyC9",
+        "facebookUrl": "https://www.facebook.com/esarnthaihouse",
+        "facebookSignal": {
+            "postDate": "14/9/2569",
+            "pageName": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
+            "caption": "“บ้านในฝัน”\nไม่ได้หมายถึงบ้านที่ใหญ่ที่สุด หรือแพงที่สุด\nแต่มันคือบ้านที่เปิดประตูเข้ามาแล้ว\nรู้สึกว่า… อยากกลับมาที่นี่ทุกวัน 🤍\nพื้นที่ที่ลูกได้เติบโต\nพื้นที่ที่พ่อแม่ได้นั่งกินข้าวพร้อมหน้ากัน\nพื้นที่ที่เก็บเรื่องราวเล็ก ๆ ของครอบครัว\nจนกลายเป็นความทรงจำตลอดชีวิต\nเพราะสำหรับเรา\nบ้านไม่ใช่แค่สิ่งปลูกสร้าง แต่คือ “พื้นที่ของความสุข”\nตั้งแต่การออกแบบ\nการเลือกวัสดุ\nการจัดแสงและพื้นที่ใช้สอย\nไปจนถึงรายละเอียดเล็กที่สุดของบ้าน\nเราอยากสร้างให้ทุกตารางเมตร\nเป็นพื้นที่ที่คุณรู้สึกว่า\n“นี่แหละ…บ้านของเรา”",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-17-1",
+                "name": "“บ้านในฝัน”",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.398,
+                    102.802
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "“บ้านในฝัน”\nไม่ได้หมายถึงบ้านที่ใหญ่ที่สุด หรือแพงที่สุด\nแต่มันคือบ้านที่เปิดประตูเข้ามาแล้ว\nรู้สึกว่า… อยากกลับมาที่นี่ทุกวัน 🤍\nพื้นที่ที่ลูกได้เติบโต\nพื้นที่ที่พ่อแม่ได้นั่งกินข้าวพร้อมหน้ากัน\nพื้นที่ที่เก็บเรื่องราวเล็ก ๆ ของครอบครัว\nจนกลายเป็นความทรงจำตลอดชีวิต\nเพราะสำหรับเรา\nบ้านไม่ใช่แค่สิ่งปลูกสร้าง แต่คือ “พื้นที่ของความสุข”\nตั้งแต่การออกแบบ\nการเลือกวัสดุ\nการจัดแสงและพื้นที่ใช้สอย\nไปจนถึงรายละเอียดเล็กที่สุดของบ้าน\nเราอยากสร้างให้ทุกตารางเมตร\nเป็นพื้นที่ที่คุณรู้สึกว่า\n“นี่แหละ…บ้านของเรา”",
+                "postedTime": "14/9/2569",
+                "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid033cDcRVWx9n22uAnYcJLii25J8aiFqh9gNZJMWxaDkwXH2apyZAGUeMibcypu9eEQl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-17-2",
+                "name": "รับสร้างบ้าน โดยทีมงานมืออาชีพ มีประสบการณ์มากกว่า 25 ป...",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.398,
+                    102.802
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "รับสร้างบ้าน โดยทีมงานมืออาชีพ มีประสบการณ์มากกว่า 25 ปี ปัจจุบัน ทีมช่างและวิศวกร พร้อมทำงาน",
+                "postedTime": "11/9/2569",
+                "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid02vt1YE8D7FJah4qjRMfY2hQ9MV7nEFwycyKhbm9Uw43bCHKMvRujzav7ePdp46Jckl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-17-3",
+                "name": "“เหนื่อยมาทั้งวัน…แค่เห็นไฟบ้านเปิดรออยู่ ก็อยากกลับถึง...",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.398,
+                    102.802
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "“เหนื่อยมาทั้งวัน…แค่เห็นไฟบ้านเปิดรออยู่ ก็อยากกลับถึงบ้านเร็วขึ้น” 🏡✨\nบ้านสองชั้นกลิ่นอาย Modern Luxury ที่เติมความอบอุ่นด้วยโทนไม้และแสงไฟสีอุ่น เส้นสายเรียบชัด สีขาวตัดเทาเข้ม และกระจกบานใหญ่ ทำให้บ้านดูสง่า แต่ยังรู้สึกผ่อนคลายเมื่อมองเข้ามา\nลองนึกถึงเย็นวันหนึ่ง…จอดรถ เดินผ่านสวนเล็ก ๆ แล้วเปิดประตูเข้าไปเจอคนที่รอเราอยู่ ความสุขของการมีบ้านอาจเริ่มจากช่วงเวลาธรรมดาแบบนี้เอง 🤍\n✨ จุดเด่นที่ชวนให้หลงรัก\n• กระจกบานใหญ่ เปิดมุมมองสู่ภายนอก รับแสงธรรมชาติ และช่วยให้พื้นที่ดูโปร่ง\n• ระแนงแนวตั้งกับฝ้าโทนไม้ เพิ่มมิติให้หน้าบ้าน ลดความแข็งของเส้นสายโมเดิร์น\n• ระเบียงยาวพร้อมราวกระจก ทำให้ด้านหน้าดูต่อเนื่อง เปิดมุมมองได้กว้าง\n• โรงจอดรถในภาพจัดวางรถได้ 4 คัน เชื่อมอยู่ใต้ตัวบ้าน สะดวกต่อการเข้าออก\n• สวนด้านหน้าช่วยเติมความสดชื่น ส่วนไฟซ่อนช่วยขับรายละเอียดบ้านให้เด่นในช่วงค่ำ\n💭 สวยแบบนี้ มีข้อควรคิดอะไรบ้าง?\n• กระจกเยอะ ต้องวางให้สัมพันธ์กับทิศแดด พร้อมเลือกกระจกและม่านให้เหมาะ เพื่อจัดการความร้อนและความเป็นส่วนตัว\n• กระจกชั้นบน ราวระเบียง และระแนง มีรายละเอียดให้ทำความสะอาด จึงควรเผื่อการเข้าถึงเพื่อดูแลตั้งแต่ขั้นออกแบบ\n• ระเบียงเปิดต้องใส่ใจความลาดเอียง การระบายน้ำ และงานกันซึม\n• ที่จอดรถ 4 คันต้องตรวจขนาดใช้งานจริง ทั้งระยะเปิดประตูและพื้นที่ถอยรถ เพราะภาพสวยอย่างเดียวบอกความสะดวกทั้งหมดไม่ได้\nบ้านที่น่าอยู่ คือบ้านที่มองแล้วชอบ และใช้ชีวิตแล้วสบายไปอีกนาน 🌿\nถ้าเป็นบ้านของคุณ…จะเลือกมุมไหนเป็นมุมพักใจ มุมสวนหน้าบ้าน หรือระเบียงชั้นบน? 💬\n#LoftDesign #ModernLuxury #บ้านสองชั้น #บ้านโมเดิร์น #ออกแบบบ้าน #บ้านในฝั",
+                "postedTime": "10/9/2569",
+                "postUrl": "https://www.facebook.com/esarnthaihouse/posts/pfbid036bKGjV8dnBM236DQKxSewNvB2PgvqPZsuCbVPkeV5SmtBJkFztVhPefiqrEcusYel",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 3 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 70,
+        "scgCode": "10648769",
+        "sales2025": 187141,
+        "sales2026": 75112
+    },
+    {
+        "id": "comp-udon-03",
+        "name": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด",
+        "engName": "Nayoo House Construction Co., Ltd.",
+        "category": "รับสร้างบ้านและอาคารพักอาศัย (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี 41000",
+        "phone": "083 669 9994",
+        "contactPerson": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด",
+        "totalProjects": 3,
+        "newProjectsThisMonth": 3,
+        "totalValueMillion": 16.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415564003456",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 1,
+            "foundation": 0,
+            "structure": 2,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿1.5M",
+        "coordinates": [
+            17.412,
+            102.801
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/LpY6wzxXPWZWwvH18",
+        "gmaps": "https://maps.app.goo.gl/LpY6wzxXPWZWwvH18",
+        "facebookUrl": "https://www.facebook.com/Nayoohouse",
+        "facebookSignal": {
+            "postDate": "8/9/2569",
+            "pageName": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด",
+            "caption": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-03-1",
+                "name": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอ...",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.412,
+                    102.801
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์",
+                "postedTime": "8/9/2569",
+                "postUrl": "https://www.facebook.com/reel/1569054811631492/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-03-2",
+                "name": "🏡✨ อัปเดตความคืบหน้างานก่อสร้างล่าสุด! บ้านสวยใจกลางเม...",
+                "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.412,
+                    102.801
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🏡✨ อัปเดตความคืบหน้างานก่อสร้างล่าสุด! บ้านสวยใจกลางเมืองอุดรธานี\n​อีกหนึ่งผลงานคุณภาพจากทีมงานมืออาชีพ\n\n โครงการ บ้านพักอาศัย 2 ชั้น (คสล.)\n เจ้สของ : คุณวิมล และ คุณตวงพร เทศวานิช \nตั้งอยู่ : ซอยเวียงพิงค์ ต.หมากแข้ง อ.เมืองอุดรธานี \n\n​ตอนนี้งานโครงสร้างและงานมุงหลังคาเดินหน้าไปอย่างประณีต พร้อมกับงานเดินระบบภายในที่ได้มาตรฐานความปลอดภัย ควบคุมงานทุกขั้นตอนอย่างใกล้ชิดโดยทีมงานวิศวกรและสถาปนิกจาก บ.น่าอยู่เฮ้าส์ คอนสตรัคชั่น จำกัด เพื่อให้ได้บ้านที่แข็งแรง ทนทาน และสวยงามตรงใจเจ้าของบ้านที่สุดครับ 👷‍♂️🛠️\n\n​💰 งบประมาณโครงการ: 4.xx ล้านบาท\n📍 พิกัด: ซอยเวียงพิงค์ ต.หมากแข้ง อ.เมืองอุดรธานี\n​💬 \"อยากมีบ้านในฝันบนที่ดินตัวเอง เริ่มต้นจากศูนย์จนถึงวันเข้าอยู่ ให้เราดูแลคุณนะครับ\"\n​สนใจปรึกษาแบบบ้าน / ประเมินราคา / วางแผนงบประมาณ ติดต่อทีมงานน่าอยู่เฮ้าส์ได้เลยครับ!\n​📞 โทร: 081-889-9996\n​💬 Inbox เพจ: น่าอยู่เฮ้าส์ - รับสร้างบ้านอุดรธานี\n​#น่าอยู่เฮ้าส์ #รับสร้างบ้านอุดรธานี #บ้านสองชั้น #บ้านโครงสร้างคสล #สร้างบ้านตามฝัน #บ้านคุณวิมล #น่าอยู่เฮ้าส์คอนสตรัคชั่น #บ้านวิศวะคอนสตรัคชั่น",
+                "postedTime": "4/9/2569",
+                "postUrl": "https://www.facebook.com/Nayoohouse/posts/pfbid02fGsoYQxzvNFF9uyaskS7uNcN2JgmFEDyuJXiKvgcSS23nUwxKN2QBdgQcwZKgVsrl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-03-3",
+                "name": "วางผังบ้านคุณตะวัน",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.412,
+                    102.801
+                ],
+                "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
+                "stageKey": "groundbreak",
+                "trackingStatus": "pending",
+                "progressPercent": 15,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "วางผังบ้านคุณตะวัน \n\nควรเลือกบริษัทที่มีผลงานจริง สัญญาชัดเจน ใช้วัสดุได้มาตรฐาน มีทีมสถาปนิกและวิศวกร พร้อมดูแลหลังส่งมอบบ้าน\n\nสร้างบ้านทั้งที เลือกบริษัทที่ไว้ใจได้\nน่าอยู่เฮ้าส์ รับสร้างบ้าน\n\n📞 ปรึกษาฟรี 081-889-9996\nFacebook • TikTok • Instagram\nชื่อ: น่าอยู่เฮ้าส์ รับสร้างบ้าน\n\n#รับสร้างบ้านอุดรธานี #น่าอยู่เฮ้าส์ #สร้างบ้านอุดรธานี #บริษัทรับสร้างบ้าน #คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์",
+                "postedTime": "16/8/2569",
+                "postUrl": "https://www.facebook.com/reel/1543360547086166/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 3 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 1, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 70,
+        "scgCode": "10727085",
+        "sales2025": 0,
+        "sales2026": 161278,
+        "customDiagnostic": "บริษัทรับสร้างบ้านที่มีความพร้อมด้านเครื่องจักรหนัก (รถเครน/แม็คโคร) เป็นลูกค้ารายใหม่ที่เริ่มเปิดบัญชีซื้อ SCG ในปี 2026 มียอดรวม <strong>฿161,278</strong> มีความสัมพันธ์อันดีกับทีมเทคนิค SCG และมีไซต์งานบ้านพักอาศัย คสล. 2 ชั้น ในเขตเมืองอุดรธานีอย่างต่อเนื่อง ถือเป็นจังหวะสำคัญในการสร้างความผูกพันระยะยาว",
+        "customRecommendations": [
+            "<strong>คอนกรีตผสมเสร็จ CPAC งานโครงสร้างและโกดัง:</strong> นำเสนอคอนกรีต CPAC 240–280 ksc และ CPAC คอนกรีตสำหรับงานเทพื้นโกดัง (Industrial Floor) ตอบโจทย์งานโครงสร้างที่ต้องการความแข็งแรงสูง",
+            "<strong>ปูนซีเมนต์ไฮดรอลิก SCG และปูนเสือ มอร์ตาร์:</strong> ต่อยอดจากการจัดอบรมช่าง ล็อกสเปกใช้งานปูนโครงสร้าง SCG และปูนฉาบสำเร็จรูปเสือสำหรับบ้าน คสล. ทุกหลัง",
+            "<strong>ระบบผนังมวลเบา Q-CON และอิฐมวลเบา:</strong> นำเสนอโซลูชันผนังกันความร้อน ช่วยประหยัดเวลาและลดน้ำหนักโครงสร้างอาคาร 2 ชั้น",
+            "<strong>ระบบหลังคา SCG และอุปกรณ์ครอบกันรั่ว:</strong> นำเสนอกระเบื้องหลังคาคอนกรีต SCG (ซีแพค/เพรสทีจ) พร้อมชุดอุปกรณ์ Dry-Tech System ครบวงจรสำหรับโครงการบ้านเดี่ยว"
+        ]
+    },
+    {
+        "id": "comp-udon-55",
+        "name": "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+        "engName": "DNN Construction Ltd., Part.",
+        "category": "รับสร้างบ้านและงานก่อสร้างครบวงจร (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "ประจักษ์ศิลปาคม",
+        "address": "263 หมู่บ้าน นาม่วง หมู่ที่ 1 นาม่วง ประจักษ์ศิลปาคม อุดรธานี",
+        "phone": "063 046 5748",
+        "contactPerson": "ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+        "totalProjects": 3,
+        "newProjectsThisMonth": 3,
+        "totalValueMillion": 16.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415567000573",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 3,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿1.5M",
+        "coordinates": [
+            17.2623,
+            103.0035
+        ],
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%94%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%99+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+263+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+1+%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B9%88%E0%B8%A7%E0%B8%87+%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%84%E0%B8%A1+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=61576710850214",
+        "facebookSignal": {
+            "postDate": "9/9/2569",
+            "pageName": "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+            "caption": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-55-1",
+                "name": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡",
+                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "ประจักษ์ศิลปาคม",
+                "gps": [
+                    17.2623,
+                    103.0035
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "เปิดใหม่อีกหนึ่งหน้างาน🎉🏡\nหลังจากจบพิธีลงเสาเอกเสาโทเพื่อความเป็นสิริมงคล ก่อนเดินหน้าก่อสร้างบ้านหลังใหม่ให้กับลูกค้า\nขอบพระคุณเจ้าของบ้านที่ไว้วางใจให้เราดูแลตั้งแต่เริ่มต้นจนถึงบ้านที่พร้อมอยู่อาศัย ❤️\n\n#DNNBuildingConstruction #รับสร้างบ้าน #รับเหมาก่อสร้าง #สร้างบ้านอุดรธานี #บ้านโมเดิร์น #ลงเสาเอก #งานก่อสร้าง #สร้างบ้าน",
+                "postedTime": "9/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0Kum6FQAu12yv28DbFeKXjrbSVwNw2DjTMuxeZnhDgr3ENccQEXHVuzxXHZ9J9YiMl&id=61576710850214",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-55-2",
+                "name": "อัปเดตหน้างานบ้านคุณเปี๊ยก 🏡✨ 27/08/2026",
+                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "ประจักษ์ศิลปาคม",
+                "gps": [
+                    17.2623,
+                    103.0035
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "อัปเดตหน้างานบ้านคุณเปี๊ยก 🏡✨ 27/08/2026\n#DNNConstruction\n#รับสร้างบ้านอุดรธานี\n#ปรึกษาสร้างบ้านฟรี",
+                "postedTime": "27/8/2569",
+                "postUrl": "https://www.facebook.com/reel/3701290223342894/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-55-3",
+                "name": "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเร...",
+                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "ประจักษ์ศิลปาคม",
+                "gps": [
+                    17.2623,
+                    103.0035
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "อีกหนึ่งความไว้วางใจ ขอบคุณลูกค้าที่เลือกใช้บริการกับเรา 🙏🏠\nเซ็นสัญญาและรับมัดจำเรียบร้อย เตรียมเริ่มสร้างบ้านหลังใหม่ในปี 2027\n\n#DNNConstruction #รับสร้างบ้าน #สร้างบ้านอุดรธานี",
+                "postedTime": "25/8/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02fCqSNv3LZyevgiMA1q3hdR8wjeKPafDvsTf3wcGvHAn5mNH5rBev95UjGPFKDrKpl&id=61576710850214",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 3 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 3)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 70,
+        "scgCode": "10724226",
+        "sales2025": 0,
+        "sales2026": 75021
+    },
+    {
         "id": "comp-udon-12",
         "name": "บริษัท มายด์ โฮม แอสเสท จํากัด",
         "engName": "Mind Home Asset Co., Ltd.",
@@ -4683,133 +3566,6 @@
         "scgCode": "10335064",
         "sales2025": 2514378,
         "sales2026": 1361324
-    },
-    {
-        "id": "comp-udon-22",
-        "name": "กิจดลวรโชติ1",
-        "engName": "Kitdonworachot 1 Ltd., Part.",
-        "category": "รับเหมาก่อสร้างและบ้านพักอาศัย (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "หนองหาน",
-        "address": "208 ตําบล โพนงาม อําเภอหนองหาน อุดรธานี 41130 ประเทศไทย",
-        "phone": "094 542 5598",
-        "contactPerson": "กิจดลวรโชติ1",
-        "totalProjects": 2,
-        "newProjectsThisMonth": 2,
-        "totalValueMillion": 11,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415563018901",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 1,
-            "finishing": 1
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿1.0M",
-        "coordinates": [
-            17.362,
-            103.118
-        ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
-        "facebookUrl": "https://www.facebook.com/firstlandtown",
-        "facebookSignal": {
-            "postDate": "15/9/2569",
-            "pageName": "กิจดลวรโชติ1",
-            "caption": "ฝนกำลังจะหมด\nหนาวกำลังจะมา\nคิวงานเริ่มทยอยมาเรื่อยๆ\nอยากได้วันดีก็ปรึกษาผมได้นะครับ 🤍✅🏠",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-22-1",
-                "name": "ฝนกำลังจะหมด",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.362,
-                    103.118
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ฝนกำลังจะหมด\nหนาวกำลังจะมา\nคิวงานเริ่มทยอยมาเรื่อยๆ\nอยากได้วันดีก็ปรึกษาผมได้นะครับ 🤍✅🏠",
-                "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/firstlandtown/posts/pfbid02dLibQGrTV6zcJJWfhqEZfvt9CyrFQLESQyQw62Fyq5zp7LfdGUM6xuaeBx3X2aHgl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-22-2",
-                "name": "หน้างานบ้านดงคำ จ.อุดรธานี กำลังเดินทางถึงขั้นตอนปูกระเ...",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.362,
-                    103.118
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "หน้างานบ้านดงคำ จ.อุดรธานี กำลังเดินทางถึงขั้นตอนปูกระเบื้องและทาสีแล้ว ลุยครับทีมงานเฮียเฟิร์สสู้ๆ✌️✌️",
-                "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/firstlandtown/posts/pfbid02NwG4ws8ZTUuvizJcaBXQfQtx7G7WaJgqg1kwYZoe2dqbPUgU9AvTA7ZkBaoW5Bdgl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 2 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 1)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 35,
-        "scgCode": "10640153",
-        "sales2025": 438100,
-        "sales2026": 1992527
     },
     {
         "id": "comp-udon-51",
@@ -5066,15 +3822,15 @@
         "sales2026": 395558.3
     },
     {
-        "id": "comp-udon-52",
-        "name": "ห้างหุ้นส่วนจํากัด บ้านดี อยู่ดี ดีไซน์",
-        "engName": "Ch. Rungarun Construction Co., Ltd.",
-        "category": "รับเหมาก่อสร้างและบ้านพักอาศัย (TSIC 41001)",
+        "id": "comp-udon-27",
+        "name": "บริษัท บ้านวิศวะพัฒนา จํากัด",
+        "engName": "Baanwisawa Construction Ltd., Part.",
+        "category": "รับสร้างบ้านตามหลักวิศวกรรม (TSIC 41001)",
         "province": "อุดรธานี",
-        "district": "ประจักษ์ศิลปาคม",
-        "address": "เลขที่ 165 ตําบลนาม่วง อําเภอประจักษ์ศิลปาคม จังหวัดอุดรธานี 41110",
-        "phone": "095 836 1416",
-        "contactPerson": "ห้างหุ้นส่วนจำกัด บ้านดี อยู่ดี ดีไซน์",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "092 744 9253",
+        "contactPerson": "บริษัท บ้านวิศวะพัฒนา จำกัด",
         "totalProjects": 2,
         "newProjectsThisMonth": 2,
         "totalValueMillion": 11,
@@ -5083,28 +3839,28 @@
         "verificationStatus": {
             "isVerified": true,
             "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415562048901",
+            "evidenceSource": "Facebook Page | DBD: 0415561023456",
             "permitStatus": "TSIC 41001"
         },
         "stageBreakdown": {
             "groundbreak": 0,
             "foundation": 0,
-            "structure": 1,
-            "finishing": 1
+            "structure": 2,
+            "finishing": 0
         },
         "latestTimelineStage": "groundbreak",
         "revenuePotentialText": "฿1.0M",
         "coordinates": [
-            17.2796,
-            103.0337
+            17.411,
+            102.808
         ],
-        "googleMapsUrl": "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
-        "gmaps": "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
-        "facebookUrl": "https://www.facebook.com/bandee.udee",
+        "googleMapsUrl": "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+        "gmaps": "https://maps.app.goo.gl/XyrAGFjdebLLkp5q9",
+        "facebookUrl": "https://www.facebook.com/banwisawa",
         "facebookSignal": {
-            "postDate": "13/9/2569",
-            "pageName": "ห้างหุ้นส่วนจํากัด บ้านดี อยู่ดี ดีไซน์",
-            "caption": "📢 อัปเดตหน้างานจริง งานฝ้าเพดาน 🏠✨\n\n📍 พิกัด: ต.หมากแข้ง อ.เมือง จ.อุดรธานี\nบ้านสไตล์ มูจิ 🏠\nฟังก์ชัน\n3 ห้องนอน 🛏️ 2 ห้องน้ำ 🚿\n1 ห้องครัว 🍳 1 ห้องรับแขก 🛋️\n\n🔨 งานที่ดำเนินการในงวดนี้:\n• งานโครงคร่าวฝ้าเพดานภายใน พร้อมเดินท่อร้อยสายไฟระบบปิด ⚡️🔩\n• ปูแผ่นฉนวนกันความร้อนใต้หลังคา เพื่อบ้านเย็นสบาย ลดการใช้พลังงาน 🌡️❄️\n• ติดตั้งแผ่นฝ้าเพดานภายใน พร้อมฉาบรอยต่อเรียบเนียน เตรียมงานทาสี 🖌️✨\n• งานฝ้าเพดานภายนอก (ฝ้าชายคา) ระบายอากาศ ช่วยลดความร้อนสะสมใต้หลังคา 🍃🏡\n\nเก็บงานละเอียด ทุกขั้นตอนได้มาตรฐาน เพื่อบ้านสวยและอยู่สบายในระยะยาว 💡👷‍♂️\n\nขอขอบคุณ ที่ไว้วางใจให้ บ้านดี อยู่ดี ดีไซน์\nร่วมดูแลและสร้างบ้านหลังนี้ ❤️✨\n\n📩 ปรึกษาฟรี ไม่มีค่าใช้จ่าย\nบ้านดี อยู่ดี ดีไซน์\nสร้างจริง เสร็จจริง ไม่ทิ้งงาน\n\nอยากสร้างบ้าน สร้างตึก หอพัก โกดัง\nโรงงาน หรืองานรีโนเวท ต่อเติม ตกแต่งภายใน\nต้องที่ : Bandee UDEE Design\n\n🔰 ให้บริการในจังหวัดอุดรธานี หนองคาย\nหนองบัวลำภู ขอนแก่น และจังหวัดใกล้เคียง\n\n☎️ 081-556-9261\n🆔 Line : nut9722\n\nYoutube : www.youtube.com/@BandeeUdeeDesign\n📍 ที่ตั้งบริษัท : https://maps.app.goo.gl/J2ZrbGtfjtS59KyeA\n-----------------------\n#บ้านดีอยู่ดีดีไซน์\n#รับสร้างบ้าน\n#สร้างบ้านภาคอีสาน\n#รับเหมาก่อสร้าง\n#สำรวจที่ดิน\n#สำรวจหน้างาน\n#ให้คำปรึกษาสร้างบ้าน\n#ออกแบบบ้านฟรี\n#สร้างบ้านครบวงจร\n#สร้างบ้านกับมืออาชีพ\n#สร้างบ้านอุดรธานี\n#สร้างบ้านขอนแก่น\n#สร้างบ้านหนองคาย\n#สร้างบ้านหนองบัวลำภู\n#สร้างบ้านสกลนคร\n#สร้างบ้านภาคอีสาน\n#รีวิวสร้างบ้าน\n#วางแผนสร้างบ้าน\n#บ้านในฝัน\n#แบบบ้านสวย\n#อยากมีบ้าน\n#สร้างบ้านไม่ทิ้งงาน\n#ทีมสร้างความสุข\n#เริ่มต้นที่ดินดีดี\n#ที่ดินสร้างบ้าน",
+            "postDate": "31/8/2569",
+            "pageName": "บริษัท บ้านวิศวะพัฒนา จํากัด",
+            "caption": "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -5115,24 +3871,24 @@
         },
         "projects": [
             {
-                "projectId": "comp-udon-52-1",
-                "name": "📢 อัปเดตหน้างานจริง งานฝ้าเพดาน 🏠✨",
-                "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+                "projectId": "comp-udon-27-1",
+                "name": "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร ...",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.2796,
-                    103.0337
+                    17.411,
+                    102.808
                 ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
                 "trackingStatus": "pending",
-                "progressPercent": 80,
+                "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "📢 อัปเดตหน้างานจริง งานฝ้าเพดาน 🏠✨\n\n📍 พิกัด: ต.หมากแข้ง อ.เมือง จ.อุดรธานี\nบ้านสไตล์ มูจิ 🏠\nฟังก์ชัน\n3 ห้องนอน 🛏️ 2 ห้องน้ำ 🚿\n1 ห้องครัว 🍳 1 ห้องรับแขก 🛋️\n\n🔨 งานที่ดำเนินการในงวดนี้:\n• งานโครงคร่าวฝ้าเพดานภายใน พร้อมเดินท่อร้อยสายไฟระบบปิด ⚡️🔩\n• ปูแผ่นฉนวนกันความร้อนใต้หลังคา เพื่อบ้านเย็นสบาย ลดการใช้พลังงาน 🌡️❄️\n• ติดตั้งแผ่นฝ้าเพดานภายใน พร้อมฉาบรอยต่อเรียบเนียน เตรียมงานทาสี 🖌️✨\n• งานฝ้าเพดานภายนอก (ฝ้าชายคา) ระบายอากาศ ช่วยลดความร้อนสะสมใต้หลังคา 🍃🏡\n\nเก็บงานละเอียด ทุกขั้นตอนได้มาตรฐาน เพื่อบ้านสวยและอยู่สบายในระยะยาว 💡👷‍♂️\n\nขอขอบคุณ ที่ไว้วางใจให้ บ้านดี อยู่ดี ดีไซน์\nร่วมดูแลและสร้างบ้านหลังนี้ ❤️✨\n\n📩 ปรึกษาฟรี ไม่มีค่าใช้จ่าย\nบ้านดี อยู่ดี ดีไซน์\nสร้างจริง เสร็จจริง ไม่ทิ้งงาน\n\nอยากสร้างบ้าน สร้างตึก หอพัก โกดัง\nโรงงาน หรืองานรีโนเวท ต่อเติม ตกแต่งภายใน\nต้องที่ : Bandee UDEE Design\n\n🔰 ให้บริการในจังหวัดอุดรธานี หนองคาย\nหนองบัวลำภู ขอนแก่น และจังหวัดใกล้เคียง\n\n☎️ 081-556-9261\n🆔 Line : nut9722\n\nYoutube : www.youtube.com/@BandeeUdeeDesign\n📍 ที่ตั้งบริษัท : https://maps.app.goo.gl/J2ZrbGtfjtS59KyeA\n-----------------------\n#บ้านดีอยู่ดีดีไซน์\n#รับสร้างบ้าน\n#สร้างบ้านภาคอีสาน\n#รับเหมาก่อสร้าง\n#สำรวจที่ดิน\n#สำรวจหน้างาน\n#ให้คำปรึกษาสร้างบ้าน\n#ออกแบบบ้านฟรี\n#สร้างบ้านครบวงจร\n#สร้างบ้านกับมืออาชีพ\n#สร้างบ้านอุดรธานี\n#สร้างบ้านขอนแก่น\n#สร้างบ้านหนองคาย\n#สร้างบ้านหนองบัวลำภู\n#สร้างบ้านสกลนคร\n#สร้างบ้านภาคอีสาน\n#รีวิวสร้างบ้าน\n#วางแผนสร้างบ้าน\n#บ้านในฝัน\n#แบบบ้านสวย\n#อยากมีบ้าน\n#สร้างบ้านไม่ทิ้งงาน\n#ทีมสร้างความสุข\n#เริ่มต้นที่ดินดีดี\n#ที่ดินสร้างบ้าน",
-                "postedTime": "13/9/2569",
-                "postUrl": "https://www.facebook.com/bandee.udee/posts/pfbid02UsVRYg4BgJbhnHMJZATcyWZV7Eoxzftwgnef5C3xuaNvVZ2hiNr9bs2mLUGz9waHl",
+                "caption": "POV : ทำไมไม่สนใจเพื่อนเลย ? #บ้านวิศวะ #บ้านวิศวะอุดร #Udonthani #Udon #UD #อุดรธานี #อุดร",
+                "postedTime": "31/8/2569",
+                "postUrl": "https://www.facebook.com/reel/1043529308313395/",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5149,14 +3905,14 @@
                 ]
             },
             {
-                "projectId": "comp-udon-52-2",
-                "name": "🏡🏡พร้อมส่งมอบอีกหลัง…รีวิวฉบับบเต็มเร็วๆนี้",
-                "location": "อ.ประจักษ์ศิลปาคม จ.อุดรธานี",
+                "projectId": "comp-udon-27-2",
+                "name": "ขอขอบพระคุณกองทุนเฉลียวอยู่วิทยานุสรณ์",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "ประจักษ์ศิลปาคม",
+                "district": "เมืองอุดรธานี",
                 "gps": [
-                    17.2796,
-                    103.0337
+                    17.411,
+                    102.808
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -5164,9 +3920,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏡🏡พร้อมส่งมอบอีกหลัง…รีวิวฉบับบเต็มเร็วๆนี้",
-                "postedTime": "2/9/2569",
-                "postUrl": "https://www.facebook.com/bandee.udee/posts/pfbid0YFXM9ghoXy6NKcebehAVux5EamghU11u1Y5hXzgJQrbDMT11JQ6y9c2HnneghyF8l",
+                "caption": "ขอขอบพระคุณกองทุนเฉลียวอยู่วิทยานุสรณ์\nโดยคุณปนัดดา อยู่วิทยา\n.\nที่ได้บริจาคงบประมาณในการก่อสร้างปรับปรุง\nอาคารสนามเด็กเล่น ณ โรงพยาบาลศรีนครินทร์\nคณะแพทย์ศาสตร์ มหาวิทยาลัยขอนแก่น\n.\nก่อสร้างโดย บริษัท บ้านวิศวะพัฒนา จำกัด\nซึ่งวันที่ 13 สิงหาคม 2569 ได้ทำการ\nส่งมอบอาคารให้กับทางโรงพยาบาลศรีนครินทร์\nเพื่อให้ได้ใช้ประโยชน์ต่อไป\n------------------------------------------\n📍 คิดถึงงานก่อสร้าง คิดถึงบ้านวิศวะ\nสนใจโทร : 080-748-8844 (คุณไก่)\nเรายินดีให้บริการค่ะ\n.\n#บ้านวิศวะ #บ้านวิศวะอุดร #กองทุนเฉลียวอยู่วิทยานุสรณ์ #โรงพยาบาลศรีนครินทร์ #ขอนแก่น #สนามเด็กเล่น #Khonkaen",
+                "postedTime": "13/8/2569",
+                "postUrl": "https://www.facebook.com/banwisawa/posts/pfbid0D1WJGd4tXPSywG8rXXHBzLVJWS2LDk2vbFeseaRgbwgoU891TpsUnZ7nJwCdwWK5l",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5183,14 +3939,14 @@
                 ]
             }
         ],
-        "aiShortRec": "พบ 2 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 1)",
+        "aiShortRec": "พบ 2 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
         "opportunityScore": 35,
-        "scgCode": "10612650",
-        "sales2025": 31155,
-        "sales2026": 93806.25
+        "scgCode": "10729130",
+        "sales2025": 0,
+        "sales2026": 238997
     },
     {
         "id": "comp-udon-35",
@@ -5413,6 +4169,99 @@
         "sales2026": 5472101
     },
     {
+        "id": "comp-udon-22",
+        "name": "กิจดลวรโชติ1",
+        "engName": "Kitdonworachot 1 Ltd., Part.",
+        "category": "รับเหมาก่อสร้างและบ้านพักอาศัย (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "หนองหาน",
+        "address": "208 ตําบล โพนงาม อําเภอหนองหาน อุดรธานี 41130 ประเทศไทย",
+        "phone": "094 542 5598",
+        "contactPerson": "กิจดลวรโชติ1",
+        "totalProjects": 1,
+        "newProjectsThisMonth": 1,
+        "totalValueMillion": 5.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415563018901",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 1,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿0.5M",
+        "coordinates": [
+            17.362,
+            103.118
+        ],
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
+        "gmaps": "https://www.google.com/maps/search/?api=1&query=208+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B9%82%E0%B8%9E%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%A1+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%99+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41130",
+        "facebookUrl": "https://www.facebook.com/firstlandtown",
+        "facebookSignal": {
+            "postDate": "15/9/2569",
+            "pageName": "กิจดลวรโชติ1",
+            "caption": "ฝนกำลังจะหมด\nหนาวกำลังจะมา\nคิวงานเริ่มทยอยมาเรื่อยๆ\nอยากได้วันดีก็ปรึกษาผมได้นะครับ 🤍✅🏠",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-22-1",
+                "name": "ฝนกำลังจะหมด",
+                "location": "อ.หนองหาน จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "หนองหาน",
+                "gps": [
+                    17.362,
+                    103.118
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "ฝนกำลังจะหมด\nหนาวกำลังจะมา\nคิวงานเริ่มทยอยมาเรื่อยๆ\nอยากได้วันดีก็ปรึกษาผมได้นะครับ 🤍✅🏠",
+                "postedTime": "15/9/2569",
+                "postUrl": "https://www.facebook.com/firstlandtown/posts/pfbid02dLibQGrTV6zcJJWfhqEZfvt9CyrFQLESQyQw62Fyq5zp7LfdGUM6xuaeBx3X2aHgl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 1 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 1)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 35,
+        "scgCode": "10640153",
+        "sales2025": 438100,
+        "sales2026": 1992527
+    },
+    {
         "id": "comp-udon-01",
         "name": "บริษัท เลอ คราวน์ ดีไซน์ จํากัด",
         "engName": "Le Crown Design Co., Ltd.",
@@ -5538,8 +4387,8 @@
             17.698,
             103.259
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
+        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000",
         "facebookUrl": "https://www.facebook.com/profile.php?id=61565401665404",
         "facebookSignal": {
             "postDate": "27/8/2569",
@@ -5599,15 +4448,15 @@
         "sales2026": 162877.8
     },
     {
-        "id": "comp-udon-47",
-        "name": "ห้างหุ้นส่วนจํากัด ฟ้าสว่างการโยธา",
-        "engName": "Wonder Creation 2017 Ltd., Part.",
-        "category": "รับสร้างบ้านและงานดีไซน์สร้างสรรค์ (TSIC 41001)",
+        "id": "comp-udon-43",
+        "name": "ห้างหุ้นส่วนจํากัด หล้าก่ํา ทรัพย์เจริญยิ่ง",
+        "engName": "Mariya Construction Co., Ltd.",
+        "category": "รับเหมาก่อสร้างบ้านและอาคารพาณิชย์ (TSIC 41001)",
         "province": "อุดรธานี",
         "district": "เมืองอุดรธานี",
-        "address": "104 หมู่บ้าน หนองบึงมอ หมู่ที่ 4 ตําบลเชียงเพ็ง อําเภอกุดจับ จ.อุดรธานี 41250",
-        "phone": "089 499 0140",
-        "contactPerson": "ห้างหุ้นส่วนจำกัด ฟ้าสว่างการโยธา",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "088 877 2899",
+        "contactPerson": "ห้างหุ้นส่วนจำกัด หล้าก่ำ ทรัพย์เจริญยิ่ง",
         "totalProjects": 1,
         "newProjectsThisMonth": 1,
         "totalValueMillion": 5.5,
@@ -5616,7 +4465,7 @@
         "verificationStatus": {
             "isVerified": true,
             "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415560043456",
+            "evidenceSource": "Facebook Page | DBD: 0415561039012",
             "permitStatus": "TSIC 41001"
         },
         "stageBreakdown": {
@@ -5628,16 +4477,16 @@
         "latestTimelineStage": "groundbreak",
         "revenuePotentialText": "฿0.5M",
         "coordinates": [
-            17.4255,
-            102.7785
+            17.4015,
+            102.8165
         ],
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
-        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=100089616662993",
+        "googleMapsUrl": "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
+        "gmaps": "https://maps.app.goo.gl/NirnCDaBB2bk9fH98",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=100069404124717",
         "facebookSignal": {
-            "postDate": "7/9/2569",
-            "pageName": "ห้างหุ้นส่วนจํากัด ฟ้าสว่างการโยธา",
-            "caption": "ฝนตกดูแลสุขภาพกันด้วยนะคะ ☔️🌧️",
+            "postDate": "10/9/2569",
+            "pageName": "ห้างหุ้นส่วนจํากัด หล้าก่ํา ทรัพย์เจริญยิ่ง",
+            "caption": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -5648,14 +4497,14 @@
         },
         "projects": [
             {
-                "projectId": "comp-udon-47-1",
-                "name": "ฝนตกดูแลสุขภาพกันด้วยนะคะ ☔️🌧️",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "projectId": "comp-udon-43-1",
+                "name": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ",
+                "location": "อ.ไชยวาน จ.อุดรธานี",
                 "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
+                "district": "ไชยวาน",
                 "gps": [
-                    17.4255,
-                    102.7785
+                    17.4015,
+                    102.8165
                 ],
                 "stage": "งานโครงสร้างและก่อฉาบอาคาร",
                 "stageKey": "structure",
@@ -5663,9 +4512,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ฝนตกดูแลสุขภาพกันด้วยนะคะ ☔️🌧️",
-                "postedTime": "7/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1076742818065100/",
+                "caption": "🎉🎊 วันนี้ เซ็นสัญญา จองคิวสร้าง อีกหลังครับ \n🏡บ้านทรงปั้นหยา  ของคุณ ฉกรรจ์ ครับ\n\nพิกัด📍 อำเภอ ไชยวาน จังหวัดอุดรธานี ครับ\n\n🙏🏻 ขอขอบพระคุณลูกค้า ที่ไว้วางใจทีมงาน \nหจก.หล้าก่ำ ทรัพย์เจริญยิ่ง ของเราครับผม😊",
+                "postedTime": "10/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0TiKxbFnxAY97Y4g3aoCk6A4XARojgPof7NZmi4tDNPbbd7DsDwZvqR343Avf9QD2l&id=100069404124717",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -5687,9 +4536,102 @@
         "salesActionPlan": [],
         "tag": "new",
         "opportunityScore": 35,
-        "scgCode": "10351579",
-        "sales2025": 14345.3,
-        "sales2026": 127081
+        "scgCode": "10126345",
+        "sales2025": 110483,
+        "sales2026": 18166
+    },
+    {
+        "id": "comp-udon-52",
+        "name": "ห้างหุ้นส่วนจํากัด บ้านดี อยู่ดี ดีไซน์",
+        "engName": "Ch. Rungarun Construction Co., Ltd.",
+        "category": "รับเหมาก่อสร้างและบ้านพักอาศัย (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "ประจักษ์ศิลปาคม",
+        "address": "เลขที่ 165 ตําบลนาม่วง อําเภอประจักษ์ศิลปาคม จังหวัดอุดรธานี 41110",
+        "phone": "095 836 1416",
+        "contactPerson": "ห้างหุ้นส่วนจำกัด บ้านดี อยู่ดี ดีไซน์",
+        "totalProjects": 1,
+        "newProjectsThisMonth": 1,
+        "totalValueMillion": 5.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415562048901",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 0,
+            "finishing": 1
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿0.5M",
+        "coordinates": [
+            17.2796,
+            103.0337
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
+        "gmaps": "https://maps.app.goo.gl/eovsgPjYBYryDXgo8",
+        "facebookUrl": "https://www.facebook.com/bandee.udee",
+        "facebookSignal": {
+            "postDate": "13/9/2569",
+            "pageName": "ห้างหุ้นส่วนจํากัด บ้านดี อยู่ดี ดีไซน์",
+            "caption": "📢 อัปเดตหน้างานจริง งานฝ้าเพดาน 🏠✨\n\n📍 พิกัด: ต.หมากแข้ง อ.เมือง จ.อุดรธานี\nบ้านสไตล์ มูจิ 🏠\nฟังก์ชัน\n3 ห้องนอน 🛏️ 2 ห้องน้ำ 🚿\n1 ห้องครัว 🍳 1 ห้องรับแขก 🛋️\n\n🔨 งานที่ดำเนินการในงวดนี้:\n• งานโครงคร่าวฝ้าเพดานภายใน พร้อมเดินท่อร้อยสายไฟระบบปิด ⚡️🔩\n• ปูแผ่นฉนวนกันความร้อนใต้หลังคา เพื่อบ้านเย็นสบาย ลดการใช้พลังงาน 🌡️❄️\n• ติดตั้งแผ่นฝ้าเพดานภายใน พร้อมฉาบรอยต่อเรียบเนียน เตรียมงานทาสี 🖌️✨\n• งานฝ้าเพดานภายนอก (ฝ้าชายคา) ระบายอากาศ ช่วยลดความร้อนสะสมใต้หลังคา 🍃🏡\n\nเก็บงานละเอียด ทุกขั้นตอนได้มาตรฐาน เพื่อบ้านสวยและอยู่สบายในระยะยาว 💡👷‍♂️\n\nขอขอบคุณ ที่ไว้วางใจให้ บ้านดี อยู่ดี ดีไซน์\nร่วมดูแลและสร้างบ้านหลังนี้ ❤️✨\n\n📩 ปรึกษาฟรี ไม่มีค่าใช้จ่าย\nบ้านดี อยู่ดี ดีไซน์\nสร้างจริง เสร็จจริง ไม่ทิ้งงาน\n\nอยากสร้างบ้าน สร้างตึก หอพัก โกดัง\nโรงงาน หรืองานรีโนเวท ต่อเติม ตกแต่งภายใน\nต้องที่ : Bandee UDEE Design\n\n🔰 ให้บริการในจังหวัดอุดรธานี หนองคาย\nหนองบัวลำภู ขอนแก่น และจังหวัดใกล้เคียง\n\n☎️ 081-556-9261\n🆔 Line : nut9722\n\nYoutube : www.youtube.com/@BandeeUdeeDesign\n📍 ที่ตั้งบริษัท : https://maps.app.goo.gl/J2ZrbGtfjtS59KyeA\n-----------------------\n#บ้านดีอยู่ดีดีไซน์\n#รับสร้างบ้าน\n#สร้างบ้านภาคอีสาน\n#รับเหมาก่อสร้าง\n#สำรวจที่ดิน\n#สำรวจหน้างาน\n#ให้คำปรึกษาสร้างบ้าน\n#ออกแบบบ้านฟรี\n#สร้างบ้านครบวงจร\n#สร้างบ้านกับมืออาชีพ\n#สร้างบ้านอุดรธานี\n#สร้างบ้านขอนแก่น\n#สร้างบ้านหนองคาย\n#สร้างบ้านหนองบัวลำภู\n#สร้างบ้านสกลนคร\n#สร้างบ้านภาคอีสาน\n#รีวิวสร้างบ้าน\n#วางแผนสร้างบ้าน\n#บ้านในฝัน\n#แบบบ้านสวย\n#อยากมีบ้าน\n#สร้างบ้านไม่ทิ้งงาน\n#ทีมสร้างความสุข\n#เริ่มต้นที่ดินดีดี\n#ที่ดินสร้างบ้าน",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-52-1",
+                "name": "📢 อัปเดตหน้างานจริง งานฝ้าเพดาน 🏠✨",
+                "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.2796,
+                    103.0337
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "📢 อัปเดตหน้างานจริง งานฝ้าเพดาน 🏠✨\n\n📍 พิกัด: ต.หมากแข้ง อ.เมือง จ.อุดรธานี\nบ้านสไตล์ มูจิ 🏠\nฟังก์ชัน\n3 ห้องนอน 🛏️ 2 ห้องน้ำ 🚿\n1 ห้องครัว 🍳 1 ห้องรับแขก 🛋️\n\n🔨 งานที่ดำเนินการในงวดนี้:\n• งานโครงคร่าวฝ้าเพดานภายใน พร้อมเดินท่อร้อยสายไฟระบบปิด ⚡️🔩\n• ปูแผ่นฉนวนกันความร้อนใต้หลังคา เพื่อบ้านเย็นสบาย ลดการใช้พลังงาน 🌡️❄️\n• ติดตั้งแผ่นฝ้าเพดานภายใน พร้อมฉาบรอยต่อเรียบเนียน เตรียมงานทาสี 🖌️✨\n• งานฝ้าเพดานภายนอก (ฝ้าชายคา) ระบายอากาศ ช่วยลดความร้อนสะสมใต้หลังคา 🍃🏡\n\nเก็บงานละเอียด ทุกขั้นตอนได้มาตรฐาน เพื่อบ้านสวยและอยู่สบายในระยะยาว 💡👷‍♂️\n\nขอขอบคุณ ที่ไว้วางใจให้ บ้านดี อยู่ดี ดีไซน์\nร่วมดูแลและสร้างบ้านหลังนี้ ❤️✨\n\n📩 ปรึกษาฟรี ไม่มีค่าใช้จ่าย\nบ้านดี อยู่ดี ดีไซน์\nสร้างจริง เสร็จจริง ไม่ทิ้งงาน\n\nอยากสร้างบ้าน สร้างตึก หอพัก โกดัง\nโรงงาน หรืองานรีโนเวท ต่อเติม ตกแต่งภายใน\nต้องที่ : Bandee UDEE Design\n\n🔰 ให้บริการในจังหวัดอุดรธานี หนองคาย\nหนองบัวลำภู ขอนแก่น และจังหวัดใกล้เคียง\n\n☎️ 081-556-9261\n🆔 Line : nut9722\n\nYoutube : www.youtube.com/@BandeeUdeeDesign\n📍 ที่ตั้งบริษัท : https://maps.app.goo.gl/J2ZrbGtfjtS59KyeA\n-----------------------\n#บ้านดีอยู่ดีดีไซน์\n#รับสร้างบ้าน\n#สร้างบ้านภาคอีสาน\n#รับเหมาก่อสร้าง\n#สำรวจที่ดิน\n#สำรวจหน้างาน\n#ให้คำปรึกษาสร้างบ้าน\n#ออกแบบบ้านฟรี\n#สร้างบ้านครบวงจร\n#สร้างบ้านกับมืออาชีพ\n#สร้างบ้านอุดรธานี\n#สร้างบ้านขอนแก่น\n#สร้างบ้านหนองคาย\n#สร้างบ้านหนองบัวลำภู\n#สร้างบ้านสกลนคร\n#สร้างบ้านภาคอีสาน\n#รีวิวสร้างบ้าน\n#วางแผนสร้างบ้าน\n#บ้านในฝัน\n#แบบบ้านสวย\n#อยากมีบ้าน\n#สร้างบ้านไม่ทิ้งงาน\n#ทีมสร้างความสุข\n#เริ่มต้นที่ดินดีดี\n#ที่ดินสร้างบ้าน",
+                "postedTime": "13/9/2569",
+                "postUrl": "https://www.facebook.com/bandee.udee/posts/pfbid02UsVRYg4BgJbhnHMJZATcyWZV7Eoxzftwgnef5C3xuaNvVZ2hiNr9bs2mLUGz9waHl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 1 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 0)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 35,
+        "scgCode": "10612650",
+        "sales2025": 31155,
+        "sales2026": 93806.25
     },
     {
         "id": "comp-udon-34",
@@ -5950,6 +4892,64 @@
         "sales2026": 1337450
     },
     {
+        "id": "comp-udon-47",
+        "name": "ห้างหุ้นส่วนจํากัด ฟ้าสว่างการโยธา",
+        "engName": "Wonder Creation 2017 Ltd., Part.",
+        "category": "รับสร้างบ้านและงานดีไซน์สร้างสรรค์ (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "104 หมู่บ้าน หนองบึงมอ หมู่ที่ 4 ตําบลเชียงเพ็ง อําเภอกุดจับ จ.อุดรธานี 41250",
+        "phone": "089 499 0140",
+        "contactPerson": "ห้างหุ้นส่วนจำกัด ฟ้าสว่างการโยธา",
+        "totalProjects": 0,
+        "newProjectsThisMonth": 0,
+        "totalValueMillion": 0,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415560043456",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 0,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿0.0M - ฿0.0M",
+        "coordinates": [
+            17.4255,
+            102.7785
+        ],
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B8%B9%E0%B9%88%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
+        "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B8%B9%E0%B9%88%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=100089616662993",
+        "facebookSignal": {
+            "postDate": "-",
+            "pageName": "ห้างหุ้นส่วนจํากัด ฟ้าสว่างการโยธา",
+            "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [],
+        "aiShortRec": "รอสแกน Apify (0 โครงการ)",
+        "aiRecommendation": "ยังไม่พบโพสต์ที่ตรงกับเพจของบริษัทนี้ในไฟล์ JSON",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 15,
+        "scgCode": "10351579",
+        "sales2025": 14345.3,
+        "sales2026": 127081
+    },
+    {
         "id": "comp-udon-45",
         "name": "ห้างหุ้นส่วนจํากัด วันเดอร์ครีเอชั่น",
         "engName": "Lakam Supjaroenying Ltd., Part.",
@@ -6005,600 +5005,6 @@
         "sales2026": 127081
     },
     {
-        "id": "comp-udon-41",
-        "name": "บริษัท มารีญาก่อสร้าง จํากัด",
-        "engName": "Architecture INT Design",
-        "category": "รับสร้างบ้านและงานสถาปัตยกรรมอินทีเรีย (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "083 345 8276",
-        "contactPerson": "บริษัท มารีญาก่อสร้าง จำกัด",
-        "totalProjects": 8,
-        "newProjectsThisMonth": 8,
-        "totalValueMillion": 44,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415562037890",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 3,
-            "finishing": 5
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿4.0M",
-        "coordinates": [
-            17.4095,
-            102.7845
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
-        "gmaps": "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=100090611883896",
-        "facebookSignal": {
-            "postDate": "15/9/2569",
-            "pageName": "บริษัท มารีญาก่อสร้าง จํากัด",
-            "caption": "รองพื้นไว้ก่อน 🩷",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-41-1",
-                "name": "รองพื้นไว้ก่อน 🩷",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "รองพื้นไว้ก่อน 🩷",
-                "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jeMWW2c56cPYqiVKdAGsqzYoE1UCm57pdJTCf2UZuSzGtpVkFSoMvDRFfca4JaFGl&id=100090611883896",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-2",
-                "name": "ทุกซอกทุกมุม ขอเนี๊ยบๆค่ะ",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ทุกซอกทุกมุม ขอเนี๊ยบๆค่ะ",
-                "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/reel/1378103784306633/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-3",
-                "name": "เช้านี้ตรวจ งานปูกระเบื้องผนัง",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เช้านี้ตรวจ งานปูกระเบื้องผนัง",
-                "postedTime": "15/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0fbZ2uXZiwj5Y92n5jYWSfXXBXRDYrdpCtqR4HMtd32jaV3ezHyL8281YDzk73JA8l&id=100090611883896",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-4",
-                "name": "ฝ้าภายในเริ่มแล้วววววว😶‍🌫️",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ฝ้าภายในเริ่มแล้วววววว😶‍🌫️\n| มารีญาก่อสร้าง | ผู้ช่วยสร้างบ้านที่คุณวางใจ\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณพ่อคุณแม่)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
-                "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl&id=100090611883896",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-5",
-                "name": "สกีมโค้ทผนัง ดีจริงไหม? มาดูกันชัดๆ 🏠",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "สกีมโค้ทผนัง ดีจริงไหม? มาดูกันชัดๆ 🏠\nหลายคนอยากได้ผนังเรียบเนียนเหมือนกระดาษ แต่ก่อนตัดสินใจ ควรรู้ทั้งสองด้านค่ะ\n✅ ข้อดี\n• ผิวเรียบเนียน ไม่เห็นรอยฉาบ รอยลูกคลื่น\n• ทาสีแล้วสวยสม่ำเสมอ ไม่ด่างเป็นหย่อม ประหยัดสีด้วย\n• แก้ผิวฉาบไม่เรียบได้ โดยไม่ต้องฉาบใหม่\n• เหมาะกับผนังที่โดนแสงเฉียง เช่น ไฟซ่อน แสงจากหน้าต่าง ที่เห็นความไม่เรียบชัดมาก\n❌ ข้อเสีย\n• ต้นทุนและเวลาเพิ่มอีก 1 ขั้นตอน (ฉาบ–ขัด–รองพื้น)\n• ผิวอ่อนกว่าปูนฉาบ กระแทกแล้วบิ่นง่าย\n• ถ้าผนังเดิมชื้น หรือทารองพื้นไม่ดี = สีลอก ผิวร่อน\n• ไม่เหมาะกับผนังภายนอกที่โดนฝนโดยตรง\nสรุป\nสกีมโค้ทคุ้มค่ามากสำหรับผนังภายในบ้านระดับพรีเมียม แต่ต้องคุมความชื้นผนัง ความหนา และทารองพื้นให้ครบทุกจุด ซึ่งเป็นมาตรฐานที่มารีญาก่อสร้างทำทุกหลังค่ะ\n💬 สงสัยเรื่องงานผนัง ทักถามได้เลย\n#สกีมโค้ท #สร้างบ้าน #บ้านพรีเมียม #รับสร้างบ้านอุดรธานี #มารีญาก่อสร้าง",
-                "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/reel/2144077063132016/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-6",
-                "name": "งานสกีมภายใน😶‍🌫️",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานสกีมภายใน😶‍🌫️\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณมายด์)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil&id=100090611883896",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-7",
-                "name": "🧱 ทำไมมารีญาถึง \"ปูเต็ม\" ทุกแผ่น ไม่ปูซาลาเปา",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🧱 ทำไมมารีญาถึง \"ปูเต็ม\" ทุกแผ่น ไม่ปูซาลาเปา\nหลายบ้านที่กระเบื้องผนังแตก หลุดร่อน หรือเคาะแล้วเสียงกลวง สาเหตุมักไม่ได้อยู่ที่กระเบื้อง แต่อยู่ที่ \"ใต้แผ่น\" ค่ะ\nการปูแบบซาลาเปา (แปะกาวเป็นก้อนแล้วกดแผ่น) ทำงานเร็วก็จริง แต่ทิ้งโพรงอากาศไว้เต็มไปหมด และโพรงนั่นแหละคือจุดเริ่มต้นของปัญหาที่จะโผล่มาในปีที่ 2–3 ตอนที่ช่างไม่อยู่แล้ว\nที่มารีญา เราปูแบบเต็มแผ่นทุกครั้ง\n✅ ปาดกาวซีเมนต์ด้วยเกรียงหวีเต็มพื้นผิว + ทากาวหลังแผ่น\n✅ ไม่มีโพรง ไม่มีน้ำขังหลังกระเบื้อง ไม่มีเชื้อราแอบโต\n✅ แรงยึดเกาะเต็ม 100% แม้กระเบื้องแผ่นใหญ่\n✅ ผนังเรียบเสมอกันทุกแผ่น ไม่มีขอบเหลื่อม\n✅ เป็นวิธีที่ผู้ผลิตกระเบื้องแนะนำ และเรากล้ารับประกันงาน\nปูเต็มใช้เวลามากกว่า ใช้กาวมากกว่า ทั้งนี้ที่กล่าวมาเป็นวิธีทำที่มาตรฐานที่เราเลือกใช้\nเราควรเลือกใช้วิธีนี้เลิศๆเลยล่ะ☺️\n📞 088-877-2899 | LINE @tpkon\n#มารีญาก่อสร้าง #บ้านสั่งสร้าง #อุดรธานี #งานปูกระเบื้อง #มารีญาก่อสร้าง",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0WUYEbodRvRfp2YZfjNNyqWKM2D3weYehnrEwGfrmSKyHAFBbRS9cqExaCAF5P9Csl&id=100090611883896",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-41-8",
-                "name": "ปูกระเบื้องห้องน้ำค่ะ🏠",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.4095,
-                    102.7845
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ปูกระเบื้องห้องน้ำค่ะ🏠",
-                "postedTime": "11/9/2569",
-                "postUrl": "https://www.facebook.com/reel/2274151436759312/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 8 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 3)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 92,
-        "scgCode": null,
-        "sales2025": 0,
-        "sales2026": 0
-    },
-    {
-        "id": "comp-udon-37",
-        "name": "ห้างหุ้นส่วนจํากัด ปิยภัทร125 คอนสตรัคชั่น",
-        "engName": "N.P. Homes Engineering Ltd., Part.",
-        "category": "รับสร้างบ้านและบริการวิศวกรรมโครงสร้าง (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "065 095 4991",
-        "contactPerson": "ห้างหุ้นส่วนจำกัด ปิยภัทร125 คอนสตรัคชั่น",
-        "totalProjects": 6,
-        "newProjectsThisMonth": 6,
-        "totalValueMillion": 33,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415560033456",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 4,
-            "finishing": 2
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿3.0M",
-        "coordinates": [
-            17.416,
-            102.828
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
-        "gmaps": "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=61579292830014",
-        "facebookSignal": {
-            "postDate": "16/8/2569",
-            "pageName": "ห้างหุ้นส่วนจํากัด ปิยภัทร125 คอนสตรัคชั่น",
-            "caption": "งานฝ้า+ผนังเบา \n\nขอบคุณลูกค้าที่ไว้ใจ ให้เราได้ดูแลคะ🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ 0997496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-37-1",
-                "name": "งานฝ้า+ผนังเบา",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.416,
-                    102.828
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานฝ้า+ผนังเบา \n\nขอบคุณลูกค้าที่ไว้ใจ ให้เราได้ดูแลคะ🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ 0997496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
-                "postedTime": "16/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YsEdKxW77LXWB4pn9B2XEtkKRtvRGm37jjpBQwthtWEMTpvgD9TejF9hmZVmHQkKl&id=61579292830014",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-37-2",
-                "name": "ขอบพระคุณลูกค้า ที่ไว้ใจให้เราได้ดูแล 🙏🏻🙏🏻",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.416,
-                    102.828
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ขอบพระคุณลูกค้า ที่ไว้ใจให้เราได้ดูแล 🙏🏻🙏🏻 \n\n☎️☎️ติดต่อ-สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ \n099-7496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
-                "postedTime": "15/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jEBtST6fMqnU2BWdCp12EvHZ7wmRdYMx6K5Zm3TzDnXgC9cji1t316R4TcJi88xl&id=61579292830014",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-37-3",
-                "name": "งานปูกระเบื้อง 🙏🏻🙏🏻",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.416,
-                    102.828
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานปูกระเบื้อง 🙏🏻🙏🏻\n\n☎️☎️สอบถาม \n083-11616352 (ช่างภัทร)\n\n📲📲Line : \n099-7496885(ช่างภัทร)\n\n #รับเหมาก่อสร้าง\n #ต่อเติม\n#รับสร้างบ้าน\n#รีโนเวท\n#บิ้วอิน\n#งานหลวง\n#งานระบบปะปา",
-                "postedTime": "11/7/2569",
-                "postUrl": "https://www.facebook.com/reel/2222953428543486/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-37-4",
-                "name": "งานระบบ 💦💦งานติดตั้งปั้มน้ำ+ถังน้ำ",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.416,
-                    102.828
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานระบบ 💦💦งานติดตั้งปั้มน้ำ+ถังน้ำ\n\nขอบพระคุณลูกค้าที่ไว้ใจ🙏🏻🙏🏻\n\n☎️ติดต่อ สอบถาม\n083-1516352 (ช่างภัทร)\n\n📲แอดไลน์ สอบถาม\n099-7496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#ต่อเติม\n#รีโนเวท\n#งานระบบ\n#ทุบรื้อ\n#บิ้วอิน",
-                "postedTime": "3/7/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0RFUqtAbjreWA3kaKfpWGk5Ex7D7n9EquBTc1H9rHjdTS8J9mwbML6R98Q7GcJT55l&id=61579292830014",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-37-5",
-                "name": "งานบ้านพัก ขอนแก่น",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.416,
-                    102.828
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานบ้านพัก ขอนแก่น\n\nขอบคุณผู้ใหญ่ใจดี🙏🏻🙏🏻 \n\n☎️☎️ติดต่อ สอบถาม \n083-1616352 ช่างภัทร \n\n📲📲แอดไลน์ ปรึกษา\n099-7496885 ช่างภัทร\n\n#รับสร้างบ้าน\n#ต่อเติม\n#รีโนเวท\n#ปะปา\n#น้ำรั่ว\n#บิ้วอิน\n#สานฝันคนอยากมีบ้าน\n#รับเหมาก่อสร้าง",
-                "postedTime": "23/6/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0u4BkKj8ZFMun2u27T6ZMFAe1hsdSVhRKA6TxGLTBGTk7Q5fHvVVc8nSwM9B6oAkLl&id=61579292830014",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-37-6",
-                "name": "งานขุดฟุตติ้ง 🏗️🏗️",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.416,
-                    102.828
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานขุดฟุตติ้ง 🏗️🏗️\n\nขอบพระคุณที่เมตตา🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n  #รับเหมาสร้างบ้าน\n #รีโนเวท\n #ต่อเติม\n #บิ้วอิน",
-                "postedTime": "5/6/2569",
-                "postUrl": "https://www.facebook.com/reel/2191461081618507/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 4)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 80,
-        "scgCode": null,
-        "sales2025": 0,
-        "sales2026": 0
-    },
-    {
         "id": "comp-udon-06",
         "name": "บริษัท ฟังก์ชั่น ดีไซน์ คอนสตรัคชั่น จํากัด",
         "engName": "Function Design Construction Co., Ltd.",
@@ -6608,9 +5014,9 @@
         "address": "เมืองอุดรธานี จ.อุดรธานี",
         "phone": "080 499 7777",
         "contactPerson": "บริษัท ฟังก์ชั่น ดีไซน์ คอนสตรัคชั่น จำกัด",
-        "totalProjects": 5,
-        "newProjectsThisMonth": 5,
-        "totalValueMillion": 27.5,
+        "totalProjects": 6,
+        "newProjectsThisMonth": 6,
+        "totalValueMillion": 33,
         "growthRate": 40,
         "areaExpansion": "เมืองอุดรธานี",
         "verificationStatus": {
@@ -6622,11 +5028,11 @@
         "stageBreakdown": {
             "groundbreak": 0,
             "foundation": 0,
-            "structure": 3,
+            "structure": 4,
             "finishing": 2
         },
         "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿2.5M",
+        "revenuePotentialText": "฿3.0M",
         "coordinates": [
             17.4215,
             102.775
@@ -6751,6 +5157,40 @@
             },
             {
                 "projectId": "comp-udon-06-4",
+                "name": "อัปเดทความคืบหน้าโครงการโชว์รูมอุดรเซ็นเตอร์ฟิล์ม",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4215,
+                    102.775
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "อัปเดทความคืบหน้าโครงการโชว์รูมอุดรเซ็นเตอร์ฟิล์ม \n\nขณะนี้หน้างานได้เริ่มดำเนินการ ก่อผนังชั้น 2 แล้ว โดยเลือกใช้ อิฐ EKOBLOK  เพื่อยกระดับคุณภาพงา ก่อสร้างให้มีประสิทธิภาพมากยิ่งขึ้น\n✅ น้ำหนักเบา ช่วยลดภาระโครงสร้างอาคาร\n✅ ขนาดได้มาตรฐาน ก่อสร้างได้รวดเร็วและแม่นยำ\n✅ ช่วยลดการแตกร้าวของผนังในระยะยาว\n✅ มีคุณสมบัติช่วยลดความร้อนและเก็บเสียงได้ดี\n✅ ช่วยให้งานฉาบเรียบ ประหยัดเวลาและวัสดุ\n\n🏢 โครงการ : โชว์รูมอุดรเซ็นเตอร์ฟิล์ม\n\n📍 อัปเดทความคืบหน้าต่อเนื่องทุกขั้นตอน\nขอบคุณลูกค้าทุกท่านที่ให้ความไว้วางใจเราในการสร้างสรรค์โครงการนี้ครับ 🙏\n\n#FunctionDesign #รับสร้างบ้านอุดรธานี #ออกแบบและก่อสร้าง #UdonCenterFilm #โชว์รูมอุดรเซ็นเตอร์ฟิล์ม #EcoBox #อิฐEKOBLOK #งานก่อสร้าง #รับเหมาก่อสร้าง #ผู้รับเหมาอุดรธานี #สร้างอาคารพาณิชย์ #อัปเดทหน้างาน #ConstructionUpdate #DesignAndBuild #สร้างอย่างเป็นระบบใส่ใจทุกขั้นตอน",
+                "postedTime": "16/7/2569",
+                "postUrl": "https://www.facebook.com/reel/1376693244526198/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-06-5",
                 "name": "\"อิฐ Eco Block เป็นวัสดุก่อผนังที่ถูกพัฒนาขึ้นให้มีน้ำห...",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -6784,7 +5224,7 @@
                 ]
             },
             {
-                "projectId": "comp-udon-06-5",
+                "projectId": "comp-udon-06-6",
                 "name": "🏗️ งานก่อผนังด้วย Eco Block",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -6818,236 +5258,7 @@
                 ]
             }
         ],
-        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 3)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 80,
-        "scgCode": null,
-        "sales2025": 0,
-        "sales2026": 0
-    },
-    {
-        "id": "comp-udon-29",
-        "name": "บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จํากัด",
-        "engName": "A.Charoen Construction Co., Ltd.",
-        "category": "รับเหมาก่อสร้างและพัฒนาอาคาร (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "092 531 6331",
-        "contactPerson": "บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จำกัด",
-        "totalProjects": 5,
-        "newProjectsThisMonth": 5,
-        "totalValueMillion": 27.5,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415557025678",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 5,
-            "finishing": 0
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿2.5M",
-        "coordinates": [
-            17.409,
-            102.768
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/q2HdGPacB4MeHS8d6",
-        "gmaps": "https://maps.app.goo.gl/q2HdGPacB4MeHS8d6",
-        "facebookUrl": "https://www.facebook.com/profile.php?id=100089807310821",
-        "facebookSignal": {
-            "postDate": "28/8/2569",
-            "pageName": "บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จํากัด",
-            "caption": "🚗โรงรถ ขนาด 9.00M X 6.00 M",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-29-1",
-                "name": "🚗โรงรถ ขนาด 9.00M X 6.00 M",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.409,
-                    102.768
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🚗โรงรถ ขนาด 9.00M X 6.00 M",
-                "postedTime": "28/8/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid031BSpZ22MeEAsPjPWyxDmaiHy9JXdgnG5eSkR9JNBtzFr5EUnyHwL46mxKpByoqy6l&id=100089807310821",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-29-2",
-                "name": "🏗️เตรียมส่งงาน",
-                "location": "อ.เพ็ญ จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เพ็ญ",
-                "gps": [
-                    17.409,
-                    102.768
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏗️เตรียมส่งงาน\nโครงการโรงจอดรถเทศบาลอ.เพ็ญจ.อุดรธานี 🙏",
-                "postedTime": "19/7/2569",
-                "postUrl": "https://www.facebook.com/reel/1644626097382112/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-29-3",
-                "name": "🏗️เตรียม ส่งงาน ลูกค้า ครับผม",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.409,
-                    102.768
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏗️เตรียม ส่งงาน ลูกค้า ครับผม",
-                "postedTime": "14/7/2569",
-                "postUrl": "https://www.facebook.com/reel/1061678289866151/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-29-4",
-                "name": "🏗️🏠 งานต่อเติม อาคาร อบต.บ้านเหล่า อ.เพ็ญ จ. อุดรธานี",
-                "location": "อ.เพ็ญ จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เพ็ญ",
-                "gps": [
-                    17.409,
-                    102.768
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "🏗️🏠 งานต่อเติม อาคาร อบต.บ้านเหล่า อ.เพ็ญ จ. อุดรธานี",
-                "postedTime": "8/7/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid029bj2YNLspGWKdKmZGgiErHEoPg5gDLuk1Wu5XLrhwtan4JkKy6Xg9M8ybQC88zn5l&id=100089807310821",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-29-5",
-                "name": "📍งานกำแพง 125 ม.",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.409,
-                    102.768
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "📍งานกำแพง 125 ม.",
-                "postedTime": "4/7/2569",
-                "postUrl": "https://www.facebook.com/reel/1379484717369680/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 5)",
+        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 4)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
@@ -7066,9 +5277,9 @@
         "address": "เมืองอุดรธานี จ.อุดรธานี",
         "phone": "096 009 0036",
         "contactPerson": "ห้างหุ้นส่วนจำกัด สันต์สิริ ดีไซน์ แอนด์ บิลด์",
-        "totalProjects": 5,
-        "newProjectsThisMonth": 5,
-        "totalValueMillion": 27.5,
+        "totalProjects": 6,
+        "newProjectsThisMonth": 6,
+        "totalValueMillion": 33,
         "growthRate": 40,
         "areaExpansion": "เมืองอุดรธานี",
         "verificationStatus": {
@@ -7081,10 +5292,10 @@
             "groundbreak": 0,
             "foundation": 0,
             "structure": 2,
-            "finishing": 3
+            "finishing": 4
         },
         "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿2.5M",
+        "revenuePotentialText": "฿3.0M",
         "coordinates": [
             17.406,
             102.793
@@ -7243,6 +5454,40 @@
             },
             {
                 "projectId": "comp-udon-18-5",
+                "name": "SITE UPDATE | สิรกานต์ เรสซิเดนซ์",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.406,
+                    102.793
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "SITE UPDATE | สิรกานต์ เรสซิเดนซ์ \n📍 จ.อุดรธานี\n\nเริ่มดำเนินงานรีโนเวทและซ่อมแซมสีอาคาร\nขูดลอกสีเดิม ซ่อมพื้นผิว เก็บรายละเอียด และเตรียมผนังก่อนลงสีใหม่ทั้งระบบ\n\nงานสีที่ดี เริ่มจากการเตรียมผิวที่ดีครับ\n\nรอติดตาม Before & After กันได้เลย 👀\n\n☎ 096-009-0036\nSUNSIRI DESIGN & BUILD CO., LTD\n\n#SiteUpdate #งานทาสีอุดร #รีโนเวทอาคาร #รับเหมาก่อสร้าง #SunsiriDesignAndBuild",
+                "postedTime": "23/8/2569",
+                "postUrl": "https://www.facebook.com/sunsirigroup/posts/pfbid021GoELwGNj2mukh67YQszGjVMBfpaeLgDJqA1fGBUXwaUPyAReLUfpGsD8SN8oNAfl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-18-6",
                 "name": "จากกระดาษ...สู่บ้าน",
                 "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
                 "province": "อุดรธานี",
@@ -7276,7 +5521,465 @@
                 ]
             }
         ],
+        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 80,
+        "scgCode": null,
+        "sales2025": 0,
+        "sales2026": 0
+    },
+    {
+        "id": "comp-udon-41",
+        "name": "บริษัท มารีญาก่อสร้าง จํากัด",
+        "engName": "Architecture INT Design",
+        "category": "รับสร้างบ้านและงานสถาปัตยกรรมอินทีเรีย (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "083 345 8276",
+        "contactPerson": "บริษัท มารีญาก่อสร้าง จำกัด",
+        "totalProjects": 5,
+        "newProjectsThisMonth": 5,
+        "totalValueMillion": 27.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415562037890",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 2,
+            "finishing": 3
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿2.5M",
+        "coordinates": [
+            17.4095,
+            102.7845
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
+        "gmaps": "https://maps.app.goo.gl/fBRFeUPfffZhQcPK7",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=100090611883896",
+        "facebookSignal": {
+            "postDate": "15/9/2569",
+            "pageName": "บริษัท มารีญาก่อสร้าง จํากัด",
+            "caption": "รองพื้นไว้ก่อน 🩷",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-41-1",
+                "name": "รองพื้นไว้ก่อน 🩷",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4095,
+                    102.7845
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "รองพื้นไว้ก่อน 🩷",
+                "postedTime": "15/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jeMWW2c56cPYqiVKdAGsqzYoE1UCm57pdJTCf2UZuSzGtpVkFSoMvDRFfca4JaFGl&id=100090611883896",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-41-2",
+                "name": "ฝ้าภายในเริ่มแล้วววววว😶‍🌫️",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4095,
+                    102.7845
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "ฝ้าภายในเริ่มแล้วววววว😶‍🌫️\n| มารีญาก่อสร้าง | ผู้ช่วยสร้างบ้านที่คุณวางใจ\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณพ่อคุณแม่)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
+                "postedTime": "12/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl&id=100090611883896",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-41-3",
+                "name": "สกีมโค้ทผนัง ดีจริงไหม? มาดูกันชัดๆ 🏠",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4095,
+                    102.7845
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "สกีมโค้ทผนัง ดีจริงไหม? มาดูกันชัดๆ 🏠\nหลายคนอยากได้ผนังเรียบเนียนเหมือนกระดาษ แต่ก่อนตัดสินใจ ควรรู้ทั้งสองด้านค่ะ\n✅ ข้อดี\n• ผิวเรียบเนียน ไม่เห็นรอยฉาบ รอยลูกคลื่น\n• ทาสีแล้วสวยสม่ำเสมอ ไม่ด่างเป็นหย่อม ประหยัดสีด้วย\n• แก้ผิวฉาบไม่เรียบได้ โดยไม่ต้องฉาบใหม่\n• เหมาะกับผนังที่โดนแสงเฉียง เช่น ไฟซ่อน แสงจากหน้าต่าง ที่เห็นความไม่เรียบชัดมาก\n❌ ข้อเสีย\n• ต้นทุนและเวลาเพิ่มอีก 1 ขั้นตอน (ฉาบ–ขัด–รองพื้น)\n• ผิวอ่อนกว่าปูนฉาบ กระแทกแล้วบิ่นง่าย\n• ถ้าผนังเดิมชื้น หรือทารองพื้นไม่ดี = สีลอก ผิวร่อน\n• ไม่เหมาะกับผนังภายนอกที่โดนฝนโดยตรง\nสรุป\nสกีมโค้ทคุ้มค่ามากสำหรับผนังภายในบ้านระดับพรีเมียม แต่ต้องคุมความชื้นผนัง ความหนา และทารองพื้นให้ครบทุกจุด ซึ่งเป็นมาตรฐานที่มารีญาก่อสร้างทำทุกหลังค่ะ\n💬 สงสัยเรื่องงานผนัง ทักถามได้เลย\n#สกีมโค้ท #สร้างบ้าน #บ้านพรีเมียม #รับสร้างบ้านอุดรธานี #มารีญาก่อสร้าง",
+                "postedTime": "12/9/2569",
+                "postUrl": "https://www.facebook.com/reel/2144077063132016/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-41-4",
+                "name": "งานสกีมภายใน😶‍🌫️",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4095,
+                    102.7845
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "งานสกีมภายใน😶‍🌫️\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณมายด์)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
+                "postedTime": "11/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil&id=100090611883896",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-41-5",
+                "name": "🧱 ทำไมมารีญาถึง \"ปูเต็ม\" ทุกแผ่น ไม่ปูซาลาเปา",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.4095,
+                    102.7845
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🧱 ทำไมมารีญาถึง \"ปูเต็ม\" ทุกแผ่น ไม่ปูซาลาเปา\nหลายบ้านที่กระเบื้องผนังแตก หลุดร่อน หรือเคาะแล้วเสียงกลวง สาเหตุมักไม่ได้อยู่ที่กระเบื้อง แต่อยู่ที่ \"ใต้แผ่น\" ค่ะ\nการปูแบบซาลาเปา (แปะกาวเป็นก้อนแล้วกดแผ่น) ทำงานเร็วก็จริง แต่ทิ้งโพรงอากาศไว้เต็มไปหมด และโพรงนั่นแหละคือจุดเริ่มต้นของปัญหาที่จะโผล่มาในปีที่ 2–3 ตอนที่ช่างไม่อยู่แล้ว\nที่มารีญา เราปูแบบเต็มแผ่นทุกครั้ง\n✅ ปาดกาวซีเมนต์ด้วยเกรียงหวีเต็มพื้นผิว + ทากาวหลังแผ่น\n✅ ไม่มีโพรง ไม่มีน้ำขังหลังกระเบื้อง ไม่มีเชื้อราแอบโต\n✅ แรงยึดเกาะเต็ม 100% แม้กระเบื้องแผ่นใหญ่\n✅ ผนังเรียบเสมอกันทุกแผ่น ไม่มีขอบเหลื่อม\n✅ เป็นวิธีที่ผู้ผลิตกระเบื้องแนะนำ และเรากล้ารับประกันงาน\nปูเต็มใช้เวลามากกว่า ใช้กาวมากกว่า ทั้งนี้ที่กล่าวมาเป็นวิธีทำที่มาตรฐานที่เราเลือกใช้\nเราควรเลือกใช้วิธีนี้เลิศๆเลยล่ะ☺️\n📞 088-877-2899 | LINE @tpkon\n#มารีญาก่อสร้าง #บ้านสั่งสร้าง #อุดรธานี #งานปูกระเบื้อง #มารีญาก่อสร้าง",
+                "postedTime": "11/9/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0WUYEbodRvRfp2YZfjNNyqWKM2D3weYehnrEwGfrmSKyHAFBbRS9cqExaCAF5P9Csl&id=100090611883896",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
         "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 80,
+        "scgCode": null,
+        "sales2025": 0,
+        "sales2026": 0
+    },
+    {
+        "id": "comp-udon-37",
+        "name": "ห้างหุ้นส่วนจํากัด ปิยภัทร125 คอนสตรัคชั่น",
+        "engName": "N.P. Homes Engineering Ltd., Part.",
+        "category": "รับสร้างบ้านและบริการวิศวกรรมโครงสร้าง (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "065 095 4991",
+        "contactPerson": "ห้างหุ้นส่วนจำกัด ปิยภัทร125 คอนสตรัคชั่น",
+        "totalProjects": 5,
+        "newProjectsThisMonth": 5,
+        "totalValueMillion": 27.5,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415560033456",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 3,
+            "finishing": 2
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿2.5M",
+        "coordinates": [
+            17.416,
+            102.828
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
+        "gmaps": "https://maps.app.goo.gl/6TVPLFqkx5AYSZo17",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=61579292830014",
+        "facebookSignal": {
+            "postDate": "16/8/2569",
+            "pageName": "ห้างหุ้นส่วนจํากัด ปิยภัทร125 คอนสตรัคชั่น",
+            "caption": "งานฝ้า+ผนังเบา \n\nขอบคุณลูกค้าที่ไว้ใจ ให้เราได้ดูแลคะ🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ 0997496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-37-1",
+                "name": "งานฝ้า+ผนังเบา",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.416,
+                    102.828
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "งานฝ้า+ผนังเบา \n\nขอบคุณลูกค้าที่ไว้ใจ ให้เราได้ดูแลคะ🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ 0997496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
+                "postedTime": "16/8/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0YsEdKxW77LXWB4pn9B2XEtkKRtvRGm37jjpBQwthtWEMTpvgD9TejF9hmZVmHQkKl&id=61579292830014",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-37-2",
+                "name": "ขอบพระคุณลูกค้า ที่ไว้ใจให้เราได้ดูแล 🙏🏻🙏🏻",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.416,
+                    102.828
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "ขอบพระคุณลูกค้า ที่ไว้ใจให้เราได้ดูแล 🙏🏻🙏🏻 \n\n☎️☎️ติดต่อ-สอบถาม\n083-1616352 (ช่างภัทร)\n\n📲📲แอดไลน์ \n099-7496885 (ช่างภัทร)\n\n#รับเหมาก่อสร้าง\n#รีโนเวท\n#ต่อเติม\n#บิ้วอิน",
+                "postedTime": "15/8/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0jEBtST6fMqnU2BWdCp12EvHZ7wmRdYMx6K5Zm3TzDnXgC9cji1t316R4TcJi88xl&id=61579292830014",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-37-3",
+                "name": "งานปูกระเบื้อง 🙏🏻🙏🏻",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.416,
+                    102.828
+                ],
+                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+                "stageKey": "finishing",
+                "trackingStatus": "pending",
+                "progressPercent": 80,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "งานปูกระเบื้อง 🙏🏻🙏🏻\n\n☎️☎️สอบถาม \n083-11616352 (ช่างภัทร)\n\n📲📲Line : \n099-7496885(ช่างภัทร)\n\n #รับเหมาก่อสร้าง\n #ต่อเติม\n#รับสร้างบ้าน\n#รีโนเวท\n#บิ้วอิน\n#งานหลวง\n#งานระบบปะปา",
+                "postedTime": "11/7/2569",
+                "postUrl": "https://www.facebook.com/reel/2222953428543486/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-37-4",
+                "name": "งานบ้านพัก ขอนแก่น",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.416,
+                    102.828
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "งานบ้านพัก ขอนแก่น\n\nขอบคุณผู้ใหญ่ใจดี🙏🏻🙏🏻 \n\n☎️☎️ติดต่อ สอบถาม \n083-1616352 ช่างภัทร \n\n📲📲แอดไลน์ ปรึกษา\n099-7496885 ช่างภัทร\n\n#รับสร้างบ้าน\n#ต่อเติม\n#รีโนเวท\n#ปะปา\n#น้ำรั่ว\n#บิ้วอิน\n#สานฝันคนอยากมีบ้าน\n#รับเหมาก่อสร้าง",
+                "postedTime": "23/6/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0u4BkKj8ZFMun2u27T6ZMFAe1hsdSVhRKA6TxGLTBGTk7Q5fHvVVc8nSwM9B6oAkLl&id=61579292830014",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-37-5",
+                "name": "งานขุดฟุตติ้ง 🏗️🏗️",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.416,
+                    102.828
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "งานขุดฟุตติ้ง 🏗️🏗️\n\nขอบพระคุณที่เมตตา🙏🏻🙏🏻\n\n☎️☎️ติดต่อ สอบถาม\n083-1616352 (ช่างภัทร)\n\n  #รับเหมาสร้างบ้าน\n #รีโนเวท\n #ต่อเติม\n #บิ้วอิน",
+                "postedTime": "5/6/2569",
+                "postUrl": "https://www.facebook.com/reel/2191461081618507/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 5 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 3)",
         "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
         "salesActionPlan": [],
         "tag": "new",
@@ -7515,167 +6218,6 @@
         "sales2026": 0
     },
     {
-        "id": "comp-udon-33",
-        "name": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จํากัด",
-        "engName": "PA & TN Ltd., Part.",
-        "category": "รับเหมาก่อสร้างและต่อเติมอาคาร (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "098 834 3732",
-        "contactPerson": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จำกัด",
-        "totalProjects": 3,
-        "newProjectsThisMonth": 3,
-        "totalValueMillion": 16.5,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415564029012",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 2,
-            "finishing": 1
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿1.5M",
-        "coordinates": [
-            17.424,
-            102.788
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
-        "gmaps": "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
-        "facebookUrl": "https://www.facebook.com/housebuildingsunphage",
-        "facebookSignal": {
-            "postDate": "14/9/2569",
-            "pageName": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จํากัด",
-            "caption": "หน้างานบ้านถ่อนนาลับ...พรุ่งนี้จบงานปูกระเบื้อง",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-33-1",
-                "name": "หน้างานบ้านถ่อนนาลับ...พรุ่งนี้จบงานปูกระเบื้อง",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.424,
-                    102.788
-                ],
-                "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
-                "stageKey": "finishing",
-                "trackingStatus": "pending",
-                "progressPercent": 80,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "หน้างานบ้านถ่อนนาลับ...พรุ่งนี้จบงานปูกระเบื้อง",
-                "postedTime": "14/9/2569",
-                "postUrl": "https://www.facebook.com/housebuildingsunphage/posts/pfbid02Cac3XC67RZPnQd6DYrSb9iL55aCgYEzj2g5UiJEs6F3UM4gmYQSwrkbuoBkgf6aBl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-33-2",
-                "name": "รื้อแบบบ้านเชียง",
-                "location": "อ.หนองหาน จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "หนองหาน",
-                "gps": [
-                    17.424,
-                    102.788
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "รื้อแบบบ้านเชียง",
-                "postedTime": "12/9/2569",
-                "postUrl": "https://www.facebook.com/reel/2281781612581635/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-33-3",
-                "name": "งบน้อยก็ได้สวยเหมือนกัน",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.424,
-                    102.788
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งบน้อยก็ได้สวยเหมือนกัน",
-                "postedTime": "10/9/2569",
-                "postUrl": "https://www.facebook.com/housebuildingsunphage/posts/pfbid02CCesaTPQpgcgcf6RSKSY8nxqMHV4acAU513KYwjZrDPmkfvaSXV51wse1s1Cs8vyl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 3 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 70,
-        "scgCode": null,
-        "sales2025": 0,
-        "sales2026": 0
-    },
-    {
         "id": "comp-udon-53",
         "name": "ห้างหุ้นส่วนจํากัด เอสดี เฮ้าส์ ดีไซน์",
         "engName": "Rungrat Beauty Home",
@@ -7832,6 +6374,133 @@
         "salesActionPlan": [],
         "tag": "new",
         "opportunityScore": 70,
+        "scgCode": null,
+        "sales2025": 0,
+        "sales2026": 0
+    },
+    {
+        "id": "comp-udon-29",
+        "name": "บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จํากัด",
+        "engName": "A.Charoen Construction Co., Ltd.",
+        "category": "รับเหมาก่อสร้างและพัฒนาอาคาร (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "092 531 6331",
+        "contactPerson": "บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จำกัด",
+        "totalProjects": 2,
+        "newProjectsThisMonth": 2,
+        "totalValueMillion": 11,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415557025678",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 2,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿1.0M",
+        "coordinates": [
+            17.409,
+            102.768
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/q2HdGPacB4MeHS8d6",
+        "gmaps": "https://maps.app.goo.gl/q2HdGPacB4MeHS8d6",
+        "facebookUrl": "https://www.facebook.com/profile.php?id=100089807310821",
+        "facebookSignal": {
+            "postDate": "19/7/2569",
+            "pageName": "บริษัท อ.เจริญก่อสร้าง คอนสตรัคชั่น จํากัด",
+            "caption": "🏗️เตรียมส่งงาน\nโครงการโรงจอดรถเทศบาลอ.เพ็ญจ.อุดรธานี 🙏",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-29-1",
+                "name": "🏗️เตรียมส่งงาน",
+                "location": "อ.เพ็ญ จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เพ็ญ",
+                "gps": [
+                    17.409,
+                    102.768
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🏗️เตรียมส่งงาน\nโครงการโรงจอดรถเทศบาลอ.เพ็ญจ.อุดรธานี 🙏",
+                "postedTime": "19/7/2569",
+                "postUrl": "https://www.facebook.com/reel/1644626097382112/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-29-2",
+                "name": "🏗️🏠 งานต่อเติม อาคาร อบต.บ้านเหล่า อ.เพ็ญ จ. อุดรธานี",
+                "location": "อ.เพ็ญ จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เพ็ญ",
+                "gps": [
+                    17.409,
+                    102.768
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "🏗️🏠 งานต่อเติม อาคาร อบต.บ้านเหล่า อ.เพ็ญ จ. อุดรธานี",
+                "postedTime": "8/7/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid029bj2YNLspGWKdKmZGgiErHEoPg5gDLuk1Wu5XLrhwtan4JkKy6Xg9M8ybQC88zn5l&id=100089807310821",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 2 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 35,
         "scgCode": null,
         "sales2025": 0,
         "sales2026": 0
@@ -8015,7 +6684,7 @@
             {
                 "projectId": "comp-udon-24-1",
                 "name": "✨ อัปเดทความคืบหน้างานตกแต่งภายใน✨🏠",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "location": "โครงการอภิทาวน์ อ.เมือง จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
@@ -8048,8 +6717,8 @@
             },
             {
                 "projectId": "comp-udon-24-2",
-                "name": "✨ อัปเดทความคืบหน้างานตกแต่งภายใน✨🏠",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "name": "อัปเดทความคืบหน้างานต่อเติม  | Project Update 🔨⚙️",
+                "location": "โครงการอภิทาวน์ อ.เมือง จ.อุดรธานี",
                 "province": "อุดรธานี",
                 "district": "เมืองอุดรธานี",
                 "gps": [
@@ -8062,9 +6731,9 @@
                 "progressPercent": 80,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "✨ อัปเดทความคืบหน้างานตกแต่งภายใน✨🏠\n𝗢𝘄𝗻𝗲𝗿 :   คุณแพน\n𝗟𝗼𝗰𝗮𝘁𝗶𝗼𝗻 :  โครงการอภิทาวน์อุดรธานี\n\n🔰เก็บสีงานเฟอร์นิเจอร์\n🔰ติดแสตนเลส\n\n📩 สนใจสอบถาม /งานก่อสร้าง ตกแต่งภายใน และออกแบบตามงบประมาณ โทร 099-0266271หรือทักแชทได้เลยยินดีให้คำปรึกษาฟรี ✅\n#FuhouseInteriorDesign  #รับสร้างบ้านอุดร  #สร้างบ้านครบวงจร #สร้างบ้านสวย #บิ้วอินเฟอร์นิเจอร์ #บิ้วอินอุดรธานี",
-                "postedTime": "11/7/2569",
-                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0PfJno7bxJyNu3xHwZ9r5CduRF77P8GNY3oaDDA4Quyy2pjZSbS1fwk71fh61RPVPl&id=100080371301938",
+                "caption": "อัปเดทความคืบหน้างานต่อเติม  | Project Update 🔨⚙️\n𝗢𝘄𝗻𝗲𝗿 :  คุณแพน\n𝗟𝗼𝗰𝗮𝘁𝗶𝗼𝗻 :  โครงการอภิทาวน์\n\n🔰ปูกระเบื้องครัวหลังบ้าน\n🔰ทำระแนง\n🔰ปูพื้นไม้ทียม\n\n📩 สนใจสอบถาม /งานก่อสร้าง ตกแต่งภายใน และออกแบบตามงบประมาณ โทร 099-0266271หรือทักแชทได้เลยยินดีให้คำปรึกษาฟรี ✅\n\n#FuhouseInteriorDesign  #รับสร้างบ้านอุดร  #สร้างบ้านครบวงจร #อภิทาวน์อุดรธานี #ศุภาลัยอุดรธานี #บิ้วอินเฟอร์นิเจอร์ #บิ้วอินอุดรธานี",
+                "postedTime": "22/7/2569",
+                "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid032fipy8GK46DVTyvwNrZ4qzRr4FWYM4VBBihKnrg8VrLT55sPyRkqWS8j3TJu7ro7l&id=100080371301938",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -8127,9 +6796,9 @@
         "gmaps": "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%84%E0%B8%AD+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%B1%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99+%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5",
         "facebookUrl": "https://www.facebook.com/siarchitecture",
         "facebookSignal": {
-            "postDate": "16/8/2569",
+            "postDate": "16/7/2569",
             "pageName": "ห้างหุ้นส่วนจํากัด เอสไอ อาร์คิเทคเชอร์ แอนด์ คอนสตรัคชั่น",
-            "caption": "NEW Project \nโครงการ: บ้านพักอาศัย ค.ส.ล. 2 ชั้น \nพื้นที่ใช้สอย: 1295 ต.ร.ม.\nสถานที่ก่อสร้าง: อ.เมือง จ.อุดรธานี\nขั้นตอนการทำงาน : เคลียร์ริ่งและ Soil Test",
+            "caption": "NEW Project \nโครงการ: บ้านพักอาศัย ค.ส.ล.2 ชั้น \nพื้นที่ใช้สอย: 1327 ต.ร.ม.\nเจ้าของโครงการ: คุณทิว คุณหมวย\nสถานที่ก่อสร้าง: อ.เมือง จ.อุดรธานี",
             "likes": 0,
             "comments": 0,
             "shares": 0,
@@ -8155,9 +6824,9 @@
                 "progressPercent": 50,
                 "estValue": "5.5 ล้านบาท",
                 "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "NEW Project \nโครงการ: บ้านพักอาศัย ค.ส.ล. 2 ชั้น \nพื้นที่ใช้สอย: 1295 ต.ร.ม.\nสถานที่ก่อสร้าง: อ.เมือง จ.อุดรธานี\nขั้นตอนการทำงาน : เคลียร์ริ่งและ Soil Test",
-                "postedTime": "16/8/2569",
-                "postUrl": "https://www.facebook.com/siarchitecture/posts/pfbid0E4zUDxd737HDUyfvZAYWbb62TikhotyjbBZVp2AjiEuMdKuz9fQqvsJDLJfXDVFVl",
+                "caption": "NEW Project \nโครงการ: บ้านพักอาศัย ค.ส.ล.2 ชั้น \nพื้นที่ใช้สอย: 1327 ต.ร.ม.\nเจ้าของโครงการ: คุณทิว คุณหมวย\nสถานที่ก่อสร้าง: อ.เมือง จ.อุดรธานี",
+                "postedTime": "16/7/2569",
+                "postUrl": "https://www.facebook.com/siarchitecture/posts/pfbid02bbGADELvsUqqmjQLEREiUb6pmEbnKALtGzbRBdtvF31inBm3ChPyqg1E2hHZGjLSl",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
@@ -8447,6 +7116,64 @@
             "comments": 0,
             "shares": 0,
             "detectedKeywords": []
+        },
+        "projects": [],
+        "aiShortRec": "รอสแกน Apify (0 โครงการ)",
+        "aiRecommendation": "ยังไม่พบโพสต์ที่ตรงกับเพจของบริษัทนี้ในไฟล์ JSON",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 15,
+        "scgCode": null,
+        "sales2025": 0,
+        "sales2026": 0
+    },
+    {
+        "id": "comp-udon-33",
+        "name": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จํากัด",
+        "engName": "PA & TN Ltd., Part.",
+        "category": "รับเหมาก่อสร้างและต่อเติมอาคาร (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "098 834 3732",
+        "contactPerson": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จำกัด",
+        "totalProjects": 0,
+        "newProjectsThisMonth": 0,
+        "totalValueMillion": 0,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415564029012",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 0,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿0.0M - ฿0.0M",
+        "coordinates": [
+            17.424,
+            102.788
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
+        "gmaps": "https://maps.app.goo.gl/YGKZB6pezKPSYnMb6",
+        "facebookUrl": "https://www.facebook.com/housebuildingsunphage",
+        "facebookSignal": {
+            "postDate": "-",
+            "pageName": "บริษัท ป. รุ่งเรือง พีเอสพีเอส จํากัด",
+            "caption": "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
         },
         "projects": [],
         "aiShortRec": "รอสแกน Apify (0 โครงการ)",
@@ -8777,269 +7504,6 @@
         "sales2026": 0
     },
     {
-        "id": "comp-udon-13",
-        "name": "PP HOUSE CONSTRUCTION & DESIGN",
-        "engName": "PP House Construction & Design",
-        "category": "รับสร้างบ้านและออกแบบตกแต่งภายใน (TSIC 41001)",
-        "province": "อุดรธานี",
-        "district": "เมืองอุดรธานี",
-        "address": "เมืองอุดรธานี จ.อุดรธานี",
-        "phone": "087 775 8333",
-        "contactPerson": "PP HOUSE CONSTRUCTION & DESIGN",
-        "totalProjects": 6,
-        "newProjectsThisMonth": 6,
-        "totalValueMillion": 33,
-        "growthRate": 40,
-        "areaExpansion": "เมืองอุดรธานี",
-        "verificationStatus": {
-            "isVerified": true,
-            "confidence": "100%",
-            "evidenceSource": "Facebook Page | DBD: 0415564009012",
-            "permitStatus": "TSIC 41001"
-        },
-        "stageBreakdown": {
-            "groundbreak": 0,
-            "foundation": 0,
-            "structure": 6,
-            "finishing": 0
-        },
-        "latestTimelineStage": "groundbreak",
-        "revenuePotentialText": "฿3.0M",
-        "coordinates": [
-            17.435,
-            102.784
-        ],
-        "googleMapsUrl": "https://maps.app.goo.gl/qYcyFG52xWpkT5D4A",
-        "gmaps": "https://maps.app.goo.gl/qYcyFG52xWpkT5D4A",
-        "facebookUrl": "https://www.facebook.com/pphouseudonthani",
-        "facebookSignal": {
-            "postDate": "30/8/2569",
-            "pageName": "PP HOUSE CONSTRUCTION & DESIGN",
-            "caption": "งานละเอียดมากครับ",
-            "likes": 0,
-            "comments": 0,
-            "shares": 0,
-            "detectedKeywords": [
-                "อุดรธานี",
-                "ก่อสร้างจริง"
-            ]
-        },
-        "projects": [
-            {
-                "projectId": "comp-udon-13-1",
-                "name": "งานละเอียดมากครับ",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.435,
-                    102.784
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานละเอียดมากครับ",
-                "postedTime": "30/8/2569",
-                "postUrl": "https://www.facebook.com/reel/1086830924000777/",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-13-2",
-                "name": "สนามPickleball",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.435,
-                    102.784
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "สนามPickleball \n#ในโครงการเดินเพลินวิลเลจ",
-                "postedTime": "28/8/2569",
-                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid0CE5H2K6eKhvH5YBMfL1725c3vwn1yjf9UUPtKX7uR8CwATUS7RQLXJ7uPJRkBGmcl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-13-3",
-                "name": "ค่าไฟมาแล้ว",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.435,
-                    102.784
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "ค่าไฟมาแล้ว\n#SOLAR P",
-                "postedTime": "1/8/2569",
-                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid02XCt3mCDWMNixxWVuku6WXSHzfUeJR41imSTngy93deuYSa5bsZgHcTnXeynQheUl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-13-4",
-                "name": "เรียบร้อยดี.งานฉาบ100%",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.435,
-                    102.784
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "เรียบร้อยดี.งานฉาบ100%\n#บ้านพื้นที่ 555 ตรม.",
-                "postedTime": "20/7/2569",
-                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid02KVjWZbEKKsNDRHXKYbRcrrFK8fz67QX2kiXCV7NBnJ1oRG3wFijdAKNf5cmLs3mxl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-13-5",
-                "name": "I have CPU มาเปิดที่อุดรคนเยอะมากครับ",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.435,
-                    102.784
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "I have CPU มาเปิดที่อุดรคนเยอะมากครับ",
-                "postedTime": "11/7/2569",
-                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid0bQESakNkhMbyfF5vFDcv2jnKUVQoUdRQLzKYbaZQdWzHmmZPwCfCwYmDJTruCidzl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            },
-            {
-                "projectId": "comp-udon-13-6",
-                "name": "งานก่อ-ฉาบ ทุกขั้นตอนต้องละเอียดและมาตรฐาน",
-                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
-                "province": "อุดรธานี",
-                "district": "เมืองอุดรธานี",
-                "gps": [
-                    17.435,
-                    102.784
-                ],
-                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
-                "stageKey": "structure",
-                "trackingStatus": "pending",
-                "progressPercent": 50,
-                "estValue": "5.5 ล้านบาท",
-                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-                "caption": "งานก่อ-ฉาบ ทุกขั้นตอนต้องละเอียดและมาตรฐาน\n#PP HOUSE",
-                "postedTime": "9/7/2569",
-                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid02DSQS5cFLmARanDKndkxeYjTzYcj8RZEsnQtRXkRFNNK39mfLfQ5DsyLCrPhA8U9Nl",
-                "boq": [
-                    {
-                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                        "qty": "450 ถุง",
-                        "estCost": "฿76,500",
-                        "urgency": "ด่วนที่สุด"
-                    },
-                    {
-                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-                        "qty": "75 คิว",
-                        "estCost": "฿165,000",
-                        "urgency": "เตรียมสั่งซื้อ"
-                    }
-                ]
-            }
-        ],
-        "aiShortRec": "พบ 6 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 6)",
-        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
-        "salesActionPlan": [],
-        "tag": "new",
-        "opportunityScore": 80,
-        "scgCode": null,
-        "sales2025": 0,
-        "sales2026": 0
-    },
-    {
         "id": "comp-udon-14",
         "name": "รับสร้างบ้านอุดรธานี By Concept Engineering",
         "engName": "Concept Engineering Udon Thani",
@@ -9302,6 +7766,133 @@
                 "caption": "งาน Service ระบบน้ำบ้านลูกค้า\nทีมงานอภิญญาก่อสร้าง ให้คำปรึกษางานก่อสร้าง ดูหน้างานจริง พร้อมแนะนำแบบที่เหมาะกับงบประมาณลูกค้า\n\n📞 ติดต่อสอบถาม: 087-2305900\n\n#ทีมงานอภิญญาก่อสร้าง #รับเหมาก่อสร้าง #ออกแบบบ้าน #ก่อสร้างครบวงจร",
                 "postedTime": "17/6/2569",
                 "postUrl": "https://www.facebook.com/reel/1044185941512951/",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            }
+        ],
+        "aiShortRec": "พบ 2 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 2)",
+        "aiRecommendation": "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "salesActionPlan": [],
+        "tag": "new",
+        "opportunityScore": 35,
+        "scgCode": null,
+        "sales2025": 0,
+        "sales2026": 0
+    },
+    {
+        "id": "comp-udon-13",
+        "name": "PP HOUSE CONSTRUCTION & DESIGN",
+        "engName": "PP House Construction & Design",
+        "category": "รับสร้างบ้านและออกแบบตกแต่งภายใน (TSIC 41001)",
+        "province": "อุดรธานี",
+        "district": "เมืองอุดรธานี",
+        "address": "เมืองอุดรธานี จ.อุดรธานี",
+        "phone": "087 775 8333",
+        "contactPerson": "PP HOUSE CONSTRUCTION & DESIGN",
+        "totalProjects": 2,
+        "newProjectsThisMonth": 2,
+        "totalValueMillion": 11,
+        "growthRate": 40,
+        "areaExpansion": "เมืองอุดรธานี",
+        "verificationStatus": {
+            "isVerified": true,
+            "confidence": "100%",
+            "evidenceSource": "Facebook Page | DBD: 0415564009012",
+            "permitStatus": "TSIC 41001"
+        },
+        "stageBreakdown": {
+            "groundbreak": 0,
+            "foundation": 0,
+            "structure": 2,
+            "finishing": 0
+        },
+        "latestTimelineStage": "groundbreak",
+        "revenuePotentialText": "฿1.0M",
+        "coordinates": [
+            17.435,
+            102.784
+        ],
+        "googleMapsUrl": "https://maps.app.goo.gl/qYcyFG52xWpkT5D4A",
+        "gmaps": "https://maps.app.goo.gl/qYcyFG52xWpkT5D4A",
+        "facebookUrl": "https://www.facebook.com/pphouseudonthani",
+        "facebookSignal": {
+            "postDate": "20/7/2569",
+            "pageName": "PP HOUSE CONSTRUCTION & DESIGN",
+            "caption": "เรียบร้อยดี.งานฉาบ100%\n#บ้านพื้นที่ 555 ตรม.",
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "detectedKeywords": [
+                "อุดรธานี",
+                "ก่อสร้างจริง"
+            ]
+        },
+        "projects": [
+            {
+                "projectId": "comp-udon-13-1",
+                "name": "เรียบร้อยดี.งานฉาบ100%",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.435,
+                    102.784
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "เรียบร้อยดี.งานฉาบ100%\n#บ้านพื้นที่ 555 ตรม.",
+                "postedTime": "20/7/2569",
+                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid02KVjWZbEKKsNDRHXKYbRcrrFK8fz67QX2kiXCV7NBnJ1oRG3wFijdAKNf5cmLs3mxl",
+                "boq": [
+                    {
+                        "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                        "qty": "450 ถุง",
+                        "estCost": "฿76,500",
+                        "urgency": "ด่วนที่สุด"
+                    },
+                    {
+                        "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
+                        "qty": "75 คิว",
+                        "estCost": "฿165,000",
+                        "urgency": "เตรียมสั่งซื้อ"
+                    }
+                ]
+            },
+            {
+                "projectId": "comp-udon-13-2",
+                "name": "งานก่อ-ฉาบ ทุกขั้นตอนต้องละเอียดและมาตรฐาน",
+                "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+                "province": "อุดรธานี",
+                "district": "เมืองอุดรธานี",
+                "gps": [
+                    17.435,
+                    102.784
+                ],
+                "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+                "stageKey": "structure",
+                "trackingStatus": "pending",
+                "progressPercent": 50,
+                "estValue": "5.5 ล้านบาท",
+                "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
+                "caption": "งานก่อ-ฉาบ ทุกขั้นตอนต้องละเอียดและมาตรฐาน\n#PP HOUSE",
+                "postedTime": "9/7/2569",
+                "postUrl": "https://www.facebook.com/phichay.yuthth.siri.wa.ri.nthr/posts/pfbid02DSQS5cFLmARanDKndkxeYjTzYcj8RZEsnQtRXkRFNNK39mfLfQ5DsyLCrPhA8U9Nl",
                 "boq": [
                     {
                         "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",

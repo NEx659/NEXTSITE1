@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
   <meta charset="utf-8">
-  <title>Inspect A House from whole dataset</title>
+  <title>Inspect Twentysix extraction</title>
 </head>
 <body class="auth-locked">
   <script src="../js/data.js"></script>
@@ -14,9 +14,9 @@
         const resp = await fetch('dataset.json');
         const rawJson = await resp.json();
         
-        processApifyJsonData(rawJson, 'test-full');
+        processApifyJsonData(rawJson, 'test-twentysix');
         
-        const comp = allCompanies.find(c => c.id === 'comp-udon-40' || (c.name && c.name.includes('เอ เฮ้าส์')));
+        const comp = allCompanies.find(c => c.id === 'comp-udon-08' || (c.name && c.name.includes('ทเวนตี้ซิกซ์')));
         
         const pre = document.createElement('pre');
         pre.id = 'result-json';
@@ -26,7 +26,15 @@
           totalProjects: comp.totalProjects,
           opportunityScore: comp.opportunityScore,
           stageBreakdown: comp.stageBreakdown,
-          projects: comp.projects
+          projects: comp.projects.map(p => ({
+            id: p.projectId,
+            name: p.name,
+            location: p.location,
+            stage: p.stage,
+            stageKey: p.stageKey,
+            postedTime: p.postedTime,
+            postUrl: p.postUrl
+          }))
         }, null, 2);
         document.body.appendChild(pre);
       } catch (err) {
@@ -41,84 +49,88 @@
 
 
 <div id="status-toast-container"></div><pre id="result-json">{
-  "id": "comp-udon-40",
-  "name": "บริษัท เอ เฮ้าส์ บิวเดอร์ จํากัด",
-  "totalProjects": 2,
-  "opportunityScore": 35,
+  "id": "comp-udon-08",
+  "name": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
+  "totalProjects": 8,
+  "opportunityScore": 92,
   "stageBreakdown": {
-    "groundbreak": 0,
-    "foundation": 0,
-    "structure": 1,
+    "groundbreak": 1,
+    "foundation": 1,
+    "structure": 5,
     "finishing": 1
   },
   "projects": [
     {
-      "projectId": "comp-udon-40-1",
-      "name": "อัฟเดทงาน : งานพื้น-งานเสา",
-      "location": "ต.นาดี อ.เมือง จ.อุดรธานี",
-      "province": "อุดรธานี",
-      "district": "เมืองอุดรธานี",
-      "gps": [
-        17.4145,
-        102.7725
-      ],
+      "id": "comp-udon-08-1",
+      "name": "Design &amp; Build  By TWENTYSIX.HOUSE— Udonthani",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
       "stage": "งานโครงสร้างและก่อฉาบอาคาร",
       "stageKey": "structure",
-      "trackingStatus": "pending",
-      "progressPercent": 50,
-      "estValue": "5.5 ล้านบาท",
-      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-      "caption": "อัฟเดทงาน : งานพื้น-งานเสา\n────────────────────────\nโครงการ : บ้านพักอาศัย คสล 1 ชั้น🏡\nสถานที่ก่อสร้าง : บ้านศรีเชียงใหม่ ตำบลนาดี อำเภอเมือง จังหวัดอุดรธานี\nขอขอบพระคุณ ที่ไว้วางใจ บริษัท เอ-เฮ้าส์ บิวเดอร์ จำกัด เป็นผู้ดูแล\n🏠 หลากหลายกับแบบบ้านที่ทันสมัย ออกแบบมาเพื่อคุณโดยเฉพาะ\n💯 รับประกันงานหลังการก่อสร้าง\n────────────────────────\nบริการพิเศษ\n✔ ให้คำปรึกษาฟรี\n✔บริการออกแบบบ้านตามความต้องการและงบประมาณของลูกค้า\n✔ดำเนินกู้ธนาคาร\n✔ให้คำปรึกษาด้านการกู้สินเชื่อ\n✔ดำเนินการยื่นขออนุญาตก่อสร้าง\n✔ดำเนินการยื่นขอน้ำประปา\n✔ดำเนินการยื่นขอไฟฟ้า\n✔ดำเนินการขอทะเบียนบ้าน\n🛠วัสดุมาตรฐานทั้งหลัง สร้างจริงไม่หนีงาน งบไม่บานปลาย\n────────────────────────\n👉ช่องทางการติดต่อ👈\nโทร : 098-629-4662,098-626-5635\nพิกัดที่ตั้งสำนักงานคลิ๊กลิงค์ได้เลยค่ะ : https://maps.app.goo.gl/8XtxabhKEpAtqTRA8\n#A_HOUSE_BUILDER\n#สร้างบ้านสวย_ด้วยคุณภาพ \n#เอเฮ้าส์บิวเดอร์ #รับสร้างบ้าน #รับสร้างบ้านภาคอีสาน #สร้างบ้านอุดรธานี\n#บ้านคุณภาพ #รับเหมาก่อสร้าง @ผู้ติดตาม",
-      "postedTime": "27/8/2569",
-      "postUrl": "https://www.facebook.com/ahouse.builder/posts/pfbid02T5dcVwJWoFnJDxgauGLLozuX3FhxSawbU2NqG3bUhwzUvR4FJWf8CVeKz35zDbpEl",
-      "boq": [
-        {
-          "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-          "qty": "450 ถุง",
-          "estCost": "฿76,500",
-          "urgency": "ด่วนที่สุด"
-        },
-        {
-          "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-          "qty": "75 คิว",
-          "estCost": "฿165,000",
-          "urgency": "เตรียมสั่งซื้อ"
-        }
-      ]
+      "postedTime": "31/8/2569",
+      "postUrl": "https://www.facebook.com/reel/1602887421568403/"
     },
     {
-      "projectId": "comp-udon-40-2",
-      "name": "อัฟเดทงาน : งานทาสีรองพื้น",
-      "location": "ต.บ้านจั่น อ.เมือง จ.อุดรธานี",
-      "province": "อุดรธานี",
-      "district": "เมืองอุดรธานี",
-      "gps": [
-        17.4145,
-        102.7725
-      ],
+      "id": "comp-udon-08-2",
+      "name": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 &amp; 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิด...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
       "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
       "stageKey": "finishing",
-      "trackingStatus": "pending",
-      "progressPercent": 80,
-      "estValue": "5.5 ล้านบาท",
-      "buildingType": "บ้านพักอาศัยเดี่ยว 2 ชั้น",
-      "caption": "อัฟเดทงาน : งานทาสีรองพื้น\n────────────────────────\nโครงการ : บ้านพักอาศัย คสล 1 ชั้น🏡\nสถานที่ก่อสร้าง : ตำบลบ้านจั่น อำเภอเมือง จังหวัดอุดรธานี\nขอขอบพระคุณ ที่ไว้วางใจ บริษัท เอ-เฮ้าส์ บิวเดอร์ จำกัด เป็นผู้ดูแล\n🏠 หลากหลายกับแบบบ้านที่ทันสมัย ออกแบบมาเพื่อคุณโดยเฉพาะ\n💯 รับประกันงานหลังการก่อสร้าง\n────────────────────────\nบริการพิเศษ\n✔ ให้คำปรึกษาฟรี\n✔บริการออกแบบบ้านตามความต้องการและงบประมาณของลูกค้า\n✔ดำเนินกู้ธนาคาร\n✔ให้คำปรึกษาด้านการกู้สินเชื่อ\n✔ดำเนินการยื่นขออนุญาตก่อสร้าง\n✔ดำเนินการยื่นขอน้ำประปา\n✔ดำเนินการยื่นขอไฟฟ้า\n✔ดำเนินการขอทะเบียนบ้าน\n🛠วัสดุมาตรฐานทั้งหลัง สร้างจริงไม่หนีงาน งบไม่บานปลาย\n────────────────────────\n👉ช่องทางการติดต่อ👈\nโทร : 098-629-4662,098-626-5635\nพิกัดที่ตั้งสำนักงานคลิ๊กลิงค์ได้เลยค่ะ : https://maps.app.goo.gl/8XtxabhKEpAtqTRA8\n#A_HOUSE_BUILDER\n#สร้างบ้านสวย_ด้วยคุณภาพ \n#เอเฮ้าส์บิวเดอร์ #รับสร้างบ้าน #รับสร้างบ้านภาคอีสาน #สร้างบ้านอุดรธานี\n#บ้านคุณภาพ #รับเหมาก่อสร้าง @ผู้ติดตาม",
-      "postedTime": "5/8/2569",
-      "postUrl": "https://www.facebook.com/ahouse.builder/posts/pfbid0VEMK8c7JRn1UsZpjms2CB4drnhfAn3FRo8uecADbQjVYrnDfdABok6VR4K7x8U7vl",
-      "boq": [
-        {
-          "sku": "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-          "qty": "450 ถุง",
-          "estCost": "฿76,500",
-          "urgency": "ด่วนที่สุด"
-        },
-        {
-          "sku": "คอนกรีตผสมเสร็จ CPAC 240 ksc",
-          "qty": "75 คิว",
-          "estCost": "฿165,000",
-          "urgency": "เตรียมสั่งซื้อ"
-        }
-      ]
+      "postedTime": "27/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0yajA2B9rtViJ66PTksnWC1DvM9RyZvY2WjuT66P25fvYPJoW8hpoNxSHeBLY3mvZl"
+    },
+    {
+      "id": "comp-udon-08-3",
+      "name": "จากแบบที่วางไว้..สู่การเริ่มต้นก่อสร้างจริง 🏡 24 สิงหา...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
+      "stageKey": "groundbreak",
+      "postedTime": "25/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02p5m8JVchqGsghPqvG7eY9RScGxSznrysijCEVqgjq73viEggMibYhHd3udRSAMRzl"
+    },
+    {
+      "id": "comp-udon-08-4",
+      "name": "บ้านที่น่าอยู่ที่สุด...คือบ้านที่เต็มไปด้วยเสียงหัวเราะ...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "21/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02RWfG4MFMJgKg5oCqfVc28JUVk9Q73Sn3EMjrqr8TpLqbSfLfZ8dz5DgCfBmJNhzsl"
+    },
+    {
+      "id": "comp-udon-08-5",
+      "name": "อีกหนึ่งก้าวสำคัญ 🤍💚 ขอบพระคุณ คุณหมอออย และคุณโอ๊ต ส...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "20/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0YsfzJ1AJfStfXYWKRCsVeoK9YzpmSts9DfGpvi7sLygwciu3PCAaVAnHstDrF2Fol"
+    },
+    {
+      "id": "comp-udon-08-6",
+      "name": "Site Update l อัปเดตความคืบหน้าไซต์งาน",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานฐานราก ตอม่อ และคานคอดิน",
+      "stageKey": "foundation",
+      "postedTime": "10/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0kBhRNCDPYJ7HmyS2ULZksRfsXnFsYrwSCEYPQUFstS7c37Y8PqBSLv93VBaC1F4Rl"
+    },
+    {
+      "id": "comp-udon-08-7",
+      "name": "“เราเลือกที่จะรับสร้างบ้านในจำนวนจำกัด” ไม่ใช่กลยุทธ์ทา...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "14/7/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02UHxobDiGq5ZQ8WLhKpaUAPfL9K9jGK1qAMnvL1A7seBzY8ZJkXHJmXzcAYXtGhFJl"
+    },
+    {
+      "id": "comp-udon-08-8",
+      "name": "🏡 The beginning of a home is not the day you move in.",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "27/6/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0mxMZChfYD3g1uwXaxwdRp4qLh7eMAmPaxG91QEK88Lpm3E4ACXA2SCB5cbLUd6H7l"
     }
   ]
 }</pre></body></html>

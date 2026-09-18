@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Inspect Twentysix extraction</title>
+  <title>Inspect Suksakon Extraction</title>
 </head>
 <body>
   <script src="../js/data.js"></script>
@@ -15,9 +15,9 @@
         const resp = await fetch('dataset.json');
         const rawJson = await resp.json();
         
-        processApifyJsonData(rawJson, 'test-twentysix');
+        processApifyJsonData(rawJson, 'test-suksakon');
         
-        const comp = allCompanies.find(c => c.id === 'comp-udon-08' || (c.name && c.name.includes('ทเวนตี้ซิกซ์')));
+        const comp = allCompanies.find(c => c.id === 'comp-udon-09' || (c.name && (c.name.includes('สุขสกล') || c.name.includes('NASIT'))));
         
         const pre = document.createElement('pre');
         pre.id = 'result-json';
@@ -34,15 +34,12 @@
             stage: p.stage,
             stageKey: p.stageKey,
             postedTime: p.postedTime,
-            postUrl: p.postUrl
+            caption: p.caption.substring(0, 80)
           }))
         }, null, 2);
         document.body.appendChild(pre);
       } catch (err) {
-        const pre = document.createElement('pre');
-        pre.id = 'result-json';
-        pre.textContent = 'ERROR: ' + err.message;
-        document.body.appendChild(pre);
+        document.body.textContent = 'ERROR: ' + err.message;
       }
     }
     window.addEventListener('DOMContentLoaded', test);

@@ -702,9 +702,9 @@ const COMPANY_MAPS_MASTER = {
   'comp-udon-43': 'https://maps.app.goo.gl/NirnCDaBB2bk9fH98',
   'comp-udon-44': 'https://maps.app.goo.gl/sHQRySpumVDgvr1s8',
   'comp-udon-45': 'https://maps.app.goo.gl/nMzQ5MA5Jn4h5qdXA',
-  'comp-udon-46': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
-  'comp-udon-47': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250',
-  'comp-udon-48': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000',
+  'comp-udon-46': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%9E%E0%B8%B5%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%9D%E0%B9%8C+999+%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+160+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+6+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B8%E0%B8%87+%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5',
+  'comp-udon-47': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+104+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B8%B9%E0%B9%88%E0%B8%99+%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%B6%E0%B8%87%E0%B8%A1%E0%B8%AD+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+4+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%9A+%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41250',
+  'comp-udon-48': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%B5-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3+447+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+7+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%A1%E0%B9%88%E0%B8%99+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%B3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41000',
   'comp-udon-49': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97+%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C+%E0%B8%A2%E0%B8%B9%E0%B8%94%E0%B8%B5+%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94+702+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+Udon+Thani+41000',
   'comp-udon-50': 'https://maps.app.goo.gl/JSuoMGZYTfQER3ZQ9',
   'comp-udon-51': 'https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C%E0%B8%9A%E0%B8%B4%E0%B8%A7%E0%B8%95%E0%B8%B5%E0%B9%89%E0%B9%82%E0%B8%AE%E0%B8%A1+%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%82%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99+75+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+2+%E0%B8%95.%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5+41240',
@@ -721,9 +721,40 @@ const COMPANY_FACEBOOK_MASTER = {
   'comp-udon-58': 'https://www.facebook.com/profile.php?id=100083320623771'
 };
 
+const COMPANY_CUSTOM_STRATEGIES = {
+  'comp-udon-03': {
+    customDiagnostic: 'บริษัทรับสร้างบ้านที่มีความพร้อมด้านเครื่องจักรหนัก (รถเครน/แม็คโคร) เป็นลูกค้ารายใหม่ที่เริ่มเปิดบัญชีซื้อ SCG ในปี 2026 มียอดรวม <strong>฿161,278</strong> มีความสัมพันธ์อันดีกับทีมเทคนิค SCG และมีไซต์งานบ้านพักอาศัย คสล. 2 ชั้น ในเขตเมืองอุดรธานีอย่างต่อเนื่อง ถือเป็นจังหวะสำคัญในการสร้างความผูกพันระยะยาว',
+    customRecommendations: [
+      '<strong>คอนกรีตผสมเสร็จ CPAC งานโครงสร้างและโกดัง:</strong> นำเสนอคอนกรีต CPAC 240–280 ksc และ CPAC คอนกรีตสำหรับงานเทพื้นโกดัง (Industrial Floor) ตอบโจทย์งานโครงสร้างที่ต้องการความแข็งแรงสูง',
+      '<strong>ปูนซีเมนต์ไฮดรอลิก SCG และปูนเสือ มอร์ตาร์:</strong> ต่อยอดจากการจัดอบรมช่าง ล็อกสเปกใช้งานปูนโครงสร้าง SCG และปูนฉาบสำเร็จรูปเสือสำหรับบ้าน คสล. ทุกหลัง',
+      '<strong>ระบบผนังมวลเบา Q-CON และอิฐมวลเบา:</strong> นำเสนอโซลูชันผนังกันความร้อน ช่วยประหยัดเวลาและลดน้ำหนักโครงสร้างอาคาร 2 ชั้น',
+      '<strong>ระบบหลังคา SCG และอุปกรณ์ครอบกันรั่ว:</strong> นำเสนอกระเบื้องหลังคาคอนกรีต SCG (ซีแพค/เพรสทีจ) พร้อมชุดอุปกรณ์ Dry-Tech System ครบวงจรสำหรับโครงการบ้านเดี่ยว'
+    ]
+  },
+  'comp-udon-08': {
+    customDiagnostic: 'บริษัทรับสร้างบ้านระดับ <strong>High-End / Luxury Segment</strong> สไตล์โมเดิร์น มินิมอล นอร์ดิก (The Precious Living) ลูกค้าส่วนใหญ่เป็นกลุ่มแพทย์ บุคลากรทางการแพทย์ และเจ้าของธุรกิจกำลังซื้อสูง มียอดสั่งซื้อ SCG ปี 2026 เติบโตสูงถึง <strong>฿2,903,328</strong> (+153% YoY) มีงานโครงการคุณภาพสูงต่อเนื่อง',
+    customRecommendations: [
+      '<strong>คอนกรีตผสมเสร็จ CPAC กำลังอัดสูง:</strong> นำเสนอคอนกรีต CPAC 240 - 280 ksc สำหรับงานฐานรากและโครงสร้างบ้านพักอาศัยระดับพรีเมียม',
+      '<strong>ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง:</strong> ล็อกสเปกใช้งานโครงสร้างอาคารและหล่อเสา-คานทุกไซต์งาน',
+      '<strong>กระเบื้องหลังคาเซรามิก SCG พรีเมียม:</strong> นำเสนอรุ่น Excella / Prestige / NeuStyle ตอบโจทย์ดีไซน์บ้านหรูสไตล์โมเดิร์น',
+      '<strong>วัสดุตกแต่ง SCG D-COR & ฉนวนกันความร้อน:</strong> เจาะกลุ่มงานผนังตกแต่งภายนอกและบิวท์อิน Interior ตอบสนองลูกค้าระดับบน'
+    ]
+  },
+  'comp-udon-09': {
+    customDiagnostic: 'บริษัทรับสร้างบ้านระดับพรีเมียม (NASIT HOME) มียอดสั่งซื้อ SCG ปี 2026 เติบโตสูงถึง <strong>฿2,338,879 (+245% YoY)</strong> มีความร่วมมือและเปิดรับทีมเทคนิค SCG เข้าสาธิตการใช้งานนวัตกรรมปูนเสือมอร์ตาร์ XPERT และปูนสกิมโค้ทถึงหน้างานจริงอย่างต่อเนื่อง ถือเป็นลูกค้ารายสำคัญกลุ่ม Key Growth ที่มีงานสร้างบ้านหรูและคฤหาสน์กระจายตัวทั่วอุดรธานี',
+    customRecommendations: [
+      '<strong>คอนกรีตผสมเสร็จ CPAC สำหรับงานสระว่ายน้ำและบ้านหรู:</strong> นำเสนอคอนกรีตกันซึม CPAC Waterproof Concrete และคอนกรีตกำลังอัดสูง 280–320 ksc สำหรับงานโครงสร้างบ้าน 500 ตร.ม. และโครงสร้างสระว่ายน้ำ',
+      '<strong>ปูนซีเมนต์สำเร็จรูป เสือ มอร์ตาร์ ครบวงจร:</strong> ต่อยอดความสำเร็จจากการสาธิตหน้างาน ล็อกสเปก เสือ มอร์ตาร์ XPERT, ปูนฉาบอิฐมวลเบา และปูนสกิมโค้ท สำหรับทุกไซต์งานใน อ.กุมภวาปี และ อ.ศรีธาตุ',
+      '<strong>กระเบื้องหลังคาเซรามิก SCG และฉนวนกันความร้อน Stay Cool:</strong> นำเสนอกระเบื้องหลังคา Excella / Prestige และฉนวนกันความร้อนหนา 150 มม. เสริมจุดขายบ้านสไตล์อังกฤษและบ้านโมเดิร์นหรู',
+      '<strong>ระบบผนังตกแต่ง SCG D-COR & ไม้สังเคราะห์:</strong> เจาะกลุ่มงานตกแต่งผนังภายนอก ซุ้มทางเข้าลายไม้ และบัวประดับตกแต่งสไตล์คลาสสิก'
+    ]
+  }
+};
+
 if (typeof window !== 'undefined') {
   window.COMPANY_MAPS_MASTER = COMPANY_MAPS_MASTER;
   window.COMPANY_FACEBOOK_MASTER = COMPANY_FACEBOOK_MASTER;
+  window.COMPANY_CUSTOM_STRATEGIES = COMPANY_CUSTOM_STRATEGIES;
 }
 
 function loadSavedCompaniesData() {
@@ -758,6 +789,11 @@ function loadSavedCompaniesData() {
 
   // Sanitize and clean all text fields across companies
   allCompanies.forEach(c => {
+    // Attach custom strategy if defined
+    if (typeof COMPANY_CUSTOM_STRATEGIES !== 'undefined' && COMPANY_CUSTOM_STRATEGIES[c.id]) {
+      c.customDiagnostic = COMPANY_CUSTOM_STRATEGIES[c.id].customDiagnostic;
+      c.customRecommendations = COMPANY_CUSTOM_STRATEGIES[c.id].customRecommendations;
+    }
     // 100% strict sync of company Google Maps link
     if (COMPANY_MAPS_MASTER[c.id]) {
       c.googleMapsUrl = COMPANY_MAPS_MASTER[c.id];
@@ -2313,6 +2349,14 @@ function renderModalScoreOrSalesIntelligence(comp) {
       diffText = `คงที่`;
       diagnosticText = `มียอดสั่งซื้อสม่ำเสมอทั้งปี 2025 และ 2026`;
       recommendations = [`รักษาความสัมพันธ์และติดตามโครงการใหม่อย่างต่อเนื่อง`];
+    }
+
+    // Support tailored AI Diagnostic and Actionable Recommendations if defined on company
+    if (comp.customDiagnostic) {
+      diagnosticText = comp.customDiagnostic;
+    }
+    if (comp.customRecommendations && Array.isArray(comp.customRecommendations) && comp.customRecommendations.length > 0) {
+      recommendations = comp.customRecommendations;
     }
 
     elScoreCard.innerHTML = `
@@ -4743,6 +4787,10 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       }
     }
 
+    if (/(?:เสาเข็มไมโครไพล์นครพนม|เสาเข็มไมโครไพล์ขอนแก่น|เสาเข็มไมโครไพล์สกลนคร|เสาเข็มไมโครไพล์บึงกาฬ|เสาเข็มไมโครไพล์หนองคาย|เสาเข็มไมโครไพล์เลย|เสาเข็มไมโครไพล์ร้อยเอ็ด|เสาเข็มไมโครไพล์สารคาม)/i.test(bodyText) && !bodyText.includes('หน้างานอุดร') && !bodyText.includes('ไซต์อุดร')) {
+      return true; // คัดออก (หน้างานเสาเข็มต่างจังหวัด)
+    }
+
     return false;
   }
 
@@ -4850,7 +4898,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     if (!text) return false;
 
     // ตรวจสอบคีย์เวิร์ดงาน 3D / กราฟิก / เรนเดอร์ / โมเดล / แคตตาล็อกแบบบ้าน
-    const is3DKeyword = /(?:ภาพ|รูป|แบบ|โมเดล|งานออกแบบ|แปลน)\s*3[dD]|3[dD]\s*(?:perspective|render|ภาพ|รูป|แบบ)|perspective|render|ภาพจำลอง|แบบแปลน|ขึ้นภาพ\s*3[dD]|#แบบบ้าน|แบบบ้านพักอาศัย\s*ค\.ส\.ล/i.test(text);
+    const is3DKeyword = /(?:ภาพ|รูป|แบบ|โมเดล|งานออกแบบ|แปลน)\s*3[dD]|3[dD]\s*(?:perspective|render|ภาพ|รูป|แบบ)|perspective|render|ภาพจำลอง|แบบแปลน|ขึ้นภาพ\s*3[dD]|#แบบบ้าน|แบบบ้านพักอาศัย\s*ค\.ส\.ล|จากภาพออกแบบวันนี้\s*สู่บ้านจริง|สู่บ้านจริงในอีกไม่นาน|ผลงานออกแบบโดยสถาปนิก/i.test(text);
 
     if (is3DKeyword) {
       // ตรวจสอบว่ามีงานก่อสร้างจริงหน้างานหรือไม่ (เช่น งานเทคาน, งานฉาบ, งานปูกระเบื้อง ฯลฯ)
@@ -4961,11 +5009,12 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
   // STEP 7 FILTER: คัดโพสต์อัปเดตรูปโปรไฟล์/หน้าปก, โพสต์ว่างเปล่า/อีโมจิ, ข่าว PR องค์กร/เปลี่ยนโลโก้/ครบรอบ/ขึ้นทะเบียน ออก
   // =========================================================
   function isCompanyPROrEmptyPost(post) {
-    const text = (post.text || post.message || '').trim();
+    const rawText = (post.text || post.message || '').trim();
+    const text = rawText.normalize ? rawText.normalize('NFKD') : rawText;
 
-    // 1. โพสต์ว่างเปล่า หรือมีข้อความสั้นมาก (< 15 ตัวอักษร) และไม่มีคำระบุงานก่อสร้าง
-    if (!text || text.length < 15) {
-      if (!/(?:เทคาน|ฐานราก|ยกเสาเอก|เสาเข็ม|มุงหลังคา|ฉาบปูน|ก่ออิฐ)/i.test(text)) {
+    // 1. โพสต์ว่างเปล่า หรือมีข้อความสั้นมาก (< 50 ตัวอักษร) และไม่มีคำระบุงานก่อสร้าง
+    if (!text || text.length < 50) {
+      if (!/(?:เทคาน|ฐานราก|ยกเสาเอก|เสาเข็ม|มุงหลังคา|ฉาบปูน|ก่ออิฐ|interior|built-in|ตกแต่ง|บิวท์อิน|ต่อเติม|คาน|เสา|พื้น|โครงสร้าง|รางระบายน้ำ|ถังตกตะกอน)/i.test(text)) {
         return true; // คัดออกทันที (โพสต์ว่างเปล่า/สั้นเกินไปไม่มีเนื้องาน)
       }
     }
@@ -4975,13 +5024,27 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       return true; // คัดออก
     }
 
-    // 3. ข่าวประชาสัมพันธ์องค์กร / โลโก้ใหม่ / ฉลองครบรอบ / ขึ้นทะเบียนจัดชั้นผู้ประกอบการ / ถ่ายรีวิวสินค้า
-    const isCorporatePR = /(?:NEW LOGO|โลโก้ใหม่|เปลี่ยนโลโก้|Rebrand Logo|20th Anniversary|Anniversary|ครบรอบ\s*\d+\s*ปี|\d+\s*YEARS OF|ขึ้นทะเบียนและจัดชั้น|จัดชั้นผู้ประกอบการ|กรมบัญชีกลาง|ถ่าย\s*present)/i.test(text);
+    // 3. ข่าวประชาสัมพันธ์องค์กร / โลโก้ใหม่ / ฉลองครบรอบ / ขึ้นทะเบียนจัดชั้นผู้ประกอบการ / ถ่ายรีวิวสินค้า / ประชุมประจำเดือน / CEO Onsite
+    const isCorporatePR = /(?:NEW LOGO|โลโก้ใหม่|เปลี่ยนโลโก้|Rebrand Logo|20th Anniversary|Anniversary|ครบรอบ\s*\d+\s*ปี|\d+\s*YEARS OF|ขึ้นทะเบียนและจัดชั้น|จัดชั้นผู้ประกอบการ|กรมบัญชีกลาง|ถ่าย\s*present|อบรมช่างของเราเพิ่มเติม|มาให้ความรู้และอบรมช่าง|ทีมงาน SCG มาให้ความรู้|MONTHLY MEETING|CEO Onsite|สาระเล็ก ๆ ก่อนสร้างบ้าน|สร้างบ้านอย่างไรไม่ให้โดนทิ้งงาน)/i.test(text);
     if (isCorporatePR) {
       const hasSiteWork = /(?:เทคาน|เทพื้น|ขุดฐานราก|เทตอม่อ|ยกเสาเอก|ลงเสาเข็ม|ตอกเสาเข็ม|มุงหลังคา|ก่ออิฐ|ฉาบปูน)/i.test(text);
       if (!hasSiteWork) {
-        return true; // คัดออก (เป็นข่าว PR บริษัท / ครบรอบ / โลโก้)
+        return true; // คัดออก (เป็นข่าว PR บริษัท / ครบรอบ / โลโก้ / ประชุม)
       }
+    }
+
+    // 4. แคปชันคำคมให้กำลังใจ / สุภาษิต / สเตตัสบรรยากาศฝนตก ที่ไม่มีรายละเอียดโครงการจริง
+    const isQuoteOrStatus = /(?:คำทำนาย|ลงมือทำในวันนี้|พยายามครั้งที่|ท้อถอย|ยังไม่ได้ทำ|วันฝนตก|ฝนตกหนัก|สู้ๆ|อรุณสวัสดิ์|มอนิ่ง|บ้านที่น่าอยู่ที่สุด|Every home has a story|May this home be filled)/i.test(text);
+    if (isQuoteOrStatus) {
+      const hasRealEngineering = /(?:คาน\s*ค\.ส\.ล|เหล็กDB|280\s*ksc|ถังตกตะกอน|รางระบายน้ำ|เกร้าท์ปูน)/i.test(text);
+      if (!hasRealEngineering) {
+        return true; // คัดออก (เป็นคำคมสเตตัส)
+      }
+    }
+
+    // 5. โพสต์คลิปสั้นทั่วไปที่ไม่มีรายละเอียดโครงสร้าง เช่น ขนย้ายเศษวัสดุ เคลียร์ริ่ง
+    if (/(?:งานขนย้ายเศษวัสดุ|เคลียร์ริ่ง|เก็บขยะ|กวาดพื้น)/i.test(text) && !/(?:คาน|เสาเข็ม|ฐานราก|เทคอนกรีต|ตอม่อ|ก่ออิฐ|ฉาบปูน|รางระบายน้ำ|แท่นถัง|ถังตกตะกอน)/i.test(text)) {
+      return true;
     }
 
     return false;
@@ -4995,15 +5058,17 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     "พิธีส่งมอบ", "พิธีมอบบ้าน", "ตรวจรับบ้าน", "ตรวจรับมอบ", "รับมอบบ้าน", "รับกุญแจบ้าน",
     "ปิดจ๊อบ", "เสร็จสมบูรณ์ 100%", "เสร็จสมบูรณ์100%", "สร้างเสร็จสมบูรณ์", "ส่งมอบบ้านพักอาศัย",
     "งวดสุดท้ายพร้อมส่งมอบ", "handover", "hand over", "completed house", "finish house", "100% ส่งมอบ",
-    "พร้อมส่งมอบบ้าน", "ส่งมอบบ้านสวย", "ตรวจรับบ้านเรียบร้อย", "ส่งมอบเรียบร้อยแล้ว", "ส่งมอบผลงานบ้าน"
+    "พร้อมส่งมอบบ้าน", "ส่งมอบบ้านสวย", "ตรวจรับบ้านเรียบร้อย", "ส่งมอบเรียบร้อยแล้ว", "ส่งมอบผลงานบ้าน",
+    "ส่งมอบเมื่อพร้อมเท่านั้น", "ก่อนส่งมอบบ้านทุกหลัง"
   ];
 
   function isCompletedOrHandoverPost(post) {
     const text = post.text || post.message || '';
     if (!text) return false;
 
-    // ข้อยกเว้นสโลแกนการตลาดทั่วไป เช่น "ดูแลตั้งแต่เริ่มจนส่งมอบ", "ตั้งแต่วันแรกจนถึงส่งมอบ"
+    // ข้อยกเว้นสโลแกนการตลาดทั่วไป เช่น "ดูแลตั้งแต่เริ่มจนส่งมอบ", "ตั้งแต่วันแรกจนถึงส่งมอบ", "พร้อมดูแลหลังส่งมอบบ้าน"
     let clean = text.replace(/(?:ดูแล|บริการ|ใส่ใจ|ตั้งแต่|ตั้งแต่วันแรก|จากวันแรก|เริ่มงาน|วางผัง)\s*(?:จนถึง|จน|ถึง)?\s*(?:วัน)?\s*(?:ส่งมอบ|รับกุญแจ)/gi, '');
+    clean = clean.replace(/(?:พร้อมดูแล|ดูแล|บริการ|รับประกัน)\s*(?:หลัง|จนถึง|จน|ถึง)\s*(?:วัน)?\s*ส่งมอบ(?:บ้าน)?/gi, '');
     clean = clean.replace(/ออกแบบจนส่งมอบ/gi, '');
     clean = clean.replace(/รับประกันหลังส่งมอบ/gi, '');
 
@@ -5032,7 +5097,14 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     "สำรวจและประเมิน", "ยื่นขออนุญาตก่อสร้าง", "มีผลงานสร้างเสร็จจริงกว่า", "ผลงานสร้างเสร็จจริงกว่า",
     "สร้างเสร็จจริงกว่า", "ทำไมต้องสร้างบ้าน", "ทำไมต้องเลือกเรา", "จุดเด่นของเรา", "บริการของเรา",
     "ขั้นตอนการสร้างบ้าน", "ยินดีให้คำปรึกษา", "สร้างบ้านกับเรา", "ทำไมต้องสร้างบ้านกับ",
-    "เพราะบ้านคือความฝัน", "ครบจบในที่เดียว", "บริการครบวงจร", "ด้วยประสบการณ์กว่า", "ประสบการณ์กว่า"
+    "เพราะบ้านคือความฝัน", "ครบจบในที่เดียว", "บริการครบวงจร", "ด้วยประสบการณ์กว่า", "ประสบการณ์กว่า",
+    "รับสร้างบ้านในจำนวนจำกัด",
+    "สร้างโกดังสวยสวยให้ลูกค้าได้เริ่มต้น", "เริ่มต้นที่ 4000 บาทต่อตารางเมตร", "เริ่มต้นที่ 4,000 บาท",
+    "งบไม่ถึงล้าน", "งบประมาณไม่ถึง 1 ล้านบาท", "ช่วยวางแบบและปรับพื้นที่ให้เหมาะกับงบ",
+    "ไม่ว่าคุณจะชอบบ้านสไตล์ไหน", "มีดาดฟ้า มีมุมพักผ่อน หรือมีต้นไม้อยู่กลางบ้าน",
+    "หน้างานจะแคบแค่ไหน", "หน้างานแคบเราก็ทำได้",
+    "เราไม่ได้มีเพียงบริการรับสร้างบ้าน", "ยังมี รถเครน รถแม็คโคร", "รถเครน รถแม็คโคร และรถหกล้อ",
+    "อบรมช่างของเราเพิ่มเติม", "มาให้ความรู้และอบรมช่าง"
   ];
 
   function isCorporatePRAndServicePromo(post) {
@@ -5053,8 +5125,12 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
     }
 
     // ถ้ามีหัวข้ออัปเดตหน้างานก่อสร้างจริงและระบุไซต์งานชัดเจน ให้คงไว้
-    if (/(?:อัฟเดทงาน|อัปเดตงาน|ความคืบหน้างาน|พิธียกเสาเอก|ยกเสาเอก|สถานที่ก่อสร้าง|พิกัดหน้างาน|พิกัดก่อสร้าง)\s*[:\s]/i.test(body) &&
-        /(?:งานพื้น|งานเสา|เข้าแบบคาน|เทคาน|ฐานราก|ตอม่อ|ก่ออิฐ|งานก่อ|ฉาบปูน|งานฉาบ|ทาสี|มุงหลังคา|โครงหลังคา|ปูกระเบื้อง|เสาเอก)/i.test(body)) {
+    if (/(?:อัฟเดทงาน|อัปเดตงาน|ความคืบหน้างาน|พิธียกเสาเอก|ยกเสาเอก|วางผัง|สถานที่ก่อสร้าง|พิกัดหน้างาน|พิกัดก่อสร้าง)\s*[:\s]/i.test(body) &&
+        /(?:งานพื้น|งานเสา|เข้าแบบคาน|เทคาน|ฐานราก|ตอม่อ|ก่ออิฐ|งานก่อ|ฉาบปูน|งานฉาบ|ทาสี|มุงหลังคา|โครงหลังคา|ปูกระเบื้อง|เสาเอก|วางผัง)/i.test(body)) {
+      return false;
+    }
+
+    if (/วางผังบ้าน/i.test(body)) {
       return false;
     }
 
@@ -5150,15 +5226,40 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         }
 
         if (!siteKey) {
+          if (/หมอ\s*ออย|คุณหมอ\s*ออย/i.test(text) || (/ออย/i.test(text) && /โอ๊ต/i.test(text))) {
+            siteKey = 'cust_หมอออย_โอ๊ต';
+          } else if (/Jane\s*&\s*Eri|เจน\s*และ\s*เอริ/i.test(text)) {
+            siteKey = 'cust_jane_eri';
+          } else if (/แจ่วฮ้อนมิตรภักดี|มิตรภักดี|ดรีมและคุณมะปราง/i.test(text)) {
+            siteKey = 'landmark_jaew_hon_mitpakdee';
+          } else if (/วิมล|ตวงพร|เวียงพิงค์/i.test(text)) {
+            siteKey = 'site_wimon_wiangping';
+          } else if (/ตะวัน|บ้านคุณตะวัน/i.test(text)) {
+            siteKey = 'site_tawan';
+          } else if (/อัปเดตหน้างานหลัง 8\/9|อัพเดทหน้างานหลัง 8\/9/i.test(text)) {
+            siteKey = 'site_update_0809';
+          } else if (/เฌอลิชา/i.test(text)) {
+            siteKey = 'cust_cherlicha';
+          } else if (/บุญโย/i.test(text)) {
+            siteKey = 'cust_boonyo';
+          } else if (/กุมภวาปี/i.test(text) && (/500\s*ตร\.ม/i.test(text) || /สระว่ายน้ำ/i.test(text) || /โรงจอดรถ/i.test(text))) {
+            siteKey = 'site_kumphawapi_500sqm';
+          } else if (/ศรีธาตุ|บ้านสไตล์อังกฤษ/i.test(text)) {
+            siteKey = 'site_srithat_english';
+          }
+        }
+
+        if (!siteKey) {
           const projectMatch = text.match(/Project\s*\|\s*(?:K\.|คุณ)?\s*([a-zA-Z0-9_\-]+)/i);
           if (projectMatch) {
             siteKey = 'cust_' + projectMatch[1].toLowerCase().trim();
           } else {
-            const custMatch = text.match(/(?:บ้านคุณ|บ้านพักอาศัยคุณ|บ้านพักคุณ|ลูกค้าคุณ)\s*([ก-๙a-zA-Z]+)/);
+            const custMatch = text.match(/(?:บ้านของ(?:คุณหมอ|คุณ|ท่าน)?|บ้านพักอาศัย(?:คุณหมอ|คุณ)?|บ้านพัก(?:คุณหมอ|คุณ)?|บ้าน(?:คุณหมอ|คุณ)?|ลูกค้า(?:คุณหมอ|คุณ)?|คุณหมอ|Khun|คุณ)\s*(?:หมอ|ดร|ดร\.|อาจารย์|ท่าน|ช่าง)?\s*([ก-๙a-zA-Z]+)/i);
             if (custMatch) {
-              const cName = custMatch[1].replace(/เเ/g, 'แ').trim();
-              if (!/^(?:ภาพ|งาน|สร้าง|ดี|เรา|ท่าน|ทุกท่าน|พี่|น้อง|ใหม่|เก่า|ครับ|ค่ะ|อุดร|คุณภาพ|มาตรฐาน|ลูกค้า|ออกแบบ|ไว้วางใจ|บริการ|สัญญา)$/.test(cName)) {
-                siteKey = 'cust_' + cName;
+              let cName = custMatch[1].replace(/เเ/g, 'แ').trim();
+              cName = cName.replace(/^(?:หมอ|ดร|ดร\.|อาจารย์|ท่าน|ช่าง)/g, '').trim();
+              if (!/^(?:ภาพ|งาน|สร้าง|ดี|เรา|ท่าน|ทุกท่าน|พี่|น้อง|ใหม่|เก่า|ครับ|ค่ะ|อุดร|คุณภาพ|มาตรฐาน|ลูกค้า|ออกแบบ|ไว้วางใจ|บริการ|สัญญา|ก่อน|วัน|ความ|หนึ่ง|ก้าว|ของ|ที่)$/i.test(cName) && cName.length >= 2) {
+                siteKey = 'cust_' + cName.toLowerCase();
               }
             }
           }
@@ -5172,7 +5273,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
           else if (/MDUD\s*251/i.test(text)) siteKey = 'proj_mdud_251';
           else if (/ศุภาลัย/i.test(text)) siteKey = 'landmark_supalai';
           else if (/รชยา/i.test(text)) siteKey = 'landmark_rachaya';
-          else if (/อภิทาวน์/i.test(text)) siteKey = 'landmark_apitown';
+          else if (/อภิทาวน์|หมู่บ้านอภิทาวน์/i.test(text)) siteKey = 'landmark_apitown';
           else if (/วิลลาจจิโอ/i.test(text)) siteKey = 'landmark_villaggio';
         }
 
@@ -5191,7 +5292,7 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
         let stageText = 'งานโครงสร้างและก่อฉาบอาคาร';
         let prog = 50;
 
-        if (textLower.includes('ยกเสาเอก') || textLower.includes('เสาเข็ม') || textLower.includes('ตอกเสา')) {
+        if (textLower.includes('ยกเสาเอก') || textLower.includes('เสาเข็ม') || textLower.includes('ตอกเสา') || textLower.includes('วางผัง')) {
           stageKey = 'groundbreak'; stageText = 'พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง'; prog = 15;
         } else if (textLower.includes('ฐานราก') || textLower.includes('คานคอดิน') || textLower.includes('ตอม่อ') || textLower.includes('เทลีน')) {
           stageKey = 'foundation'; stageText = 'งานฐานราก ตอม่อ และคานคอดิน'; prog = 35;
@@ -5205,7 +5306,8 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
 
         const pDistrict = typeof extractUdonDistrict === 'function' ? extractUdonDistrict(text, comp.district || 'เมืองอุดรธานี') : (comp.district || 'เมืองอุดรธานี');
         let locText = `อ.${pDistrict} จ.อุดรธานี`;
-        if (text.includes('หนองขอนกว้าง')) locText = 'ต.หนองขอนกว้าง อ.เมือง จ.อุดรธานี';
+        if (text.includes('อภิทาวน์') || text.includes('หมู่บ้านอภิทาวน์')) locText = 'โครงการอภิทาวน์ อ.เมือง จ.อุดรธานี';
+        else if (text.includes('หนองขอนกว้าง')) locText = 'ต.หนองขอนกว้าง อ.เมือง จ.อุดรธานี';
         else if (text.includes('บ้านจั่น')) locText = 'ต.บ้านจั่น อ.เมือง จ.อุดรธานี';
         else if (text.includes('นาดี') || text.includes('ศรีเชียงใหม่')) locText = 'ต.นาดี อ.เมือง จ.อุดรธานี';
         else if (text.includes('หมูม่น')) locText = 'ต.หมูม่น อ.เมือง จ.อุดรธานี';
@@ -5276,6 +5378,12 @@ function processApifyJsonData(rawPayload, sourceName = 'Apify Dataset') {
       comp.stageBreakdown = { groundbreak: 0, foundation: 0, structure: 0, finishing: 0 };
       comp.aiShortRec = 'รอสแกน Apify (0 โครงการ)';
       comp.aiRecommendation = 'ยังไม่พบโพสต์ที่ตรงกับเพจของบริษัทนี้ในไฟล์ JSON';
+    }
+
+    // Attach custom strategy if defined
+    if (typeof COMPANY_CUSTOM_STRATEGIES !== 'undefined' && COMPANY_CUSTOM_STRATEGIES[comp.id]) {
+      comp.customDiagnostic = COMPANY_CUSTOM_STRATEGIES[comp.id].customDiagnostic;
+      comp.customRecommendations = COMPANY_CUSTOM_STRATEGIES[comp.id].customRecommendations;
     }
   });
 

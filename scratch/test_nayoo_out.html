@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Inspect Nayoo House Extraction</title>
+</head>
+<body class="auth-locked">
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    async function test() {
+      try {
+        const resp = await fetch('dataset.json');
+        const rawJson = await resp.json();
+        
+        processApifyJsonData(rawJson, 'test-nayoo');
+        
+        const comp = allCompanies.find(c => c.id === 'comp-udon-03' || (c.name && c.name.includes('น่าอยู่')));
+        
+        const pre = document.createElement('pre');
+        pre.id = 'result-json';
+        pre.textContent = JSON.stringify({
+          id: comp.id,
+          name: comp.name,
+          totalProjects: comp.totalProjects,
+          opportunityScore: comp.opportunityScore,
+          stageBreakdown: comp.stageBreakdown,
+          projects: comp.projects.map(p => ({
+            id: p.projectId,
+            name: p.name,
+            location: p.location,
+            stage: p.stage,
+            stageKey: p.stageKey,
+            postedTime: p.postedTime,
+            caption: p.caption.substring(0, 80)
+          }))
+        }, null, 2);
+        document.body.appendChild(pre);
+      } catch (err) {
+        document.body.textContent = 'ERROR: ' + err.message;
+      }
+    }
+    window.addEventListener('DOMContentLoaded', test);
+  </script>
+
+
+<div id="status-toast-container"></div><pre id="result-json">{
+  "id": "comp-udon-03",
+  "name": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด",
+  "totalProjects": 3,
+  "opportunityScore": 70,
+  "stageBreakdown": {
+    "groundbreak": 1,
+    "foundation": 0,
+    "structure": 2,
+    "finishing": 0
+  },
+  "projects": [
+    {
+      "id": "comp-udon-03-1",
+      "name": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอ...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "8/9/2569",
+      "caption": "มาดูอัปเดตหน้างานหลัง 8/9/2569 คิดจะสร้างบ้านคิดถึงน่าอยู่เฮ้าส์"
+    },
+    {
+      "id": "comp-udon-03-2",
+      "name": "🏡✨ อัปเดตความคืบหน้างานก่อสร้างล่าสุด! บ้านสวยใจกลางเม...",
+      "location": "ต.หมากแข้ง อ.เมือง จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "4/9/2569",
+      "caption": "🏡✨ อัปเดตความคืบหน้างานก่อสร้างล่าสุด! บ้านสวยใจกลางเมืองอุดรธานี\n​อีกหนึ่งผลงา"
+    },
+    {
+      "id": "comp-udon-03-3",
+      "name": "วางผังบ้านคุณตะวัน",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
+      "stageKey": "groundbreak",
+      "postedTime": "16/8/2569",
+      "caption": "วางผังบ้านคุณตะวัน \n\nควรเลือกบริษัทที่มีผลงานจริง สัญญาชัดเจน ใช้วัสดุได้มาตรฐาน"
+    }
+  ]
+}</pre></body></html>
