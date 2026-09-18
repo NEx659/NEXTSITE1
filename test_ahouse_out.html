@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Inspect Twentysix extraction</title>
+</head>
+<body class="auth-locked">
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    async function test() {
+      try {
+        const resp = await fetch('dataset.json');
+        const rawJson = await resp.json();
+        
+        processApifyJsonData(rawJson, 'test-twentysix');
+        
+        const comp = allCompanies.find(c => c.id === 'comp-udon-08' || (c.name && c.name.includes('ทเวนตี้ซิกซ์')));
+        
+        const pre = document.createElement('pre');
+        pre.id = 'result-json';
+        pre.textContent = JSON.stringify({
+          id: comp.id,
+          name: comp.name,
+          totalProjects: comp.totalProjects,
+          opportunityScore: comp.opportunityScore,
+          stageBreakdown: comp.stageBreakdown,
+          projects: comp.projects.map(p => ({
+            id: p.projectId,
+            name: p.name,
+            location: p.location,
+            stage: p.stage,
+            stageKey: p.stageKey,
+            postedTime: p.postedTime,
+            postUrl: p.postUrl
+          }))
+        }, null, 2);
+        document.body.appendChild(pre);
+      } catch (err) {
+        const pre = document.createElement('pre');
+        pre.id = 'result-json';
+        pre.textContent = 'ERROR: ' + err.message;
+        document.body.appendChild(pre);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', test);
+  </script>
+
+
+<div id="status-toast-container"></div><pre id="result-json">{
+  "id": "comp-udon-08",
+  "name": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
+  "totalProjects": 8,
+  "opportunityScore": 92,
+  "stageBreakdown": {
+    "groundbreak": 1,
+    "foundation": 1,
+    "structure": 5,
+    "finishing": 1
+  },
+  "projects": [
+    {
+      "id": "comp-udon-08-1",
+      "name": "Design &amp; Build  By TWENTYSIX.HOUSE— Udonthani",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "31/8/2569",
+      "postUrl": "https://www.facebook.com/reel/1602887421568403/"
+    },
+    {
+      "id": "comp-udon-08-2",
+      "name": "𝐼𝑛𝑡𝑒𝑟𝑖𝑜𝑟 &amp; 𝐵𝑢𝑖𝑙𝑡-𝑖𝑛 วัสดุตกแต่งแต่ละชนิด...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานสถาปัตย์ ตกแต่ง และปูกระเบื้อง/สุขภัณฑ์",
+      "stageKey": "finishing",
+      "postedTime": "27/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0yajA2B9rtViJ66PTksnWC1DvM9RyZvY2WjuT66P25fvYPJoW8hpoNxSHeBLY3mvZl"
+    },
+    {
+      "id": "comp-udon-08-3",
+      "name": "จากแบบที่วางไว้..สู่การเริ่มต้นก่อสร้างจริง 🏡 24 สิงหา...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "พิธียกเสาเอกและวางผังเริ่มงานก่อสร้าง",
+      "stageKey": "groundbreak",
+      "postedTime": "25/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02p5m8JVchqGsghPqvG7eY9RScGxSznrysijCEVqgjq73viEggMibYhHd3udRSAMRzl"
+    },
+    {
+      "id": "comp-udon-08-4",
+      "name": "บ้านที่น่าอยู่ที่สุด...คือบ้านที่เต็มไปด้วยเสียงหัวเราะ...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "21/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02RWfG4MFMJgKg5oCqfVc28JUVk9Q73Sn3EMjrqr8TpLqbSfLfZ8dz5DgCfBmJNhzsl"
+    },
+    {
+      "id": "comp-udon-08-5",
+      "name": "อีกหนึ่งก้าวสำคัญ 🤍💚 ขอบพระคุณ คุณหมอออย และคุณโอ๊ต ส...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "20/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0YsfzJ1AJfStfXYWKRCsVeoK9YzpmSts9DfGpvi7sLygwciu3PCAaVAnHstDrF2Fol"
+    },
+    {
+      "id": "comp-udon-08-6",
+      "name": "Site Update l อัปเดตความคืบหน้าไซต์งาน",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานฐานราก ตอม่อ และคานคอดิน",
+      "stageKey": "foundation",
+      "postedTime": "10/8/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0kBhRNCDPYJ7HmyS2ULZksRfsXnFsYrwSCEYPQUFstS7c37Y8PqBSLv93VBaC1F4Rl"
+    },
+    {
+      "id": "comp-udon-08-7",
+      "name": "“เราเลือกที่จะรับสร้างบ้านในจำนวนจำกัด” ไม่ใช่กลยุทธ์ทา...",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "14/7/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid02UHxobDiGq5ZQ8WLhKpaUAPfL9K9jGK1qAMnvL1A7seBzY8ZJkXHJmXzcAYXtGhFJl"
+    },
+    {
+      "id": "comp-udon-08-8",
+      "name": "🏡 The beginning of a home is not the day you move in.",
+      "location": "อ.เมืองอุดรธานี จ.อุดรธานี",
+      "stage": "งานโครงสร้างและก่อฉาบอาคาร",
+      "stageKey": "structure",
+      "postedTime": "27/6/2569",
+      "postUrl": "https://www.facebook.com/Twentysix.house/posts/pfbid0mxMZChfYD3g1uwXaxwdRp4qLh7eMAmPaxG91QEK88Lpm3E4ACXA2SCB5cbLUd6H7l"
+    }
+  ]
+}</pre></body></html>

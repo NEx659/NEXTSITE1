@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Inspect A House</title>
+</head>
+<body>
+  <div id="results">Running...</div>
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    async function runBake() {
+      try {
+        const response = await fetch('dataset.json');
+        const rawJson = await response.json();
+        const postList = Array.isArray(rawJson) ? rawJson : (rawJson.items || rawJson.data || [rawJson]);
+        
+        processApifyJsonData(rawJson, 'Apify Dataset 2026-09-16');
+        const updated = allCompanies;
+        const totalP = updated.reduce((acc, c) => acc + (c.projects ? c.projects.length : 0), 0);
+        
+        const ahouseComp = updated.find(c => c.id === 'comp-udon-40');
+
+        const pre = document.createElement('pre');
+        pre.id = 'baked-json';
+        pre.textContent = 'var UDON_COMPANIES = ' + JSON.stringify(updated, null, 4) + ';';
+        document.body.appendChild(pre);
+        
+        document.getElementById('output').textContent = 'DONE: ' + totalP + ' active projects | A House Projects: ' + (ahouseComp && ahouseComp.projects ? ahouseComp.projects.length : 0);
+      } catch (err) {
+        document.getElementById('output').textContent = 'ERROR: ' + err.message;
+        console.error(err);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', runBake);
+  </script>
+</body>
+</html>
