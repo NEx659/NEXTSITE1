@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script src="../js/data.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const mojibakeFound = [];
+      const mojibakeRegex = /เธ[ก-ฮ\u0e30-\u0e4f]|เน[เธ]/;
+
+      function checkObj(obj, path, compId) {
+        if (!obj) return;
+        if (typeof obj === 'string') {
+          if (mojibakeRegex.test(obj)) {
+            mojibakeFound.push({ compId, path, sample: obj.substring(0, 100) });
+          }
+        } else if (Array.isArray(obj)) {
+          obj.forEach((item, idx) => checkObj(item, `${path}[${idx}]`, compId));
+        } else if (typeof obj === 'object') {
+          Object.keys(obj).forEach(key => checkObj(obj[key], `${path}.${key}`, compId));
+        }
+      }
+
+      UDON_COMPANIES.forEach((c, idx) => {
+        checkObj(c, `comp[${idx}]`, c.id);
+      });
+
+      const pre = document.createElement('pre');
+      pre.id = 'scan-result';
+      pre.textContent = JSON.stringify({
+        totalCompanies: UDON_COMPANIES.length,
+        mojibakeCount: mojibakeFound.length,
+        mojibakeFound: mojibakeFound
+      }, null, 2);
+      document.body.appendChild(pre);
+    });
+  </script>
+</body>
+</html>

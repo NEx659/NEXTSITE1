@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script src="../js/data.js"></script>
+  <script src="../js/scoring.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Let's run sort/ranking on UDON_COMPANIES exactly as app.js does
+      // Let's see what app.js does to rank companies
+      const results = [];
+      const list = (typeof getFilteredAndSortedCompanies === 'function') 
+        ? getFilteredAndSortedCompanies() 
+        : (typeof currentFilteredCompanies !== 'undefined' ? currentFilteredCompanies : UDON_COMPANIES);
+      
+      list.forEach((c, idx) => {
+        results.push({
+          rank: idx + 1,
+          id: c.id,
+          name: c.name,
+          hasName: !!c.name && c.name.trim().length > 0,
+          rawName: c.name
+        });
+      });
+
+      const pre = document.createElement('pre');
+      pre.id = 'render-check';
+      pre.textContent = JSON.stringify(results.slice(0, 25), null, 2);
+      document.body.appendChild(pre);
+    });
+  </script>
+
+
+<pre id="render-check">[
+  {
+    "rank": 1,
+    "id": "comp-udon-44",
+    "name": "ห้างหุ้นส่วนจํากัด จีรนันท์ พร็อพเพอร์ตี้",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจํากัด จีรนันท์ พร็อพเพอร์ตี้"
+  },
+  {
+    "rank": 2,
+    "id": "comp-udon-50",
+    "name": "บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท ช.รุ่งอรุณ คอนสตรัคชั่น จํากัด"
+  },
+  {
+    "rank": 3,
+    "id": "comp-udon-20",
+    "name": "ห้างหุ้นส่วนจํากัด เค พี โฮม",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจํากัด เค พี โฮม"
+  },
+  {
+    "rank": 4,
+    "id": "comp-udon-31",
+    "name": "บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จํากัด BAANYAI(2016)",
+    "hasName": true,
+    "rawName": "บริษัท บ้านใหญ่ (2016) โฮม บิวเดอร์ จํากัด BAANYAI(2016)"
+  },
+  {
+    "rank": 5,
+    "id": "comp-udon-10",
+    "name": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท ทีที ดีไซน์ แอนด์ คอนสตรัคชั่น1991 จํากัด"
+  },
+  {
+    "rank": 6,
+    "id": "comp-udon-08",
+    "name": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท ทเวนตี้ซิกซ์ ดีเวลล็อปเมนท์ จํากัด"
+  },
+  {
+    "rank": 7,
+    "id": "comp-udon-09",
+    "name": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME",
+    "hasName": true,
+    "rawName": "บริษัท สุขสกล ดีเวลลอปเม้นท์ จํากัด NASIT HOME"
+  },
+  {
+    "rank": 8,
+    "id": "comp-udon-57",
+    "name": "บริษัท เอ็นทรัสท คอนสตรัคชั่น จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท เอ็นทรัสท คอนสตรัคชั่น จํากัด"
+  },
+  {
+    "rank": 9,
+    "id": "comp-udon-46",
+    "name": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท พีรพัฒน์ 999 บิวล์ดิ้ง แอนด์ เซอร์วิสเฮ้าส์ จํากัด"
+  },
+  {
+    "rank": 10,
+    "id": "comp-udon-42",
+    "name": "ซีที การก่อสร้าง",
+    "hasName": true,
+    "rawName": "ซีที การก่อสร้าง"
+  },
+  {
+    "rank": 11,
+    "id": "comp-udon-56",
+    "name": "ห้างหุ้นส่วนจํากัด เกียรติรุ่งเรือง ก่อสร้าง",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจํากัด เกียรติรุ่งเรือง ก่อสร้าง"
+  },
+  {
+    "rank": 12,
+    "id": "comp-udon-05",
+    "name": "บริษัท มหารุ่งโรจน์โฮมบิลเดอร์ จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท มหารุ่งโรจน์โฮมบิลเดอร์ จํากัด"
+  },
+  {
+    "rank": 13,
+    "id": "comp-udon-58",
+    "name": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น"
+  },
+  {
+    "rank": 14,
+    "id": "comp-udon-49",
+    "name": "บริษัท นิติพันธ์เฮ้าส์ ยูดี จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท นิติพันธ์เฮ้าส์ ยูดี จํากัด"
+  },
+  {
+    "rank": 15,
+    "id": "comp-udon-17",
+    "name": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จํากัด"
+  },
+  {
+    "rank": 16,
+    "id": "comp-udon-03",
+    "name": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท น่าอยู่เฮ้าส์ คอนสตรัคชั่น จํากัด"
+  },
+  {
+    "rank": 17,
+    "id": "comp-udon-55",
+    "name": "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจํากัด ดีเอ็นเอ็น คอนสตรัคชั่น"
+  },
+  {
+    "rank": 18,
+    "id": "comp-udon-12",
+    "name": "บริษัท มายด์ โฮม แอสเสท จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท มายด์ โฮม แอสเสท จํากัด"
+  },
+  {
+    "rank": 19,
+    "id": "comp-udon-51",
+    "name": "รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน",
+    "hasName": true,
+    "rawName": "รุ่งรัตน์บิวตี้โฮม รับเหมาสร้างบ้าน"
+  },
+  {
+    "rank": 20,
+    "id": "comp-udon-16",
+    "name": "บริษัท 117อาร์คิเทคท์ จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท 117อาร์คิเทคท์ จํากัด"
+  },
+  {
+    "rank": 21,
+    "id": "comp-udon-27",
+    "name": "บริษัท บ้านวิศวะพัฒนา จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท บ้านวิศวะพัฒนา จํากัด"
+  },
+  {
+    "rank": 22,
+    "id": "comp-udon-35",
+    "name": "IDYLLIC Construction",
+    "hasName": true,
+    "rawName": "IDYLLIC Construction"
+  },
+  {
+    "rank": 23,
+    "id": "comp-udon-32",
+    "name": "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น"
+  },
+  {
+    "rank": 24,
+    "id": "comp-udon-22",
+    "name": "ห้างหุ้นส่วนจำกัด กิจดลวรโชติ1",
+    "hasName": true,
+    "rawName": "ห้างหุ้นส่วนจำกัด กิจดลวรโชติ1"
+  },
+  {
+    "rank": 25,
+    "id": "comp-udon-01",
+    "name": "บริษัท เลอ คราวน์ ดีไซน์ จํากัด",
+    "hasName": true,
+    "rawName": "บริษัท เลอ คราวน์ ดีไซน์ จํากัด"
+  }
+]</pre></body></html>

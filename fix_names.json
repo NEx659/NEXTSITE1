@@ -1,0 +1,32 @@
+{
+  "comp-udon-41": {
+    "name": "บริษัท มารีญาก่อสร้าง จำกัด",
+    "engName": "Mariya Construction Co., Ltd.",
+    "category": "รับเหมาก่อสร้างบ้านและอาคารพาณิชย์ (TSIC 41001)",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "address": "อ.เมืองอุดรธานี จ.อุดรธานี",
+    "phone": "098 765 4321",
+    "contactPerson": "คุณมารีญา (กรรมการผู้จัดการ) / Line: @mariacons-admin"
+  },
+  "comp-udon-21": {
+    "name": "ห้างหุ้นส่วนจำกัด คิดดีเฮาส์คอนสทรัคชั่น",
+    "engName": "Kiddee House Construction Ltd., Part.",
+    "category": "รับเหมาก่อสร้างและต่อเติมรีโนเวท (TSIC 41001)",
+    "province": "อุดรธานี",
+    "district": "หนองวัวซอ",
+    "address": "อ.หนองวัวซอ จ.อุดรธานี",
+    "phone": "088 563 6587",
+    "contactPerson": "คุณอนุสรณ์ (สถาปนิก/ผู้บริหาร) / Line: Archtiger"
+  },
+  "comp-udon-58": {
+    "name": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
+    "engName": "Mosaic Design and Construction Ltd., Part.",
+    "category": "รับสร้างบ้านและออกแบบตกแต่งภายใน (TSIC 41001)",
+    "province": "อุดรธานี",
+    "district": "เมืองอุดรธานี",
+    "address": "อ.เมืองอุดรธานี จ.อุดรธานี",
+    "phone": "086 458 9234",
+    "contactPerson": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น"
+  }
+}

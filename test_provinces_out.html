@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Check Provinces</title>
+</head>
+<body>
+  <script src="../js/data.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const results = [];
+      const nonMatching = [];
+      UDON_COMPANIES.forEach(c => {
+        const prov = c.province;
+        const isExact = (prov === 'อุดรธานี');
+        if (!isExact) {
+          nonMatching.push({ id: c.id, name: c.name, province: c.province, provLen: prov ? prov.length : 0 });
+        }
+      });
+      const div = document.createElement('pre');
+      div.id = 'province-result';
+      div.textContent = JSON.stringify({
+        total: UDON_COMPANIES.length,
+        exactMatchCount: UDON_COMPANIES.length - nonMatching.length,
+        nonMatching: nonMatching
+      }, null, 2);
+      document.body.appendChild(div);
+    });
+  </script>
+
+
+<pre id="province-result">{
+  "total": 58,
+  "exactMatchCount": 58,
+  "nonMatching": []
+}</pre></body></html>

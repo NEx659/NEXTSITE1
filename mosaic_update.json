@@ -1,0 +1,149 @@
+{
+  "name": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
+  "engName": "Mosaic Design and Construction Ltd., Part.",
+  "category": "รับออกแบบ ก่อสร้างอาคารพาณิชย์ คลินิก โชว์รูม และที่พักอาศัย (TSIC 41001 / ผู้ประกอบการชั้น 5 กรมบัญชีกลาง)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "ต.หมากแข้ง อ.เมืองอุดรธานี จ.อุดรธานี",
+  "phone": "081 954 4006",
+  "contactPerson": "คุณโมเสค (สามัญสถาปนิก / ผู้จัดการฝ่ายโครงการ) / Tel: 081-954-4006",
+  "totalProjects": 2,
+  "newProjectsThisMonth": 1,
+  "totalValueMillion": 30.5,
+  "growthRate": 40,
+  "areaExpansion": "เมืองอุดรธานี, หนองคาย, ขอนแก่น",
+  "revenuePotentialText": "฿2.8M",
+  "latestTimelineStage": "structure",
+  "coordinates": [
+    17.4138,
+    102.7872
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/bYM7Bx8MZLHjLztD7",
+  "gmaps": "https://maps.app.goo.gl/bYM7Bx8MZLHjLztD7",
+  "facebookUrl": "https://www.facebook.com/profile.php?id=100083320623771",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page | DBD: 0413548000494 | ขึ้นทะเบียนผู้ประกอบการชั้น 5 กรมบัญชีกลาง",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 0,
+    "foundation": 0,
+    "structure": 1,
+    "finishing": 1
+  },
+  "facebookSignal": {
+    "postDate": "3/9/2569",
+    "pageName": "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
+    "caption": "KICK START NEW PROJECT: Zontes showroom Udonthani งานออกแบบ-ก่อสร้างโชว์รูมรถจักรยานยนต์ Zontes",
+    "likes": 22,
+    "comments": 3,
+    "shares": 0,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "รับเหมาก่อสร้าง",
+      "โชว์รูม",
+      "สถาปัตยกรรม",
+      "สามัญสถาปนิก"
+    ]
+  },
+  "salesActionPlan": [
+    "เข้าพบทีมวิศวกรและสถาปนิกโครงการ Zontes Showroom เพื่อนำเสนอคอนกรีต CPAC, แผ่นผนังตกแต่ง SCG D-Wall และกระเบื้องโชว์รูม COTTO",
+    "นำเสนอระบบปูนฉาบสำเร็จรูปเสือ มอร์ตาร์ อิฐมวลเบา SCG และระบบกันซึม Crocodile Flex Shield สำหรับโครงการ DR.POO CLINIC หนองประจักษ์"
+  ],
+  "projects": [
+    {
+      "projectId": "comp-udon-58-1",
+      "name": "โชว์รูมรถจักรยานยนต์ Zontes Showroom",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.4138,
+        102.7872
+      ],
+      "stage": "งานโครงสร้างและเตรียมงานสถาปัตยกรรมโชว์รูม",
+      "stageKey": "structure",
+      "trackingStatus": "in-progress",
+      "progressPercent": 25,
+      "estValue": "18.5 ล้านบาท",
+      "buildingType": "โชว์รูมและอาคารพาณิชย์ (Commercial Showroom)",
+      "caption": "KICK START NEW PROJECT\n\nProject : Zontes showroom\nLocation :  Udonthani \nProgess :  under  construction\nDesign & Built : Mosaic design and construction\n\nงานออกแบบ -ก่อสร้างโชว์รูมรถจักรยานยนต์ Zontes \nอาคารเปิดรับวิวได้สองฝั่ง ถนนด้านหน้าและด้านข้าง อาคารเน้นในการโชว์ตัวรถ  ให้เห็นจากระยะไกล\n\nคิดถึงงานแตกต่าง คิดถึงเรา ยินดีให้คำปรึกษาโดยทีมงาน สามัญ สถาปนิก และ สามัญ วิศวกรโยธา โทร / line: 0819544006",
+      "postedTime": "3/9/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid02kSmUiwU8Dtc5n7G48H2R7w5s7o2mJCa3XkNHFeET46su1vhs6dAfE9FJwbZpV4Vzl&id=100083320623771",
+      "boq": [
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC สำหรับงานโครงสร้างคาน-เสา-พื้นรับน้ำหนัก",
+          "qty": "240 ลบ.ม.",
+          "estCost": "฿528,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "เหล็กเส้นเสริมคอนกรีตมาตรฐาน มอก. ตราช้าง SCG (DB16, DB20, RB9)",
+          "qty": "18.5 ตัน",
+          "estCost": "฿462,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "แผ่นผนังตกแต่งภายนอกและ Facade SCG D-Wall / Smartboard",
+          "qty": "350 ตร.ม.",
+          "estCost": "฿185,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        },
+        {
+          "sku": "กระเบื้องพอร์ซเลน COTTO X-Posh Super Glossy สำหรับพื้นที่โชว์รูม",
+          "qty": "420 ตร.ม.",
+          "estCost": "฿294,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-58-2",
+      "name": "คลินิกอายุรกรรมและที่พักอาศัย DR.POO CLINIC & Residence",
+      "location": "ริมหนองประจักษ์ อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.4195,
+        102.778
+      ],
+      "stage": "งานก่อฉาบ, เททับหลังเอ็น ค.ส.ล., ทดสอบระบบกันซึมห้องน้ำ",
+      "stageKey": "structure",
+      "trackingStatus": "in-progress",
+      "progressPercent": 55,
+      "estValue": "12.0 ล้านบาท",
+      "buildingType": "อาคารพักอาศัยกึ่งพาณิชย์ 2 ชั้น (คลินิกชั้นล่าง + ที่พักอาศัย 3 ห้องนอนชั้นบน)",
+      "caption": "Update งานก่อฉาบ/ เทเอ็น/  วัดระดับ off metre / ขังน้ำบริเวณพื้นห้องน้ำ \n\nProject : DR.POO CLINIC\nLocation :  Nong pra jak udonthani\nProgess :  under  construction\nDesign & Built : Mosaic design and construction\n\nงานออกแบบบ้านพักอาศัยขนาด 2 ชั้น  บนพื้นที่ที่มีความน่าสนใจ ในลักษณะ ที่ดินทั้งสี่ด้านที่ไม่เท่ากัน และเป็น ทรง Free form ก่อเกิดให้แบบแปลนที่ออกแบบมี รูปร่างที่น่าสนใจ การจัดการ function ที่ชั้นล่างเป็นคลีนิคอายุรกรรม และชั้น สอง ที่เป็นที่พักอาศัย ให้ลงตัวทุกๆการใช้งาน\n\nชั้นหนึ่งเป็น คลีนิคอายุรกรรม จำนวน 4 ห้อง โถงพักคอย 2 จุด\nชั้นสอง เป็นที่พักอาศัย จำนวน 3 ห้องนอน วิว สวนสาธารณะหนองประจักษ์",
+      "postedTime": "10/8/2569",
+      "postUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0z2q2WcXzmdjG3Fnf5UwJWiHnqw6rrdEf6zNBG3q5hDRN648A23sG71vDnarV8TC8l&id=100083320623771",
+      "boq": [
+        {
+          "sku": "ปูนซีเมนต์ผสมเสร็จเสือ มอร์ตาร์ ฉาบทั่วไป & ปูนก่ออิฐมวลเบา SCG",
+          "qty": "450 ถุง",
+          "estCost": "฿67,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "อิฐมวลเบา SCG Smart Block หนา 7.5 ซม. / 10 ซม.",
+          "qty": "2,800 ก้อน",
+          "estCost": "฿72,800",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ซีเมนต์กันซึมชนิดยืดหยุ่น SCG Crocodile Flex Shield (ขังน้ำทดสอบห้องน้ำ)",
+          "qty": "25 ชุด",
+          "estCost": "฿37,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "กระเบื้องปูพื้น-บุผนัง COTTO Antibac & ชุดสุขภัณฑ์ประหยัดน้ำ COTTO",
+          "qty": "320 ตร.ม. + 6 ชุด",
+          "estCost": "฿215,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    }
+  ]
+}
