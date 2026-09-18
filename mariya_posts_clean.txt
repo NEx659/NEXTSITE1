@@ -1,0 +1,27 @@
+﻿==================================================
+POST #1
+URL: https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl&id=100090611883896
+TOP_LEVEL_URL: https://www.facebook.com/100090611883896/posts/1045310681832652
+DATE: 2026-09-12T11:28:42.000Z 
+LIKES: 4 4 | COMMENTS:  | SHARES: 0
+MEDIA_COUNT: 6
+TEXT:
+ฝ้าภายในเริ่มแล้วววววว😶‍🌫️
+| มารีญาก่อสร้าง | ผู้ช่วยสร้างบ้านที่คุณวางใจ
+โครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณพ่อคุณแม่)
+DESIGNER : Fathome Architect
+📞 088-877-2899 | Line: @mariacons-admin
+
+==================================================
+POST #2
+URL: https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil&id=100090611883896
+TOP_LEVEL_URL: https://www.facebook.com/100090611883896/posts/1044440158586371
+DATE: 2026-09-11T10:54:36.000Z 
+LIKES: 8 7 | COMMENTS: 1 | SHARES: 1
+MEDIA_COUNT: 6
+TEXT:
+งานสกีมภายใน😶‍🌫️
+โครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณมายด์)
+DESIGNER : Fathome Architect
+📞 088-877-2899 | Line: @mariacons-admin
+

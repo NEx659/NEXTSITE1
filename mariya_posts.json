@@ -1,0 +1,383 @@
+﻿[
+    {
+        "facebookUrl":  "https://www.facebook.com/profile.php?id=100090611883896",
+        "postId":  "1045310681832652",
+        "pageName":  "%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87",
+        "url":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl\u0026id=100090611883896",
+        "time":  "2026-09-12T11:28:42.000Z",
+        "timestamp":  1789212522,
+        "user":  {
+                     "id":  "100090611883896",
+                     "name":  "มารีญาก่อสร้าง",
+                     "profileUrl":  "https://www.facebook.com/100090611883896",
+                     "profilePic":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-1/571171944_782002711496785_974338584393138471_n.jpg?stp=cp0_dst-jpg_tt6\u0026cstp=mx790x788\u0026ctp=s50x50\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=2d3e12\u0026_nc_ohc=SeuCT3Me5uQQ7kNvwGP1RcO\u0026_nc_oc=AdoOr2ue7fDeJBBsgFnMMxyzAEuL6neo2AFshrBZt5eWWpp4N6nGTStu9SAwJyb0AvfljJQrDdsr8sf5Y0t3F7mb\u0026_nc_zt=24\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQJ5NfSIpqe95mhHKJcGF02MpJuSQdl0cUAf8qxGXQqa8w\u0026oe=6AB01496"
+                 },
+        "collaborators":  [
+                              {
+                                  "__typename":  "User",
+                                  "__isEntity":  "User",
+                                  "__isActor":  "User",
+                                  "id":  "100090611883896",
+                                  "url":  "https://www.facebook.com/people/%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87/100090611883896/",
+                                  "profile_url":  "https://www.facebook.com/people/%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87/100090611883896/",
+                                  "short_name":  "มารีญาก่อสร้าง",
+                                  "work_info":  null,
+                                  "__module_operation_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "ProfileGeminiWeakReferenceLink_user$normalization.graphql"
+                                                                                                     },
+                                  "__module_component_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "ProfileGeminiWeakReferenceLink.react"
+                                                                                                     },
+                                  "work_foreign_entity_info":  null,
+                                  "is_verified":  true,
+                                  "mobileUrl":  "https://m.facebook.com/100090611883896/",
+                                  "__isNode":  "User"
+                              },
+                              {
+                                  "__typename":  "Page",
+                                  "__isEntity":  "Page",
+                                  "__isActor":  "Page",
+                                  "id":  "2250162658404989",
+                                  "url":  "https://www.facebook.com/%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5-2250162658404989/",
+                                  "comet_url":  "https://www.facebook.com/%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5-2250162658404989/",
+                                  "__module_operation_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "PagesCometPageLink_page$normalization.graphql"
+                                                                                                     },
+                                  "__module_component_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "PagesCometPageLink.react"
+                                                                                                     },
+                                  "category_type":  "PROVINCE",
+                                  "verification_status":  "NOT_VERIFIED",
+                                  "is_verified":  false,
+                                  "profile_url":  "https://www.facebook.com/pages/%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5/2250162658404989",
+                                  "mobileUrl":  "https://m.facebook.com/2250162658404989/",
+                                  "__isNode":  "Page"
+                              }
+                          ],
+        "text":  "ฝ้าภายในเริ่มแล้วววววว😶‍🌫️\n| มารีญาก่อสร้าง | ผู้ช่วยสร้างบ้านที่คุณวางใจ\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณพ่อคุณแม่)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
+        "likes":  4,
+        "shares":  0,
+        "topReactionsCount":  1,
+        "media":  [
+                      {
+                          "mediaset_token":  "pcb.1045310681832652",
+                          "url":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0YvjKaSetpQgFLuppvFm5G2dFWWDbwGBVvS1tX4CXbRRnKGeiqUu3wgAiTRRAWjVwl\u0026id=100090611883896",
+                          "comet_product_tag_feed_overlay_renderer":  null
+                      },
+                      {
+                          "thumbnail":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/806453328_1045310161832704_8368209375019821646_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=111\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=R-dfss12pU4Q7kNvwE2vNNi\u0026_nc_oc=AdqlMNiU85gSDyMo9fxT0gns4G2HYJu_L-040pCsPy8GEq6oYL_4wRKJElk0np0Tx2Tzf3hOWd0FmYiBm147KPxr\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQIv7hjSKTXySJeeN5rYcm6OL0imydvRn0ieahg47RoQTg\u0026oe=6AB00478",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/806453328_1045310161832704_8368209375019821646_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=111\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=R-dfss12pU4Q7kNvwE2vNNi\u0026_nc_oc=AdqlMNiU85gSDyMo9fxT0gns4G2HYJu_L-040pCsPy8GEq6oYL_4wRKJElk0np0Tx2Tzf3hOWd0FmYiBm147KPxr\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQIv7hjSKTXySJeeN5rYcm6OL0imydvRn0ieahg47RoQTg\u0026oe=6AB00478",
+                                        "height":  273,
+                                        "width":  590
+                                    },
+                          "id":  "1045310158499371",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/806515842_1045310191832701_781857493474676392_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=106\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=vebMZbHZLeIQ7kNvwEra73l\u0026_nc_oc=AdposgxtC7wy4pGCQTehlZ_nf_9n4vhadAeEjNai2A-jB5cKJdfhWx8YVWSUYFEB3gsJ-wfvo5jgNXPc8VkezyMI\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQJHP9hOO-DdxcA1CcvyUt4zZSlzhRBeGObHILpjx7WJGw\u0026oe=6AAFEDC0",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/806515842_1045310191832701_781857493474676392_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=106\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=vebMZbHZLeIQ7kNvwEra73l\u0026_nc_oc=AdposgxtC7wy4pGCQTehlZ_nf_9n4vhadAeEjNai2A-jB5cKJdfhWx8YVWSUYFEB3gsJ-wfvo5jgNXPc8VkezyMI\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQJHP9hOO-DdxcA1CcvyUt4zZSlzhRBeGObHILpjx7WJGw\u0026oe=6AAFEDC0",
+                                        "height":  273,
+                                        "width":  590
+                                    },
+                          "id":  "1045310188499368",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/807843978_1045310238499363_1174476161399823450_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=109\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=_Fntl_Kp6UoQ7kNvwG1YgdM\u0026_nc_oc=Adoo5lxiHVsZu7sbz9EusF1vDt3JGb7LIM1BuV_vxrGnGrvA4_PWfo-bR0ZpGDSCg18odiaxLluK_qtLIoRTntA1\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQL7-svG0kAfqFUNlofDEOGevl7uJ7IS0h1D_Fvg6jrT5w\u0026oe=6AAFE670",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/807843978_1045310238499363_1174476161399823450_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=109\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=_Fntl_Kp6UoQ7kNvwG1YgdM\u0026_nc_oc=Adoo5lxiHVsZu7sbz9EusF1vDt3JGb7LIM1BuV_vxrGnGrvA4_PWfo-bR0ZpGDSCg18odiaxLluK_qtLIoRTntA1\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQL7-svG0kAfqFUNlofDEOGevl7uJ7IS0h1D_Fvg6jrT5w\u0026oe=6AAFE670",
+                                        "height":  273,
+                                        "width":  590
+                                    },
+                          "id":  "1045310235166030",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/807590335_1045310291832691_4035647684792699735_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=108\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=f2lHADORMJQQ7kNvwEloa7N\u0026_nc_oc=AdpuP5pOgGlFBRdqN6yO-edrSe31tEQ1kE-Rnpq3nl7GTCIXkDqGoJ2IMN2h47epRRM0HiYAjAO857NHSS1zVfZz\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQLfVoQUTz5H02k5vssag3sO17GJCoSqggdS-pFK5CwhOg\u0026oe=6AAFEBF2",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/807590335_1045310291832691_4035647684792699735_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=108\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=f2lHADORMJQQ7kNvwEloa7N\u0026_nc_oc=AdpuP5pOgGlFBRdqN6yO-edrSe31tEQ1kE-Rnpq3nl7GTCIXkDqGoJ2IMN2h47epRRM0HiYAjAO857NHSS1zVfZz\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQLfVoQUTz5H02k5vssag3sO17GJCoSqggdS-pFK5CwhOg\u0026oe=6AAFEBF2",
+                                        "height":  273,
+                                        "width":  590
+                                    },
+                          "id":  "1045310288499358",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/806785685_1045310335166020_8274628965664581492_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=Wz1-CEU3duAQ7kNvwHdtLf5\u0026_nc_oc=AdrZu9I8wCW1BA5LSejZabUHYeotKQovLwQm5-DhfJwVhkoGF_dommoTUJdPwdIpYqVYpwLQJE6xKLoBHFGlX7-F\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQIhqK5qpWAoWv2lEMiCwtJ-cSdtVdkcTSaLofcrMsalMQ\u0026oe=6AB01203",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-phl2-1.xx.fbcdn.net/v/t39.30808-6/806785685_1045310335166020_8274628965664581492_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=Wz1-CEU3duAQ7kNvwHdtLf5\u0026_nc_oc=AdrZu9I8wCW1BA5LSejZabUHYeotKQovLwQm5-DhfJwVhkoGF_dommoTUJdPwdIpYqVYpwLQJE6xKLoBHFGlX7-F\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-phl2-1.xx\u0026_nc_gid=aYRPB87a6sD1JgPwYmbixQ\u0026_nc_ss=73289\u0026oh=00_AQIhqK5qpWAoWv2lEMiCwtJ-cSdtVdkcTSaLofcrMsalMQ\u0026oe=6AB01203",
+                                        "height":  273,
+                                        "width":  590
+                                    },
+                          "id":  "1045310331832687",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      }
+                  ],
+        "feedbackId":  "ZmVlZGJhY2s6MTA0NTMxMDY4MTgzMjY1Mg==",
+        "reactionLikeCount":  4,
+        "paidPartnership":  false,
+        "topLevelUrl":  "https://www.facebook.com/100090611883896/posts/1045310681832652",
+        "facebookId":  "100090611883896",
+        "pageAdLibrary":  {
+                              "id":  "108983088787840",
+                              "pamv_comms_data":  null
+                          },
+        "inputUrl":  "https://www.facebook.com/profile.php?id=100090611883896"
+    },
+    {
+        "facebookUrl":  "https://www.facebook.com/profile.php?id=100090611883896",
+        "postId":  "1044440158586371",
+        "pageName":  "%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87",
+        "url":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil\u0026id=100090611883896",
+        "time":  "2026-09-11T10:54:36.000Z",
+        "timestamp":  1789124076,
+        "user":  {
+                     "id":  "100090611883896",
+                     "name":  "มารีญาก่อสร้าง",
+                     "profileUrl":  "https://www.facebook.com/100090611883896",
+                     "profilePic":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-1/571171944_782002711496785_974338584393138471_n.jpg?stp=cp0_dst-jpg_tt6\u0026cstp=mx790x788\u0026ctp=s50x50\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=2d3e12\u0026_nc_ohc=SeuCT3Me5uQQ7kNvwHfhSWe\u0026_nc_oc=AdoPXGjI6WI0qoUgrqTGmr2VNCBNUMoTm5xXzmDhqpUyyQ0YbRYDyjteqpkpZqUv40BpN4wZLPv6yGz4q7dS7zi_\u0026_nc_zt=24\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQIljt-E9iu96mIiOLu2Wjnt3WB8LgGEtQ8rtZ5X274JAg\u0026oe=6AB01496"
+                 },
+        "collaborators":  [
+                              {
+                                  "__typename":  "User",
+                                  "__isEntity":  "User",
+                                  "__isActor":  "User",
+                                  "id":  "100090611883896",
+                                  "url":  "https://www.facebook.com/people/%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87/100090611883896/",
+                                  "profile_url":  "https://www.facebook.com/people/%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87/100090611883896/",
+                                  "short_name":  "มารีญาก่อสร้าง",
+                                  "work_info":  null,
+                                  "__module_operation_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "ProfileGeminiWeakReferenceLink_user$normalization.graphql"
+                                                                                                     },
+                                  "__module_component_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "ProfileGeminiWeakReferenceLink.react"
+                                                                                                     },
+                                  "work_foreign_entity_info":  null,
+                                  "is_verified":  true,
+                                  "mobileUrl":  "https://m.facebook.com/100090611883896/",
+                                  "__isNode":  "User"
+                              },
+                              {
+                                  "__typename":  "Page",
+                                  "__isEntity":  "Page",
+                                  "__isActor":  "Page",
+                                  "id":  "407092202713518",
+                                  "url":  "https://www.facebook.com/%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%A1%E0%B8%A0%E0%B8%A7%E0%B8%B2%E0%B8%9B%E0%B8%B5%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5-407092202713518/",
+                                  "comet_url":  "https://www.facebook.com/%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%A1%E0%B8%A0%E0%B8%A7%E0%B8%B2%E0%B8%9B%E0%B8%B5%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5-407092202713518/",
+                                  "__module_operation_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "PagesCometPageLink_page$normalization.graphql"
+                                                                                                     },
+                                  "__module_component_CometTextWithEntitiesRelay_textWithEntities":  {
+                                                                                                         "__dr":  "PagesCometPageLink.react"
+                                                                                                     },
+                                  "category_type":  "LOCAL",
+                                  "verification_status":  "NOT_VERIFIED",
+                                  "is_verified":  false,
+                                  "profile_url":  "https://www.facebook.com/pages/%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%81%E0%B8%B8%E0%B8%A1%E0%B8%A0%E0%B8%A7%E0%B8%B2%E0%B8%9B%E0%B8%B5%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5/407092202713518",
+                                  "mobileUrl":  "https://m.facebook.com/407092202713518/",
+                                  "__isNode":  "Page"
+                              }
+                          ],
+        "text":  "งานสกีมภายใน😶‍🌫️\nโครงการบ้านพักอาศัย ค.ส.ล.2ชั้น (บ้านคุณมายด์)\nDESIGNER : Fathome Architect\n📞 088-877-2899 | Line: @mariacons-admin",
+        "likes":  8,
+        "comments":  1,
+        "shares":  1,
+        "topReactionsCount":  2,
+        "media":  [
+                      {
+                          "mediaset_token":  "pcb.1044440158586371",
+                          "url":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil\u0026id=100090611883896",
+                          "comet_product_tag_feed_overlay_renderer":  null
+                      },
+                      {
+                          "thumbnail":  "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/805218816_1044438868586500_932043247250699711_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=107\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=zUZvWkluJrAQ7kNvwHwPuYc\u0026_nc_oc=AdpBJkA0FvRcW72FlOzV-ifW_z51blJkFEIUxiHuXKwjoTFFGM9Y8zA4HFc8vz2a9PpBp2d36eb8QSy9MBN3XDK_\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-2.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQLyPrX4EODr7UH9ayruIWLa7k1aVAqkn74svBbGQGNIgQ\u0026oe=6AB00FE0",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/805218816_1044438868586500_932043247250699711_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=107\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=zUZvWkluJrAQ7kNvwHwPuYc\u0026_nc_oc=AdpBJkA0FvRcW72FlOzV-ifW_z51blJkFEIUxiHuXKwjoTFFGM9Y8zA4HFc8vz2a9PpBp2d36eb8QSy9MBN3XDK_\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-2.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQLyPrX4EODr7UH9ayruIWLa7k1aVAqkn74svBbGQGNIgQ\u0026oe=6AB00FE0",
+                                        "height":  332,
+                                        "width":  590
+                                    },
+                          "id":  "1044438865253167",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/804445632_1044438925253161_6232840877592702745_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=uLtWglcKEdkQ7kNvwH0v5vP\u0026_nc_oc=AdoWrV1RTnRS4Y3wsMxR1kUxci1CbsV-xyPHQJttn6XB7x5f_s5WjPoq4HDDgK8fRuSObGA2xI29_M85LnhYDhBn\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQKBglYo-vBUmWI1EHoyv1AbLJ8h3zNHx4dHN_--os-cug\u0026oe=6AB012AA",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/804445632_1044438925253161_6232840877592702745_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=uLtWglcKEdkQ7kNvwH0v5vP\u0026_nc_oc=AdoWrV1RTnRS4Y3wsMxR1kUxci1CbsV-xyPHQJttn6XB7x5f_s5WjPoq4HDDgK8fRuSObGA2xI29_M85LnhYDhBn\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQKBglYo-vBUmWI1EHoyv1AbLJ8h3zNHx4dHN_--os-cug\u0026oe=6AB012AA",
+                                        "height":  332,
+                                        "width":  590
+                                    },
+                          "id":  "1044438921919828",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/804878245_1044438998586487_7662585626576453168_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=102\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=eozLCNy-4ZcQ7kNvwH39qeK\u0026_nc_oc=Adq50yD7ko0Xcj2oNECTa_yDHc62uF6nbreXhUyniDtb1sA-YHm0zoV2pejFWcOOxesq9P5rieaHJ3FcErhEQ1bW\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-2.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQKMVh2nCbU21yFJEkR6NG4x6vXnE5li5We3xfPwbyz8-Q\u0026oe=6AAFFB98",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/804878245_1044438998586487_7662585626576453168_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=102\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=eozLCNy-4ZcQ7kNvwH39qeK\u0026_nc_oc=Adq50yD7ko0Xcj2oNECTa_yDHc62uF6nbreXhUyniDtb1sA-YHm0zoV2pejFWcOOxesq9P5rieaHJ3FcErhEQ1bW\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-2.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQKMVh2nCbU21yFJEkR6NG4x6vXnE5li5We3xfPwbyz8-Q\u0026oe=6AAFFB98",
+                                        "height":  332,
+                                        "width":  590
+                                    },
+                          "id":  "1044438995253154",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/805812934_1044439058586481_5769954343767484483_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=106\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=JeVIqIbz7VUQ7kNvwEHW5Nw\u0026_nc_oc=Adqne0YLF-WoaT7msle8PECTw3EZokSB7sgruSyGjTW56KtccW57WbZNKU2XFOONN5WnSLTukBiZ342VUDkyo_Gt\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQL3fmM0r9482PIHIwEcd9cIDaXxfw9T_vmtAwgLX2j3ig\u0026oe=6AAFF334",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/805812934_1044439058586481_5769954343767484483_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2048x1153\u0026ctp=s590x590\u0026_nc_cat=106\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=JeVIqIbz7VUQ7kNvwEHW5Nw\u0026_nc_oc=Adqne0YLF-WoaT7msle8PECTw3EZokSB7sgruSyGjTW56KtccW57WbZNKU2XFOONN5WnSLTukBiZ342VUDkyo_Gt\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQL3fmM0r9482PIHIwEcd9cIDaXxfw9T_vmtAwgLX2j3ig\u0026oe=6AAFF334",
+                                        "height":  332,
+                                        "width":  590
+                                    },
+                          "id":  "1044439051919815",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      },
+                      {
+                          "thumbnail":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/805763375_1044439098586477_6873362154477097695_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=XI0lP54676EQ7kNvwGmyfdz\u0026_nc_oc=AdpQH4zGKKVo_-JuFAQ6bPlnG1iZYZxnYBFwfoG8m7Kd9nqRkHTyNdiDdE11VGHnRNF0S-4HC4WfuO57PlvXA1H4\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQL_k3UPz1Z19bD5qdRohbR54A8Cmk5f7PLbRs6-syoOmA\u0026oe=6AAFE468",
+                          "__typename":  "Photo",
+                          "is_playable":  false,
+                          "image":  {
+                                        "uri":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/805763375_1044439098586477_6873362154477097695_n.jpg?stp=cp6_dst-jpegr_tt6\u0026cstp=mx2000x924\u0026ctp=s590x590\u0026_nc_cat=101\u0026ccb=1-7\u0026_nc_sid=833d8c\u0026_nc_ohc=XI0lP54676EQ7kNvwGmyfdz\u0026_nc_oc=AdpQH4zGKKVo_-JuFAQ6bPlnG1iZYZxnYBFwfoG8m7Kd9nqRkHTyNdiDdE11VGHnRNF0S-4HC4WfuO57PlvXA1H4\u0026_nc_zt=23\u0026se=-1\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQL_k3UPz1Z19bD5qdRohbR54A8Cmk5f7PLbRs6-syoOmA\u0026oe=6AAFE468",
+                                        "height":  273,
+                                        "width":  590
+                                    },
+                          "id":  "1044439095253144",
+                          "__isMedia":  "Photo",
+                          "photo_cix_screen":  null,
+                          "copyright_banner_info":  null,
+                          "owner":  {
+                                        "__typename":  "User",
+                                        "id":  "100090611883896"
+                                    },
+                          "ocrText":  "No photo description available."
+                      }
+                  ],
+        "feedbackId":  "ZmVlZGJhY2s6MTA0NDQ0MDE1ODU4NjM3MQ==",
+        "reactionLikeCount":  7,
+        "reactionLoveCount":  1,
+        "paidPartnership":  false,
+        "topComments":  [
+                            {
+                                "commentUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0232fHUUMzGFM5d1zHPUmydPztSRK7WbNKSwef92FdrDtBEabfWp5iuVNvWge8icil\u0026id=100090611883896\u0026comment_id=1001914946189304",
+                                "commentId":  "1001914946189304",
+                                "id":  "Y29tbWVudDoxMDQ0NDQwMTU4NTg2MzcxXzEwMDE5MTQ5NDYxODkzMDQ=",
+                                "feedbackId":  "ZmVlZGJhY2s6MTA0NDQ0MDE1ODU4NjM3MV8xMDAxOTE0OTQ2MTg5MzA0",
+                                "date":  "2026-09-11T11:06:04.000Z",
+                                "text":  "สวยมากครับ",
+                                "author":  {
+                                               "__typename":  "User",
+                                               "id":  "pfbid02JRhh8UYL1kpsWwXuuhCn3oVT6UmRP6mfUJLcqfvANzzy5RQk5zW65JoSJ3Dm8Fi8l",
+                                               "name":  "สราวุธ ประเสริฐสังข์",
+                                               "__isActor":  "User",
+                                               "profile_picture_depth_0":  {
+                                                                               "uri":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-1/571788370_3209928779172119_8011150544827472588_n.jpg?stp=cp0_dst-jpg_tt6\u0026cstp=mx720x733\u0026ctp=p32x32\u0026_nc_cat=108\u0026ccb=1-7\u0026_nc_sid=e99d92\u0026_nc_ohc=J-fKF_EBOgcQ7kNvwFOPpkr\u0026_nc_oc=AdomlABNknMtOy5msBHhr3jkWZMEpy23ljmSFrH1uVoMJnd9r_WsWBw5V_ZHtOIfQWhCS9MQf6-XaH4Kozmv5kST\u0026_nc_zt=24\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQLnFXE1gMhc3jDQByK00FJ6yypIR2c6Vt8j3hjoz2wxgg\u0026oe=6AB01689"
+                                                                           },
+                                               "profile_picture_depth_1":  {
+                                                                               "uri":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-1/571788370_3209928779172119_8011150544827472588_n.jpg?stp=cp0_dst-jpg_tt6\u0026cstp=mx720x733\u0026ctp=s24x24\u0026_nc_cat=108\u0026ccb=1-7\u0026_nc_sid=e99d92\u0026_nc_ohc=J-fKF_EBOgcQ7kNvwFOPpkr\u0026_nc_oc=AdomlABNknMtOy5msBHhr3jkWZMEpy23ljmSFrH1uVoMJnd9r_WsWBw5V_ZHtOIfQWhCS9MQf6-XaH4Kozmv5kST\u0026_nc_zt=24\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQLnFXE1gMhc3jDQByK00FJ6yypIR2c6Vt8j3hjoz2wxgg\u0026oe=6AB01689"
+                                                                           },
+                                               "gender":  "MALE",
+                                               "__isEntity":  "User",
+                                               "url":  "https://www.facebook.com/s.rawu.th.praserith.sangkh.2025",
+                                               "work_info":  null,
+                                               "is_verified":  false,
+                                               "short_name":  "สราวุธ",
+                                               "subscribe_status":  "CANNOT_SUBSCRIBE"
+                                           },
+                                "profileUrl":  "https://www.facebook.com/s.rawu.th.praserith.sangkh.2025",
+                                "profilePicture":  "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-1/571788370_3209928779172119_8011150544827472588_n.jpg?stp=cp0_dst-jpg_tt6\u0026cstp=mx720x733\u0026ctp=p32x32\u0026_nc_cat=108\u0026ccb=1-7\u0026_nc_sid=e99d92\u0026_nc_ohc=J-fKF_EBOgcQ7kNvwFOPpkr\u0026_nc_oc=AdomlABNknMtOy5msBHhr3jkWZMEpy23ljmSFrH1uVoMJnd9r_WsWBw5V_ZHtOIfQWhCS9MQf6-XaH4Kozmv5kST\u0026_nc_zt=24\u0026_nc_ht=scontent-ord5-1.xx\u0026_nc_gid=EXny2lg0hkKvyi6Jom-HYg\u0026_nc_ss=73289\u0026oh=00_AQLnFXE1gMhc3jDQByK00FJ6yypIR2c6Vt8j3hjoz2wxgg\u0026oe=6AB01689",
+                                "profileId":  "pfbid02JRhh8UYL1kpsWwXuuhCn3oVT6UmRP6mfUJLcqfvANzzy5RQk5zW65JoSJ3Dm8Fi8l",
+                                "profileName":  "สราวุธ ประเสริฐสังข์",
+                                "likesCount":  "0",
+                                "threadingDepth":  0
+                            }
+                        ],
+        "topLevelUrl":  "https://www.facebook.com/100090611883896/posts/1044440158586371",
+        "facebookId":  "100090611883896",
+        "pageAdLibrary":  {
+                              "id":  "108983088787840",
+                              "pamv_comms_data":  null
+                          },
+        "inputUrl":  "https://www.facebook.com/profile.php?id=100090611883896"
+    }
+]
