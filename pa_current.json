@@ -1,0 +1,197 @@
+﻿{
+    "id":  "comp-udon-32",
+    "name":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
+    "engName":  "PA \u0026 TN Limited Partnership",
+    "category":  "รับสร้างบ้าน ออกแบบ และงานอาคารสาธารณะครบวงจร (TSIC 41001)",
+    "province":  "อุดรธานี",
+    "district":  "บ้านดุง",
+    "address":  "311 หมู่ที่ 9 ถนนบ้านดุง-สุมเส้า ต.ศรีสุทโธ อ.บ้านดุง จ.อุดรธานี 41190",
+    "phone":  "098 834 3732 / 098 585 8741",
+    "contactPerson":  "คุณพิศภัทร์ แสนอินทร์ (098-834-3732) - หัวหน้าทีมออกแบบและควบคุมงาน PA\u0026TN TEAM",
+    "totalProjects":  3,
+    "newProjectsThisMonth":  3,
+    "totalValueMillion":  10.5,
+    "growthRate":  50,
+    "areaExpansion":  "บ้านดุง, เมืองอุดรธานี",
+    "verificationStatus":  {
+                               "isVerified":  true,
+                               "confidence":  "100%",
+                               "evidenceSource":  "Facebook Page | DBD: 0415564002621",
+                               "permitStatus":  "TSIC 41001"
+                           },
+    "stageBreakdown":  {
+                           "groundbreak":  0,
+                           "foundation":  1,
+                           "structure":  1,
+                           "finishing":  1
+                       },
+    "latestTimelineStage":  "finishing",
+    "revenuePotentialText":  "฿1.2M",
+    "coordinates":  [
+                        17.699,
+                        103.258
+                    ],
+    "googleMapsUrl":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
+    "gmaps":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
+    "facebookUrl":  "https://www.facebook.com/PATN2021",
+    "facebookSignal":  {
+                           "postDate":  "12/6/2569",
+                           "pageName":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
+                           "caption":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า Design By . Peesapat Saen In , PA\u0026TN TEAM โทร: 098-834-3732",
+                           "likes":  18,
+                           "comments":  4,
+                           "shares":  2,
+                           "detectedKeywords":  [
+                                                    "อุดรธานี",
+                                                    "ก่อสร้างจริง"
+                                                ]
+                       },
+    "projects":  [
+                     {
+                         "projectId":  "comp-udon-32-1",
+                         "name":  "โครงการบ้านพักอาศัยเดี่ยวพร้อมงานตกแต่งสถาปัตย์ 📍 โซน อ.บ้านดุง-เมืองอุดรธานี",
+                         "location":  "ต.ศรีสุทโธ อ.บ้านดุง จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "บ้านดุง",
+                         "gps":  [
+                                     17.699,
+                                     103.258
+                                 ],
+                         "stage":  "งานสถาปัตย์ ตกแต่งภายใน และติดตั้งสุขภัณฑ์กระเบื้อง",
+                         "stageKey":  "finishing",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  95,
+                         "estValue":  "3.8 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 1-2 ชั้น Contemporary Style",
+                         "caption":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า Design By . Peesapat Saen In , PA\u0026TN TEAM โทร 098-834-3732",
+                         "postedTime":  "12/6/2569",
+                         "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid02hHQMZRdRekrWUBQRvruCspa1aEpBxRJB1mom4jQ6HQ8iqQwDSjLkYrZNfGasGpgwl\u0026id=100070380123821",
+                         "boq":  [
+                                     {
+                                         "sku":  "ชุดสุขภัณฑ์และอุปกรณ์ห้องน้ำ COTTO Modern Series",
+                                         "qty":  "3 ชุด",
+                                         "estCost":  "฿38,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "กระเบื้องปูพื้นบุผนัง COTTO Matt Stone Collection",
+                                         "qty":  "95 ตร.ม.",
+                                         "estCost":  "฿38,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ปูนเสือ มอร์ตาร์ ฉาบแต่งผิวละเอียด / ปูนกาวซีเมนต์ SCG",
+                                         "qty":  "40 ถุง",
+                                         "estCost":  "฿7,200",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-32-2",
+                         "name":  "โครงการก่อสร้างบ้านพักอาศัยใหม่ คสล. 📍 อ.บ้านดุง จ.อุดรธานี",
+                         "location":  "อ.บ้านดุง จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "บ้านดุง",
+                         "gps":  [
+                                     17.699,
+                                     103.258
+                                 ],
+                         "stage":  "งานเปิดหน้างาน วางผัง ฐานราก ตอม่อ และคานคอดิน คสล.",
+                         "stageKey":  "foundation",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  30,
+                         "estValue":  "2.2 ล้านบาท",
+                         "buildingType":  "บ้านพักอาศัยเดี่ยว 1 ชั้น คสล.",
+                         "caption":  "ภาพอัปเดตงานเตรียมหน้างานและลงเสาผังโครงการบ้านพักอาศัย อ.บ้านดุง PA\u0026TN TEAM โทร: 098-834-3732",
+                         "postedTime":  "15/5/2569",
+                         "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0ADYj1JSDbKY4UWHVqwqd3AxS3baSwZN6ndoh1vkQxQPDpY1q8r49kveqAmxJYN84l\u0026id=100070380123821",
+                         "boq":  [
+                                     {
+                                         "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc (ส่งหน้างาน อ.บ้านดุง)",
+                                         "qty":  "45 คิว",
+                                         "estCost":  "฿99,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
+                                         "qty":  "180 ถุง",
+                                         "estCost":  "฿30,600",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "แผ่นยิปซัมตราช้างพลัส 9 มม. และโครงคร่าว ProBalance",
+                                         "qty":  "70 แผ่น",
+                                         "estCost":  "฿11,900",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     },
+                     {
+                         "projectId":  "comp-udon-32-3",
+                         "name":  "โครงการปรับปรุงและก่อสร้างอาคารราชการ/อาคารอเนกประสงค์ท้องถิ่น 📍 อ.บ้านดุง",
+                         "location":  "อ.บ้านดุง จ.อุดรธานี",
+                         "province":  "อุดรธานี",
+                         "district":  "บ้านดุง",
+                         "gps":  [
+                                     17.699,
+                                     103.258
+                                 ],
+                         "stage":  "งานปรับปรุงโครงสร้าง ก่อผนังเบา และงานระบบสุขาภิบาลอาคาร",
+                         "stageKey":  "structure",
+                         "trackingStatus":  "pending",
+                         "progressPercent":  60,
+                         "estValue":  "4.5 ล้านบาท",
+                         "buildingType":  "อาคารสาธารณะและสำนักงานท้องถิ่น",
+                         "caption":  "งานปรับปรุงและก่อสร้างอาคารราชการ/อาคารอเนกประสงค์ท้องถิ่น อ.บ้านดุง จ.อุดรธานี PA\u0026TN TEAM โทร 098-834-3732",
+                         "postedTime":  "1/6/2569",
+                         "postUrl":  "https://www.facebook.com/PATN2021",
+                         "boq":  [
+                                     {
+                                         "sku":  "แผ่น SCG สมาร์ทบอร์ด หนา 8-12 มม. ผนังและฝ้าเพดาน",
+                                         "qty":  "180 แผ่น",
+                                         "estCost":  "฿45,000",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ อาคารสาธารณะ",
+                                         "qty":  "220 ถุง",
+                                         "estCost":  "฿28,600",
+                                         "urgency":  "ด่วนที่สุด"
+                                     },
+                                     {
+                                         "sku":  "ชุดสุขภัณฑ์และก๊อกน้ำ COTTO Commercial Collection",
+                                         "qty":  "8 ชุด",
+                                         "estCost":  "฿64,000",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     },
+                                     {
+                                         "sku":  "ปูนปรับระดับพื้น Self-Leveling SCG",
+                                         "qty":  "35 ถุง",
+                                         "estCost":  "฿8,050",
+                                         "urgency":  "เตรียมสั่งซื้อ"
+                                     }
+                                 ]
+                     }
+                 ],
+    "aiShortRec":  "พบ 3 ไซต์งานจริงใน จ.อุดรธานี (บ้านพักอาศัยตกแต่งเสร็จ 95%, บ้านใหม่ อ.บ้านดุง 30%, งานปรับปรุงอาคารราชการท้องถิ่น 60%)",
+    "aiRecommendation":  "ผู้รับเหมาและทีมออกแบบหลักโซน อ.บ้านดุง แนะนำประสานตัวแทน SCG บ้านดุง ส่งคอนกรีต CPAC และชุดสุขภัณฑ์ COTTO Commercial ด่วน",
+    "customDiagnostic":  "ห้างหุ้นส่วนจำกัด พีเอ แอนด์ ทีเอ็น (PA\u0026TN) เป็นผู้รับเหมาและทีมออกแบบสถาปัตยกรรม (Design \u0026 Build) คุณภาพสูงในโซน อ.บ้านดุง จ.อุดรธานี คุมงานโดยคุณพิศภัทร์ แสนอินทร์ มีผลงานครอบคลุมทั้งบ้านพักอาศัยสไตล์ Contemporary/Modern และงานปรับปรุงอาคารราชการ/อาคารสาธารณะท้องถิ่น มีไซต์งาน Active รวม 3 โครงการ เป็น New Prospect ศักยภาพสูงที่สามารถดึงยอดซื้อคอนกรีต CPAC, ปูนเสือ มอร์ตาร์, แผ่นสมาร์ทบอร์ด SCG และสุขภัณฑ์ COTTO ผ่านเครือข่ายผู้แทนจำหน่าย SCG ประจำอำเภอบ้านดุงได้ทันที",
+    "customRecommendations":  [
+                                  "\u003cstrong\u003eคอนกรีตผสมเสร็จ CPAC 240 ksc (45 คิว):\u003c/strong\u003e ล็อกสเปกคอนกรีตผสมเสร็จ CPAC สำหรับงานฐานรากและคานคอดินไซต์บ้านใหม่ อ.บ้านดุง",
+                                  "\u003cstrong\u003eชุดสุขภัณฑ์ COTTO Modern \u0026 Commercial Series (11 ชุด):\u003c/strong\u003e นำเสนอสุขภัณฑ์คุณภาพสูงสำหรับทั้งบ้านพักอาศัยและอาคารสาธารณะท้องถิ่น",
+                                  "\u003cstrong\u003eแผ่น SCG สมาร์ทบอร์ด \u0026 ยิปซัมตราช้างพลัส:\u003c/strong\u003e นำเสนอโซลูชันระบบผนังเบาและฝ้าเพดานสำหรับงานรีโนเวทอาคารราชการและบ้านพักอาศัย",
+                                  "\u003cstrong\u003eปูนเสือ มอร์ตาร์ ฉาบละเอียด \u0026 ปูนกาวซีเมนต์ SCG:\u003c/strong\u003e สนับสนุนการสั่งซื้อตรงผ่านร้านค้าผู้แทนจำหน่าย SCG ในพื้นที่ อ.บ้านดุง"
+                              ],
+    "salesActionPlan":  [
+                            "ติดต่อคุณพิศภัทร์ แสนอินทร์ (098-834-3732 / 098-585-8741) แนะนำตัวทีมขาย SCG และส่งมอบแคตตาล็อก SCG Home Solution",
+                            "ประสานงานร้านผู้แทนจำหน่าย SCG ใน อ.บ้านดุง เพื่อเสนอราคาพิเศษสำหรับคอนกรีต CPAC และปูนเสือ มอร์ตาร์",
+                            "จัดทำใบเสนอราคาชุดสุขภัณฑ์ COTTO Commercial 8 ชุด สำหรับโครงการอาคารราชการท้องถิ่น",
+                            "ดึงเข้าโปรแกรม SCG Family / Contractor Loyalty Program เพื่อสร้างความผูกพันระยะยาว"
+                        ],
+    "tag":  "focus",
+    "opportunityScore":  84,
+    "scgCode":  "",
+    "sales2025":  0,
+    "sales2026":  0
+}

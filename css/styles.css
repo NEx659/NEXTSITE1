@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   /* Executive Corporate Dark Navy & Blue Palette */
   --primary-navy: #0F172A;        /* Deep Midnight Navy */
   --primary-navy-dark: #0A0F1D;   /* Dark Obsidian Slate */
@@ -2720,28 +2720,56 @@ body.executive-presentation .kpi-value {
   color: #1E293B;
 }
 
+.btn-status-option.active[data-status="strategic"] {
+  background: #FEF2F2;
+  color: #DC2626;
+  border-color: #FCA5A5;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.18);
+}
+
+.btn-status-option.active[data-status="growth"] {
+  background: #EFF6FF;
+  color: #2563EB;
+  border-color: #93C5FD;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.18);
+}
+
+.btn-status-option.active[data-status="opportunity"] {
+  background: #FFFBEB;
+  color: #D97706;
+  border-color: #FCD34D;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.18);
+}
+
+.btn-status-option.active[data-status="prospect"] {
+  background: #ECFDF5;
+  color: #059669;
+  border-color: #6EE7B7;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.18);
+}
+
+/* Fallback legacy support */
 .btn-status-option.active[data-status="focus"] {
   background: #FEF2F2;
   color: #DC2626;
   border-color: #FCA5A5;
   font-weight: 800;
-  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15);
 }
-
 .btn-status-option.active[data-status="non-focus"] {
-  background: #F8FAFC;
-  color: #475569;
-  border-color: #CBD5E1;
+  background: #FFFBEB;
+  color: #D97706;
+  border-color: #FCD34D;
   font-weight: 800;
-  box-shadow: 0 2px 6px rgba(100, 116, 139, 0.12);
 }
-
 .btn-status-option.active[data-status="new"] {
   background: #ECFDF5;
   color: #059669;
   border-color: #6EE7B7;
   font-weight: 800;
-  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.15);
 }
 
 /* Status Pill in Table & Cards */
@@ -2756,6 +2784,30 @@ body.executive-presentation .kpi-value {
   letter-spacing: 0.2px;
 }
 
+.company-status-tag.strategic {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
+}
+
+.company-status-tag.growth {
+  background: #EFF6FF;
+  color: #2563EB;
+  border: 1px solid #BFDBFE;
+}
+
+.company-status-tag.opportunity {
+  background: #FFFBEB;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+.company-status-tag.prospect {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+}
+
 .company-status-tag.focus {
   background: #FEF2F2;
   color: #DC2626;
@@ -2763,9 +2815,9 @@ body.executive-presentation .kpi-value {
 }
 
 .company-status-tag.non-focus {
-  background: #F1F5F9;
-  color: #64748B;
-  border: 1px solid #E2E8F0;
+  background: #FFFBEB;
+  color: #D97706;
+  border: 1px solid #FDE68A;
 }
 
 .company-status-tag.new {

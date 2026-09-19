@@ -16,7 +16,7 @@ let searchQuery = '';
 let currentView = 'table'; // 'table' | 'map'
 let activeSelectedCompany = null;
 let activeModalProjectStageFilter = 'all';
-let activeCompanyTagFilter = 'all'; // 'all' | 'focus' | 'non-focus' | 'new'
+let activeCompanyTagFilter = 'all'; // 'all' | 'strategic' | 'growth' | 'opportunity' | 'prospect'
 let activeFollowupStatusFilter = 'all'; // 'all' | 'followed' | 'pending'
 
 // Storage Keys
@@ -197,6 +197,24 @@ function saveCompanyTagsMap(tagMap, customEmail = null) {
   }
 }
 
+function normalizeTagValue(rawTag, comp = null) {
+  if (!rawTag) {
+    if (comp) {
+      if (comp.scgCode) return 'strategic';
+      if ((comp.growthRate && comp.growthRate >= 40) || (comp.totalProjects && comp.totalProjects >= 3)) return 'growth';
+      if ((comp.totalProjects && comp.totalProjects > 0) || (comp.opportunityScore && comp.opportunityScore >= 70)) return 'opportunity';
+    }
+    return 'prospect';
+  }
+  const t = String(rawTag).trim().toLowerCase();
+  if (t === 'strategic' || t === 'growth' || t === 'opportunity' || t === 'prospect') return t;
+  // Legacy mappings
+  if (t === 'focus') return 'strategic';
+  if (t === 'non-focus' || t === 'nonfocus') return 'opportunity';
+  if (t === 'new' || t === 'verified') return 'prospect';
+  return 'prospect';
+}
+
 function syncUserTagsToCompanies(customEmail = null) {
   const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
   const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
@@ -206,9 +224,11 @@ function syncUserTagsToCompanies(customEmail = null) {
     allCompanies.forEach(c => {
       const savedTag = tagMap[c.id];
       if (savedTag) {
-        c.tag = String(savedTag).trim().toLowerCase();
+        c.tag = normalizeTagValue(savedTag, c);
+      } else if (c.tag) {
+        c.tag = normalizeTagValue(c.tag, c);
       } else {
-        c.tag = 'new';
+        c.tag = normalizeTagValue(null, c);
       }
     });
   }
@@ -219,13 +239,15 @@ function getCompanyTag(companyId, customEmail = null) {
   const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
   const tagMap = loadCompanyTagsMap(email);
   const raw = tagMap[companyId];
-  if (raw) return String(raw).trim().toLowerCase();
-
+  
+  let comp = null;
   if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
-    const comp = allCompanies.find(c => c.id === companyId);
-    if (comp && comp.tag) return String(comp.tag).trim().toLowerCase();
+    comp = allCompanies.find(c => c.id === companyId);
   }
-  return 'new';
+
+  if (raw) return normalizeTagValue(raw, comp);
+  if (comp && comp.tag) return normalizeTagValue(comp.tag, comp);
+  return normalizeTagValue(null, comp);
 }
 
 function setCompanyTag(companyId, tag, event) {
@@ -235,7 +257,7 @@ function setCompanyTag(companyId, tag, event) {
 
   const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
   const userEmail = activeUser ? activeUser.email : 'guest';
-  const normalizedTag = String(tag || 'new').trim().toLowerCase();
+  const normalizedTag = normalizeTagValue(tag);
 
   const comp = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies.find(c => c.id === companyId) : null;
   if (comp) {
@@ -256,9 +278,10 @@ function setCompanyTag(companyId, tag, event) {
   updateTagFilterCounts(allCompanies);
 
   const tagNames = {
-    'focus': '🎯 Focus (เป้าหมายหลัก)',
-    'non-focus': '⚪ Non-Focus (ทั่วไป)',
-    'new': '✨ New (เข้าใหม่)'
+    'strategic': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
+    'growth': '📈 Growth Account (ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด)',
+    'opportunity': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
+    'prospect': '✨ New Prospect (ลูกค้าใหม่)'
   };
   const userName = activeUser ? (activeUser.fullName || activeUser.email) : 'บราวเซอร์นี้';
   showStatusToast(`💾 จำสถานะเป็น ${tagNames[normalizedTag] || normalizedTag} สำหรับ ${userName} เรียบร้อย`);
@@ -350,26 +373,30 @@ function handleCrmStatusFilterChange(val) {
 
 function updateTagFilterCounts(companies) {
   const source = allCompanies && allCompanies.length > 0 ? allCompanies : (companies || []);
-  let focusCount = 0;
-  let nonFocusCount = 0;
-  let newCount = 0;
+  let strategicCount = 0;
+  let growthCount = 0;
+  let opportunityCount = 0;
+  let prospectCount = 0;
 
   source.forEach(c => {
     const tag = getCompanyTag(c.id);
-    if (tag === 'focus') focusCount++;
-    else if (tag === 'non-focus') nonFocusCount++;
-    else newCount++;
+    if (tag === 'strategic') strategicCount++;
+    else if (tag === 'growth') growthCount++;
+    else if (tag === 'opportunity') opportunityCount++;
+    else prospectCount++;
   });
 
   const elAll = document.getElementById('tag-count-all') || document.getElementById('count-tag-all');
-  const elFocus = document.getElementById('tag-count-focus') || document.getElementById('count-tag-focus');
-  const elNonFocus = document.getElementById('tag-count-non-focus') || document.getElementById('count-tag-nonfocus');
-  const elNew = document.getElementById('tag-count-new') || document.getElementById('count-tag-new');
+  const elStrategic = document.getElementById('tag-count-strategic') || document.getElementById('tag-count-focus');
+  const elGrowth = document.getElementById('tag-count-growth');
+  const elOpportunity = document.getElementById('tag-count-opportunity') || document.getElementById('tag-count-non-focus');
+  const elProspect = document.getElementById('tag-count-prospect') || document.getElementById('tag-count-new');
 
   if (elAll) elAll.textContent = source.length;
-  if (elFocus) elFocus.textContent = focusCount;
-  if (elNonFocus) elNonFocus.textContent = nonFocusCount;
-  if (elNew) elNew.textContent = newCount;
+  if (elStrategic) elStrategic.textContent = strategicCount;
+  if (elGrowth) elGrowth.textContent = growthCount;
+  if (elOpportunity) elOpportunity.textContent = opportunityCount;
+  if (elProspect) elProspect.textContent = prospectCount;
 }
 
 /**
@@ -531,13 +558,17 @@ function filterByUserCrmStatus(statusType) {
 
 function handleSetCompanyTag(tag) {
   if (activeSelectedCompany) {
-    setCompanyTag(activeSelectedCompany.id, tag);
+    const normTag = normalizeTagValue(tag);
+    setCompanyTag(activeSelectedCompany.id, normTag);
     
-    ['focus', 'non-focus', 'new'].forEach(t => {
+    ['strategic', 'growth', 'opportunity', 'prospect', 'focus', 'non-focus', 'new'].forEach(t => {
       const btn = document.getElementById(`btn-status-${t}`);
       if (btn) {
-        if (t === tag) btn.classList.add('active');
-        else btn.classList.remove('active');
+        if (t === normTag || (t === 'focus' && normTag === 'strategic') || (t === 'non-focus' && normTag === 'opportunity') || (t === 'new' && normTag === 'prospect')) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
       }
     });
   }
@@ -1866,25 +1897,31 @@ function renderTable() {
             ` : ''}
           </div>
           
-          <!-- Sales Tag Selector Buttons: Focus / Non-Focus / New (Editable by everyone) -->
-          <div class="inline-tag-selector" onclick="event.stopPropagation();" style="display: inline-flex; align-items: center; gap: 3px; background: #F1F5F9; padding: 2px 4px; border-radius: 6px; border: 1px solid #CBD5E1; width: fit-content;" title="คลิกเพื่อเปลี่ยนกลุ่มสถานะ (Focus / Non-Focus / New)">
+          <!-- Sales Tag Selector Buttons: 4 Tiers (Strategic / Growth / Opportunity / Prospect) -->
+          <div class="inline-tag-selector" onclick="event.stopPropagation();" style="display: inline-flex; align-items: center; gap: 3px; background: #F1F5F9; padding: 2px 4px; border-radius: 6px; border: 1px solid #CBD5E1; width: fit-content; flex-wrap: wrap;" title="คลิกเพื่อเปลี่ยนกลุ่มสถานะ">
             <button type="button" 
-                    title="ตั้งเป็น Focus (เป้าหมายหลัก)"
-                    onclick="setCompanyTag('${company.id}', 'focus', event)" 
-                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'focus' ? 'background: #DC2626; color: #FFFFFF; box-shadow: 0 1px 3px rgba(220,38,38,0.35);' : 'background: transparent; color: #64748B;'}">
-              🎯 Focus
+                    title="Strategic Partner/ลูกค้าแฟนพันธ์แท้"
+                    onclick="setCompanyTag('${company.id}', 'strategic', event)" 
+                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px; font-size: 0.70rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'strategic' ? 'background: #DC2626; color: #FFFFFF; box-shadow: 0 1px 3px rgba(220,38,38,0.35);' : 'background: transparent; color: #64748B;'}">
+              👑 Strategic
             </button>
             <button type="button" 
-                    title="ตั้งเป็น Non-Focus (ทั่วไป)"
-                    onclick="setCompanyTag('${company.id}', 'non-focus', event)" 
-                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'non-focus' ? 'background: #475569; color: #FFFFFF; box-shadow: 0 1px 3px rgba(71,85,105,0.35);' : 'background: transparent; color: #64748B;'}">
-              ⚪ Non-Focus
+                    title="Growth Account / ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด"
+                    onclick="setCompanyTag('${company.id}', 'growth', event)" 
+                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px; font-size: 0.70rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'growth' ? 'background: #2563EB; color: #FFFFFF; box-shadow: 0 1px 3px rgba(37,99,235,0.35);' : 'background: transparent; color: #64748B;'}">
+              📈 Growth
             </button>
             <button type="button" 
-                    title="ตั้งเป็น New (เข้าใหม่)"
-                    onclick="setCompanyTag('${company.id}', 'new', event)" 
-                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 7px; font-size: 0.72rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'new' ? 'background: #0284C7; color: #FFFFFF; box-shadow: 0 1px 3px rgba(2,132,199,0.35);' : 'background: transparent; color: #64748B;'}">
-              ✨ New
+                    title="Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์"
+                    onclick="setCompanyTag('${company.id}', 'opportunity', event)" 
+                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px; font-size: 0.70rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'opportunity' ? 'background: #D97706; color: #FFFFFF; box-shadow: 0 1px 3px rgba(217,119,6,0.35);' : 'background: transparent; color: #64748B;'}">
+              🎯 Opportunity
+            </button>
+            <button type="button" 
+                    title="New Prospect / ลูกค้าใหม่"
+                    onclick="setCompanyTag('${company.id}', 'prospect', event)" 
+                    style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px; font-size: 0.70rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'prospect' ? 'background: #059669; color: #FFFFFF; box-shadow: 0 1px 3px rgba(5,150,105,0.35);' : 'background: transparent; color: #64748B;'}">
+              ✨ Prospect
             </button>
           </div>
         </div>
@@ -2626,11 +2663,14 @@ function openCompanyProjectsModal(companyOrId) {
 
   // Tag Active State
   const tag = getCompanyTag(comp.id);
-  ['focus', 'non-focus', 'new'].forEach(t => {
+  ['strategic', 'growth', 'opportunity', 'prospect', 'focus', 'non-focus', 'new'].forEach(t => {
     const btn = document.getElementById(`btn-status-${t}`);
     if (btn) {
-      if (t === tag) btn.classList.add('active');
-      else btn.classList.remove('active');
+      if (t === tag || (t === 'focus' && tag === 'strategic') || (t === 'non-focus' && tag === 'opportunity') || (t === 'new' && tag === 'prospect')) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
     }
   });
 
@@ -2729,13 +2769,22 @@ function openCompanyProjectsModal(companyOrId) {
   });
 
   // Modal tag selector buttons are editable by everyone
-  ['focus', 'non-focus', 'new'].forEach(t => {
+  const tagTooltipMap = {
+    'strategic': 'Strategic Partner/ลูกค้าแฟนพันธ์แท้',
+    'growth': 'Growth Account / ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด',
+    'opportunity': 'Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์',
+    'prospect': 'New Prospect / ลูกค้าใหม่',
+    'focus': 'Strategic Partner/ลูกค้าแฟนพันธ์แท้',
+    'non-focus': 'Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์',
+    'new': 'New Prospect / ลูกค้าใหม่'
+  };
+  ['strategic', 'growth', 'opportunity', 'prospect', 'focus', 'non-focus', 'new'].forEach(t => {
     const btn = document.getElementById(`btn-status-${t}`);
     if (btn) {
       btn.style.pointerEvents = 'auto';
       btn.style.opacity = '1';
       btn.style.cursor = 'pointer';
-      btn.title = `ตั้งเป็น ${t === 'focus' ? 'Focus (เป้าหมายหลัก)' : (t === 'non-focus' ? 'Non-Focus (ทั่วไป)' : 'New (เข้าใหม่)')}`;
+      btn.title = tagTooltipMap[t] || t;
     }
   });
 
@@ -3509,14 +3558,22 @@ function exportCompanyPdfReport(companyOrId) {
   const compCleanCat = cleanThaiText(comp.category) || 'บริษัทรับสร้างบ้านและรับเหมาก่อสร้าง';
   const tag = getCompanyTag(comp.id);
   const tagMapThai = {
-    'focus': '🎯 Focus (เป้าหมายหลัก)',
-    'non-focus': '⚪ Non-Focus (ทั่วไป)',
-    'new': '✨ New (เข้าใหม่)'
+    'strategic': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
+    'growth': '📈 Growth Account (ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด)',
+    'opportunity': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
+    'prospect': '✨ New Prospect (ลูกค้าใหม่)',
+    'focus': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
+    'non-focus': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
+    'new': '✨ New Prospect (ลูกค้าใหม่)'
   };
   const tagBadgeStyle = {
-    'focus': 'background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE;',
-    'non-focus': 'background: #F8FAFC; color: #475569; border: 1px solid #CBD5E1;',
-    'new': 'background: #FEF3C7; color: #D97706; border: 1px solid #FDE68A;'
+    'strategic': 'background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA;',
+    'growth': 'background: #EFF6FF; color: #2563EB; border: 1px solid #BFDBFE;',
+    'opportunity': 'background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A;',
+    'prospect': 'background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0;',
+    'focus': 'background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA;',
+    'non-focus': 'background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A;',
+    'new': 'background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0;'
   };
 
   const projects = comp.projects || [];

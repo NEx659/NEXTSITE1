@@ -240,11 +240,11 @@ var UDON_COMPANIES = [
                                       "\u003cstrong\u003eปูนซีเมนต์สำเร็จรูป เสือ มอร์ตาร์ \u0026 อิฐมวลเบา Q-CON:\u003c/strong\u003e นำเสนอโซลูชันก่อ-ฉาบผนังและงานรีโนเวทสำหรับโครงการบ้านเดี่ยว อ.ทุ่งฝน, อ.ไชยวาน และร้าน Cafe Amazon",
                                       "\u003cstrong\u003eCPAC Precast / กำแพงกันดินคอนกรีตสำเร็จรูป:\u003c/strong\u003e ต่อยอดความเชี่ยวชาญงานรั้วและกำแพงกันดินของผู้รับเหมา ล็อกสเปกชิ้นส่วนคอนกรีตสำเร็จรูปจาก CPAC"
                                   ],
-        "tag":  "focus",
         "opportunityScore":  95,
         "scgCode":  "10349378",
         "sales2025":  31873,
-        "sales2026":  181379
+        "sales2026":  181379,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-50",
@@ -516,8 +516,8 @@ var UDON_COMPANIES = [
                                 "ประสานร้านผู้แทนจำหน่าย SCG ในพื้นที่จัดส่งตัวอย่างกระเบื้อง COTTO และชุดสุขภัณฑ์สำหรับไซต์งานใหม่",
                                 "นัดหมายเข้าเยี่ยมชมหน้างานร่วมกับทีมเทคนิค SCG เพื่อสนับสนุนการแก้ปัญหาหน้างานก่อสร้าง"
                             ],
-        "tag":  "focus",
-        "opportunityScore":  88
+        "opportunityScore":  88,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-20",
@@ -742,8 +742,8 @@ var UDON_COMPANIES = [
                                 "ประสานร้านผู้แทนจำหน่าย SCG ในพื้นที่จัดส่งกระเบื้อง COTTO และกาวซีเมนต์ตรงถึงหน้างาน",
                                 "ติดตามความต้องการวัสดุสำหรับไซต์งานใหม่ 3 หลังที่กำลังทำสัญญา"
                             ],
-        "tag":  "focus",
-        "opportunityScore":  88
+        "opportunityScore":  88,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-31",
@@ -976,11 +976,11 @@ var UDON_COMPANIES = [
                                 "นำเสนอตัวอย่างกระเบื้องสระว่ายน้ำ COTTO และกระเบื้องปูพื้นแผ่นใหญ่ Big Slab ให้คุณบิ๊ก (K.BIG)",
                                 "เปิดคำสั่งซื้อคอนกรีต CPAC 280-320 ksc และปูนโครงสร้าง SCG ล่วงหน้าสำหรับไซต์เปิดใหม่ 14 ก.ย."
                             ],
-        "tag":  "focus",
         "opportunityScore":  96,
         "scgCode":  "10551209",
         "sales2025":  5481324,
-        "sales2026":  5472101
+        "sales2026":  5472101,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-10",
@@ -1240,11 +1240,11 @@ var UDON_COMPANIES = [
                                 "นัดหมายคุณทิพย์ (091-686-8536) เพื่อวางแผนจัดส่งคอนกรีต CPAC และเหล็กเส้น SCG ล่วงหน้าสำหรับคฤหาสน์หรู 800 ตร.ม.",
                                 "ส่งแคตตาล็อกสุขภัณฑ์ COTTO Touchless และกระเบื้องปูพื้น COTTO แผ่นใหญ่ให้ทีมออกแบบนำเสนอเจ้าของบ้าน"
                             ],
-        "tag":  "focus",
         "opportunityScore":  94,
         "scgCode":  "10482913",
         "sales2025":  1570146.44,
-        "sales2026":  3396188.25
+        "sales2026":  3396188.25,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-08",
@@ -1437,7 +1437,6 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  70,
         "scgCode":  "10523555",
         "sales2025":  1146567,
@@ -1448,7 +1447,8 @@ var UDON_COMPANIES = [
                                       "\u003cstrong\u003eปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง:\u003c/strong\u003e ล็อกสเปกใช้งานโครงสร้างอาคารและหล่อเสา-คานทุกไซต์งาน",
                                       "\u003cstrong\u003eกระเบื้องหลังคาเซรามิก SCG พรีเมียม:\u003c/strong\u003e นำเสนอรุ่น Excella / Prestige / NeuStyle ตอบโจทย์ดีไซน์บ้านหรูสไตล์โมเดิร์น",
                                       "\u003cstrong\u003eวัสดุตกแต่ง SCG D-COR \u0026 ฉนวนกันความร้อน:\u003c/strong\u003e เจาะกลุ่มงานผนังตกแต่งภายนอกและบิวท์อิน Interior ตอบสนองลูกค้าระดับบน"
-                                  ]
+                                  ],
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-09",
@@ -1704,11 +1704,11 @@ var UDON_COMPANIES = [
                                 "จองคิวรถโม่คอนกรีต CPAC ล่วงหน้าสำหรับงานเทฐานรากไซต์สร้างคอม 100+ ตร.ม.",
                                 "จัดทำข้อเสนอเครดิตเทอมพิเศษและสะสมคะแนน SCG Family สำหรับโครงการไตรมาสถัดไป"
                             ],
-        "tag":  "focus",
         "opportunityScore":  96,
         "scgCode":  "10503273",
         "sales2025":  677870.3,
-        "sales2026":  2338879
+        "sales2026":  2338879,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-57",
@@ -1895,11 +1895,11 @@ var UDON_COMPANIES = [
                                 "ประสานงานจัดส่งปูนเสือ สกิมโค้ท, ปูนเสือ มอร์ตาร์ และแผ่นยิปซัมตราช้าง ตรงสู่ไซต์งาน อ.เมืองอุดรธานี",
                                 "นำเสนอโซลูชันคอนกรีตผสมเสร็จ CPAC สำหรับงานเทพื้นปรับระดับและงานต่อเติมรอบบ้าน"
                             ],
-        "tag":  "focus",
         "opportunityScore":  86,
         "scgCode":  "10615285",
         "sales2025":  321401,
-        "sales2026":  74809
+        "sales2026":  74809,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-46",
@@ -2092,11 +2092,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  70,
         "scgCode":  "10349378",
         "sales2025":  31873,
-        "sales2026":  181379
+        "sales2026":  181379,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-42",
@@ -2351,11 +2351,11 @@ var UDON_COMPANIES = [
                                 "ส่งมอบข้อมูลสเปกปูนเกราท์ SCG Non-Shrink Grout ให้ทีมช่างสำหรับงานติดตั้งป้ายโครงเหล็กทาวเวอร์",
                                 "ประสานงานร้านตัวแทน SCG ในพื้นที่เมืองอุดรธานี จัดส่งสินค้าตรงถึงหน้างานรวดเร็ว"
                             ],
-        "tag":  "focus",
         "opportunityScore":  84,
         "scgCode":  "10051168",
         "sales2025":  15209,
-        "sales2026":  22100
+        "sales2026":  22100,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-56",
@@ -2564,11 +2564,11 @@ var UDON_COMPANIES = [
                                 "จัดส่งตัวอย่างปูนกาวซีเมนต์เสือ และกระเบื้องปูพื้น COTTO สำหรับงานต่อเติมครัว ต.ดอนหายโศก",
                                 "ประสานงานร้านค้าตัวแทนจำหน่าย SCG ใน อ.หนองหาน เพื่ออำนวยความสะดวกในการจัดส่งถึงหน้างาน"
                             ],
-        "tag":  "new",
         "opportunityScore":  70,
         "scgCode":  "10724225",
         "sales2025":  0,
-        "sales2026":  1470
+        "sales2026":  1470,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-05",
@@ -2758,11 +2758,11 @@ var UDON_COMPANIES = [
                                 "ประสานร้านผู้แทนจำหน่าย SCG ในพื้นที่จัดทำใบเสนอราคาแพ็กเกจหลังคา SCG Prestige",
                                 "ร่วมติดตามความคืบหน้าระยะยาวสำหรับไซต์งานบอกต่อในเครือข่าย MRB"
                             ],
-        "tag":  "focus",
         "opportunityScore":  90,
         "scgCode":  "10280647",
         "sales2025":  3461247.0,
-        "sales2026":  783850.0
+        "sales2026":  783850.0,
+        "tag":  "strategic"
     },
     {
         "name":  "ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น",
@@ -2912,7 +2912,8 @@ var UDON_COMPANIES = [
                                      ]
                          }
                      ],
-        "id":  "comp-udon-58"
+        "id":  "comp-udon-58",
+        "tag":  "growth"
     },
     {
         "id":  "comp-udon-49",
@@ -3071,11 +3072,11 @@ var UDON_COMPANIES = [
                                 "เสนอแพ็กเกจบันเดิลปูนฉาบ เสือ มอร์ตาร์ คู่กับแผ่นยิปซัมตราช้าง SCG และฉนวน STAY COOL ให้คุณนิติพันธ์ (092-412-3987)",
                                 "จัดระบบเครดิตเทอมและการจัดส่งตรงหน้างานด่วนผ่านศูนย์กระจายสินค้า SCG อุดรธานี"
                             ],
-        "tag":  "focus",
         "opportunityScore":  85,
         "scgCode":  "10383888",
         "sales2025":  553824,
-        "sales2026":  569818
+        "sales2026":  569818,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-17",
@@ -3271,7 +3272,8 @@ var UDON_COMPANIES = [
                      ],
         "scgCode":  "10383888",
         "sales2025":  553824,
-        "sales2026":  569818
+        "sales2026":  569818,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-03",
@@ -3430,7 +3432,6 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  70,
         "scgCode":  "10727085",
         "sales2025":  0,
@@ -3441,7 +3442,8 @@ var UDON_COMPANIES = [
                                       "\u003cstrong\u003eปูนซีเมนต์ไฮดรอลิก SCG และปูนเสือ มอร์ตาร์:\u003c/strong\u003e ต่อยอดจากการจัดอบรมช่าง ล็อกสเปกใช้งานปูนโครงสร้าง SCG และปูนฉาบสำเร็จรูปเสือสำหรับบ้าน คสล. ทุกหลัง",
                                       "\u003cstrong\u003eระบบผนังมวลเบา Q-CON และอิฐมวลเบา:\u003c/strong\u003e นำเสนอโซลูชันผนังกันความร้อน ช่วยประหยัดเวลาและลดน้ำหนักโครงสร้างอาคาร 2 ชั้น",
                                       "\u003cstrong\u003eระบบหลังคา SCG และอุปกรณ์ครอบกันรั่ว:\u003c/strong\u003e นำเสนอกระเบื้องหลังคาคอนกรีต SCG (ซีแพค/เพรสทีจ) พร้อมชุดอุปกรณ์ Dry-Tech System ครบวงจรสำหรับโครงการบ้านเดี่ยว"
-                                  ]
+                                  ],
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-55",
@@ -3640,11 +3642,11 @@ var UDON_COMPANIES = [
                                 "ประสานงานศูนย์กระจายสินค้า SCG / ร้านตัวแทนกุมภวาปี เพื่อวางแผนรอบรถขนส่งวัสดุเข้า อ.ประจักษ์ศิลปาคม แบบ On-time Delivery",
                                 "สมัครสมาชิกช่าง SCG พร้อมมอบของพรีเมียมต้อนรับคู่ค้ารายใหม่"
                             ],
-        "tag":  "focus",
         "opportunityScore":  86,
         "scgCode":  "10724226",
         "sales2025":  0,
-        "sales2026":  75021
+        "sales2026":  75021,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-12",
@@ -3757,11 +3759,11 @@ var UDON_COMPANIES = [
                                 "จัดทำเคสตัวอย่างพรีเมียมร่วมกับไซต์คฤหาสน์ 3 ชั้น อุดรธานี ที่ติดตั้ง SCG Active AIR Quality",
                                 "อำนวยความสะดวกด้านโลจิสติกส์จัดส่งวัสดุข้ามจังหวัด (อุดรฯ - ขอนแก่น - สกลนคร - หนองบัวลำภู) แบบครบวงจร"
                             ],
-        "tag":  "focus",
         "opportunityScore":  95,
         "scgCode":  "10335064",
         "sales2025":  2514378,
-        "sales2026":  1361324
+        "sales2026":  1361324,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-51",
@@ -3874,11 +3876,11 @@ var UDON_COMPANIES = [
                                 "ทำข้อตกลงราคาพิเศษกลุ่ม Mass Housing สำหรับแบบบ้าน R211, R221, R223",
                                 "บันทึกยอดสะสมเข้าโปรแกรม SCG Family Builder VIP"
                             ],
-        "tag":  "focus",
         "opportunityScore":  90,
         "scgCode":  "10485682",
         "sales2025":  12246,
-        "sales2026":  768825.5
+        "sales2026":  768825.5,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-16",
@@ -3997,11 +3999,11 @@ var UDON_COMPANIES = [
                                 "นำเสนอแคตตาล็อกสุขภัณฑ์ COTTO และระบบรั้วสำเร็จรูป SCG Precast",
                                 "ประสานงานจัดส่งวัสดุตรงจากตัวแทนจำหน่าย SCG ในเขตเทศบาลนครอุดรธานี"
                             ],
-        "tag":  "focus",
         "opportunityScore":  85,
         "scgCode":  "10509038",
         "sales2025":  28572.5,
-        "sales2026":  395558.3
+        "sales2026":  395558.3,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-27",
@@ -4159,7 +4161,8 @@ var UDON_COMPANIES = [
                             ],
         "scgCode":  "10729130",
         "sales2025":  0,
-        "sales2026":  238997
+        "sales2026":  238997,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-35",
@@ -4284,208 +4287,242 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  "10568031",
         "sales2025":  39378,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "strategic"
     },
     {
-        "id":  "comp-udon-32",
         "name":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
-        "engName":  "PA \u0026 TN Limited Partnership",
-        "category":  "รับสร้างบ้าน ออกแบบ และงานอาคารสาธารณะครบวงจร (TSIC 41001)",
+        "engName":  "PA \u0026 TN Limited Partnership (Baanyai Luxury Home)",
+        "category":  "รับสร้างบ้านหรู ออกแบบและก่อสร้างระดับ Luxury (TSIC 41001)",
         "province":  "อุดรธานี",
-        "district":  "บ้านดุง",
-        "address":  "311 หมู่ที่ 9 ถนนบ้านดุง-สุมเส้า ต.ศรีสุทโธ อ.บ้านดุง จ.อุดรธานี 41190",
-        "phone":  "098 834 3732 / 098 585 8741",
-        "contactPerson":  "คุณพิศภัทร์ แสนอินทร์ (098-834-3732) - หัวหน้าทีมออกแบบและควบคุมงาน PA\u0026TN TEAM",
-        "totalProjects":  3,
-        "newProjectsThisMonth":  3,
-        "totalValueMillion":  10.5,
+        "district":  "เมืองอุดรธานี",
+        "address":  "ต.หมากแข้ง อ.เมืองอุดรธานี จ.อุดรธานี",
+        "phone":  "098-585-8741",
+        "contactPerson":  "คุณบิ๊ก (K.BIG ผู้บริหารโครงการ) / Tel: 098-585-8741",
+        "totalProjects":  4,
+        "newProjectsThisMonth":  2,
+        "totalValueMillion":  54.5,
         "growthRate":  50,
-        "areaExpansion":  "บ้านดุง, เมืองอุดรธานี",
+        "areaExpansion":  "เมืองอุดรธานี, ขอนแก่น, หนองคาย",
+        "revenuePotentialText":  "฿4.5M",
+        "latestTimelineStage":  "structure",
+        "coordinates":  [
+                            17.408,
+                            102.792
+                        ],
+        "googleMapsUrl":  "https://maps.app.goo.gl/bYM7Bx8MZLHjLztD7",
+        "gmaps":  "https://maps.app.goo.gl/bYM7Bx8MZLHjLztD7",
+        "facebookUrl":  "https://www.facebook.com/baanyaiteam",
         "verificationStatus":  {
                                    "isVerified":  true,
                                    "confidence":  "100%",
-                                   "evidenceSource":  "Facebook Page | DBD: 0415564002621",
+                                   "evidenceSource":  "Facebook Page (Baanyai Team / PA\u0026TN) | DBD: 0413564002621",
                                    "permitStatus":  "TSIC 41001"
                                },
         "stageBreakdown":  {
                                "groundbreak":  0,
                                "foundation":  1,
-                               "structure":  1,
+                               "structure":  2,
                                "finishing":  1
                            },
-        "latestTimelineStage":  "finishing",
-        "revenuePotentialText":  "฿1.2M",
-        "coordinates":  [
-                            17.699,
-                            103.258
-                        ],
-        "googleMapsUrl":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
-        "gmaps":  "https://maps.app.goo.gl/EJb3h9y7jTe4JMiJ7",
-        "facebookUrl":  "https://www.facebook.com/PATN2021",
         "facebookSignal":  {
-                               "postDate":  "12/6/2569",
-                               "pageName":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
-                               "caption":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า Design By . Peesapat Saen In , PA\u0026TN TEAM โทร: 098-834-3732",
-                               "likes":  18,
-                               "comments":  4,
-                               "shares":  2,
+                               "postDate":  "26/8/2569",
+                               "pageName":  "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น (Baanyai Team)",
+                               "caption":  "Onsite Update: บ้านพักอาศัย 500+ ตร.ม. พร้อมสระว่ายน้ำ อ.เมือง จ.อุดรธานี ก่ออิฐแดง 90% สระว่ายน้ำ 100%",
+                               "likes":  39,
+                               "comments":  2,
+                               "shares":  14,
                                "detectedKeywords":  [
                                                         "อุดรธานี",
-                                                        "ก่อสร้างจริง"
+                                                        "รับสร้างบ้านหรู",
+                                                        "สระว่ายน้ำ",
+                                                        "ก่อสร้างจริง",
+                                                        "บ้านใหญ่"
                                                     ]
                            },
+        "salesActionPlan":  [
+                                "เข้าพบนายช่างและฝ่ายจัดซื้อโครงการบ้านหรู 500-600 ตร.ม. เพื่อนำเสนอกระเบื้อง COTTO Grande Series และระบบปูนกาว SCG จระเข้ทอง",
+                                "นำเสนอคอนกรีตผสมเสร็จ CPAC และเหล็กเส้น SD40 SCG สำหรับโครงการเปิดหน้างานใหม่ของกลุ่มคุณหมอ"
+                            ],
         "projects":  [
                          {
                              "projectId":  "comp-udon-32-1",
-                             "name":  "โครงการบ้านพักอาศัยเดี่ยวพร้อมงานตกแต่งสถาปัตย์ 📍 โซน อ.บ้านดุง-เมืองอุดรธานี",
-                             "location":  "ต.ศรีสุทโธ อ.บ้านดุง จ.อุดรธานี",
+                             "name":  "บ้านพักอาศัยหรู 500+ ตร.ม. พร้อมสระว่ายน้ำ (คุณอ้น \u0026 คุณปุ้ม)",
+                             "location":  "อ.เมือง จ.อุดรธานี",
                              "province":  "อุดรธานี",
-                             "district":  "บ้านดุง",
+                             "district":  "เมืองอุดรธานี",
                              "gps":  [
-                                         17.699,
-                                         103.258
+                                         17.408,
+                                         102.792
                                      ],
-                             "stage":  "งานสถาปัตย์ ตกแต่งภายใน และติดตั้งสุขภัณฑ์กระเบื้อง",
-                             "stageKey":  "finishing",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  95,
-                             "estValue":  "3.8 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัยเดี่ยว 1-2 ชั้น Contemporary Style",
-                             "caption":  "เสร็จสมบูรณ์ : พร้อมตกแต่งเพิ่มเติมตามคอนเซปของลูกค้า Design By . Peesapat Saen In , PA\u0026TN TEAM โทร 098-834-3732",
-                             "postedTime":  "12/6/2569",
-                             "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid02hHQMZRdRekrWUBQRvruCspa1aEpBxRJB1mom4jQ6HQ8iqQwDSjLkYrZNfGasGpgwl\u0026id=100070380123821",
+                             "stage":  "งานก่ออิฐแดง 90%, กรีดท่อไฟ, โครงสร้างสระว่ายน้ำ 100% และเสาเข็มรั้ว",
+                             "stageKey":  "structure",
+                             "trackingStatus":  "in-progress",
+                             "progressPercent":  60,
+                             "estValue":  "14.5 ล้านบาท",
+                             "buildingType":  "บ้านพักอาศัยหรู Luxury 2 ชั้น พื้นที่ 500+ ตร.ม. พร้อมสระว่ายน้ำ",
+                             "caption":  "การก่อสร้างที่เป็นมิตรต่อสิ่งแวดล้อม: ทุกก้อนอิฐมีความสำคัญ 🧱\n\nOnsite Update :\n• งานก่ออิฐแดง  90% (อิฐแดง 3 รู ตามมาตรฐานของบริษัท)\n• เริ่มงานกรีดท่อไฟ และเตรียมฉาบผนังภายใน-ภายนอก\n• งานสระว่ายน้ำโครงสร้าง 100% เตรียมปูกระเบื้องและเทสระบบสระว่ายน้ำ\n• เริ่มเจาะเสาเข็มงานรั้วโดยรอบ\n\nOwner : K.Aon \u0026 K. Pum | Location : Mueang Udon Thani | Function area : 500+ sqm.",
+                             "postedTime":  "26/8/2569",
+                             "postUrl":  "https://www.facebook.com/baanyaiteam/posts/pfbid02TSVU3t6ZxQmRNznfmtAFJnHFJHh286WjLtzu7moDVGnx9f5WKL24D4E3Rbjnzsa4l",
                              "boq":  [
                                          {
-                                             "sku":  "ชุดสุขภัณฑ์และอุปกรณ์ห้องน้ำ COTTO Modern Series",
-                                             "qty":  "3 ชุด",
-                                             "estCost":  "฿38,000",
+                                             "sku":  "ปูนซีเมนต์ผสมเสร็จเสือ มอร์ตาร์ ฉาบทั่วไป \u0026 ปูนก่ออิฐ",
+                                             "qty":  "550 ถุง",
+                                             "estCost":  "฿82,500",
                                              "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "กระเบื้องปูพื้นบุผนัง COTTO Matt Stone Collection",
-                                             "qty":  "95 ตร.ม.",
-                                             "estCost":  "฿38,000",
+                                             "sku":  "กระเบื้องสระว่ายน้ำ COTTO Glass Mosaics \u0026 ซีเมนต์กันซึม SCG Crocodile",
+                                             "qty":  "120 ตร.ม. + 15 ชุด",
+                                             "estCost":  "฿148,000",
                                              "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ ฉาบแต่งผิวละเอียด / ปูนกาวซีเมนต์ SCG",
-                                             "qty":  "40 ถุง",
-                                             "estCost":  "฿7,200",
+                                             "sku":  "ท่อร้อยสายไฟและอุปกรณ์ฟิตติ้ง SCG สีขาว/เหลือง",
+                                             "qty":  "1 โครงการ",
+                                             "estCost":  "฿38,500",
+                                             "urgency":  "ด่วนที่สุด"
+                                         },
+                                         {
+                                             "sku":  "คอนกรีตผสมเสร็จ CPAC สำหรับงานเสาเข็มเจาะและคานรั้ว",
+                                             "qty":  "45 คิว",
+                                             "estCost":  "฿99,000",
                                              "urgency":  "เตรียมสั่งซื้อ"
                                          }
                                      ]
                          },
                          {
                              "projectId":  "comp-udon-32-2",
-                             "name":  "โครงการก่อสร้างบ้านพักอาศัยใหม่ คสล. 📍 อ.บ้านดุง จ.อุดรธานี",
-                             "location":  "อ.บ้านดุง จ.อุดรธานี",
+                             "name":  "บ้านพักอาศัยหรู Luxury 600+ ตร.ม. (นพ.นิค \u0026 พญ.จิงโจ้)",
+                             "location":  "อ.เมือง จ.อุดรธานี",
                              "province":  "อุดรธานี",
-                             "district":  "บ้านดุง",
+                             "district":  "เมืองอุดรธานี",
                              "gps":  [
-                                         17.699,
-                                         103.258
+                                         17.421,
+                                         102.783
                                      ],
-                             "stage":  "งานเปิดหน้างาน วางผัง ฐานราก ตอม่อ และคานคอดิน คสล.",
-                             "stageKey":  "foundation",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  30,
-                             "estValue":  "2.2 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัยเดี่ยว 1 ชั้น คสล.",
-                             "caption":  "ภาพอัปเดตงานเตรียมหน้างานและลงเสาผังโครงการบ้านพักอาศัย อ.บ้านดุง PA\u0026TN TEAM โทร: 098-834-3732",
-                             "postedTime":  "15/5/2569",
-                             "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0ADYj1JSDbKY4UWHVqwqd3AxS3baSwZN6ndoh1vkQxQPDpY1q8r49kveqAmxJYN84l\u0026id=100070380123821",
+                             "stage":  "งานปูกระเบื้องพื้น 80%, ติดตั้งฝ้าเพดาน 90% และระบบระบายน้ำ",
+                             "stageKey":  "finishing",
+                             "trackingStatus":  "in-progress",
+                             "progressPercent":  80,
+                             "estValue":  "18.0 ล้านบาท",
+                             "buildingType":  "บ้านพักอาศัยหรู Luxury 2 ชั้น พื้นที่ 600+ ตร.ม.",
+                             "caption":  "Onsite Update :￼\n• งานปูพื้นกระเบื้องภายในบ้าน (80%) หวีปูนกาวคุณภาพสูง\n• งานBuilt-in (40%)\n• งานวางระบบระบายน้ำรอบบ้าน(80%)\n• งานติดตั้งประตูหน้าต่างอะลูมิเนียม(80%)\n• งานติดตั้งฝ้าเพดานภายในและภายนอก(90%)\n• ภาพรวมงานตัวบ้าน 70-80% แล้ว\n\nOwner : Dr. Nick \u0026 Dr. Jingjoe | Location : Mueang Udon Thani | Function area : 600+ sqm.",
+                             "postedTime":  "22/8/2569",
+                             "postUrl":  "https://www.facebook.com/baanyaiteam/posts/pfbid0392VcEkJ1kGag836nLapTbnSgqkqjoQKCp9P9H2jRL4DL85ca75yVkD79pJbyjXHl",
                              "boq":  [
                                          {
-                                             "sku":  "คอนกรีตผสมเสร็จ CPAC 240 ksc (ส่งหน้างาน อ.บ้านดุง)",
-                                             "qty":  "45 คิว",
-                                             "estCost":  "฿99,000",
+                                             "sku":  "กระเบื้องปูพื้น COTTO Grande Series \u0026 กาวซีเมนต์ SCG จระเข้ทอง",
+                                             "qty":  "450 ตร.ม.",
+                                             "estCost":  "฿382,500",
                                              "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "ปูนซีเมนต์ไฮดรอลิก SCG งานโครงสร้าง",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿30,600",
+                                             "sku":  "แผ่นยิปซัมตราช้าง SCG และโครงคร่าวโลหะ Proline ฝ้าเพดาน",
+                                             "qty":  "320 แผ่น",
+                                             "estCost":  "฿76,800",
                                              "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "แผ่นยิปซัมตราช้างพลัส 9 มม. และโครงคร่าว ProBalance",
-                                             "qty":  "70 แผ่น",
-                                             "estCost":  "฿11,900",
+                                             "sku":  "ท่อระบายน้ำ SCG พร้อมบ่อพักและฝาปิดสำเร็จรูป",
+                                             "qty":  "1 ชุดโครงการ",
+                                             "estCost":  "฿42,000",
+                                             "urgency":  "ด่วนที่สุด"
+                                         },
+                                         {
+                                             "sku":  "ฉนวนกันความร้อน STAY COOL ตราช้าง SCG 75 มม.",
+                                             "qty":  "40 ม้วน",
+                                             "estCost":  "฿20,000",
                                              "urgency":  "เตรียมสั่งซื้อ"
                                          }
                                      ]
                          },
                          {
                              "projectId":  "comp-udon-32-3",
-                             "name":  "โครงการปรับปรุงและก่อสร้างอาคารราชการ/อาคารอเนกประสงค์ท้องถิ่น 📍 อ.บ้านดุง",
-                             "location":  "อ.บ้านดุง จ.อุดรธานี",
+                             "name":  "บ้านพักอาศัยระดับ Luxury (คุณหมอ)",
+                             "location":  "อ.เมือง จ.อุดรธานี",
                              "province":  "อุดรธานี",
-                             "district":  "บ้านดุง",
+                             "district":  "เมืองอุดรธานี",
                              "gps":  [
-                                         17.699,
-                                         103.258
+                                         17.415,
+                                         102.805
                                      ],
-                             "stage":  "งานปรับปรุงโครงสร้าง ก่อผนังเบา และงานระบบสุขาภิบาลอาคาร",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  60,
-                             "estValue":  "4.5 ล้านบาท",
-                             "buildingType":  "อาคารสาธารณะและสำนักงานท้องถิ่น",
-                             "caption":  "งานปรับปรุงและก่อสร้างอาคารราชการ/อาคารอเนกประสงค์ท้องถิ่น อ.บ้านดุง จ.อุดรธานี PA\u0026TN TEAM โทร 098-834-3732",
-                             "postedTime":  "1/6/2569",
-                             "postUrl":  "https://www.facebook.com/PATN2021",
+                             "stage":  "พิธียกเสาเอก-เสาโท และเริ่มงานฐานรากเสาเข็ม",
+                             "stageKey":  "foundation",
+                             "trackingStatus":  "in-progress",
+                             "progressPercent":  10,
+                             "estValue":  "12.5 ล้านบาท",
+                             "buildingType":  "บ้านพักอาศัยเดี่ยว Luxury Custom-built (5.XX ล้านบาทขึ้นไป)",
+                             "caption":  "บ้านในฝันหลังนี้ใช้เวลาพูดคุยแนวทางและดูผลงานต่างๆกันเกือบ 3 ปี วันนี้พร้อมแล้ว ได้ฤกษ์ดี วันดี ยกเสาเอก-เสาโท สร้างบ้าน\n“ วันจันทร์ที่ 14 กันยายน 2569 ”\nLocation : Mueang Udon Thani | รับงานก่อสร้างมูลค่า 5.XX ล้านบาทขึ้นไป",
+                             "postedTime":  "19/8/2569",
+                             "postUrl":  "https://www.facebook.com/baanyaiteam/posts/pfbid02dBmC1exwMqF27npFKvEQkURVnH1ZvEDtr8cvSnF6vEfDe8ht6z7rHJobex66Z4iil",
                              "boq":  [
                                          {
-                                             "sku":  "แผ่น SCG สมาร์ทบอร์ด หนา 8-12 มม. ผนังและฝ้าเพดาน",
-                                             "qty":  "180 แผ่น",
-                                             "estCost":  "฿45,000",
+                                             "sku":  "คอนกรีตผสมเสร็จ CPAC สำหรับงานฐานรากและเสาตอม่อ",
+                                             "qty":  "110 ลบ.ม.",
+                                             "estCost":  "฿242,000",
                                              "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ อาคารสาธารณะ",
-                                             "qty":  "220 ถุง",
-                                             "estCost":  "฿28,600",
+                                             "sku":  "เหล็กข้ออ้อย มอก. SD40 SCG ตราช้าง (DB16, DB20, DB25)",
+                                             "qty":  "14.5 ตัน",
+                                             "estCost":  "฿362,500",
                                              "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "ชุดสุขภัณฑ์และก๊อกน้ำ COTTO Commercial Collection",
-                                             "qty":  "8 ชุด",
-                                             "estCost":  "฿64,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "น้ำยาประสานคอนกรีตและน้ำยากันซึมโครงสร้าง SCG",
+                                             "qty":  "20 แกลลอน",
+                                             "estCost":  "฿18,000",
+                                             "urgency":  "ด่วนที่สุด"
+                                         }
+                                     ]
+                         },
+                         {
+                             "projectId":  "comp-udon-32-4",
+                             "name":  "บ้านพักอาศัยสองชั้น (คุณโบ้ - คุณปุ๋ย)",
+                             "location":  "อ.เมือง จ.อุดรธานี",
+                             "province":  "อุดรธานี",
+                             "district":  "เมืองอุดรธานี",
+                             "gps":  [
+                                         17.392,
+                                         102.775
+                                     ],
+                             "stage":  "งานก่ออิฐมอญแดง 50% และเตรียมมุงหลังคา Snaplock",
+                             "stageKey":  "structure",
+                             "trackingStatus":  "in-progress",
+                             "progressPercent":  45,
+                             "estValue":  "9.5 ล้านบาท",
+                             "buildingType":  "บ้านพักอาศัย 2 ชั้น Modern Luxury",
+                             "caption":  "Location : Mueang Udon Thani\nบ้านพักอาศัยสองชั้น : (คุณโบ้-คุณปุ๋ย) ตอนนี้หน้างานเดินทางไปถึงงานก่ออิฐมอญแดงแล้วเสร็จประมาณ 50% แล้ว ทางบริษัทได้สั่งแผ่นหลังคาและเตรียมหน้างานไว้เพื่อมุงหลังคา SNAPLOCK รุ่นพิเศษภายในเดือนนี้ ตามแผนงานที่วางเอาไว้",
+                             "postedTime":  "17/8/2569",
+                             "postUrl":  "https://www.facebook.com/reel/860784876970507/",
+                             "boq":  [
+                                         {
+                                             "sku":  "ปูนเสือ มอร์ตาร์ ปูนก่ออิฐมอญ และปูนฉาบละเอียด",
+                                             "qty":  "420 ถุง",
+                                             "estCost":  "฿63,000",
+                                             "urgency":  "ด่วนที่สุด"
                                          },
                                          {
-                                             "sku":  "ปูนปรับระดับพื้น Self-Leveling SCG",
-                                             "qty":  "35 ถุง",
-                                             "estCost":  "฿8,050",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "ฉนวนสะท้อนความร้อนและฉนวนกันเสียงใต้หลังคา SCG",
+                                             "qty":  "25 ม้วน",
+                                             "estCost":  "฿22,500",
+                                             "urgency":  "ด่วนที่สุด"
+                                         },
+                                         {
+                                             "sku":  "เหล็กโครงสร้างหลังคา มอก. / C-Line",
+                                             "qty":  "5.5 ตัน",
+                                             "estCost":  "฿137,500",
+                                             "urgency":  "ด่วนที่สุด"
                                          }
                                      ]
                          }
                      ],
-        "aiShortRec":  "พบ 3 ไซต์งานจริงใน จ.อุดรธานี (บ้านพักอาศัยตกแต่งเสร็จ 95%, บ้านใหม่ อ.บ้านดุง 30%, งานปรับปรุงอาคารราชการท้องถิ่น 60%)",
-        "aiRecommendation":  "ผู้รับเหมาและทีมออกแบบหลักโซน อ.บ้านดุง แนะนำประสานตัวแทน SCG บ้านดุง ส่งคอนกรีต CPAC และชุดสุขภัณฑ์ COTTO Commercial ด่วน",
-        "customDiagnostic":  "ห้างหุ้นส่วนจำกัด พีเอ แอนด์ ทีเอ็น (PA\u0026TN) เป็นผู้รับเหมาและทีมออกแบบสถาปัตยกรรม (Design \u0026 Build) คุณภาพสูงในโซน อ.บ้านดุง จ.อุดรธานี คุมงานโดยคุณพิศภัทร์ แสนอินทร์ มีผลงานครอบคลุมทั้งบ้านพักอาศัยสไตล์ Contemporary/Modern และงานปรับปรุงอาคารราชการ/อาคารสาธารณะท้องถิ่น มีไซต์งาน Active รวม 3 โครงการ เป็น New Prospect ศักยภาพสูงที่สามารถดึงยอดซื้อคอนกรีต CPAC, ปูนเสือ มอร์ตาร์, แผ่นสมาร์ทบอร์ด SCG และสุขภัณฑ์ COTTO ผ่านเครือข่ายผู้แทนจำหน่าย SCG ประจำอำเภอบ้านดุงได้ทันที",
-        "customRecommendations":  [
-                                      "\u003cstrong\u003eคอนกรีตผสมเสร็จ CPAC 240 ksc (45 คิว):\u003c/strong\u003e ล็อกสเปกคอนกรีตผสมเสร็จ CPAC สำหรับงานฐานรากและคานคอดินไซต์บ้านใหม่ อ.บ้านดุง",
-                                      "\u003cstrong\u003eชุดสุขภัณฑ์ COTTO Modern \u0026 Commercial Series (11 ชุด):\u003c/strong\u003e นำเสนอสุขภัณฑ์คุณภาพสูงสำหรับทั้งบ้านพักอาศัยและอาคารสาธารณะท้องถิ่น",
-                                      "\u003cstrong\u003eแผ่น SCG สมาร์ทบอร์ด \u0026 ยิปซัมตราช้างพลัส:\u003c/strong\u003e นำเสนอโซลูชันระบบผนังเบาและฝ้าเพดานสำหรับงานรีโนเวทอาคารราชการและบ้านพักอาศัย",
-                                      "\u003cstrong\u003eปูนเสือ มอร์ตาร์ ฉาบละเอียด \u0026 ปูนกาวซีเมนต์ SCG:\u003c/strong\u003e สนับสนุนการสั่งซื้อตรงผ่านร้านค้าผู้แทนจำหน่าย SCG ในพื้นที่ อ.บ้านดุง"
-                                  ],
-        "salesActionPlan":  [
-                                "ติดต่อคุณพิศภัทร์ แสนอินทร์ (098-834-3732 / 098-585-8741) แนะนำตัวทีมขาย SCG และส่งมอบแคตตาล็อก SCG Home Solution",
-                                "ประสานงานร้านผู้แทนจำหน่าย SCG ใน อ.บ้านดุง เพื่อเสนอราคาพิเศษสำหรับคอนกรีต CPAC และปูนเสือ มอร์ตาร์",
-                                "จัดทำใบเสนอราคาชุดสุขภัณฑ์ COTTO Commercial 8 ชุด สำหรับโครงการอาคารราชการท้องถิ่น",
-                                "ดึงเข้าโปรแกรม SCG Family / Contractor Loyalty Program เพื่อสร้างความผูกพันระยะยาว"
-                            ],
-        "tag":  "focus",
-        "opportunityScore":  84,
-        "scgCode":  "",
-        "sales2025":  0,
-        "sales2026":  0
+        "id":  "comp-udon-32",
+        "tag":  "growth"
     },
     {
         "id":  "comp-udon-22",
@@ -4638,11 +4675,11 @@ var UDON_COMPANIES = [
                                 "ส่งมอบตัวอย่างกระเบื้อง COTTO Matt Porcelain และแคตตาล็อก STAY COOL ให้ทีมสถาปนิกประจำออฟฟิศ",
                                 "มอบป้ายสัญลักษณ์ Co-Branding \"บ้านสร้างด้วยวัสดุคุณภาพ SCG \u0026 CPAC\" ติดตั้งหน้างานทุกหลัง"
                             ],
-        "tag":  "focus",
         "opportunityScore":  96,
         "scgCode":  "10640153",
         "sales2025":  438100,
-        "sales2026":  1992527
+        "sales2026":  1992527,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-01",
@@ -4733,11 +4770,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  "10590829",
         "sales2025":  11367,
-        "sales2026":  329498.4
+        "sales2026":  329498.4,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-48",
@@ -4930,11 +4967,11 @@ var UDON_COMPANIES = [
                                 "ส่งมอบตัวอย่างสีกระเบื้องหลังคา CPAC Monier และแคตตาล็อกสุขภัณฑ์ COTTO ให้ฝ่ายขายโครงการ",
                                 "มอบป้ายสนับสนุนโครงการ \"โครงการนี้เลือกใช้วัสดุคุณภาพ SCG ทั้งหลัง\" เพื่อเพิ่มความน่าเชื่อถือให้โครงการจัดสรร"
                             ],
-        "tag":  "focus",
         "opportunityScore":  92,
         "scgCode":  "10369218",
         "sales2025":  3282,
-        "sales2026":  162877.8
+        "sales2026":  162877.8,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-43",
@@ -5115,11 +5152,11 @@ var UDON_COMPANIES = [
                                 "ประสานงานร้านค้าตัวแทนจำหน่าย SCG สาขาหนองหานจัดเตรียมสต็อกปูนโครงสร้าง SCG และกระเบื้อง CPAC Monier",
                                 "มอบโปรโมชันบัตรกำนัลช่าง / ช่างรับสร้างบ้าน SCG Family เพื่อสร้างแรงจูงใจให้ทีมงานกลับมาใช้ SCG ต่อเนื่อง"
                             ],
-        "tag":  "focus",
         "opportunityScore":  89,
         "scgCode":  "10126345",
         "sales2025":  110483,
-        "sales2026":  18166
+        "sales2026":  18166,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-52",
@@ -5317,11 +5354,11 @@ var UDON_COMPANIES = [
                                 "เสนอราคาพิเศษสุขภัณฑ์ COTTO Minimal และกระเบื้องปูพื้น 60x120 ซม. เข้าไซต์บ้านสวน 300 ตร.ม.",
                                 "นัดหมายเจรจา Supply คอนกรีต CPAC เทลาน/โครงสร้าง รองรับทีมช่างชุดใหม่ที่กำลังขยายสาขา"
                             ],
-        "tag":  "focus",
         "opportunityScore":  88,
         "scgCode":  "10612650",
         "sales2025":  31155,
-        "sales2026":  93806.25
+        "sales2026":  93806.25,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-34",
@@ -5412,11 +5449,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  "10568031",
         "sales2025":  39378,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-11",
@@ -5637,11 +5674,11 @@ var UDON_COMPANIES = [
                                 "ประสานงานส่งคอนกรีต CPAC และเหล็กเส้น SCG เข้าไซต์ยกเสาเอก อ.เพ็ญ (คุณนุ่น 3.5M)",
                                 "ส่งราคาเสาเข็มและคอนกรีตผสมเสร็จ CPAC สำหรับไซต์ตอกเสาเข็ม อ.เพ็ญ (3.5M)"
                             ],
-        "tag":  "verified",
         "opportunityScore":  95,
         "scgCode":  "10369220",
         "sales2025":  2151623,
-        "sales2026":  2222685
+        "sales2026":  2222685,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-04",
@@ -5698,11 +5735,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  "10108161",
         "sales2025":  1069432,
-        "sales2026":  1208551
+        "sales2026":  1208551,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-28",
@@ -5759,11 +5796,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  "10500344",
         "sales2025":  469506,
-        "sales2026":  1337450
+        "sales2026":  1337450,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-47",
@@ -5821,11 +5858,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  "10351579",
         "sales2025":  14345.3,
-        "sales2026":  127081
+        "sales2026":  127081,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-45",
@@ -5882,11 +5919,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  "10351579",
         "sales2025":  14345.3,
-        "sales2026":  127081
+        "sales2026":  127081,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-06",
@@ -6030,11 +6067,11 @@ var UDON_COMPANIES = [
                                 "จัดส่งแคตตาล็อกและใบเสนอราคาสีทาอาคาร SCG/TOA และไม้ฝาตกแต่ง SCG Smartwood สำหรับงานรั้วและโรงรถบ้านเดี่ยวโมเดิร์น",
                                 "ต่อยอดการประชุมร่วมกับทีม COTTO จัดทำ Mood Board สุขภัณฑ์และกระเบื้องสำหรับงานห้องน้ำโชว์รูมและบ้านพักอาศัย"
                             ],
-        "tag":  "verified",
         "opportunityScore":  85,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "id":  "comp-udon-18",
@@ -6295,11 +6332,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  80,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "id":  "comp-udon-41",
@@ -6438,7 +6475,8 @@ var UDON_COMPANIES = [
                                          }
                                      ]
                          }
-                     ]
+                     ],
+        "tag":  "growth"
     },
     {
         "name":  "ห้างหุ้นส่วนจำกัด ปิยภัทร125 คอนสตรัคชั่น",
@@ -6768,7 +6806,8 @@ var UDON_COMPANIES = [
                                      ]
                          }
                      ],
-        "id":  "comp-udon-37"
+        "id":  "comp-udon-37",
+        "tag":  "growth"
     },
     {
         "id":  "comp-udon-36",
@@ -6995,11 +7034,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  80,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "name":  "ห้างหุ้นส่วนจํากัด เอสดี เฮ้าส์ ดีไซน์",
@@ -7263,7 +7302,8 @@ var UDON_COMPANIES = [
                                      ]
                          }
                      ],
-        "id":  "comp-udon-53"
+        "id":  "comp-udon-53",
+        "tag":  "growth"
     },
     {
         "id":  "comp-udon-29",
@@ -7388,11 +7428,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "id":  "comp-udon-40",
@@ -7517,11 +7557,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "id":  "comp-udon-24",
@@ -7646,11 +7686,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "id":  "comp-udon-54",
@@ -7965,11 +8005,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "growth"
     },
     {
         "id":  "comp-udon-30",
@@ -8060,11 +8100,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "opportunity"
     },
     {
         "id":  "comp-udon-21",
@@ -8157,7 +8197,8 @@ var UDON_COMPANIES = [
                                          }
                                      ]
                          }
-                     ]
+                     ],
+        "tag":  "growth"
     },
     {
         "id":  "comp-udon-26",
@@ -8214,11 +8255,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-33",
@@ -8276,11 +8317,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-25",
@@ -8337,11 +8378,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-02",
@@ -8602,11 +8643,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  80,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-14",
@@ -8765,11 +8806,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  70,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-23",
@@ -8894,11 +8935,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-13",
@@ -9023,11 +9064,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-07",
@@ -9118,11 +9159,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-38",
@@ -9213,11 +9254,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  35,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-39",
@@ -9274,11 +9315,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-15",
@@ -9335,11 +9376,11 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     },
     {
         "id":  "comp-udon-19",
@@ -9396,10 +9437,10 @@ var UDON_COMPANIES = [
         "salesActionPlan":  [
 
                             ],
-        "tag":  "new",
         "opportunityScore":  15,
         "scgCode":  null,
         "sales2025":  0,
-        "sales2026":  0
+        "sales2026":  0,
+        "tag":  "prospect"
     }
 ];

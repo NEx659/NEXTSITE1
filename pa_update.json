@@ -1,0 +1,229 @@
+{
+  "name": "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น",
+  "engName": "PA & TN Limited Partnership (Baanyai Luxury Home)",
+  "category": "รับสร้างบ้านหรู ออกแบบและก่อสร้างระดับ Luxury (TSIC 41001)",
+  "province": "อุดรธานี",
+  "district": "เมืองอุดรธานี",
+  "address": "ต.หมากแข้ง อ.เมืองอุดรธานี จ.อุดรธานี",
+  "phone": "098-585-8741",
+  "contactPerson": "คุณบิ๊ก (K.BIG ผู้บริหารโครงการ) / Tel: 098-585-8741",
+  "totalProjects": 4,
+  "newProjectsThisMonth": 2,
+  "totalValueMillion": 54.5,
+  "growthRate": 50,
+  "areaExpansion": "เมืองอุดรธานี, ขอนแก่น, หนองคาย",
+  "revenuePotentialText": "฿4.5M",
+  "latestTimelineStage": "structure",
+  "coordinates": [
+    17.408,
+    102.792
+  ],
+  "googleMapsUrl": "https://maps.app.goo.gl/bYM7Bx8MZLHjLztD7",
+  "gmaps": "https://maps.app.goo.gl/bYM7Bx8MZLHjLztD7",
+  "facebookUrl": "https://www.facebook.com/baanyaiteam",
+  "verificationStatus": {
+    "isVerified": true,
+    "confidence": "100%",
+    "evidenceSource": "Facebook Page (Baanyai Team / PA&TN) | DBD: 0413564002621",
+    "permitStatus": "TSIC 41001"
+  },
+  "stageBreakdown": {
+    "groundbreak": 0,
+    "foundation": 1,
+    "structure": 2,
+    "finishing": 1
+  },
+  "facebookSignal": {
+    "postDate": "26/8/2569",
+    "pageName": "ห้างหุ้นส่วนจํากัด พีเอ แอนด์ ทีเอ็น (Baanyai Team)",
+    "caption": "Onsite Update: บ้านพักอาศัย 500+ ตร.ม. พร้อมสระว่ายน้ำ อ.เมือง จ.อุดรธานี ก่ออิฐแดง 90% สระว่ายน้ำ 100%",
+    "likes": 39,
+    "comments": 2,
+    "shares": 14,
+    "detectedKeywords": [
+      "อุดรธานี",
+      "รับสร้างบ้านหรู",
+      "สระว่ายน้ำ",
+      "ก่อสร้างจริง",
+      "บ้านใหญ่"
+    ]
+  },
+  "salesActionPlan": [
+    "เข้าพบนายช่างและฝ่ายจัดซื้อโครงการบ้านหรู 500-600 ตร.ม. เพื่อนำเสนอกระเบื้อง COTTO Grande Series และระบบปูนกาว SCG จระเข้ทอง",
+    "นำเสนอคอนกรีตผสมเสร็จ CPAC และเหล็กเส้น SD40 SCG สำหรับโครงการเปิดหน้างานใหม่ของกลุ่มคุณหมอ"
+  ],
+  "projects": [
+    {
+      "projectId": "comp-udon-32-1",
+      "name": "บ้านพักอาศัยหรู 500+ ตร.ม. พร้อมสระว่ายน้ำ (คุณอ้น & คุณปุ้ม)",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.408,
+        102.792
+      ],
+      "stage": "งานก่ออิฐแดง 90%, กรีดท่อไฟ, โครงสร้างสระว่ายน้ำ 100% และเสาเข็มรั้ว",
+      "stageKey": "structure",
+      "trackingStatus": "in-progress",
+      "progressPercent": 60,
+      "estValue": "14.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยหรู Luxury 2 ชั้น พื้นที่ 500+ ตร.ม. พร้อมสระว่ายน้ำ",
+      "caption": "การก่อสร้างที่เป็นมิตรต่อสิ่งแวดล้อม: ทุกก้อนอิฐมีความสำคัญ 🧱\n\nOnsite Update :\n• งานก่ออิฐแดง  90% (อิฐแดง 3 รู ตามมาตรฐานของบริษัท)\n• เริ่มงานกรีดท่อไฟ และเตรียมฉาบผนังภายใน-ภายนอก\n• งานสระว่ายน้ำโครงสร้าง 100% เตรียมปูกระเบื้องและเทสระบบสระว่ายน้ำ\n• เริ่มเจาะเสาเข็มงานรั้วโดยรอบ\n\nOwner : K.Aon & K. Pum | Location : Mueang Udon Thani | Function area : 500+ sqm.",
+      "postedTime": "26/8/2569",
+      "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid02TSVU3t6ZxQmRNznfmtAFJnHFJHh286WjLtzu7moDVGnx9f5WKL24D4E3Rbjnzsa4l",
+      "boq": [
+        {
+          "sku": "ปูนซีเมนต์ผสมเสร็จเสือ มอร์ตาร์ ฉาบทั่วไป & ปูนก่ออิฐ",
+          "qty": "550 ถุง",
+          "estCost": "฿82,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "กระเบื้องสระว่ายน้ำ COTTO Glass Mosaics & ซีเมนต์กันซึม SCG Crocodile",
+          "qty": "120 ตร.ม. + 15 ชุด",
+          "estCost": "฿148,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ท่อร้อยสายไฟและอุปกรณ์ฟิตติ้ง SCG สีขาว/เหลือง",
+          "qty": "1 โครงการ",
+          "estCost": "฿38,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC สำหรับงานเสาเข็มเจาะและคานรั้ว",
+          "qty": "45 คิว",
+          "estCost": "฿99,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-32-2",
+      "name": "บ้านพักอาศัยหรู Luxury 600+ ตร.ม. (นพ.นิค & พญ.จิงโจ้)",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.421,
+        102.783
+      ],
+      "stage": "งานปูกระเบื้องพื้น 80%, ติดตั้งฝ้าเพดาน 90% และระบบระบายน้ำ",
+      "stageKey": "finishing",
+      "trackingStatus": "in-progress",
+      "progressPercent": 80,
+      "estValue": "18.0 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยหรู Luxury 2 ชั้น พื้นที่ 600+ ตร.ม.",
+      "caption": "Onsite Update :￼\n• งานปูพื้นกระเบื้องภายในบ้าน (80%) หวีปูนกาวคุณภาพสูง\n• งานBuilt-in (40%)\n• งานวางระบบระบายน้ำรอบบ้าน(80%)\n• งานติดตั้งประตูหน้าต่างอะลูมิเนียม(80%)\n• งานติดตั้งฝ้าเพดานภายในและภายนอก(90%)\n• ภาพรวมงานตัวบ้าน 70-80% แล้ว\n\nOwner : Dr. Nick & Dr. Jingjoe | Location : Mueang Udon Thani | Function area : 600+ sqm.",
+      "postedTime": "22/8/2569",
+      "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid0392VcEkJ1kGag836nLapTbnSgqkqjoQKCp9P9H2jRL4DL85ca75yVkD79pJbyjXHl",
+      "boq": [
+        {
+          "sku": "กระเบื้องปูพื้น COTTO Grande Series & กาวซีเมนต์ SCG จระเข้ทอง",
+          "qty": "450 ตร.ม.",
+          "estCost": "฿382,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "แผ่นยิปซัมตราช้าง SCG และโครงคร่าวโลหะ Proline ฝ้าเพดาน",
+          "qty": "320 แผ่น",
+          "estCost": "฿76,800",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ท่อระบายน้ำ SCG พร้อมบ่อพักและฝาปิดสำเร็จรูป",
+          "qty": "1 ชุดโครงการ",
+          "estCost": "฿42,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ฉนวนกันความร้อน STAY COOL ตราช้าง SCG 75 มม.",
+          "qty": "40 ม้วน",
+          "estCost": "฿20,000",
+          "urgency": "เตรียมสั่งซื้อ"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-32-3",
+      "name": "บ้านพักอาศัยระดับ Luxury (คุณหมอ)",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.415,
+        102.805
+      ],
+      "stage": "พิธียกเสาเอก-เสาโท และเริ่มงานฐานรากเสาเข็ม",
+      "stageKey": "foundation",
+      "trackingStatus": "in-progress",
+      "progressPercent": 10,
+      "estValue": "12.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัยเดี่ยว Luxury Custom-built (5.XX ล้านบาทขึ้นไป)",
+      "caption": "บ้านในฝันหลังนี้ใช้เวลาพูดคุยแนวทางและดูผลงานต่างๆกันเกือบ 3 ปี วันนี้พร้อมแล้ว ได้ฤกษ์ดี วันดี ยกเสาเอก-เสาโท สร้างบ้าน\n“ วันจันทร์ที่ 14 กันยายน 2569 ”\nLocation : Mueang Udon Thani | รับงานก่อสร้างมูลค่า 5.XX ล้านบาทขึ้นไป",
+      "postedTime": "19/8/2569",
+      "postUrl": "https://www.facebook.com/baanyaiteam/posts/pfbid02dBmC1exwMqF27npFKvEQkURVnH1ZvEDtr8cvSnF6vEfDe8ht6z7rHJobex66Z4iil",
+      "boq": [
+        {
+          "sku": "คอนกรีตผสมเสร็จ CPAC สำหรับงานฐานรากและเสาตอม่อ",
+          "qty": "110 ลบ.ม.",
+          "estCost": "฿242,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "เหล็กข้ออ้อย มอก. SD40 SCG ตราช้าง (DB16, DB20, DB25)",
+          "qty": "14.5 ตัน",
+          "estCost": "฿362,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "น้ำยาประสานคอนกรีตและน้ำยากันซึมโครงสร้าง SCG",
+          "qty": "20 แกลลอน",
+          "estCost": "฿18,000",
+          "urgency": "ด่วนที่สุด"
+        }
+      ]
+    },
+    {
+      "projectId": "comp-udon-32-4",
+      "name": "บ้านพักอาศัยสองชั้น (คุณโบ้ - คุณปุ๋ย)",
+      "location": "อ.เมือง จ.อุดรธานี",
+      "province": "อุดรธานี",
+      "district": "เมืองอุดรธานี",
+      "gps": [
+        17.392,
+        102.775
+      ],
+      "stage": "งานก่ออิฐมอญแดง 50% และเตรียมมุงหลังคา Snaplock",
+      "stageKey": "structure",
+      "trackingStatus": "in-progress",
+      "progressPercent": 45,
+      "estValue": "9.5 ล้านบาท",
+      "buildingType": "บ้านพักอาศัย 2 ชั้น Modern Luxury",
+      "caption": "Location : Mueang Udon Thani\nบ้านพักอาศัยสองชั้น : (คุณโบ้-คุณปุ๋ย) ตอนนี้หน้างานเดินทางไปถึงงานก่ออิฐมอญแดงแล้วเสร็จประมาณ 50% แล้ว ทางบริษัทได้สั่งแผ่นหลังคาและเตรียมหน้างานไว้เพื่อมุงหลังคา SNAPLOCK รุ่นพิเศษภายในเดือนนี้ ตามแผนงานที่วางเอาไว้",
+      "postedTime": "17/8/2569",
+      "postUrl": "https://www.facebook.com/reel/860784876970507/",
+      "boq": [
+        {
+          "sku": "ปูนเสือ มอร์ตาร์ ปูนก่ออิฐมอญ และปูนฉาบละเอียด",
+          "qty": "420 ถุง",
+          "estCost": "฿63,000",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "ฉนวนสะท้อนความร้อนและฉนวนกันเสียงใต้หลังคา SCG",
+          "qty": "25 ม้วน",
+          "estCost": "฿22,500",
+          "urgency": "ด่วนที่สุด"
+        },
+        {
+          "sku": "เหล็กโครงสร้างหลังคา มอก. / C-Line",
+          "qty": "5.5 ตัน",
+          "estCost": "฿137,500",
+          "urgency": "ด่วนที่สุด"
+        }
+      ]
+    }
+  ]
+}
