@@ -1060,16 +1060,102 @@ function loadSavedCompaniesData() {
   window.allCompanies = allCompanies;
 }
 
-function getCompanyScoreValue(comp) {
-  if (comp.opportunityScore !== undefined && typeof comp.opportunityScore === 'number') {
-    return comp.opportunityScore;
+function calculateCompany3DimScore(comp) {
+  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0 };
+
+  // 1. จำนวนโครงการ (Max 5)
+  const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
+  const projCount = projects.length > 0 ? projects.length : (Number(comp.totalProjects) || 0);
+  
+  let scoreProj = 0;
+  if (projCount === 0) scoreProj = 0;
+  else if (projCount <= 2) scoreProj = 2;
+  else if (projCount <= 4) scoreProj = 3;
+  else if (projCount === 5) scoreProj = 4;
+  else scoreProj = 5; // 6+
+
+  // 2. สเตจหน้างาน (Max 5)
+  let scoreStage = 0;
+  if (projCount === 0) {
+    scoreStage = 0;
+  } else {
+    let hasEarly = false;
+    let hasMid = false;
+    let hasLate = false;
+
+    projects.forEach(p => {
+      const sKey = (p.stageKey || '').toLowerCase();
+      const sText = ((p.stage || '') + ' ' + (p.name || '') + ' ' + (p.caption || '')).toLowerCase();
+
+      if (
+        sKey === 'groundbreak' || sKey === 'foundation' ||
+        sText.includes('เสาเอก') || sText.includes('เสาโท') || sText.includes('เซ็นสัญญา') ||
+        sText.includes('เปิดหน้างาน') || sText.includes('ฐานราก') || sText.includes('ตอกเสาเข็ม') ||
+        sText.includes('เทพื้น') || sText.includes('คานคอดิน')
+      ) {
+        hasEarly = true;
+      } else if (
+        sKey === 'structure' ||
+        sText.includes('โครงสร้าง') || sText.includes('หลังคา') || sText.includes('ก่อผนัง') ||
+        sText.includes('ฉาบ') || sText.includes('มุงกระเบื้อง') || sText.includes('ฝ้า')
+      ) {
+        hasMid = true;
+      } else if (
+        sKey === 'finishing' || sKey === 'handover' ||
+        sText.includes('ตกแต่ง') || sText.includes('เก็บงาน') || sText.includes('ส่งมอบ') ||
+        sText.includes('สุขภัณฑ์') || sText.includes('ปูกระเบื้อง') || sText.includes('ทาสี') ||
+        sText.includes('ตรวจรับ')
+      ) {
+        hasLate = true;
+      } else {
+        hasMid = true;
+      }
+    });
+
+    if (!hasEarly && !hasMid && !hasLate && comp.stageBreakdown) {
+      if ((comp.stageBreakdown.groundbreak || 0) > 0 || (comp.stageBreakdown.foundation || 0) > 0) hasEarly = true;
+      else if ((comp.stageBreakdown.structure || 0) > 0) hasMid = true;
+      else if ((comp.stageBreakdown.finishing || 0) > 0) hasLate = true;
+    }
+
+    if (hasEarly) scoreStage = 5;
+    else if (hasMid) scoreStage = 3;
+    else if (hasLate) scoreStage = 1;
+    else scoreStage = 3;
   }
-  const projCount = (comp.projects && Array.isArray(comp.projects)) ? comp.projects.length : (Number(comp.totalProjects) || 0);
-  if (projCount <= 0) return 15;
-  if (projCount <= 2) return 35;
-  if (projCount <= 4) return 70;
-  if (projCount <= 6) return 80;
-  return 92;
+
+  // 3. ประวัติการซื้อกับ SCG (Max 5)
+  const s25 = Number(comp.sales2025) || 0;
+  const s26 = Number(comp.sales2026) || 0;
+  let scoreScg = 2;
+  if (s25 > 0 && s26 > 0) {
+    scoreScg = 5;
+  } else if (s25 > 0 || s26 > 0) {
+    scoreScg = 4;
+  } else {
+    scoreScg = 2;
+  }
+
+  // คำนวณคะแนนรวมดิบ (เต็ม 15) และแปลงเทียบเต็ม 100
+  const rawTotal = scoreProj + scoreStage + scoreScg; // Max 15
+  const totalScore100 = Math.round((rawTotal / 15) * 100);
+
+  return {
+    totalScore100,
+    rawTotal,
+    scoreProj,
+    scoreStage,
+    scoreScg,
+    projCount,
+    s25,
+    s26
+  };
+}
+
+function getCompanyScoreValue(comp) {
+  if (!comp) return 0;
+  const result = calculateCompany3DimScore(comp);
+  return result.totalScore100;
 }
 
 function getCompanyEntityRank(name) {
@@ -1712,43 +1798,431 @@ function applySalesVisibilityState(hidden) {
 // ==========================================
 // 6.2 PRODUCT DEMAND INTELLIGENCE COLLAPSE/EXPAND
 // ==========================================
-const STORAGE_KEY_PRODUCT_DEMAND_COLLAPSED = 'nextsite_product_demand_collapsed';
+// ==========================================
+// 6.2 4-TIER STRATEGIC LEADERBOARD (Top 3 by Tier - Modern Airy Style)
+// ==========================================
+// ==========================================
+// 6.2 4-TIER STRATEGIC LEADERBOARD (Exact Mockup Match Edition)
+// ==========================================
+function renderTierLeaderboard() {
+  const container = document.getElementById('tier-leaderboard-grid');
+  if (!container) return;
 
-function initProductDemandCollapseState() {
-  try {
-    const isCollapsed = localStorage.getItem(STORAGE_KEY_PRODUCT_DEMAND_COLLAPSED) === 'true';
-    if (isCollapsed) {
-      applyProductDemandCollapseState(true);
+  // Base list to calculate leaders from
+  const source = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies : [];
+  
+  // Province filter
+  const provinceCompanies = source.filter(c => {
+    if (activeDistrict !== 'all' && activeDistrict) {
+      const cProv = (c.province || '').toLowerCase();
+      const targetProv = activeDistrict.toLowerCase();
+      if (!cProv.includes(targetProv) && !targetProv.includes(cProv)) return false;
     }
-  } catch (e) {}
+    return true;
+  });
+
+  const tiers = [
+    {
+      key: 'strategic',
+      title: 'STRATEGIC',
+      subtitle: 'ลูกค้าหลักที่ต้องรักษาและ\nลงทุนความสัมพันธ์',
+      sectionLabel: 'Top 3 บริษัทกลุ่ม Strategic',
+      sectionLabelColor: '#FDE047',
+      iconSvg: `
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path d="M3 18L5 8L9.5 13L12 6L14.5 13L19 8L21 18H3Z" fill="url(#crownGoldGrad)" stroke="#FEF08A" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="5" cy="7" r="1.5" fill="#FEF08A"/>
+          <circle cx="12" cy="5" r="1.5" fill="#FEF08A"/>
+          <circle cx="19" cy="7" r="1.5" fill="#FEF08A"/>
+          <defs>
+            <linearGradient id="crownGoldGrad" x1="3" y1="5" x2="21" y2="18" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FFFBEB"/>
+              <stop offset="0.4" stop-color="#FDE047"/>
+              <stop offset="1" stop-color="#CA8A04"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      `,
+      cardBg: 'linear-gradient(180deg, rgba(110, 80, 18, 0.94) 0%, rgba(68, 46, 12, 0.96) 100%)',
+      cardBorder: '1.5px solid rgba(250, 204, 21, 0.85)',
+      cardShadow: '0 12px 35px rgba(0, 0, 0, 0.4), 0 0 32px rgba(234, 179, 8, 0.4)',
+      headerIconBg: 'radial-gradient(circle, #FDE047 0%, #D97706 70%, #92400E 100%)',
+      headerIconBorder: '2px solid #FEF08A',
+      headerIconGlow: '0 0 18px rgba(234, 179, 8, 0.85)',
+      innerBoxBorder: '1px solid rgba(250, 204, 21, 0.45)',
+      innerBoxBg: 'rgba(234, 179, 8, 0.16)',
+      itemDivider: '1px solid rgba(250, 204, 21, 0.25)',
+      btnBg: 'linear-gradient(180deg, #D97706 0%, #B45309 60%, #92400E 100%)',
+      btnBorder: '1px solid rgba(253, 224, 71, 0.85)',
+      btnGlow: '0 0 20px rgba(217, 119, 6, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+      btnColor: '#FFFFFF',
+      badgeType: 'medals'
+    },
+    {
+      key: 'growth',
+      title: 'GROWTH',
+      subtitle: 'บริษัทที่มีศักยภาพสูง\nกำลังเติบโต',
+      sectionLabel: 'Top 3 บริษัทกลุ่ม Growth',
+      sectionLabelColor: '#7DD3FC',
+      iconSvg: `
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="13" width="3.5" height="7" rx="1" fill="#BAE6FD" stroke="#E0F2FE" stroke-width="0.8"/>
+          <rect x="10.25" y="9" width="3.5" height="11" rx="1" fill="#7DD3FC" stroke="#BAE6FD" stroke-width="0.8"/>
+          <rect x="16.5" y="4" width="3.5" height="16" rx="1" fill="#38BDF8" stroke="#E0F2FE" stroke-width="0.8"/>
+        </svg>
+      `,
+      cardBg: 'linear-gradient(180deg, rgba(20, 82, 148, 0.94) 0%, rgba(12, 50, 96, 0.96) 100%)',
+      cardBorder: '1.5px solid rgba(56, 189, 248, 0.85)',
+      cardShadow: '0 12px 35px rgba(0, 0, 0, 0.4), 0 0 32px rgba(14, 165, 233, 0.4)',
+      headerIconBg: 'radial-gradient(circle, #BAE6FD 0%, #0284C7 70%, #0369A1 100%)',
+      headerIconBorder: '2px solid #E0F2FE',
+      headerIconGlow: '0 0 18px rgba(14, 165, 233, 0.85)',
+      innerBoxBorder: '1px solid rgba(56, 189, 248, 0.45)',
+      innerBoxBg: 'rgba(14, 165, 233, 0.16)',
+      itemDivider: '1px solid rgba(56, 189, 248, 0.25)',
+      btnBg: 'linear-gradient(180deg, #0284C7 0%, #0369A1 60%, #075985 100%)',
+      btnBorder: '1px solid rgba(186, 230, 253, 0.85)',
+      btnGlow: '0 0 20px rgba(2, 132, 199, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+      btnColor: '#FFFFFF',
+      badgeType: 'blue-circle'
+    },
+    {
+      key: 'opportunity',
+      title: 'OPPORTUNITY',
+      subtitle: 'มีโอกาสสร้างยอดขายเพิ่ม\nยังซื้อไม่ครบทุกกลุ่มสินค้า',
+      sectionLabel: 'Top 3 บริษัทกลุ่ม Opportunity',
+      sectionLabelColor: '#D8B4FE',
+      iconSvg: `
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="#E9D5FF" stroke-width="1.5"/>
+          <circle cx="12" cy="12" r="5.5" stroke="#C084FC" stroke-width="1.5"/>
+          <circle cx="12" cy="12" r="2.5" fill="#F3E8FF"/>
+        </svg>
+      `,
+      cardBg: 'linear-gradient(180deg, rgba(98, 40, 158, 0.94) 0%, rgba(60, 22, 98, 0.96) 100%)',
+      cardBorder: '1.5px solid rgba(192, 132, 252, 0.85)',
+      cardShadow: '0 12px 35px rgba(0, 0, 0, 0.4), 0 0 32px rgba(168, 85, 247, 0.4)',
+      headerIconBg: 'radial-gradient(circle, #E9D5FF 0%, #9333EA 70%, #6B21A8 100%)',
+      headerIconBorder: '2px solid #F3E8FF',
+      headerIconGlow: '0 0 18px rgba(168, 85, 247, 0.85)',
+      innerBoxBorder: '1px solid rgba(192, 132, 252, 0.45)',
+      innerBoxBg: 'rgba(168, 85, 247, 0.16)',
+      itemDivider: '1px solid rgba(192, 132, 252, 0.25)',
+      btnBg: 'linear-gradient(180deg, #9333EA 0%, #7E22CE 60%, #581C87 100%)',
+      btnBorder: '1px solid rgba(233, 213, 255, 0.85)',
+      btnGlow: '0 0 20px rgba(147, 51, 234, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+      btnColor: '#FFFFFF',
+      badgeType: 'purple-circle'
+    },
+    {
+      key: 'prospect',
+      title: 'PROSPECT',
+      subtitle: 'บริษัทใหม่ที่น่าจับตามอง\nเริ่มมีผลงานโดดเด่น',
+      sectionLabel: 'Top 3 บริษัทกลุ่ม Prospect',
+      sectionLabelColor: '#FDA4AF',
+      iconSvg: `
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="url(#sparkleGrad)" stroke="#FFE4E6" stroke-width="0.8"/>
+          <defs>
+            <linearGradient id="sparkleGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FFF1F2"/>
+              <stop offset="0.5" stop-color="#FB7185"/>
+              <stop offset="1" stop-color="#E11D48"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      `,
+      cardBg: 'linear-gradient(180deg, rgba(146, 38, 72, 0.94) 0%, rgba(92, 22, 48, 0.96) 100%)',
+      cardBorder: '1.5px solid rgba(251, 113, 133, 0.85)',
+      cardShadow: '0 12px 35px rgba(0, 0, 0, 0.4), 0 0 32px rgba(244, 63, 94, 0.4)',
+      headerIconBg: 'radial-gradient(circle, #FECDD3 0%, #E11D48 70%, #9F1239 100%)',
+      headerIconBorder: '2px solid #FFE4E6',
+      headerIconGlow: '0 0 18px rgba(244, 63, 94, 0.85)',
+      innerBoxBorder: '1px solid rgba(251, 113, 133, 0.45)',
+      innerBoxBg: 'rgba(244, 63, 94, 0.16)',
+      itemDivider: '1px solid rgba(251, 113, 133, 0.25)',
+      btnBg: 'linear-gradient(180deg, #EA580C 0%, #E11D48 60%, #9F1239 100%)',
+      btnBorder: '1px solid rgba(254, 205, 211, 0.85)',
+      btnGlow: '0 0 20px rgba(225, 29, 72, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+      btnColor: '#FFFFFF',
+      badgeType: 'rose-circle'
+    }
+  ];
+
+  container.innerHTML = tiers.map(tier => {
+    // Filter companies for this tier
+    const list = provinceCompanies.filter(c => getCompanyTag(c.id) === tier.key);
+    
+    // Sort companies: Opportunity Score desc -> total projects desc -> sales desc
+    list.sort((a, b) => {
+      const scoreA = getCompanyScoreValue(a);
+      const scoreB = getCompanyScoreValue(b);
+      if (scoreB !== scoreA) return scoreB - scoreA;
+      
+      const projA = (a.projects && a.projects.length) ? a.projects.length : (Number(a.totalProjects) || 0);
+      const projB = (b.projects && b.projects.length) ? b.projects.length : (Number(b.totalProjects) || 0);
+      if (projB !== projA) return projB - projA;
+
+      const salesA = (Number(a.sales2026) || 0) + (Number(a.sales2025) || 0);
+      const salesB = (Number(b.sales2026) || 0) + (Number(b.sales2025) || 0);
+      return salesB - salesA;
+    });
+
+    const top3 = list.slice(0, 3);
+
+    let bodyHtml = '';
+    if (top3.length === 0) {
+      bodyHtml = `
+        <div style="padding: 2.5rem 1rem; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.82rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;">
+          <span style="font-size: 1.8rem; line-height: 1;">📂</span>
+          <span style="color: rgba(255,255,255,0.7); font-weight: 700;">ยังไม่มีรายชื่อในกลุ่มนี้</span>
+          <span style="font-size: 0.7rem; color: rgba(255,255,255,0.4);">(เปลี่ยนกลุ่มได้ที่ปุ่มสถานะในตาราง)</span>
+        </div>
+      `;
+    } else {
+      bodyHtml = top3.map((comp, idx) => {
+        const projCount = (comp.projects && comp.projects.length) ? comp.projects.length : (Number(comp.totalProjects) || 0);
+        const score = getCompanyScoreValue(comp);
+        
+        // Clean Company Name
+        const compName = (comp.id === 'comp-udon-25' || (comp.name && comp.name.includes('บ้านรักษ์')))
+          ? 'หจก. บ้านรักษ์อุดรธานี'
+          : cleanThaiText(comp.name);
+
+        // Logo Monogram
+        const cleanForInitials = compName.replace(/บริษัท|ห้างหุ้นส่วนจำกัด|หจก\.|จำกัด|\(2016\)|\(ไทยแลนด์\)/g, '').trim();
+        const initials = cleanForInitials.substring(0, 2).toUpperCase() || 'SC';
+
+        // Tagline / Slogan
+        const rawPhone = (comp.phone || '').trim();
+        const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+        let slogan = 'รับสร้างบ้าน คุณภาพมาตรฐาน';
+        if (comp.slogan) slogan = comp.slogan;
+        else if (rawPhone) slogan = `📞 ${rawPhone}`;
+
+        // District
+        const rawDist = comp.district || 'เมืองอุดรธานี';
+        const cleanDist = rawDist.replace('อุดรธานี', '').replace('สกลนคร', '').replace('อำเภอ', '').replace('อ.', '').trim() || 'เมือง';
+
+        // Ribbon Medal HTML or Glowing Number
+        let badgeHtml = '';
+        if (tier.badgeType === 'medals') {
+          if (idx === 0) {
+            badgeHtml = `
+              <div style="width: 26px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
+                  <path d="M7 16L4 28L10 24L13 28L11 16" fill="#CA8A04"/>
+                  <path d="M17 16L20 28L14 24L11 28L13 16" fill="#A16207"/>
+                  <circle cx="12" cy="11" r="10" fill="url(#goldMedalGrad_${idx})" stroke="#FEF08A" stroke-width="1.2"/>
+                  <text x="12" y="15" text-anchor="middle" font-size="10" font-weight="900" fill="#713F12" font-family="Inter, sans-serif">1</text>
+                  <defs>
+                    <linearGradient id="goldMedalGrad_${idx}" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FDE047"/>
+                      <stop offset="1" stop-color="#EAB308"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            `;
+          } else if (idx === 1) {
+            badgeHtml = `
+              <div style="width: 26px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
+                  <path d="M7 16L4 28L10 24L13 28L11 16" fill="#94A3B8"/>
+                  <path d="M17 16L20 28L14 24L11 28L13 16" fill="#64748B"/>
+                  <circle cx="12" cy="11" r="10" fill="url(#silverMedalGrad_${idx})" stroke="#F8FAFC" stroke-width="1.2"/>
+                  <text x="12" y="15" text-anchor="middle" font-size="10" font-weight="900" fill="#1E293B" font-family="Inter, sans-serif">2</text>
+                  <defs>
+                    <linearGradient id="silverMedalGrad_${idx}" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#F1F5F9"/>
+                      <stop offset="1" stop-color="#CBD5E1"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            `;
+          } else {
+            badgeHtml = `
+              <div style="width: 26px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
+                  <path d="M7 16L4 28L10 24L13 28L11 16" fill="#D97706"/>
+                  <path d="M17 16L20 28L14 24L11 28L13 16" fill="#B45309"/>
+                  <circle cx="12" cy="11" r="10" fill="url(#bronzeMedalGrad_${idx})" stroke="#FED7AA" stroke-width="1.2"/>
+                  <text x="12" y="15" text-anchor="middle" font-size="10" font-weight="900" fill="#7C2D12" font-family="Inter, sans-serif">3</text>
+                  <defs>
+                    <linearGradient id="bronzeMedalGrad_${idx}" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FDBA74"/>
+                      <stop offset="1" stop-color="#EA580C"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            `;
+          }
+        } else if (tier.badgeType === 'blue-circle') {
+          badgeHtml = `<div style="width: 24px; height: 24px; border-radius: 50%; background: #0284C7; color: #FFFFFF; font-weight: 900; font-size: 11px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(14, 165, 233, 0.6); border: 1.2px solid #BAE6FD; flex-shrink: 0;">${idx+1}</div>`;
+        } else if (tier.badgeType === 'purple-circle') {
+          badgeHtml = `<div style="width: 24px; height: 24px; border-radius: 50%; background: #9333EA; color: #FFFFFF; font-weight: 900; font-size: 11px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(168, 85, 247, 0.6); border: 1.2px solid #E9D5FF; flex-shrink: 0;">${idx+1}</div>`;
+        } else {
+          badgeHtml = `<div style="width: 24px; height: 24px; border-radius: 50%; background: #F43F5E; color: #FFFFFF; font-weight: 900; font-size: 11px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(244, 63, 94, 0.6); border: 1.2px solid #FECDD3; flex-shrink: 0;">${idx+1}</div>`;
+        }
+
+        // Custom Logo Color/Style to match Mockup
+        let logoBg = '#FFFFFF';
+        let logoColor = '#0F172A';
+        let logoIcon = '🏠';
+        let logoSubtext = initials;
+
+        if (tier.key === 'strategic') {
+          if (idx === 0) {
+            logoBg = '#FFFFFF';
+            logoColor = '#0F172A';
+            logoIcon = '📐';
+            logoSubtext = initials || 'DESIGN';
+          } else if (idx === 1) {
+            logoBg = '#0F1E36';
+            logoColor = '#FBBF24';
+            logoIcon = '🏠';
+            logoSubtext = initials || 'HOME';
+          } else {
+            logoBg = '#064E3B';
+            logoColor = '#FFFFFF';
+            logoIcon = '🏡';
+            logoSubtext = initials || 'SABAI';
+          }
+        } else {
+          logoBg = idx === 0 ? '#FFFFFF' : (idx === 1 ? '#0F1E36' : '#1E1B4B');
+          logoColor = idx === 0 ? '#0F172A' : '#38BDF8';
+        }
+
+        const isLastItem = (idx === top3.length - 1);
+
+        return `
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 2px; ${isLastItem ? '' : 'border-bottom: ' + tier.itemDivider + ';'} cursor: pointer; transition: background 0.15s ease;"
+            onclick="openCompanyProjectsModal('${comp.id}')"
+            onmouseover="this.style.background='rgba(255,255,255,0.05)'"
+            onmouseout="this.style.background='transparent'"
+            title="คลิกเพื่อดูรายละเอียดและกลยุทธ์ AI ของ ${compName}">
+            
+            <!-- 1. Medal / Rank Badge -->
+            ${badgeHtml}
+
+            <!-- 2. Logo Card (50x50 Rounded Square) -->
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: ${logoBg}; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.15); padding: 2px;">
+              <span style="font-size: 16px; line-height: 1;">${logoIcon}</span>
+              <span style="font-size: 8px; font-weight: 900; color: ${logoColor}; text-align: center; line-height: 1; letter-spacing: -0.2px; margin-top: 2px; max-width: 44px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${logoSubtext}
+              </span>
+            </div>
+
+            <!-- 3. Middle Company Details -->
+            <div style="flex: 1; min-width: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: center;">
+              <!-- Row 1: Company Name & Verified Badge -->
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <span style="font-size: 13px; font-weight: 700; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; max-width: 100%;" title="${compName}">
+                  ${compName}
+                </span>
+                <span title="ยืนยันมีตัวตนและผลงานจริง" style="color: #38BDF8; font-size: 0.85rem; flex-shrink: 0; display: inline-flex;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#38BDF8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#0F172A"/></svg>
+                </span>
+              </div>
+
+              <!-- Row 2: Tagline / Slogan / Phone -->
+              <div style="font-size: 10.5px; color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;">
+                ${slogan}
+              </div>
+
+              <!-- Row 3: Sub-metrics (Projects) -->
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 10px; color: rgba(255,255,255,0.85); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <span>📁 ${projCount} โครงการ</span>
+              </div>
+            </div>
+
+            <!-- 4. Right Score & Small Arrow -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-left: auto; flex-shrink: 0; min-width: 38px; text-align: center;">
+              <span style="font-size: 7.5px; color: rgba(255,255,255,0.65); font-weight: 500;">AI Score</span>
+              <span style="font-size: 19px; font-weight: 800; color: #FFFFFF; line-height: 1; margin: 1px 0;">${score}</span>
+              <button type="button" onclick="event.stopPropagation(); openCompanyProjectsModal('${comp.id}')" title="คลิกเพื่อดูรายละเอียด AI"
+                style="width: 18px; height: 18px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.85); font-size: 9px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease;"
+                onmouseover="this.style.background='#FFFFFF'; this.style.color='#000000';"
+                onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.color='rgba(255, 255, 255, 0.85)';">
+                →
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const subtitleLines = (tier.subtitle || '').split('\n').join('<br>');
+
+    return `
+      <div class="tier-glow-card" style="background: ${tier.cardBg}; border: ${tier.cardBorder}; box-shadow: ${tier.cardShadow}; border-radius: 22px; padding: 18px 14px 16px 14px; display: flex; flex-direction: column; position: relative;">
+        
+        <!-- 1. Header Area (No blocky box - integrated glowing design) -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
+            <!-- Big Glowing Circular Icon -->
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: ${tier.headerIconBg}; border: ${tier.headerIconBorder}; box-shadow: ${tier.headerIconGlow}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              ${tier.iconSvg}
+            </div>
+            
+            <!-- Title & Subtitle -->
+            <div style="min-width: 0; flex: 1;">
+              <div style="font-size: 17px; font-weight: 800; color: #FFFFFF; letter-spacing: 0.5px; line-height: 1.1;">
+                ${tier.title}
+              </div>
+              <div style="font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.85); line-height: 1.3; margin-top: 3px;">
+                ${subtitleLines}
+              </div>
+            </div>
+          </div>
+
+          <!-- Header Arrow Circle -->
+          <button type="button" onclick="filterByCompanyTag('${tier.key}'); const el = document.getElementById('table-card-container'); if(el) el.scrollIntoView({behavior:'smooth'});"
+            title="ดูทั้งหมดในกลุ่ม ${tier.title}"
+            style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.9); font-size: 13px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-left: 6px; transition: all 0.2s ease;"
+            onmouseover="this.style.background='rgba(255,255,255,0.25)';"
+            onmouseout="this.style.background='rgba(255,255,255,0.08)';">
+            →
+          </button>
+        </div>
+
+        <!-- 2. Inner Box Container (Top 3 Subsection with Bordered Compartment) -->
+        <div style="border: ${tier.innerBoxBorder}; border-radius: 16px; padding: 10px 10px 4px 10px; background: ${tier.innerBoxBg}; margin-bottom: 14px; flex: 1; display: flex; flex-direction: column;">
+          <!-- Subsection Header -->
+          <div style="font-size: 12px; font-weight: 700; color: ${tier.sectionLabelColor}; margin-bottom: 6px; padding-left: 2px;">
+            ${tier.sectionLabel}
+          </div>
+
+          <!-- Company Item Rows -->
+          <div style="display: flex; flex-direction: column; flex: 1;">
+            ${bodyHtml}
+          </div>
+        </div>
+
+        <!-- 3. Bottom Glowing Pill Button -->
+        <div style="margin-top: auto;">
+          <button type="button" onclick="filterByCompanyTag('${tier.key}'); const el = document.getElementById('table-card-container'); if(el) el.scrollIntoView({behavior:'smooth'});"
+            style="width: 100%; padding: 10px 14px; border-radius: 9999px; background: ${tier.btnBg}; border: ${tier.btnBorder}; box-shadow: ${tier.btnGlow}; color: ${tier.btnColor}; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s ease;"
+            onmouseover="this.style.filter='brightness(1.15)'; this.style.transform='translateY(-1px)';"
+            onmouseout="this.style.filter='none'; this.style.transform='none';">
+            <span>ดูทั้งหมดในกลุ่ม ${tier.title} &nbsp;→</span>
+          </button>
+        </div>
+
+      </div>
+    `;
+  }).join('');
 }
 
-function toggleProductDemandSection() {
-  const section = document.getElementById('product-demand-section');
-  if (!section) return;
-  const willCollapse = !section.classList.contains('collapsed');
-  applyProductDemandCollapseState(willCollapse);
-  try {
-    localStorage.setItem(STORAGE_KEY_PRODUCT_DEMAND_COLLAPSED, willCollapse ? 'true' : 'false');
-  } catch (e) {}
-}
+function initProductDemandCollapseState() {}
+function toggleProductDemandSection() {}
+function applyProductDemandCollapseState() {}
 
-function applyProductDemandCollapseState(collapsed) {
-  const section = document.getElementById('product-demand-section');
-  const icon = document.getElementById('icon-toggle-product-demand');
-  const btn = document.getElementById('btn-toggle-product-demand');
-  if (!section) return;
-
-  if (collapsed) {
-    section.classList.add('collapsed');
-    if (icon) icon.textContent = '◀';
-    if (btn) btn.title = 'คลิกเพื่อขยายดูความต้องการสินค้า SCG';
-  } else {
-    section.classList.remove('collapsed');
-    if (icon) icon.textContent = '▼';
-    if (btn) btn.title = 'คลิกเพื่อย่อรายละเอียดสินค้า';
-  }
-}
+function initProductDemandCollapseState() {}
+function toggleProductDemandSection() {}
+function applyProductDemandCollapseState() {}
 
 // ==========================================
 // 7. TABLE RENDERING (9 Beautiful Executive Columns)
@@ -1964,42 +2438,69 @@ function renderTable() {
       </td>
 
       <!-- 5. ยอดซื้อ SCG 2025 -->
-      <td class="col-sales-2025" style="vertical-align: middle; text-align: right;">
-        <div style="font-weight: 800; font-size: 0.9rem; color: ${(company.sales2025 || 0) > 0 ? '#1E293B' : '#94A3B8'};">
-          ${(company.sales2025 || 0) > 0 ? '฿' + Number(company.sales2025).toLocaleString('th-TH', {minimumFractionDigits: 0, maximumFractionDigits: 2}) : '-'}
-        </div>
+      <td class="col-sales-2025" style="vertical-align: middle; text-align: center; padding: 6px 8px;">
+        ${(() => {
+          const s25 = Number(company.sales2025) || 0;
+          if (s25 > 0) {
+            const formatted = '฿' + s25.toLocaleString('th-TH', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+            return `
+              <div title="ยอดซื้อปี 2025: ${formatted} บาท" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #F0FDF4; border: 1.5px solid #86EFAC; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #15803D; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>เคยซื้อกับ SCG</span>
+              </div>
+            `;
+          } else {
+            return `
+              <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 600;">⚪ ยังไม่เคยซื้อ</span>
+            `;
+          }
+        })()}
       </td>
 
       <!-- 6. ยอดซื้อ SCG 2026 -->
-      <td class="col-sales-2026" style="vertical-align: middle; text-align: right;">
-        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
-          <div style="font-weight: 900; font-size: 0.92rem; color: ${
-            (company.sales2026 || 0) === 0 && (company.sales2025 || 0) === 0
-              ? '#94A3B8'
-              : (company.sales2026 || 0) > (company.sales2025 || 0)
-                ? '#16A34A'
-                : (company.sales2026 || 0) < (company.sales2025 || 0)
-                  ? '#DC2626'
-                  : '#1E293B'
-          };">
-            ${(company.sales2026 || 0) > 0 ? '฿' + Number(company.sales2026).toLocaleString('th-TH', {minimumFractionDigits: 0, maximumFractionDigits: 2}) : '-'}
-          </div>
-          ${(company.sales2026 || 0) > (company.sales2025 || 0) && (company.sales2025 || 0) > 0 
-            ? `<span style="font-size: 0.68rem; font-weight: 800; color: #16A34A; background: #DCFCE7; padding: 1px 5px; border-radius: 4px; display: inline-flex; align-items: center; gap: 2px;">📈 โต +${Math.round((((company.sales2026 || 0) - (company.sales2025 || 0)) / (company.sales2025 || 1)) * 100)}%</span>` 
-            : ''}
-          ${(company.sales2026 || 0) < (company.sales2025 || 0) && (company.sales2026 || 0) > 0 
-            ? `<span style="font-size: 0.68rem; font-weight: 800; color: #DC2626; background: #FEE2E2; padding: 1px 5px; border-radius: 4px; display: inline-flex; align-items: center; gap: 2px;">📉 ลดลง</span>` 
-            : ''}
-          ${(company.sales2026 || 0) > 0 && (company.sales2025 || 0) === 0 
-            ? `<span style="font-size: 0.68rem; font-weight: 800; color: #16A34A; background: #DCFCE7; padding: 1px 5px; border-radius: 4px;">✨ New SCG</span>` 
-            : ''}
-          ${(company.sales2026 || 0) === 0 && (company.sales2025 || 0) > 0 
-            ? `<span style="font-size: 0.68rem; font-weight: 800; color: #DC2626; background: #FEE2E2; padding: 1px 5px; border-radius: 4px;">📉 ไม่มียอดซื้อ</span>` 
-            : ''}
-          ${(company.sales2026 || 0) === 0 && (company.sales2025 || 0) === 0 
-            ? `<span style="font-size: 0.68rem; color: #94A3B8;">⚪ ยังไม่เคยซื้อ</span>` 
-            : ''}
-        </div>
+      <td class="col-sales-2026" style="vertical-align: middle; text-align: center; padding: 6px 8px;">
+        ${(() => {
+          const s25 = Number(company.sales2025) || 0;
+          const s26 = Number(company.sales2026) || 0;
+          const fmt26 = '฿' + s26.toLocaleString('th-TH', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+          const fmt25 = '฿' + s25.toLocaleString('th-TH', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+
+          if (s26 > s25 && s25 > 0) {
+            const growPct = Math.round(((s26 - s25) / s25) * 100);
+            return `
+              <div title="ยอดซื้อปี 2026: ${fmt26} บาท (เติบโตจากปี 2025 ที่ ${fmt25})" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #DCFCE7; border: 1.5px solid #86EFAC; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #15803D; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>ยอดซื้อเพิ่มขึ้น (+${growPct}%)</span>
+              </div>
+            `;
+          } else if (s26 < s25 && s26 > 0) {
+            const dropPct = Math.round(((s25 - s26) / s25) * 100);
+            return `
+              <div title="ยอดซื้อปี 2026: ${fmt26} บาท (ลดลงจากปี 2025 ที่ ${fmt25})" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #FEE2E2; border: 1.5px solid #FCA5A5; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #DC2626; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="color: #DC2626; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>ยอดซื้อลดลง (-${dropPct}%)</span>
+              </div>
+            `;
+          } else if (s26 > 0 && s25 === 0) {
+            return `
+              <div title="ยอดซื้อปี 2026: ${fmt26} บาท (ลูกค้าใหม่)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #DCFCE7; border: 1.5px solid #86EFAC; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #15803D; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>ลูกค้าใหม่เปิดยอด</span>
+              </div>
+            `;
+          } else if (s26 === 0 && s25 > 0) {
+            return `
+              <div title="ปี 2025 มียอดซื้อ ${fmt25} บาท แต่ปี 2026 ยังไม่มียอดสั่งซื้อ" style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; background: #FEF2F2; border: 1.5px solid #FCA5A5; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #DC2626; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="font-size: 0.78rem;">🚨</span>
+                <span>ขาดการสั่งซื้อปี 2026</span>
+              </div>
+            `;
+          } else {
+            return `
+              <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 600;">⚪ ยังไม่เคยซื้อ</span>
+            `;
+          }
+        })()}
       </td>
 
       <!-- 7. สถานะการติดตาม (ปุ่มต้องการติดตาม + ป้ายสถานะเข้าติดตามแล้ว/รอการติดตาม) -->
@@ -2299,6 +2800,7 @@ function applyFilters() {
 
   renderKPIs();
   renderTable();
+  renderTierLeaderboard();
 
   // Dynamically update Report summary badge to match selected province
   const reportBadge = document.getElementById('badge-report-summary');
@@ -2605,22 +3107,27 @@ function renderModalScoreOrSalesIntelligence(comp) {
           </div>
         </div>
 
-        <div style="font-size: 0.75rem; font-weight: 700; color: #475569; margin-bottom: 0.5rem;">
-          การวิเคราะห์คะแนน 5 ปัจจัย (Score Breakdown)
+        <div style="font-size: 0.78rem; font-weight: 800; color: #1E293B; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+          <span>การวิเคราะห์คะแนน 3 มิติ (AI Score Breakdown)</span>
+          <span style="font-size: 0.72rem; color: #64748B; font-weight: 600;">คะแนนดิบรวม: ${scoreData && scoreData.rawTotal ? scoreData.rawTotal : Math.round((score / 100) * 15)}/15 (${score}/100)</span>
         </div>
         <div id="modal-dimensions-list" class="score-dimension-list">
-          ${scoreData && scoreData.dimensions ? scoreData.dimensions.map(d => `
-            <div class="dimension-row">
-              <div class="dimension-meta">
-                <span style="color: #334155;">${d.name} (${d.weight})</span>
-                <span style="font-weight: 800; color: #0F172A;">${d.score}/100</span>
+          ${scoreData && scoreData.dimensions ? scoreData.dimensions.map(d => {
+            const rawScore = parseInt(d.score) || 0;
+            const pct = Math.min(100, Math.round((rawScore / 5) * 100));
+            return `
+              <div class="dimension-row" style="margin-bottom: 8px;">
+                <div class="dimension-meta" style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700;">
+                  <span style="color: #334155;">${d.name}</span>
+                  <span style="color: #0284C7; font-weight: 800;">${d.score} (${pct}%)</span>
+                </div>
+                <div class="dim-bar-bg" style="height: 6px; background: #E2E8F0; border-radius: 9999px; overflow: hidden; margin: 3px 0;">
+                  <div class="dim-bar-fill" style="width: ${pct}%; height: 100%; background: linear-gradient(90deg, #0284C7, #38BDF8); border-radius: 9999px;"></div>
+                </div>
+                <div style="font-size: 0.7rem; color: #64748B;">${d.desc}</div>
               </div>
-              <div class="dim-bar-bg">
-                <div class="dim-bar-fill" style="width: ${d.score}%;"></div>
-              </div>
-              <div style="font-size: 0.68rem; color: #64748B; margin-top: 1px;">${d.desc}</div>
-            </div>
-          `).join('') : ''}
+            `;
+          }).join('') : ''}
         </div>
       </div>
     `;

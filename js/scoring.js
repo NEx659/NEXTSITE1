@@ -1,109 +1,161 @@
 /**
  * NEXTSITE AI - Opportunity Scoring Engine
- * คำนวณคะแนนโอกาส 0-100 จาก 5 ปัจจัย พร้อมอธิบายเหตุผล
- * 
- * เกณฑ์สี:
- * - สีแดง (> 90 คะแนน) : โอกาสสูงสุด เซลส์ต้องเข้าพบด่วน (โครงการพึ่งเริ่มก่อสร้าง)
- * - สีส้ม (70-89 คะแนน) : โอกาสระดับสูง อยู่ในช่วงวางรากฐาน/ขยายงาน
- * - สีเหลือง (50-69 คะแนน) : โอกาสปานกลาง โครงการอยู่ช่วงกลาง-ปลาย
+ * คำนวณคะแนนโอกาส 3 มิติหลัก (คะแนนเต็ม 15 แปลงเทียบเป็น 100):
+ * 1. จำนวนโครงการ: 0->0, 1-2->2, 3-4->3, 5->4, 6+->5 (Max 5)
+ * 2. สเตจหน้างาน: ยกเสาเอก/เซ็นสัญญา/ฐานราก->5, กลางๆ->3, ใกล้จบงาน->1 (Max 5)
+ * 3. ประวัติซื้อกับ SCG: ซื้อทั้ง 2025&2026->5, ซื้อ 2025 หรือ 2026->4, ยังไม่เคยซื้อ->2 (Max 5)
+ * (มิติที่ 4 กำไร DBD รอเปิดใช้งานเมื่อมีข้อมูลงบการเงินจริง)
  */
 
-const SCORING_WEIGHTS = {
-  projectVolume: 0.35,      // 35% จำนวนโครงการ & โครงการใหม่
-  projectValue: 0.25,       // 25% มูลค่าโครงการรวม
-  companyGrowth: 0.10,      // 10% การเติบโตของบริษัท
-  areaExpansion: 0.10,      // 10% การขยายพื้นที่ดำเนินงาน
-  scgProductFit: 0.20       // 20% ความเหมาะสมกับสินค้า SCG
-};
+function calculateCompany3DimScore(comp) {
+  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0 };
 
-function getExactProjectOpportunityScore(projCount) {
-  const count = Number(projCount) || 0;
-  if (count <= 0) return 15;
-  if (count <= 2) return 35;
-  if (count <= 4) return 70;
-  if (count <= 6) return 80;
-  return 92; // 7 โครงการขึ้นไป
+  // 1. จำนวนโครงการ (Max 5)
+  const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
+  const projCount = projects.length > 0 ? projects.length : (Number(comp.totalProjects) || 0);
+  
+  let scoreProj = 0;
+  if (projCount === 0) scoreProj = 0;
+  else if (projCount <= 2) scoreProj = 2;
+  else if (projCount <= 4) scoreProj = 3;
+  else if (projCount === 5) scoreProj = 4;
+  else scoreProj = 5; // 6+
+
+  // 2. สเตจหน้างาน (Max 5)
+  let scoreStage = 0;
+  if (projCount === 0) {
+    scoreStage = 0;
+  } else {
+    let hasEarly = false;
+    let hasMid = false;
+    let hasLate = false;
+
+    projects.forEach(p => {
+      const sKey = (p.stageKey || '').toLowerCase();
+      const sText = ((p.stage || '') + ' ' + (p.name || '') + ' ' + (p.caption || '')).toLowerCase();
+
+      if (
+        sKey === 'groundbreak' || sKey === 'foundation' ||
+        sText.includes('เสาเอก') || sText.includes('เสาโท') || sText.includes('เซ็นสัญญา') ||
+        sText.includes('เปิดหน้างาน') || sText.includes('ฐานราก') || sText.includes('ตอกเสาเข็ม') ||
+        sText.includes('เทพื้น') || sText.includes('คานคอดิน')
+      ) {
+        hasEarly = true;
+      } else if (
+        sKey === 'structure' ||
+        sText.includes('โครงสร้าง') || sText.includes('หลังคา') || sText.includes('ก่อผนัง') ||
+        sText.includes('ฉาบ') || sText.includes('มุงกระเบื้อง') || sText.includes('ฝ้า')
+      ) {
+        hasMid = true;
+      } else if (
+        sKey === 'finishing' || sKey === 'handover' ||
+        sText.includes('ตกแต่ง') || sText.includes('เก็บงาน') || sText.includes('ส่งมอบ') ||
+        sText.includes('สุขภัณฑ์') || sText.includes('ปูกระเบื้อง') || sText.includes('ทาสี') ||
+        sText.includes('ตรวจรับ')
+      ) {
+        hasLate = true;
+      } else {
+        hasMid = true;
+      }
+    });
+
+    if (!hasEarly && !hasMid && !hasLate && comp.stageBreakdown) {
+      if ((comp.stageBreakdown.groundbreak || 0) > 0 || (comp.stageBreakdown.foundation || 0) > 0) hasEarly = true;
+      else if ((comp.stageBreakdown.structure || 0) > 0) hasMid = true;
+      else if ((comp.stageBreakdown.finishing || 0) > 0) hasLate = true;
+    }
+
+    if (hasEarly) scoreStage = 5;
+    else if (hasMid) scoreStage = 3;
+    else if (hasLate) scoreStage = 1;
+    else scoreStage = 3;
+  }
+
+  // 3. ประวัติการซื้อกับ SCG (Max 5)
+  const s25 = Number(comp.sales2025) || 0;
+  const s26 = Number(comp.sales2026) || 0;
+  let scoreScg = 2;
+  if (s25 > 0 && s26 > 0) {
+    scoreScg = 5;
+  } else if (s25 > 0 || s26 > 0) {
+    scoreScg = 4;
+  } else {
+    scoreScg = 2;
+  }
+
+  // คำนวณคะแนนรวมดิบ (เต็ม 15) และแปลงเทียบเต็ม 100
+  const rawTotal = scoreProj + scoreStage + scoreScg; // Max 15
+  const totalScore100 = Math.round((rawTotal / 15) * 100);
+
+  return {
+    totalScore100,
+    rawTotal,
+    scoreProj,
+    scoreStage,
+    scoreScg,
+    projCount,
+    s25,
+    s26
+  };
 }
 
-/**
- * คำนวณคะแนนแต่ละมิติและคะแนนรวม
- * @param {Object} company ข้อมูลบริษัท
- * @returns {Object} ผลการคำนวณและรายละเอียด
- */
 function calculateOpportunityScore(company) {
-  const totalProj = (company.projects && Array.isArray(company.projects)) ? company.projects.length : (Number(company.totalProjects) || 0);
-  const finalScore = getExactProjectOpportunityScore(totalProj);
+  const result = calculateCompany3DimScore(company);
+  const finalScore = result.totalScore100;
 
-  // กำหนดระดับ Tier, สี และคำแนะนำความเร่งด่วนตามเกณฑ์ของคะแนน
   let tier = "yellow";
   let tierLabel = "โอกาสปานกลาง";
   let tierColor = "#64748B";
   let urgency = "ติดตามตามรอบปกติ";
 
-  if (finalScore >= 90) { // 7 โครงการขึ้นไป = 92
+  if (finalScore >= 85) {
     tier = "red";
-    tierLabel = "โอกาสสูงสุด (>90)";
+    tierLabel = "โอกาสสูงสุด (85-100)";
     tierColor = "#1E40AF";
-    urgency = "แนะนำทีมขายเข้าพบด่วน (ตรวจพบ 7 โครงการขึ้นไป)";
-  } else if (finalScore >= 70) { // 3-4 โครงการ = 70, 5-6 โครงการ = 80
+    urgency = "แนะนำทีมขายเข้าพบด่วนที่สุด";
+  } else if (finalScore >= 70) {
     tier = "orange";
-    tierLabel = finalScore >= 80 ? "โอกาสระดับสูงมาก (80)" : "โอกาสระดับสูง (70)";
+    tierLabel = "โอกาสระดับสูง (70-84)";
     tierColor = "#16A34A";
-    urgency = `แนะนำนำเสนอแพ็กเกจวัสดุโครงสร้าง SCG (${totalProj} โครงการ)`;
-  } else if (totalProj > 0) { // 1-2 โครงการ = 35
+    urgency = "แนะนำนำเสนอแพ็กเกจสินค้า SCG";
+  } else if (finalScore >= 50) {
     tier = "yellow";
-    tierLabel = "โอกาสเริ่มต้น (35)";
+    tierLabel = "โอกาสปานกลาง (50-69)";
     tierColor = "#CA8A04";
-    urgency = "เฝ้าระวังความคืบหน้าหน้างาน (1-2 โครงการ)";
-  } else { // 0 โครงการ = 15
-    tier = "yellow";
-    tierLabel = "รอตรวจจับไซต์ใหม่ (15)";
-    tierColor = "#64748B";
-    urgency = "รอตรวจจับโพสต์เปิดหน้างานใหม่จาก Facebook";
-  }
-
-  // สร้างคำอธิบายประกอบ
-  const reasons = [];
-  if (totalProj >= 7) {
-    reasons.push(`ตรวจพบไซต์งานก่อสร้างจริง ${totalProj} โครงการ (โอกาสสูงสุด 92 คะแนน)`);
-    reasons.push(`มีความต้องการสั่งซื้อวัสดุก่อสร้าง SCG ปริมาณมากต่อเนื่อง`);
-  } else if (totalProj >= 5) {
-    reasons.push(`ตรวจพบไซต์งานก่อสร้างจริง ${totalProj} โครงการ (โอกาสระดับสูง 80 คะแนน)`);
-  } else if (totalProj >= 3) {
-    reasons.push(`ตรวจพบไซต์งานก่อสร้างจริง ${totalProj} โครงการ (โอกาสระดับสูง 70 คะแนน)`);
-  } else if (totalProj >= 1) {
-    reasons.push(`ตรวจพบไซต์งานก่อสร้างจริง ${totalProj} โครงการ (โอกาสเริ่มต้น 35 คะแนน)`);
+    urgency = "เฝ้าระวังความคืบหน้าหน้างาน";
   } else {
-    reasons.push(`ยังไม่พบไซต์งานก่อสร้างใหม่ในรอบนี้ (คะแนนฐาน 15 คะแนน)`);
+    tier = "yellow";
+    tierLabel = "โอกาสเริ่มต้น (<50)";
+    tierColor = "#64748B";
+    urgency = "รอตรวจจับสัญญาณหน้างานใหม่";
   }
-
-  const valueMil = company.totalValueMillion || (totalProj * 3.5);
 
   return {
     score: finalScore,
+    rawTotal: result.rawTotal,
+    maxRaw: 15,
     tier,
     tierLabel,
     tierColor,
     urgency,
-    reasons,
     dimensions: [
       { 
-        name: "จำนวนโครงการจริงใน จ.อุดรธานี", 
-        score: finalScore, 
-        weight: "100%", 
-        desc: totalProj > 0 ? `${totalProj} โครงการ (ตรงตามเกณฑ์ ${finalScore} คะแนน)` : `0 โครงการ (คะแนนฐาน 15 คะแนน)` 
+        name: "1. จำนวนโครงการจริง", 
+        score: `${result.scoreProj}/5`, 
+        weight: "33.3%", 
+        desc: `${result.projCount} โครงการ (${result.scoreProj} คะแนน)` 
       },
       { 
-        name: "ประมาณการมูลค่าสินค้า SCG รวม (฿500K/ไซต์)", 
-        score: finalScore, 
-        weight: "เป้าหมาย", 
-        desc: totalProj > 0 ? `฿${(totalProj * 0.5).toFixed(1)}M (${totalProj} โครงการ × ฿500,000)` : `฿0.0M` 
+        name: "2. สเตจหน้างานก่อสร้าง", 
+        score: `${result.scoreStage}/5`, 
+        weight: "33.3%", 
+        desc: result.scoreStage === 5 ? "เพิ่งเริ่ม/ยกเสาเอก/ฐานราก (5 คะแนน)" : (result.scoreStage === 3 ? "สเตจกลาง/โครงสร้าง (3 คะแนน)" : (result.scoreStage === 1 ? "ใกล้จบงาน/ตกแต่ง (1 คะแนน)" : "ไม่มีโครงการ (0 คะแนน)"))
       },
       { 
-        name: "การขยายพื้นที่ดำเนินงาน", 
-        score: finalScore, 
-        weight: "พื้นที่", 
-        desc: company.address || `อ.${company.district || 'เมือง'} จ.อุดรธานี` 
+        name: "3. ประวัติซื้อกับ SCG", 
+        score: `${result.scoreScg}/5`, 
+        weight: "33.3%", 
+        desc: (result.s25 > 0 && result.s26 > 0) ? "ซื้อทั้งปี 2025 & 2026 (5 คะแนน)" : ((result.s25 > 0 || result.s26 > 0) ? "มียอดซื้อปี 2025 หรือ 2026 (4 คะแนน)" : "ยังไม่เคยมียอดซื้อ (2 คะแนน)")
       }
     ]
   };

@@ -75,7 +75,14 @@
 
 body {
   font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg-main);
+  background-color: #F8FAFC;
+  background-image: 
+    linear-gradient(180deg, rgba(248, 250, 252, 0.60) 0%, rgba(241, 245, 249, 0.78) 450px, rgba(241, 245, 249, 0.90) 1000px, rgba(241, 245, 249, 0.95) 100%),
+    url('../images/luxury_house_bg.jpg');
+  background-size: 100% auto, cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--text-main);
   line-height: 1.4;
   font-size: 13px;
@@ -86,14 +93,15 @@ body {
 
 /* Header & Top Bar */
 .top-header {
-  background-color: #FFFFFF;
-  border-bottom: 1.5px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.88);
+  border-bottom: 1.5px solid rgba(226, 232, 240, 0.8);
   border-top: 3px solid #1E40AF;
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
 }
 
 .header-container {
@@ -601,7 +609,7 @@ body {
 /* KPI Cards */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
   margin-bottom: 0.9rem;
 }
@@ -3074,3 +3082,67 @@ body.auth-locked main {
   user-select: none !important;
   transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ==========================================
+   4-TIER STRATEGIC LEADERBOARD (4-Column Vertical Cards Edition)
+   ========================================== */
+.tier-leaderboard-section {
+  margin-bottom: 1.75rem;
+  width: 100%;
+}
+
+.tier-leaderboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .tier-leaderboard-grid {
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+  .tier-glow-card {
+    scroll-snap-align: start;
+    min-width: 240px;
+  }
+}
+
+.tier-glow-card {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  min-width: 0;
+}
+
+.tier-glow-card:hover {
+  transform: translateY(-4px);
+}
+
+.tier-glow-item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.tier-glow-item-row:last-child {
+  border-bottom: none;
+}
+
+.tier-glow-item-row:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+

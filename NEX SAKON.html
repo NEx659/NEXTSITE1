@@ -20,9 +20,49 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- App Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=70.0">
+  <link rel="stylesheet" href="css/styles.css?v=71.0">
 
   <style>
+    /* 4-Tier Strategic Leaderboard - 4 Tall Vertical Columns Side-by-Side */
+    .tier-leaderboard-section {
+      margin-bottom: 1.75rem;
+      width: 100% !important;
+    }
+
+    .tier-leaderboard-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (max-width: 1100px) {
+      .tier-leaderboard-grid {
+        grid-template-columns: repeat(4, minmax(240px, 1fr)) !important;
+        overflow-x: auto !important;
+        padding-bottom: 12px !important;
+      }
+      .tier-glow-card {
+        min-width: 240px !important;
+      }
+    }
+
+    .tier-glow-card {
+      border-radius: 20px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      position: relative !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease !important;
+    }
+
+    .tier-glow-card:hover {
+      transform: translateY(-4px) !important;
+    }
+
     /* Tag Filter Buttons - High Specificity Styling */
     .tag-filter-btn {
       display: inline-flex !important;
@@ -541,28 +581,6 @@
         <div class="kpi-click-hint">กดดูรายชื่อกลุ่ม New →</div>
       </div>
 
-      <!-- KPI 3: High Opportunity Companies -->
-      <div class="kpi-card highlight clickable-card" onclick="openKpiModal('high')"
-        title="คลิกเพื่อดู Top บริษัทเร่งด่วนอันดับต้นๆ">
-        <div class="kpi-header">
-          <span class="kpi-title">บริษัทที่มีโอกาสสูง (Top Priority)</span>
-          <div class="kpi-icon-wrap red">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-          </div>
-        </div>
-        <div class="kpi-value-row">
-          <span id="kpi-high-opp" class="kpi-value" style="color: var(--primary-red);">0</span>
-          <span class="kpi-unit">บริษัทเร่งด่วน</span>
-        </div>
-        <div class="kpi-subtext">
-          <strong style="color: var(--primary-red);">รอตรวจจับสัญญาณหน้างาน</strong> (หรืออัปโหลด JSON)
-        </div>
-        <div class="kpi-click-hint" style="color: var(--primary-red);">กดดูแผนเข้าพบด่วน →</div>
-      </div>
-
       <!-- KPI 4: Total Opportunity Revenue -->
       <div class="kpi-card clickable-card" onclick="openKpiModal('value')"
         title="คลิกเพื่อดูการวิเคราะห์มูลค่าสินค้า SCG รวม">
@@ -585,42 +603,22 @@
       </div>
     </section>
 
-    <!-- SCG Product Demand & Analytics Cards (Click card to view charts) -->
-    <section id="product-demand-section" class="product-analytics-section">
-      <div class="product-demand-header-box"
-        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; cursor: pointer;"
-        onclick="toggleProductDemandSection()">
-        <div>
-          <h2
-            style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF; display: flex; align-items: center; gap: 0.5rem; margin: 0;">
-            <span>📊</span> สรุปความต้องการสินค้า SCG ตามสเตจงานจริง (Product Demand Intelligence)
+    <!-- 4-Tier Strategic Leaderboard Section (Top 3 in each group) -->
+    <section id="tier-leaderboard-section" class="tier-leaderboard-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+        <div style="background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 8px 18px; border-radius: 14px; border: 1.5px solid rgba(255, 255, 255, 0.95); box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08); display: inline-block;">
+          <h2 style="font-size: 1.1rem; font-weight: 900; color: #0F172A; display: flex; align-items: center; gap: 0.5rem; margin: 0; letter-spacing: -0.2px;">
+            <span style="font-size: 1.25rem;">🏆</span> จัดอันดับบริษัทที่น่าสนใจที่สุดในแต่ละกลุ่ม (Top Companies by Tier)
           </h2>
-          <p id="product-demand-subtitle"
-            style="font-size: 0.76rem; color: #FECACA; margin-top: 2px; margin-bottom: 0;">
-            คลิกที่การ์ดสินค้าแต่ละกลุ่ม เพื่อดูรายชื่อไซต์งานจริงใน <span
-              id="product-demand-province-label">จ.อุดรธานี</span> และสเตจก่อสร้างที่ตรงกับความต้องการใช้วัสดุ
+          <p id="tier-leaderboard-subtitle" style="font-size: 0.78rem; font-weight: 600; color: #1E293B; margin-top: 3px; margin-bottom: 0;">
+            วิเคราะห์และคัดเลือก Top 3 บริษัทเป้าหมายที่โดดเด่นที่สุดในแต่ละกลุ่ม พร้อมคะแนน AI Score และสถานะหน้างานจริง
           </p>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <div
-            style="font-size: 0.72rem; color: #78350F; background: #FEF3C7; padding: 0.3rem 0.7rem; border-radius: 6px; font-weight: 700; border: 1px solid #FDE68A;">
-            💡 คลิกการ์ดเพื่อเปิดรายชื่อไซต์งาน
-          </div>
-          <!-- Triangle Collapse / Expand Arrow Button -->
-          <button id="btn-toggle-product-demand" type="button"
-            onclick="event.stopPropagation(); toggleProductDemandSection()" title="คลิกเพื่อย่อ/ขยายรายละเอียดสินค้า"
-            style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.22); color: #FFFFFF; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease;"
-            onmouseover="this.style.background='rgba(0,0,0,0.4)'; this.style.borderColor='#FFFFFF';"
-            onmouseout="this.style.background='rgba(0,0,0,0.22)'; this.style.borderColor='rgba(255,255,255,0.4)';">
-            <span id="icon-toggle-product-demand"
-              style="transition: transform 0.2s ease; display: inline-block;">▼</span>
-          </button>
         </div>
       </div>
 
-      <!-- 5 Product Metric Cards Grid -->
-      <div id="product-summary-cards-container" class="product-summary-grid" style="margin-bottom: 0;">
-        <!-- Injected via js/charts.js with click events -->
+      <!-- 4 Columns Grid Container (Guaranteed 4 Vertical Columns Side-by-Side) -->
+      <div id="tier-leaderboard-grid" class="tier-leaderboard-grid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; width: 100%; box-sizing: border-box;">
+        <!-- Injected dynamically via js/app.js renderTierLeaderboard() -->
       </div>
     </section>
 
@@ -871,16 +869,16 @@
               <th>ความน่าจะเป็นโครงการ <span
                   style="font-size: 0.72rem; font-weight: 600; color: #64748B; display: block; margin-top: 1px;">(สัญญาณย้อนหลัง
                   15 โพสต์ล่าสุด)</span></th>
-              <th class="col-sales-2025" style="text-align: right; min-width: 130px;">
-                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px;">
+              <th class="col-sales-2025" style="text-align: center; min-width: 135px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 4px;">
                   <span>ประวัติซื้อขาย 2025</span>
                 </div>
               </th>
-              <th class="col-sales-2026" style="text-align: right; min-width: 130px;">
-                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px;">
+              <th class="col-sales-2026" style="text-align: center; min-width: 160px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 4px;">
                   <span>ประวัติซื้อขาย 2026</span>
                   <button type="button" onclick="toggleSalesColumnsVisibility()"
-                    title="ซ่อนคอลัมน์ยอดขาย (เพื่อคุยกับลูกค้า)"
+                    title="ซ่อนคอลัมน์ประวัติซื้อขาย (เพื่อคุยกับลูกค้า)"
                     style="background: rgba(255,255,255,0.22); border: none; color: #FFFFFF; font-size: 0.65rem; font-weight: 800; padding: 1px 6px; border-radius: 4px; cursor: pointer; margin-left: 2px;"
                     onmouseover="this.style.background='rgba(255,255,255,0.4)'"
                     onmouseout="this.style.background='rgba(255,255,255,0.22)'">✕ ซ่อน</button>
