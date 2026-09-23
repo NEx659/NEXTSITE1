@@ -281,7 +281,7 @@ function setCompanyTag(companyId, tag, event) {
     'strategic': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
     'growth': '📈 Growth Account (ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด)',
     'opportunity': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
-    'prospect': '✨ New Prospect (ลูกค้าใหม่)'
+    'prospect': '✨ New (ลูกค้าใหม่)'
   };
   const userName = activeUser ? (activeUser.fullName || activeUser.email) : 'บราวเซอร์นี้';
   showStatusToast(`💾 จำสถานะเป็น ${tagNames[normalizedTag] || normalizedTag} สำหรับ ${userName} เรียบร้อย`);
@@ -346,10 +346,13 @@ async function handleSalesLoginForm(event) {
 }
 
 function filterByCompanyTag(tag) {
-  activeCompanyTagFilter = tag;
+  const normTag = (tag === 'all') ? 'all' : normalizeTagValue(tag);
+  activeCompanyTagFilter = normTag;
 
   document.querySelectorAll('.tag-filter-btn').forEach(btn => {
-    if (btn.getAttribute('data-filter') === tag) {
+    const bTag = btn.getAttribute('data-filter');
+    const normBTag = (bTag === 'all') ? 'all' : normalizeTagValue(bTag);
+    if (normBTag === normTag || (normTag === 'prospect' && (bTag === 'prospect' || bTag === 'new'))) {
       btn.classList.add('active');
     } else {
       btn.classList.remove('active');
@@ -1570,7 +1573,6 @@ function renderKPIs() {
   let totalPipelineValue = 0;
   let highPriorityLeads = 0;
   let newCompaniesCount = 0;
-  const tagMap = loadCompanyTagsMap();
   companies.forEach(c => {
     const pCount = c.projects ? c.projects.length : (c.totalProjects || 0);
     totalProjects += pCount;
@@ -1579,9 +1581,9 @@ function renderKPIs() {
     const score = window.scoring ? window.scoring.calculatePriorityScore(c) : 50;
     if (score >= 90) highPriorityLeads++;
 
-    // จำนวนบริษัทใหม่ คำนวณตามสถานะกลุ่ม New
-    const tag = tagMap[c.id] || 'new';
-    if (tag === 'new') {
+    // จำนวนบริษัทใหม่ คำนวณตามสถานะกลุ่ม New (prospect) ให้ตรงกับแถบ Tag Filter
+    const tag = getCompanyTag(c.id);
+    if (tag === 'prospect' || tag === 'new') {
       newCompaniesCount++;
     }
   });
@@ -1979,9 +1981,9 @@ function renderTierLeaderboard() {
     },
     {
       key: 'prospect',
-      title: 'PROSPECT',
+      title: 'NEW',
       subtitle: 'บริษัทใหม่ที่น่าจับตามอง\nเริ่มมีผลงานโดดเด่น',
-      sectionLabel: 'Top 3 บริษัทกลุ่ม Prospect',
+      sectionLabel: 'Top 3 บริษัทกลุ่ม New',
       sectionLabelColor: '#FDA4AF',
       iconSvg: `
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -2457,10 +2459,10 @@ function renderTable() {
               🎯 Opportunity
             </button>
             <button type="button" 
-                    title="New Prospect / ลูกค้าใหม่"
+                    title="New / ลูกค้าใหม่"
                     onclick="setCompanyTag('${company.id}', 'prospect', event)" 
                     style="display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px; font-size: 0.70rem; font-weight: 800; border-radius: 4px; border: none; cursor: pointer; transition: all 0.15s ease; ${curTag === 'prospect' ? 'background: #059669; color: #FFFFFF; box-shadow: 0 1px 3px rgba(5,150,105,0.35);' : 'background: transparent; color: #64748B;'}">
-              ✨ Prospect
+              ✨ New
             </button>
           </div>
         </div>
@@ -3359,10 +3361,10 @@ function openCompanyProjectsModal(companyOrId) {
     'strategic': 'Strategic Partner/ลูกค้าแฟนพันธ์แท้',
     'growth': 'Growth Account / ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด',
     'opportunity': 'Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์',
-    'prospect': 'New Prospect / ลูกค้าใหม่',
+    'prospect': 'New / ลูกค้าใหม่',
     'focus': 'Strategic Partner/ลูกค้าแฟนพันธ์แท้',
     'non-focus': 'Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์',
-    'new': 'New Prospect / ลูกค้าใหม่'
+    'new': 'New / ลูกค้าใหม่'
   };
   ['strategic', 'growth', 'opportunity', 'prospect', 'focus', 'non-focus', 'new'].forEach(t => {
     const btn = document.getElementById(`btn-status-${t}`);
@@ -4147,10 +4149,10 @@ function exportCompanyPdfReport(companyOrId) {
     'strategic': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
     'growth': '📈 Growth Account (ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด)',
     'opportunity': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
-    'prospect': '✨ New Prospect (ลูกค้าใหม่)',
+    'prospect': '✨ New (ลูกค้าใหม่)',
     'focus': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
     'non-focus': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
-    'new': '✨ New Prospect (ลูกค้าใหม่)'
+    'new': '✨ New (ลูกค้าใหม่)'
   };
   const tagBadgeStyle = {
     'strategic': 'background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA;',
@@ -6472,8 +6474,8 @@ function handleCrmModalStatusChange(companyId, projectId, newStatus) {
 }
 
 function openKpiModal(type) {
-  if (type === 'new') {
-    filterByCompanyTag('new');
+  if (type === 'new' || type === 'prospect') {
+    filterByCompanyTag('prospect');
   } else if (type === 'high') {
     activeFilter = 'red';
     document.querySelectorAll('.score-pill-btn').forEach(b => {
