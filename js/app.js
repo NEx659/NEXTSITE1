@@ -1174,65 +1174,28 @@ function getCompanyEntityRank(name) {
 function sortCompaniesByOpportunityScore(companies) {
   if (!Array.isArray(companies)) return [];
   return companies.sort((a, b) => {
-    // 1. บริษัทที่มีการซื้อขาย SCG ปี 2025 หรือ 2026 (ยอดซื้อขาย > 0) ต้องขึ้นมาก่อนเสมอ
-    const salesA_2025 = Number(a.sales2025) || 0;
-    const salesA_2026 = Number(a.sales2026) || 0;
-    const totalSalesA = salesA_2026 + salesA_2025;
-    const hasSalesA = (salesA_2025 > 0 || salesA_2026 > 0) ? 1 : 0;
-
-    const salesB_2025 = Number(b.sales2025) || 0;
-    const salesB_2026 = Number(b.sales2026) || 0;
-    const totalSalesB = salesB_2026 + salesB_2025;
-    const hasSalesB = (salesB_2025 > 0 || salesB_2026 > 0) ? 1 : 0;
-
-    // 1. บริษัทที่มีประวัติการซื้อขาย SCG ปี 2025 / 2026 ขึ้นก่อน
-    if (hasSalesB !== hasSalesA) {
-      return hasSalesB - hasSalesA;
-    }
-
+    // 1. เรียงตามคะแนน AI Score (จากมากไปน้อย: 100 -> 93 -> 87 -> 80 -> 73 -> 67 -> 60 -> 47 -> 33 -> 0)
     const scoreA = getCompanyScoreValue(a);
     const scoreB = getCompanyScoreValue(b);
-
-    const projA = (a.projects && a.projects.length) ? a.projects.length : (Number(a.totalProjects) || 0);
-    const projB = (b.projects && b.projects.length) ? b.projects.length : (Number(b.totalProjects) || 0);
-
-    // 2. ในกลุ่มที่มีประวัติซื้อขาย ให้เรียงตาม Opportunity Score -> จำนวนโครงการ -> ยอดซื้อขาย
-    if (hasSalesA === 1 && hasSalesB === 1) {
-      if (scoreB !== scoreA) {
-        return scoreB - scoreA;
-      }
-      if (projB !== projA) {
-        return projB - projA;
-      }
-      if (totalSalesB !== totalSalesA) {
-        return totalSalesB - totalSalesA;
-      }
-      return (a.name || '').localeCompare(b.name || '', 'th');
-    }
-
-    // 3. ในกลุ่มที่ไม่มีประวัติซื้อขาย (New / Leads ทั่วไป)
-    // 3.1 ลำดับแรก: บริษัท/นิติบุคคลที่ขึ้นต้นด้วย "บริษัท" และ "ห้างหุ้นส่วนจำกัด" ขึ้นก่อนร้านค้า/เพจทั่วไป
-    const rankA = getCompanyEntityRank(a.name);
-    const rankB = getCompanyEntityRank(b.name);
-    if (rankA !== rankB) {
-      return rankA - rankB;
-    }
-
-    // 3.2 เรียงตาม Opportunity Score -> จำนวนโครงการ -> มูลค่าโครงการ
     if (scoreB !== scoreA) {
       return scoreB - scoreA;
     }
+
+    // 2. ถ้าคะแนน AI เท่ากัน ให้เรียงตามจำนวนโครงการจริง (มากไปน้อย)
+    const projA = (a.projects && a.projects.length) ? a.projects.length : (Number(a.totalProjects) || 0);
+    const projB = (b.projects && b.projects.length) ? b.projects.length : (Number(b.totalProjects) || 0);
     if (projB !== projA) {
       return projB - projA;
     }
 
-    const valA = Number(a.totalValueMillion) || 0;
-    const valB = Number(b.totalValueMillion) || 0;
-    if (valB !== valA) {
-      return valB - valA;
+    // 3. ถ้าเท่ากันอีก ให้เรียงตามยอดซื้อขายรวม SCG 2025/2026 (มากไปน้อย)
+    const salesA = (Number(a.sales2026) || 0) + (Number(a.sales2025) || 0);
+    const salesB = (Number(b.sales2026) || 0) + (Number(b.sales2025) || 0);
+    if (salesB !== salesA) {
+      return salesB - salesA;
     }
 
-    // 3.3 เรียงตามลำดับตัวอักษรภาษาไทย ก-ฮ
+    // 4. เรียงตามลำดับตัวอักษรภาษาไทย ก-ฮ
     return (a.name || '').localeCompare(b.name || '', 'th');
   });
 }
@@ -1798,9 +1761,109 @@ function applySalesVisibilityState(hidden) {
 // ==========================================
 // 6.2 PRODUCT DEMAND INTELLIGENCE COLLAPSE/EXPAND
 // ==========================================
+// 6.2 3-DIMENSION AI OPPORTUNITY SCORING
+// 1. Projects: 0->0, 1-2->2, 3-4->3, 5->4, 6+->5
+// 2. Stage: Early/Foundation->5, Mid/Structure->3, Late/Finishing->1
+// 3. SCG History: 2025&2026->5, 2025 or 2026->4, New->2
+// (Raw Total Max 15 -> Scaled to 100)
 // ==========================================
-// 6.2 4-TIER STRATEGIC LEADERBOARD (Top 3 by Tier - Modern Airy Style)
-// ==========================================
+function calculateCompany3DimScore(comp) {
+  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0 };
+
+  // 1. จำนวนโครงการจริง (Max 5)
+  const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
+  const projCount = projects.length > 0 ? projects.length : (Number(comp.totalProjects) || 0);
+  
+  let scoreProj = 0;
+  if (projCount === 0) scoreProj = 0;
+  else if (projCount <= 2) scoreProj = 2;
+  else if (projCount <= 4) scoreProj = 3;
+  else if (projCount === 5) scoreProj = 4;
+  else scoreProj = 5; // 6+
+
+  // 2. สเตจหน้างาน (Max 5)
+  let scoreStage = 0;
+  if (projCount === 0) {
+    scoreStage = 0;
+  } else {
+    let hasEarly = false;
+    let hasMid = false;
+    let hasLate = false;
+
+    projects.forEach(p => {
+      const sKey = (p.stageKey || '').toLowerCase();
+      const sText = ((p.stage || '') + ' ' + (p.name || '') + ' ' + (p.caption || '')).toLowerCase();
+
+      if (
+        sKey === 'groundbreak' || sKey === 'foundation' ||
+        sText.includes('เสาเอก') || sText.includes('เสาโท') || sText.includes('เซ็นสัญญา') ||
+        sText.includes('เปิดหน้างาน') || sText.includes('ฐานราก') || sText.includes('ตอกเสาเข็ม') ||
+        sText.includes('เทพื้น') || sText.includes('คานคอดิน')
+      ) {
+        hasEarly = true;
+      } else if (
+        sKey === 'structure' ||
+        sText.includes('โครงสร้าง') || sText.includes('หลังคา') || sText.includes('ก่อผนัง') ||
+        sText.includes('ฉาบ') || sText.includes('มุงกระเบื้อง') || sText.includes('ฝ้า')
+      ) {
+        hasMid = true;
+      } else if (
+        sKey === 'finishing' || sKey === 'handover' ||
+        sText.includes('ตกแต่ง') || sText.includes('เก็บงาน') || sText.includes('ส่งมอบ') ||
+        sText.includes('สุขภัณฑ์') || sText.includes('ปูกระเบื้อง') || sText.includes('ทาสี') ||
+        sText.includes('ตรวจรับ')
+      ) {
+        hasLate = true;
+      } else {
+        hasMid = true;
+      }
+    });
+
+    if (!hasEarly && !hasMid && !hasLate && comp.stageBreakdown) {
+      if ((comp.stageBreakdown.groundbreak || 0) > 0 || (comp.stageBreakdown.foundation || 0) > 0) hasEarly = true;
+      else if ((comp.stageBreakdown.structure || 0) > 0) hasMid = true;
+      else if ((comp.stageBreakdown.finishing || 0) > 0) hasLate = true;
+    }
+
+    if (hasEarly) scoreStage = 5;
+    else if (hasMid) scoreStage = 3;
+    else if (hasLate) scoreStage = 1;
+    else scoreStage = 3;
+  }
+
+  // 3. ประวัติการซื้อกับ SCG (Max 5)
+  const s25 = Number(comp.sales2025) || 0;
+  const s26 = Number(comp.sales2026) || 0;
+  let scoreScg = 2;
+  if (s25 > 0 && s26 > 0) {
+    scoreScg = 5;
+  } else if (s25 > 0 || s26 > 0) {
+    scoreScg = 4;
+  } else {
+    scoreScg = 2;
+  }
+
+  const rawTotal = scoreProj + scoreStage + scoreScg; // Max 15
+  const totalScore100 = Math.round((rawTotal / 15) * 100);
+
+  return {
+    totalScore100,
+    rawTotal,
+    scoreProj,
+    scoreStage,
+    scoreScg,
+    projCount,
+    s25,
+    s26
+  };
+}
+
+function getCompanyScoreValue(comp) {
+  if (!comp) return 0;
+  const res = calculateCompany3DimScore(comp);
+  return res.totalScore100 || 0;
+}
+
 // ==========================================
 // 6.2 4-TIER STRATEGIC LEADERBOARD (Exact Mockup Match Edition)
 // ==========================================
@@ -2280,58 +2343,65 @@ function renderTable() {
     }
     if (!fbPageHandle) fbPageHandle = companyCleanName;
 
-    // Calculate exact Opportunity Score
-    const oppScore = (window.scoring && window.scoring.calculateOpportunityScore)
-      ? window.scoring.calculateOpportunityScore(company).score
-      : (projCount >= 7 ? 92 : (projCount >= 5 ? 80 : (projCount >= 3 ? 70 : (projCount >= 1 ? 35 : 15))));
+    // Calculate exact 3-Dimension Opportunity Score (Max 15 -> Scaled to 100)
+    const score3Dim = calculateCompany3DimScore(company);
+    const oppScore = score3Dim.totalScore100;
 
-    let badgeBg = '#F8FAFC';
-    let badgeBorder = '#E2E8F0';
-    let badgeColor = '#64748B';
-    let recTierText = 'ปานกลาง (15)';
-    let recTierColor = '#64748B';
+    // เกณฑ์คะแนนโอกาส AI:
+    // 0 - 45 = โอกาสน้อย
+    // 46 - 70 = โอกาสปานกลาง
+    // 75 ขึ้นไป (71+) = โอกาสสูง
+    let aiTierText = `โอกาสน้อยวิเคราะห์จาก AI (${oppScore})`;
+    let aiTierColor = '#64748B';
 
-    if (oppScore >= 90) { // 7+ โครงการ = 92
-      badgeBg = '#FEF2F2';
-      badgeBorder = '#FECACA';
-      badgeColor = '#DC2626';
-      recTierText = 'โอกาสสูงสุด (92)';
-      recTierColor = '#DC2626';
-    } else if (oppScore >= 80) { // 5-6 โครงการ = 80
-      badgeBg = '#F0FDF4';
-      badgeBorder = '#BBF7D0';
-      badgeColor = '#16A34A';
-      recTierText = 'โอกาสสูงมาก (80)';
-      recTierColor = '#16A34A';
-    } else if (oppScore >= 70) { // 3-4 โครงการ = 70
-      badgeBg = '#FFF7ED';
-      badgeBorder = '#FED7AA';
-      badgeColor = '#EA580C';
-      recTierText = 'โอกาสสูง (70)';
-      recTierColor = '#EA580C';
-    } else if (oppScore >= 35) { // 1-2 โครงการ = 35
-      badgeBg = '#FEFCE8';
-      badgeBorder = '#FEF08A';
-      badgeColor = '#CA8A04';
-      recTierText = 'โอกาสเริ่มต้น (35)';
-      recTierColor = '#CA8A04';
+    if (oppScore >= 71) {
+      aiTierText = `โอกาสสูงวิเคราะห์จาก AI (${oppScore})`;
+      aiTierColor = '#16A34A';
+    } else if (oppScore >= 46) {
+      aiTierText = `โอกาสปานกลางวิเคราะห์จาก AI (${oppScore})`;
+      aiTierColor = '#EA580C';
+    } else {
+      aiTierText = `โอกาสน้อยวิเคราะห์จาก AI (${oppScore})`;
+      aiTierColor = '#64748B';
     }
 
     // Check if sales rep manually assessed opportunity level
     const companyCrmLog = getCompanyCrmLog(company.id);
-    let isSalesAssessed = false;
-    if (companyCrmLog.salesOpportunityLevel === 'high') {
-      recTierText = 'โอกาสสูง (เซลส์ประเมิน)';
-      recTierColor = '#16A34A';
-      isSalesAssessed = true;
-    } else if (companyCrmLog.salesOpportunityLevel === 'medium') {
-      recTierText = 'โอกาสปานกลาง (เซลส์ประเมิน)';
-      recTierColor = '#EA580C';
-      isSalesAssessed = true;
-    } else if (companyCrmLog.salesOpportunityLevel === 'low') {
-      recTierText = 'โอกาสน้อย (เซลส์ประเมิน)';
-      recTierColor = '#64748B';
-      isSalesAssessed = true;
+    let salesAssessedHtml = '';
+    if (companyCrmLog && companyCrmLog.salesOpportunityLevel) {
+      let assessorName = companyCrmLog.salesRep || '';
+      if (!assessorName && companyCrmLog.createdBy) {
+        if (companyCrmLog.createdBy.toLowerCase().includes('keetavas')) assessorName = 'คีตวรรษ';
+        else if (companyCrmLog.createdBy.toLowerCase().includes('pannipan')) assessorName = 'พรรณิภา';
+        else assessorName = companyCrmLog.createdBy.split('@')[0];
+      }
+      if (!assessorName && company.salesRep) {
+        assessorName = company.salesRep;
+      }
+      if (!assessorName) {
+        const curUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof getCurrentSalesUserObj === 'function' ? getCurrentSalesUserObj() : null);
+        if (curUser && curUser.fullName) assessorName = curUser.fullName;
+      }
+      if (!assessorName) {
+        assessorName = 'คีตวรรษ';
+      }
+      const cleanAssessor = assessorName.replace(/^คุณ\s*/, '').trim() || 'คีตวรรษ';
+
+      let sLevelText = 'โอกาสปานกลาง';
+      let sColor = '#EA580C';
+      if (companyCrmLog.salesOpportunityLevel === 'high') {
+        sLevelText = 'โอกาสสูง';
+        sColor = '#16A34A';
+      } else if (companyCrmLog.salesOpportunityLevel === 'low') {
+        sLevelText = 'โอกาสน้อย';
+        sColor = '#64748B';
+      }
+      salesAssessedHtml = `
+        <div style="display: flex; align-items: center; gap: 4px; font-size: 0.74rem; font-weight: 700; color: ${sColor}; line-height: 1.2;">
+          <span style="color: ${sColor}; font-size: 0.85rem; line-height: 1;">●</span>
+          <span>${sLevelText}คุณ${cleanAssessor}วิเคราะห์</span>
+        </div>
+      `;
     }
 
     // Check ownership & edit permission for this company
@@ -2364,11 +2434,6 @@ function renderTable() {
               <circle cx="10" cy="10" r="10" fill="#10B981"/>
               <path d="M6 10.5L8.5 13L14 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            ${company.scgCode ? `
-              <span style="font-size: 0.7rem; font-weight: 700; color: #0369A1; background: #E0F2FE; padding: 1px 6px; border-radius: 4px; border: 1px solid #BAE6FD;">
-                รหัส ${company.scgCode}
-              </span>
-            ` : ''}
           </div>
           
           <!-- Sales Tag Selector Buttons: 4 Tiers (Strategic / Growth / Opportunity / Prospect) -->
@@ -2630,15 +2695,11 @@ function renderTable() {
       <!-- 8. คำแนะนำจาก AI -->
       <td class="ai-recommendation-cell" style="vertical-align: middle; border-left: 2px solid #E2E8F0; padding-left: 14px;" onclick="openCompanyProjectsModal('${company.id}')">
         <div style="display: flex; flex-direction: column; gap: 3px;">
-          <div style="display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 800; color: ${recTierColor};">
-            <span style="color: ${recTierColor}; font-size: 0.9rem;">●</span> ${recTierText}
+          <div style="display: flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 800; color: ${aiTierColor}; line-height: 1.2;">
+            <span style="color: ${aiTierColor}; font-size: 0.85rem; line-height: 1;">●</span>
+            <span>${aiTierText}</span>
           </div>
-          <div style="font-size: 0.75rem; color: #334155; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px;" title="🎯 เพจทางการ: ${fbPageHandle}">
-            🎯 เพจทางการ: ${fbPageHandle}
-          </div>
-          <div style="font-size: 0.72rem; color: #DC2626; font-weight: 800;">
-            กดเพื่อดูบทวิเคราะห์...
-          </div>
+          ${salesAssessedHtml}
         </div>
       </td>
     `;

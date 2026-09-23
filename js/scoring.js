@@ -103,29 +103,24 @@ function calculateOpportunityScore(company) {
   const result = calculateCompany3DimScore(company);
   const finalScore = result.totalScore100;
 
-  let tier = "yellow";
-  let tierLabel = "โอกาสปานกลาง";
+  let tier = "gray";
+  let tierLabel = "โอกาสน้อย";
   let tierColor = "#64748B";
-  let urgency = "ติดตามตามรอบปกติ";
+  let urgency = "รอตรวจจับสัญญาณหน้างานใหม่";
 
-  if (finalScore >= 85) {
-    tier = "red";
-    tierLabel = "โอกาสสูงสุด (85-100)";
-    tierColor = "#1E40AF";
-    urgency = "แนะนำทีมขายเข้าพบด่วนที่สุด";
-  } else if (finalScore >= 70) {
-    tier = "orange";
-    tierLabel = "โอกาสระดับสูง (70-84)";
+  if (finalScore >= 71) {
+    tier = "green";
+    tierLabel = "โอกาสสูง (71-100)";
     tierColor = "#16A34A";
-    urgency = "แนะนำนำเสนอแพ็กเกจสินค้า SCG";
-  } else if (finalScore >= 50) {
-    tier = "yellow";
-    tierLabel = "โอกาสปานกลาง (50-69)";
-    tierColor = "#CA8A04";
-    urgency = "เฝ้าระวังความคืบหน้าหน้างาน";
+    urgency = "แนะนำทีมขายเข้าพบและนำเสนอสินค้า SCG";
+  } else if (finalScore >= 46) {
+    tier = "orange";
+    tierLabel = "โอกาสปานกลาง (46-70)";
+    tierColor = "#EA580C";
+    urgency = "เฝ้าระวังความคืบหน้าหน้างานและติดตามสเตจ";
   } else {
-    tier = "yellow";
-    tierLabel = "โอกาสเริ่มต้น (<50)";
+    tier = "gray";
+    tierLabel = "โอกาสน้อย (0-45)";
     tierColor = "#64748B";
     urgency = "รอตรวจจับสัญญาณหน้างานใหม่";
   }
