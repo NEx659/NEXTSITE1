@@ -1592,6 +1592,7 @@ function renderKPIs() {
   const elNewComp = document.getElementById('kpi-new-companies');
   const elHighOpp = document.getElementById('kpi-high-opp');
   const elTotalVal = document.getElementById('kpi-total-value');
+  const elTotalProjectsVal = document.getElementById('kpi-total-projects-val');
   const elTotalProjectsSub = document.getElementById('kpi-total-projects-subtext');
   const elProvinceTotalProjectsBadge = document.getElementById('province-total-projects-badge');
   const elProvinceTotalProjectsCount = document.getElementById('province-total-projects-count');
@@ -1600,6 +1601,7 @@ function renderKPIs() {
   if (elNewComp) elNewComp.textContent = newCompaniesCount;
   if (elHighOpp) elHighOpp.textContent = highPriorityLeads;
   if (elTotalVal) elTotalVal.textContent = `฿${totalPipelineValue.toFixed(1)}M`;
+  if (elTotalProjectsVal) elTotalProjectsVal.textContent = totalProjects;
   if (elTotalProjectsSub) elTotalProjectsSub.textContent = `รวม ${totalProjects} โครงการที่กำลังก่อสร้าง`;
   
   // Dynamic Province Label Synchronization
