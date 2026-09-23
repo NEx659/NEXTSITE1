@@ -2533,11 +2533,29 @@ function renderTable() {
               </button>
             `;
 
+          let followerName = log.salesRep || '';
+          if (!followerName && log.createdBy) {
+            if (log.createdBy.toLowerCase().includes('keetavas')) followerName = 'คีตวรรษ';
+            else if (log.createdBy.toLowerCase().includes('pannipan')) followerName = 'พรรณิภา';
+            else followerName = log.createdBy.split('@')[0];
+          }
+          if (!followerName && company.salesRep) {
+            followerName = company.salesRep;
+          }
+          if (!followerName) {
+            const curUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof getCurrentSalesUserObj === 'function' ? getCurrentSalesUserObj() : null);
+            if (curUser && curUser.fullName) followerName = curUser.fullName;
+          }
+          if (!followerName) {
+            followerName = 'คีตวรรษ';
+          }
+          const cleanName = followerName.replace(/^คุณ\s*/, '').trim() || 'คีตวรรษ';
+
           const statusBadgeHtml = hasFollowedUp
             ? `
-              <div onclick="openCompanyProjectsModal('${company.id}')" title="เข้าติดตามแล้ว (มีประวัติการเข้าพบ/โน้ต/รูปถ่ายหน้างาน)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #86EFAC; background: #F0FDF4; font-weight: 800; font-size: 0.74rem; color: #15803D; box-shadow: 0 1px 3px rgba(22,163,74,0.1); white-space: nowrap; cursor: pointer;">
+              <div onclick="openCompanyProjectsModal('${company.id}')" title="ติดตามแล้วโดยคุณ ${cleanName} (มีประวัติการเข้าพบ/โน้ต/รูปถ่ายหน้างาน)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #86EFAC; background: #F0FDF4; font-weight: 800; font-size: 0.72rem; color: #15803D; box-shadow: 0 1px 3px rgba(22,163,74,0.1); white-space: nowrap; cursor: pointer;">
                 <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
-                <span>เข้าติดตามแล้ว</span>
+                <span>ติดตามแล้วโดยคุณ ${cleanName}</span>
               </div>
             `
             : `
