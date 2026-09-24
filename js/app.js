@@ -3447,6 +3447,55 @@ function openCompanyProjectsModal(companyOrId) {
     }
   }
 
+  // DBD Financial & Registration Info Card (จากรูปที่ 1 -> แสดงในตำแหน่งวงเล็บรูปที่ 2)
+  const dbdData = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
+  const elDbdCard = document.getElementById('modal-dbd-info-card');
+  const elCompanyInfoCols = document.getElementById('modal-company-info-columns');
+
+  if (dbdData && (dbdData.taxId || Number(dbdData.revenue) > 0)) {
+    if (elDbdCard) elDbdCard.style.display = 'flex';
+    if (elCompanyInfoCols) elCompanyInfoCols.classList.remove('no-dbd');
+
+    const elDbdTaxId = document.getElementById('modal-dbd-tax-id');
+    const elDbdName = document.getElementById('modal-dbd-company-name');
+    const elDbdRevenue = document.getElementById('modal-dbd-revenue');
+    const elDbdScoreBadge = document.getElementById('modal-dbd-score-badge');
+
+    if (elDbdTaxId) elDbdTaxId.textContent = dbdData.taxId || '-';
+    if (elDbdName) elDbdName.textContent = dbdData.name || compCleanName;
+    if (elDbdRevenue) {
+      const revVal = Number(dbdData.revenue) || 0;
+      elDbdRevenue.textContent = `฿${revVal.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`;
+    }
+    if (elDbdScoreBadge) {
+      const score = (typeof calculateDbdRevenueScore === 'function') ? calculateDbdRevenueScore(dbdData.revenue) : 0;
+      let badgeLabel = `ประเมิน DBD: ${score}/5`;
+      let badgeBg = '#15803D';
+      if (score >= 5) {
+        badgeLabel = `ประเมิน DBD: 5/5 (>10M)`;
+        badgeBg = '#15803D';
+      } else if (score === 4) {
+        badgeLabel = `ประเมิน DBD: 4/5 (5-10M)`;
+        badgeBg = '#2563EB';
+      } else if (score === 3) {
+        badgeLabel = `ประเมิน DBD: 3/5 (1-5M)`;
+        badgeBg = '#D97706';
+      } else if (score === 1) {
+        badgeLabel = `ประเมิน DBD: 1/5 (<1M)`;
+        badgeBg = '#EA580C';
+      } else {
+        badgeLabel = `ประเมิน DBD: 0/5`;
+        badgeBg = '#64748B';
+      }
+      elDbdScoreBadge.textContent = badgeLabel;
+      elDbdScoreBadge.style.background = badgeBg;
+    }
+  } else {
+    // "บริษัทไหนไม่มีก็ไม่ต้องใส่" -> ซ่อนบล็อก DBD
+    if (elDbdCard) elDbdCard.style.display = 'none';
+    if (elCompanyInfoCols) elCompanyInfoCols.classList.add('no-dbd');
+  }
+
   // Score Matrix / SCG Sales Intelligence & AI Advisor
   renderModalScoreOrSalesIntelligence(comp);
 

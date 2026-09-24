@@ -1030,26 +1030,58 @@
             <h3 class="section-title" style="color: #FFFFFF !important;"><span class="indicator"
                 style="background: #FBBF24 !important;"></span> ข้อมูลทั่วไปและที่ตั้งบริษัท</h3>
 
-            <div style="font-size: 0.82rem; margin-bottom: 0.85rem;">
-              <span style="color: #FECACA; font-weight: 500;">เบอร์โทรศัพท์ติดต่อ:</span>
-              <div id="modal-phone" style="font-weight: 700; color: #FFFFFF; margin-top: 3px; font-size: 0.95rem;">-
-              </div>
-            </div>
+            <div id="modal-company-info-columns" class="modal-company-info-columns">
+              <!-- Left Column: Contact & Address -->
+              <div>
+                <div style="font-size: 0.82rem; margin-bottom: 0.85rem;">
+                  <span style="color: #FECACA; font-weight: 500;">เบอร์โทรศัพท์ติดต่อ:</span>
+                  <div id="modal-phone" style="font-weight: 700; color: #FFFFFF; margin-top: 3px; font-size: 0.95rem;">-
+                  </div>
+                </div>
 
-            <div style="font-size: 0.82rem; margin-bottom: 0.85rem;">
-              <span style="color: #FECACA; font-weight: 500;">ที่ตั้งสำนักงาน:</span>
-              <div id="modal-address" style="color: #F8FAFC; font-weight: 600; margin-top: 3px; line-height: 1.4;">-
-              </div>
-            </div>
+                <div style="font-size: 0.82rem; margin-bottom: 0.85rem;">
+                  <span style="color: #FECACA; font-weight: 500;">ที่ตั้งสำนักงาน:</span>
+                  <div id="modal-address" style="color: #F8FAFC; font-weight: 600; margin-top: 3px; line-height: 1.4;">-
+                  </div>
+                </div>
 
-            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.25);">
-              <span
-                style="color: #FECACA; font-size: 0.8rem; display: block; margin-bottom: 6px; font-weight: 500;">พิกัดและแผนที่นำทาง:</span>
-              <a id="modal-gmaps-link" href="#" target="_blank" rel="noopener noreferrer"
-                style="display: inline-flex; align-items: center; gap: 8px; padding: 0.55rem 1rem; background: #FFFFFF; color: #991B1B; border: 1.5px solid #FECACA; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
-                📍 <span id="modal-gmaps-text">เปิด Google Maps นำทาง</span> <span
-                  style="font-size: 0.75rem; margin-left: 2px;">↗</span>
-              </a>
+                <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.25);">
+                  <span
+                    style="color: #FECACA; font-size: 0.8rem; display: block; margin-bottom: 6px; font-weight: 500;">พิกัดและแผนที่นำทาง:</span>
+                  <a id="modal-gmaps-link" href="#" target="_blank" rel="noopener noreferrer"
+                    style="display: inline-flex; align-items: center; gap: 8px; padding: 0.55rem 1rem; background: #FFFFFF; color: #991B1B; border: 1.5px solid #FECACA; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                    📍 <span id="modal-gmaps-text">เปิด Google Maps นำทาง</span> <span
+                      style="font-size: 0.75rem; margin-left: 2px;">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Column (Circled Box in Image 2): DBD Financial & Registration Info -->
+              <div id="modal-dbd-info-card" class="modal-dbd-card" style="display: none;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.18);">
+                    <div style="font-size: 0.82rem; font-weight: 800; color: #FEF08A; display: flex; align-items: center; gap: 6px;">
+                      <span>🏢 ข้อมูลนิติบุคคล (DBD)</span>
+                    </div>
+                    <span id="modal-dbd-score-badge" style="font-size: 0.68rem; font-weight: 800; background: #15803D; color: #FFFFFF; padding: 2px 7px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">ประเมิน DBD: 5/5</span>
+                  </div>
+
+                  <div style="font-size: 0.8rem; margin-bottom: 6px;">
+                    <span style="color: #FECACA; font-size: 0.74rem;">เลขทะเบียนนิติบุคคล:</span>
+                    <div id="modal-dbd-tax-id" style="color: #FFFFFF; font-weight: 800; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 0.5px; margin-top: 1px; font-size: 0.88rem;">-</div>
+                  </div>
+
+                  <div style="font-size: 0.8rem; margin-bottom: 6px;">
+                    <span style="color: #FECACA; font-size: 0.74rem;">ชื่อกิจการ / บริษัท (DBD):</span>
+                    <div id="modal-dbd-company-name" style="color: #F8FAFC; font-weight: 600; line-height: 1.35; margin-top: 1px; font-size: 0.82rem;">-</div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed rgba(255,255,255,0.25);">
+                  <span style="color: #FECACA; font-size: 0.74rem; font-weight: 500;">รายได้รวม (บาท):</span>
+                  <div id="modal-dbd-revenue" style="color: #4ADE80; font-size: 1.15rem; font-weight: 900; letter-spacing: -0.3px; margin-top: 2px;">฿0.00 บาท</div>
+                </div>
+              </div>
             </div>
 
             <!-- Stage Filter Pills moved here -->

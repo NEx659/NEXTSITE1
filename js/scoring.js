@@ -53,6 +53,7 @@ const DBD_COMPANY_REVENUE_DB = [
 function normalizeThaiName(str) {
   if (!str) return '';
   return String(str)
+    .replace(/\u0e4d\u0e30/g, '\u0e33')
     .replace(/บริษัท|ห้างหุ้นส่วนจำกัด|ห้างหุ้นส่วนจํากัด|หจก\.|บจก\.|จำกัด|จํากัด|\(2016\)|\(อุดรธานี\)|หน้ากองบิน23|Dream Up House|PP HOUSE CONSTRUCTION & DESIGN/gi, '')
     .replace(/[\s\.\-\_\(\)]/g, '')
     .toLowerCase();
