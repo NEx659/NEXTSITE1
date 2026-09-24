@@ -416,10 +416,10 @@
   <header class="app-header"
     style="background: #0A0F1D; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
     <div class="header-container"
-      style="max-width: 1540px; margin: 0 auto; padding: 0.6rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+      style="max-width: 1540px; margin: 0 auto; padding: 0.55rem 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 0.85rem; flex-wrap: nowrap;">
 
       <!-- Left: NEXTSITE AI Brand Logo -->
-      <div class="brand-section" style="display: flex; align-items: center; gap: 0.85rem;">
+      <div class="brand-section" style="display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
         <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.65rem;">
           <div style="background: linear-gradient(135deg, #D9251D, #B91C1C); width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(217,37,29,0.4);">
             <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
@@ -440,25 +440,32 @@
       </div>
 
       <!-- Center: Navigation Menu Links -->
-      <nav class="nav-links-menu" style="display: flex; align-items: center; gap: 1.8rem;">
-        <a href="index.html" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">หน้าหลัก</a>
-        <a href="#tier-leaderboard-section" style="color: #FFFFFF; text-decoration: none; font-size: 0.86rem; font-weight: 800; position: relative; padding-bottom: 4px; border-bottom: 2px solid #F59E0B;">จัดอันดับบริษัท</a>
-        <a href="#market-analysis" onclick="openAiStrategyModal(); return false;" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">วิเคราะห์ตลาด</a>
-        <a href="#insights" onclick="openSalesReportModal(); return false;" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">ข้อมูลเชิงลึก</a>
-        <a href="report.html?province=udon" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">รายงาน</a>
-        <a href="#" onclick="openApifyModal(); return false;" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">เกี่ยวกับเรา</a>
+      <nav class="nav-links-menu" style="display: flex; align-items: center; gap: 1.2rem; flex-shrink: 0; white-space: nowrap;">
+        <a href="index.html" style="color: #94A3B8; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">หน้าหลัก</a>
+        <a href="#tier-leaderboard-section" style="color: #FFFFFF; text-decoration: none; font-size: 0.85rem; font-weight: 800; position: relative; padding-bottom: 4px; border-bottom: 2px solid #F59E0B;">จัดอันดับบริษัท</a>
+        <a href="#market-analysis" onclick="openAiStrategyModal(); return false;" style="color: #94A3B8; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">วิเคราะห์ตลาด</a>
+        <a href="#insights" onclick="openSalesReportModal(); return false;" style="color: #94A3B8; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">ข้อมูลเชิงลึก</a>
+        <a href="report.html?province=udon" style="color: #94A3B8; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">รายงาน</a>
+        <a href="#" onclick="openApifyModal(); return false;" style="color: #94A3B8; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">เกี่ยวกับเรา</a>
       </nav>
 
-      <!-- Right: Search pill + Notification Bell + User Avatar -->
-      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-        <!-- Top Nav Search Pill -->
-        <div style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px; padding: 6px 14px; display: flex; align-items: center; gap: 8px; width: 200px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2.5">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      <!-- Right: Action Buttons + Notification Bell + User Avatar -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; flex-shrink: 0;">
+        <!-- Assessment Button: ประเมินหน้างาน -->
+        <button type="button" id="btn-nav-site-assessment" onclick="window.location.href='assessment.html'"
+          style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(185, 28, 28, 0.45) 100%); border: 1.5px solid rgba(248, 113, 113, 0.7); border-radius: 9999px; color: #FFFFFF; font-size: 0.84rem; font-weight: 800; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 10px rgba(220, 38, 38, 0.3); backdrop-filter: blur(8px);"
+          onmouseover="this.style.background='linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)'; this.style.borderColor='#FECACA'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 14px rgba(220, 38, 38, 0.5)';"
+          onmouseout="this.style.background='linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(185, 28, 28, 0.45) 100%)'; this.style.borderColor='rgba(248, 113, 113, 0.7)'; this.style.transform='none'; this.style.boxShadow='0 2px 10px rgba(220, 38, 38, 0.3)';"
+          title="บันทึกและประเมินการลงพื้นที่หน้างานจริง">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
-          <input type="text" placeholder="ค้นหาบริษัทรับสร้างบ้าน..." oninput="handleSearchInputChange(this.value)"
-            style="background: transparent; border: none; outline: none; font-size: 0.78rem; color: #FFFFFF; width: 100%; font-family: inherit;">
-        </div>
+          <span>ประเมินหน้างาน</span>
+        </button>
 
         <!-- Notification Bell Icon with Badge 3 -->
         <div style="position: relative; cursor: pointer;" onclick="openCrmStatusModal('all')" title="แจ้งเตือนสถานะงานใหม่ 3 รายการ">
@@ -687,7 +694,7 @@
 
     <!-- 4-Tier Strategic Leaderboard Section (Top 3 in each group) -->
     <section id="tier-leaderboard-section" class="tier-leaderboard-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 10px;">
         <div style="background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 8px 18px; border-radius: 14px; border: 1.5px solid rgba(255, 255, 255, 0.95); box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08); display: inline-block;">
           <h2 style="font-size: 1.1rem; font-weight: 900; color: #0F172A; display: flex; align-items: center; gap: 0.5rem; margin: 0; letter-spacing: -0.2px;">
             <span style="font-size: 1.25rem;">🏆</span> จัดอันดับบริษัทที่น่าสนใจที่สุดในแต่ละกลุ่ม (Top Companies by Tier)
@@ -696,6 +703,22 @@
             วิเคราะห์และคัดเลือก Top 3 บริษัทเป้าหมายที่โดดเด่นที่สุดในแต่ละกลุ่ม พร้อมคะแนน AI Score และสถานะหน้างานจริง
           </p>
         </div>
+
+        <!-- Assessment Button: ประเมิน -->
+        <button type="button" id="btn-open-scoring-criteria-modal" onclick="openScoringCriteriaModal()"
+          style="display: inline-flex; align-items: center; gap: 7px; padding: 8px 18px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1.5px solid rgba(255, 255, 255, 0.95); border-radius: 14px; color: #0F172A; font-size: 0.88rem; font-weight: 800; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);"
+          onmouseover="this.style.background='#FFFFFF'; this.style.borderColor='#FECACA'; this.style.color='#DC2626'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(220, 38, 38, 0.18)';"
+          onmouseout="this.style.background='rgba(255, 255, 255, 0.92)'; this.style.borderColor='rgba(255, 255, 255, 0.95)'; this.style.color='#0F172A'; this.style.transform='none'; this.style.boxShadow='0 4px 16px rgba(15, 23, 42, 0.08)';"
+          title="คลิกเพื่อดูเกณฑ์การประเมินคะแนน AI">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="color: #DC2626;">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>ประเมิน</span>
+        </button>
       </div>
 
       <!-- 4 Columns Grid Container (Guaranteed 4 Vertical Columns Side-by-Side) -->
@@ -2468,7 +2491,237 @@
         }, 1200);
       }, 50);
     }
+
+    function openScoringCriteriaModal() {
+      const modal = document.getElementById('scoring-criteria-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeScoringCriteriaModal() {
+      const modal = document.getElementById('scoring-criteria-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
   </script>
+
+  <!-- ========================================== -->
+  <!-- AI SCORING & RANKING CRITERIA MODAL -->
+  <!-- ========================================== -->
+  <div id="scoring-criteria-modal" class="modal-overlay"
+    style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(6px); z-index: 99999; align-items: center; justify-content: center; padding: 20px;"
+    onclick="if(event.target === this) closeScoringCriteriaModal()">
+    <div
+      style="background: #FFFFFF; width: 100%; max-width: 920px; max-height: 92vh; border-radius: 18px; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45); display: flex; flex-direction: column; overflow: hidden; border: 1.5px solid #CBD5E1; animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
+
+      <!-- Modal Header -->
+      <div
+        style="background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 45%, #450A0A 100%); color: #FFFFFF; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #EF4444;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div
+            style="background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.45); border: 1.5px solid #FECACA;">
+            📊
+          </div>
+          <div>
+            <div style="font-size: 1.18rem; font-weight: 900; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;">
+              <span>เกณฑ์การประเมินคะแนนโอกาส AI (AI Opportunity Scoring)</span>
+              <span style="background: #FEF3C7; color: #92400E; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-weight: 800; border: 1px solid #FDE68A;">4 มิติหลัก (100 คะแนน)</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #FECACA; font-weight: 600; margin-top: 2px;">
+              สูตรวิเคราะห์และคัดเลือก Top 3 บริษัทเป้าหมายที่น่าสนใจที่สุดในแต่ละกลุ่ม
+            </div>
+          </div>
+        </div>
+
+        <button type="button" onclick="closeScoringCriteriaModal()"
+          style="background: rgba(255,255,255,0.15); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25); width: 34px; height: 34px; border-radius: 8px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s;"
+          onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+          onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div style="padding: 22px 26px; overflow-y: auto; flex: 1; background: #F8FAFC;">
+
+        <!-- Formula Summary Banner -->
+        <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 16px 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <span>📐 สูตรคำนวณคะแนนรวม AI Score (เต็ม 100 คะแนน)</span>
+          </div>
+          <div style="background: #0F172A; color: #FEF08A; padding: 12px 16px; border-radius: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88rem; font-weight: 700; text-align: center; border: 1px solid #334155;">
+            AI Score = [ (คะแนนโครงการ + สเตจหน้างาน + ประวัติซื้อ SCG + รายได้ DBD) / 20 ] × 100
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px;">
+            <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 8px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #1E40AF; font-weight: 800;">1. โครงการก่อสร้าง</div>
+              <div style="font-size: 0.95rem; font-weight: 900; color: #1D4ED8; margin-top: 2px;">Max 5 (25%)</div>
+            </div>
+            <div style="background: #FDF4FF; border: 1px solid #F0ABFC; border-radius: 8px; padding: 8px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #86198F; font-weight: 800;">2. สเตจหน้างาน</div>
+              <div style="font-size: 0.95rem; font-weight: 900; color: #A21CAF; margin-top: 2px;">Max 5 (25%)</div>
+            </div>
+            <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 8px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #065F46; font-weight: 800;">3. ประวัติซื้อ SCG</div>
+              <div style="font-size: 0.95rem; font-weight: 900; color: #047857; margin-top: 2px;">Max 5 (25%)</div>
+            </div>
+            <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 8px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #92400E; font-weight: 800;">4. รายได้ DBD</div>
+              <div style="font-size: 0.95rem; font-weight: 900; color: #B45309; margin-top: 2px;">Max 5 (25%)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Dimension Details Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+
+          <!-- Dimension 1 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1.5px solid #EFF6FF; padding-bottom: 8px;">
+              <div style="font-size: 0.9rem; font-weight: 800; color: #1E3A8A; display: flex; align-items: center; gap: 6px;">
+                <span>🏗️ มิติที่ 1: จำนวนโครงการจริง</span>
+              </div>
+              <span style="background: #DBEAFE; color: #1E40AF; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">น้ำหนัก 25%</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #334155; line-height: 1.6;">
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• 6 โครงการขึ้นไป</span>
+                <span style="font-weight: 800; color: #16A34A;">5 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• 5 โครงการ</span>
+                <span style="font-weight: 800; color: #2563EB;">4 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• 3 – 4 โครงการ</span>
+                <span style="font-weight: 800; color: #D97706;">3 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• 1 – 2 โครงการ</span>
+                <span style="font-weight: 800; color: #EA580C;">2 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                <span>• 0 โครงการ</span>
+                <span style="font-weight: 800; color: #94A3B8;">0 คะแนน</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dimension 2 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1.5px solid #FDF4FF; padding-bottom: 8px;">
+              <div style="font-size: 0.9rem; font-weight: 800; color: #701A75; display: flex; align-items: center; gap: 6px;">
+                <span>⚡ มิติที่ 2: สเตจงานก่อสร้างหน้างาน</span>
+              </div>
+              <span style="background: #F5D0FE; color: #86198F; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">น้ำหนัก 25%</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #334155; line-height: 1.6;">
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• สเตจเริ่มงาน / ยกเสาเอก / ฐานราก <em style="font-size: 0.7rem; color: #64748B;">(ตัดสินใจสั่งซื้อ)</em></span>
+                <span style="font-weight: 800; color: #16A34A;">5 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• สเตจโครงสร้าง / หลังคา / ก่อฉาบ <em style="font-size: 0.7rem; color: #64748B;">(กลางงาน)</em></span>
+                <span style="font-weight: 800; color: #2563EB;">3 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                <span>• สเตจตกแต่ง / ทาสี / ส่งมอบ <em style="font-size: 0.7rem; color: #64748B;">(ปลายงาน)</em></span>
+                <span style="font-weight: 800; color: #EA580C;">1 คะแนน</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dimension 3 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1.5px solid #ECFDF5; padding-bottom: 8px;">
+              <div style="font-size: 0.9rem; font-weight: 800; color: #064E3B; display: flex; align-items: center; gap: 6px;">
+                <span>🛒 มิติที่ 3: ประวัติการซื้อสินค้า SCG</span>
+              </div>
+              <span style="background: #A7F3D0; color: #065F46; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">น้ำหนัก 25%</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #334155; line-height: 1.6;">
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• ซื้อทั้งปี 2025 และ 2026 <em style="font-size: 0.7rem; color: #64748B;">(แฟนพันธุ์แท้)</em></span>
+                <span style="font-weight: 800; color: #16A34A;">5 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• ซื้อปี 2025 หรือ 2026 <em style="font-size: 0.7rem; color: #64748B;">(ซื้อปีใดปีหนึ่ง)</em></span>
+                <span style="font-weight: 800; color: #2563EB;">4 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                <span>• ยังไม่เคยมีประวัติการซื้อ</span>
+                <span style="font-weight: 800; color: #EA580C;">2 คะแนน</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dimension 4 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1.5px solid #FFFBEB; padding-bottom: 8px;">
+              <div style="font-size: 0.9rem; font-weight: 800; color: #78350F; display: flex; align-items: center; gap: 6px;">
+                <span>🏢 มิติที่ 4: ฐานข้อมูลรายได้ DBD</span>
+              </div>
+              <span style="background: #FDE68A; color: #92400E; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">น้ำหนัก 25%</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #334155; line-height: 1.6;">
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• มากกว่า 10 ล้านบาท</span>
+                <span style="font-weight: 800; color: #16A34A;">5 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• 5 – 10 ล้านบาท</span>
+                <span style="font-weight: 800; color: #2563EB;">4 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• 1 – 5 ล้านบาท</span>
+                <span style="font-weight: 800; color: #D97706;">3 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #F1F5F9;">
+                <span>• น้อยกว่า 1 ล้านบาท</span>
+                <span style="font-weight: 800; color: #EA580C;">1 คะแนน</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                <span>• 0 บาท หรือไม่มีในฐานข้อมูล</span>
+                <span style="font-weight: 800; color: #94A3B8;">0 คะแนน</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ranking Priority Rules -->
+        <div style="background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); color: #FFFFFF; border-radius: 12px; padding: 16px 20px; border: 1px solid #334155;">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #FDE047; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <span>🏆 ลำดับการคัดเลือกและจัดอันดับ Top 3 ในแต่ละกลุ่ม (Tie-Breaker Rules)</span>
+          </div>
+          <div style="font-size: 0.78rem; line-height: 1.7; color: #E2E8F0;">
+            <div>🥇 <strong>ขั้นที่ 1:</strong> จัดเรียงตามคะแนน <strong>AI Opportunity Score (เต็ม 100)</strong> จากมากไปน้อย</div>
+            <div>🥈 <strong>ขั้นที่ 2:</strong> หากคะแนนเท่ากัน ตัดสินด้วย <strong>จำนวนโครงการก่อสร้างจริง (Total Projects)</strong> ที่มากกว่า</div>
+            <div>🥉 <strong>ขั้นที่ 3:</strong> หากเท่ากันอีก ตัดสินด้วย <strong>ยอดซื้อ SCG รวม (ปี 2025 + 2026)</strong> จากมากไปน้อย</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div style="background: #F1F5F9; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #CBD5E1;">
+        <div style="font-size: 0.75rem; color: #64748B;">
+          💡 หมายเหตุ: เกณฑ์ประเมินนี้ถูกนำไปใช้จัดอันดับทั้งบนตารางหลัก (Main Table) และกล่อง Top Companies by Tier
+        </div>
+        <button type="button" onclick="closeScoringCriteriaModal()"
+          style="background: #0F172A; color: #FFFFFF; border: none; padding: 7px 20px; border-radius: 8px; font-weight: 800; font-size: 0.82rem; cursor: pointer; transition: background 0.15s;"
+          onmouseover="this.style.background='#334155'"
+          onmouseout="this.style.background='#0F172A'">
+          ปิดหน้าต่าง
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2493,11 +2746,11 @@
   </div>
 
   <!-- App JS modules -->
-  <script src="js/data.js?v=20260918_v39"></script>
-  <script src="js/scoring.js?v=20260918_v37"></script>
-  <script src="js/charts.js?v=20260918_v37"></script>
-  <script src="js/map.js?v=20260918_v37"></script>
-  <script src="js/app.js?v=20260918_v39"></script>
+  <script src="js/data.js?v=20260924_v1"></script>
+  <script src="js/scoring.js?v=20260924_v1"></script>
+  <script src="js/charts.js?v=20260924_v1"></script>
+  <script src="js/map.js?v=20260924_v1"></script>
+  <script src="js/app.js?v=20260924_v1"></script>
 </body>
 
 </html>

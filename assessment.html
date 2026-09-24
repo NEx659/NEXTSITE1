@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTSITE AI — ระบบประเมินหน้างานและเช็กลิสต์ลูกค้า (Field Site Assessment)</title>
+  <meta name="description" content="ระบบประเมินหน้างานจริง เช็กลิสต์โอกาสการขาย และระดับความสัมพันธ์ลูกค้า SCG Construction Intelligence Platform">
+
+  <!-- Google Fonts: Inter, Prompt & Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css?v=75.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: #F1F5F9;
+      color: #0F172A;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Rating Button Group (1, 2, 3, 4) */
+    .rating-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #F1F5F9;
+      padding: 3px;
+      border-radius: 9px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .rating-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      border: 1.5px solid transparent;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      color: #64748B;
+      transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      user-select: none;
+    }
+
+    .rating-btn:hover {
+      transform: translateY(-1px);
+      border-color: #94A3B8;
+      color: #0F172A;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .rating-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Active States */
+    .rating-btn.active.lvl-0 {
+      background: #64748B !important;
+      color: #FFFFFF !important;
+      border-color: #475569 !important;
+      box-shadow: 0 2px 8px rgba(100, 116, 139, 0.4) !important;
+    }
+
+    .rating-btn.active.lvl-1 {
+      background: #EF4444 !important;
+      color: #FFFFFF !important;
+      border-color: #DC2626 !important;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4) !important;
+    }
+
+    .rating-btn.active.lvl-2 {
+      background: #F59E0B !important;
+      color: #FFFFFF !important;
+      border-color: #D97706 !important;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4) !important;
+    }
+
+    .rating-btn.active.lvl-3 {
+      background: #3B82F6 !important;
+      color: #FFFFFF !important;
+      border-color: #2563EB !important;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4) !important;
+    }
+
+    .rating-btn.active.lvl-4 {
+      background: #10B981 !important;
+      color: #FFFFFF !important;
+      border-color: #059669 !important;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4) !important;
+    }
+
+    .rating-desc-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 4px;
+      line-height: 1.2;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .rating-desc-pill.lvl-0 {
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #CBD5E1;
+    }
+
+    .rating-desc-pill.lvl-1 {
+      background: #FEF2F2;
+      color: #B91C1C;
+      border: 1px solid #FECACA;
+    }
+
+    .rating-desc-pill.lvl-2 {
+      background: #FFFBEB;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+    }
+
+    .rating-desc-pill.lvl-3 {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+    }
+
+    .rating-desc-pill.lvl-4 {
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+    }
+
+    /* Interactive Table Styling */
+    .assessment-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #FFFFFF;
+    }
+
+    .assessment-table th {
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 14px 16px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      border-bottom: 2px solid #D9251D;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .assessment-table th.col-criteria {
+      background: #1E293B;
+      text-align: center;
+    }
+
+    .assessment-table th.col-crit-1 {
+      border-top: 3px solid #10B981;
+    }
+
+    .assessment-table th.col-crit-2 {
+      border-top: 3px solid #3B82F6;
+    }
+
+    .assessment-table th.col-crit-3 {
+      border-top: 3px solid #A855F7;
+    }
+
+    .assessment-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 0.85rem;
+      vertical-align: middle;
+      background: #FFFFFF;
+      transition: background 0.15s ease;
+    }
+
+    .assessment-table tbody tr:hover td {
+      background: #F8FAFC !important;
+    }
+
+    .assessment-table tbody tr.row-high-score td {
+      background: #FCFDFE;
+    }
+
+    .assessment-table tbody tr:hover td.cell-crit-1 {
+      background: #ECFDF5 !important;
+    }
+
+    .assessment-table tbody tr:hover td.cell-crit-2 {
+      background: #EFF6FF !important;
+    }
+
+    .assessment-table tbody tr:hover td.cell-crit-3 {
+      background: #FAF5FF !important;
+    }
+
+    .rank-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .rank-circle.rank-1 {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+    }
+
+    .rank-circle.rank-2 {
+      background: linear-gradient(135deg, #94A3B8, #64748B);
+    }
+
+    .rank-circle.rank-3 {
+      background: linear-gradient(135deg, #D97706, #B45309);
+    }
+
+    .rank-circle.rank-other {
+      background: #F1F5F9;
+      color: #475569;
+      border: 1.5px solid #CBD5E1;
+      box-shadow: none;
+    }
+
+    /* Score Progress Bar in Table */
+    .assessment-progress-bar {
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 4px;
+      width: 100%;
+      min-width: 80px;
+    }
+
+    .assessment-progress-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+    }
+
+    /* Toast Notification */
+    #assessment-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 99999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    #assessment-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #FFFFFF !important;
+      }
+      .assessment-table th {
+        background: #002060 !important;
+        color: #FFFFFF !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navbar Header -->
+  <header class="app-header no-print">
+    <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 2rem;">
+
+      <!-- Left: NEXTSITE AI Brand Logo -->
+      <div class="brand-section" style="display: flex; align-items: center; gap: 0.85rem;">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.65rem;">
+          <div style="background: linear-gradient(135deg, #D9251D, #B91C1C); width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(217,37,29,0.4);">
+            <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
+              <polygon points="50,5 89,27.5 89,72.5 50,95 11,72.5 11,27.5" stroke="#FFFFFF" stroke-width="6" fill="none" />
+              <path d="M38 70 V46 C38 35 48 33 55 33 C63 33 68 38 68 46 V53 C68 57 64 59 60 59 C56 59 54 55 54 51 V47 C54 44 51 43 49 43 C46 43 44 45 44 49 V70 H38 Z" fill="#FFFFFF" />
+              <circle cx="48" cy="39" r="3.5" fill="#D9251D" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 style="font-size: 1.25rem; font-weight: 900; color: #FFFFFF; margin: 0; line-height: 1.1; letter-spacing: -0.3px; font-family: 'Inter', sans-serif;">
+              NEXTSITE <span class="ai-tag" style="background: #D9251D; color: #FFFFFF; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 900; letter-spacing: 0.5px;">AI</span>
+            </h1>
+            <p style="font-size: 0.68rem; color: #94A3B8; margin: 1px 0 0 0; font-weight: 600; letter-spacing: 0.2px;">
+              Construction Intelligence Platform
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center: Navigation Menu Links -->
+      <nav class="nav-links-menu" style="display: flex; align-items: center; gap: 1.8rem;">
+        <a href="index.html" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">หน้าหลัก</a>
+        <a href="index.html#tier-leaderboard-section" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">จัดอันดับบริษัท</a>
+        <a href="assessment.html" style="color: #FFFFFF; text-decoration: none; font-size: 0.86rem; font-weight: 800; position: relative; padding-bottom: 4px; border-bottom: 2px solid #EF4444;">ประเมินหน้างาน</a>
+        <a href="report.html?province=udon" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">รายงานยอดขาย</a>
+        <a href="index.html" style="color: #94A3B8; text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: color 0.15s ease;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#94A3B8'">เกี่ยวกับเรา</a>
+      </nav>
+
+      <!-- Right: User Avatar + Return to Dashboard -->
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <!-- Return to Dashboard Button -->
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(255, 255, 255, 0.08); border: 1.5px solid rgba(255, 255, 255, 0.2); border-radius: 9999px; color: #FFFFFF; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+          <span>← กลับแดชบอร์ด</span>
+        </a>
+
+        <!-- User Role Profile Pill -->
+        <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 9999px;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #A855F7, #6366F1); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #FFFFFF;">
+            👤
+          </div>
+          <div style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">
+            ทีมขาย SCG อุดรธานี
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main style="max-width: 1540px; width: 100%; margin: 1.5rem auto; padding: 0 1.5rem; flex: 1;">
+
+    <!-- Title & Summary Banner -->
+    <div style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: #FFFFFF; border-radius: 18px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12); border: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.4); font-size: 0.72rem; font-weight: 800; padding: 2px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 6px;">
+          ⚡ Real-time Sales Field Checklist System
+        </div>
+        <h1 style="font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; margin: 0; color: #FFFFFF; display: flex; align-items: center; gap: 10px;">
+          <span>📋 ระบบประเมินหน้างานและเช็กลิสต์ลูกค้า</span>
+        </h1>
+        <p style="font-size: 0.86rem; color: #94A3B8; margin-top: 4px; font-weight: 500;">
+          สำหรับเซลส์คลิกประเมินและเช็กลิสต์สถานะรายบริษัท 3 มิติหลัก (บันทึกผลอัตโนมัติ Real-time)
+        </p>
+      </div>
+
+      <!-- Quick Criteria Legend Pill -->
+      <div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div style="font-size: 0.75rem; color: #94A3B8; font-weight: 700;">เกณฑ์ระดับคะแนน:</div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 700; color: #94A3B8;">
+          <span style="width: 20px; height: 20px; border-radius: 6px; background: #64748B; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;">0</span>
+          <span>ยังไม่เข้าพบ / รอสำรวจ</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 700; color: #EF4444;">
+          <span style="width: 20px; height: 20px; border-radius: 6px; background: #EF4444; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;">1</span>
+          <span>น้อย / ไม่สนใจ</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 700; color: #F59E0B;">
+          <span style="width: 20px; height: 20px; border-radius: 6px; background: #F59E0B; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;">2</span>
+          <span>ปานกลาง / เฉยๆ</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 700; color: #3B82F6;">
+          <span style="width: 20px; height: 20px; border-radius: 6px; background: #3B82F6; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;">3</span>
+          <span>ค่อนข้างเยอะ / มีแนวโน้ม</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 700; color: #10B981;">
+          <span style="width: 20px; height: 20px; border-radius: 6px; background: #10B981; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;">4</span>
+          <span>เยอะ / สนใจ / ประทับใจ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Executive KPI Stat Pills -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 1.5rem;">
+      <!-- KPI 1: Visited vs Total -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #EFF6FF; color: #2563EB; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+          🏢
+        </div>
+        <div>
+          <div id="stat-total-count" style="font-size: 1.45rem; font-weight: 900; color: #0F172A; line-height: 1.1;">0 / 0</div>
+          <div id="stat-total-desc" style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-top: 2px;">เข้าพบแล้ว (0% ของทั้งหมด)</div>
+        </div>
+      </div>
+
+      <!-- KPI 2: Site Active -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #ECFDF5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+          🏗️
+        </div>
+        <div>
+          <div id="stat-site-count" style="font-size: 1.45rem; font-weight: 900; color: #059669; line-height: 1.1;">0 (0%)</div>
+          <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-top: 2px;">มีไซต์งานจริง (ระดับ 3-4 ที่เข้าพบ)</div>
+        </div>
+      </div>
+
+      <!-- KPI 3: Sales Potential -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #EFF6FF; color: #1D4ED8; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+          📈
+        </div>
+        <div>
+          <div id="stat-sales-count" style="font-size: 1.45rem; font-weight: 900; color: #1D4ED8; line-height: 1.1;">0 (0%)</div>
+          <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-top: 2px;">โอกาสขาย SCG (ระดับ 3-4 ที่เข้าพบ)</div>
+        </div>
+      </div>
+
+      <!-- KPI 4: Good Relationship with SCG -->
+      <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #FAF5FF; color: #7E22CE; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+          🤝
+        </div>
+        <div>
+          <div id="stat-scg-rel-count" style="font-size: 1.45rem; font-weight: 900; color: #7E22CE; line-height: 1.1;">0 (0%)</div>
+          <div style="font-size: 0.76rem; color: #64748B; font-weight: 700; margin-top: 2px;">สัมพันธ์ดีกับ SCG (ระดับ 3-4 ที่เข้าพบ)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toolbar & Filter Controls -->
+    <div class="toolbar-container no-print" style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 12px 18px; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+      
+      <!-- Left Filters: Province + Visit Status Filter + Tag Group -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <!-- Province Dropdown -->
+        <select id="assessment-province-filter" onchange="applyAssessmentFilters()" style="padding: 6px 12px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-size: 0.8rem; font-weight: 700; color: #0F172A; outline: none; background: #F8FAFC; cursor: pointer;">
+          <option value="all">📍 จังหวัด: ทั้งหมด</option>
+          <option value="อุดรธานี" selected>📍 จ.อุดรธานี</option>
+          <option value="ขอนแก่น">📍 จ.ขอนแก่น</option>
+          <option value="หนองคาย">📍 จ.หนองคาย</option>
+          <option value="เลย">📍 จ.เลย</option>
+          <option value="สกลนคร">📍 จ.สกลนคร</option>
+          <option value="นครพนม">📍 จ.นครพนม</option>
+          <option value="บึงกาฬ">📍 จ.บึงกาฬ</option>
+        </select>
+
+        <!-- Visit Status Filter (All / Unvisited / Assessed) -->
+        <div style="display: flex; gap: 4px; background: #F8FAFC; padding: 3px; border-radius: 8px; border: 1.5px solid #E2E8F0;">
+          <button type="button" class="visit-filter-btn active" data-visit="all" onclick="filterByVisitStatus('all')" style="border: none; background: #0F172A; color: #FFFFFF; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">สถานะ: ทั้งหมด</button>
+          <button type="button" class="visit-filter-btn" data-visit="unvisited" onclick="filterByVisitStatus('unvisited')" style="border: none; background: transparent; color: #64748B; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">⏳ ยังไม่เข้าพบ</button>
+          <button type="button" class="visit-filter-btn" data-visit="assessed" onclick="filterByVisitStatus('assessed')" style="border: none; background: transparent; color: #059669; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">✅ ประเมินแล้ว</button>
+        </div>
+
+        <!-- Tag Filter Pills -->
+        <div style="display: flex; gap: 4px; background: #F1F5F9; padding: 3px; border-radius: 8px; border: 1px solid #E2E8F0;">
+          <button type="button" class="tag-pill active" data-tag="all" onclick="filterByTag('all')" style="border: none; background: #FFFFFF; color: #0F172A; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">ทั้งหมด</button>
+          <button type="button" class="tag-pill" data-tag="strategic" onclick="filterByTag('strategic')" style="border: none; background: transparent; color: #B45309; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">👑 Strategic</button>
+          <button type="button" class="tag-pill" data-tag="growth" onclick="filterByTag('growth')" style="border: none; background: transparent; color: #0369A1; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📈 Growth</button>
+          <button type="button" class="tag-pill" data-tag="opportunity" onclick="filterByTag('opportunity')" style="border: none; background: transparent; color: #7E22CE; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">🎯 Opportunity</button>
+          <button type="button" class="tag-pill" data-tag="prospect" onclick="filterByTag('prospect')" style="border: none; background: transparent; color: #BE123C; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">✨ New</button>
+        </div>
+      </div>
+
+      <!-- Right Search & Action Buttons -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <!-- Search Box -->
+        <div style="position: relative; display: flex; align-items: center;">
+          <span style="position: absolute; left: 10px; font-size: 0.8rem; color: #94A3B8;">🔍</span>
+          <input type="text" id="assessment-search-input" placeholder="ค้นหาชื่อบริษัท..." oninput="applyAssessmentFilters()"
+            style="padding: 6px 12px 6px 30px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-size: 0.8rem; width: 200px; outline: none; transition: border-color 0.2s;"
+            onfocus="this.style.borderColor='#D9251D'" onblur="this.style.borderColor='#CBD5E1'">
+        </div>
+
+        <!-- Re-sort Table Button -->
+        <button type="button" onclick="renderAssessmentTable(true)" title="จัดเรียงอันดับตามคะแนนประเมินล่าสุด"
+          style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #0F172A; font-size: 0.78rem; font-weight: 800; cursor: pointer;">
+          🔄 จัดอันดับตามคะแนน
+        </button>
+
+        <!-- Export CSV Button -->
+        <button type="button" onclick="exportAssessmentCsv()" title="ส่งออกเป็นไฟล์ CSV"
+          style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 8px; border: 1.5px solid #86EFAC; background: #F0FDF4; color: #15803D; font-size: 0.78rem; font-weight: 800; cursor: pointer;">
+          📥 ส่งออก CSV
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Assessment Checklist Table Card -->
+    <div style="background: #FFFFFF; border-radius: 16px; border: 1.5px solid #CBD5E1; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06); overflow: hidden; margin-bottom: 2rem;">
+      <div style="overflow-x: auto;">
+        <table class="assessment-table">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center;">#</th>
+              <th style="min-width: 250px;">บริษัท</th>
+              <th style="min-width: 90px;">จังหวัด</th>
+              <th class="col-criteria col-crit-1" style="min-width: 220px;">
+                <div style="font-size: 1.2rem; line-height: 1;">🏗️</div>
+                <div style="margin-top: 4px;">มีไซต์งานจริงให้ติดตาม</div>
+                <div style="font-size: 0.7rem; color: #86EFAC; font-weight: 700;">(น้ำหนัก 40%) • เลือกระดับ 0-4</div>
+              </th>
+              <th class="col-criteria col-crit-2" style="min-width: 220px;">
+                <div style="font-size: 1.2rem; line-height: 1;">📈</div>
+                <div style="margin-top: 4px;">มีโอกาสในการติดตามขาย</div>
+                <div style="font-size: 0.7rem; color: #93C5FD; font-weight: 700;">(น้ำหนัก 40%) • เลือกระดับ 0-4</div>
+              </th>
+              <th class="col-criteria col-crit-3" style="min-width: 220px;">
+                <div style="font-size: 1.2rem; line-height: 1;">👥</div>
+                <div style="margin-top: 4px;">รู้สึกดีที่มี SCG เข้าไปดูแล</div>
+                <div style="font-size: 0.7rem; color: #D8B4FE; font-weight: 700;">(น้ำหนัก 20%) • เลือกระดับ 0-4</div>
+              </th>
+              <th style="min-width: 130px; text-align: center;">คะแนนประเมิน</th>
+            </tr>
+          </thead>
+          <tbody id="assessment-table-body">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Toast Notification Box -->
+  <div id="assessment-toast">
+    <span>💾</span>
+    <span id="assessment-toast-text">บันทึกการประเมินแล้ว</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js?v=20260924_v1"></script>
+  <script src="js/scoring.js?v=20260924_v1"></script>
+  <script>
+    // ==========================================
+    // ASSESSMENT 0-4 RATING ENGINE
+    // ==========================================
+    const STORAGE_KEY = 'NEXTSITE_SITE_ASSESSMENTS_V4';
+    let currentAssessments = {};
+    let activeTagFilter = 'all';
+    let activeVisitFilter = 'all';
+
+    // Criteria specifications and rating definitions (0 = ยังไม่เข้าพบ, 1-4 = ประเมินแล้ว)
+    const CRITERIA_DEFINITIONS = {
+      site: {
+        title: 'มีไซต์งานจริงให้ติดตาม',
+        weight: 40,
+        options: {
+          0: 'ยังไม่ได้เข้าสำรวจหน้างาน',
+          1: 'ไม่มีหรือมีน้อยมาก',
+          2: 'มีปานกลาง',
+          3: 'มีค่อนข้างเยอะ',
+          4: 'มีเยอะ'
+        }
+      },
+      sales: {
+        title: 'มีโอกาสในการติดตามขาย',
+        weight: 40,
+        options: {
+          0: 'ยังไม่เข้าพบลูกค้า',
+          1: 'ลูกค้าไม่สนใจเลย',
+          2: 'เฉยๆ',
+          3: 'มีแนวโน้มที่จะใช้สินค้าSCG',
+          4: 'ต้องการใช้สินค้า SCG'
+        }
+      },
+      rel: {
+        title: 'รู้สึกดีที่มี SCG เข้าไปดูแล',
+        weight: 20,
+        options: {
+          0: 'ยังไม่เข้าพบลูกค้า',
+          1: 'ลูกค้าไม่สนใจเลย',
+          2: 'เฉยๆ',
+          3: 'มีแนวโน้มที่ดี',
+          4: 'ประทับใจอย่างมาก'
+        }
+      }
+    };
+
+    // Load saved assessments with backward compatibility
+    function loadSavedAssessments() {
+      try {
+        let saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) {
+          saved = localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V3') || localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V2');
+        }
+        if (saved) {
+          currentAssessments = JSON.parse(saved);
+        }
+      } catch (err) {
+        console.warn('Error loading assessments:', err);
+        currentAssessments = {};
+      }
+    }
+
+    // Save assessments to local storage
+    function saveAssessments() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentAssessments));
+      } catch (err) {
+        console.warn('Error saving assessments:', err);
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('assessment-toast');
+      const text = document.getElementById('assessment-toast-text');
+      if (!toast) return;
+      if (text) text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2200);
+    }
+
+    // Convert ratings or return number 0-4
+    function parseRatingNumber(val, defaultVal = 0) {
+      if (typeof val === 'number' && val >= 0 && val <= 4) return val;
+      if (val === 'yes') return 4;
+      if (val === 'med') return 2;
+      if (val === 'no') return 1;
+      if (val === 'neutral') return 0;
+      const parsed = parseInt(val, 10);
+      return (!isNaN(parsed) && parsed >= 0 && parsed <= 4) ? parsed : defaultVal;
+    }
+
+    // Get assessment for a company (default to 0 if untouched, or calculate saved score)
+    function getCompanyAssessment(company) {
+      if (!company) return { site: 0, sales: 0, rel: 0, score: 0 };
+      
+      if (currentAssessments[company.id]) {
+        const item = currentAssessments[company.id];
+        const site = parseRatingNumber(item.site, 0);
+        const sales = parseRatingNumber(item.sales, 0);
+        const rel = parseRatingNumber(item.rel, 0);
+        const score = calculateChecklistScore({ site, sales, rel });
+        return { site, sales, rel, score };
+      }
+
+      // Default state: 0 (ยังไม่เข้าพบ / รอสำรวจ)
+      return {
+        site: 0,
+        sales: 0,
+        rel: 0,
+        score: 0
+      };
+    }
+
+    // Calculate score: Site 40% (0-40 pts), Sales 40% (0-40 pts), Rel 20% (0-20 pts)
+    function calculateChecklistScore(item) {
+      const site = parseRatingNumber(item.site, 0);
+      const sales = parseRatingNumber(item.sales, 0);
+      const rel = parseRatingNumber(item.rel, 0);
+
+      // Site (Weight 40%): 0->0%, 1->10%, 2->20%, 3->30%, 4->40%
+      const sitePts = Math.round((site / 4) * 40);
+
+      // Sales (Weight 40%): 0->0%, 1->10%, 2->20%, 3->30%, 4->40%
+      const salesPts = Math.round((sales / 4) * 40);
+
+      // Relationship SCG (Weight 20%): 0->0%, 1->5%, 2->10%, 3->15%, 4->20%
+      const relPts = Math.round((rel / 4) * 20);
+
+      return sitePts + salesPts + relPts;
+    }
+
+    // Set Criterion Value (0, 1, 2, 3, 4) - Updates row in-place WITHOUT jumping/reordering
+    function setCriterion(companyId, critType, scoreValue) {
+      const companies = (typeof UDON_COMPANIES !== 'undefined') ? UDON_COMPANIES : (typeof allCompanies !== 'undefined' ? allCompanies : []);
+      const company = companies.find(c => c.id === companyId);
+      if (!company) return;
+
+      if (!currentAssessments[companyId]) {
+        currentAssessments[companyId] = { ...getCompanyAssessment(company) };
+      }
+
+      const val = Number(scoreValue);
+      currentAssessments[companyId][critType] = val;
+      currentAssessments[companyId].score = calculateChecklistScore(currentAssessments[companyId]);
+      currentAssessments[companyId].updatedAt = new Date().toISOString();
+
+      saveAssessments();
+      // Update this row in-place without re-sorting table
+      updateAssessmentRow(companyId);
+      updateKpis();
+
+      const def = CRITERIA_DEFINITIONS[critType];
+      const optDesc = def ? (def.options[val] || `ระดับ ${val}`) : `ระดับ ${val}`;
+      showToast(`บันทึก: ${company.name} • ${def ? def.title : ''} = ระดับ ${val} (${optDesc}) ✅`);
+    }
+
+    // Update single row in-place without re-sorting table
+    function updateAssessmentRow(companyId) {
+      const row = document.getElementById(`assessment-row-${companyId}`);
+      if (!row) return;
+
+      const companies = (typeof UDON_COMPANIES !== 'undefined') ? UDON_COMPANIES : (typeof allCompanies !== 'undefined' ? allCompanies : []);
+      const comp = companies.find(c => c.id === companyId);
+      if (!comp) return;
+
+      const assess = getCompanyAssessment(comp);
+      const score = assess.score;
+
+      // Update criterion 1 (site)
+      const cellSite = row.querySelector('.cell-crit-1');
+      if (cellSite) cellSite.innerHTML = renderRatingSelector(companyId, 'site', assess.site);
+
+      // Update criterion 2 (sales)
+      const cellSales = row.querySelector('.cell-crit-2');
+      if (cellSales) cellSales.innerHTML = renderRatingSelector(companyId, 'sales', assess.sales);
+
+      // Update criterion 3 (rel)
+      const cellRel = row.querySelector('.cell-crit-3');
+      if (cellRel) cellRel.innerHTML = renderRatingSelector(companyId, 'rel', assess.rel);
+
+      // Score Badge Colors
+      const isUnvisited = (assess.site === 0 && assess.sales === 0 && assess.rel === 0);
+      let scoreBadgeBg = '#ECFDF5';
+      let scoreBadgeColor = '#065F46';
+      let progressFillColor = '#10B981';
+      let gradeLabel = 'ยอดเยี่ยม';
+
+      if (isUnvisited || score === 0) {
+        scoreBadgeBg = '#F1F5F9';
+        scoreBadgeColor = '#64748B';
+        progressFillColor = '#CBD5E1';
+        gradeLabel = '⏳ ยังไม่เข้าพบ';
+      } else if (score >= 80) {
+        scoreBadgeBg = '#ECFDF5';
+        scoreBadgeColor = '#065F46';
+        progressFillColor = '#10B981';
+        gradeLabel = 'โอกาสสูงสุด';
+      } else if (score >= 60) {
+        scoreBadgeBg = '#EFF6FF';
+        scoreBadgeColor = '#1E40AF';
+        progressFillColor = '#3B82F6';
+        gradeLabel = 'โอกาสสูง';
+      } else if (score >= 40) {
+        scoreBadgeBg = '#FFFBEB';
+        scoreBadgeColor = '#92400E';
+        progressFillColor = '#F59E0B';
+        gradeLabel = 'ปานกลาง';
+      } else {
+        scoreBadgeBg = '#FEF2F2';
+        scoreBadgeColor = '#991B1B';
+        progressFillColor = '#EF4444';
+        gradeLabel = 'ต้องติดตาม';
+      }
+
+      // Update score cell
+      const cellScore = row.querySelector('.cell-score');
+      if (cellScore) {
+        cellScore.innerHTML = `
+          <div style="display: inline-flex; align-items: center; gap: 4px; background: ${scoreBadgeBg}; color: ${scoreBadgeColor}; font-weight: 900; font-size: 0.88rem; padding: 2px 8px; border-radius: 6px;">
+            <span>${score}%</span>
+          </div>
+          <div class="assessment-progress-bar">
+            <div class="assessment-progress-fill" style="width: ${score}%; background-color: ${progressFillColor};"></div>
+          </div>
+          <div style="font-size: 0.68rem; color: #64748B; margin-top: 2px; font-weight: 600;">${gradeLabel}</div>
+        `;
+      }
+
+      if (score >= 80) {
+        row.classList.add('row-high-score');
+      } else {
+        row.classList.remove('row-high-score');
+      }
+    }
+
+    // Export CSV
+    function exportAssessmentCsv() {
+      const companies = getFilteredCompanies();
+      let csv = '\uFEFFอันดับ,ชื่อบริษัท,จังหวัด,มีไซต์งานจริง (40%),มีโอกาสในการติดตามขาย (40%),รู้สึกดีที่มี SCG ดูแล (20%),คะแนนรวม (%)\n';
+      
+      companies.forEach((comp, idx) => {
+        const assess = getCompanyAssessment(comp);
+        const siteVal = assess.site;
+        const salesVal = assess.sales;
+        const relVal = assess.rel;
+
+        const siteText = `ระดับ ${siteVal} (${CRITERIA_DEFINITIONS.site.options[siteVal] || ''})`;
+        const salesText = `ระดับ ${salesVal} (${CRITERIA_DEFINITIONS.sales.options[salesVal] || ''})`;
+        const relText = `ระดับ ${relVal} (${CRITERIA_DEFINITIONS.rel.options[relVal] || ''})`;
+        
+        csv += `"${idx + 1}","${(comp.name || '').replace(/"/g, '""')}","${comp.province || 'อุดรธานี'}","${siteText}","${salesText}","${relText}","${assess.score}%"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SCG_Site_Assessment_Report_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+    }
+
+    function filterByVisitStatus(visitStatus) {
+      activeVisitFilter = visitStatus;
+      document.querySelectorAll('.visit-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-visit') === visitStatus) {
+          btn.classList.add('active');
+          btn.style.background = '#0F172A';
+          btn.style.color = '#FFFFFF';
+        } else {
+          btn.classList.remove('active');
+          btn.style.background = 'transparent';
+          btn.style.color = btn.getAttribute('data-visit') === 'assessed' ? '#059669' : '#64748B';
+        }
+      });
+      renderAssessmentTable(true);
+      updateKpis();
+    }
+
+    function filterByTag(tag) {
+      activeTagFilter = tag;
+      document.querySelectorAll('.tag-pill').forEach(btn => {
+        if (btn.getAttribute('data-tag') === tag) {
+          btn.classList.add('active');
+          btn.style.background = '#FFFFFF';
+          btn.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+        } else {
+          btn.classList.remove('active');
+          btn.style.background = 'transparent';
+          btn.style.boxShadow = 'none';
+        }
+      });
+      renderAssessmentTable(true);
+      updateKpis();
+    }
+
+    function applyAssessmentFilters() {
+      renderAssessmentTable(true);
+      updateKpis();
+    }
+
+    function getFilteredCompanies() {
+      const source = (typeof UDON_COMPANIES !== 'undefined') ? UDON_COMPANIES : (typeof allCompanies !== 'undefined' ? allCompanies : []);
+      const provinceFilter = document.getElementById('assessment-province-filter') ? document.getElementById('assessment-province-filter').value : 'all';
+      const searchText = document.getElementById('assessment-search-input') ? document.getElementById('assessment-search-input').value.trim().toLowerCase() : '';
+
+      return source.filter(comp => {
+        // Province Filter
+        if (provinceFilter !== 'all') {
+          const p = (comp.province || 'อุดรธานี').toLowerCase();
+          if (!p.includes(provinceFilter.toLowerCase())) return false;
+        }
+
+        // Visit Status Filter
+        if (activeVisitFilter !== 'all') {
+          const assess = getCompanyAssessment(comp);
+          const isUnvisited = (assess.site === 0 && assess.sales === 0 && assess.rel === 0);
+          if (activeVisitFilter === 'unvisited' && !isUnvisited) return false;
+          if (activeVisitFilter === 'assessed' && isUnvisited) return false;
+        }
+
+        // Tag Filter
+        if (activeTagFilter !== 'all') {
+          const tag = (typeof getCompanyTag === 'function') ? getCompanyTag(comp.id) : (comp.tier || comp.tag || 'opportunity');
+          if (tag !== activeTagFilter) return false;
+        }
+
+        // Search Filter
+        if (searchText) {
+          const name = (comp.name || '').toLowerCase();
+          const contact = (comp.contactPerson || '').toLowerCase();
+          const district = (comp.district || '').toLowerCase();
+          if (!name.includes(searchText) && !contact.includes(searchText) && !district.includes(searchText)) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+    }
+
+    // Render interactive 0-4 rating selector for each criteria cell
+    function renderRatingSelector(companyId, critType, currentVal) {
+      const def = CRITERIA_DEFINITIONS[critType];
+      const numVal = parseRatingNumber(currentVal, 0);
+      const descText = def ? (def.options[numVal] || '') : `ระดับ ${numVal}`;
+
+      const buttonsHtml = [0, 1, 2, 3, 4].map(score => {
+        const isActive = (score === numVal);
+        const optText = def ? `ระดับ ${score}: ${def.options[score]}` : `ระดับ ${score}`;
+        return `
+          <button type="button" 
+            class="rating-btn ${isActive ? `active lvl-${score}` : ''}" 
+            onclick="setCriterion('${companyId}', '${critType}', ${score})" 
+            title="${optText}">
+            ${score}
+          </button>
+        `;
+      }).join('');
+
+      return `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 175px;">
+          <div class="rating-group">
+            ${buttonsHtml}
+          </div>
+          <div class="rating-desc-pill lvl-${numVal}">
+            ${descText}
+          </div>
+        </div>
+      `;
+    }
+
+    // Render table
+    function renderAssessmentTable(shouldSort = true) {
+      const tbody = document.getElementById('assessment-table-body');
+      if (!tbody) return;
+
+      const list = getFilteredCompanies();
+
+      // Sort by assessment score desc -> project count desc
+      if (shouldSort) {
+        list.sort((a, b) => {
+          const scoreA = getCompanyAssessment(a).score;
+          const scoreB = getCompanyAssessment(b).score;
+          if (scoreB !== scoreA) return scoreB - scoreA;
+          const projA = (a.projects && a.projects.length) ? a.projects.length : (Number(a.totalProjects) || 0);
+          const projB = (b.projects && b.projects.length) ? b.projects.length : (Number(b.totalProjects) || 0);
+          return projB - projA;
+        });
+      }
+
+      if (list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 3rem; color: #64748B; font-weight: 700;">
+              🔍 ไม่พบบริษัทที่ตรงกับเงื่อนไขการค้นหา
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map((comp, idx) => {
+        const assess = getCompanyAssessment(comp);
+        const score = assess.score;
+
+        // Rank Circle Class
+        let rankClass = 'rank-other';
+        if (idx === 0) rankClass = 'rank-1';
+        else if (idx === 1) rankClass = 'rank-2';
+        else if (idx === 2) rankClass = 'rank-3';
+
+        // Score Badge Colors
+        const isUnvisited = (assess.site === 0 && assess.sales === 0 && assess.rel === 0);
+        let scoreBadgeBg = '#ECFDF5';
+        let scoreBadgeColor = '#065F46';
+        let progressFillColor = '#10B981';
+        let gradeLabel = 'ยอดเยี่ยม';
+
+        if (isUnvisited || score === 0) {
+          scoreBadgeBg = '#F1F5F9';
+          scoreBadgeColor = '#64748B';
+          progressFillColor = '#CBD5E1';
+          gradeLabel = '⏳ ยังไม่เข้าพบ';
+        } else if (score >= 80) {
+          scoreBadgeBg = '#ECFDF5';
+          scoreBadgeColor = '#065F46';
+          progressFillColor = '#10B981';
+          gradeLabel = 'โอกาสสูงสุด';
+        } else if (score >= 60) {
+          scoreBadgeBg = '#EFF6FF';
+          scoreBadgeColor = '#1E40AF';
+          progressFillColor = '#3B82F6';
+          gradeLabel = 'โอกาสสูง';
+        } else if (score >= 40) {
+          scoreBadgeBg = '#FFFBEB';
+          scoreBadgeColor = '#92400E';
+          progressFillColor = '#F59E0B';
+          gradeLabel = 'ปานกลาง';
+        } else {
+          scoreBadgeBg = '#FEF2F2';
+          scoreBadgeColor = '#991B1B';
+          progressFillColor = '#EF4444';
+          gradeLabel = 'ต้องติดตาม';
+        }
+
+        const compDistrict = comp.district || 'เมือง';
+        const compProvince = comp.province || 'อุดรธานี';
+        const projCount = (comp.projects && comp.projects.length) ? comp.projects.length : (Number(comp.totalProjects) || 0);
+
+        return `
+          <tr id="assessment-row-${comp.id}" class="${score >= 80 ? 'row-high-score' : ''}">
+            <td style="text-align: center;">
+              <div class="rank-circle ${rankClass}" style="margin: 0 auto;">${idx + 1}</div>
+            </td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 38px; height: 38px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                  🏢
+                </div>
+                <div>
+                  <div style="font-weight: 800; color: #0F172A; font-size: 0.92rem; line-height: 1.3;">
+                    ${comp.name}
+                  </div>
+                  <div style="font-size: 0.74rem; color: #64748B; margin-top: 2px; display: flex; align-items: center; gap: 6px;">
+                    <span>📍 อ.${compDistrict}</span>
+                    <span>•</span>
+                    <span style="color: #2563EB; font-weight: 700;">🏠 ${projCount} โครงการจริง</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span style="font-weight: 700; color: #334155;">จ.${compProvince}</span>
+            </td>
+            <td class="cell-crit-1" style="text-align: center;">
+              ${renderRatingSelector(comp.id, 'site', assess.site)}
+            </td>
+            <td class="cell-crit-2" style="text-align: center;">
+              ${renderRatingSelector(comp.id, 'sales', assess.sales)}
+            </td>
+            <td class="cell-crit-3" style="text-align: center;">
+              ${renderRatingSelector(comp.id, 'rel', assess.rel)}
+            </td>
+            <td class="cell-score" style="text-align: center;">
+              <div style="display: inline-flex; align-items: center; gap: 4px; background: ${scoreBadgeBg}; color: ${scoreBadgeColor}; font-weight: 900; font-size: 0.88rem; padding: 2px 8px; border-radius: 6px;">
+                <span>${score}%</span>
+              </div>
+              <div class="assessment-progress-bar">
+                <div class="assessment-progress-fill" style="width: ${score}%; background-color: ${progressFillColor};"></div>
+              </div>
+              <div style="font-size: 0.68rem; color: #64748B; margin-top: 2px; font-weight: 600;">${gradeLabel}</div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Update KPI Header counts based on visited companies only
+    function updateKpis() {
+      const list = getFilteredCompanies();
+      const total = list.length;
+      if (total === 0) return;
+
+      let visitedCount = 0;
+      let siteHigh = 0;
+      let salesHigh = 0;
+      let relHigh = 0;
+
+      list.forEach(c => {
+        const a = getCompanyAssessment(c);
+        const isVisited = (a.site > 0 || a.sales > 0 || a.rel > 0);
+        if (isVisited) {
+          visitedCount++;
+          if (a.site >= 3) siteHigh++;
+          if (a.sales >= 3) salesHigh++;
+          if (a.rel >= 3) relHigh++;
+        }
+      });
+
+      const elTotal = document.getElementById('stat-total-count');
+      const elTotalDesc = document.getElementById('stat-total-desc');
+      const elSite = document.getElementById('stat-site-count');
+      const elSales = document.getElementById('stat-sales-count');
+      const elRel = document.getElementById('stat-scg-rel-count');
+
+      const visitedPct = total > 0 ? Math.round((visitedCount / total) * 100) : 0;
+      const sitePct = visitedCount > 0 ? Math.round((siteHigh / visitedCount) * 100) : 0;
+      const salesPct = visitedCount > 0 ? Math.round((salesHigh / visitedCount) * 100) : 0;
+      const relPct = visitedCount > 0 ? Math.round((relHigh / visitedCount) * 100) : 0;
+
+      if (elTotal) elTotal.innerHTML = `<span style="color: #2563EB;">${visitedCount}</span> <span style="font-size: 0.95rem; color: #64748B; font-weight: 700;">/ ${total} บริษัท</span>`;
+      if (elTotalDesc) elTotalDesc.textContent = `เข้าพบแล้ว (${visitedPct}% ของทั้งหมด)`;
+
+      if (elSite) elSite.textContent = `${siteHigh} (${sitePct}%)`;
+      if (elSales) elSales.textContent = `${salesHigh} (${salesPct}%)`;
+      if (elRel) elRel.textContent = `${relHigh} (${relPct}%)`;
+    }
+
+    // Initialization on Page Load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSavedAssessments();
+      renderAssessmentTable();
+      updateKpis();
+    });
+  </script>
+
+</body>
+
+</html>

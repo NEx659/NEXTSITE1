@@ -1064,7 +1064,10 @@ function loadSavedCompaniesData() {
 }
 
 function calculateCompany3DimScore(comp) {
-  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0 };
+  if (typeof calculateCompany4DimScore === 'function') {
+    return calculateCompany4DimScore(comp);
+  }
+  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0, scoreDbd: 0 };
 
   // 1. จำนวนโครงการ (Max 5)
   const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
@@ -1139,9 +1142,13 @@ function calculateCompany3DimScore(comp) {
     scoreScg = 2;
   }
 
-  // คำนวณคะแนนรวมดิบ (เต็ม 15) และแปลงเทียบเต็ม 100
-  const rawTotal = scoreProj + scoreStage + scoreScg; // Max 15
-  const totalScore100 = Math.round((rawTotal / 15) * 100);
+  // 4. ฐานข้อมูล DBD (Max 5)
+  const dbdInfo = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
+  const dbdRev = dbdInfo ? dbdInfo.revenue : (Number(comp.dbdRevenue) || 0);
+  const scoreDbd = (typeof calculateDbdRevenueScore === 'function') ? calculateDbdRevenueScore(dbdRev) : 0;
+
+  const rawTotal = scoreProj + scoreStage + scoreScg + scoreDbd; // Max 20
+  const totalScore100 = Math.round((rawTotal / 20) * 100);
 
   return {
     totalScore100,
@@ -1149,6 +1156,7 @@ function calculateCompany3DimScore(comp) {
     scoreProj,
     scoreStage,
     scoreScg,
+    scoreDbd,
     projCount,
     s25,
     s26
@@ -1157,8 +1165,11 @@ function calculateCompany3DimScore(comp) {
 
 function getCompanyScoreValue(comp) {
   if (!comp) return 0;
+  if (typeof calculateCompany4DimScore === 'function') {
+    return calculateCompany4DimScore(comp).totalScore100 || 0;
+  }
   const result = calculateCompany3DimScore(comp);
-  return result.totalScore100;
+  return result.totalScore100 || 0;
 }
 
 function getCompanyEntityRank(name) {
@@ -1282,6 +1293,44 @@ function getAllCrmLogs() {
 function getCompanyCrmLog(companyId) {
   const logs = getAllCrmLogs();
   return logs[companyId] || { status: 'pending', note: '', lastUpdated: null };
+}
+
+function getCompanySiteAssessment(companyId) {
+  try {
+    const raw = localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V4') || 
+                localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V3') || 
+                localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V2');
+    if (raw) {
+      const db = JSON.parse(raw);
+      if (db && db[companyId]) {
+        const item = db[companyId];
+        const parseNum = (v) => {
+          if (typeof v === 'number' && v >= 0 && v <= 4) return v;
+          if (v === 'yes') return 4;
+          if (v === 'med') return 2;
+          if (v === 'no') return 1;
+          const p = parseInt(v, 10);
+          return (!isNaN(p) && p >= 0 && p <= 4) ? p : 0;
+        };
+        const site = parseNum(item.site);
+        const sales = parseNum(item.sales);
+        const rel = parseNum(item.rel);
+        const sitePts = Math.round((site / 4) * 40);
+        const salesPts = Math.round((sales / 4) * 40);
+        const relPts = Math.round((rel / 4) * 20);
+        const score = (typeof item.score === 'number' && item.score > 0) ? item.score : (sitePts + salesPts + relPts);
+        const isAssessed = (site > 0 || sales > 0 || rel > 0 || (typeof item.score === 'number' && item.score > 0));
+        return { site, sales, rel, score, isAssessed };
+      }
+    }
+  } catch (e) {
+    console.warn('Error reading site assessment:', e);
+  }
+  return { site: 0, sales: 0, rel: 0, score: 0, isAssessed: false };
+}
+
+if (typeof window !== 'undefined') {
+  window.getCompanySiteAssessment = getCompanySiteAssessment;
 }
 
 function saveCompanyCrmLog(companyId, logData) {
@@ -1882,7 +1931,10 @@ function applySalesVisibilityState(hidden) {
 // (Raw Total Max 15 -> Scaled to 100)
 // ==========================================
 function calculateCompany3DimScore(comp) {
-  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0 };
+  if (typeof calculateCompany4DimScore === 'function') {
+    return calculateCompany4DimScore(comp);
+  }
+  if (!comp) return { totalScore100: 0, rawTotal: 0, scoreProj: 0, scoreStage: 0, scoreScg: 0, scoreDbd: 0 };
 
   // 1. จำนวนโครงการจริง (Max 5)
   const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
@@ -1957,8 +2009,13 @@ function calculateCompany3DimScore(comp) {
     scoreScg = 2;
   }
 
-  const rawTotal = scoreProj + scoreStage + scoreScg; // Max 15
-  const totalScore100 = Math.round((rawTotal / 15) * 100);
+  // 4. ฐานข้อมูล DBD (Max 5)
+  const dbdInfo = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
+  const dbdRev = dbdInfo ? dbdInfo.revenue : (Number(comp.dbdRevenue) || 0);
+  const scoreDbd = (typeof calculateDbdRevenueScore === 'function') ? calculateDbdRevenueScore(dbdRev) : 0;
+
+  const rawTotal = scoreProj + scoreStage + scoreScg + scoreDbd; // Max 20
+  const totalScore100 = Math.round((rawTotal / 20) * 100);
 
   return {
     totalScore100,
@@ -1966,6 +2023,7 @@ function calculateCompany3DimScore(comp) {
     scoreProj,
     scoreStage,
     scoreScg,
+    scoreDbd,
     projCount,
     s25,
     s26
@@ -1974,6 +2032,9 @@ function calculateCompany3DimScore(comp) {
 
 function getCompanyScoreValue(comp) {
   if (!comp) return 0;
+  if (typeof calculateCompany4DimScore === 'function') {
+    return calculateCompany4DimScore(comp).totalScore100 || 0;
+  }
   const res = calculateCompany3DimScore(comp);
   return res.totalScore100 || 0;
 }
@@ -2479,41 +2540,61 @@ function renderTable() {
       aiTierColor = '#64748B';
     }
 
-    // Check if sales rep manually assessed opportunity level
-    const companyCrmLog = getCompanyCrmLog(company.id);
-    let salesAssessedHtml = '';
-    if (companyCrmLog && companyCrmLog.salesOpportunityLevel) {
-      let assessorName = companyCrmLog.salesRep || '';
-      if (!assessorName && companyCrmLog.createdBy) {
-        if (companyCrmLog.createdBy.toLowerCase().includes('keetavas')) assessorName = 'คีตวรรษ';
-        else if (companyCrmLog.createdBy.toLowerCase().includes('pannipan')) assessorName = 'พรรณิภา';
-        else assessorName = companyCrmLog.createdBy.split('@')[0];
-      }
-      if (!assessorName && company.salesRep) {
-        assessorName = company.salesRep;
-      }
-      if (!assessorName) {
-        const curUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof getCurrentSalesUserObj === 'function' ? getCurrentSalesUserObj() : null);
-        if (curUser && curUser.fullName) assessorName = curUser.fullName;
-      }
-      if (!assessorName) {
-        assessorName = 'คีตวรรษ';
-      }
-      const cleanAssessor = assessorName.replace(/^คุณ\s*/, '').trim() || 'คีตวรรษ';
+    // CRM Log for company
+    const companyCrmLog = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(company.id) : {};
 
-      let sLevelText = 'โอกาสปานกลาง';
-      let sColor = '#EA580C';
-      if (companyCrmLog.salesOpportunityLevel === 'high') {
-        sLevelText = 'โอกาสสูง';
-        sColor = '#16A34A';
-      } else if (companyCrmLog.salesOpportunityLevel === 'low') {
-        sLevelText = 'โอกาสน้อย';
-        sColor = '#64748B';
+    // Field Site Assessment Score (จากหน้าประเมินหน้างาน 0-4)
+    const siteAssess = (typeof getCompanySiteAssessment === 'function') ? getCompanySiteAssessment(company.id) : { score: 0, isAssessed: false };
+    let salesAssessedHtml = '';
+
+    if (siteAssess.isAssessed) {
+      const assessScore = siteAssess.score;
+      let badgeBg = '#ECFDF5';
+      let badgeColor = '#065F46';
+      let barColor = '#10B981';
+      let gradeLabel = 'ยอดเยี่ยม';
+
+      if (assessScore >= 80) {
+        badgeBg = '#ECFDF5';
+        badgeColor = '#065F46';
+        barColor = '#10B981';
+        gradeLabel = 'โอกาสสูงสุด';
+      } else if (assessScore >= 60) {
+        badgeBg = '#EFF6FF';
+        badgeColor = '#1E40AF';
+        barColor = '#3B82F6';
+        gradeLabel = 'โอกาสสูง';
+      } else if (assessScore >= 40) {
+        badgeBg = '#FFFBEB';
+        badgeColor = '#92400E';
+        barColor = '#F59E0B';
+        gradeLabel = 'ปานกลาง';
+      } else {
+        badgeBg = '#FEF2F2';
+        badgeColor = '#991B1B';
+        barColor = '#EF4444';
+        gradeLabel = 'ต้องติดตาม';
       }
+
       salesAssessedHtml = `
-        <div style="display: flex; align-items: center; gap: 4px; font-size: 0.74rem; font-weight: 700; color: ${sColor}; line-height: 1.2;">
-          <span style="color: ${sColor}; font-size: 0.85rem; line-height: 1;">●</span>
-          <span>${sLevelText}โดยผู้รับผิดชอบ</span>
+        <div style="display: flex; align-items: center; gap: 6px; margin-top: 3px; flex-wrap: wrap;" title="คะแนนประเมินหน้างาน: ${assessScore}% (${gradeLabel})">
+          <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.74rem; font-weight: 800; color: ${badgeColor}; line-height: 1.2;">
+            <span style="color: ${barColor}; font-size: 0.85rem; line-height: 1;">●</span>
+            <span>ประเมินหน้างาน: <strong>${assessScore}%</strong></span>
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 4px;">
+            <div style="width: 38px; height: 5px; background: #E2E8F0; border-radius: 9999px; overflow: hidden; display: inline-block; vertical-align: middle;">
+              <div style="width: ${assessScore}%; height: 100%; background: ${barColor}; border-radius: 9999px;"></div>
+            </div>
+            <span style="font-size: 0.68rem; font-weight: 700; color: ${badgeColor}; background: ${badgeBg}; padding: 1px 5px; border-radius: 4px; white-space: nowrap;">${gradeLabel}</span>
+          </div>
+        </div>
+      `;
+    } else {
+      salesAssessedHtml = `
+        <div style="display: flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 600; color: #64748B; margin-top: 2px; line-height: 1.2;">
+          <span style="color: #94A3B8; font-size: 0.85rem; line-height: 1;">●</span>
+          <span>ประเมินหน้างาน: <span style="color: #64748B; font-weight: 700; background: #F1F5F9; padding: 1px 5px; border-radius: 4px;">⏳ ยังไม่เข้าพบ</span></span>
         </div>
       `;
     }
@@ -6944,6 +7025,57 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleApifyJsonFileSelect(event) {
   handleApifyFileUpload(event);
 }
+
+function openScoringCriteriaModal() {
+  const modal = document.getElementById('scoring-criteria-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeScoringCriteriaModal() {
+  const modal = document.getElementById('scoring-criteria-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+function openNavSiteAssessmentModal() {
+  if (typeof currentSalesUser === 'undefined' || !currentSalesUser) {
+    if (typeof showStatusToast === 'function') {
+      showStatusToast('🔒 กรุณาเข้าสู่ระบบก่อนบันทึกการประเมินหน้างาน');
+    }
+    if (typeof openLoginModal === 'function') {
+      openLoginModal(true);
+    }
+    return;
+  }
+
+  // If a company is already active
+  if (typeof activeSelectedCompany !== 'undefined' && activeSelectedCompany && activeSelectedCompany.id) {
+    openFollowUpModal(activeSelectedCompany.id);
+    return;
+  }
+
+  // Otherwise pick the first visible/available company
+  const list = (typeof filteredCompanies !== 'undefined' && filteredCompanies.length > 0) 
+    ? filteredCompanies 
+    : ((typeof allCompanies !== 'undefined' && allCompanies.length > 0) ? allCompanies : []);
+
+  if (list.length > 0) {
+    openFollowUpModal(list[0].id);
+  } else if (typeof openCrmStatusModal === 'function') {
+    openCrmStatusModal('all');
+  }
+}
+
+window.openScoringCriteriaModal = openScoringCriteriaModal;
+window.closeScoringCriteriaModal = closeScoringCriteriaModal;
+window.openNavSiteAssessmentModal = openNavSiteAssessmentModal;
+
+
 
 
 

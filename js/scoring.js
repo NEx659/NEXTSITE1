@@ -381,16 +381,53 @@ function calculatePriorityScore(company) {
   return res && typeof res.score === 'number' ? res.score : 50;
 }
 
+function getCompanySiteAssessment(companyId) {
+  try {
+    const raw = localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V4') || 
+                localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V3') || 
+                localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V2');
+    if (raw) {
+      const db = JSON.parse(raw);
+      if (db && db[companyId]) {
+        const item = db[companyId];
+        const parseNum = (v) => {
+          if (typeof v === 'number' && v >= 0 && v <= 4) return v;
+          if (v === 'yes') return 4;
+          if (v === 'med') return 2;
+          if (v === 'no') return 1;
+          const p = parseInt(v, 10);
+          return (!isNaN(p) && p >= 0 && p <= 4) ? p : 0;
+        };
+        const site = parseNum(item.site);
+        const sales = parseNum(item.sales);
+        const rel = parseNum(item.rel);
+        const sitePts = Math.round((site / 4) * 40);
+        const salesPts = Math.round((sales / 4) * 40);
+        const relPts = Math.round((rel / 4) * 20);
+        const score = (typeof item.score === 'number' && item.score > 0) ? item.score : (sitePts + salesPts + relPts);
+        const isAssessed = (site > 0 || sales > 0 || rel > 0 || (typeof item.score === 'number' && item.score > 0));
+        return { site, sales, rel, score, isAssessed };
+      }
+    }
+  } catch (e) {
+    console.warn('Error reading assessment:', e);
+  }
+  return { site: 0, sales: 0, rel: 0, score: 0, isAssessed: false };
+}
+
 if (typeof window !== 'undefined') {
   window.scoring = {
     calculateOpportunityScore,
     calculatePriorityScore,
     getProcessedCompanies,
     calculateCompany4DimScore,
+    getCompanySiteAssessment,
     DBD_COMPANY_REVENUE_DB
   };
   window.calculateOpportunityScore = calculateOpportunityScore;
   window.calculatePriorityScore = calculatePriorityScore;
   window.getProcessedCompanies = getProcessedCompanies;
+  window.getCompanySiteAssessment = getCompanySiteAssessment;
 }
+
 
