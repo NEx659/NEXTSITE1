@@ -1094,11 +1094,13 @@ body.hide-sales-mode .modal-sales-confidential {
 }
 
 .data-table tbody tr.row-dark-tint {
-  background-color: #FFFFFF;
+  background-color: #DCECFE;
+  color: #0F172A;
 }
 
 .data-table tbody tr.row-light-tint {
-  background-color: #F8FAFC;
+  background-color: #FFFFFF;
+  color: #0F172A;
 }
 
 .company-name-cell {
@@ -2920,14 +2922,44 @@ body.executive-presentation .kpi-value {
 }
 
 .data-table tbody tr.row-dark-tint {
-  background-color: #F8FAFC;
+  background-color: #DCECFE !important;
+  border-bottom: 1px solid #BFDBFE !important;
+  color: #0F172A !important;
+}
+
+.data-table tbody tr.row-dark-tint td {
+  border-bottom: 1px solid #BFDBFE !important;
+  color: #0F172A !important;
+}
+
+.data-table tbody tr.row-dark-tint:hover {
+  background-color: #C8E2FD !important;
+}
+
+.data-table tbody tr.row-dark-tint .company-title {
+  color: #0F172A !important;
+}
+
+.data-table tbody tr.row-dark-tint .company-title:hover {
+  color: #1D4ED8 !important;
+}
+
+.data-table tbody tr.row-dark-tint strong {
+  color: #0F172A !important;
+}
+
+.data-table tbody tr.row-dark-tint .inline-tag-selector {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: #CBD5E1 !important;
 }
 
 .data-table tbody tr.row-light-tint {
-  background-color: #FFFFFF;
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  color: #0F172A !important;
 }
 
-.data-table tbody tr:hover {
+.data-table tbody tr.row-light-tint:hover {
   background-color: #F1F5F9 !important;
 }
 

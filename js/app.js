@@ -1346,6 +1346,116 @@ function saveCompanyCrmLog(companyId, logData) {
   }
 }
 
+function getCompanyAssignedRole(companyId) {
+  try {
+    const rolesMap = JSON.parse(localStorage.getItem('nextsite_company_assigned_roles') || '{}');
+    if (rolesMap[companyId]) return rolesMap[companyId];
+  } catch (e) {}
+  const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(companyId) : {};
+  return log.assignedRole || log.salesRole || '';
+}
+
+function updateCompanyAssigneeRole(companyId, newRole, event) {
+  if (event) {
+    event.stopPropagation();
+  }
+  try {
+    const rolesMap = JSON.parse(localStorage.getItem('nextsite_company_assigned_roles') || '{}');
+    if (newRole) {
+      rolesMap[companyId] = newRole;
+    } else {
+      delete rolesMap[companyId];
+    }
+    localStorage.setItem('nextsite_company_assigned_roles', JSON.stringify(rolesMap));
+
+    // Update CRM logs
+    const logs = getAllCrmLogs();
+    const existing = logs[companyId] || {};
+    logs[companyId] = {
+      ...existing,
+      assignedRole: newRole,
+      lastUpdated: new Date().toISOString()
+    };
+    localStorage.setItem(STORAGE_KEY_CRM_LOGS, JSON.stringify(logs));
+    localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+
+    if (newRole) {
+      if (typeof showStatusToast === 'function') {
+        showStatusToast(`👤 กำหนดผู้รับผิดชอบ: ${newRole}`);
+      }
+    } else {
+      if (typeof showStatusToast === 'function') {
+        showStatusToast(`⚪ ยกเลิกการระบุผู้รับผิดชอบ`);
+      }
+    }
+
+    // Update styling of target select element
+    if (event && event.target) {
+      const sel = event.target;
+      if (newRole === 'Sales supervisor') {
+        sel.style.color = '#1E40AF';
+        sel.style.background = '#EFF6FF';
+        sel.style.borderColor = '#93C5FD';
+      } else if (newRole === 'Sales exclusive') {
+        sel.style.color = '#047857';
+        sel.style.background = '#ECFDF5';
+        sel.style.borderColor = '#6EE7B7';
+      } else {
+        sel.style.color = '#64748B';
+        sel.style.background = '#FFFFFF';
+        sel.style.borderColor = '#CBD5E1';
+      }
+    }
+
+    if (typeof window.saveCloudCrmLog === 'function') {
+      window.saveCloudCrmLog(companyId, logs[companyId]);
+    }
+
+    if (typeof updateAssignedRoleFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+      updateAssignedRoleFilterCounts(window.allCompanies);
+    }
+  } catch (e) {
+    console.error('Error updating company assigned role:', e);
+  }
+}
+
+let activeAssignedRoleFilter = 'all';
+
+function filterByAssignedRole(roleVal) {
+  activeAssignedRoleFilter = roleVal || 'all';
+  if (typeof applyFilters === 'function') {
+    applyFilters();
+  }
+}
+
+function updateAssignedRoleFilterCounts(source = (typeof allCompanies !== 'undefined' ? allCompanies : [])) {
+  const selectEl = document.getElementById('filter-assigned-role-select');
+  if (!selectEl) return;
+  
+  let countSupervisor = 0;
+  let countExclusive = 0;
+  let countUnassigned = 0;
+
+  source.forEach(c => {
+    const role = (typeof getCompanyAssignedRole === 'function') ? getCompanyAssignedRole(c.id) : '';
+    if (role === 'Sales supervisor') countSupervisor++;
+    else if (role === 'Sales exclusive') countExclusive++;
+    else countUnassigned++;
+  });
+
+  const optAll = selectEl.querySelector('option[value="all"]');
+  const optSup = selectEl.querySelector('option[value="Sales supervisor"]');
+  const optExc = selectEl.querySelector('option[value="Sales exclusive"]');
+  const optUn = selectEl.querySelector('option[value="unassigned"]');
+
+  if (optAll) optAll.textContent = `👤 ผู้รับผิดชอบ: ทั้งหมด (${source.length})`;
+  if (optSup) optSup.textContent = `Sales supervisor (${countSupervisor})`;
+  if (optExc) optExc.textContent = `Sales exclusive (${countExclusive})`;
+  if (optUn) optUn.textContent = `ยังไม่ระบุ (${countUnassigned})`;
+}
+
+
+
 function renderCrmStatusBadge(status = 'pending', companyId = null) {
   const styles = {
     'pending': { bg: '#F1F5F9', color: '#475569', border: '#CBD5E1', label: '⏳ รอดำเนินการ' },
@@ -2403,7 +2513,7 @@ function renderTable() {
       salesAssessedHtml = `
         <div style="display: flex; align-items: center; gap: 4px; font-size: 0.74rem; font-weight: 700; color: ${sColor}; line-height: 1.2;">
           <span style="color: ${sColor}; font-size: 0.85rem; line-height: 1;">●</span>
-          <span>${sLevelText}คุณ${cleanAssessor}วิเคราะห์</span>
+          <span>${sLevelText}โดยผู้รับผิดชอบ</span>
         </div>
       `;
     }
@@ -2539,7 +2649,7 @@ function renderTable() {
             return `
               <div title="ยอดซื้อปี 2026: ${fmt26} บาท (เติบโตจากปี 2025 ที่ ${fmt25})" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #DCFCE7; border: 1.5px solid #86EFAC; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #15803D; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
                 <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
-                <span>ยอดซื้อเพิ่มขึ้น (+${growPct}%)</span>
+                <span>ยอดซื้อเพิ่มขึ้น</span>
               </div>
             `;
           } else if (s26 < s25 && s26 > 0) {
@@ -2547,7 +2657,7 @@ function renderTable() {
             return `
               <div title="ยอดซื้อปี 2026: ${fmt26} บาท (ลดลงจากปี 2025 ที่ ${fmt25})" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #FEE2E2; border: 1.5px solid #FCA5A5; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #DC2626; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
                 <span style="color: #DC2626; font-size: 0.85rem; line-height: 1;">●</span>
-                <span>ยอดซื้อลดลง (-${dropPct}%)</span>
+                <span>ยอดซื้อลดลง</span>
               </div>
             `;
           } else if (s26 > 0 && s25 === 0) {
@@ -2622,9 +2732,9 @@ function renderTable() {
 
           const statusBadgeHtml = hasFollowedUp
             ? `
-              <div onclick="openCompanyProjectsModal('${company.id}')" title="ติดตามแล้วโดยคุณ ${cleanName} (มีประวัติการเข้าพบ/โน้ต/รูปถ่ายหน้างาน)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #86EFAC; background: #F0FDF4; font-weight: 800; font-size: 0.72rem; color: #15803D; box-shadow: 0 1px 3px rgba(22,163,74,0.1); white-space: nowrap; cursor: pointer;">
+              <div onclick="openCompanyProjectsModal('${company.id}')" title="ติดตามแล้ว (มีประวัติการเข้าพบ/โน้ต/รูปถ่ายหน้างาน)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #86EFAC; background: #F0FDF4; font-weight: 800; font-size: 0.72rem; color: #15803D; box-shadow: 0 1px 3px rgba(22,163,74,0.1); white-space: nowrap; cursor: pointer;">
                 <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
-                <span>ติดตามแล้วโดยคุณ ${cleanName}</span>
+                <span>ติดตามแล้ว</span>
               </div>
             `
             : `
@@ -2634,10 +2744,42 @@ function renderTable() {
               </div>
             `;
 
+          const assignedRole = (typeof getCompanyAssignedRole === 'function') ? getCompanyAssignedRole(company.id) : '';
+          let roleSelectBorder = '#CBD5E1';
+          let roleSelectBg = '#FFFFFF';
+          let roleSelectColor = '#64748B';
+
+          if (assignedRole === 'Sales supervisor') {
+            roleSelectBorder = '#93C5FD';
+            roleSelectBg = '#EFF6FF';
+            roleSelectColor = '#1D4ED8';
+          } else if (assignedRole === 'Sales exclusive') {
+            roleSelectBorder = '#6EE7B7';
+            roleSelectBg = '#ECFDF5';
+            roleSelectColor = '#047857';
+          }
+
+          const roleSelectHtml = `
+            <div style="margin-top: 3px; width: 100%; display: flex; justify-content: center;" onclick="event.stopPropagation();">
+              <select 
+                onchange="updateCompanyAssigneeRole('${company.id}', this.value, event)" 
+                title="เลือกผู้รับผิดชอบ"
+                style="width: 100%; max-width: 132px; font-size: 0.68rem; font-weight: 700; color: ${roleSelectColor}; background: ${roleSelectBg}; border: 1.5px solid ${roleSelectBorder}; border-radius: 6px; padding: 2px 4px; cursor: pointer; outline: none; text-align: center; transition: all 0.15s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.03);"
+                onmouseover="this.style.transform='scale(1.02)'"
+                onmouseout="this.style.transform='scale(1)'"
+              >
+                <option value="" ${!assignedRole ? 'selected' : ''}>-- ผู้รับผิดชอบ --</option>
+                <option value="Sales supervisor" ${assignedRole === 'Sales supervisor' ? 'selected' : ''}>Sales supervisor</option>
+                <option value="Sales exclusive" ${assignedRole === 'Sales exclusive' ? 'selected' : ''}>Sales exclusive</option>
+              </select>
+            </div>
+          `;
+
           return `
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
               ${targetBtnHtml}
               ${statusBadgeHtml}
+              ${roleSelectHtml}
             </div>
           `;
         })()}
@@ -2739,11 +2881,9 @@ function handleSearchInputChange(val) {
 }
 
 function clearSearchInput() {
-  const input = document.getElementById('search-input') || document.getElementById('company-search-input');
-  if (input) {
+  document.querySelectorAll('input[oninput*="handleSearchInputChange"]').forEach(input => {
     input.value = '';
-    input.focus();
-  }
+  });
   handleSearchInputChange('');
 }
 
@@ -2875,6 +3015,16 @@ function applyFilters() {
       if (activeFollowupStatusFilter === 'pending' && hasFollowedUp) return false;
     }
 
+    // 8. Assigned Role Filter
+    if (typeof activeAssignedRoleFilter !== 'undefined' && activeAssignedRoleFilter !== 'all') {
+      const assignedRole = (typeof getCompanyAssignedRole === 'function') ? getCompanyAssignedRole(comp.id) : '';
+      if (activeAssignedRoleFilter === 'unassigned') {
+        if (assignedRole) return false;
+      } else {
+        if (assignedRole !== activeAssignedRoleFilter) return false;
+      }
+    }
+
     return true;
   });
 
@@ -2884,6 +3034,10 @@ function applyFilters() {
   renderKPIs();
   renderTable();
   renderTierLeaderboard();
+
+  if (typeof updateAssignedRoleFilterCounts === 'function' && typeof allCompanies !== 'undefined') {
+    updateAssignedRoleFilterCounts(allCompanies);
+  }
 
   // Dynamically update Report summary badge to match selected province
   const reportBadge = document.getElementById('badge-report-summary');
@@ -3191,8 +3345,8 @@ function renderModalScoreOrSalesIntelligence(comp) {
         </div>
 
         <div style="font-size: 0.78rem; font-weight: 800; color: #1E293B; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
-          <span>การวิเคราะห์คะแนน 3 มิติ (AI Score Breakdown)</span>
-          <span style="font-size: 0.72rem; color: #64748B; font-weight: 600;">คะแนนดิบรวม: ${scoreData && scoreData.rawTotal ? scoreData.rawTotal : Math.round((score / 100) * 15)}/15 (${score}/100)</span>
+          <span>การวิเคราะห์คะแนน 4 มิติ (AI Score Breakdown)</span>
+          <span style="font-size: 0.72rem; color: #64748B; font-weight: 600;">คะแนนดิบรวม: ${scoreData && scoreData.rawTotal ? scoreData.rawTotal : Math.round((score / 100) * 20)}/${scoreData && scoreData.maxRaw ? scoreData.maxRaw : 20} (${score}/100)</span>
         </div>
         <div id="modal-dimensions-list" class="score-dimension-list">
           ${scoreData && scoreData.dimensions ? scoreData.dimensions.map(d => {
@@ -3402,10 +3556,25 @@ function openCompanyProjectsModal(companyOrId) {
   // Render Opportunity Level Buttons
   updateOpportunityLevelButtonsUI(log.salesOpportunityLevel || null);
 
+  // Sync Modal Assignee Selector
+  const modalAssigneeSelect = document.getElementById('modal-company-assignee-select');
+  if (modalAssigneeSelect) {
+    const currentAssignedRole = (typeof getCompanyAssignedRole === 'function') ? getCompanyAssignedRole(comp.id) : '';
+    modalAssigneeSelect.value = currentAssignedRole || '';
+  }
+
   // Render Site Visit Photos Gallery
   renderCompanyPhotosGallery(comp.id);
 
   modal.style.display = 'flex';
+}
+
+function handleModalAssigneeRoleChange(newRole) {
+  if (!activeSelectedCompany) return;
+  updateCompanyAssigneeRole(activeSelectedCompany.id, newRole, null);
+  if (typeof renderTable === 'function') {
+    renderTable();
+  }
 }
 
 let noteAutoSaveTimer = null;

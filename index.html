@@ -706,25 +706,34 @@
 
 
     <!-- Toolbar & Filter Controls -->
-    <div class="toolbar-container">
-      <!-- Search Input -->
-      <div class="search-box" style="position: relative; display: flex; align-items: center;">
-        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2">
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input type="text" id="search-input" oninput="handleSearchInputChange(this.value)"
-          onkeyup="handleSearchInputChange(this.value)" placeholder="ค้นหาชื่อบริษัท, ผู้บริหาร, หรืออำเภอในอุดรธานี..."
-          style="padding-right: 2rem;">
-        <button type="button" id="search-clear-btn" onclick="clearSearchInput()" title="ล้างคำค้นหา"
-          style="display: none; position: absolute; right: 8px; background: none; border: none; font-size: 1rem; color: #94A3B8; cursor: pointer; padding: 2px 6px;">
-          ✕
+    <div class="toolbar-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <!-- Left: Company Tag Filter Toolbar (All / Strategic / Growth / Opportunity / New) -->
+      <div class="tag-filter-toolbar" style="margin-bottom: 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+        <span class="tag-filter-label" style="font-size: 0.8rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 5px; margin-right: 4px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          </svg>
+          สถานะกลุ่มบริษัท:
+        </span>
+        <button class="tag-filter-btn active" data-filter="all" onclick="filterByCompanyTag('all')">
+          📋 ทั้งหมด <span class="count-badge" id="tag-count-all">0</span>
+        </button>
+        <button class="tag-filter-btn" data-filter="strategic" onclick="filterByCompanyTag('strategic')" title="Strategic Partner/ลูกค้าแฟนพันธ์แท้">
+          👑 Strategic <span class="count-badge" id="tag-count-strategic">0</span>
+        </button>
+        <button class="tag-filter-btn" data-filter="growth" onclick="filterByCompanyTag('growth')" title="Growth Account / ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด">
+          📈 Growth <span class="count-badge" id="tag-count-growth">0</span>
+        </button>
+        <button class="tag-filter-btn" data-filter="opportunity" onclick="filterByCompanyTag('opportunity')" title="Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์">
+          🎯 Opportunity <span class="count-badge" id="tag-count-opportunity">0</span>
+        </button>
+        <button class="tag-filter-btn" data-filter="prospect" onclick="filterByCompanyTag('prospect')" title="New / ลูกค้าใหม่">
+          ✨ New <span class="count-badge" id="tag-count-prospect">0</span>
         </button>
       </div>
 
-      <!-- Filters -->
-      <div class="filter-group">
+      <!-- Right: Filters -->
+      <div class="filter-group" style="display: flex; align-items: center; gap: 10px;">
 
         <!-- Province Filter (77 Provinces of Thailand) -->
         <select id="district-filter" class="district-select"
@@ -836,36 +845,11 @@
       </div>
     </div>
 
-    <!-- Toolbar Group: Tag Filters & Project Count -->
+    <!-- Secondary Row: Report Summary & User Tracking Status -->
     <div
       style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 0.75rem;">
-      <!-- Company Tag Filter Toolbar (All / Focus / Non-Focus / New) -->
-      <div class="tag-filter-toolbar" style="margin-bottom: 0;">
-        <span class="tag-filter-label">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-          </svg>
-          สถานะกลุ่มบริษัท:
-        </span>
-        <button class="tag-filter-btn active" data-filter="all" onclick="filterByCompanyTag('all')">
-          📋 ทั้งหมด <span class="count-badge" id="tag-count-all">0</span>
-        </button>
-        <button class="tag-filter-btn" data-filter="strategic" onclick="filterByCompanyTag('strategic')" title="Strategic Partner/ลูกค้าแฟนพันธ์แท้">
-          👑 Strategic <span class="count-badge" id="tag-count-strategic">0</span>
-        </button>
-        <button class="tag-filter-btn" data-filter="growth" onclick="filterByCompanyTag('growth')" title="Growth Account / ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด">
-          📈 Growth <span class="count-badge" id="tag-count-growth">0</span>
-        </button>
-        <button class="tag-filter-btn" data-filter="opportunity" onclick="filterByCompanyTag('opportunity')" title="Opportunity Account / ลูกค้าที่ต้องสร้างความสัมพันธ์">
-          🎯 Opportunity <span class="count-badge" id="tag-count-opportunity">0</span>
-        </button>
-        <button class="tag-filter-btn" data-filter="prospect" onclick="filterByCompanyTag('prospect')" title="New / ลูกค้าใหม่">
-          ✨ New <span class="count-badge" id="tag-count-prospect">0</span>
-        </button>
-
-        <div style="width: 1px; height: 20px; background: #CBD5E1; margin: 0 4px;"></div>
-
-        <!-- แถบ Report สรุปข้อมูลย่อ จ.อุดรธานี (คลิกเพื่อเปิดหน้าต่าง Report เต็มจอ) -->
+      <!-- Left: แถบ Report สรุปข้อมูลย่อ จ.อุดรธานี & ฟิลเตอร์ผู้รับผิดชอบ -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
         <a id="badge-report-summary" href="report.html?province=udon"
           title="คลิกเพื่อเปิดหน้าต่างสรุปรายงานยอดขายเต็มจอ (report.html)"
           style="display: inline-flex; align-items: center; gap: 6px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; padding: 5px 14px; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; box-shadow: 0 1px 3px rgba(30, 64, 175, 0.08); cursor: pointer; text-decoration: none; transition: all 0.2s ease; user-select: none;"
@@ -878,6 +862,18 @@
             style="font-size: 0.72rem; background: #3B82F6; color: #FFFFFF; padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 2px;">เปิดหน้ารายงาน
             ↗</span>
         </a>
+
+        <!-- Assignee Role Filter Dropdown [ 👤 ผู้รับผิดชอบ: ทั้งหมด ▾ ] -->
+        <div style="display: inline-flex; align-items: center; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 9999px; padding: 4px 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); transition: all 0.2s ease;">
+          <select id="filter-assigned-role-select" onchange="filterByAssignedRole(this.value)"
+            title="กรองตามผู้รับผิดชอบ"
+            style="border: none; outline: none; background: transparent; font-size: 0.78rem; font-weight: 800; color: #1E293B; cursor: pointer; font-family: inherit;">
+            <option value="all">👤 ผู้รับผิดชอบ: ทั้งหมด</option>
+            <option value="Sales supervisor">Sales supervisor</option>
+            <option value="Sales exclusive">Sales exclusive</option>
+            <option value="unassigned">ยังไม่ระบุ</option>
+          </select>
+        </div>
       </div>
 
       <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
@@ -1171,6 +1167,19 @@
                   ⚪ น้อย
                 </button>
               </div>
+            </div>
+
+            <!-- Modal Role Assignee Selector -->
+            <div
+              style="display: inline-flex; align-items: center; gap: 6px; background: #F8FAFC; padding: 4px 8px; border-radius: 8px; border: 1.5px solid #E2E8F0;">
+              <span style="font-size: 0.72rem; color: #0F172A; font-weight: 800; white-space: nowrap;">👤 ผู้รับผิดชอบ:</span>
+              <select id="modal-company-assignee-select"
+                onchange="handleModalAssigneeRoleChange(this.value)"
+                style="font-size: 0.72rem; font-weight: 700; color: #1E293B; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 6px; padding: 2px 6px; outline: none; cursor: pointer;">
+                <option value="">-- ยังไม่ระบุ --</option>
+                <option value="Sales supervisor">Sales supervisor</option>
+                <option value="Sales exclusive">Sales exclusive</option>
+              </select>
             </div>
           </div>
 
