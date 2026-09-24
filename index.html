@@ -995,6 +995,18 @@
             ↗</span>
         </a>
 
+        <!-- Tracking Status Filter Dropdown [ 📌 สถานะ: ทั้งหมด ▾ ] -->
+        <div style="display: inline-flex; align-items: center; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 9999px; padding: 4px 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); transition: all 0.2s ease;">
+          <select id="filter-tracking-status-select" onchange="filterByTrackingStatus(this.value)"
+            title="กรองตามสถานะการติดตาม"
+            style="border: none; outline: none; background: transparent; font-size: 0.78rem; font-weight: 800; color: #1E293B; cursor: pointer; font-family: inherit;">
+            <option value="all">📌 สถานะ: ทั้งหมด</option>
+            <option value="target">📌 ต้องการติดตาม</option>
+            <option value="in_progress">⏳ กำลังติดตาม</option>
+            <option value="pending">⏱️ รอการติดตาม</option>
+          </select>
+        </div>
+
         <!-- Assignee Role Filter Dropdown [ 👤 ผู้รับผิดชอบ: ทั้งหมด ▾ ] -->
         <div style="display: inline-flex; align-items: center; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 9999px; padding: 4px 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); transition: all 0.2s ease;">
           <select id="filter-assigned-role-select" onchange="filterByAssignedRole(this.value)"
@@ -2864,11 +2876,11 @@
   </div>
 
   <!-- App JS modules -->
-  <script src="js/data.js?v=20260924_v4"></script>
-  <script src="js/scoring.js?v=20260924_v4"></script>
-  <script src="js/charts.js?v=20260924_v4"></script>
-  <script src="js/map.js?v=20260924_v4"></script>
-  <script src="js/app.js?v=20260924_v4"></script>
+  <script src="js/data.js?v=20260924_v5"></script>
+  <script src="js/scoring.js?v=20260924_v5"></script>
+  <script src="js/charts.js?v=20260924_v5"></script>
+  <script src="js/map.js?v=20260924_v5"></script>
+  <script src="js/app.js?v=20260924_v5"></script>
 </body>
 
 </html>

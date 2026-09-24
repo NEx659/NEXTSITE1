@@ -1503,6 +1503,141 @@ function updateAssignedRoleFilterCounts(source = (typeof allCompanies !== 'undef
   if (optUn) optUn.textContent = `ยังไม่ระบุ (${countUnassigned})`;
 }
 
+function getCompanyFollowUpStatus(companyId) {
+  try {
+    const map = JSON.parse(localStorage.getItem('nextsite_company_crm_status_map') || '{}');
+    if (map && map[companyId]) {
+      return map[companyId];
+    }
+  } catch (e) {}
+
+  const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(companyId) : {};
+  const isTargeted = (typeof isCompanyTargetedByUser === 'function') ? isCompanyTargetedByUser(companyId) : false;
+  const hasFollowedUp = (log.note && String(log.note).trim().length > 0) || 
+                        (Array.isArray(log.photos) && log.photos.length > 0) || 
+                        ['followup', 'won', 'quote_sent', 'in_progress'].includes(log.status);
+
+  if (isTargeted) return 'target';
+  if (hasFollowedUp) return 'in_progress';
+  return 'pending';
+}
+
+function updateCompanyFollowUpStatus(companyId, newStatus, event) {
+  if (event && event.stopPropagation) event.stopPropagation();
+
+  try {
+    const map = JSON.parse(localStorage.getItem('nextsite_company_crm_status_map') || '{}');
+    map[companyId] = newStatus;
+    localStorage.setItem('nextsite_company_crm_status_map', JSON.stringify(map));
+
+    const logs = getAllCrmLogs();
+    const existing = logs[companyId] || { status: 'pending', note: '' };
+    const activeUser = (typeof getCurrentSalesUserObj === 'function') ? getCurrentSalesUserObj() : null;
+    const uEmail = (activeUser && activeUser.email) ? activeUser.email.toLowerCase().trim() : '';
+
+    let wantTargeted = (newStatus === 'target');
+    if (uEmail && typeof loadUserTargetMap === 'function' && typeof saveUserTargetMap === 'function') {
+      const userMap = loadUserTargetMap(uEmail);
+      userMap[companyId] = wantTargeted;
+      saveUserTargetMap(uEmail, userMap);
+    }
+
+    let wantUsers = Array.isArray(existing.wantFollowupUsers) ? [...existing.wantFollowupUsers] : [];
+    if (wantTargeted) {
+      if (uEmail && !wantUsers.includes(uEmail)) wantUsers.push(uEmail);
+    } else {
+      if (uEmail) wantUsers = wantUsers.filter(e => e !== uEmail);
+    }
+
+    const updatedLog = {
+      ...existing,
+      crmStatus: newStatus,
+      status: newStatus === 'target' ? 'followup' : (newStatus === 'in_progress' ? 'followup' : 'pending'),
+      wantFollowup: wantTargeted,
+      wantFollowupUsers: wantUsers,
+      lastUpdated: new Date().toISOString()
+    };
+
+    logs[companyId] = updatedLog;
+    localStorage.setItem(STORAGE_KEY_CRM_LOGS, JSON.stringify(logs));
+    localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
+
+    if (typeof window.saveCloudCrmLog === 'function') {
+      window.saveCloudCrmLog(companyId, updatedLog);
+    }
+
+    if (event && event.target) {
+      const sel = event.target;
+      if (newStatus === 'target') {
+        sel.style.color = '#1D4ED8';
+        sel.style.background = '#EFF6FF';
+        sel.style.borderColor = '#93C5FD';
+      } else if (newStatus === 'in_progress') {
+        sel.style.color = '#15803D';
+        sel.style.background = '#F0FDF4';
+        sel.style.borderColor = '#86EFAC';
+      } else {
+        sel.style.color = '#C2410C';
+        sel.style.background = '#FFF7ED';
+        sel.style.borderColor = '#FED7AA';
+      }
+    }
+
+    const labelMap = {
+      'target': '📌 ต้องการติดตาม',
+      'in_progress': '⏳ กำลังติดตาม',
+      'pending': '⏱️ รอการติดตาม'
+    };
+    if (typeof showStatusToast === 'function') {
+      showStatusToast(`อัปเดตสถานะ: ${labelMap[newStatus] || newStatus}`);
+    }
+
+    if (typeof updateTrackingStatusFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+      updateTrackingStatusFilterCounts(window.allCompanies);
+    }
+    if (typeof updateUserCrmStatusSummary === 'function') {
+      updateUserCrmStatusSummary();
+    }
+  } catch (err) {
+    console.warn('Error updating company follow-up status:', err);
+  }
+}
+
+let activeTrackingStatusFilter = 'all';
+
+function filterByTrackingStatus(statusVal) {
+  activeTrackingStatusFilter = statusVal || 'all';
+  if (typeof applyFilters === 'function') {
+    applyFilters();
+  }
+}
+
+function updateTrackingStatusFilterCounts(source = (typeof allCompanies !== 'undefined' ? allCompanies : [])) {
+  const selectEl = document.getElementById('filter-tracking-status-select');
+  if (!selectEl) return;
+
+  let countTarget = 0;
+  let countInProgress = 0;
+  let countPending = 0;
+
+  source.forEach(c => {
+    const st = getCompanyFollowUpStatus(c.id);
+    if (st === 'target') countTarget++;
+    else if (st === 'in_progress') countInProgress++;
+    else countPending++;
+  });
+
+  const optAll = selectEl.querySelector('option[value="all"]');
+  const optTarget = selectEl.querySelector('option[value="target"]');
+  const optProg = selectEl.querySelector('option[value="in_progress"]');
+  const optPend = selectEl.querySelector('option[value="pending"]');
+
+  if (optAll) optAll.textContent = `📌 สถานะ: ทั้งหมด (${source.length})`;
+  if (optTarget) optTarget.textContent = `📌 ต้องการติดตาม (${countTarget})`;
+  if (optProg) optProg.textContent = `⏳ กำลังติดตาม (${countInProgress})`;
+  if (optPend) optPend.textContent = `⏱️ รอการติดตาม (${countPending})`;
+}
+
 
 
 function renderCrmStatusBadge(status = 'pending', companyId = null) {
@@ -2763,67 +2898,40 @@ function renderTable() {
         })()}
       </td>
 
-      <!-- 7. สถานะการติดตาม (ปุ่มต้องการติดตาม + ป้ายสถานะเข้าติดตามแล้ว/รอการติดตาม) -->
+      <!-- 7. สถานะการติดตาม (Dropdown สถานะ: ต้องการติดตาม / กำลังติดตาม / รอการติดตาม + ผู้รับผิดชอบ) -->
       <td style="text-align: center; vertical-align: middle; padding: 6px 8px;">
         ${(() => {
-          const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(company.id) : {};
-          const isTargeted = isCompanyTargetedByUser(company.id);
-          const hasFollowedUp = (log.note && log.note.trim().length > 0) || 
-                                (Array.isArray(log.photos) && log.photos.length > 0) || 
-                                ['followup', 'won', 'quote_sent'].includes(log.status);
+          const statusVal = getCompanyFollowUpStatus(company.id);
 
-          const targetBtnHtml = isTargeted
-            ? `
-              <button type="button" onclick="toggleTargetFollowup('${company.id}', event)" 
-                title="คลิกเพื่อยกเลิกการปักหมุดต้องการติดตาม" 
-                style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 3px 10px; border-radius: 6px; border: 1.5px solid #2563EB; background: #EFF6FF; color: #1D4ED8; font-size: 0.72rem; font-weight: 800; cursor: pointer; box-shadow: 0 1px 3px rgba(37,99,235,0.2); transition: all 0.15s ease;"
-                onmouseover="this.style.background='#DBEAFE'; this.style.transform='scale(1.03)';" onmouseout="this.style.background='#EFF6FF'; this.style.transform='scale(1)';">
-                <span>🎯</span>
-                <span>ต้องการติดตาม</span>
-                <span style="font-size: 0.65rem; background: #2563EB; color: #FFFFFF; border-radius: 9999px; padding: 0 4px; margin-left: 2px;">✓</span>
-              </button>
-            `
-            : `
-              <button type="button" onclick="toggleTargetFollowup('${company.id}', event)" 
-                title="คลิกเพื่อปักหมุดว่า ต้องการติดตาม บริษัทนี้" 
-                style="display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 3px 10px; border-radius: 6px; border: 1.5px solid #CBD5E1; background: #FFFFFF; color: #475569; font-size: 0.72rem; font-weight: 700; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition: all 0.15s ease;"
-                onmouseover="this.style.borderColor='#3B82F6'; this.style.color='#1D4ED8'; this.style.background='#EFF6FF'; this.style.transform='scale(1.03)';" onmouseout="this.style.borderColor='#CBD5E1'; this.style.color='#475569'; this.style.background='#FFFFFF'; this.style.transform='scale(1)';">
-                <span style="color: #94A3B8;">📌</span>
-                <span>ต้องการติดตาม</span>
-              </button>
-            `;
+          let statusBorder = '#FED7AA';
+          let statusBg = '#FFF7ED';
+          let statusColor = '#C2410C';
 
-          let followerName = log.salesRep || '';
-          if (!followerName && log.createdBy) {
-            if (log.createdBy.toLowerCase().includes('keetavas')) followerName = 'คีตวรรษ';
-            else if (log.createdBy.toLowerCase().includes('pannipan')) followerName = 'พรรณิภา';
-            else followerName = log.createdBy.split('@')[0];
+          if (statusVal === 'target') {
+            statusBorder = '#93C5FD';
+            statusBg = '#EFF6FF';
+            statusColor = '#1D4ED8';
+          } else if (statusVal === 'in_progress') {
+            statusBorder = '#86EFAC';
+            statusBg = '#F0FDF4';
+            statusColor = '#15803D';
           }
-          if (!followerName && company.salesRep) {
-            followerName = company.salesRep;
-          }
-          if (!followerName) {
-            const curUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof getCurrentSalesUserObj === 'function' ? getCurrentSalesUserObj() : null);
-            if (curUser && curUser.fullName) followerName = curUser.fullName;
-          }
-          if (!followerName) {
-            followerName = 'คีตวรรษ';
-          }
-          const cleanName = followerName.replace(/^คุณ\s*/, '').trim() || 'คีตวรรษ';
 
-          const statusBadgeHtml = hasFollowedUp
-            ? `
-              <div onclick="openCompanyProjectsModal('${company.id}')" title="ติดตามแล้ว (มีประวัติการเข้าพบ/โน้ต/รูปถ่ายหน้างาน)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #86EFAC; background: #F0FDF4; font-weight: 800; font-size: 0.72rem; color: #15803D; box-shadow: 0 1px 3px rgba(22,163,74,0.1); white-space: nowrap; cursor: pointer;">
-                <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
-                <span>ติดตามแล้ว</span>
-              </div>
-            `
-            : `
-              <div onclick="openCompanyProjectsModal('${company.id}')" title="รอการติดตาม (ยังไม่มีบันทึกการเข้าพบหรือรูปถ่าย)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 10px; border-radius: 9999px; border: 1.5px solid #FED7AA; background: #FFF7ED; font-weight: 800; font-size: 0.74rem; color: #C2410C; box-shadow: 0 1px 3px rgba(234,88,12,0.1); white-space: nowrap; cursor: pointer;">
-                <span style="color: #EA580C; font-size: 0.85rem; line-height: 1;">●</span>
-                <span>รอการติดตาม</span>
-              </div>
-            `;
+          const statusSelectHtml = `
+            <div style="width: 100%; display: flex; justify-content: center;" onclick="event.stopPropagation();">
+              <select 
+                onchange="updateCompanyFollowUpStatus('${company.id}', this.value, event)" 
+                title="เลือกสถานะการติดตาม"
+                style="width: 100%; max-width: 132px; font-size: 0.72rem; font-weight: 800; color: ${statusColor}; background: ${statusBg}; border: 1.5px solid ${statusBorder}; border-radius: 6px; padding: 3px 4px; cursor: pointer; outline: none; text-align: center; transition: all 0.15s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.03);"
+                onmouseover="this.style.transform='scale(1.02)'"
+                onmouseout="this.style.transform='scale(1)'"
+              >
+                <option value="target" ${statusVal === 'target' ? 'selected' : ''}>📌 ต้องการติดตาม</option>
+                <option value="in_progress" ${statusVal === 'in_progress' ? 'selected' : ''}>⏳ กำลังติดตาม</option>
+                <option value="pending" ${statusVal === 'pending' ? 'selected' : ''}>⏱️ รอการติดตาม</option>
+              </select>
+            </div>
+          `;
 
           const assignedRole = (typeof getCompanyAssignedRole === 'function') ? getCompanyAssignedRole(company.id) : '';
           let roleSelectBorder = '#CBD5E1';
@@ -2857,9 +2965,8 @@ function renderTable() {
           `;
 
           return `
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
-              ${targetBtnHtml}
-              ${statusBadgeHtml}
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;">
+              ${statusSelectHtml}
               ${roleSelectHtml}
             </div>
           `;
@@ -3096,7 +3203,13 @@ function applyFilters() {
       if (activeFollowupStatusFilter === 'pending' && hasFollowedUp) return false;
     }
 
-    // 8. Assigned Role Filter
+    // 8. Tracking Status Dropdown Filter (All / target / in_progress / pending)
+    if (typeof activeTrackingStatusFilter !== 'undefined' && activeTrackingStatusFilter !== 'all') {
+      const st = getCompanyFollowUpStatus(comp.id);
+      if (st !== activeTrackingStatusFilter) return false;
+    }
+
+    // 9. Assigned Role Filter
     if (typeof activeAssignedRoleFilter !== 'undefined' && activeAssignedRoleFilter !== 'all') {
       const assignedRole = (typeof getCompanyAssignedRole === 'function') ? getCompanyAssignedRole(comp.id) : '';
       if (activeAssignedRoleFilter === 'unassigned') {
@@ -3115,6 +3228,10 @@ function applyFilters() {
   renderKPIs();
   renderTable();
   renderTierLeaderboard();
+
+  if (typeof updateTrackingStatusFilterCounts === 'function' && typeof allCompanies !== 'undefined') {
+    updateTrackingStatusFilterCounts(allCompanies);
+  }
 
   if (typeof updateAssignedRoleFilterCounts === 'function' && typeof allCompanies !== 'undefined') {
     updateAssignedRoleFilterCounts(allCompanies);
