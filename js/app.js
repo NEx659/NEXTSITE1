@@ -2573,7 +2573,7 @@ function renderTable() {
         badgeBg = '#FEF2F2';
         badgeColor = '#991B1B';
         barColor = '#EF4444';
-        gradeLabel = 'ต้องติดตาม';
+        gradeLabel = 'โอกาสน้อย';
       }
 
       salesAssessedHtml = `
@@ -3696,7 +3696,240 @@ function openCompanyProjectsModal(companyOrId) {
   // Render Site Visit Photos Gallery
   renderCompanyPhotosGallery(comp.id);
 
+  // Render Field Site Assessment Card (0-4 Rating)
+  renderModalSiteAssessmentCard(comp);
+
   modal.style.display = 'flex';
+}
+
+// ==========================================
+// MODAL FIELD SITE ASSESSMENT (3 CRITERIA 0-4)
+// ==========================================
+function renderModalSiteAssessmentCard(company) {
+  const container = document.getElementById('modal-assessment-criteria-grid');
+  const scoreSummary = document.getElementById('modal-assessment-score-summary');
+  if (!container || !company) return;
+
+  const assess = (typeof getCompanySiteAssessment === 'function') 
+    ? getCompanySiteAssessment(company.id) 
+    : { site: 0, sales: 0, rel: 0, score: 0, isAssessed: false };
+
+  const score = assess.score;
+  const isUnvisited = (assess.site === 0 && assess.sales === 0 && assess.rel === 0);
+
+  // Score colors & badge
+  let badgeBg = '#ECFDF5';
+  let badgeColor = '#065F46';
+  let barColor = '#10B981';
+  let gradeLabel = 'ยอดเยี่ยม';
+
+  if (isUnvisited || score === 0) {
+    badgeBg = '#F1F5F9';
+    badgeColor = '#64748B';
+    barColor = '#CBD5E1';
+    gradeLabel = '⏳ ยังไม่เข้าพบ';
+  } else if (score >= 80) {
+    badgeBg = '#ECFDF5';
+    badgeColor = '#065F46';
+    barColor = '#10B981';
+    gradeLabel = 'โอกาสสูงสุด';
+  } else if (score >= 60) {
+    badgeBg = '#EFF6FF';
+    badgeColor = '#1E40AF';
+    barColor = '#3B82F6';
+    gradeLabel = 'โอกาสสูง';
+  } else if (score >= 40) {
+    badgeBg = '#FFFBEB';
+    badgeColor = '#92400E';
+    barColor = '#F59E0B';
+    gradeLabel = 'ปานกลาง';
+  } else {
+    badgeBg = '#FEF2F2';
+    badgeColor = '#991B1B';
+    barColor = '#EF4444';
+    gradeLabel = 'โอกาสน้อย';
+  }
+
+  if (scoreSummary) {
+    scoreSummary.innerHTML = `
+      <div style="text-align: right;">
+        <div style="font-size: 0.68rem; color: #64748B; font-weight: 700;">คะแนนประเมินรวม</div>
+        <div style="font-size: 1.25rem; font-weight: 900; color: ${badgeColor}; line-height: 1.1;">${score}%</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 3px; min-width: 90px;">
+        <span style="font-size: 0.72rem; font-weight: 800; color: ${badgeColor}; background: ${badgeBg}; padding: 2px 8px; border-radius: 6px; text-align: center;">
+          ${gradeLabel}
+        </span>
+        <div style="width: 100%; height: 5px; background: #E2E8F0; border-radius: 9999px; overflow: hidden;">
+          <div style="width: ${score}%; height: 100%; background: ${barColor}; border-radius: 9999px;"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  const criteriaList = [
+    {
+      key: 'site',
+      icon: '🏗️',
+      title: 'มีไซต์งานจริงให้ติดตาม',
+      weight: 'น้ำหนัก 40%',
+      weightColor: '#15803D',
+      weightBg: '#DCFCE7',
+      val: assess.site,
+      options: {
+        0: 'ยังไม่ได้เข้าสำรวจหน้างาน',
+        1: 'ไม่มีหรือมีน้อยมาก',
+        2: 'มีปานกลาง',
+        3: 'มีค่อนข้างเยอะ',
+        4: 'มีเยอะ'
+      }
+    },
+    {
+      key: 'sales',
+      icon: '📈',
+      title: 'มีโอกาสในการติดตามขาย',
+      weight: 'น้ำหนัก 40%',
+      weightColor: '#1D4ED8',
+      weightBg: '#DBEAFE',
+      val: assess.sales,
+      options: {
+        0: 'ยังไม่เข้าพบลูกค้า',
+        1: 'ลูกค้าไม่สนใจเลย',
+        2: 'เฉยๆ',
+        3: 'มีแนวโน้มที่จะใช้สินค้าSCG',
+        4: 'ต้องการใช้สินค้า SCG'
+      }
+    },
+    {
+      key: 'rel',
+      icon: '👥',
+      title: 'รู้สึกดีที่มี SCG เข้าไปดูแล',
+      weight: 'น้ำหนัก 20%',
+      weightColor: '#7E22CE',
+      weightBg: '#F3E8FF',
+      val: assess.rel,
+      options: {
+        0: 'ยังไม่เข้าพบลูกค้า',
+        1: 'ลูกค้าไม่สนใจเลย',
+        2: 'เฉยๆ',
+        3: 'มีแนวโน้มที่ดี',
+        4: 'ประทับใจอย่างมาก'
+      }
+    }
+  ];
+
+  container.innerHTML = criteriaList.map(item => {
+    const curVal = item.val;
+    const descText = item.options[curVal] || `ระดับ ${curVal}`;
+
+    const buttonsHtml = [0, 1, 2, 3, 4].map(btnVal => {
+      const isActive = (btnVal === curVal);
+      const optDesc = item.options[btnVal] || `ระดับ ${btnVal}`;
+      return `
+        <button type="button" 
+          class="rating-btn ${isActive ? `active lvl-${btnVal}` : ''}" 
+          onclick="handleModalSiteAssessmentChange('${item.key}', ${btnVal})"
+          title="ระดับ ${btnVal}: ${optDesc}">
+          ${btnVal}
+        </button>
+      `;
+    }).join('');
+
+    return `
+      <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px;">
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <div style="font-size: 0.84rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 5px;">
+              <span>${item.icon}</span>
+              <span>${item.title}</span>
+            </div>
+            <span style="font-size: 0.68rem; font-weight: 800; color: ${item.weightColor}; background: ${item.weightBg}; padding: 1px 6px; border-radius: 4px;">
+              ${item.weight}
+            </span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;">
+          <div class="rating-group">
+            ${buttonsHtml}
+          </div>
+          <div class="rating-desc-pill lvl-${curVal}">
+            ${descText}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function handleModalSiteAssessmentChange(critKey, scoreValue) {
+  if (!activeSelectedCompany) return;
+  const companyId = activeSelectedCompany.id;
+  const val = Number(scoreValue);
+
+  // Load current assessments
+  let assessments = {};
+  try {
+    const raw = localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V4') || 
+                localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V3') || 
+                localStorage.getItem('NEXTSITE_SITE_ASSESSMENTS_V2');
+    if (raw) assessments = JSON.parse(raw);
+  } catch (e) {}
+
+  if (!assessments[companyId]) {
+    assessments[companyId] = { site: 0, sales: 0, rel: 0, score: 0 };
+  }
+
+  assessments[companyId][critKey] = val;
+
+  // Calculate score
+  const site = Number(assessments[companyId].site) || 0;
+  const sales = Number(assessments[companyId].sales) || 0;
+  const rel = Number(assessments[companyId].rel) || 0;
+
+  const sitePts = Math.round((site / 4) * 40);
+  const salesPts = Math.round((sales / 4) * 40);
+  const relPts = Math.round((rel / 4) * 20);
+  const totalScore = sitePts + salesPts + relPts;
+
+  assessments[companyId].score = totalScore;
+  assessments[companyId].updatedAt = new Date().toISOString();
+
+  // Save to LocalStorage
+  try {
+    localStorage.setItem('NEXTSITE_SITE_ASSESSMENTS_V4', JSON.stringify(assessments));
+  } catch (e) {}
+
+  // Sync to Supabase cloud if available
+  if (typeof window.saveCloudSiteAssessment === 'function') {
+    window.saveCloudSiteAssessment(companyId, assessments[companyId]);
+  }
+
+  // Re-render the assessment card in the modal
+  renderModalSiteAssessmentCard(activeSelectedCompany);
+
+  // Update the row in the main table in-place
+  if (typeof renderTable === 'function') {
+    renderTable();
+  }
+
+  // Show Toast
+  const critNames = {
+    site: 'มีไซต์งานจริงให้ติดตาม',
+    sales: 'มีโอกาสในการติดตามขาย',
+    rel: 'รู้สึกดีที่มี SCG เข้าไปดูแล'
+  };
+  const descMap = {
+    site: { 0: 'ยังไม่สำรวจ', 1: 'ไม่มี/น้อยมาก', 2: 'ปานกลาง', 3: 'ค่อนข้างเยอะ', 4: 'มีเยอะ' },
+    sales: { 0: 'ยังไม่พบ', 1: 'ไม่สนใจ', 2: 'เฉยๆ', 3: 'มีแนวโน้ม', 4: 'ต้องการใช้ SCG' },
+    rel: { 0: 'ยังไม่พบ', 1: 'ไม่สนใจ', 2: 'เฉยๆ', 3: 'แนวโน้มดี', 4: 'ประทับใจมาก' }
+  };
+  const optText = (descMap[critKey] && descMap[critKey][val]) || `ระดับ ${val}`;
+  if (typeof showStatusToast === 'function') {
+    showStatusToast(`💾 บันทึกการประเมิน: ${critNames[critKey] || critKey} = ระดับ ${val} (${optText}) • รวม ${totalScore}%`);
+  } else if (typeof showToastNotification === 'function') {
+    showToastNotification(`💾 บันทึกการประเมิน: ${critNames[critKey] || critKey} = ระดับ ${val} (${optText}) • รวม ${totalScore}%`);
+  }
 }
 
 function handleModalAssigneeRoleChange(newRole) {
