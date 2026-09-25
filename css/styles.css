@@ -1438,9 +1438,7 @@ textarea[id^="inline-crm-note-"] {
 
 /* Detail Section Grid */
 .detail-top-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1.2fr;
-  gap: 1.5rem;
+  display: block;
   margin-bottom: 1.5rem;
 }
 

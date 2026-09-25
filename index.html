@@ -980,21 +980,8 @@
     <!-- Secondary Row: Report Summary & User Tracking Status -->
     <div
       style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 0.75rem;">
-      <!-- Left: แถบ Report สรุปข้อมูลย่อ จ.อุดรธานี & ฟิลเตอร์ผู้รับผิดชอบ -->
+      <!-- Left: ฟิลเตอร์สถานะ & ฟิลเตอร์ผู้รับผิดชอบ -->
       <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <a id="badge-report-summary" href="report.html?province=udon"
-          title="คลิกเพื่อเปิดหน้าต่างสรุปรายงานยอดขายเต็มจอ (report.html)"
-          style="display: inline-flex; align-items: center; gap: 6px; background: #EFF6FF; border: 1.5px solid #93C5FD; color: #1E40AF; padding: 5px 14px; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; box-shadow: 0 1px 3px rgba(30, 64, 175, 0.08); cursor: pointer; text-decoration: none; transition: all 0.2s ease; user-select: none;"
-          onmouseover="this.style.background='#DBEAFE'; this.style.borderColor='#60A5FA'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 10px rgba(30,64,175,0.18)';"
-          onmouseout="this.style.background='#EFF6FF'; this.style.borderColor='#93C5FD'; this.style.transform='none'; this.style.boxShadow='0 1px 3px rgba(30,64,175,0.08)';">
-          <span style="font-size: 0.9rem;">📊</span>
-          <span>Report จ.อุดรธานี:</span>
-          <span style="color: #0369A1; font-weight: 700;">วิเคราะห์ 54 บริษัท</span>
-          <span
-            style="font-size: 0.72rem; background: #3B82F6; color: #FFFFFF; padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 2px;">เปิดหน้ารายงาน
-            ↗</span>
-        </a>
-
         <!-- Tracking Status Filter Dropdown [ 📌 สถานะ: ทั้งหมด ▾ ] -->
         <div style="display: inline-flex; align-items: center; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 9999px; padding: 4px 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); transition: all 0.2s ease;">
           <select id="filter-tracking-status-select" onchange="filterByTrackingStatus(this.value)"
@@ -1237,38 +1224,6 @@
                 style="display: flex; gap: 4px; background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.18); padding: 4px; border-radius: 8px; flex-wrap: wrap;">
                 <!-- Filter buttons injected via JS -->
               </div>
-            </div>
-          </div>
-
-          <!-- Right: AI Opportunity Scoring Matrix -->
-          <div id="modal-score-card" class="detail-score-card red">
-            <div>
-              <div class="score-display-row">
-                <div>
-                  <div style="font-size: 0.75rem; font-weight: 700; color: #64748B; text-transform: uppercase;">
-                    AI Opportunity Score
-                  </div>
-                  <div id="modal-big-score" class="score-big-number" style="color: var(--primary-red);">
-                    95
-                  </div>
-                </div>
-                <div style="text-align: right;">
-                  <div id="modal-score-badge" class="score-badge red">● โอกาสสูงสุด</div>
-                  <div id="modal-score-urgency"
-                    style="font-size: 0.72rem; color: var(--primary-red); font-weight: 700; margin-top: 4px;">
-                    เข้าพบภายใน 24-48 ชม.
-                  </div>
-                </div>
-              </div>
-
-              <!-- 5 Dimension Breakdown -->
-              <div style="font-size: 0.75rem; font-weight: 700; color: #475569; margin-bottom: 0.5rem;">
-                การวิเคราะห์คะแนน 5 ปัจจัย (Score Breakdown)
-              </div>
-              <div id="modal-dimensions-list" class="score-dimension-list">
-                <!-- Injected via JS -->
-              </div>
-            </div>
           </div>
         </div>
 
