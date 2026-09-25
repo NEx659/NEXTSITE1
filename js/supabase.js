@@ -416,26 +416,38 @@ async function loadAndApplyCloudTags() {
 
     const data = res.data;
     if (data && data.length > 0) {
-      const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap() : {};
+      const getTagMapFn = (typeof window.loadCompanyTagsMap === 'function') ? window.loadCompanyTagsMap : (typeof loadCompanyTagsMap === 'function' ? loadCompanyTagsMap : null);
+      const tagMap = getTagMapFn ? getTagMapFn() : {};
       
       let changed = false;
       data.forEach(item => {
         if (item.id) {
           let resolvedTag = null;
-          if (item.tag) {
-            resolvedTag = String(item.tag).trim().toLowerCase();
-          } else if (item.revenue_potential) {
+          let hasExplicitSalesTag = false;
+
+          if (item.revenue_potential) {
             try {
               const parsed = typeof item.revenue_potential === 'string' ? JSON.parse(item.revenue_potential) : item.revenue_potential;
               if (parsed && parsed.tag) {
                 resolvedTag = String(parsed.tag).trim().toLowerCase();
+                hasExplicitSalesTag = true;
               }
             } catch(e) {}
           }
 
+          if (!resolvedTag && item.tag) {
+            resolvedTag = String(item.tag).trim().toLowerCase();
+          }
+
           if (resolvedTag) {
-            const norm = (typeof normalizeTagValue === 'function') ? normalizeTagValue(resolvedTag) : resolvedTag;
-            if (tagMap[item.id] !== norm) {
+            let comp = null;
+            if (typeof window.allCompanies !== 'undefined' && Array.isArray(window.allCompanies)) {
+              comp = window.allCompanies.find(c => c.id === item.id);
+            }
+            const normFn = (typeof window.normalizeTagValue === 'function') ? window.normalizeTagValue : (typeof normalizeTagValue === 'function' ? normalizeTagValue : null);
+            let norm = normFn ? normFn(resolvedTag, comp) : resolvedTag;
+
+            if (norm && tagMap[item.id] !== norm) {
               tagMap[item.id] = norm;
               changed = true;
             }
@@ -443,17 +455,28 @@ async function loadAndApplyCloudTags() {
         }
       });
 
-      if (changed && typeof saveCompanyTagsMap === 'function') {
-        saveCompanyTagsMap(tagMap);
+      if (changed) {
+        if (typeof window.saveCompanyTagsMap === 'function') {
+          window.saveCompanyTagsMap(tagMap);
+        } else if (typeof saveCompanyTagsMap === 'function') {
+          saveCompanyTagsMap(tagMap);
+        }
       }
-      if (typeof syncUserTagsToCompanies === 'function') {
+      if (typeof window.syncUserTagsToCompanies === 'function') {
+        window.syncUserTagsToCompanies();
+      } else if (typeof syncUserTagsToCompanies === 'function') {
         syncUserTagsToCompanies();
       }
-      if (typeof applyFilters === 'function') {
+      if (typeof window.applyFilters === 'function') {
+        window.applyFilters();
+      } else if (typeof applyFilters === 'function') {
         applyFilters();
       }
-      if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
-        updateTagFilterCounts(window.allCompanies);
+      if (typeof window.renderTierLeaderboard === 'function') {
+        window.renderTierLeaderboard();
+      }
+      if (typeof window.updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+        window.updateTagFilterCounts(window.allCompanies);
       }
       console.log(`☁️ Synced shared tags from Supabase Cloud successfully (${data.length} records)!`);
     }
@@ -709,24 +732,53 @@ async function saveCloudCrmLog(companyId, crmData) {
   }
 
   try {
-    const jsonStr = JSON.stringify({
-      status: crmData.status || 'pending',
-      note: crmData.note || '',
-      nextDate: crmData.nextDate || '',
-      salesRep: crmData.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
-      products: crmData.products || [],
-      wantFollowup: !!crmData.wantFollowup,
-      salesOpportunityLevel: crmData.salesOpportunityLevel || null,
-      photos: Array.isArray(crmData.photos) ? crmData.photos : [],
+    let existingRevObj = {};
+    let existingTag = null;
+    try {
+      const { data: rowData } = await client
+        .from('companies')
+        .select('id, revenue_potential, tag')
+        .eq('id', companyId)
+        .maybeSingle();
+
+      if (rowData) {
+        if (rowData.tag) existingTag = rowData.tag;
+        if (rowData.revenue_potential) {
+          if (typeof rowData.revenue_potential === 'string') {
+            existingRevObj = JSON.parse(rowData.revenue_potential) || {};
+          } else if (typeof rowData.revenue_potential === 'object') {
+            existingRevObj = rowData.revenue_potential || {};
+          }
+        }
+      }
+    } catch(e) {}
+
+    const curTag = (typeof window.getCompanyTag === 'function') 
+      ? window.getCompanyTag(companyId) 
+      : (existingRevObj.tag || existingTag || 'prospect');
+
+    const updatedRevObj = {
+      ...existingRevObj,
+      status: crmData.status || existingRevObj.status || 'pending',
+      note: typeof crmData.note !== 'undefined' ? crmData.note : (existingRevObj.note || ''),
+      nextDate: typeof crmData.nextDate !== 'undefined' ? crmData.nextDate : (existingRevObj.nextDate || ''),
+      salesRep: crmData.salesRep || existingRevObj.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
+      products: crmData.products || existingRevObj.products || [],
+      wantFollowup: typeof crmData.wantFollowup !== 'undefined' ? !!crmData.wantFollowup : !!existingRevObj.wantFollowup,
+      salesOpportunityLevel: crmData.salesOpportunityLevel || existingRevObj.salesOpportunityLevel || null,
+      photos: Array.isArray(crmData.photos) ? crmData.photos : (Array.isArray(existingRevObj.photos) ? existingRevObj.photos : []),
+      tag: curTag,
       updatedAt: crmData.updatedAt || crmData.lastUpdated || new Date().toISOString()
-    });
+    };
 
     const updatePayload = {
-      crm_note: crmData.note || '',
-      crm_status: crmData.status || 'pending',
-      crm_sales_rep: crmData.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
-      crm_next_date: crmData.nextDate || '',
-      revenue_potential: jsonStr
+      crm_note: updatedRevObj.note,
+      crm_status: updatedRevObj.status,
+      crm_sales_rep: updatedRevObj.salesRep,
+      crm_next_date: updatedRevObj.nextDate,
+      tag: curTag,
+      revenue_potential: JSON.stringify(updatedRevObj),
+      updated_at: new Date().toISOString()
     };
 
     let { data, error } = await client
@@ -742,12 +794,11 @@ async function saveCloudCrmLog(companyId, crmData) {
         ...updatePayload,
         province: 'อุดรธานี'
       };
-      if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
-        const comp = allCompanies.find(c => c.id === companyId);
+      if (typeof window.allCompanies !== 'undefined' && Array.isArray(window.allCompanies)) {
+        const comp = window.allCompanies.find(c => c.id === companyId);
         if (comp) {
           if (comp.name) upsertPayload.name = comp.name;
           if (comp.province) upsertPayload.province = comp.province;
-          if (comp.tag) upsertPayload.tag = comp.tag;
         }
       }
       const upsertRes = await client.from('companies').upsert(upsertPayload, { onConflict: 'id' });

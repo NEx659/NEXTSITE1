@@ -200,7 +200,7 @@ function saveCompanyTagsMap(tagMap) {
 function normalizeTagValue(rawTag, comp = null) {
   if (!rawTag) {
     if (comp) {
-      if (comp.scgCode) return 'strategic';
+      if (comp.scgCode || comp.scgCustomerId) return 'strategic';
       if ((comp.growthRate && comp.growthRate >= 40) || (comp.totalProjects && comp.totalProjects >= 3)) return 'growth';
       if ((comp.totalProjects && comp.totalProjects > 0) || (comp.opportunityScore && comp.opportunityScore >= 70)) return 'opportunity';
     }
@@ -209,7 +209,15 @@ function normalizeTagValue(rawTag, comp = null) {
   const t = String(rawTag).trim().toLowerCase();
   if (t === 'strategic' || t === 'growth' || t === 'opportunity' || t === 'prospect') return t;
   // Legacy mappings
-  if (t === 'focus') return 'strategic';
+  if (t === 'focus') {
+    if (comp) {
+      if (comp.scgCode || comp.scgCustomerId) return 'strategic';
+      if ((comp.growthRate && comp.growthRate >= 40) || (comp.totalProjects && comp.totalProjects >= 3)) return 'growth';
+      if ((comp.totalProjects && comp.totalProjects > 0) || (comp.opportunityScore && comp.opportunityScore >= 70)) return 'opportunity';
+      return 'prospect';
+    }
+    return 'strategic';
+  }
   if (t === 'non-focus' || t === 'nonfocus') return 'opportunity';
   if (t === 'new' || t === 'verified') return 'prospect';
   return 'prospect';
@@ -220,6 +228,18 @@ function syncUserTagsToCompanies() {
 
   if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
     allCompanies.forEach(c => {
+      const savedTag = tagMap[c.id];
+      if (savedTag) {
+        c.tag = normalizeTagValue(savedTag, c);
+      } else if (c.tag) {
+        c.tag = normalizeTagValue(c.tag, c);
+      } else {
+        c.tag = normalizeTagValue(null, c);
+      }
+    });
+  }
+  if (typeof filteredCompanies !== 'undefined' && Array.isArray(filteredCompanies)) {
+    filteredCompanies.forEach(c => {
       const savedTag = tagMap[c.id];
       if (savedTag) {
         c.tag = normalizeTagValue(savedTag, c);
@@ -278,11 +298,15 @@ function setCompanyTag(companyId, tag, event) {
   const userEmail = activeUser ? activeUser.email : 'system';
   if (typeof updateCloudCompanyTag === 'function') {
     updateCloudCompanyTag(companyId, normalizedTag, userEmail);
+  } else if (typeof window.updateCloudCompanyTag === 'function') {
+    window.updateCloudCompanyTag(companyId, normalizedTag, userEmail);
   }
 
   // 4. Re-render UI table, leaderboard and counts immediately
   if (typeof applyFilters === 'function') {
     applyFilters();
+  } else if (typeof window.applyFilters === 'function') {
+    window.applyFilters();
   } else {
     if (typeof renderTable === 'function') renderTable();
     if (typeof renderTierLeaderboard === 'function') renderTierLeaderboard();
@@ -304,8 +328,10 @@ function setCompanyTag(companyId, tag, event) {
 if (typeof window !== 'undefined') {
   window.setCompanyTag = setCompanyTag;
   window.getCompanyTag = getCompanyTag;
+  window.normalizeTagValue = normalizeTagValue;
   window.loadCompanyTagsMap = loadCompanyTagsMap;
   window.saveCompanyTagsMap = saveCompanyTagsMap;
+  window.syncUserTagsToCompanies = syncUserTagsToCompanies;
 }
 
 // ==========================================
@@ -1047,16 +1073,16 @@ function loadSavedCompaniesData() {
     }
   });
 
-  // ผูกค่า Company Tags (Focus / Non-Focus / New)
+  // ผูกค่า Company Tags (Focus / Non-Focus / New / 4 Tiers)
   const tagMap = loadCompanyTagsMap();
   allCompanies.forEach(c => {
     const savedTag = tagMap[c.id];
     if (savedTag) {
-      c.tag = String(savedTag).trim().toLowerCase();
+      c.tag = normalizeTagValue(savedTag, c);
     } else if (c.tag) {
-      c.tag = String(c.tag).trim().toLowerCase();
+      c.tag = normalizeTagValue(c.tag, c);
     } else {
-      c.tag = 'new';
+      c.tag = normalizeTagValue(null, c);
     }
   });
 
@@ -3294,6 +3320,15 @@ function applyFilters() {
   if (typeof updateStickyOffsets === 'function') {
     setTimeout(updateStickyOffsets, 30);
   }
+}
+
+if (typeof window !== 'undefined') {
+  window.applyFilters = applyFilters;
+  window.renderTable = renderTable;
+  window.renderTierLeaderboard = renderTierLeaderboard;
+  window.updateTagFilterCounts = updateTagFilterCounts;
+  window.updateHeaderCrmStats = updateHeaderCrmStats;
+  window.updateUserCrmStatusSummary = updateUserCrmStatusSummary;
 }
 
 function selectFacebookKeyword(kwId) {
