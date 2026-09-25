@@ -435,11 +435,15 @@ async function loadAndApplyCloudTags() {
             } catch(e) {}
           }
 
-          if (!resolvedTag && item.tag) {
-            resolvedTag = String(item.tag).trim().toLowerCase();
+          if (!hasExplicitSalesTag && item.tag) {
+            const t = String(item.tag).trim().toLowerCase();
+            if (t === 'strategic' || t === 'growth' || t === 'opportunity' || t === 'prospect') {
+              resolvedTag = t;
+              hasExplicitSalesTag = true;
+            }
           }
 
-          if (resolvedTag) {
+          if (hasExplicitSalesTag && resolvedTag) {
             let comp = null;
             if (typeof window.allCompanies !== 'undefined' && Array.isArray(window.allCompanies)) {
               comp = window.allCompanies.find(c => c.id === item.id);
