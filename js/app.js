@@ -143,6 +143,8 @@ function cleanThaiText(text) {
 // ==========================================
 // 2. TAG MANAGEMENT (Shared Across All Users & Real-time Cloud Sync)
 // ==========================================
+let isLegacyTagsMigrated = false;
+
 function loadCompanyTagsMap() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY_COMPANY_TAGS);
@@ -153,16 +155,29 @@ function loadCompanyTagsMap() {
       } catch (e) {}
     }
 
-    // Merge any legacy user-specific keys if present
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && key.startsWith('nextsite_company_tags_') && key !== STORAGE_KEY_COMPANY_TAGS) {
-        try {
-          const userObj = JSON.parse(localStorage.getItem(key));
-          if (userObj && typeof userObj === 'object') {
-            Object.assign(tagMap, userObj);
-          }
-        } catch (e) {}
+    // Migrate legacy user-specific keys ONCE only on startup, then remove them to prevent overriding
+    if (!isLegacyTagsMigrated) {
+      isLegacyTagsMigrated = true;
+      let hasLegacy = false;
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('nextsite_company_tags_') && key !== STORAGE_KEY_COMPANY_TAGS) {
+          try {
+            const userObj = JSON.parse(localStorage.getItem(key));
+            if (userObj && typeof userObj === 'object') {
+              for (const [cId, cTag] of Object.entries(userObj)) {
+                if (typeof tagMap[cId] === 'undefined') {
+                  tagMap[cId] = cTag;
+                  hasLegacy = true;
+                }
+              }
+            }
+            localStorage.removeItem(key);
+          } catch (e) {}
+        }
+      }
+      if (hasLegacy) {
+        localStorage.setItem(STORAGE_KEY_COMPANY_TAGS, JSON.stringify(tagMap));
       }
     }
 
@@ -232,30 +247,47 @@ function getCompanyTag(companyId) {
 }
 
 function setCompanyTag(companyId, tag, event) {
-  if (event && event.stopPropagation) {
-    event.stopPropagation();
+  if (event) {
+    if (event.stopPropagation) event.stopPropagation();
+    if (event.preventDefault) event.preventDefault();
   }
 
-  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-  const userEmail = activeUser ? activeUser.email : 'system';
   const normalizedTag = normalizeTagValue(tag);
 
-  const comp = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies.find(c => c.id === companyId) : null;
-  if (comp) {
-    comp.tag = normalizedTag;
+  // 1. Immediately update in allCompanies & filteredCompanies
+  if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
+    const comp = allCompanies.find(c => c.id === companyId);
+    if (comp) {
+      comp.tag = normalizedTag;
+    }
+  }
+  if (typeof filteredCompanies !== 'undefined' && Array.isArray(filteredCompanies)) {
+    const compF = filteredCompanies.find(c => c.id === companyId);
+    if (compF) {
+      compF.tag = normalizedTag;
+    }
   }
 
-  // Save to shared tag map for all users
+  // 2. Save to shared tag map for all users
   const tagMap = loadCompanyTagsMap();
   tagMap[companyId] = normalizedTag;
   saveCompanyTagsMap(tagMap);
 
-  // Sync to Supabase Cloud in real-time so all teammates see the exact same tag
+  // 3. Sync to Supabase Cloud in real-time so all teammates see the exact same tag
+  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
+  const userEmail = activeUser ? activeUser.email : 'system';
   if (typeof updateCloudCompanyTag === 'function') {
     updateCloudCompanyTag(companyId, normalizedTag, userEmail);
   }
 
-  applyFilters();
+  // 4. Re-render UI table, leaderboard and counts immediately
+  if (typeof applyFilters === 'function') {
+    applyFilters();
+  } else {
+    if (typeof renderTable === 'function') renderTable();
+    if (typeof renderTierLeaderboard === 'function') renderTierLeaderboard();
+  }
+
   if (typeof updateTagFilterCounts === 'function' && typeof allCompanies !== 'undefined') {
     updateTagFilterCounts(allCompanies);
   }
@@ -267,6 +299,13 @@ function setCompanyTag(companyId, tag, event) {
     'prospect': '✨ New (ลูกค้าใหม่)'
   };
   showStatusToast(`💾 บันทึกสถานะกลุ่มเป็น ${tagNames[normalizedTag] || normalizedTag} เรียบร้อย (ข้อมูลซิงค์ให้ทุกคนเห็นตรงกัน)`);
+}
+
+if (typeof window !== 'undefined') {
+  window.setCompanyTag = setCompanyTag;
+  window.getCompanyTag = getCompanyTag;
+  window.loadCompanyTagsMap = loadCompanyTagsMap;
+  window.saveCompanyTagsMap = saveCompanyTagsMap;
 }
 
 // ==========================================

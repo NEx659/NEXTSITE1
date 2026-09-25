@@ -771,6 +771,43 @@ async function loadAndApplyCloudCrmLogs() {
   }
 }
 
+function setupRealtimeSync() {
+  const client = supabaseClient || initSupabase();
+  if (client && typeof client.channel === 'function') {
+    try {
+      client
+        .channel('companies-realtime-tags')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'companies' }, (payload) => {
+          console.log('⚡ Realtime company tag update received:', payload);
+          loadAndApplyCloudTags();
+        })
+        .subscribe();
+
+      client
+        .channel('crm-logs-realtime')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'crm_logs' }, (payload) => {
+          console.log('⚡ Realtime CRM log update received:', payload);
+          loadAndApplyCloudCrmLogs();
+        })
+        .subscribe();
+    } catch (e) {
+      console.warn('⚠️ Realtime channel subscription note:', e);
+    }
+  }
+
+  // Periodic polling fallback every 15s to guarantee all devices stay in sync
+  setInterval(() => {
+    loadAndApplyCloudTags();
+    loadAndApplyCloudCrmLogs();
+  }, 15000);
+
+  // Sync immediately whenever the user switches back to this browser tab
+  window.addEventListener('focus', () => {
+    loadAndApplyCloudTags();
+    loadAndApplyCloudCrmLogs();
+  });
+}
+
 // Auto init on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(async () => {
@@ -778,6 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await checkCurrentSession();
     await loadAndApplyCloudTags();
     await loadAndApplyCloudCrmLogs();
+    setupRealtimeSync();
   }, 300);
 });
 
