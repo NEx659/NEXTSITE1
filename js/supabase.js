@@ -741,7 +741,7 @@ async function saveCloudCrmLog(companyId, crmData) {
     try {
       const { data: rowData } = await client
         .from('companies')
-        .select('id, revenue_potential, tag')
+        .select('id, revenue_potential, tag, crm_status, crm_sales_rep, crm_note')
         .eq('id', companyId)
         .maybeSingle();
 
@@ -761,9 +761,14 @@ async function saveCloudCrmLog(companyId, crmData) {
       ? window.getCompanyTag(companyId) 
       : (existingRevObj.tag || existingTag || 'prospect');
 
+    const statusVal = crmData.crmStatus || crmData.status || existingRevObj.crmStatus || existingRevObj.status || 'pending';
+    const assignedRoleVal = crmData.assignedRole || existingRevObj.assignedRole || '';
+
     const updatedRevObj = {
       ...existingRevObj,
-      status: crmData.status || existingRevObj.status || 'pending',
+      status: statusVal,
+      crmStatus: statusVal,
+      assignedRole: assignedRoleVal,
       note: typeof crmData.note !== 'undefined' ? crmData.note : (existingRevObj.note || ''),
       nextDate: typeof crmData.nextDate !== 'undefined' ? crmData.nextDate : (existingRevObj.nextDate || ''),
       salesRep: crmData.salesRep || existingRevObj.salesRep || (currentSalesUser ? currentSalesUser.fullName : 'ทีมขาย SCG'),
@@ -772,12 +777,13 @@ async function saveCloudCrmLog(companyId, crmData) {
       salesOpportunityLevel: crmData.salesOpportunityLevel || existingRevObj.salesOpportunityLevel || null,
       photos: Array.isArray(crmData.photos) ? crmData.photos : (Array.isArray(existingRevObj.photos) ? existingRevObj.photos : []),
       tag: curTag,
-      updatedAt: crmData.updatedAt || crmData.lastUpdated || new Date().toISOString()
+      updatedAt: crmData.updatedAt || crmData.lastUpdated || new Date().toISOString(),
+      lastUpdatedBy: (currentSalesUser && currentSalesUser.email) ? currentSalesUser.email : (crmData.lastUpdatedBy || 'sales@scg.com')
     };
 
     const updatePayload = {
       crm_note: updatedRevObj.note,
-      crm_status: updatedRevObj.status,
+      crm_status: statusVal,
       crm_sales_rep: updatedRevObj.salesRep,
       crm_next_date: updatedRevObj.nextDate,
       tag: curTag,
@@ -841,9 +847,22 @@ async function loadAndApplyCloudCrmLogs() {
 
     if (data && data.length > 0) {
       let crmLogs = {};
+      let statusMap = {};
+      let rolesMap = {};
+
       try {
         const raw = localStorage.getItem('nextsite_crm_followup_logs') || localStorage.getItem('nextsite_crm_logs_v1') || localStorage.getItem('nextsite_crm_logs_v2');
         if (raw) crmLogs = JSON.parse(raw);
+      } catch (e) {}
+
+      try {
+        const rawStatus = localStorage.getItem('nextsite_company_crm_status_map');
+        if (rawStatus) statusMap = JSON.parse(rawStatus);
+      } catch (e) {}
+
+      try {
+        const rawRoles = localStorage.getItem('nextsite_company_assigned_roles');
+        if (rawRoles) rolesMap = JSON.parse(rawRoles);
       } catch (e) {}
 
       let updatedCount = 0;
@@ -856,12 +875,22 @@ async function loadAndApplyCloudCrmLogs() {
             } catch (e) {}
           }
 
+          const crmStatusVal = (cloudLog && (cloudLog.crmStatus || cloudLog.status)) || item.crm_status || 'pending';
+          const assignedRoleVal = (cloudLog && cloudLog.assignedRole) || '';
+
+          statusMap[item.id] = crmStatusVal;
+          if (assignedRoleVal) {
+            rolesMap[item.id] = assignedRoleVal;
+          }
+
           const existingLocal = crmLogs[item.id] || {};
           crmLogs[item.id] = {
             ...existingLocal,
             ...(cloudLog || {}),
+            crmStatus: crmStatusVal,
+            assignedRole: assignedRoleVal || existingLocal.assignedRole || '',
             note: item.crm_note || (cloudLog && cloudLog.note) || existingLocal.note || '',
-            status: item.crm_status || (cloudLog && cloudLog.status) || existingLocal.status || 'pending',
+            status: crmStatusVal,
             salesRep: item.crm_sales_rep || (cloudLog && cloudLog.salesRep) || existingLocal.salesRep || '',
             nextDate: item.crm_next_date || (cloudLog && cloudLog.nextDate) || existingLocal.nextDate || '',
             wantFollowup: (cloudLog && typeof cloudLog.wantFollowup !== 'undefined') ? cloudLog.wantFollowup : (typeof existingLocal.wantFollowup !== 'undefined' ? existingLocal.wantFollowup : false),
@@ -873,6 +902,8 @@ async function loadAndApplyCloudCrmLogs() {
         }
       });
 
+      localStorage.setItem('nextsite_company_crm_status_map', JSON.stringify(statusMap));
+      localStorage.setItem('nextsite_company_assigned_roles', JSON.stringify(rolesMap));
       localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(crmLogs));
       localStorage.setItem('nextsite_crm_logs_v1', JSON.stringify(crmLogs));
       localStorage.setItem('nextsite_crm_logs_v2', JSON.stringify(crmLogs));
@@ -886,7 +917,13 @@ async function loadAndApplyCloudCrmLogs() {
       if (typeof updateUserCrmStatusSummary === 'function') {
         updateUserCrmStatusSummary();
       }
-      console.log(`☁️ Synced ${updatedCount} CRM notes from Supabase Cloud successfully!`);
+      if (typeof updateTrackingStatusFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+        updateTrackingStatusFilterCounts(window.allCompanies);
+      }
+      if (typeof updateAssignedRoleFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
+        updateAssignedRoleFilterCounts(window.allCompanies);
+      }
+      console.log(`☁️ Synced ${updatedCount} CRM notes, statuses, and photos from Supabase Cloud successfully!`);
     }
   } catch (err) {
     console.warn('⚠️ Supabase CRM sync exception:', err);
@@ -898,17 +935,10 @@ function setupRealtimeSync() {
   if (client && typeof client.channel === 'function') {
     try {
       client
-        .channel('companies-realtime-tags')
+        .channel('companies-realtime-all')
         .on('postgres_changes', { event: '*', schema: 'public', table: 'companies' }, (payload) => {
-          console.log('⚡ Realtime company tag update received:', payload);
+          console.log('⚡ Realtime company update received (tags & crm):', payload);
           loadAndApplyCloudTags();
-        })
-        .subscribe();
-
-      client
-        .channel('crm-logs-realtime')
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'crm_logs' }, (payload) => {
-          console.log('⚡ Realtime CRM log update received:', payload);
           loadAndApplyCloudCrmLogs();
         })
         .subscribe();
@@ -917,11 +947,11 @@ function setupRealtimeSync() {
     }
   }
 
-  // Periodic polling fallback every 15s to guarantee all devices stay in sync
+  // Periodic polling fallback every 8s to guarantee all devices stay in sync
   setInterval(() => {
     loadAndApplyCloudTags();
     loadAndApplyCloudCrmLogs();
-  }, 15000);
+  }, 8000);
 
   // Sync immediately whenever the user switches back to this browser tab
   window.addEventListener('focus', () => {

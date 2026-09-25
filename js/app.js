@@ -1548,10 +1548,15 @@ function getCompanyFollowUpStatus(companyId) {
   } catch (e) {}
 
   const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(companyId) : {};
+  if (log.crmStatus) return log.crmStatus;
+  if (log.status === 'in_progress') return 'in_progress';
+  if (log.status === 'target' || log.wantFollowup) return 'target';
+  if (log.status === 'pending') return 'pending';
+
   const isTargeted = (typeof isCompanyTargetedByUser === 'function') ? isCompanyTargetedByUser(companyId) : false;
   const hasFollowedUp = (log.note && String(log.note).trim().length > 0) || 
                         (Array.isArray(log.photos) && log.photos.length > 0) || 
-                        ['followup', 'won', 'quote_sent', 'in_progress'].includes(log.status);
+                        ['followup', 'won', 'quote_sent'].includes(log.status);
 
   if (isTargeted) return 'target';
   if (hasFollowedUp) return 'in_progress';
