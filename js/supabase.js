@@ -119,7 +119,10 @@ async function loginSalesUser(email, password) {
         updateTagFilterCounts(window.allCompanies);
       }
       if (typeof loadAndApplyCloudTags === 'function') {
-        loadAndApplyCloudTags();
+        await loadAndApplyCloudTags();
+      }
+      if (typeof loadAndApplyCloudCrmLogs === 'function') {
+        await loadAndApplyCloudCrmLogs();
       }
       return currentSalesUser;
     } else {
@@ -143,6 +146,12 @@ async function loginSalesUser(email, password) {
         if (typeof applyFilters === 'function') applyFilters();
         if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
           updateTagFilterCounts(window.allCompanies);
+        }
+        if (typeof loadAndApplyCloudTags === 'function') {
+          await loadAndApplyCloudTags();
+        }
+        if (typeof loadAndApplyCloudCrmLogs === 'function') {
+          await loadAndApplyCloudCrmLogs();
         }
         return currentSalesUser;
       }
@@ -395,25 +404,41 @@ async function loadAndApplyCloudTags() {
   if (!client) return;
 
   try {
-    const { data, error } = await client
+    let res = await client
       .from('companies')
-      .select('id, tag');
+      .select('id, tag, revenue_potential');
 
-    if (error) {
-      console.warn('⚠️ Could not load cloud tags:', error.message);
-      return;
+    if (res.error) {
+      res = await client
+        .from('companies')
+        .select('id, revenue_potential');
     }
 
+    const data = res.data;
     if (data && data.length > 0) {
       const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap() : {};
       
       let changed = false;
       data.forEach(item => {
-        if (item.id && item.tag) {
-          const norm = String(item.tag).trim().toLowerCase();
-          if (tagMap[item.id] !== norm) {
-            tagMap[item.id] = norm;
-            changed = true;
+        if (item.id) {
+          let resolvedTag = null;
+          if (item.tag) {
+            resolvedTag = String(item.tag).trim().toLowerCase();
+          } else if (item.revenue_potential) {
+            try {
+              const parsed = typeof item.revenue_potential === 'string' ? JSON.parse(item.revenue_potential) : item.revenue_potential;
+              if (parsed && parsed.tag) {
+                resolvedTag = String(parsed.tag).trim().toLowerCase();
+              }
+            } catch(e) {}
+          }
+
+          if (resolvedTag) {
+            const norm = (typeof normalizeTagValue === 'function') ? normalizeTagValue(resolvedTag) : resolvedTag;
+            if (tagMap[item.id] !== norm) {
+              tagMap[item.id] = norm;
+              changed = true;
+            }
           }
         }
       });
@@ -446,20 +471,62 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
   const normalizedTag = String(newTag || 'new').trim().toLowerCase();
 
   try {
+    // 1. Fetch existing revenue_potential to preserve and embed tag
+    let existingRevObj = {};
+    try {
+      const { data: rowData } = await client
+        .from('companies')
+        .select('id, revenue_potential')
+        .eq('id', companyId)
+        .maybeSingle();
+
+      if (rowData && rowData.revenue_potential) {
+        if (typeof rowData.revenue_potential === 'string') {
+          existingRevObj = JSON.parse(rowData.revenue_potential) || {};
+        } else if (typeof rowData.revenue_potential === 'object') {
+          existingRevObj = rowData.revenue_potential || {};
+        }
+      }
+    } catch(e) {}
+
+    existingRevObj.tag = normalizedTag;
+    existingRevObj.tagUpdatedBy = activeUser ? (activeUser.fullName || activeUser.email) : (email || 'Sales');
+    existingRevObj.tagUpdatedAt = new Date().toISOString();
+
+    const updatePayload = {
+      tag: normalizedTag,
+      revenue_potential: JSON.stringify(existingRevObj),
+      crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
+      updated_at: new Date().toISOString()
+    };
+
     let { data, error } = await client
       .from('companies')
-      .update({ 
-        tag: normalizedTag, 
-        crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
-        updated_at: new Date().toISOString() 
-      })
+      .update(updatePayload)
       .eq('id', companyId)
       .select('id');
+
+    // If updating tag column errored (e.g. column missing), fallback to updating revenue_potential only
+    if (error) {
+      const fallbackRes = await client
+        .from('companies')
+        .update({
+          revenue_potential: JSON.stringify(existingRevObj),
+          crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', companyId)
+        .select('id');
+      
+      data = fallbackRes.data;
+      error = fallbackRes.error;
+    }
 
     if (!error && (!data || data.length === 0)) {
       const payload = {
         id: companyId,
         tag: normalizedTag,
+        revenue_potential: JSON.stringify(existingRevObj),
         crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
         province: 'อุดรธานี'
       };
@@ -478,7 +545,7 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
       console.warn('⚠️ Update Tag in Supabase:', error.message);
       return false;
     }
-    console.log(`☁️ Synced tag '${normalizedTag}' for ${companyId} (${email}) to Supabase`);
+    console.log(`☁️ Synced tag '${normalizedTag}' for ${companyId} (${email}) to Supabase successfully`);
     return true;
   } catch (err) {
     console.warn('❌ Update Tag Exception:', err);
