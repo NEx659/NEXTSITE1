@@ -338,53 +338,46 @@ async function loadAndApplyCloudTags() {
       const getTagMapFn = (typeof window.loadCompanyTagsMap === 'function') ? window.loadCompanyTagsMap : (typeof loadCompanyTagsMap === 'function' ? loadCompanyTagsMap : null);
       const tagMap = getTagMapFn ? getTagMapFn() : {};
       
-      let changed = false;
       data.forEach(item => {
-        if (item.id) {
-          let resolvedTag = null;
-          let hasExplicitSalesTag = false;
+        if (!item || !item.id) return;
+        let rawTag = null;
 
-          if (item.revenue_potential) {
-            try {
-              const parsed = typeof item.revenue_potential === 'string' ? JSON.parse(item.revenue_potential) : item.revenue_potential;
-              if (parsed && parsed.tag) {
-                resolvedTag = String(parsed.tag).trim().toLowerCase();
-                hasExplicitSalesTag = true;
-              }
-            } catch(e) {}
-          }
-
-          if (!hasExplicitSalesTag && item.tag) {
-            const t = String(item.tag).trim().toLowerCase();
-            if (t === 'strategic' || t === 'growth' || t === 'opportunity' || t === 'prospect') {
-              resolvedTag = t;
-              hasExplicitSalesTag = true;
+        if (item.revenue_potential) {
+          try {
+            const parsed = typeof item.revenue_potential === 'string' ? JSON.parse(item.revenue_potential) : item.revenue_potential;
+            if (parsed && parsed.tag) {
+              rawTag = parsed.tag;
             }
+          } catch(e) {}
+        }
+
+        if (!rawTag && item.tag) {
+          rawTag = item.tag;
+        }
+
+        if (rawTag) {
+          let comp = null;
+          if (typeof window.allCompanies !== 'undefined' && Array.isArray(window.allCompanies)) {
+            comp = window.allCompanies.find(c => c.id === item.id);
           }
+          const normFn = (typeof window.normalizeTagValue === 'function') ? window.normalizeTagValue : (typeof normalizeTagValue === 'function' ? normalizeTagValue : null);
+          const norm = normFn ? normFn(rawTag, comp) : String(rawTag).trim().toLowerCase();
 
-          if (hasExplicitSalesTag && resolvedTag) {
-            let comp = null;
-            if (typeof window.allCompanies !== 'undefined' && Array.isArray(window.allCompanies)) {
-              comp = window.allCompanies.find(c => c.id === item.id);
-            }
-            const normFn = (typeof window.normalizeTagValue === 'function') ? window.normalizeTagValue : (typeof normalizeTagValue === 'function' ? normalizeTagValue : null);
-            let norm = normFn ? normFn(resolvedTag, comp) : resolvedTag;
-
-            if (norm && tagMap[item.id] !== norm) {
-              tagMap[item.id] = norm;
-              changed = true;
+          if (norm) {
+            tagMap[item.id] = norm;
+            if (comp) {
+              comp.tag = norm;
             }
           }
         }
       });
 
-      if (changed) {
-        if (typeof window.saveCompanyTagsMap === 'function') {
-          window.saveCompanyTagsMap(tagMap);
-        } else if (typeof saveCompanyTagsMap === 'function') {
-          saveCompanyTagsMap(tagMap);
-        }
+      if (typeof window.saveCompanyTagsMap === 'function') {
+        window.saveCompanyTagsMap(tagMap);
+      } else if (typeof saveCompanyTagsMap === 'function') {
+        saveCompanyTagsMap(tagMap);
       }
+
       if (typeof window.syncUserTagsToCompanies === 'function') {
         window.syncUserTagsToCompanies();
       } else if (typeof syncUserTagsToCompanies === 'function') {
@@ -897,11 +890,11 @@ function setupRealtimeSync() {
     }
   }
 
-  // Periodic polling fallback every 8s to guarantee all devices stay in sync
+  // Periodic polling fallback every 3s to guarantee all devices stay in sync
   setInterval(() => {
     loadAndApplyCloudTags();
     loadAndApplyCloudCrmLogs();
-  }, 8000);
+  }, 3000);
 
   // Sync immediately whenever the user switches back to this browser tab
   window.addEventListener('focus', () => {
@@ -913,13 +906,17 @@ function setupRealtimeSync() {
 // Auto init on DOMContentLoaded
 function initAuthAndSync() {
   checkCurrentSession();
+  initSupabase();
   setTimeout(async () => {
-    initSupabase();
     await checkCurrentSession();
     await loadAndApplyCloudTags();
     await loadAndApplyCloudCrmLogs();
     setupRealtimeSync();
-  }, 50);
+  }, 100);
+  setTimeout(async () => {
+    await loadAndApplyCloudTags();
+    await loadAndApplyCloudCrmLogs();
+  }, 800);
 }
 
 if (document.readyState === 'loading') {
