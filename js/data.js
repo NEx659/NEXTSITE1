@@ -8379,9 +8379,9 @@ var UDON_COMPANIES = [
 
                             ],
         "opportunityScore":  15,
-        "scgCode":  null,
-        "sales2025":  0,
-        "sales2026":  0,
+        "scgCode":  "10740025",
+        "sales2025":  700000,
+        "sales2026":  700000,
         "tag":  "prospect"
     },
     {
@@ -8644,9 +8644,9 @@ var UDON_COMPANIES = [
 
                             ],
         "opportunityScore":  80,
-        "scgCode":  null,
-        "sales2025":  0,
-        "sales2026":  0,
+        "scgCode":  "10740002",
+        "sales2025":  432155,
+        "sales2026":  603647,
         "tag":  "prospect"
     },
     {
@@ -9065,9 +9065,9 @@ var UDON_COMPANIES = [
 
                             ],
         "opportunityScore":  35,
-        "scgCode":  null,
-        "sales2025":  0,
-        "sales2026":  0,
+        "scgCode":  "10740013",
+        "sales2025":  2447190,
+        "sales2026":  1406667,
         "tag":  "prospect"
     },
     {
@@ -9377,9 +9377,9 @@ var UDON_COMPANIES = [
 
                             ],
         "opportunityScore":  15,
-        "scgCode":  null,
-        "sales2025":  0,
-        "sales2026":  0,
+        "scgCode":  "10740015",
+        "sales2025":  500000,
+        "sales2026":  200000,
         "tag":  "prospect"
     },
     {

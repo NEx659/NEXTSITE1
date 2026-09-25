@@ -678,7 +678,11 @@ const SCG_CUSTOMER_SALES_LIST = [
   { code: '10724226', name: 'ห้างหุ้นส่วนจำกัด ดีเอ็นเอ็น คอนสตรัคชั่น', sales2025: 0, sales2026: 75021, keys: ['ดีเอ็นเอ็น', 'dnn', 'dnn construction', 'ดีเอ็นเอ็น คอนสตรัคชั่น'] },
   { code: '10724225', name: 'ห้างหุ้นส่วนจำกัด เกียรติรุ่งเรือง ก่อสร้าง', sales2025: 0, sales2026: 1470, keys: ['เกียรติรุ่งเรือง', 'เกียรติรุ่งเรือง ก่อสร้าง', 'kiat rung ruang'] },
   { code: '10615285', name: 'บริษัท เอ็นทรัสท คอนสตรัคชั่น จำกัด', sales2025: 321401, sales2026: 74809, keys: ['เอ็นทรัสท', 'entrust', 'เอ็นทรัสท คอนสตรัคชั่น', 'entrust construction', 'trust construction'] },
-  { code: '10095435', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 3023155, sales2026: 670816, keys: ['โมเสคดีไซน์', 'โมเสค', 'mosaic', 'mosaic design', 'โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น'] }
+  { code: '10095435', name: 'ห้างหุ้นส่วนจำกัด โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น', sales2025: 3023155, sales2026: 670816, keys: ['โมเสคดีไซน์', 'โมเสค', 'mosaic', 'mosaic design', 'โมเสคดีไซน์ แอนด์ คอนสตรัคชั่น'] },
+  { code: '10740002', name: 'ดรีมอัพรับสร้างบ้าน หน้ากองบิน23 Dream Up House Builder', sales2025: 432155, sales2026: 603647, keys: ['ดรีมอัพ', 'dream up', 'หน้ากองบิน23', 'dream up house builder'] },
+  { code: '10740013', name: 'PP HOUSE CONSTRUCTION & DESIGN', sales2025: 2447190, sales2026: 1406667, keys: ['pp house', 'พีพี เฮ้าส์', 'pphouse', 'pp house construction'] },
+  { code: '10740015', name: 'ศูนย์รับสร้างบ้านอุดรธานี โฟร เอสเตท 4ESTATE', sales2025: 500000, sales2026: 200000, keys: ['4estate', 'โฟร เอสเตท', 'โฟร์ เอสเตท', '4 estate', 'โฟรเอสเตท'] },
+  { code: '10740025', name: 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี', sales2025: 700000, sales2026: 700000, keys: ['บ้านรักษ์', 'บ้านรักษ์อุดรธานี', 'baan rak', 'baanrak', 'บ้านรักษ์อุดร'] }
 ];
 
 const COMPANY_MAPS_MASTER = {
