@@ -3173,6 +3173,68 @@ body.executive-presentation .kpi-value {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
+
+  body.printing-dealer-report .app-header,
+  body.printing-dealer-report .fb-ticker-container,
+  body.printing-dealer-report .kpi-grid:not(#dealer-report-modal .kpi-grid),
+  body.printing-dealer-report .product-analytics-section,
+  body.printing-dealer-report .toolbar-container,
+  body.printing-dealer-report .tag-filter-toolbar,
+  body.printing-dealer-report .table-card,
+  body.printing-dealer-report .modal-overlay:not(#dealer-report-modal),
+  body.printing-dealer-report .no-print,
+  body.printing-dealer-report #sales-report-modal,
+  body.printing-dealer-report #ai-strategy-modal,
+  body.printing-dealer-report .report-navbar,
+  body.printing-dealer-report .filter-toolbar,
+  body.printing-dealer-report .report-container {
+    display: none !important;
+  }
+
+  body.printing-dealer-report #dealer-report-modal {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #FFFFFF !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  body.printing-dealer-report #dealer-report-modal > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    animation: none !important;
+  }
+
+  body.printing-dealer-report #dealer-report-printable-area {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 10px 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  body.printing-dealer-report #dealer-report-modal button {
+    display: none !important;
+  }
+
+  body.printing-dealer-report div[style*="border-radius"],
+  body.printing-dealer-report .report-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
 }
 
 /* Authentication Lock Screen removed */

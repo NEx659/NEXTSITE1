@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบ Report ชี้เป้าดีลเลอร์ | NEXTSITE AI</title>
+  <meta name="description" content="ระบบ Report ชี้เป้าดีลเลอร์ & ส่งต่อ Lead ไซต์งานก่อสร้างจริงให้ร้านค้าตัวแทนจำหน่าย SCG">
+
+  <!-- Google Fonts: Inter & Prompt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css?v=73.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0B1120;
+      color: #F8FAFC;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Luxury Modern Villa Background with Left-to-Right White Fade matching main page */
+    .dealer-page-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 28%, rgba(255, 255, 255, 0.42) 52%, rgba(255, 255, 255, 0.05) 75%, transparent 100%),
+        linear-gradient(180deg, rgba(248, 250, 252, 0.10) 0%, rgba(241, 245, 249, 0.35) 600px, rgba(241, 245, 249, 0.65) 1200px, rgba(241, 245, 249, 0.85) 100%),
+        url('images/hero_luxury_villa.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+
+    .dealer-container {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 24px 28px 40px 28px;
+    }
+
+    /* Top Navigation / Brand Bar */
+    .dealer-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .dealer-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      color: #0F172A;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 9999px;
+      padding: 7px 18px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+
+    .dealer-back-btn:hover {
+      background: #F8FAFC;
+      color: #D9251D;
+      transform: translateX(-3px);
+      border-color: #94A3B8;
+    }
+
+    /* Main Header Layout matching Mockup */
+    .dealer-header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .dealer-header-left {
+      max-width: 580px;
+    }
+
+    .dealer-main-title {
+      font-size: 2.35rem;
+      font-weight: 900;
+      color: #0F172A;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .dealer-main-title span.title-white {
+      color: #D71920;
+    }
+
+    .dealer-main-title .red-accent-line {
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 58px;
+      height: 4px;
+      background: #EF4444;
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.6);
+    }
+
+    .dealer-slogan-sub {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #64748B;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+
+    .dealer-header-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Blue Capsule Input matching mockup: "ร้านที่ชี้เป้า" */
+    .target-dealer-input-capsule {
+      background: #FFFFFF;
+      color: #0F172A;
+      border: 1.5px solid #E2E8F0;
+      padding: 7px 18px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .target-dealer-input-capsule:focus-within {
+      background: #FFFFFF;
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35), 0 10px 28px rgba(0, 0, 0, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Company Select Pill */
+    .company-select-pill {
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    }
+
+    .company-select-pill select {
+      background: transparent;
+      border: none;
+      color: #0F172A;
+      font-size: 0.92rem;
+      font-weight: 800;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+      max-width: 320px;
+    }
+
+    .company-select-pill select option {
+      background: #FFFFFF;
+      color: #0F172A;
+    }
+
+    .dealer-header-right {
+      text-align: right;
+    }
+
+    .dealer-quote-text {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #F8FAFC;
+      line-height: 1.35;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .dealer-quote-underline {
+      display: inline-block;
+      width: 46px;
+      height: 3px;
+      background: #EF4444;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+
+    /* 6 Cards Grid (3 Columns x 2 Rows) matching Mockup */
+    .dealer-six-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .dealer-six-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .dealer-six-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dealer-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dealer-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Special Dark Red Cards for Cards 1, 2, 3, 4 */
+    .dealer-card.red-highlight-card {
+      background: linear-gradient(135deg, rgba(153, 27, 27, 0.92) 0%, rgba(127, 29, 29, 0.96) 60%, rgba(69, 10, 10, 0.98) 100%);
+      border: 1.5px solid rgba(254, 202, 202, 0.35);
+      box-shadow: 0 8px 26px rgba(127, 29, 29, 0.45);
+    }
+
+    .dealer-card.red-highlight-card:hover {
+      border-color: rgba(254, 202, 202, 0.65);
+      box-shadow: 0 12px 32px rgba(185, 28, 28, 0.6);
+    }
+
+    .dealer-card.red-highlight-card .dealer-card-icon {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #FFFFFF !important;
+    }
+
+    .dealer-card.red-highlight-card .dealer-card-title {
+      color: #FFFFFF !important;
+      opacity: 0.92;
+    }
+
+    .dealer-card.red-highlight-card .dealer-card-main-val {
+      color: #FFFFFF !important;
+    }
+
+    .dealer-card.red-highlight-card .dealer-card-sub-val {
+      color: #FFFFFF !important;
+      opacity: 0.95;
+    }
+
+    .dealer-card.red-highlight-card a {
+      color: #FFFFFF !important;
+      background: rgba(255, 255, 255, 0.2) !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .dealer-card.red-highlight-card a:hover {
+      background: rgba(255, 255, 255, 0.35) !important;
+      border-color: #FFFFFF !important;
+    }
+
+    .dealer-card.red-highlight-card #card-tier-badge {
+      background: rgba(255, 255, 255, 0.22) !important;
+      color: #FFFFFF !important;
+      border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    }
+
+    .dealer-card.red-highlight-card #card-dbd-score {
+      color: #FFFFFF !important;
+      opacity: 0.9;
+    }
+
+    /* Special White Card for Card 6 */
+    .dealer-card.white-highlight-card {
+      background: #FFFFFF;
+      border: 2px solid #E2E8F0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .dealer-card.white-highlight-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .dealer-card.white-highlight-card .dealer-card-icon {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    .dealer-card.white-highlight-card .dealer-card-title {
+      color: #0F172A !important;
+      font-weight: 800;
+    }
+
+    .dealer-card.white-highlight-card .dealer-card-main-val {
+      color: #0F172A !important;
+    }
+
+    .dealer-card.white-highlight-card .dealer-card-sub-val {
+      color: #1E293B !important;
+      font-weight: 800;
+    }
+
+    .dealer-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #93C5FD;
+    }
+
+    .dealer-card.blue-highlight-card .dealer-card-icon {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #FFFFFF;
+    }
+
+    .dealer-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .dealer-card-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #94A3B8;
+      margin-bottom: 4px;
+    }
+
+    .dealer-card.blue-highlight-card .dealer-card-title {
+      color: #DBEAFE;
+    }
+
+    .dealer-card-main-val {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .dealer-card-sub-val {
+      font-size: 0.78rem;
+      color: #CBD5E1;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* Bottom Projects Grid matching Mockup */
+    .dealer-projects-section {
+      margin-top: 10px;
+    }
+
+    .dealer-projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .dealer-projects-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .dealer-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 1024px) {
+      .dealer-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .dealer-projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-showcase-card {
+      background: linear-gradient(180deg, rgba(226, 232, 240, 0.88) 0%, rgba(203, 213, 225, 0.95) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+      border-radius: 18px;
+      padding: 0;
+      color: #0F172A;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      height: 260px;
+      min-height: 260px;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-showcase-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+      border-color: #38BDF8;
+    }
+
+    .project-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #2563EB;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .project-image-placeholder:hover {
+      background: rgba(219, 234, 254, 0.85);
+      color: #1D4ED8;
+    }
+
+    .project-photo-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0F172A;
+      cursor: pointer;
+    }
+
+    .project-photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .project-photo-container:hover img {
+      transform: scale(1.05);
+    }
+
+    .project-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px 14px;
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+
+    .project-photo-container:hover .project-photo-overlay {
+      opacity: 1;
+    }
+
+    .project-badge-stage {
+      display: inline-block;
+      background: #1E3A8A;
+      color: #FFFFFF;
+      padding: 3px 9px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .project-name-heading {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .project-meta-desc {
+      font-size: 0.76rem;
+      color: #475569;
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .project-boq-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .project-boq-pill {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    /* Modal for Target Dealers Directory */
+    .dealer-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 999999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .dealer-modal-box {
+      background: #FFFFFF;
+      color: #0F172A;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1.5px solid #CBD5E1;
+      display: flex;
+      flex-direction: column;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background Art -->
+  <div class="dealer-page-bg"></div>
+
+  <div class="dealer-container">
+
+    <!-- Top Navigation Bar -->
+    <div class="dealer-nav-bar">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="dealer-back-btn">
+          <span>← กลับสู่หน้าหลัก NEXTSITE AI</span>
+        </a>
+        <a href="report.html?province=udon" class="dealer-back-btn" style="background: #FEF3C7; border-color: #FCD34D; color: #92400E;">
+          <span>📑 หน้ารายงานภาพรวม (Executive Report)</span>
+        </a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 0.8rem; color: #475569; font-weight: 700;">พื้นที่เป้าหมาย:</span>
+        <span style="background: #FFFFFF; border: 1.5px solid #CBD5E1; color: #0284C7; padding: 4px 12px; border-radius: 9999px; font-size: 0.78rem; font-weight: 800; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+          📍 จ.อุดรธานี (Udon Thani)
+        </span>
+      </div>
+    </div>
+
+    <!-- Main Header Section matching Mockup -->
+    <div class="dealer-header-section" style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+      
+      <!-- Top Row: Title + Target Dealer Input side-by-side -->
+      <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+        <h1 class="dealer-main-title" style="margin-bottom: 0;">
+          ระบบ <span class="title-white">Report</span> ชี้เป้าดีลเลอร์
+          <div class="red-accent-line"></div>
+        </h1>
+
+        <!-- White Capsule Input: "ร้านที่ชี้เป้า" -->
+        <div class="target-dealer-input-capsule" title="เซลล์สามารถพิมพ์ระบุชื่อร้านดีลเลอร์ที่ต้องการชี้เป้าได้โดยตรง">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 0.68rem; color: #475569; font-weight: 800; line-height: 1.1;">ร้านที่ชี้เป้า:</span>
+            <input type="text" id="target-dealer-input" placeholder="พิมพ์ชื่อร้านดีลเลอร์..." oninput="handleTargetDealerNameChange(this.value)" style="background: transparent; border: none; outline: none; color: #0F172A; font-size: 0.96rem; font-weight: 800; font-family: inherit; width: 230px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Company Selector Pill placed on the left underneath title -->
+      <div style="display: flex; align-items: center;">
+        <div class="company-select-pill">
+          <span style="font-size: 0.78rem; color: #475569; font-weight: 700;">เลือกบริษัท:</span>
+          <select id="dealer-company-select" onchange="handleSelectDealerCompany(this.value)">
+            <!-- Injected dynamically via JS -->
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 6 Key Information Cards Grid (3 Columns x 2 Rows) -->
+    <div class="dealer-six-grid">
+
+      <!-- Card 1: ชื่อบริษัท เบอร์ พิกัด -->
+      <div class="dealer-card red-highlight-card">
+        <div class="dealer-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11"/>
+            <circle cx="9" cy="9" r="1"/><circle cx="9" cy="13" r="1"/><circle cx="9" cy="17" r="1"/>
+            <circle cx="17" cy="13" r="1"/><circle cx="17" cy="17" r="1"/>
+          </svg>
+        </div>
+        <div class="dealer-card-content">
+          <div class="dealer-card-title">ชื่อบริษัท / เบอร์ พิกัด</div>
+          <div id="card-company-name" class="dealer-card-main-val">PP HOUSE CONSTRUCTION & DESIGN</div>
+          <div id="card-company-contact" class="dealer-card-sub-val">
+            📞 087 775 8333 • อ.เมือง จ.อุดรธานี
+          </div>
+          <div style="margin-top: 6px;">
+            <a id="card-gmaps-link" href="#" target="_blank">
+              <span>📍 เปิด Google Maps นำทาง ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: ข้อมูลนิติบุคคล (DBD) -->
+      <div class="dealer-card red-highlight-card">
+        <div class="dealer-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="dealer-card-content">
+          <div class="dealer-card-title">ข้อมูลนิติบุคคล</div>
+          <div id="card-dbd-tax-id" class="dealer-card-main-val" style="font-family: monospace; letter-spacing: 0.5px;">
+            0413554001119
+          </div>
+          <div id="card-dbd-revenue" class="dealer-card-sub-val" style="font-weight: 800; font-size: 0.85rem;">
+            รายได้รวม DBD: ฿46,578,566.78 บาท
+          </div>
+          <div id="card-dbd-score" style="font-size: 0.7rem; margin-top: 2px;">
+            ความมั่นคงทางการเงิน: ระดับ 5/5 (>10M)
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Ai Score -->
+      <div class="dealer-card red-highlight-card">
+        <div class="dealer-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
+        <div class="dealer-card-content">
+          <div class="dealer-card-title">Ai Score</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div id="card-ai-score-num" class="dealer-card-main-val" style="font-size: 1.35rem;">85/100</div>
+            <span id="card-tier-badge" style="font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 9999px;">
+              👑 Strategic Partner
+            </span>
+          </div>
+          <div id="card-ai-score-desc" class="dealer-card-sub-val">
+            โอกาสปิดการขายสูง มีไซต์งานก่อสร้างจริงต่อเนื่อง
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: ชื่อเพจที่มีการเคลื่อนไหวหน้างาน -->
+      <div class="dealer-card red-highlight-card">
+        <div class="dealer-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </div>
+        <div class="dealer-card-content">
+          <div class="dealer-card-title">ชื่อเพจที่มีการเคลื่อนไหวหน้างาน</div>
+          <div id="card-fb-page-name" class="dealer-card-main-val" style="font-size: 0.98rem; line-height: 1.35;">
+            ดรีมอัพรับสร้างบ้าน หน้ากองบิน23 Dream Up House Builder
+          </div>
+          <div style="margin-top: 8px;">
+            <a id="card-facebook-link" href="#" target="_blank">
+              <span>🌐 เปิดเพจ Facebook บริษัท ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: เคยซื้อสินค้า 2025 / 2026 -->
+      <div class="dealer-card red-highlight-card">
+        <div class="dealer-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </div>
+        <div class="dealer-card-content">
+          <div class="dealer-card-title">เคยซื้อสินค้า 2025 / 2026</div>
+          <div id="card-sales-2025-2026" class="dealer-card-main-val" style="font-size: 1.05rem; color: #FFFFFF; font-weight: 800; margin-top: 2px;">
+            เคยซื้อปี 2025 และ 2026
+          </div>
+          <div style="margin-top: 6px;">
+            <input type="text" id="card-purchased-products-input" placeholder="พิมพ์สินค้าที่เคยซื้อ เช่น ปูนเสือ, สมาร์ทบอร์ด..." oninput="handlePurchasedProductsChange(this.value)" style="background: rgba(0, 0, 0, 0.22); border: 1.5px solid rgba(255, 255, 255, 0.35); border-radius: 8px; color: #FFFFFF; font-size: 0.88rem; font-weight: 700; padding: 4px 10px; width: 100%; outline: none; font-family: inherit; transition: all 0.2s ease;" onfocus="this.style.background='rgba(0,0,0,0.38)'; this.style.borderColor='#FFFFFF';" onblur="this.style.background='rgba(0,0,0,0.22)'; this.style.borderColor='rgba(255,255,255,0.35)';" title="เซลล์สามารถพิมพ์ระบุรายการสินค้าที่ลูกค้าเคยซื้อ">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: สินค้าที่ต้องใช้ / แนะนำส่งต่อ (White Card) -->
+      <div class="dealer-card white-highlight-card">
+        <div class="dealer-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="21 8 21 21 3 21 3 8"/>
+            <rect x="1" y="3" width="22" height="5"/>
+            <line x1="10" y1="12" x2="14" y2="12"/>
+          </svg>
+        </div>
+        <div class="dealer-card-content">
+          <div class="dealer-card-title">สินค้าแนะนำส่งต่อดีลเลอร์</div>
+          <div style="margin-top: 3px;">
+            <input type="text" id="card-recommended-products-input" placeholder="พิมพ์รายการสินค้าแนะนำ เช่น ปูนโครงสร้าง, CPAC..." oninput="handleRecommendedProductsChange(this.value)" style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #0F172A; font-size: 0.92rem; font-weight: 800; padding: 4px 10px; width: 100%; outline: none; font-family: inherit; transition: all 0.2s ease;" onfocus="this.style.background='#FFFFFF'; this.style.borderColor='#2563EB';" onblur="this.style.background='#F8FAFC'; this.style.borderColor='#CBD5E1';" title="เซลล์สามารถพิมพ์แก้ไขรายการสินค้าแนะนำส่งต่อได้โดยตรง">
+          </div>
+          <div id="card-target-dealer-name" class="dealer-card-sub-val" style="color: #1E293B; font-weight: 800; margin-top: 6px;">
+            🏪 ดีลเลอร์: (ระบุที่ช่องด้านบน)
+          </div>
+          <div style="margin-top: 8px;">
+            <button type="button" onclick="handleDealerShareLine()" style="background: #06C755; color: #FFFFFF; border: none; padding: 5px 12px; border-radius: 6px; font-size: 0.74rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+              <span>💬 แชร์ชี้เป้าให้ดีลเลอร์ผ่าน LINE</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Project Cards Section matching Mockup -->
+    <div class="dealer-projects-section">
+      <div class="dealer-projects-header">
+        <div class="dealer-projects-title">
+          <span>🏗️ รายละเอียดไซต์งานก่อสร้างจริงที่ตรวจพบ</span>
+        </div>
+      </div>
+
+      <!-- 3 Project Cards Container -->
+      <div id="dealer-projects-container" class="dealer-projects-grid">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal: รายชื่อร้านค้าตัวแทนจำหน่าย SCG (ร้านที่ชี้เป้า) -->
+  <div id="target-dealers-modal" class="dealer-modal-overlay" onclick="if(event.target === this) closeTargetDealersModal()">
+    <div class="dealer-modal-box">
+      <div style="background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); color: #FFFFFF; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #3B82F6;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="background: #2563EB; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            🏪
+          </div>
+          <div>
+            <div style="font-size: 1.15rem; font-weight: 900;">เครือข่ายร้านค้าตัวแทนจำหน่าย SCG (จ.อุดรธานี)</div>
+            <div style="font-size: 0.76rem; color: #93C5FD;">ร้านค้าดีลเลอร์พันธมิตรที่พร้อมรับส่งต่อ Lead ไซต์งานก่อสร้าง</div>
+          </div>
+        </div>
+        <button type="button" onclick="closeTargetDealersModal()" style="background: transparent; color: #FFFFFF; border: none; font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div style="padding: 20px 24px; overflow-y: auto; flex: 1; background: #F8FAFC;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+          <!-- Dealer 1 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <div style="font-weight: 800; font-size: 0.9rem; color: #1E3A8A;">1. SCG Home Solution อุดรธานี</div>
+            <div style="font-size: 0.76rem; color: #475569; margin-top: 4px;">ถ.มิตรภาพ อ.เมือง จ.อุดรธานี</div>
+            <div style="font-size: 0.74rem; color: #059669; font-weight: 700; margin-top: 4px;">✓ ศูนย์จำหน่ายโครงสร้าง, ปูน SCG & CPAC</div>
+          </div>
+
+          <!-- Dealer 2 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <div style="font-weight: 800; font-size: 0.9rem; color: #1E3A8A;">2. โฮมฮับ (Home Hub) สาขาอุดรธานี</div>
+            <div style="font-size: 0.76rem; color: #475569; margin-top: 4px;">ถ.รอบเมืองตะวันออก อ.เมือง จ.อุดรธานี</div>
+            <div style="font-size: 0.74rem; color: #059669; font-weight: 700; margin-top: 4px;">✓ สต็อกปูนถุง, สมาร์ทบอร์ด, สุขภัณฑ์ COTTO</div>
+          </div>
+
+          <!-- Dealer 3 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <div style="font-weight: 800; font-size: 0.9rem; color: #1E3A8A;">3. ร้านค้าตัวแทนจำหน่าย SCG หนองหาน</div>
+            <div style="font-size: 0.76rem; color: #475569; margin-top: 4px;">อ.หนองหาน จ.อุดรธานี</div>
+            <div style="font-size: 0.74rem; color: #059669; font-weight: 700; margin-top: 4px;">✓ รองรับโซน หนองหาน, ทุ่งฝน, ไชยวาน</div>
+          </div>
+
+          <!-- Dealer 4 -->
+          <div style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <div style="font-weight: 800; font-size: 0.9rem; color: #1E3A8A;">4. ตัวแทนจำหน่าย SCG กุมภวาปี</div>
+            <div style="font-size: 0.76rem; color: #475569; margin-top: 4px;">อ.กุมภวาปี จ.อุดรธานี</div>
+            <div style="font-size: 0.74rem; color: #059669; font-weight: 700; margin-top: 4px;">✓ รองรับโซน กุมภวาปี, โนนสะอาด</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #F1F5F9; padding: 12px 20px; text-align: right; border-top: 1px solid #CBD5E1;">
+        <button type="button" onclick="closeTargetDealersModal()" style="background: #0F172A; color: #FFFFFF; border: none; padding: 6px 18px; border-radius: 8px; font-weight: 800; cursor: pointer;">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js?v=20260925_dealer_v2"></script>
+  <script src="js/scoring.js?v=20260925_dealer_v2"></script>
+  <script src="js/app.js?v=20260925_dealer_v2"></script>
+
+  <script>
+    let currentDealerCompany = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Populate Company Select Dropdown
+      const select = document.getElementById('dealer-company-select');
+      if (select && typeof allCompanies !== 'undefined' && allCompanies.length > 0) {
+        select.innerHTML = allCompanies.map(c => {
+          const cName = (typeof cleanThaiText === 'function') ? cleanThaiText(c.name) : c.name;
+          const pCount = (c.projects && c.projects.length) ? c.projects.length : (c.totalProjects || 0);
+          return `<option value="${c.id}">${cName} (${pCount} ไซต์)</option>`;
+        }).join('');
+
+        // Check query param e.g. ?comp=comp-udon-13
+        const params = new URLSearchParams(window.location.search);
+        const compIdFromUrl = params.get('comp') || 'comp-udon-13';
+        const targetComp = allCompanies.find(c => c.id === compIdFromUrl) || allCompanies[0];
+        
+        select.value = targetComp.id;
+        renderDealerCompanyDetails(targetComp);
+      }
+    });
+
+    function handleSelectDealerCompany(compId) {
+      if (typeof allCompanies === 'undefined') return;
+      const comp = allCompanies.find(c => c.id === compId);
+      if (comp) {
+        renderDealerCompanyDetails(comp);
+      }
+    }
+
+    function renderDealerCompanyDetails(comp) {
+      if (!comp) return;
+      currentDealerCompany = comp;
+
+      const compName = (typeof cleanThaiText === 'function') ? cleanThaiText(comp.name) : comp.name;
+      const district = comp.district || 'เมืองอุดรธานี';
+      const province = comp.province || 'อุดรธานี';
+
+      // Card 1: Name, Phone, Gmaps
+      const elName = document.getElementById('card-company-name');
+      const elContact = document.getElementById('card-company-contact');
+      const elGmaps = document.getElementById('card-gmaps-link');
+      if (elName) elName.textContent = compName;
+      if (elContact) elContact.textContent = `📞 ${comp.phone || '-'} • อ.${district} จ.${province}`;
+      if (elGmaps) {
+        let mapsUrl = (typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[comp.id]) || comp.googleMapsUrl || comp.gmaps;
+        if (!mapsUrl && comp.coordinates && comp.coordinates.length === 2 && comp.coordinates[0]) {
+          mapsUrl = `https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`;
+        } else if (!mapsUrl) {
+          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(comp.name + ' ' + (comp.address || district || 'อุดรธานี'))}`;
+        }
+        elGmaps.href = mapsUrl;
+      }
+
+      // Card 2: DBD
+      const dbdData = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
+      const elTaxId = document.getElementById('card-dbd-tax-id');
+      const elRevenue = document.getElementById('card-dbd-revenue');
+      const elDbdScore = document.getElementById('card-dbd-score');
+
+      if (dbdData && dbdData.taxId) {
+        if (elTaxId) elTaxId.textContent = dbdData.taxId;
+        if (elRevenue) {
+          const rev = Number(dbdData.revenue) || 0;
+          elRevenue.textContent = `รายได้รวม DBD: ฿${rev.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`;
+        }
+        if (elDbdScore) {
+          const score = (typeof calculateDbdRevenueScore === 'function') ? calculateDbdRevenueScore(dbdData.revenue) : 0;
+          elDbdScore.textContent = `ความมั่นคงทางการเงิน: ระดับ ${score}/5 (${score >= 5 ? '>10M' : score >= 4 ? '5-10M' : score >= 3 ? '1-5M' : '<1M'})`;
+        }
+      } else {
+        if (elTaxId) elTaxId.textContent = comp.taxId || '-';
+        if (elRevenue) elRevenue.textContent = 'รายได้รวม DBD: รอเชื่อมต่อฐานข้อมูล';
+        if (elDbdScore) elDbdScore.textContent = 'ความมั่นคงทางการเงิน: รอตรวจสอบ';
+      }
+
+      // Card 3: AI Score & Tier
+      const elAiScoreNum = document.getElementById('card-ai-score-num');
+      const elTierBadge = document.getElementById('card-tier-badge');
+      const scoreObj = (typeof calculateCompanyScore === 'function') ? calculateCompanyScore(comp) : { score: comp.opportunityScore || 75 };
+      const scoreVal = scoreObj.score || comp.opportunityScore || 75;
+
+      if (elAiScoreNum) elAiScoreNum.textContent = `${scoreVal}/100`;
+      if (elTierBadge) {
+        const tag = (typeof getCompanyTag === 'function') ? getCompanyTag(comp.id) : (comp.tag || 'strategic');
+        let label = '👑 Strategic Partner';
+        let bg = '#FEF3C7';
+        let col = '#92400E';
+        if (tag === 'growth') { label = '📈 Growth Account'; bg = '#DBEAFE'; col = '#1E40AF'; }
+        else if (tag === 'opportunity') { label = '🎯 Opportunity Account'; bg = '#FCE7F3'; col = '#9D174D'; }
+        else if (tag === 'prospect' || tag === 'new') { label = '✨ New'; bg = '#ECFDF5'; col = '#065F46'; }
+        elTierBadge.textContent = label;
+        elTierBadge.style.background = bg;
+        elTierBadge.style.color = col;
+      }
+
+      // Card 4: ชื่อเพจที่มีการเคลื่อนไหวหน้างาน
+      const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
+      const elFbPageName = document.getElementById('card-fb-page-name');
+      const elFbLink = document.getElementById('card-facebook-link');
+
+      let fbDisplayName = (comp.facebookSignal && comp.facebookSignal.pageName) ? comp.facebookSignal.pageName : '';
+      if (!fbDisplayName) {
+        fbDisplayName = (comp.id === 'comp-udon-25' || (comp.name && comp.name.includes('บ้านรักษ์')))
+          ? 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี'
+          : comp.name;
+      }
+
+      if (elFbPageName) {
+        elFbPageName.textContent = fbDisplayName;
+      }
+
+      if (elFbLink) {
+        elFbLink.href = comp.facebookUrl || '#';
+      }
+
+      // Card 5: SCG Sales History (Text only without amounts)
+      const s25 = Number(comp.sales2025) || 0;
+      const s26 = Number(comp.sales2026) || 0;
+      const elSales = document.getElementById('card-sales-2025-2026');
+
+      if (elSales) {
+        if (s25 > 0 && s26 > 0) {
+          elSales.textContent = 'เคยซื้อปี 2025 และ 2026';
+          elSales.style.color = '#FFFFFF';
+        } else if (s25 > 0) {
+          elSales.textContent = 'เคยซื้อปี 2025';
+          elSales.style.color = '#FFFFFF';
+        } else if (s26 > 0) {
+          elSales.textContent = 'เคยซื้อปี 2026';
+          elSales.style.color = '#FFFFFF';
+        } else {
+          elSales.textContent = 'ยังไม่มีประวัติยอดซื้อ';
+          elSales.style.color = '#FECDD3';
+        }
+      }
+
+      // Card 5: Purchased Products Input by Sales Team
+      const purchasedProdInput = document.getElementById('card-purchased-products-input');
+      if (purchasedProdInput) {
+        const savedPurchased = localStorage.getItem(`dealer_purchased_products_${comp.id}`) || '';
+        purchasedProdInput.value = savedPurchased;
+      }
+
+      // Target Dealer Store (Input by Sales Team)
+      const targetDealerInput = document.getElementById('target-dealer-input');
+      const savedDealerStore = localStorage.getItem(`dealer_target_store_${comp.id}`) || '';
+      if (targetDealerInput) {
+        targetDealerInput.value = savedDealerStore;
+      }
+
+      // Card 6: Recommended Products & Target Dealer
+      const recProdInput = document.getElementById('card-recommended-products-input');
+      const elDealerName = document.getElementById('card-target-dealer-name');
+
+      if (elDealerName) {
+        elDealerName.textContent = savedDealerStore ? `🏪 ดีลเลอร์: ${savedDealerStore}` : '🏪 ดีลเลอร์: (ระบุที่ช่องด้านบน)';
+      }
+
+      if (recProdInput) {
+        const savedRecProd = localStorage.getItem(`dealer_rec_products_${comp.id}`);
+        if (savedRecProd !== null) {
+          recProdInput.value = savedRecProd;
+        } else {
+          let defReq = 'ปูนโครงสร้าง SCG, CPAC 240 ksc';
+          if (projects.some(p => (p.stageKey || '').includes('finish') || (p.stage || '').includes('ตกแต่ง'))) {
+            defReq = 'สมาร์ทบอร์ด SCG, ฝ้าเพดาน, ปูนฉาบ, สุขภัณฑ์ COTTO';
+          }
+          recProdInput.value = defReq;
+        }
+      }
+
+      // Bottom Project Showcase Cards
+      renderProjectShowcaseCards(comp);
+    }
+
+    function handlePurchasedProductsChange(val) {
+      if (!currentDealerCompany) return;
+      localStorage.setItem(`dealer_purchased_products_${currentDealerCompany.id}`, val);
+    }
+
+    function handleTargetDealerNameChange(val) {
+      if (!currentDealerCompany) return;
+      const storeName = val.trim();
+      if (storeName) {
+        localStorage.setItem(`dealer_target_store_${currentDealerCompany.id}`, storeName);
+      } else {
+        localStorage.removeItem(`dealer_target_store_${currentDealerCompany.id}`);
+      }
+      const elDealerName = document.getElementById('card-target-dealer-name');
+      if (elDealerName) {
+        elDealerName.textContent = storeName ? `🏪 ดีลเลอร์: ${storeName}` : '🏪 ดีลเลอร์: (ระบุที่ช่องด้านบน)';
+      }
+    }
+
+    function handleRecommendedProductsChange(val) {
+      if (!currentDealerCompany) return;
+      localStorage.setItem(`dealer_rec_products_${currentDealerCompany.id}`, val);
+    }
+
+    function renderProjectShowcaseCards(comp) {
+      const container = document.getElementById('dealer-projects-container');
+      if (!container) return;
+
+      const cardTitles = ['โครงการ 1', 'โครงการ 2', 'เพิ่มเติมโครงการ'];
+      let html = '';
+
+      cardTitles.forEach((title, idx) => {
+        const storageKey = `dealer_project_img_${comp.id}_${idx}`;
+        const savedImg = localStorage.getItem(storageKey) || '';
+
+        if (savedImg) {
+          html += `
+            <div class="project-showcase-card">
+              <div class="project-photo-container">
+                <img src="${savedImg}" alt="${title}" onclick="previewDealerImage('${savedImg}', '${title} - ${comp.name}')">
+                <div class="project-photo-overlay" onclick="previewDealerImage('${savedImg}', '${title} - ${comp.name}')">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="background: rgba(15, 23, 42, 0.78); color: #FFFFFF; font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 9999px; backdrop-filter: blur(4px);">
+                      📸 ${title}
+                    </span>
+                    <span style="font-size: 0.68rem; color: #93C5FD; font-weight: 700; background: rgba(0,0,0,0.55); padding: 2px 7px; border-radius: 4px;">🔍 ดูรูปเต็ม</span>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; gap: 6px;" onclick="event.stopPropagation()">
+                    <button type="button" onclick="triggerProjectUpload('${comp.id}', ${idx})" style="background: #2563EB; color: #FFFFFF; border: none; padding: 5px 12px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+                      🔄 เปลี่ยนรูป
+                    </button>
+                    <button type="button" onclick="deleteDealerImage('${comp.id}', ${idx})" style="background: #EF4444; color: #FFFFFF; border: none; padding: 5px 10px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+                      🗑️ ลบ
+                    </button>
+                  </div>
+                </div>
+                <input type="file" id="file-input-${comp.id}-${idx}" accept="image/*" style="display: none;" onchange="handleDealerImageUpload('${comp.id}', ${idx}, event)">
+              </div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="project-showcase-card">
+              <div class="project-image-placeholder" onclick="triggerProjectUpload('${comp.id}', ${idx})" title="คลิกเพื่ออัปโหลดหรือถ่ายรูปหน้างาน">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span style="font-size: 1.1rem; font-weight: 800; color: #1E3A8A;">${title}</span>
+                <span style="font-size: 0.75rem; color: #1E40AF; font-weight: 700; background: #DBEAFE; border: 1px solid #BFDBFE; padding: 4px 12px; border-radius: 9999px;">
+                  📸 คลิกเพื่อใส่รูปหน้างาน
+                </span>
+                <input type="file" id="file-input-${comp.id}-${idx}" accept="image/*" style="display: none;" onchange="handleDealerImageUpload('${comp.id}', ${idx}, event)">
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Interactive Photo Handlers for Sales Team
+    function triggerProjectUpload(compId, idx) {
+      const input = document.getElementById(`file-input-${compId}-${idx}`);
+      if (input) input.click();
+    }
+
+    function handleDealerImageUpload(compId, idx, event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          const maxDim = 1200;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+          try {
+            localStorage.setItem(`dealer_project_img_${compId}_${idx}`, compressedDataUrl);
+          } catch (err) {
+            console.warn('LocalStorage full: ', err);
+          }
+
+          if (currentDealerCompany) {
+            renderProjectShowcaseCards(currentDealerCompany);
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function deleteDealerImage(compId, idx) {
+      if (confirm('คุณต้องการลบรูปภาพไซต์งานนี้หรือไม่?')) {
+        localStorage.removeItem(`dealer_project_img_${compId}_${idx}`);
+        if (currentDealerCompany) {
+          renderProjectShowcaseCards(currentDealerCompany);
+        }
+      }
+    }
+
+    function previewDealerImage(imgSrc, title) {
+      const modal = document.getElementById('image-preview-modal');
+      const imgEl = document.getElementById('preview-modal-img');
+      const titleEl = document.getElementById('preview-modal-title');
+      if (modal && imgEl) {
+        imgEl.src = imgSrc;
+        if (titleEl) titleEl.textContent = title || 'รูปภาพไซต์งานจริง';
+        modal.style.display = 'flex';
+      }
+    }
+
+    function closeDealerImagePreview() {
+      const modal = document.getElementById('image-preview-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleDealerShareLine() {
+      if (!currentDealerCompany) return;
+      const comp = currentDealerCompany;
+      const targetDealer = localStorage.getItem(`dealer_target_store_${comp.id}`) || 'ร้านค้าตัวแทนจำหน่าย SCG';
+
+      const s25 = Number(comp.sales2025) || 0;
+      const s26 = Number(comp.sales2026) || 0;
+      let salesSummary = 'ยังไม่มีประวัติยอดซื้อ';
+      if (s25 > 0 && s26 > 0) salesSummary = 'เคยซื้อปี 2025 และ 2026';
+      else if (s25 > 0) salesSummary = 'เคยซื้อปี 2025';
+      else if (s26 > 0) salesSummary = 'เคยซื้อปี 2026';
+
+      const purchasedInput = document.getElementById('card-purchased-products-input');
+      const purchasedProducts = (purchasedInput ? purchasedInput.value.trim() : '') || localStorage.getItem(`dealer_purchased_products_${comp.id}`) || '';
+
+      const reqInput = document.getElementById('card-recommended-products-input');
+      const reqProducts = (reqInput ? reqInput.value.trim() : '') || localStorage.getItem(`dealer_rec_products_${comp.id}`) || 'ปูนโครงสร้าง SCG, CPAC 240 ksc';
+
+      const lines = [
+        `🏪 [รายงานชี้เป้าดีลเลอร์ - NEXTSITE AI]`,
+        `━━━━━━━━━━━━━━━━━━━━`,
+        `🏢 บริษัท: ${comp.name}`,
+        `📍 พิกัด: ${comp.gmaps || comp.googleMapsUrl || 'อ.เมือง จ.อุดรธานี'}`,
+        `🎯 ร้านดีลเลอร์ที่ชี้เป้า: ${targetDealer}`,
+        `📊 ประวัติซื้อ SCG: ${salesSummary}`,
+        ...(purchasedProducts ? [`🛒 สินค้าที่เคยซื้อ: ${purchasedProducts}`] : []),
+        `📦 สินค้าเป้าหมายแนะนำส่งต่อ: ${reqProducts}`,
+        `📞 โทรติดต่อ: ${comp.phone || '-'}`,
+        `━━━━━━━━━━━━━━━━━━━━`,
+        `💡 ส่งต่อข้อมูลจากระบบ NextSite Construction Intelligence`
+      ];
+
+      const message = lines.join('\n');
+      const encodedMsg = encodeURIComponent(message);
+
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = `line://msg/text/${encodedMsg}`;
+      } else {
+        const lineAppUrl = `line://msg/text/${encodedMsg}`;
+        const lineWebUrl = `https://line.me/R/msg/text/?${encodedMsg}`;
+        const start = Date.now();
+        window.location.href = lineAppUrl;
+        setTimeout(() => {
+          if (Date.now() - start < 1500) {
+            window.open(lineWebUrl, '_blank');
+          }
+        }, 800);
+      }
+    }
+
+    function openTargetDealersModal() {
+      const modal = document.getElementById('target-dealers-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeTargetDealersModal() {
+      const modal = document.getElementById('target-dealers-modal');
+      if (modal) modal.style.display = 'none';
+    }
+  </script>
+
+  <!-- Lightbox Image Preview Modal -->
+  <div id="image-preview-modal" class="dealer-modal-overlay" style="display: none; z-index: 100000; align-items: center; justify-content: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);" onclick="if(event.target === this) closeDealerImagePreview()">
+    <div style="position: relative; max-width: 90vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; color: #FFFFFF;">
+        <span id="preview-modal-title" style="font-weight: 800; font-size: 0.95rem;">📸 รูปภาพไซต์งานจริง</span>
+        <button type="button" onclick="closeDealerImagePreview()" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: none; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">✕</button>
+      </div>
+      <img id="preview-modal-img" src="" alt="Site Photo" style="max-width: 88vw; max-height: 80vh; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.2);">
+    </div>
+  </div>
+</body>
+
+</html>

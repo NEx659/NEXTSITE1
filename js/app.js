@@ -3920,61 +3920,103 @@ function shareCompanyToLine(companyOrId) {
 
   const shareText = lines.join('\n');
 
-  // Copy to clipboard
+  // Device detection: Mobile vs Desktop
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '') || (window.innerWidth <= 768);
+
+  // 1. Copy to clipboard (works on both Mobile and Desktop)
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(shareText).catch(e => console.warn('Clipboard write error', e));
+  } else {
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = shareText;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    } catch(e) {}
   }
 
-  // Open LINE Share
-  const lineUrl = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
-
-  // Show Toast
-  showLineShareToast();
-
-  // Open LINE
-  window.open(lineUrl, '_blank');
+  // 2. Open LINE according to device
+  if (isMobile) {
+    // 📱 Mobile: Use LINE Mobile URL scheme
+    const lineUrl = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
+    showLineShareToast(true);
+    window.location.href = lineUrl;
+  } else {
+    // 💻 Desktop / PC: Use line://msg/text/ to trigger LINE PC app directly
+    const linePcProtocolUrl = `line://msg/text/${encodeURIComponent(shareText)}`;
+    showLineShareToast(false);
+    
+    // Trigger LINE PC application without opening unnecessary web browser tabs
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = linePcProtocolUrl;
+    document.body.appendChild(iframe);
+    setTimeout(() => {
+      try { document.body.removeChild(iframe); } catch(e) {}
+    }, 2000);
+  }
 }
 
-function showLineShareToast() {
+function showLineShareToast(isMobile) {
   let toast = document.getElementById('line-share-toast');
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'line-share-toast';
-    toast.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 1.3rem;">💬</span>
-        <div>
-          <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF;">เปิดแชร์เข้า LINE และคัดลอกข้อความแล้ว!</div>
-          <div style="font-size: 0.78rem; color: #DCFCE7; margin-top: 2px;">สามารถกด Paste (Ctrl+V) ลงในแชท LINE ได้ทันที</div>
-        </div>
-      </div>
-    `;
-    toast.style.cssText = `
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: linear-gradient(135deg, #065F46 0%, #047857 100%);
-      color: #FFFFFF;
-      padding: 12px 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      z-index: 999999;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-      border: 1.5px solid #10B981;
-    `;
     document.body.appendChild(toast);
   }
 
-  toast.style.opacity = '1';
-  toast.style.transform = 'translateY(0)';
+  const title = isMobile 
+    ? '💬 กำลังเปิดแอปพลิเคชัน LINE เพื่อแชร์...' 
+    : '💬 สั่งเปิดโปรแกรม LINE PC และคัดลอกข้อความแล้ว!';
+  const desc = isMobile
+    ? 'คัดลอกข้อความสรุปสำรองไว้ในคลิปบอร์ดเรียบร้อยแล้ว'
+    : 'สามารถกด Paste (Ctrl + V) ส่งในแชท LINE ได้ทันที';
+
+  toast.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="background: #06C755; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(6,199,85,0.4);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
+          <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.587.39.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.589-3.843 2.589-5.973z"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF;">${title}</div>
+        <div style="font-size: 0.78rem; color: #DCFCE7; margin-top: 2px;">${desc}</div>
+      </div>
+    </div>
+  `;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #064E3B 0%, #065F46 100%);
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 999999;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    border: 1.5px solid #10B981;
+    max-width: 90vw;
+  `;
+
+  // Force reflow and show
+  setTimeout(() => {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+  }, 10);
 
   setTimeout(() => {
     toast.style.opacity = '0';
     toast.style.transform = 'translateY(20px)';
-  }, 3500);
+  }, 4000);
 }
 
 if (typeof window !== 'undefined') {
@@ -7579,6 +7621,230 @@ function openNavSiteAssessmentModal() {
 window.openScoringCriteriaModal = openScoringCriteriaModal;
 window.closeScoringCriteriaModal = closeScoringCriteriaModal;
 window.openNavSiteAssessmentModal = openNavSiteAssessmentModal;
+
+// ==========================================
+// DEALER INTELLIGENCE & LEAD DISPATCH
+// ==========================================
+let activeDealerLeadsQuery = '';
+let activeDealerLeadsZone = 'ALL';
+
+function getNearestDealer(company) {
+  const district = (company.district || company.address || '').toLowerCase();
+  if (district.includes('หนองหาน') || district.includes('ทุ่งฝน') || district.includes('ไชยวาน')) {
+    return '🏪 ตัวแทน SCG หนองหาน / CPAC หนองหาน';
+  } else if (district.includes('กุมภวาปี') || district.includes('โนนสะอาด')) {
+    return '🏪 ตัวแทน SCG กุมภวาปี';
+  } else if (district.includes('บ้านดุง')) {
+    return '🏪 ตัวแทน SCG บ้านดุง';
+  } else {
+    return '🏪 SCG Home Solution / โฮมฮับ อุดรธานี';
+  }
+}
+
+function renderDealerLeadTable() {
+  const tbody = document.getElementById('dealer-leads-table-tbody');
+  const countBadge = document.getElementById('dealer-lead-count-badge');
+  const kpiSites = document.getElementById('dealer-kpi-total-sites');
+  const kpiVal = document.getElementById('dealer-kpi-est-value');
+  if (!tbody || typeof allCompanies === 'undefined') return;
+
+  // Filter companies with active projects or totalProjects > 0
+  let leads = allCompanies.filter(c => {
+    return (c.projects && c.projects.length > 0) || (c.totalProjects > 0);
+  });
+
+  // Calculate total sites & est value
+  let totalSitesCount = 0;
+  let totalEstVal = 0;
+  leads.forEach(c => {
+    const pCount = (c.projects && c.projects.length) ? c.projects.length : (c.totalProjects || 0);
+    totalSitesCount += pCount;
+    totalEstVal += (Number(c.totalValueMillion) || (pCount * 5.5));
+  });
+
+  if (kpiSites) kpiSites.textContent = `${totalSitesCount} ไซต์งาน`;
+  if (kpiVal) kpiVal.textContent = `฿${totalEstVal.toFixed(1)} ล้านบาท`;
+
+  // Apply filters
+  let filtered = leads.filter(c => {
+    const q = activeDealerLeadsQuery.trim().toLowerCase();
+    const cName = (c.name || '').toLowerCase();
+    const cDist = (c.district || c.address || '').toLowerCase();
+    const matchesQ = !q || cName.includes(q) || cDist.includes(q);
+
+    let matchesZone = true;
+    if (activeDealerLeadsZone === 'เมืองอุดรธานี') {
+      matchesZone = cDist.includes('เมือง') || !cDist.includes('หนองหาน');
+    } else if (activeDealerLeadsZone === 'หนองหาน') {
+      matchesZone = cDist.includes('หนองหาน') || cDist.includes('ทุ่งฝน') || cDist.includes('ไชยวาน');
+    } else if (activeDealerLeadsZone === 'OTHER') {
+      matchesZone = !cDist.includes('เมือง') && !cDist.includes('หนองหาน');
+    }
+
+    return matchesQ && matchesZone;
+  });
+
+  if (countBadge) {
+    countBadge.textContent = `${filtered.length} บริษัท (${totalSitesCount} ไซต์)`;
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align: center; padding: 24px; color: #64748B;">
+          ไม่พบข้อมูลไซต์งานที่ตรงกับเงื่อนไขการค้นหา
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map((c, idx) => {
+    const compName = cleanThaiText(c.name) || c.name;
+    const district = c.district || 'เมืองอุดรธานี';
+    const projects = c.projects || [];
+    const pCount = projects.length || c.totalProjects || 0;
+    
+    // Stages
+    let stageSummary = [];
+    if (c.stageBreakdown) {
+      if (c.stageBreakdown.groundbreak) stageSummary.push(`เสาเอก (${c.stageBreakdown.groundbreak})`);
+      if (c.stageBreakdown.foundation) stageSummary.push(`ฐานราก (${c.stageBreakdown.foundation})`);
+      if (c.stageBreakdown.structure) stageSummary.push(`โครงสร้าง (${c.stageBreakdown.structure})`);
+      if (c.stageBreakdown.finishing) stageSummary.push(`สถาปัตย์ (${c.stageBreakdown.finishing})`);
+    }
+    const stageText = stageSummary.length > 0 ? stageSummary.join(', ') : 'โครงสร้าง';
+
+    // Products
+    let productReq = 'ปูนโครงสร้าง SCG, CPAC 240 ksc';
+    if (projects.some(p => (p.stageKey || '').includes('finish') || (p.stage || '').includes('ตกแต่ง'))) {
+      productReq = 'สมาร์ทบอร์ด SCG, ฝ้าเพดาน, ปูนฉาบ, สุขภัณฑ์ COTTO';
+    }
+
+    const nearestDealer = getNearestDealer(c);
+
+    return `
+      <tr style="border-bottom: 1px solid #F1F5F9; transition: background 0.15s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+        <td style="padding: 10px 14px; text-align: center; color: #64748B; font-weight: 700;">${idx + 1}</td>
+        <td style="padding: 10px 14px;">
+          <div style="font-weight: 800; color: #0F172A; font-size: 0.82rem;">${compName}</div>
+          <div style="font-size: 0.7rem; color: #64748B; margin-top: 2px;">📞 ${c.phone || '-'}</div>
+        </td>
+        <td style="padding: 10px 14px; color: #334155;">
+          <span style="background: #F1F5F9; padding: 2px 7px; border-radius: 4px; font-weight: 700;">อ.${district}</span>
+        </td>
+        <td style="padding: 10px 14px; text-align: center;">
+          <span style="font-weight: 900; color: #D97706; font-size: 0.86rem;">${pCount} ไซต์</span>
+          <div style="font-size: 0.68rem; color: #475569; margin-top: 1px;">${stageText}</div>
+        </td>
+        <td style="padding: 10px 14px; color: #1E40AF; font-weight: 600;">
+          ${productReq}
+        </td>
+        <td style="padding: 10px 14px; color: #065F46; font-weight: 700;">
+          ${nearestDealer}
+        </td>
+        <td style="padding: 10px 14px; text-align: center;">
+          <button type="button" onclick="shareDealerLeadToLine('${c.id}')"
+            style="background: #06C755; color: #FFFFFF; border: none; padding: 5px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 6px rgba(6,199,85,0.3); transition: all 0.15s;"
+            onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+            <span>📲 ส่งต่อ LINE</span>
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filterDealerLeadsTable(query) {
+  activeDealerLeadsQuery = query || '';
+  renderDealerLeadTable();
+}
+
+function filterDealerLeadsByZone(zone) {
+  activeDealerLeadsZone = zone || 'ALL';
+  renderDealerLeadTable();
+}
+
+function shareDealerLeadToLine(companyId) {
+  const comp = (typeof allCompanies !== 'undefined') ? allCompanies.find(c => c.id === companyId) : null;
+  if (!comp) return;
+
+  const compName = cleanThaiText(comp.name) || comp.name;
+  const nearestDealer = getNearestDealer(comp);
+  
+  let mapsUrl = (typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[comp.id]) || comp.googleMapsUrl || comp.gmaps;
+  if (!mapsUrl && comp.coordinates && comp.coordinates.length === 2 && comp.coordinates[0]) {
+    mapsUrl = `https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`;
+  } else if (!mapsUrl) {
+    mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((comp.name || '') + ' ' + (comp.address || comp.district || 'อุดรธานี'))}`;
+  }
+
+  const projects = comp.projects || [];
+  const pCount = projects.length || comp.totalProjects || 0;
+  
+  let postLines = [];
+  projects.forEach(p => {
+    if (p.postUrl && !postLines.includes(`อ้างอิงโพส : ${p.postUrl}`)) {
+      postLines.push(`อ้างอิงโพส : ${p.postUrl}`);
+    }
+  });
+  const postsBlock = postLines.join('\n\n');
+
+  let productOpportunities = 'ปูนซีเมนต์ไฮดรอลิก SCG, คอนกรีตผสมเสร็จ CPAC 240 ksc';
+  if (projects.some(p => (p.stageKey || '').includes('finish') || (p.stage || '').includes('ตกแต่ง'))) {
+    productOpportunities = 'แผ่นสมาร์ทบอร์ด SCG, ฝ้าเพดาน SCG, ปูนฉาบตกแต่ง SCG, สุขภัณฑ์ COTTO';
+  }
+
+  const lines = [
+    `🏪 [ส่งต่อ Lead ลูกค้า & ชี้เป้าไซต์งานดีลเลอร์ SCG]`,
+    `━━━━━━━━━━━━━━━━━━━━`,
+    `🏢 ลูกค้าเป้าหมาย: ${compName}`,
+    `📍 พิกัดสำนักงาน/ไซต์: ${mapsUrl}`,
+    `🏠 ไซต์งานกำลังก่อสร้าง: ${pCount} ไซต์งาน`,
+    `🏪 ร้านค้าดีลเลอร์ผู้ดูแล: ${nearestDealer}`
+  ];
+
+  if (postsBlock) {
+    lines.push(``);
+    lines.push(postsBlock);
+  }
+
+  lines.push(``);
+  lines.push(`💡 สินค้าที่ต้องเสนอขาย: ${productOpportunities}`);
+  lines.push(`📞 เบอร์ติดต่อลูกค้า: ${comp.phone || '-'}`);
+  lines.push(`━━━━━━━━━━━━━━━━━━━━`);
+  lines.push(`ทีมขาย SCG ขอส่งต่อข้อมูลเพื่อติดต่อเสนอราคาด่วนครับ`);
+
+  const shareText = lines.join('\n');
+
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '') || (window.innerWidth <= 768);
+
+  // Copy to clipboard
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareText).catch(e => console.warn('Clipboard write error', e));
+  }
+
+  if (isMobile) {
+    if (typeof showLineShareToast === 'function') showLineShareToast(true);
+    window.location.href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
+  } else {
+    if (typeof showLineShareToast === 'function') showLineShareToast(false);
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = `line://msg/text/${encodeURIComponent(shareText)}`;
+    document.body.appendChild(iframe);
+    setTimeout(() => {
+      try { document.body.removeChild(iframe); } catch(e) {}
+    }, 2000);
+  }
+}
+
+window.renderDealerLeadTable = renderDealerLeadTable;
+window.filterDealerLeadsTable = filterDealerLeadsTable;
+window.filterDealerLeadsByZone = filterDealerLeadsByZone;
+window.shareDealerLeadToLine = shareDealerLeadToLine;
+window.getNearestDealer = getNearestDealer;
+
 
 
 
