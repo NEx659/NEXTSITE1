@@ -1456,6 +1456,34 @@ textarea[id^="inline-crm-note-"] {
   color: #FFFFFF !important;
 }
 
+.btn-share-line-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #06C755;
+  color: #FFFFFF !important;
+  border: 1.5px solid #00B900;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(6, 199, 85, 0.4);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn-share-line-head:hover {
+  background: #05b34c;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.6);
+}
+
+.btn-share-line-head:active {
+  transform: translateY(0);
+}
+
 .detail-company-card .section-title .indicator {
   background: #FBBF24 !important;
 }

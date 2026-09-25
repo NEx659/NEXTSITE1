@@ -1159,8 +1159,16 @@
         <div class="detail-top-grid">
           <!-- Left: Company Overview -->
           <div class="detail-company-card dark-red-card">
-            <h3 class="section-title" style="color: #FFFFFF !important;"><span class="indicator"
-                style="background: #FBBF24 !important;"></span> ข้อมูลทั่วไปและที่ตั้งบริษัท</h3>
+            <div class="detail-company-card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 10px;">
+              <h3 class="section-title" style="color: #FFFFFF !important; margin: 0;"><span class="indicator"
+                  style="background: #FBBF24 !important;"></span> ข้อมูลทั่วไปและที่ตั้งบริษัท</h3>
+              <button type="button" id="btn-modal-share-line" class="btn-share-line-head" onclick="shareCompanyToLine()" title="แชร์สรุปข้อมูลบริษัทนี้เข้า LINE">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0;">
+                  <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.587.39.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.589-3.843 2.589-5.973z"/>
+                </svg>
+                <span>แชร์เข้า LINE</span>
+              </button>
+            </div>
 
             <div id="modal-company-info-columns" class="modal-company-info-columns">
               <!-- Left Column: Contact & Address -->

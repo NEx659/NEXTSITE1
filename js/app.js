@@ -3807,8 +3807,180 @@ function openCompanyProjectsModal(companyOrId) {
   modal.style.display = 'flex';
 }
 
+/**
+ * Share Company Deep Analysis Summary directly to LINE & Copy to Clipboard
+ */
+function shareCompanyToLine(companyOrId) {
+  let comp = activeSelectedCompany;
+  if (companyOrId) {
+    comp = typeof companyOrId === 'string' ? allCompanies.find(c => c.id === companyOrId) : companyOrId;
+  }
+  if (!comp) return;
+
+  const compName = cleanThaiText(comp.name) || comp.name || '';
+
+  // 1. Google Maps Navigation URL
+  let mapsUrl = (typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[comp.id]) || comp.googleMapsUrl || comp.gmaps;
+  if (!mapsUrl && comp.coordinates && comp.coordinates.length === 2 && comp.coordinates[0]) {
+    mapsUrl = `https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`;
+  } else if (!mapsUrl) {
+    mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((comp.name || '') + ' ' + (comp.address || comp.district || 'อุดรธานี'))}`;
+  }
+
+  // 2. SCG Sales History (2025 vs 2026)
+  const s25 = Number(comp.sales2025) || 0;
+  const s26 = Number(comp.sales2026) || 0;
+  let salesText = '';
+  if (s25 > 0 && s26 > 0) {
+    salesText = `มีประวัติยอดซื้อ SCG ปี 2025และปี2026`;
+  } else if (s25 > 0) {
+    salesText = `มีประวัติยอดซื้อ SCG ปี 2025`;
+  } else if (s26 > 0) {
+    salesText = `มีประวัติยอดซื้อ SCG ปี 2026`;
+  } else {
+    salesText = `ยังไม่มีประวัติยอดซื้อ SCG`;
+  }
+
+  // 3. Active Projects Count & Stage Breakdown
+  const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
+  const projectCount = projects.length || comp.totalProjects || 0;
+
+  let stageSummary = [];
+  if (comp.stageBreakdown) {
+    if (comp.stageBreakdown.groundbreak) stageSummary.push(`ยกเสาเอก ${comp.stageBreakdown.groundbreak}`);
+    if (comp.stageBreakdown.foundation) stageSummary.push(`ฐานราก ${comp.stageBreakdown.foundation}`);
+    if (comp.stageBreakdown.structure) stageSummary.push(`งานโครงสร้าง ${comp.stageBreakdown.structure}`);
+    if (comp.stageBreakdown.finishing) stageSummary.push(`สถาปัตย์/ตกแต่ง ${comp.stageBreakdown.finishing}`);
+  }
+  if (stageSummary.length === 0 && projects.length > 0) {
+    let sCount = 0, fCount = 0, gCount = 0, finCount = 0;
+    projects.forEach(p => {
+      const k = (p.stageKey || p.stage || '').toLowerCase();
+      if (k.includes('structure') || k.includes('โครงสร้าง')) sCount++;
+      else if (k.includes('foundation') || k.includes('ฐานราก')) fCount++;
+      else if (k.includes('groundbreak') || k.includes('เสาเอก')) gCount++;
+      else if (k.includes('finish') || k.includes('ตกแต่ง')) finCount++;
+      else sCount++;
+    });
+    if (gCount) stageSummary.push(`ยกเสาเอก ${gCount}`);
+    if (fCount) stageSummary.push(`ฐานราก ${fCount}`);
+    if (sCount) stageSummary.push(`งานโครงสร้าง ${sCount}`);
+    if (finCount) stageSummary.push(`สถาปัตย์/ตกแต่ง ${finCount}`);
+  }
+  const stageDesc = stageSummary.length > 0 ? stageSummary.join(', ') : 'รอตรวจสอบไซต์งาน';
+
+  // 4. Reference Facebook Post URLs
+  let postLines = [];
+  if (projects.length > 0) {
+    projects.forEach(p => {
+      if (p.postUrl && !postLines.includes(`อ้างอิงโพส : ${p.postUrl}`)) {
+        postLines.push(`อ้างอิงโพส : ${p.postUrl}`);
+      }
+    });
+  }
+  if (postLines.length === 0 && comp.facebookUrl) {
+    postLines.push(`อ้างอิงเพจ : ${comp.facebookUrl}`);
+  }
+  const postsBlock = postLines.join('\n\n');
+
+  // 5. Product Opportunities
+  let productOpportunities = 'ปูนซีเมนต์ไฮดรอลิก SCG, คอนกรีตผสมเสร็จ CPAC';
+  const hasFinishing = projects.some(p => (p.stageKey || '').includes('finish') || (p.stage || '').includes('ตกแต่ง'));
+  if (hasFinishing) {
+    productOpportunities = 'แผ่นสมาร์ทบอร์ด SCG, ฝ้าเพดาน SCG, ปูนฉาบตกแต่ง SCG, สุขภัณฑ์ COTTO';
+  }
+
+  // 6. Contact Phone
+  const phone = comp.phone || '-';
+
+  // 7. DBD Tax ID
+  const dbdData = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
+  const taxId = (dbdData && dbdData.taxId) ? dbdData.taxId : (comp.taxId || '-');
+
+  // Assemble full text
+  const lines = [
+    `🏗️ [ข้อมูลบริษัทเป้าหมาย - NEXTSITE]`,
+    `━━━━━━━━━━━━━━━━━━━━`,
+    `🏢 บริษัท: ${compName}`,
+    `📍 พิกัด: ${mapsUrl}`,
+    `📊 ${salesText}`,
+    ` 🏠 ไซต์งานกำลังสร้าง: ${projectCount} ไซต์ (${stageDesc})`
+  ];
+
+  if (postsBlock) {
+    lines.push(``);
+    lines.push(postsBlock);
+  }
+
+  lines.push(``);
+  lines.push(`💡 โอกาสล็อกสเปก: ${productOpportunities}`);
+  lines.push(`📞 เบอร์ติดต่อ: ${phone}`);
+  lines.push(`เลขทะเบียนนิติบุคคล: ${taxId}`);
+  lines.push(`━━━━━━━━━━━━━━━━━━━━`);
+
+  const shareText = lines.join('\n');
+
+  // Copy to clipboard
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareText).catch(e => console.warn('Clipboard write error', e));
+  }
+
+  // Open LINE Share
+  const lineUrl = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
+
+  // Show Toast
+  showLineShareToast();
+
+  // Open LINE
+  window.open(lineUrl, '_blank');
+}
+
+function showLineShareToast() {
+  let toast = document.getElementById('line-share-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'line-share-toast';
+    toast.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.3rem;">💬</span>
+        <div>
+          <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF;">เปิดแชร์เข้า LINE และคัดลอกข้อความแล้ว!</div>
+          <div style="font-size: 0.78rem; color: #DCFCE7; margin-top: 2px;">สามารถกด Paste (Ctrl+V) ลงในแชท LINE ได้ทันที</div>
+        </div>
+      </div>
+    `;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(135deg, #065F46 0%, #047857 100%);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      z-index: 999999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      border: 1.5px solid #10B981;
+    `;
+    document.body.appendChild(toast);
+  }
+
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+  }, 3500);
+}
+
 if (typeof window !== 'undefined') {
   window.openCompanyProjectsModal = openCompanyProjectsModal;
+  window.shareCompanyToLine = shareCompanyToLine;
+  window.showLineShareToast = showLineShareToast;
 }
 
 // ==========================================
