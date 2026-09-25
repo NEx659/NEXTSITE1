@@ -3771,20 +3771,20 @@ function openCompanyProjectsModal(companyOrId) {
       : 'บันทึกล่าสุด: ยังไม่มีประวัติ';
   }
 
-  // Quick Note Tag Buttons Lock/Unlock
+  // Quick Note Tag Buttons Lock/Unlock (All users can click and add tags)
   document.querySelectorAll('.btn-quick-note-tag').forEach(btn => {
-    btn.style.pointerEvents = canEditModal ? 'auto' : 'none';
-    btn.style.opacity = canEditModal ? '1' : '0.45';
-    btn.style.cursor = canEditModal ? 'pointer' : 'not-allowed';
+    btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+    btn.style.cursor = 'pointer';
   });
 
-  // Opportunity Level Selector Buttons Lock/Unlock
+  // Opportunity Level Selector Buttons Lock/Unlock (All users can select)
   ['btn-opp-high', 'btn-opp-medium', 'btn-opp-low'].forEach(id => {
     const btn = document.getElementById(id);
     if (btn) {
-      btn.style.pointerEvents = canEditModal ? 'auto' : 'none';
-      btn.style.opacity = canEditModal ? '1' : '0.55';
-      btn.style.cursor = canEditModal ? 'pointer' : 'not-allowed';
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
     }
   });
 
@@ -3808,25 +3808,25 @@ function openCompanyProjectsModal(companyOrId) {
     }
   });
 
-  // Photo upload button lock/unlock
+  // Photo upload button lock/unlock (All users can upload photos)
   const photoUploadBtn = document.querySelector('button[onclick*="modal-company-photo-input"]');
   if (photoUploadBtn) {
-    photoUploadBtn.style.pointerEvents = canEditModal ? 'auto' : 'none';
-    photoUploadBtn.style.opacity = canEditModal ? '1' : '0.5';
-    photoUploadBtn.style.cursor = canEditModal ? 'pointer' : 'not-allowed';
-    photoUploadBtn.title = canEditModal ? 'อัปโหลดรูปภาพหน้างาน' : `🔒 บันทึกโดย ${ownerName} (ล็อกการอัปโหลด)`;
+    photoUploadBtn.style.pointerEvents = 'auto';
+    photoUploadBtn.style.opacity = '1';
+    photoUploadBtn.style.cursor = 'pointer';
+    photoUploadBtn.title = 'อัปโหลดรูปภาพหน้างาน';
   }
 
-  // Clear & Save manual buttons in modal
+  // Clear & Save manual buttons in modal (All users can use)
   const clearBtn = document.querySelector('button[onclick="clearCompanyNote()"]');
   const saveBtn = document.querySelector('button[onclick="saveCompanyNoteManually()"]');
   if (clearBtn) {
-    clearBtn.style.pointerEvents = canEditModal ? 'auto' : 'none';
-    clearBtn.style.opacity = canEditModal ? '1' : '0.4';
+    clearBtn.style.pointerEvents = 'auto';
+    clearBtn.style.opacity = '1';
   }
   if (saveBtn) {
-    saveBtn.style.pointerEvents = canEditModal ? 'auto' : 'none';
-    saveBtn.style.opacity = canEditModal ? '1' : '0.4';
+    saveBtn.style.pointerEvents = 'auto';
+    saveBtn.style.opacity = '1';
   }
 
   // Render Opportunity Level Buttons
@@ -3846,6 +3846,10 @@ function openCompanyProjectsModal(companyOrId) {
   renderModalSiteAssessmentCard(comp);
 
   modal.style.display = 'flex';
+}
+
+if (typeof window !== 'undefined') {
+  window.openCompanyProjectsModal = openCompanyProjectsModal;
 }
 
 // ==========================================
