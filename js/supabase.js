@@ -442,8 +442,7 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
     const updatePayload = {
       tag: normalizedTag,
       revenue_potential: JSON.stringify(existingRevObj),
-      crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
-      updated_at: new Date().toISOString()
+      crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined
     };
 
     let { data, error } = await client
@@ -458,8 +457,7 @@ async function updateCloudCompanyTag(companyId, newTag, userEmail = null) {
         .from('companies')
         .update({
           revenue_potential: JSON.stringify(existingRevObj),
-          crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined,
-          updated_at: new Date().toISOString()
+          crm_sales_rep: activeUser ? (activeUser.fullName || activeUser.email) : undefined
         })
         .eq('id', companyId)
         .select('id');
@@ -620,9 +618,7 @@ async function saveCompanySalesToCloud(companyIdOrCode, salesData) {
   if (!client) return false;
 
   try {
-    const updatePayload = {
-      updated_at: new Date().toISOString()
-    };
+    const updatePayload = {};
     if (salesData.sales2025 != null) updatePayload.sales_2025 = Number(salesData.sales2025);
     if (salesData.sales2026_0914 != null || salesData.sales2026 != null) {
       updatePayload.sales_2026 = Number(salesData.sales2026_0914 != null ? salesData.sales2026_0914 : salesData.sales2026);
@@ -706,8 +702,7 @@ async function saveCloudCrmLog(companyId, crmData) {
       crm_sales_rep: updatedRevObj.salesRep,
       crm_next_date: updatedRevObj.nextDate,
       tag: curTag,
-      revenue_potential: JSON.stringify(updatedRevObj),
-      updated_at: new Date().toISOString()
+      revenue_potential: JSON.stringify(updatedRevObj)
     };
 
     let { data, error } = await client
@@ -799,8 +794,8 @@ async function loadAndApplyCloudCrmLogs() {
           let cloudTime = 0;
           if (cloudLog && (cloudLog.updatedAt || cloudLog.lastUpdated)) {
             cloudTime = new Date(cloudLog.updatedAt || cloudLog.lastUpdated).getTime();
-          } else if (item.updated_at) {
-            cloudTime = new Date(item.updated_at).getTime();
+          } else if (item.created_at) {
+            cloudTime = new Date(item.created_at).getTime();
           }
 
           let localTime = 0;
@@ -851,7 +846,7 @@ async function loadAndApplyCloudCrmLogs() {
             wantFollowup: (cloudLog && typeof cloudLog.wantFollowup !== 'undefined') ? cloudLog.wantFollowup : (typeof existingLocal.wantFollowup !== 'undefined' ? existingLocal.wantFollowup : false),
             salesOpportunityLevel: (cloudLog && cloudLog.salesOpportunityLevel) ? cloudLog.salesOpportunityLevel : (existingLocal.salesOpportunityLevel || null),
             photos: resolvedPhotos,
-            updatedAt: (cloudLog && cloudLog.updatedAt) || item.updated_at || new Date().toISOString()
+            updatedAt: (cloudLog && cloudLog.updatedAt) || item.created_at || new Date().toISOString()
           };
           updatedCount++;
         }
