@@ -337,16 +337,19 @@ if (typeof window !== 'undefined') {
 // ==========================================
 // SALES LOGIN & AUTH MODAL HANDLERS
 // ==========================================
-function openLoginModal() {
+function openLoginModal(enforce = false) {
   const modal = document.getElementById('sales-login-modal');
   if (modal) {
     modal.style.display = 'flex';
+    modal.style.zIndex = '2147483647';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
     const errEl = document.getElementById('login-error-msg');
     if (errEl) errEl.style.display = 'none';
   }
 }
 
-function closeLoginModal() {
+function closeLoginModal(force = true) {
   const modal = document.getElementById('sales-login-modal');
   if (modal) modal.style.display = 'none';
 }

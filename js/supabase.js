@@ -1012,20 +1012,17 @@ function openLoginModal(enforce = false) {
   const modal = document.getElementById('sales-login-modal');
   if (modal) {
     modal.style.display = 'flex';
+    modal.style.zIndex = '2147483647';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+
     const errEl = document.getElementById('login-error-msg');
     if (errEl) errEl.style.display = 'none';
 
     const btnCancel = document.getElementById('btn-login-cancel');
     const btnCloseX = document.getElementById('btn-login-close-x');
-    
-    if (!currentSalesUser || enforce) {
-      document.body.classList.add('auth-locked');
-      if (btnCancel) btnCancel.style.display = 'none';
-      if (btnCloseX) btnCloseX.style.display = 'none';
-    } else {
-      if (btnCancel) btnCancel.style.display = 'block';
-      if (btnCloseX) btnCloseX.style.display = 'block';
-    }
+    if (btnCancel) btnCancel.style.display = 'block';
+    if (btnCloseX) btnCloseX.style.display = 'block';
   }
 }
 
