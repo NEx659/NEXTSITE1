@@ -4768,6 +4768,13 @@ function renderCompanyProjectsList(company) {
 
 function closeCompanyModal() {
   const modal = document.getElementById('company-detail-modal');
+  if (activeSelectedCompany) {
+    clearTimeout(noteAutoSaveTimer);
+    const textarea = document.getElementById('modal-company-sales-note');
+    if (textarea) {
+      saveCompanyCrmLog(activeSelectedCompany.id, { note: textarea.value });
+    }
+  }
   if (modal) modal.style.display = 'none';
   activeSelectedCompany = null;
   if (typeof renderTable === 'function') renderTable();

@@ -884,18 +884,34 @@ async function loadAndApplyCloudCrmLogs() {
           }
 
           const existingLocal = crmLogs[item.id] || {};
+          let resolvedNote = '';
+          if (item.crm_note !== null && typeof item.crm_note !== 'undefined') {
+            resolvedNote = item.crm_note;
+          } else if (cloudLog && typeof cloudLog.note !== 'undefined' && cloudLog.note !== null) {
+            resolvedNote = cloudLog.note;
+          } else if (typeof existingLocal.note !== 'undefined') {
+            resolvedNote = existingLocal.note;
+          }
+
+          let resolvedPhotos = [];
+          if (cloudLog && Array.isArray(cloudLog.photos)) {
+            resolvedPhotos = cloudLog.photos;
+          } else if (Array.isArray(existingLocal.photos)) {
+            resolvedPhotos = existingLocal.photos;
+          }
+
           crmLogs[item.id] = {
             ...existingLocal,
             ...(cloudLog || {}),
             crmStatus: crmStatusVal,
             assignedRole: assignedRoleVal || existingLocal.assignedRole || '',
-            note: item.crm_note || (cloudLog && cloudLog.note) || existingLocal.note || '',
+            note: resolvedNote,
             status: crmStatusVal,
             salesRep: item.crm_sales_rep || (cloudLog && cloudLog.salesRep) || existingLocal.salesRep || '',
             nextDate: item.crm_next_date || (cloudLog && cloudLog.nextDate) || existingLocal.nextDate || '',
             wantFollowup: (cloudLog && typeof cloudLog.wantFollowup !== 'undefined') ? cloudLog.wantFollowup : (typeof existingLocal.wantFollowup !== 'undefined' ? existingLocal.wantFollowup : false),
             salesOpportunityLevel: (cloudLog && cloudLog.salesOpportunityLevel) ? cloudLog.salesOpportunityLevel : (existingLocal.salesOpportunityLevel || null),
-            photos: (cloudLog && Array.isArray(cloudLog.photos) && cloudLog.photos.length > 0) ? cloudLog.photos : (Array.isArray(existingLocal.photos) ? existingLocal.photos : []),
+            photos: resolvedPhotos,
             updatedAt: (cloudLog && cloudLog.updatedAt) || new Date().toISOString()
           };
           updatedCount++;
