@@ -112,7 +112,7 @@ async function loginSalesUser(email, password) {
       localStorage.setItem('nextsite_cached_user', JSON.stringify(currentSalesUser));
       updateAuthHeaderUI();
       if (typeof syncUserTagsToCompanies === 'function') {
-        syncUserTagsToCompanies(sysUser.email);
+        syncUserTagsToCompanies();
       }
       if (typeof applyFilters === 'function') applyFilters();
       if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
@@ -138,7 +138,7 @@ async function loginSalesUser(email, password) {
       if (data && data.user) {
         await loadSalesUserProfile(data.user.id, data.user.email);
         if (typeof syncUserTagsToCompanies === 'function') {
-          syncUserTagsToCompanies(data.user.email);
+          syncUserTagsToCompanies();
         }
         if (typeof applyFilters === 'function') applyFilters();
         if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
@@ -167,7 +167,7 @@ async function logoutSalesUser() {
   document.body.classList.add('auth-locked');
   updateAuthHeaderUI();
   if (typeof syncUserTagsToCompanies === 'function') {
-    syncUserTagsToCompanies('guest');
+    syncUserTagsToCompanies();
   }
   if (typeof applyFilters === 'function') {
     applyFilters();
@@ -187,40 +187,12 @@ async function logoutSalesUser() {
  * Check if current user is permitted to delete or edit a specific item/photo
  * - Supervisor/Manager (คุณพรรณิภา, คุณคีตวรรษ) -> Can edit/delete anything
  * - Sales Author -> Can delete/edit their own items (matched by email or full name)
- * - Other Sales Reps -> Cannot delete/edit items created by teammates
+/**
+ * Check if the currently logged-in user can delete or edit CRM note/photo items
+ * - All users and team emails are allowed to edit/delete freely
  */
 function canCurrentUserDeleteOrEditItem(ownerIdentifier) {
-  if (!currentSalesUser) {
-    return false;
-  }
-  
-  // 1. Master Supervisor / Manager Permissions
-  if (
-    currentSalesUser.role === 'manager' || 
-    currentSalesUser.role === 'supervisor' ||
-    currentSalesUser.email.toLowerCase() === 'pannipan@scg.com' ||
-    currentSalesUser.email.toLowerCase() === 'keetavas@scg.com' ||
-    (currentSalesUser.fullName && (currentSalesUser.fullName.includes('พรรณิภา') || currentSalesUser.fullName.includes('คีตวรรษ')))
-  ) {
-    return true;
-  }
-
-  // If no owner recorded yet (empty note / unassigned), anyone can edit/create
-  if (!ownerIdentifier || String(ownerIdentifier).trim() === '') {
-    return true;
-  }
-
-  const normOwner = String(ownerIdentifier).trim().toLowerCase();
-  const userEmail = (currentSalesUser.email || '').trim().toLowerCase();
-  const userName = (currentSalesUser.fullName || '').trim().toLowerCase();
-
-  // 2. Author match (by email or full name)
-  return (
-    normOwner === userEmail ||
-    normOwner === userName ||
-    (userName && normOwner.includes(userName)) ||
-    (normOwner && userName.includes(normOwner))
-  );
+  return true;
 }
 
 /**
@@ -416,17 +388,13 @@ async function getCloudCompanies(province = 'อุดรธานี') {
 }
 
 /**
- * Automatically fetch the latest company tags from Supabase and apply to UI
+ * Automatically fetch the latest company tags from Supabase and apply to UI (shared for all users)
  */
 async function loadAndApplyCloudTags() {
   const client = supabaseClient || initSupabase();
   if (!client) return;
 
   try {
-    const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-    const userEmail = activeUser ? activeUser.email : null;
-    if (!userEmail) return;
-
     const { data, error } = await client
       .from('companies')
       .select('id, tag');
@@ -437,14 +405,13 @@ async function loadAndApplyCloudTags() {
     }
 
     if (data && data.length > 0) {
-      const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap(userEmail) : {};
+      const tagMap = (typeof loadCompanyTagsMap === 'function') ? loadCompanyTagsMap() : {};
       
       let changed = false;
       data.forEach(item => {
         if (item.id && item.tag) {
           const norm = String(item.tag).trim().toLowerCase();
-          // Only populate if not yet defined in local user storage
-          if (typeof tagMap[item.id] === 'undefined') {
+          if (tagMap[item.id] !== norm) {
             tagMap[item.id] = norm;
             changed = true;
           }
@@ -452,10 +419,10 @@ async function loadAndApplyCloudTags() {
       });
 
       if (changed && typeof saveCompanyTagsMap === 'function') {
-        saveCompanyTagsMap(tagMap, userEmail);
+        saveCompanyTagsMap(tagMap);
       }
       if (typeof syncUserTagsToCompanies === 'function') {
-        syncUserTagsToCompanies(userEmail);
+        syncUserTagsToCompanies();
       }
       if (typeof applyFilters === 'function') {
         applyFilters();
@@ -463,7 +430,7 @@ async function loadAndApplyCloudTags() {
       if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
         updateTagFilterCounts(window.allCompanies);
       }
-      console.log(`☁️ Synced tags from Supabase Cloud successfully for ${userEmail}!`);
+      console.log(`☁️ Synced shared tags from Supabase Cloud successfully (${data.length} records)!`);
     }
   } catch (err) {
     console.warn('⚠️ Supabase Tag Sync Exception:', err);

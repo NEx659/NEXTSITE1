@@ -141,57 +141,42 @@ function cleanThaiText(text) {
 }
 
 // ==========================================
-// 2. TAG MANAGEMENT (Focus / Non-Focus / New - Per User Isolation & Instant Persistence)
+// 2. TAG MANAGEMENT (Shared Across All Users & Real-time Cloud Sync)
 // ==========================================
-function getUserTagsStorageKey(email) {
-  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-  const targetEmail = (email !== null && typeof email !== 'undefined') ? email : (activeUser ? activeUser.email : '');
-  if (!targetEmail || targetEmail === 'guest') {
-    return STORAGE_KEY_COMPANY_TAGS;
-  }
-  const norm = String(targetEmail).toLowerCase().trim().replace(/[^a-z0-9]/g, '_');
-  return `nextsite_company_tags_${norm}`;
-}
-
-function loadCompanyTagsMap(customEmail = null) {
+function loadCompanyTagsMap() {
   try {
-    const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-    const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
-    
-    const userKey = getUserTagsStorageKey(email);
-    const userSaved = localStorage.getItem(userKey);
-    if (userSaved) {
+    const saved = localStorage.getItem(STORAGE_KEY_COMPANY_TAGS);
+    let tagMap = {};
+    if (saved) {
       try {
-        return JSON.parse(userSaved);
+        tagMap = JSON.parse(saved) || {};
       } catch (e) {}
     }
 
-    if (!email || email === 'guest') {
-      const saved = localStorage.getItem(STORAGE_KEY_COMPANY_TAGS);
-      if (saved) {
+    // Merge any legacy user-specific keys if present
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('nextsite_company_tags_') && key !== STORAGE_KEY_COMPANY_TAGS) {
         try {
-          return JSON.parse(saved);
+          const userObj = JSON.parse(localStorage.getItem(key));
+          if (userObj && typeof userObj === 'object') {
+            Object.assign(tagMap, userObj);
+          }
         } catch (e) {}
       }
     }
+
+    return tagMap;
   } catch (e) {
     console.warn('Failed to load company tags from localStorage', e);
   }
   return {};
 }
 
-function saveCompanyTagsMap(tagMap, customEmail = null) {
+function saveCompanyTagsMap(tagMap) {
   try {
-    const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-    const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
     const jsonStr = JSON.stringify(tagMap || {});
-
-    const userKey = getUserTagsStorageKey(email);
-    localStorage.setItem(userKey, jsonStr);
-
-    if (!email || email === 'guest') {
-      localStorage.setItem(STORAGE_KEY_COMPANY_TAGS, jsonStr);
-    }
+    localStorage.setItem(STORAGE_KEY_COMPANY_TAGS, jsonStr);
   } catch (e) {
     console.warn('Failed to save company tags to localStorage', e);
   }
@@ -215,10 +200,8 @@ function normalizeTagValue(rawTag, comp = null) {
   return 'prospect';
 }
 
-function syncUserTagsToCompanies(customEmail = null) {
-  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-  const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
-  const tagMap = loadCompanyTagsMap(email);
+function syncUserTagsToCompanies() {
+  const tagMap = loadCompanyTagsMap();
 
   if (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) {
     allCompanies.forEach(c => {
@@ -234,10 +217,8 @@ function syncUserTagsToCompanies(customEmail = null) {
   }
 }
 
-function getCompanyTag(companyId, customEmail = null) {
-  const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-  const email = customEmail !== null ? customEmail : (activeUser ? activeUser.email : null);
-  const tagMap = loadCompanyTagsMap(email);
+function getCompanyTag(companyId) {
+  const tagMap = loadCompanyTagsMap();
   const raw = tagMap[companyId];
   
   let comp = null;
@@ -256,7 +237,7 @@ function setCompanyTag(companyId, tag, event) {
   }
 
   const activeUser = (typeof currentSalesUser !== 'undefined' && currentSalesUser) ? currentSalesUser : (typeof window.currentSalesUser !== 'undefined' ? window.currentSalesUser : null);
-  const userEmail = activeUser ? activeUser.email : 'guest';
+  const userEmail = activeUser ? activeUser.email : 'system';
   const normalizedTag = normalizeTagValue(tag);
 
   const comp = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies.find(c => c.id === companyId) : null;
@@ -264,27 +245,28 @@ function setCompanyTag(companyId, tag, event) {
     comp.tag = normalizedTag;
   }
 
-  // Load and save user-specific tag map
-  const tagMap = loadCompanyTagsMap(userEmail);
+  // Save to shared tag map for all users
+  const tagMap = loadCompanyTagsMap();
   tagMap[companyId] = normalizedTag;
-  saveCompanyTagsMap(tagMap, userEmail);
+  saveCompanyTagsMap(tagMap);
 
-  // Sync to Supabase Cloud in real-time if logged in
-  if (activeUser && typeof updateCloudCompanyTag === 'function') {
-    updateCloudCompanyTag(companyId, normalizedTag, activeUser.email);
+  // Sync to Supabase Cloud in real-time so all teammates see the exact same tag
+  if (typeof updateCloudCompanyTag === 'function') {
+    updateCloudCompanyTag(companyId, normalizedTag, userEmail);
   }
 
   applyFilters();
-  updateTagFilterCounts(allCompanies);
+  if (typeof updateTagFilterCounts === 'function' && typeof allCompanies !== 'undefined') {
+    updateTagFilterCounts(allCompanies);
+  }
 
   const tagNames = {
     'strategic': '👑 Strategic Partner (ลูกค้าแฟนพันธ์แท้)',
-    'growth': '📈 Growth Account (ลูกค้าทีมีความสัมพันธ์ แต่ต้อติดตามอย่างใกล้ชิด)',
+    'growth': '📈 Growth Account (ลูกค้าทีมีความสัมพันธ์ แต่ต้องติดตามอย่างใกล้ชิด)',
     'opportunity': '🎯 Opportunity Account (ลูกค้าที่ต้องสร้างความสัมพันธ์)',
     'prospect': '✨ New (ลูกค้าใหม่)'
   };
-  const userName = activeUser ? (activeUser.fullName || activeUser.email) : 'บราวเซอร์นี้';
-  showStatusToast(`💾 จำสถานะเป็น ${tagNames[normalizedTag] || normalizedTag} สำหรับ ${userName} เรียบร้อย`);
+  showStatusToast(`💾 บันทึกสถานะกลุ่มเป็น ${tagNames[normalizedTag] || normalizedTag} เรียบร้อย (ข้อมูลซิงค์ให้ทุกคนเห็นตรงกัน)`);
 }
 
 // ==========================================
@@ -1348,29 +1330,18 @@ function saveCompanyCrmLog(companyId, logData) {
 
   const logs = getAllCrmLogs();
   const existing = logs[companyId] || {};
-  const hasExistingContent = (existing.note && String(existing.note).trim().length > 0) || (Array.isArray(existing.photos) && existing.photos.length > 0);
-
-  // Ownership protection check - ONLY lock if actual text note or photo content already exists!
-  if (hasExistingContent && existing.createdBy) {
-    if (typeof canCurrentUserDeleteOrEditItem === 'function' && !canCurrentUserDeleteOrEditItem(existing.createdBy)) {
-      const ownerName = existing.salesRep || existing.createdBy;
-      if (typeof showStatusToast === 'function') {
-        showStatusToast(`🔒 ข้อมูลนี้บันทึกโดย ${ownerName} (คุณไม่มีสิทธิ์แก้ไขหรือบันทึกทับ)`);
-      }
-      return;
-    }
-  }
 
   try {
-    const uEmail = activeUser.email;
-    const uName = activeUser.fullName;
+    const uEmail = activeUser ? activeUser.email : 'somchai@scg.com';
+    const uName = activeUser ? activeUser.fullName : 'คุณสมชาย';
 
     const updatedRecord = {
       ...existing,
       ...logData,
-      createdBy: (hasExistingContent && existing.createdBy) ? existing.createdBy : uEmail,
-      salesRep: (hasExistingContent && existing.salesRep) ? existing.salesRep : (logData.salesRep || uName),
-      lastUpdated: new Date().toISOString()
+      createdBy: existing.createdBy || uEmail,
+      salesRep: logData.salesRep || uName,
+      lastUpdated: new Date().toISOString(),
+      lastUpdatedBy: uEmail
     };
     logs[companyId] = updatedRecord;
     localStorage.setItem(STORAGE_KEY_CRM_LOGS, JSON.stringify(logs));
@@ -1703,18 +1674,17 @@ function openFollowUpModal(companyId, focusNote = true, event) {
   if (distEl) distEl.textContent = (company.district || 'เมือง') + ', จ.' + (company.province || 'อุดรธานี');
 
   const crmLog = getCompanyCrmLog(company.id);
-  const hasFollowupContent = (crmLog.note && String(crmLog.note).trim().length > 0) || (Array.isArray(crmLog.photos) && crmLog.photos.length > 0);
-  const canEditFollowup = !hasFollowupContent || (!crmLog.createdBy || (typeof canCurrentUserDeleteOrEditItem === 'function' && canCurrentUserDeleteOrEditItem(crmLog.createdBy)));
+  const canEditFollowup = true; // ให้ทุกอีเมลแก้ไขได้
 
   selectCrmStatus(crmLog.status || 'pending');
 
   const noteInput = document.getElementById('followup-note-input') || document.getElementById('crm-modal-note');
   if (noteInput) {
     noteInput.value = crmLog.note || '';
-    noteInput.readOnly = !canEditFollowup;
-    noteInput.style.background = canEditFollowup ? '#FFFFFF' : '#F1F5F9';
-    noteInput.style.color = canEditFollowup ? '#0F172A' : '#475569';
-    noteInput.style.cursor = canEditFollowup ? 'text' : 'not-allowed';
+    noteInput.readOnly = false;
+    noteInput.style.background = '#FFFFFF';
+    noteInput.style.color = '#0F172A';
+    noteInput.style.cursor = 'text';
   }
 
   const dateInput = document.getElementById('followup-next-date');
@@ -3702,10 +3672,7 @@ function openCompanyProjectsModal(companyOrId) {
 
   // Load and Render Sales CRM Notes for Company
   const log = getCompanyCrmLog(comp.id);
-  const hasActualContent = (log.note && String(log.note).trim().length > 0) || (Array.isArray(log.photos) && log.photos.length > 0);
-  const isCreatorOrAdmin = !log.createdBy || (typeof canCurrentUserDeleteOrEditItem === 'function' && canCurrentUserDeleteOrEditItem(log.createdBy));
-  const canEditModal = !hasActualContent || isCreatorOrAdmin;
-  const ownerName = log.salesRep || log.createdBy || 'เซลส์ท่านอื่น';
+  const ownerName = log.salesRep || log.createdBy || 'ทีมขาย';
 
   const noteTextarea = document.getElementById('modal-company-sales-note');
   const noteStatus = document.getElementById('modal-crm-note-status-indicator');
@@ -3713,27 +3680,15 @@ function openCompanyProjectsModal(companyOrId) {
 
   if (noteTextarea) {
     noteTextarea.value = log.note || '';
-    if (!canEditModal) {
-      noteTextarea.readOnly = true;
-      noteTextarea.style.background = '#F1F5F9';
-      noteTextarea.style.color = '#475569';
-      noteTextarea.style.cursor = 'not-allowed';
-      noteTextarea.style.border = '1.5px solid #CBD5E1';
-    } else {
-      noteTextarea.readOnly = false;
-      noteTextarea.style.background = '#FFFFFF';
-      noteTextarea.style.color = '#0F172A';
-      noteTextarea.style.cursor = 'text';
-      noteTextarea.style.border = '1.5px solid #CBD5E1';
-    }
+    noteTextarea.readOnly = false;
+    noteTextarea.style.background = '#FFFFFF';
+    noteTextarea.style.color = '#0F172A';
+    noteTextarea.style.cursor = 'text';
+    noteTextarea.style.border = '1.5px solid #CBD5E1';
   }
 
   if (noteStatus) {
-    if (!canEditModal) {
-      noteStatus.innerHTML = `<span style="color: #9333EA; font-weight: 800; background: #FAF5FF; padding: 3px 10px; border-radius: 6px; border: 1px solid #E9D5FF; font-size: 0.72rem;">🔒 บันทึกโดย ${ownerName} (คุณอ่านได้อย่างเดียว)</span>`;
-    } else {
-      noteStatus.innerHTML = '<span style="color: #16A34A; font-weight: 700;">✅ พร้อมบันทึก</span>';
-    }
+    noteStatus.innerHTML = '<span style="color: #16A34A; font-weight: 700;">✅ พร้อมบันทึก (ทุกบัญชีสามารถแก้ไขได้)</span>';
   }
 
   if (noteLastUpdated) {
@@ -4268,23 +4223,15 @@ function renderCompanyPhotosGallery(companyId) {
     const timeStr = p.timestamp ? new Date(p.timestamp).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : `รูปที่ ${idx + 1}`;
     const safeCaption = (p.name || `หลักฐานลงพื้นที่ - ${activeSelectedCompany ? activeSelectedCompany.name : ''}`).replace(/"/g, '&quot;');
     const uploaderInfo = p.uploaderName ? ` • โดย ${p.uploaderName}` : '';
-    const canDelete = (typeof canCurrentUserDeleteOrEditItem === 'function') ? canCurrentUserDeleteOrEditItem(p.uploadedBy) : true;
-
     return `
       <div style="position: relative; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; border: 1.5px solid #CBD5E1; box-shadow: 0 2px 5px rgba(15,23,42,0.08); background: #0F172A; cursor: pointer; flex-shrink: 0;" onclick="openImageLightbox('${p.dataUrl}', '${safeCaption} • ${timeStr}${uploaderInfo}')">
         <img src="${p.dataUrl}" alt="Site visit photo" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,0.78); color: #FFFFFF; font-size: 0.60rem; font-weight: 700; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
           ${timeStr}
         </div>
-        ${canDelete ? `
-          <button type="button" onclick="event.stopPropagation(); deleteCompanyPhoto('${p.id}');" title="ลบรูปภาพนี้" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(239,68,68,0.92); color: #FFFFFF; border: none; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">
-            ✕
-          </button>
-        ` : `
-          <div title="อัปโหลดโดย ${p.uploaderName || p.uploadedBy || 'เพื่อนร่วมทีม'} (ล็อกสิทธิ์เฉพาะเจ้าของ/หัวหน้า)" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(15,23,42,0.75); color: #CBD5E1; border: 1px solid rgba(255,255,255,0.3); font-size: 0.60rem; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-            🔒
-          </div>
-        `}
+        <button type="button" onclick="event.stopPropagation(); deleteCompanyPhoto('${p.id}');" title="ลบรูปภาพนี้" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(239,68,68,0.92); color: #FFFFFF; border: none; font-size: 0.65rem; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">
+          ✕
+        </button>
       </div>
     `;
   }).join('');
@@ -4339,14 +4286,6 @@ function deleteCompanyPhoto(photoId) {
 
   const log = getCompanyCrmLog(activeSelectedCompany.id);
   const existingPhotos = Array.isArray(log.photos) ? log.photos : [];
-  const targetPhoto = existingPhotos.find(p => p.id === photoId);
-
-  if (targetPhoto && typeof canCurrentUserDeleteOrEditItem === 'function') {
-    if (!canCurrentUserDeleteOrEditItem(targetPhoto.uploadedBy)) {
-      showStatusToast(`🔒 คุณไม่มีสิทธิ์ลบรูปภาพของ ${targetPhoto.uploaderName || targetPhoto.uploadedBy || 'เพื่อนร่วมทีม'} (เฉพาะเจ้าของรูปหรือหัวหน้าพรรณิภาเท่านั้น)`);
-      return;
-    }
-  }
 
   if (!confirm('คุณต้องการลบรูปภาพหลักฐานนี้หรือไม่?')) return;
 
