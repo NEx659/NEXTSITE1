@@ -22,6 +22,8 @@
   <!-- App Stylesheet -->
   <link rel="stylesheet" href="css/styles.css?v=71.0">
 
+
+
   <style>
     /* 4-Tier Strategic Leaderboard - 4 Tall Vertical Columns Side-by-Side */
     .tier-leaderboard-section {
@@ -612,8 +614,7 @@
           </svg>
         </button>
 
-        <!-- User Authentication & Profile Section -->
-        <div id="user-auth-section" style="display: flex; align-items: center;"></div>
+
       </div>
 
     </div>
@@ -2082,92 +2083,7 @@
     </p>
   </div>
 
-  <!-- Sales Login Modal -->
-  <div id="sales-login-modal" class="modal-overlay"
-    style="display: none; position: fixed; inset: 0; z-index: 2147483647; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;"
-    onclick="if(event.target === this) closeLoginModal(true)">
-    <div
-      style="background: #FFFFFF; width: 100%; max-width: 440px; border-radius: 16px; box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.5); overflow: hidden; border: 1.5px solid #CBD5E1; animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1);">
-      <!-- Modal Header -->
-      <div
-        style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); padding: 18px 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #D9251D;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div
-            style="width: 38px; height: 38px; border-radius: 10px; background: rgba(217, 37, 29, 0.2); border: 1px solid #D9251D; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 2px 8px rgba(217,37,29,0.3);">
-            🔐
-          </div>
-          <div>
-            <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em;">
-              เข้าสู่ระบบเซลส์ SCG</h3>
-            <p style="margin: 2px 0 0 0; font-size: 0.72rem; color: #94A3B8;">Sales Territory Authentication</p>
-          </div>
-        </div>
-        <button type="button" id="btn-login-close-x" onclick="closeLoginModal(true)"
-          style="background: transparent; border: none; color: #94A3B8; font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 4px;" title="ปิดหน้าต่าง">✕</button>
-      </div>
 
-      <!-- Quick Demo Users Selection -->
-      <div style="background: #F8FAFC; padding: 12px 20px; border-bottom: 1px solid #E2E8F0;">
-        <div style="font-size: 0.74rem; font-weight: 800; color: #475569; margin-bottom: 8px; display: flex; align-items: center; gap: 5px;">
-          <span>⚡ เลือกเข้าสู่ระบบด่วน (คลิกเลือกบัญชี):</span>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
-          <button type="button" onclick="fillDemoUser('pannipan@scg.com', 'scg123456'); handleSalesLoginForm();"
-            style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 7px 4px; font-size: 0.72rem; font-weight: 800; color: #6B21A8; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: all 0.15s ease;"
-            onmouseover="this.style.borderColor='#9333EA'; this.style.background='#FAF5FF';"
-            onmouseout="this.style.borderColor='#CBD5E1'; this.style.background='#FFFFFF';">
-            <span style="font-size: 1rem;">👑</span>
-            <span>คุณพรรณิภา</span>
-          </button>
-          <button type="button" onclick="fillDemoUser('keetavas@scg.com', 'scg12345'); handleSalesLoginForm();"
-            style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 7px 4px; font-size: 0.72rem; font-weight: 800; color: #1E40AF; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: all 0.15s ease;"
-            onmouseover="this.style.borderColor='#2563EB'; this.style.background='#EFF6FF';"
-            onmouseout="this.style.borderColor='#CBD5E1'; this.style.background='#FFFFFF';">
-            <span style="font-size: 1rem;">👔</span>
-            <span>คุณคีตวรรษ</span>
-          </button>
-          <button type="button" onclick="fillDemoUser('somchai@scg.com', 'scg1234'); handleSalesLoginForm();"
-            style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 7px 4px; font-size: 0.72rem; font-weight: 800; color: #047857; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: all 0.15s ease;"
-            onmouseover="this.style.borderColor='#10B981'; this.style.background='#ECFDF5';"
-            onmouseout="this.style.borderColor='#CBD5E1'; this.style.background='#FFFFFF';">
-            <span style="font-size: 1rem;">👤</span>
-            <span>คุณสมชาย</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Modal Form -->
-      <form onsubmit="handleSalesLoginForm(event)"
-        style="padding: 20px 24px; display: flex; flex-direction: column; gap: 14px;">
-        <div id="login-error-msg"
-          style="display: none; background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; padding: 10px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; line-height: 1.4;">
-        </div>
-
-        <div>
-          <label
-            style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 5px;">อีเมลผู้ใช้งาน (Email)</label>
-          <input type="email" id="login-email" required placeholder="เช่น pannipan@scg.com"
-            style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-size: 0.88rem; outline: none; font-family: inherit;">
-        </div>
-
-        <div>
-          <label
-            style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 5px;">รหัสผ่าน (Password)</label>
-          <input type="password" id="login-password" required placeholder="••••••••"
-            style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-size: 0.88rem; outline: none; font-family: inherit;">
-        </div>
-
-        <div style="display: flex; gap: 8px; margin-top: 4px;">
-          <button type="button" id="btn-login-cancel" onclick="closeLoginModal(true)"
-            style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #CBD5E1; background: #F1F5F9; color: #475569; font-weight: 700; font-size: 0.85rem; cursor: pointer;">ยกเลิก</button>
-          <button type="submit" id="btn-login-submit"
-            style="flex: 2; padding: 10px; border-radius: 8px; border: none; background: #D9251D; color: #FFFFFF; font-weight: 800; font-size: 0.88rem; cursor: pointer; box-shadow: 0 4px 14px rgba(217,37,29,0.35); transition: all 0.15s ease;">
-            เข้าสู่ระบบ
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- ========================================== -->
   <!-- SALES SUMMARY REPORT MODAL (Excel Style) -->

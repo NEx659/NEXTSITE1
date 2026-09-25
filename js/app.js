@@ -335,65 +335,12 @@ if (typeof window !== 'undefined') {
 }
 
 // ==========================================
-// SALES LOGIN & AUTH MODAL HANDLERS
+// SALES LOGIN & AUTH (Login System Removed)
 // ==========================================
-function openLoginModal(enforce = false) {
-  const modal = document.getElementById('sales-login-modal');
-  if (modal) {
-    modal.style.display = 'flex';
-    modal.style.zIndex = '2147483647';
-    modal.style.visibility = 'visible';
-    modal.style.opacity = '1';
-    const errEl = document.getElementById('login-error-msg');
-    if (errEl) errEl.style.display = 'none';
-  }
-}
-
-function closeLoginModal(force = true) {
-  const modal = document.getElementById('sales-login-modal');
-  if (modal) modal.style.display = 'none';
-}
-
-function fillDemoUser(email, pass) {
-  const elEmail = document.getElementById('login-email');
-  const elPass = document.getElementById('login-password');
-  if (elEmail) elEmail.value = email;
-  if (elPass) elPass.value = pass;
-}
-
-async function handleSalesLoginForm(event) {
-  event.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const pass = document.getElementById('login-password').value;
-  const btnSubmit = document.getElementById('btn-login-submit');
-  const errEl = document.getElementById('login-error-msg');
-
-  if (errEl) errEl.style.display = 'none';
-  if (btnSubmit) {
-    btnSubmit.disabled = true;
-    btnSubmit.textContent = 'กำลังตรวจสอบ...';
-  }
-
-  try {
-    if (typeof window.loginSalesUser === 'function') {
-      const user = await window.loginSalesUser(email, pass);
-      closeLoginModal();
-      showStatusToast(`ยินดีต้อนรับ ${user.fullName} (พื้นที่: ${user.assignedProvince})`);
-    } else {
-      throw new Error('ระบบ Supabase ยังไม่พร้อม');
-    }
-  } catch (err) {
-    if (errEl) {
-      errEl.textContent = '❌ เข้าสู่ระบบไม่สำเร็จ: ' + err.message;
-      errEl.style.display = 'block';
-    }
-  } finally {
-    if (btnSubmit) {
-      btnSubmit.disabled = false;
-      btnSubmit.textContent = 'เข้าสู่ระบบ';
-    }
-  }
-}
+function openLoginModal(enforce = false) {}
+function closeLoginModal(force = false) {}
+function fillDemoUser(email, pass) {}
+async function handleSalesLoginForm(event) {}
 
 function filterByCompanyTag(tag) {
   const normTag = (tag === 'all') ? 'all' : normalizeTagValue(tag);
@@ -468,13 +415,7 @@ function getCurrentSalesUserObj() {
       }
     }
   } catch(e) {}
-  return {
-    id: 'usr_keetavas_scg_com',
-    email: 'keetavas@scg.com',
-    fullName: 'คุณคีตวรรษ',
-    role: 'manager',
-    assignedProvince: 'อุดรธานี'
-  };
+  return null;
 }
 
 function getUserTargetStorageKey(email) {

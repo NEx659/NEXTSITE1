@@ -7,16 +7,18 @@ const SUPABASE_URL = 'https://jklmttvwteuaixfcxhpd.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_liiIUZc31VQik5axueUVAg_GrH1-Sr4';
 
 let supabaseClient = null;
-let currentSalesUser = null; // { id, email, fullName, assignedProvince, role }
+const DEFAULT_SALES_USER = {
+  id: 'usr_admin',
+  email: 'pannipan@scg.com',
+  fullName: 'คุณพรรณิภา (SCG Team)',
+  title: 'ทีมขาย SCG',
+  role: 'manager',
+  assignedProvince: 'ALL',
+  avatar: '👑'
+};
 
-// Immediate synchronous restoration of cached user session
-try {
-  const cachedUserStr = localStorage.getItem('nextsite_cached_user');
-  if (cachedUserStr) {
-    currentSalesUser = JSON.parse(cachedUserStr);
-    window.currentSalesUser = currentSalesUser;
-  }
-} catch (e) {}
+let currentSalesUser = DEFAULT_SALES_USER;
+window.currentSalesUser = currentSalesUser;
 
 // Initialize Supabase Client
 function initSupabase() {
@@ -118,11 +120,12 @@ async function loginSalesUser(email, password) {
       if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
         updateTagFilterCounts(window.allCompanies);
       }
+      // Non-blocking background cloud sync
       if (typeof loadAndApplyCloudTags === 'function') {
-        await loadAndApplyCloudTags();
+        loadAndApplyCloudTags().catch(e => console.warn('Cloud tags sync error:', e));
       }
       if (typeof loadAndApplyCloudCrmLogs === 'function') {
-        await loadAndApplyCloudCrmLogs();
+        loadAndApplyCloudCrmLogs().catch(e => console.warn('Cloud crm logs sync error:', e));
       }
       return currentSalesUser;
     } else {
@@ -165,31 +168,11 @@ async function loginSalesUser(email, password) {
  * Logout sales user
  */
 async function logoutSalesUser() {
-  const client = supabaseClient || initSupabase();
-  if (client && client.auth) {
-    try {
-      await client.auth.signOut();
-    } catch(e) {}
-  }
-  currentSalesUser = null;
-  localStorage.removeItem('nextsite_cached_user');
-  document.body.classList.add('auth-locked');
-  updateAuthHeaderUI();
-  if (typeof syncUserTagsToCompanies === 'function') {
-    syncUserTagsToCompanies();
-  }
-  if (typeof applyFilters === 'function') {
-    applyFilters();
-  }
-  if (typeof updateTagFilterCounts === 'function' && typeof window.allCompanies !== 'undefined') {
-    updateTagFilterCounts(window.allCompanies);
-  }
+  currentSalesUser = DEFAULT_SALES_USER;
+  window.currentSalesUser = currentSalesUser;
   if (typeof showStatusToast === 'function') {
-    showStatusToast('ออกจากระบบเรียบร้อยแล้ว');
+    showStatusToast('รีเซ็ตสถานะผู้ใช้เรียบร้อยแล้ว');
   }
-  setTimeout(() => {
-    openLoginModal(true);
-  }, 100);
 }
 
 /**
@@ -288,84 +271,20 @@ function canCurrentUserEditCompany(company) {
   return compProvince.includes(userProvince) || userProvince.includes(compProvince);
 }
 
-/**
- * Update UI for Auth State in Header
- */
 function updateAuthHeaderUI() {
   window.currentSalesUser = currentSalesUser;
   const container = document.getElementById('user-auth-section');
-  if (!container) return;
-
-  if (currentSalesUser) {
-    const isManager = currentSalesUser.role === 'manager';
-    container.innerHTML = `
-      <div style="display: inline-flex; align-items: center; gap: 8px; background: ${isManager ? 'linear-gradient(135deg, rgba(147, 51, 234, 0.45) 0%, rgba(79, 70, 229, 0.45) 100%)' : 'rgba(30, 58, 138, 0.45)'}; border: 1.5px solid ${isManager ? '#C084FC' : 'rgba(96, 165, 250, 0.5)'}; padding: 4px 12px; border-radius: 9px; backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-        <div style="width: 26px; height: 26px; border-radius: 50%; background: ${isManager ? '#9333EA' : '#2563EB'}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 900; box-shadow: 0 1px 4px rgba(0,0,0,0.3);">
-          ${currentSalesUser.avatar || '👤'}
-        </div>
-        <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.15;">
-          <span style="font-size: 0.78rem; font-weight: 800; color: #FFFFFF;">${currentSalesUser.fullName}</span>
-          <span style="font-size: 0.65rem; color: ${isManager ? '#E9D5FF' : '#93C5FD'}; font-weight: 700;">${currentSalesUser.title || currentSalesUser.role}</span>
-        </div>
-        <button onclick="logoutSalesUser()" title="ออกจากระบบ / สลับบัญชี" style="background: rgba(239, 68, 68, 0.25); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.5); border-radius: 6px; padding: 3px 8px; font-size: 0.68rem; font-weight: 800; cursor: pointer; margin-left: 4px; transition: all 0.15s ease;" onmouseover="this.style.background='rgba(239,68,68,0.45)'" onmouseout="this.style.background='rgba(239,68,68,0.25)'">
-          สลับผู้ใช้
-        </button>
-      </div>
-    `;
-  } else {
-    container.innerHTML = `
-      <button onclick="openLoginModal()" style="display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); color: #FFFFFF; border: 1px solid rgba(147, 197, 253, 0.5); padding: 6px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 800; cursor: pointer; backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(37,99,235,0.3); transition: all 0.15s ease;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
-        <span>🔐 เข้าสู่ระบบ (เซลส์ / หัวหน้า)</span>
-      </button>
-    `;
-  }
-
-  if (typeof updateUserCrmStatusSummary === 'function') {
-    updateUserCrmStatusSummary();
+  if (container) {
+    container.innerHTML = '';
   }
 }
 
 // Auto check existing session on load
 async function checkCurrentSession() {
-  const client = supabaseClient || initSupabase();
-  let foundUser = null;
-
-  try {
-    if (client && client.auth) {
-      const { data: { session } } = await client.auth.getSession();
-      if (session && session.user) {
-        foundUser = await loadSalesUserProfile(session.user.id, session.user.email);
-      }
-    }
-    
-    if (!foundUser) {
-      const cached = localStorage.getItem('nextsite_cached_user');
-      if (cached) {
-        try {
-          const parsed = JSON.parse(cached);
-          if (parsed && parsed.email) {
-            currentSalesUser = parsed;
-            foundUser = parsed;
-          }
-        } catch (e) {
-          currentSalesUser = null;
-        }
-      }
-    }
-  } catch (err) {
-    console.warn('Session check warning:', err);
-    currentSalesUser = null;
-  }
-
-  if (currentSalesUser) {
-    document.body.classList.remove('auth-locked');
-    updateAuthHeaderUI();
-    closeLoginModal(true);
-  } else {
-    document.body.classList.add('auth-locked');
-    updateAuthHeaderUI();
-    openLoginModal(true);
-  }
+  currentSalesUser = DEFAULT_SALES_USER;
+  window.currentSalesUser = currentSalesUser;
+  document.body.classList.remove('auth-locked');
+  updateAuthHeaderUI();
 }
 
 // ==========================================
@@ -997,100 +916,28 @@ function setupRealtimeSync() {
 }
 
 // Auto init on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
+function initAuthAndSync() {
+  checkCurrentSession();
   setTimeout(async () => {
     initSupabase();
     await checkCurrentSession();
     await loadAndApplyCloudTags();
     await loadAndApplyCloudCrmLogs();
     setupRealtimeSync();
-  }, 300);
-});
-
-// Modal UI Helpers
-function openLoginModal(enforce = false) {
-  const modal = document.getElementById('sales-login-modal');
-  if (modal) {
-    modal.style.display = 'flex';
-    modal.style.zIndex = '2147483647';
-    modal.style.visibility = 'visible';
-    modal.style.opacity = '1';
-
-    const errEl = document.getElementById('login-error-msg');
-    if (errEl) errEl.style.display = 'none';
-
-    const btnCancel = document.getElementById('btn-login-cancel');
-    const btnCloseX = document.getElementById('btn-login-close-x');
-    if (btnCancel) btnCancel.style.display = 'block';
-    if (btnCloseX) btnCloseX.style.display = 'block';
-  }
+  }, 50);
 }
 
-function closeLoginModal(force = false) {
-  if (!currentSalesUser && !force) {
-    const errEl = document.getElementById('login-error-msg');
-    if (errEl) {
-      errEl.textContent = '🔒 กรุณาเข้าสู่ระบบก่อนเข้าใช้งานระบบ SCG Sales Intelligence';
-      errEl.style.display = 'block';
-    }
-    return;
-  }
-  const modal = document.getElementById('sales-login-modal');
-  if (modal) modal.style.display = 'none';
-  if (currentSalesUser) {
-    document.body.classList.remove('auth-locked');
-  }
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAuthAndSync);
+} else {
+  initAuthAndSync();
 }
 
-function fillDemoUser(email, pass) {
-  const elEmail = document.getElementById('login-email');
-  const elPass = document.getElementById('login-password');
-  if (elEmail) elEmail.value = email;
-  if (elPass) elPass.value = pass;
-}
-
-async function handleSalesLoginForm(event) {
-  if (event && event.preventDefault) event.preventDefault();
-  const email = (document.getElementById('login-email').value || '').trim();
-  const pass = (document.getElementById('login-password').value || '').trim();
-  const btnSubmit = document.getElementById('btn-login-submit');
-  const errEl = document.getElementById('login-error-msg');
-
-  if (errEl) errEl.style.display = 'none';
-  if (!email || !pass) {
-    if (errEl) {
-      errEl.textContent = '⚠️ กรุณากรอกอีเมลและรหัสผ่านให้ครบถ้วน';
-      errEl.style.display = 'block';
-    }
-    return;
-  }
-
-  if (btnSubmit) {
-    btnSubmit.disabled = true;
-    btnSubmit.textContent = 'กำลังตรวจสอบ...';
-  }
-
-  try {
-    const user = await loginSalesUser(email, pass);
-    document.body.classList.remove('auth-locked');
-    closeLoginModal(true);
-    if (typeof showStatusToast === 'function') {
-      showStatusToast(`🎉 ยินดีต้อนรับ ${user.fullName} (${user.title || user.assignedProvince})`);
-    } else {
-      alert(`🎉 ยินดีต้อนรับ ${user.fullName} (${user.title || user.assignedProvince})`);
-    }
-  } catch (err) {
-    if (errEl) {
-      errEl.textContent = '❌ เข้าสู่ระบบไม่สำเร็จ: ' + err.message;
-      errEl.style.display = 'block';
-    }
-  } finally {
-    if (btnSubmit) {
-      btnSubmit.disabled = false;
-      btnSubmit.textContent = 'เข้าสู่ระบบ';
-    }
-  }
-}
+// Modal UI Helpers (No-ops since login is removed)
+function openLoginModal(enforce = false) {}
+function closeLoginModal(force = false) {}
+function fillDemoUser(email, pass) {}
+async function handleSalesLoginForm(event) {}
 
 if (typeof window !== 'undefined') {
   window.initSupabase = initSupabase;

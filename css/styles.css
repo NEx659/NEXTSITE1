@@ -3147,28 +3147,7 @@ body.executive-presentation .kpi-value {
   }
 }
 
-/* ==========================================
-   AUTHENTICATION LOCK SCREEN & BLUR
-   ========================================== */
-body.auth-locked {
-  overflow: hidden !important;
-}
-
-body.auth-locked #app-root,
-body.auth-locked .top-header-bar,
-body.auth-locked .sub-header-bar,
-body.auth-locked .app-main,
-body.auth-locked .summary-strip,
-body.auth-locked .table-container,
-body.auth-locked .map-section,
-body.auth-locked footer,
-body.auth-locked header,
-body.auth-locked main {
-  filter: blur(14px) brightness(0.85);
-  pointer-events: none !important;
-  user-select: none !important;
-  transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* Authentication Lock Screen removed */
 
 /* ==========================================
    4-TIER STRATEGIC LEADERBOARD (4-Column Vertical Cards Edition)
