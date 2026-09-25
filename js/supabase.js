@@ -875,15 +875,35 @@ async function loadAndApplyCloudCrmLogs() {
             } catch (e) {}
           }
 
-          const crmStatusVal = (cloudLog && (cloudLog.crmStatus || cloudLog.status)) || item.crm_status || 'pending';
-          const assignedRoleVal = (cloudLog && cloudLog.assignedRole) || '';
+          const existingLocal = crmLogs[item.id] || {};
 
-          statusMap[item.id] = crmStatusVal;
+          let cloudTime = 0;
+          if (cloudLog && (cloudLog.updatedAt || cloudLog.lastUpdated)) {
+            cloudTime = new Date(cloudLog.updatedAt || cloudLog.lastUpdated).getTime();
+          } else if (item.updated_at) {
+            cloudTime = new Date(item.updated_at).getTime();
+          }
+
+          let localTime = 0;
+          if (existingLocal.updatedAt || existingLocal.lastUpdated) {
+            localTime = new Date(existingLocal.updatedAt || existingLocal.lastUpdated).getTime();
+          }
+
+          // If local data was modified more recently than cloud data, keep local changes!
+          if (localTime && cloudTime && localTime > cloudTime) {
+            return;
+          }
+
+          const crmStatusVal = (cloudLog && (cloudLog.crmStatus || cloudLog.status)) || item.crm_status || existingLocal.crmStatus || existingLocal.status || statusMap[item.id] || 'pending';
+          const assignedRoleVal = (cloudLog && cloudLog.assignedRole) || existingLocal.assignedRole || rolesMap[item.id] || '';
+
+          if (crmStatusVal) {
+            statusMap[item.id] = crmStatusVal;
+          }
           if (assignedRoleVal) {
             rolesMap[item.id] = assignedRoleVal;
           }
 
-          const existingLocal = crmLogs[item.id] || {};
           let resolvedNote = '';
           if (item.crm_note !== null && typeof item.crm_note !== 'undefined') {
             resolvedNote = item.crm_note;
@@ -894,9 +914,9 @@ async function loadAndApplyCloudCrmLogs() {
           }
 
           let resolvedPhotos = [];
-          if (cloudLog && Array.isArray(cloudLog.photos)) {
+          if (cloudLog && Array.isArray(cloudLog.photos) && cloudLog.photos.length > 0) {
             resolvedPhotos = cloudLog.photos;
-          } else if (Array.isArray(existingLocal.photos)) {
+          } else if (Array.isArray(existingLocal.photos) && existingLocal.photos.length > 0) {
             resolvedPhotos = existingLocal.photos;
           }
 
@@ -904,7 +924,7 @@ async function loadAndApplyCloudCrmLogs() {
             ...existingLocal,
             ...(cloudLog || {}),
             crmStatus: crmStatusVal,
-            assignedRole: assignedRoleVal || existingLocal.assignedRole || '',
+            assignedRole: assignedRoleVal,
             note: resolvedNote,
             status: crmStatusVal,
             salesRep: item.crm_sales_rep || (cloudLog && cloudLog.salesRep) || existingLocal.salesRep || '',
@@ -912,7 +932,7 @@ async function loadAndApplyCloudCrmLogs() {
             wantFollowup: (cloudLog && typeof cloudLog.wantFollowup !== 'undefined') ? cloudLog.wantFollowup : (typeof existingLocal.wantFollowup !== 'undefined' ? existingLocal.wantFollowup : false),
             salesOpportunityLevel: (cloudLog && cloudLog.salesOpportunityLevel) ? cloudLog.salesOpportunityLevel : (existingLocal.salesOpportunityLevel || null),
             photos: resolvedPhotos,
-            updatedAt: (cloudLog && cloudLog.updatedAt) || new Date().toISOString()
+            updatedAt: (cloudLog && cloudLog.updatedAt) || item.updated_at || new Date().toISOString()
           };
           updatedCount++;
         }

@@ -1400,12 +1400,14 @@ function saveCompanyCrmLog(companyId, logData) {
     const uEmail = activeUser ? activeUser.email : 'somchai@scg.com';
     const uName = activeUser ? activeUser.fullName : 'คุณสมชาย';
 
+    const nowIso = new Date().toISOString();
     const updatedRecord = {
       ...existing,
       ...logData,
       createdBy: existing.createdBy || uEmail,
-      salesRep: logData.salesRep || uName,
-      lastUpdated: new Date().toISOString(),
+      salesRep: logData.salesRep || existing.salesRep || uName,
+      updatedAt: nowIso,
+      lastUpdated: nowIso,
       lastUpdatedBy: uEmail
     };
     logs[companyId] = updatedRecord;
@@ -1456,10 +1458,12 @@ function updateCompanyAssigneeRole(companyId, newRole, event) {
     // Update CRM logs
     const logs = getAllCrmLogs();
     const existing = logs[companyId] || {};
+    const nowIso = new Date().toISOString();
     logs[companyId] = {
       ...existing,
       assignedRole: newRole,
-      lastUpdated: new Date().toISOString()
+      updatedAt: nowIso,
+      lastUpdated: nowIso
     };
     localStorage.setItem(STORAGE_KEY_CRM_LOGS, JSON.stringify(logs));
     localStorage.setItem('nextsite_crm_followup_logs', JSON.stringify(logs));
@@ -1590,13 +1594,15 @@ function updateCompanyFollowUpStatus(companyId, newStatus, event) {
       if (uEmail) wantUsers = wantUsers.filter(e => e !== uEmail);
     }
 
+    const nowIso = new Date().toISOString();
     const updatedLog = {
       ...existing,
       crmStatus: newStatus,
       status: newStatus === 'target' ? 'followup' : (newStatus === 'in_progress' ? 'followup' : 'pending'),
       wantFollowup: wantTargeted,
       wantFollowupUsers: wantUsers,
-      lastUpdated: new Date().toISOString()
+      updatedAt: nowIso,
+      lastUpdated: nowIso
     };
 
     logs[companyId] = updatedLog;
@@ -4245,7 +4251,7 @@ function clearCompanyNote() {
 // ==========================================
 // 8.2 SITE VISIT PHOTOS & LIGHTBOX (PROOF OF WORK)
 // ==========================================
-function compressImage(file, maxWidth = 960, maxHeight = 960, quality = 0.75) {
+function compressImage(file, maxWidth = 640, maxHeight = 640, quality = 0.65) {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onload = (e) => {
