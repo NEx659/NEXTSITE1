@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTSITE AI — กราฟและรายงานเปรียบเทียบความแม่นยำ (AI Opportunity Score vs ประเมินหน้างาน)</title>
+  <meta name="description" content="กราฟและรายงานวิเคราะห์เปรียบเทียบความแม่นยำระหว่างคะแนนโอกาสจาก AI กับ ผลการประเมินหน้างานจริงของเซลส์ SCG NEXTSITE">
+
+  <!-- Google Fonts: Prompt, Inter & Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js for High Performance Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css?v=102.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: #F8FAFC;
+      color: #0F172A;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-navbar {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-bottom: 2px solid #1E293B;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    .report-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    .kpi-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #CBD5E1;
+    }
+
+    .kpi-card.kpi-blue::before { background: linear-gradient(90deg, #3B82F6, #2563EB); }
+    .kpi-card.kpi-green::before { background: linear-gradient(90deg, #10B981, #059669); }
+    .kpi-card.kpi-purple::before { background: linear-gradient(90deg, #8B5CF6, #6D28D9); }
+    .kpi-card.kpi-amber::before { background: linear-gradient(90deg, #F59E0B, #D97706); }
+
+    .chart-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .chart-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .excel-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Prompt', 'Inter', sans-serif;
+    }
+
+    .excel-table th {
+      background: #0F172A !important;
+      color: #FFFFFF !important;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #1E293B;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .excel-table td {
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      border: 1px solid #E2E8F0;
+      vertical-align: middle;
+    }
+
+    .excel-table tbody tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    .excel-table tbody tr:hover {
+      background: #EFF6FF !important;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: none;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .btn-excel {
+      background: #10B981;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(16,185,129,0.3);
+    }
+    .btn-excel:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-print {
+      background: #3B82F6;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+    }
+    .btn-print:hover {
+      background: #2563EB;
+      transform: translateY(-1px);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .quadrant-box {
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .report-navbar, .filter-toolbar, .no-print {
+        display: none !important;
+      }
+      .report-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .chart-card, .kpi-card {
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+        page-break-inside: avoid;
+      }
+    }
+
+    .comparison-charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 900px) {
+      .comparison-charts-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+  <header class="report-navbar">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+        <div style="background: #D9251D; color: #FFFFFF; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(217,37,29,0.4);">
+          N
+        </div>
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 900; color: #FFFFFF; letter-spacing: -0.02em;">
+            NEXTSITE <span style="color: #EF4444;">AI</span>
+          </div>
+          <div style="font-size: 0.68rem; color: #94A3B8; font-weight: 700;">
+            SCG INTELLIGENCE REPORT
+          </div>
+        </div>
+      </a>
+      <div style="width: 1px; height: 26px; background: #334155; margin: 0 6px;"></div>
+      <div style="font-size: 0.95rem; font-weight: 800; color: #60A5FA; display: flex; align-items: center; gap: 8px;">
+        <span>🎯 รายงานวิเคราะห์โอกาส AI (3 ระดับ) เปรียบเทียบยอดขาย SCG ปี 2026</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <a href="index.html" class="btn-action btn-back" id="btn-back-dashboard">
+        ⬅️ กลับหน้าหลัก Dashboard
+      </a>
+      <button type="button" onclick="exportAccuracyReportCsv()" class="btn-action btn-excel">
+        📥 ส่งออก Excel (CSV)
+      </button>
+      <button type="button" onclick="window.print()" class="btn-action btn-print">
+        🖨️ สั่งพิมพ์รายงาน
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="report-container">
+
+    <!-- 4 Top KPI Summary Cards (AI vs Sales Agreement Overview) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 20px;">
+      
+      <!-- Card 1: Accuracy Agreement -->
+      <div class="kpi-card kpi-green" style="cursor: pointer;" onclick="filterByStatus('match_exact')">
+        <div style="font-size: 0.78rem; color: #065F46; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+          <span>🎯 อัตราความสอดคล้อง (Accuracy Agreement)</span>
+          <span style="font-size: 0.68rem; background: #DCFCE7; color: #166534; padding: 1px 6px; border-radius: 4px;">AI vs เซลส์</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <div style="font-size: 1.85rem; font-weight: 900; color: #059669;" id="kpi-match-rate">0%</div>
+          <span style="font-size: 0.80rem; color: #065F46; font-weight: 700;" id="kpi-match-count">(0/0 รายที่เข้าพบ)</span>
+        </div>
+        <div style="font-size: 0.72rem; color: #047857; font-weight: 700; margin-top: 4px;">
+          ประเมินระดับโอกาสตรงกันระหว่าง AI และเซลส์
+        </div>
+      </div>
+
+      <!-- Card 2: Field Coverage -->
+      <div class="kpi-card kpi-blue" style="cursor: pointer;" onclick="filterByStatus('assessed')">
+        <div style="font-size: 0.78rem; color: #1E40AF; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+          <span>📍 เซลส์เข้าพบและประเมินแล้ว</span>
+          <span style="font-size: 0.68rem; background: #EFF6FF; color: #1E40AF; padding: 1px 6px; border-radius: 4px;">ความคืบหน้า</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 6px;">
+          <div style="font-size: 1.85rem; font-weight: 900; color: #2563EB;" id="kpi-assessed-count">0</div>
+          <span style="font-size: 0.85rem; color: #64748B; font-weight: 700;" id="kpi-total-companies">/ 0 ราย</span>
+        </div>
+        <div style="font-size: 0.72rem; color: #1D4ED8; font-weight: 700; margin-top: 4px;" id="kpi-coverage-percent">
+          เข้าพบแล้ว 0% • รอเข้าพบ 0 ราย
+        </div>
+      </div>
+
+      <!-- Card 3: Average Score Comparison -->
+      <div class="kpi-card kpi-purple">
+        <div style="font-size: 0.78rem; color: #581C87; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+          <span>⚖️ คะแนนเฉลี่ย AI vs เซลส์ (เฉพาะที่เข้าพบ)</span>
+          <span style="font-size: 0.68rem; background: #F3E8FF; color: #6B21A8; padding: 1px 6px; border-radius: 4px;">เปรียบเทียบ</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 2px;">
+          <span style="color: #16A34A; font-size: 0.95rem; font-weight: 800;">AI: <strong id="kpi-avg-ai" style="font-size: 1.45rem;">0</strong></span>
+          <span style="color: #CBD5E1;">|</span>
+          <span style="color: #2563EB; font-size: 0.95rem; font-weight: 800;">เซลส์: <strong id="kpi-avg-sales" style="font-size: 1.45rem;">0%</strong></span>
+        </div>
+        <div style="font-size: 0.72rem; color: #7C3AED; font-weight: 800; margin-top: 4px;" id="kpi-delta-score">
+          ผลต่างเฉลี่ย: Δ 0 คะแนน
+        </div>
+      </div>
+
+      <!-- Card 4: Sweetspot / Top Targets -->
+      <div class="kpi-card kpi-amber" style="cursor: pointer;" onclick="filterByStatus('sweetspot')">
+        <div style="font-size: 0.78rem; color: #92400E; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+          <span>⭐ โอกาสสูงตรงกัน (Top Targets)</span>
+          <span style="font-size: 0.68rem; background: #FEF3C7; color: #92400E; padding: 1px 6px; border-radius: 4px;">ปิดการขาย</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <div style="font-size: 1.85rem; font-weight: 900; color: #D97706;" id="kpi-sweetspot-count">0</div>
+          <span style="font-size: 0.80rem; color: #92400E; font-weight: 700;">ราย (พร้อมรุกปิดการขาย)</span>
+        </div>
+        <div style="font-size: 0.72rem; color: #B45309; font-weight: 700; margin-top: 4px;">
+          AI โอกาสสูง (≥71) และ เซลส์ประเมินสูง (≥60%)
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- กราฟเปรียบเทียบความสอดคล้อง AI vs เซลส์ (Accuracy & Agreement Charts) -->
+    <!-- ============================================================= -->
+    <div class="comparison-charts-row" id="ai-sales-comparison-charts-row">
+      
+      <!-- Chart A: Donut Chart - สัดส่วนความสอดคล้อง AI vs เซลส์ -->
+      <div class="chart-card" style="border: 1.5px solid #CBD5E1; background: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="chart-header" style="border-bottom: 1.5px solid #F1F5F9; padding-bottom: 10px; margin-bottom: 12px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 1.1rem;">🎯</span>
+                <span style="font-size: 0.95rem; font-weight: 900; color: #0F172A;">สัดส่วนความสอดคล้อง AI vs เซลส์</span>
+              </div>
+              <div style="font-size: 0.70rem; color: #64748B; font-weight: 700; margin-top: 2px;">
+                สอดคล้องตรงกัน vs AI สูงกว่า vs เซลส์สูงกว่า vs รอเข้าพบ
+              </div>
+            </div>
+            <span id="badge-agreement-rate" style="background: #DCFCE7; color: #166534; font-size: 0.75rem; font-weight: 900; padding: 3px 8px; border-radius: 9999px; border: 1px solid #BBF7D0;">
+              ความแม่นยำ 0%
+            </span>
+          </div>
+
+          <!-- Donut Canvas Container -->
+          <div style="position: relative; height: 185px; width: 100%; display: flex; align-items: center; justify-content: center;">
+            <canvas id="chartAgreementDonut"></canvas>
+            <div id="donut-center-label" style="position: absolute; text-align: center; pointer-events: none;">
+              <div style="font-size: 0.65rem; color: #64748B; font-weight: 700;">สอดคล้อง</div>
+              <div style="font-size: 1.25rem; font-weight: 900; color: #059669;" id="donut-center-val">0%</div>
+            </div>
+          </div>
+
+          <!-- Interactive Category Legend Badges -->
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 10px;">
+            <div onclick="filterByStatus('match_exact')" style="cursor: pointer; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 5px 8px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s ease;" title="คลิกเพื่อกรองเฉพาะกลุ่มนี้">
+              <span style="font-size: 0.70rem; font-weight: 800; color: #166534;">🎯 ตรงกัน (Gap ≤15)</span>
+              <strong id="legend-match-count" style="font-size: 0.80rem; color: #15803D;">0</strong>
+            </div>
+            <div onclick="filterByStatus('ai_higher')" style="cursor: pointer; background: #FFFBEB; border: 1px solid #FDE68A; padding: 5px 8px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s ease;" title="คลิกเพื่อกรองเฉพาะกลุ่มนี้">
+              <span style="font-size: 0.70rem; font-weight: 800; color: #92400E;">⚠️ AI สูงกว่าเซลส์</span>
+              <strong id="legend-ai-higher-count" style="font-size: 0.80rem; color: #D97706;">0</strong>
+            </div>
+            <div onclick="filterByStatus('sales_higher')" style="cursor: pointer; background: #FAF5FF; border: 1px solid #E9D5FF; padding: 5px 8px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s ease;" title="คลิกเพื่อกรองเฉพาะกลุ่มนี้">
+              <span style="font-size: 0.70rem; font-weight: 800; color: #6B21A8;">💎 เซลส์สูงกว่า AI</span>
+              <strong id="legend-sales-higher-count" style="font-size: 0.80rem; color: #7C3AED;">0</strong>
+            </div>
+            <div onclick="filterByStatus('unassessed')" style="cursor: pointer; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 5px 8px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s ease;" title="คลิกเพื่อกรองเฉพาะกลุ่มนี้">
+              <span style="font-size: 0.70rem; font-weight: 800; color: #475569;">⏳ รอเข้าพบหน้างาน</span>
+              <strong id="legend-unassessed-count" style="font-size: 0.80rem; color: #64748B;">0</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart Right: ปิดยอดขายจาก NEXTSITE AI (แท่งเดียว: ซื้อปี 2026 อย่างเดียว ปี 2025 ไม่เคยมียอด) -->
+      <div class="chart-card" style="border: 2px solid #C084FC; background: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <!-- Header -->
+          <div class="chart-header" style="border-bottom: 1.5px solid #F3E8FF; padding-bottom: 10px; margin-bottom: 12px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 1.1rem;">🚀</span>
+                <span style="font-size: 0.95rem; font-weight: 900; color: #6B21A8;">ปิดยอดขาย NEXTSITE AI</span>
+              </div>
+              <div style="font-size: 0.70rem; color: #7C3AED; font-weight: 700; margin-top: 2px;">
+                ลูกค้าใหม่ (ปี 25 = 0, ปี 26 > 0)
+              </div>
+            </div>
+            <span id="badge-chart-closed-count" style="background: #F3E8FF; color: #7C3AED; font-size: 0.75rem; font-weight: 900; padding: 3px 8px; border-radius: 9999px; border: 1px solid #DDD6FE;">
+              0 ราย
+            </span>
+          </div>
+
+          <!-- Mini Summary Metrics -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; background: #FAF5FF; border: 1px solid #E9D5FF; border-radius: 8px; padding: 8px 10px;">
+            <div>
+              <div style="font-size: 0.65rem; color: #6B21A8; font-weight: 700;">ปิดยอดสำเร็จ</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #7C3AED; margin-top: 1px;" id="chart-closed-total-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+            <div>
+              <div style="font-size: 0.65rem; color: #6B21A8; font-weight: 700;">สถานะปี 2026</div>
+              <div style="font-size: 0.85rem; font-weight: 800; color: #7C3AED; margin-top: 5px;">🚀 มียอดซื้อขาย</div>
+            </div>
+          </div>
+
+          <!-- Chart Canvas (Single Bar) -->
+          <div style="position: relative; height: 185px; width: 100%;">
+            <canvas id="chartClosedOpportunity"></canvas>
+          </div>
+
+          <!-- Company Highlights List -->
+          <div style="margin-top: 10px; padding: 6px 8px; background: #FAF5FF; border: 1px solid #E9D5FF; border-radius: 8px;">
+            <div style="font-size: 0.68rem; font-weight: 800; color: #6B21A8; margin-bottom: 3px;">
+              🌟 ลูกค้าใหม่ที่ปิดยอดได้:
+            </div>
+            <div id="chart-closed-companies-list" style="font-size: 0.70rem; color: #1E293B; line-height: 1.35; max-height: 46px; overflow-y: auto;">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Button -->
+        <button type="button" onclick="filterByNewClosedSales()" 
+          style="margin-top: 10px; width: 100%; padding: 6px 0; background: #7C3AED; color: #FFFFFF; font-weight: 800; font-size: 0.74rem; border: none; border-radius: 6px; cursor: pointer; transition: all 0.15s ease;"
+          onmouseover="this.style.background='#6D28D9'" onmouseout="this.style.background='#7C3AED'">
+          🔍 กรองเฉพาะลูกค้าใหม่ที่ปิดยอดได้
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="filter-toolbar" style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 12px 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <!-- Province Dropdown -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">📍 จังหวัด:</label>
+          <select id="select-province" onchange="onProvinceChange()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none;">
+            <option value="all">ทุกจังหวัด (ทั้งหมด)</option>
+            <option value="อุดรธานี" selected>จ.อุดรธานี</option>
+            <option value="สกลนคร">จ.สกลนคร</option>
+          </select>
+        </div>
+
+        <!-- Filter Status Dropdown -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">🎯 สถานะ:</label>
+          <select id="select-status-filter" onchange="updateDashboard()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none;">
+            <option value="all" selected>ทั้งหมด (ทุกสถานะ)</option>
+            <option value="sweetspot">🎯 โอกาสสูงตรงกัน (AI สูง & เซลส์สูง)</option>
+            <option value="ai_higher">⚠️ AI ประเมินสูง แต่เซลส์ประเมินต่ำ</option>
+            <option value="sales_higher">💎 ตลาดซ่อนเร้น (เซลส์ประเมินสูงกว่า AI)</option>
+            <option value="match_exact">🎯 สอดคล้องกัน (Gap ≤ 15)</option>
+            <option value="assessed">✅ เซลส์เข้าพบและประเมินแล้ว</option>
+            <option value="unassessed">⏳ รอเซลส์เข้าพบหน้างาน (Pending)</option>
+            <option value="high_opp">🟢 1. โอกาสสูงจาก AI (Score ≥ 71)</option>
+            <option value="med_opp">🟠 2. โอกาสปานกลางจาก AI (Score 46-70)</option>
+            <option value="low_opp">⚪ 3. โอกาสน้อยจาก AI (Score < 46)</option>
+            <option value="has_sales2026">🛒 มียอดซื้อ SCG ปี 2026 แล้ว</option>
+            <option value="closed_new_2026">🚀 ปิดยอดขาย NEXTSITE AI (ลูกค้าใหม่ 2026)</option>
+          </select>
+        </div>
+
+        <!-- Sort dropdown -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 800; color: #334155;">📊 เรียงลำดับ:</label>
+          <select id="select-sort-type" onchange="updateDashboard()" style="padding: 7px 12px; font-size: 0.85rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; cursor: pointer; outline: none;">
+            <option value="ai_desc" selected>🟢 คะแนน AI สูงสุด (มาก ➡️ น้อย)</option>
+            <option value="sales_desc">👷 คะแนนประเมินหน้างานสูงสุด</option>
+            <option value="delta_desc">⚡ ผลต่างคะแนน AI vs เซลส์ มากสุด</option>
+            <option value="sales2026_desc">💰 ยอดซื้อปี 2026 สูงสุด</option>
+            <option value="name_asc">🔤 ชื่อบริษัท (ก - ฮ)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div style="position: relative; min-width: 260px;">
+        <input type="text" id="search-input" oninput="updateDashboard()" placeholder="🔍 ค้นหาชื่อบริษัท หรือ อำเภอ..." style="width: 100%; padding: 8px 14px; font-size: 0.85rem; border: 1.5px solid #CBD5E1; border-radius: 8px; background: #F8FAFC; color: #0F172A; outline: none;">
+      </div>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- 3 กราฟที่ประเมินโดย AI (โอกาสสูง, โอกาสปานกลาง, โอกาสน้อย) -->
+    <!-- ============================================================= -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px;" id="ai-three-charts-grid">
+      
+      <!-- กราฟที่ 1: กลุ่มโอกาสสูง (High Opportunity) -->
+      <div class="chart-card" style="border: 2px solid #86EFAC; background: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <!-- Header -->
+          <div class="chart-header" style="border-bottom: 1.5px solid #DCFCE7; padding-bottom: 10px; margin-bottom: 12px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 1.1rem;">🟢</span>
+                <span style="font-size: 0.92rem; font-weight: 900; color: #065F46;">1. กราฟโอกาสสูงจาก AI</span>
+              </div>
+              <div style="font-size: 0.70rem; color: #059669; font-weight: 700; margin-top: 2px;">
+                AI Opportunity Score ≥ 71 คะแนน
+              </div>
+            </div>
+            <span id="badge-chart-high-count" style="background: #DCFCE7; color: #166534; font-size: 0.75rem; font-weight: 900; padding: 3px 8px; border-radius: 9999px; border: 1px solid #BBF7D0;">
+              0 ราย
+            </span>
+          </div>
+
+          <!-- Mini Summary Metrics -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 8px 10px;">
+            <div>
+              <div style="font-size: 0.65rem; color: #166534; font-weight: 700;">AI ประเมินโอกาสสูง</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #15803D; margin-top: 1px;" id="chart-high-total-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+            <div>
+              <div style="font-size: 0.65rem; color: #1E40AF; font-weight: 700;">มียอดขายปี 2026</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #2563EB; margin-top: 1px;" id="chart-high-sales-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+          </div>
+
+          <!-- Chart Canvas -->
+          <div style="position: relative; height: 195px; width: 100%;">
+            <canvas id="chartHighOpportunity"></canvas>
+          </div>
+
+          <!-- Company Highlights List -->
+          <div style="margin-top: 10px; padding: 6px 8px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;">
+            <div style="font-size: 0.68rem; font-weight: 800; color: #475569; margin-bottom: 3px;">
+              🏢 รายชื่อบริษัทในกลุ่มนี้:
+            </div>
+            <div id="chart-high-companies-list" style="font-size: 0.70rem; color: #1E293B; line-height: 1.35; max-height: 46px; overflow-y: auto;">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Button -->
+        <button type="button" onclick="filterByAiTier(3)" 
+          style="margin-top: 10px; width: 100%; padding: 6px 0; background: #16A34A; color: #FFFFFF; font-weight: 800; font-size: 0.74rem; border: none; border-radius: 6px; cursor: pointer; transition: all 0.15s ease;"
+          onmouseover="this.style.background='#15803D'" onmouseout="this.style.background='#16A34A'">
+          🔍 กรองเฉพาะกลุ่มโอกาสสูง
+        </button>
+      </div>
+
+      <!-- กราฟที่ 2: กลุ่มโอกาสปานกลาง (Medium Opportunity) -->
+      <div class="chart-card" style="border: 2px solid #FDE68A; background: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <!-- Header -->
+          <div class="chart-header" style="border-bottom: 1.5px solid #FEF3C7; padding-bottom: 10px; margin-bottom: 12px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 1.1rem;">🟠</span>
+                <span style="font-size: 0.92rem; font-weight: 900; color: #92400E;">2. กราฟโอกาสปานกลางจาก AI</span>
+              </div>
+              <div style="font-size: 0.70rem; color: #D97706; font-weight: 700; margin-top: 2px;">
+                AI Opportunity Score 46 - 70 คะแนน
+              </div>
+            </div>
+            <span id="badge-chart-med-count" style="background: #FEF3C7; color: #92400E; font-size: 0.75rem; font-weight: 900; padding: 3px 8px; border-radius: 9999px; border: 1px solid #FDE68A;">
+              0 ราย
+            </span>
+          </div>
+
+          <!-- Mini Summary Metrics -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 8px 10px;">
+            <div>
+              <div style="font-size: 0.65rem; color: #92400E; font-weight: 700;">AI ประเมินโอกาสกลาง</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #D97706; margin-top: 1px;" id="chart-med-total-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+            <div>
+              <div style="font-size: 0.65rem; color: #1E40AF; font-weight: 700;">มียอดขายปี 2026</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #2563EB; margin-top: 1px;" id="chart-med-sales-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+          </div>
+
+          <!-- Chart Canvas -->
+          <div style="position: relative; height: 195px; width: 100%;">
+            <canvas id="chartMedOpportunity"></canvas>
+          </div>
+
+          <!-- Company Highlights List -->
+          <div style="margin-top: 10px; padding: 6px 8px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;">
+            <div style="font-size: 0.68rem; font-weight: 800; color: #475569; margin-bottom: 3px;">
+              🏢 รายชื่อบริษัทในกลุ่มนี้:
+            </div>
+            <div id="chart-med-companies-list" style="font-size: 0.70rem; color: #1E293B; line-height: 1.35; max-height: 46px; overflow-y: auto;">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Button -->
+        <button type="button" onclick="filterByAiTier(2)" 
+          style="margin-top: 10px; width: 100%; padding: 6px 0; background: #EA580C; color: #FFFFFF; font-weight: 800; font-size: 0.74rem; border: none; border-radius: 6px; cursor: pointer; transition: all 0.15s ease;"
+          onmouseover="this.style.background='#C2410C'" onmouseout="this.style.background='#EA580C'">
+          🔍 กรองเฉพาะกลุ่มโอกาสปานกลาง
+        </button>
+      </div>
+
+      <!-- กราฟที่ 3: กลุ่มโอกาสน้อย / ลูกค้าใหม่ (Low Opportunity / New) -->
+      <div class="chart-card" style="border: 2px solid #CBD5E1; background: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <!-- Header -->
+          <div class="chart-header" style="border-bottom: 1.5px solid #E2E8F0; padding-bottom: 10px; margin-bottom: 12px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 1.1rem;">⚪</span>
+                <span style="font-size: 0.92rem; font-weight: 900; color: #334155;">3. กราฟโอกาสน้อย / ใหม่</span>
+              </div>
+              <div style="font-size: 0.70rem; color: #64748B; font-weight: 700; margin-top: 2px;">
+                AI Opportunity Score < 46 คะแนน
+              </div>
+            </div>
+            <span id="badge-chart-low-count" style="background: #F1F5F9; color: #475569; font-size: 0.75rem; font-weight: 900; padding: 3px 8px; border-radius: 9999px; border: 1px solid #CBD5E1;">
+              0 ราย
+            </span>
+          </div>
+
+          <!-- Mini Summary Metrics -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 10px;">
+            <div>
+              <div style="font-size: 0.65rem; color: #475569; font-weight: 700;">AI ประเมินโอกาสน้อย</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #64748B; margin-top: 1px;" id="chart-low-total-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+            <div>
+              <div style="font-size: 0.65rem; color: #1E40AF; font-weight: 700;">มียอดขายปี 2026</div>
+              <div style="font-size: 1.15rem; font-weight: 900; color: #2563EB; margin-top: 1px;" id="chart-low-sales-num">0 <span style="font-size: 0.75rem;">ราย</span></div>
+            </div>
+          </div>
+
+          <!-- Chart Canvas -->
+          <div style="position: relative; height: 195px; width: 100%;">
+            <canvas id="chartLowOpportunity"></canvas>
+          </div>
+
+          <!-- Company Highlights List -->
+          <div style="margin-top: 10px; padding: 6px 8px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;">
+            <div style="font-size: 0.68rem; font-weight: 800; color: #475569; margin-bottom: 3px;">
+              🏢 รายชื่อบริษัทในกลุ่มนี้:
+            </div>
+            <div id="chart-low-companies-list" style="font-size: 0.70rem; color: #1E293B; line-height: 1.35; max-height: 46px; overflow-y: auto;">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Button -->
+        <button type="button" onclick="filterByAiTier(1)" 
+          style="margin-top: 10px; width: 100%; padding: 6px 0; background: #475569; color: #FFFFFF; font-weight: 800; font-size: 0.74rem; border: none; border-radius: 6px; cursor: pointer; transition: all 0.15s ease;"
+          onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#475569'">
+          🔍 กรองเฉพาะกลุ่มโอกาสน้อย
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Detailed Comparison Table Card -->
+    <div class="chart-card" style="padding: 0; overflow: hidden; margin-bottom: 24px;" id="comparison-table-section">
+      <div style="background: #0F172A; color: #FFFFFF; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <div style="font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span>📋</span>
+          <span id="table-header-title">ตารางเปรียบเทียบความแม่นยำ AI vs ประเมินหน้างานของเซลส์</span>
+          <span style="font-size: 0.80rem; font-weight: 600; color: #94A3B8;" id="table-row-count">(แสดง 0 บริษัท)</span>
+        </div>
+        <div style="font-size: 0.76rem; color: #94A3B8; font-weight: 700;">
+          เกณฑ์ประเมิน: AI Score (0-100) vs ยอดซื้อจริง SCG & ประเมินหน้างาน
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="excel-table">
+          <thead>
+            <tr>
+              <th style="width: 45px; text-align: center;">ลำดับ</th>
+              <th style="width: 24%;">ชื่อบริษัทรับสร้างบ้าน</th>
+              <th style="width: 11%;">อำเภอ / จังหวัด</th>
+              <th style="width: 17%; text-align: left;">🤖 ระดับโอกาส & คะแนน AI</th>
+              <th style="width: 18%; text-align: left;">👷 คะแนนประเมินหน้างาน</th>
+              <th style="width: 14%; text-align: center;">ยอดซื้อ SCG 2026</th>
+              <th style="width: 13%; text-align: center;">⚡ ผลต่าง & ความแม่นยำ</th>
+            </tr>
+          </thead>
+          <tbody id="comparison-table-body">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div style="margin-top: 10px; font-size: 0.76rem; color: #64748B; text-align: center; padding-bottom: 30px;">
+      SCG NEXTSITE AI Intelligence System • ระบบวิเคราะห์และประเมินความแม่นยำศักยภาพธุรกิจรับสร้างบ้าน 2026
+    </div>
+
+  </main>
+
+  <!-- Load Data & Scripts -->
+  <script src="js/data.js?v=20260929_v4"></script>
+  <script src="js/scoring.js?v=102.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js?v=102.0"></script>
+
+  <script>
+    let rawCompanies = [];
+    let processedData = [];
+    let chartAgreementDonutInstance = null;
+    let chartHighInstance = null;
+    let chartMedInstance = null;
+    let chartLowInstance = null;
+    let chartClosedInstance = null;
+
+    // Initialize Dashboard on Load
+    document.addEventListener('DOMContentLoaded', () => {
+      initDashboard();
+    });
+
+    function initDashboard() {
+      // 1. Check province from URL query
+      const urlParams = new URLSearchParams(window.location.search);
+      const provParam = urlParams.get('province');
+      const provSelect = document.getElementById('select-province');
+
+      if (provParam) {
+        if (provParam.toLowerCase().includes('sakon') || provParam === 'สกลนคร') {
+          provSelect.value = 'สกลนคร';
+        } else if (provParam.toLowerCase().includes('udon') || provParam === 'อุดรธานี') {
+          provSelect.value = 'อุดรธานี';
+        } else if (provParam === 'all') {
+          provSelect.value = 'all';
+        }
+      }
+
+      onProvinceChange();
+    }
+
+    function onProvinceChange() {
+      const prov = document.getElementById('select-province').value;
+      const titleEl = document.getElementById('table-header-title');
+      const backBtn = document.getElementById('btn-back-dashboard');
+
+      if (prov === 'สกลนคร') {
+        titleEl.textContent = 'ตารางเปรียบเทียบความแม่นยำ AI vs ประเมินหน้างาน (จ.สกลนคร)';
+        backBtn.href = 'NEX SAKON.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (สกลนคร)';
+      } else if (prov === 'อุดรธานี') {
+        titleEl.textContent = 'ตารางเปรียบเทียบความแม่นยำ AI vs ประเมินหน้างาน (จ.อุดรธานี)';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard (อุดรธานี)';
+      } else {
+        titleEl.textContent = 'ตารางเปรียบเทียบความแม่นยำ AI vs ประเมินหน้างาน (ทุกจังหวัด)';
+        backBtn.href = 'index.html';
+        backBtn.textContent = '⬅️ กลับหน้าหลัก Dashboard';
+      }
+
+      loadDataAndRender();
+    }
+
+    function loadDataAndRender() {
+      // Load Base Companies
+      if (typeof window.UDON_COMPANIES !== 'undefined' && Array.isArray(window.UDON_COMPANIES)) {
+        rawCompanies = JSON.parse(JSON.stringify(window.UDON_COMPANIES));
+      } else {
+        rawCompanies = [];
+      }
+
+      // Process each company with AI Score, Sales Assessment, and Sales Data
+      processedData = rawCompanies.map((c, index) => {
+        // 1. AI Opportunity Score (0 - 100)
+        let aiScore = 0;
+        if (typeof calculateCompany4DimScore === 'function') {
+          const res = calculateCompany4DimScore(c);
+          aiScore = res.totalScore100 || 0;
+        } else if (typeof calculateCompany3DimScore === 'function') {
+          const res = calculateCompany3DimScore(c);
+          aiScore = res.totalScore100 || 0;
+        } else if (typeof c.opportunityScore === 'number') {
+          aiScore = c.opportunityScore;
+        }
+
+        // AI Grade & Color
+        let aiTier = 'โอกาสน้อย';
+        let aiColor = '#64748B';
+        let aiBg = '#F1F5F9';
+        let aiBorder = '#CBD5E1';
+        let aiTierRank = 1; // 1: น้อย (<46), 2: ปานกลาง (46-70), 3: สูง (>=71)
+        
+        if (aiScore >= 71) {
+          aiTier = 'โอกาสสูง';
+          aiColor = '#16A34A';
+          aiBg = '#DCFCE7';
+          aiBorder = '#86EFAC';
+          aiTierRank = 3;
+        } else if (aiScore >= 46) {
+          aiTier = 'โอกาสปานกลาง';
+          aiColor = '#EA580C';
+          aiBg = '#FFEDD5';
+          aiBorder = '#FDBA74';
+          aiTierRank = 2;
+        }
+
+        // 2. Sales Field Assessment (from localStorage)
+        let siteAssess = { site: 0, sales: 0, rel: 0, score: 0, isAssessed: false };
+        if (typeof getCompanySiteAssessment === 'function') {
+          siteAssess = getCompanySiteAssessment(c.id);
+        }
+
+        let salesScore = siteAssess.score || 0;
+        let isAssessed = siteAssess.isAssessed;
+        let salesGrade = '⏳ ยังไม่เข้าพบ';
+        let salesColor = '#64748B';
+        let salesBg = '#F1F5F9';
+        let salesTierRank = 0;
+
+        if (isAssessed) {
+          if (salesScore >= 61) {
+            salesGrade = 'โอกาสสูง';
+            salesColor = '#065F46';
+            salesBg = '#ECFDF5';
+            salesTierRank = 3;
+          } else if (salesScore >= 46) {
+            salesGrade = 'โอกาสปานกลาง';
+            salesColor = '#B45309';
+            salesBg = '#FFFBEB';
+            salesTierRank = 2;
+          } else {
+            salesGrade = 'โอกาสน้อย';
+            salesColor = '#991B1B';
+            salesBg = '#FEF2F2';
+            salesTierRank = 1;
+          }
+        }
+
+        // 3. Score Gap / Delta (AI - Sales)
+        let delta = isAssessed ? (aiScore - salesScore) : null;
+
+        // Agreement / Match Status
+        let matchStatus = 'pending'; // 'exact', 'close', 'divergent', 'pending'
+        let matchLabel = '⏳ รอเข้าพบ';
+        let matchColor = '#64748B';
+        let matchBg = '#F1F5F9';
+
+        if (isAssessed) {
+          const isTierMatch = (aiTierRank === 3 && salesTierRank >= 3) ||
+                              (aiTierRank === 2 && salesTierRank === 2) ||
+                              (aiTierRank === 1 && salesTierRank === 1);
+
+          const absDelta = Math.abs(delta);
+
+          if (isTierMatch || absDelta <= 15) {
+            matchStatus = 'exact';
+            matchLabel = '🎯 สอดคล้องกัน';
+            matchColor = '#059669';
+            matchBg = '#ECFDF5';
+          } else if (absDelta <= 30) {
+            matchStatus = 'close';
+            matchLabel = '⚠️ ต่างกันปานกลาง';
+            matchColor = '#D97706';
+            matchBg = '#FFFBEB';
+          } else {
+            matchStatus = 'divergent';
+            matchLabel = '⚡ ต่างกันมาก';
+            matchColor = '#DC2626';
+            matchBg = '#FEF2F2';
+          }
+        }
+
+        // 4. Sales Data (2025 vs 2026)
+        const sales2025 = Number(c.sales2025) || 0;
+        const sales2026 = Number(c.sales2026) || 0;
+        const hasSales2026 = sales2026 > 0;
+        const hasSales2025 = sales2025 > 0;
+        const isNewClosedSales2026 = hasSales2026 && !hasSales2025; // Newly closed in 2026 (0 in 2025)
+
+        // 5. Projects count & Pipeline Value
+        let projectsCount = 0;
+        if (Array.isArray(c.projects)) {
+          projectsCount = c.projects.length;
+        } else if (typeof c.activeProjects === 'number') {
+          projectsCount = c.activeProjects;
+        }
+
+        let pipelineValue = 0;
+        if (typeof calculateCompanyPipelineValue === 'function') {
+          pipelineValue = calculateCompanyPipelineValue(c);
+        } else {
+          pipelineValue = projectsCount * 359000;
+        }
+
+        return {
+          ...c,
+          originalIndex: index + 1,
+          aiScore,
+          aiTier,
+          aiColor,
+          aiBg,
+          aiBorder,
+          aiTierRank,
+          salesScore,
+          isAssessed,
+          salesGrade,
+          salesColor,
+          salesBg,
+          salesTierRank,
+          siteAssess,
+          delta,
+          matchStatus,
+          matchLabel,
+          matchColor,
+          matchBg,
+          sales2025,
+          sales2026,
+          hasSales2026,
+          hasSales2025,
+          isNewClosedSales2026,
+          projectsCount,
+          pipelineValue
+        };
+      });
+
+      updateDashboard();
+    }
+
+    function updateDashboard() {
+      const selectedProv = document.getElementById('select-province').value;
+      const statusFilter = document.getElementById('select-status-filter').value;
+      const sortType = document.getElementById('select-sort-type').value;
+      const searchQuery = (document.getElementById('search-input').value || '').trim().toLowerCase();
+
+      // 1. Province pool for KPIs and 4 Charts
+      const provPool = processedData.filter(item => {
+        if (selectedProv === 'all') return true;
+        const prov = item.province || 'อุดรธานี';
+        return prov.includes(selectedProv);
+      });
+
+      // 2. Filter Data for Table
+      let filtered = provPool.filter(item => {
+        // Status Filter
+        if (statusFilter === 'sweetspot' && (!item.isAssessed || item.aiScore < 71 || item.salesScore < 60)) return false;
+        if (statusFilter === 'ai_higher' && (!item.isAssessed || item.aiScore < 71 || item.salesScore >= 60)) return false;
+        if (statusFilter === 'sales_higher' && (!item.isAssessed || item.aiScore >= 71 || item.salesScore < 60)) return false;
+        if (statusFilter === 'match_exact' && item.matchStatus !== 'exact') return false;
+        if (statusFilter === 'assessed' && !item.isAssessed) return false;
+        if (statusFilter === 'unassessed' && item.isAssessed) return false;
+        if (statusFilter === 'high_opp' && item.aiTierRank !== 3) return false;
+        if (statusFilter === 'med_opp' && item.aiTierRank !== 2) return false;
+        if (statusFilter === 'low_opp' && item.aiTierRank !== 1) return false;
+        if (statusFilter === 'has_sales2026' && !item.hasSales2026) return false;
+        if (statusFilter === 'closed_new_2026' && !item.isNewClosedSales2026) return false;
+
+        // Search Query
+        if (searchQuery) {
+          const name = (item.name || '').toLowerCase();
+          const dist = (item.district || '').toLowerCase();
+          if (!name.includes(searchQuery) && !dist.includes(searchQuery)) return false;
+        }
+
+        return true;
+      });
+
+      // 3. Sort Data
+      filtered.sort((a, b) => {
+        if (sortType === 'ai_desc') {
+          return b.aiScore - a.aiScore;
+        } else if (sortType === 'sales_desc') {
+          return b.salesScore - a.salesScore;
+        } else if (sortType === 'delta_desc') {
+          const absA = a.delta !== null ? Math.abs(a.delta) : -1;
+          const absB = b.delta !== null ? Math.abs(b.delta) : -1;
+          return absB - absA;
+        } else if (sortType === 'sales2026_desc') {
+          return b.sales2026 - a.sales2026;
+        } else if (sortType === 'name_asc') {
+          return (a.name || '').localeCompare(b.name || '', 'th');
+        }
+        return b.aiScore - a.aiScore;
+      });
+
+      // 4. Render 4 Top KPIs & Agreement Charts
+      renderKpisOverview(provPool);
+      renderAgreementCharts(provPool);
+
+      // 5. Render 4 Charts (3 AI Tiers + 1 New Conversion Chart)
+      renderFourAiCharts(provPool);
+
+      // 6. Render Detailed Table
+      renderTable(filtered);
+    }
+
+    function filterByStatus(statusKey) {
+      const select = document.getElementById('select-status-filter');
+      select.value = statusKey;
+      updateDashboard();
+      
+      const el = document.getElementById('comparison-table-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function filterByAiTier(tierRank) {
+      const select = document.getElementById('select-status-filter');
+      if (tierRank === 3) {
+        select.value = 'high_opp';
+      } else if (tierRank === 2) {
+        select.value = 'med_opp';
+      } else if (tierRank === 1) {
+        select.value = 'low_opp';
+      } else {
+        select.value = 'all';
+      }
+      updateDashboard();
+      
+      const el = document.getElementById('comparison-table-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function filterByNewClosedSales() {
+      const select = document.getElementById('select-status-filter');
+      select.value = 'closed_new_2026';
+      updateDashboard();
+      
+      const el = document.getElementById('comparison-table-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function renderKpisOverview(items) {
+      const total = items.length;
+      const assessed = items.filter(i => i.isAssessed);
+      const unassessed = items.filter(i => !i.isAssessed);
+      const exactMatches = assessed.filter(i => i.matchStatus === 'exact');
+      
+      const matchRate = assessed.length > 0 ? Math.round((exactMatches.length / assessed.length) * 100) : 0;
+      const coverageRate = total > 0 ? Math.round((assessed.length / total) * 100) : 0;
+
+      // Avg scores
+      let totalAi = 0;
+      let totalSales = 0;
+      assessed.forEach(i => {
+        totalAi += i.aiScore;
+        totalSales += i.salesScore;
+      });
+      const avgAi = assessed.length > 0 ? (totalAi / assessed.length).toFixed(1) : '0';
+      const avgSales = assessed.length > 0 ? (totalSales / assessed.length).toFixed(1) : '0';
+      const avgDelta = assessed.length > 0 ? ((totalAi - totalSales) / assessed.length).toFixed(1) : '0';
+
+      // Sweet spot (AI high >= 71 & Sales high >= 60)
+      const sweetspot = assessed.filter(i => i.aiScore >= 71 && i.salesScore >= 60);
+
+      // Update 4 Top KPI DOM Elements
+      document.getElementById('kpi-match-rate').textContent = `${matchRate}%`;
+      document.getElementById('kpi-match-count').textContent = `(${exactMatches.length}/${assessed.length} รายที่เข้าพบ)`;
+      document.getElementById('kpi-assessed-count').textContent = assessed.length;
+      document.getElementById('kpi-total-companies').textContent = `/ ${total} ราย`;
+      document.getElementById('kpi-coverage-percent').textContent = `เข้าพบแล้ว ${coverageRate}% • รอเข้าพบ ${unassessed.length} ราย`;
+      
+      document.getElementById('kpi-avg-ai').textContent = avgAi;
+      document.getElementById('kpi-avg-sales').textContent = `${avgSales}%`;
+      document.getElementById('kpi-delta-score').textContent = `ผลต่างเฉลี่ย: Δ ${Number(avgDelta) > 0 ? '+' : ''}${avgDelta} คะแนน`;
+      
+      document.getElementById('kpi-sweetspot-count').textContent = sweetspot.length;
+    }
+
+    function renderAgreementCharts(items) {
+      const assessed = items.filter(i => i.isAssessed);
+      const unassessed = items.filter(i => !i.isAssessed);
+      
+      const exactMatches = assessed.filter(i => i.matchStatus === 'exact');
+      const aiHigher = assessed.filter(i => i.aiScore >= 71 && i.salesScore < 60);
+      const salesHigher = assessed.filter(i => i.aiScore < 71 && i.salesScore >= 60);
+
+      const matchRate = assessed.length > 0 ? Math.round((exactMatches.length / assessed.length) * 100) : 0;
+      
+      // Update Donut labels and badges
+      document.getElementById('badge-agreement-rate').textContent = `ความแม่นยำ ${matchRate}%`;
+      document.getElementById('donut-center-val').textContent = `${matchRate}%`;
+      document.getElementById('legend-match-count').textContent = exactMatches.length;
+      document.getElementById('legend-ai-higher-count').textContent = aiHigher.length;
+      document.getElementById('legend-sales-higher-count').textContent = salesHigher.length;
+      document.getElementById('legend-unassessed-count').textContent = unassessed.length;
+
+      // Render Donut Chart
+      if (chartAgreementDonutInstance) chartAgreementDonutInstance.destroy();
+      const ctxDonut = document.getElementById('chartAgreementDonut').getContext('2d');
+      
+      chartAgreementDonutInstance = new Chart(ctxDonut, {
+        type: 'doughnut',
+        data: {
+          labels: ['🎯 ตรงกัน (Gap ≤15)', '⚠️ AI สูงกว่าเซลส์', '💎 เซลส์สูงกว่า AI', '⏳ รอเข้าพบ'],
+          datasets: [{
+            data: [exactMatches.length, aiHigher.length, salesHigher.length, unassessed.length],
+            backgroundColor: ['#10B981', '#F59E0B', '#8B5CF6', '#E2E8F0'],
+            borderWidth: 2,
+            borderColor: '#FFFFFF',
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => ` ${context.label}: ${context.raw} ราย`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderFourAiCharts(pool) {
+      // 1. Group Data by Tier
+      const highList = pool.filter(c => c.aiTierRank === 3);
+      const medList = pool.filter(c => c.aiTierRank === 2);
+      const lowList = pool.filter(c => c.aiTierRank === 1);
+
+      const highSales = highList.filter(c => c.hasSales2026).length;
+      const medSales = medList.filter(c => c.hasSales2026).length;
+      const lowSales = lowList.filter(c => c.hasSales2026).length;
+
+      // 2. Newly closed sales in 2026 (0 in 2025, > 0 in 2026)
+      const closedList = pool.filter(c => c.isNewClosedSales2026);
+      const closedSalesSum = closedList.reduce((sum, c) => sum + (c.sales2026 || 0), 0);
+
+      // Helper to build company names tags
+      const buildCompanyTags = (list) => {
+        if (!list || list.length === 0) {
+          return '<span style="color: #94A3B8; font-style: italic;">ไม่มีบริษัทในกลุ่มนี้</span>';
+        }
+        return list.map(c => {
+          const salesBadge = c.hasSales2026 
+            ? `<span style="background: #2563EB; color: #FFF; font-size: 0.65rem; padding: 0 4px; border-radius: 3px; font-weight: 800;">2026</span>`
+            : '';
+          return `<span style="display: inline-flex; align-items: center; gap: 4px; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 2px 6px; border-radius: 4px; margin: 2px 3px 2px 0; font-weight: 700;">
+            ${c.name} ${salesBadge}
+          </span>`;
+        }).join('');
+      };
+
+      const buildClosedCompanyTags = (list) => {
+        if (!list || list.length === 0) {
+          return '<span style="color: #94A3B8; font-style: italic;">ยังไม่มีลูกค้าใหม่ที่ปิดยอดได้</span>';
+        }
+        return list.map(c => {
+          return `<span style="display: inline-flex; align-items: center; gap: 4px; background: #FFFFFF; border: 1.5px solid #DDD6FE; padding: 3px 8px; border-radius: 6px; margin: 2px 3px 2px 0; font-weight: 700; color: #6B21A8;">
+            ${c.name}
+          </span>`;
+        }).join('');
+      };
+
+      // Update Mini Metrics & Highlights DOM
+      document.getElementById('badge-chart-high-count').textContent = `${highList.length} ราย`;
+      document.getElementById('chart-high-total-num').innerHTML = `${highList.length} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-high-sales-num').innerHTML = `${highSales} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-high-companies-list').innerHTML = buildCompanyTags(highList);
+
+      document.getElementById('badge-chart-med-count').textContent = `${medList.length} ราย`;
+      document.getElementById('chart-med-total-num').innerHTML = `${medList.length} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-med-sales-num').innerHTML = `${medSales} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-med-companies-list').innerHTML = buildCompanyTags(medList);
+
+      document.getElementById('badge-chart-low-count').textContent = `${lowList.length} ราย`;
+      document.getElementById('chart-low-total-num').innerHTML = `${lowList.length} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-low-sales-num').innerHTML = `${lowSales} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-low-companies-list').innerHTML = buildCompanyTags(lowList);
+
+      // Card 4: Closed sales DOM
+      document.getElementById('badge-chart-closed-count').textContent = `${closedList.length} ราย`;
+      document.getElementById('chart-closed-total-num').innerHTML = `${closedList.length} <span style="font-size: 0.75rem;">ราย</span>`;
+      document.getElementById('chart-closed-companies-list').innerHTML = buildClosedCompanyTags(closedList);
+
+      // Helper function to create a 2-bar dual chart
+      const createDualBarChart = (canvasId, existingChart, labelAi, countAi, countSales, barColorAi) => {
+        if (existingChart) existingChart.destroy();
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        const maxVal = Math.max(countAi, countSales, 4);
+
+        return new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['AI ประเมิน', 'ยอดขาย 2026'],
+            datasets: [{
+              label: 'จำนวนบริษัท (ราย)',
+              data: [countAi, countSales],
+              backgroundColor: [barColorAi, '#2563EB'],
+              borderRadius: 6,
+              barThickness: 32,
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: (context) => {
+                    const label = context.dataIndex === 0 ? labelAi : 'บริษัทที่มียอดซื้อ SCG ในปี 2026 แล้ว';
+                    return ` ${label}: ${context.raw} ราย`;
+                  }
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: Math.ceil(maxVal * 1.2),
+                ticks: {
+                  stepSize: 1,
+                  font: { family: 'Prompt', size: 10, weight: '700' },
+                  color: '#64748B'
+                },
+                grid: {
+                  color: '#F1F5F9'
+                }
+              },
+              x: {
+                grid: { display: false },
+                ticks: {
+                  font: { family: 'Prompt', size: 10, weight: '800' },
+                  color: '#334155'
+                }
+              }
+            }
+          }
+        });
+      };
+
+      // Create 3 Dual-Bar Chart instances
+      chartHighInstance = createDualBarChart(
+        'chartHighOpportunity', 
+        chartHighInstance, 
+        'AI ประเมินโอกาสสูง', 
+        highList.length, 
+        highSales, 
+        '#16A34A'
+      );
+
+      chartMedInstance = createDualBarChart(
+        'chartMedOpportunity', 
+        chartMedInstance, 
+        'AI ประเมินโอกาสปานกลาง', 
+        medList.length, 
+        medSales, 
+        '#EA580C'
+      );
+
+      chartLowInstance = createDualBarChart(
+        'chartLowOpportunity', 
+        chartLowInstance, 
+        'AI ประเมินโอกาสน้อย', 
+        lowList.length, 
+        lowSales, 
+        '#64748B'
+      );
+
+      // Create Chart 4: Single Bar Chart for NEXTSITE AI Closed Sales
+      if (chartClosedInstance) chartClosedInstance.destroy();
+      const ctxClosed = document.getElementById('chartClosedOpportunity').getContext('2d');
+      const maxClosedVal = Math.max(closedList.length, 4);
+
+      chartClosedInstance = new Chart(ctxClosed, {
+        type: 'bar',
+        data: {
+          labels: ['ปิดยอดใหม่ 2026'],
+          datasets: [{
+            label: 'ลูกค้าใหม่ที่ปิดยอดได้ (ราย)',
+            data: [closedList.length],
+            backgroundColor: '#7C3AED',
+            borderRadius: 8,
+            barThickness: 44,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  return ` ปิดยอดขายสำเร็จ: ${context.raw} ราย (ลูกค้าใหม่ปี 2026)`;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: Math.ceil(maxClosedVal * 1.2),
+              ticks: {
+                stepSize: 1,
+                font: { family: 'Prompt', size: 10, weight: '700' },
+                color: '#64748B'
+              },
+              grid: {
+                color: '#F1F5F9'
+              }
+            },
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { family: 'Prompt', size: 10, weight: '800' },
+                color: '#6B21A8'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderTable(items) {
+      const tbody = document.getElementById('comparison-table-body');
+      document.getElementById('table-row-count').textContent = `(แสดง ${items.length} บริษัท)`;
+
+      if (items.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 36px; color: #64748B; font-weight: 700;">
+              🔍 ไม่พบข้อมูลบริษัทตามเงื่อนไขที่เลือก
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      let html = '';
+      items.forEach((item, index) => {
+        // Delta Badge
+        let deltaHtml = `<span style="color: #94A3B8; font-weight: 600;">—</span>`;
+        if (item.isAssessed) {
+          const d = item.delta;
+          if (d > 0) {
+            deltaHtml = `<span style="color: #16A34A; font-weight: 800; background: #DCFCE7; padding: 2px 7px; border-radius: 6px; font-size: 0.78rem;">+${d} (AI สูงกว่า)</span>`;
+          } else if (d < 0) {
+            deltaHtml = `<span style="color: #2563EB; font-weight: 800; background: #EFF6FF; padding: 2px 7px; border-radius: 6px; font-size: 0.78rem;">${d} (เซลส์สูงกว่า)</span>`;
+          } else {
+            deltaHtml = `<span style="color: #059669; font-weight: 800; background: #ECFDF5; padding: 2px 7px; border-radius: 6px; font-size: 0.78rem;">0 (เท่ากันพอดี)</span>`;
+          }
+        }
+
+        // Sales Assessment HTML
+        let salesHtml = '';
+        if (item.isAssessed) {
+          salesHtml = `
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="color: ${item.salesColor}; font-size: 0.85rem;">●</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: ${item.salesColor};">ประเมินหน้างาน: ${item.salesScore}%</span>
+                <span class="badge-pill" style="background: ${item.salesBg}; color: ${item.salesColor}; font-size: 0.70rem;">${item.salesGrade}</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 0.70rem; color: #64748B;">
+                <span>ไซต์: ${item.siteAssess.site}/4</span>
+                <span>•</span>
+                <span>ติดตาม: ${item.siteAssess.sales}/4</span>
+                <span>•</span>
+                <span>สัมพันธ์: ${item.siteAssess.rel}/4</span>
+              </div>
+            </div>
+          `;
+        } else {
+          salesHtml = `
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.80rem; color: #64748B; font-weight: 700;">
+              <span style="color: #94A3B8;">●</span>
+              <span>ประเมินหน้างาน:</span>
+              <span class="badge-pill" style="background: #F1F5F9; color: #64748B; font-size: 0.72rem;">⏳ ยังไม่เข้าพบ</span>
+            </div>
+          `;
+        }
+
+        // 2026 Sales Status (Display only 'มียอดซื้อขาย' without monetary numbers)
+        const s2026 = item.sales2026;
+        let s2026Html = `<span style="color: #94A3B8; font-size: 0.80rem; font-weight: 600;">— (ยังไม่ซื้อ)</span>`;
+        if (s2026 > 0) {
+          if (item.isNewClosedSales2026) {
+            s2026Html = `
+              <span class="badge-pill" style="background: #FAF5FF; color: #7C3AED; border: 1.5px solid #DDD6FE; font-size: 0.78rem; font-weight: 800; padding: 4px 10px; display: inline-flex; align-items: center; gap: 4px;">
+                🚀 มียอดซื้อขาย (ปิดยอดใหม่)
+              </span>
+            `;
+          } else {
+            s2026Html = `
+              <span class="badge-pill" style="background: #EFF6FF; color: #1D4ED8; border: 1.5px solid #BFDBFE; font-size: 0.78rem; font-weight: 800; padding: 4px 10px; display: inline-flex; align-items: center; gap: 4px;">
+                🛒 มียอดซื้อขาย
+              </span>
+            `;
+          }
+        }
+
+        html += `
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #475569;">#${index + 1}</td>
+            <td>
+              <div style="font-weight: 800; color: #0F172A; font-size: 0.90rem;">${item.name}</div>
+              <div style="font-size: 0.72rem; color: #64748B; margin-top: 2px;">
+                ${item.type || 'บริษัทรับสร้างบ้าน'} • 📞 ${item.phone || 'ไม่มีเบอร์โทร'}
+              </div>
+            </td>
+            <td>
+              <div style="font-size: 0.82rem; font-weight: 700; color: #334155;">${item.district || 'เมือง'}</div>
+              <div style="font-size: 0.70rem; color: #64748B;">จ.${item.province || 'อุดรธานี'}</div>
+            </td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span class="badge-pill" style="background: ${item.aiBg}; color: ${item.aiColor}; border: 1px solid ${item.aiBorder}; font-size: 0.75rem; font-weight: 800;">
+                  ● ${item.aiTier} (${item.aiScore} คะแนน)
+                </span>
+              </div>
+              <div style="margin-top: 3px; font-size: 0.70rem; color: #64748B;">
+                วิเคราะห์โดย NEXTSITE AI
+              </div>
+            </td>
+            <td>
+              ${salesHtml}
+            </td>
+            <td style="text-align: center;">
+              ${s2026Html}
+            </td>
+            <td style="text-align: center;">
+              <div style="margin-bottom: 4px;">${deltaHtml}</div>
+              <span class="badge-pill" style="background: ${item.matchBg}; color: ${item.matchColor}; border: 1px solid ${item.matchColor}20; font-size: 0.70rem;">
+                ${item.matchLabel}
+              </span>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    // Export Accuracy Report to CSV
+    function exportAccuracyReportCsv() {
+      const selectedProv = document.getElementById('select-province').value;
+      const provPool = processedData.filter(item => selectedProv === 'all' || (item.province || 'อุดรธานี').includes(selectedProv));
+
+      let csv = '\uFEFF'; // UTF-8 BOM
+      csv += 'ลำดับ,ชื่อบริษัทรับสร้างบ้าน,อำเภอ,จังหวัด,คะแนน AI,ระดับโอกาส AI,ประเมินหน้างาน (%),ระดับการประเมิน,คะแนนไซต์งาน (0-4),คะแนนติดตามขาย (0-4),คะแนนความสัมพันธ์ (0-4),ผลต่าง (AI - Sales),ยอดซื้อ SCG 2025,ยอดซื้อ SCG 2026,สถานะลูกค้าใหม่ปิดยอด 2026,สถานะความแม่นยำ\n';
+
+      provPool.forEach((item, idx) => {
+        const row = [
+          idx + 1,
+          `"${(item.name || '').replace(/"/g, '""')}"`,
+          `"${item.district || ''}"`,
+          `"${item.province || ''}"`,
+          item.aiScore,
+          `"${item.aiTier}"`,
+          item.isAssessed ? `${item.salesScore}%` : 'ยังไม่เข้าพบ',
+          `"${item.salesGrade}"`,
+          item.siteAssess.site,
+          item.siteAssess.sales,
+          item.siteAssess.rel,
+          item.isAssessed ? item.delta : 'N/A',
+          item.sales2025,
+          item.sales2026,
+          item.isNewClosedSales2026 ? 'ลูกค้าใหม่ปิดยอดได้' : (item.hasSales2026 ? 'ลูกค้าเดิมมียอดซื้อ' : 'ยังไม่มียอดซื้อ'),
+          `"${item.matchLabel}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `NEXTSITE_AI_vs_Sales_Accuracy_Report_${selectedProv}_${new Date().toISOString().slice(0,10)}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+
+</body>
+</html>
