@@ -4763,7 +4763,7 @@
         "address":  "151 ม.2 ถ.เลี่ยงเมืองอุดร-หนองบัวลำภู ต.บ้านจั่น อ.เมือง จ.อุดรธานี 41000",
         "phone":  "042-113301, 083-599-2109",
         "contactPerson":  "ทีมงานวิศวกรและฝ่ายขาย ยูดี.โฮมส์ (083-599-2109)",
-        "totalProjects":  8,
+        "totalProjects":  7,
         "newProjectsThisMonth":  4,
         "totalValueMillion":  17.8,
         "growthRate":  50.0,
@@ -4778,7 +4778,7 @@
                                "groundbreak":  4,
                                "foundation":  0,
                                "structure":  2,
-                               "finishing":  2
+                               "finishing":  1
                            },
         "latestTimelineStage":  "groundbreak",
         "revenuePotentialText":  "฿2.8M",
@@ -5053,34 +5053,6 @@
                                              "qty":  "180 ถุง",
                                              "estCost":  "฿21,600",
                                              "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-11-8",
-                             "name":  "โครงการบ้านพักอาศัย อ.กุดจับ (เตรียมส่งมอบบ้าน)",
-                             "location":  "อ.กุดจับ จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "กุดจับ",
-                             "gps":  [
-                                         17.4321,
-                                         102.5643
-                                     ],
-                             "stage":  "งานสถาปัตย์ ฉาบปูน ปูกระเบื้อง และตกแต่ง",
-                             "stageKey":  "finishing",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  95,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "วันนี้…บ้านที่เคยติดตามความคืบหน้าผ่านหน้าจอ กำลังเข้าสู่ขั้นตอน เตรียมส่งมอบให้เจ้าของบ้านแล้วค่ะ 🏡✨\n📍 อ.กุดจับ จ.อุดรธานี",
-                             "postedTime":  "2026-09-24T06:40:11.000Z",
-                             "postUrl":  "https://www.facebook.com/UD.HomeEn/posts/pfbid025D8L8B4vS1T9Y4V2Q7K3vX5Z6",
-                             "boq":  [
-                                         {
-                                             "sku":  "บริการตรวจเช็กและดูแลระบบบ้าน SCG",
-                                             "qty":  "1 งาน",
-                                             "estCost":  "฿15,000",
-                                             "urgency":  "ตามกำหนด"
                                          }
                                      ]
                          }
@@ -7479,8 +7451,8 @@
                             ],
         "opportunityScore":  99,
         "scgCode":  "10895400",
-        "sales2025":  0.0,
-        "sales2026":  0.0,
+        "sales2025":  800000,
+        "sales2026":  1000000,
         "tag":  "strategic",
         "projects":  [
                          {
