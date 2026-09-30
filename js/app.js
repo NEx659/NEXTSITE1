@@ -3817,9 +3817,9 @@ function openCompanyProjectsModal(companyOrId) {
 }
 
 /**
- * Share Company Deep Analysis Summary directly to LINE & Copy to Clipboard
+ * Share Company Deep Analysis Summary directly to LINE & Download Modal Screenshot
  */
-function shareCompanyToLine(companyOrId) {
+async function shareCompanyToLine(companyOrId) {
   let comp = activeSelectedCompany;
   if (companyOrId) {
     comp = typeof companyOrId === 'string' ? allCompanies.find(c => c.id === companyOrId) : companyOrId;
@@ -3827,8 +3827,22 @@ function shareCompanyToLine(companyOrId) {
   if (!comp) return;
 
   const compName = cleanThaiText(comp.name) || comp.name || '';
+  const shareBtn = document.getElementById('btn-modal-share-line');
+  const originalBtnHtml = shareBtn ? shareBtn.innerHTML : '';
 
-  // 1. Google Maps Navigation URL
+  // 1. Show processing state on button
+  if (shareBtn) {
+    shareBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite; flex-shrink: 0;">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" style="opacity: 0.3;"></circle>
+        <path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" style="opacity: 0.9;"></path>
+      </svg>
+      <span>📸 กำลังแคปรูปและเปิด LINE...</span>
+    `;
+    shareBtn.disabled = true;
+  }
+
+  // 2. Format LINE Message Text
   let mapsUrl = (typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[comp.id]) || comp.googleMapsUrl || comp.gmaps;
   if (!mapsUrl && comp.coordinates && comp.coordinates.length === 2 && comp.coordinates[0]) {
     mapsUrl = `https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`;
@@ -3836,12 +3850,11 @@ function shareCompanyToLine(companyOrId) {
     mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((comp.name || '') + ' ' + (comp.address || comp.district || 'อุดรธานี'))}`;
   }
 
-  // 2. SCG Sales History (2025 vs 2026)
   const s25 = Number(comp.sales2025) || 0;
   const s26 = Number(comp.sales2026) || 0;
   let salesText = '';
   if (s25 > 0 && s26 > 0) {
-    salesText = `มีประวัติยอดซื้อ SCG ปี 2025และปี2026`;
+    salesText = `มีประวัติยอดซื้อ SCG ปี 2025 และปี 2026`;
   } else if (s25 > 0) {
     salesText = `มีประวัติยอดซื้อ SCG ปี 2025`;
   } else if (s26 > 0) {
@@ -3850,7 +3863,6 @@ function shareCompanyToLine(companyOrId) {
     salesText = `ยังไม่มีประวัติยอดซื้อ SCG`;
   }
 
-  // 3. Active Projects Count & Stage Breakdown
   const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
   const projectCount = projects.length || comp.totalProjects || 0;
 
@@ -3878,7 +3890,6 @@ function shareCompanyToLine(companyOrId) {
   }
   const stageDesc = stageSummary.length > 0 ? stageSummary.join(', ') : 'รอตรวจสอบไซต์งาน';
 
-  // 4. Reference Facebook Post URLs
   let postLines = [];
   if (projects.length > 0) {
     projects.forEach(p => {
@@ -3892,21 +3903,16 @@ function shareCompanyToLine(companyOrId) {
   }
   const postsBlock = postLines.join('\n\n');
 
-  // 5. Product Opportunities
   let productOpportunities = 'ปูนซีเมนต์ไฮดรอลิก SCG, คอนกรีตผสมเสร็จ CPAC';
   const hasFinishing = projects.some(p => (p.stageKey || '').includes('finish') || (p.stage || '').includes('ตกแต่ง'));
   if (hasFinishing) {
     productOpportunities = 'แผ่นสมาร์ทบอร์ด SCG, ฝ้าเพดาน SCG, ปูนฉาบตกแต่ง SCG, สุขภัณฑ์ COTTO';
   }
 
-  // 6. Contact Phone
   const phone = comp.phone || '-';
-
-  // 7. DBD Tax ID
   const dbdData = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
   const taxId = (dbdData && dbdData.taxId) ? dbdData.taxId : (comp.taxId || '-');
 
-  // Assemble full text
   const lines = [
     `🏗️ [ข้อมูลบริษัทเป้าหมาย - NEXTSITE]`,
     `━━━━━━━━━━━━━━━━━━━━`,
@@ -3929,10 +3935,89 @@ function shareCompanyToLine(companyOrId) {
 
   const shareText = lines.join('\n');
 
-  // Device detection: Mobile vs Desktop
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '') || (window.innerWidth <= 768);
+  // 3. Capture Modal Screenshot & Download PNG
+  let capturedDataUrl = null;
+  let capturedBlob = null;
+  let imageSaved = false;
 
-  // 1. Copy to clipboard (works on both Mobile and Desktop)
+  try {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+  } catch (e) {}
+
+  const targetEl = document.querySelector('#company-detail-modal .modal-content') || document.querySelector('.modal-content');
+  if (targetEl) {
+    // Primary: html-to-image
+    if (typeof htmlToImage !== 'undefined' && htmlToImage.toPng) {
+      try {
+        capturedDataUrl = await htmlToImage.toPng(targetEl, {
+          pixelRatio: 2,
+          cacheBust: true,
+          backgroundColor: '#FFFFFF',
+          filter: (node) => {
+            if (node.classList && (node.classList.contains('modal-close-btn') || node.classList.contains('hide-in-export') || node.id === 'line-share-toast')) {
+              return false;
+            }
+            return true;
+          }
+        });
+        if (capturedDataUrl) {
+          const res = await fetch(capturedDataUrl);
+          capturedBlob = await res.blob();
+        }
+      } catch (errHtmlToImg) {
+        console.warn('⚠️ htmlToImage modal capture failed, switching to html2canvas:', errHtmlToImg);
+      }
+    }
+
+    // Fallback: html2canvas
+    if (!capturedDataUrl && typeof html2canvas === 'function') {
+      try {
+        const canvas = await html2canvas(targetEl, {
+          scale: 2,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: '#FFFFFF',
+          logging: false,
+          ignoreElements: (el) => el.classList && (el.classList.contains('modal-close-btn') || el.classList.contains('hide-in-export') || el.id === 'line-share-toast')
+        });
+        capturedDataUrl = canvas.toDataURL('image/png', 0.95);
+        capturedBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      } catch (errFallback) {
+        console.warn('⚠️ Fallback canvas capture failed:', errFallback);
+      }
+    }
+  }
+
+  // Trigger download if image captured successfully
+  if (capturedDataUrl) {
+    try {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = capturedDataUrl;
+      const cleanName = (comp.name || 'NEXTSITE').replace(/[\/\\:*?"<>|]/g, '_');
+      downloadLink.download = `รายงานชี้เป้า_${cleanName}.png`;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      imageSaved = true;
+    } catch (e) {
+      console.warn('Screenshot download error:', e);
+    }
+  }
+
+  // Copy Image to clipboard in background if supported
+  if (capturedBlob && navigator.clipboard && window.ClipboardItem) {
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': capturedBlob })
+      ]);
+    } catch (e) {
+      console.warn('Clipboard image write info:', e);
+    }
+  }
+
+  // 4. Copy share text to clipboard
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(shareText).catch(e => console.warn('Clipboard write error', e));
   } else {
@@ -3948,29 +4033,102 @@ function shareCompanyToLine(companyOrId) {
     } catch(e) {}
   }
 
-  // 2. Open LINE according to device
-  if (isMobile) {
-    // 📱 Mobile: Use LINE Mobile URL scheme
-    const lineUrl = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
-    showLineShareToast(true);
-    window.location.href = lineUrl;
-  } else {
-    // 💻 Desktop / PC: Use line://msg/text/ to trigger LINE PC app directly
-    const linePcProtocolUrl = `line://msg/text/${encodeURIComponent(shareText)}`;
-    showLineShareToast(false);
-    
-    // Trigger LINE PC application without opening unnecessary web browser tabs
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = linePcProtocolUrl;
-    document.body.appendChild(iframe);
-    setTimeout(() => {
-      try { document.body.removeChild(iframe); } catch(e) {}
-    }, 2000);
+  // 5. Open LINE Direct Message Preview Modal & Trigger Share
+  openLineShareModal(comp, shareText, imageSaved);
+
+  // 6. Restore button state
+  setTimeout(() => {
+    if (shareBtn) {
+      shareBtn.innerHTML = originalBtnHtml || '<span>แชร์เข้า LINE</span>';
+      shareBtn.disabled = false;
+    }
+  }, 1000);
+}
+
+function openLineShareModal(comp, shareText, imageSaved) {
+  const modal = document.getElementById('line-share-preview-modal');
+  const textarea = document.getElementById('line-share-textarea');
+  const subtitle = document.getElementById('line-modal-subtitle');
+  const statusEl = document.getElementById('line-image-status-text');
+
+  if (textarea) textarea.value = shareText;
+  if (subtitle) subtitle.textContent = `บริษัท: ${comp ? comp.name : '-'}`;
+  if (statusEl) {
+    statusEl.innerHTML = imageSaved 
+      ? '📸 บันทึกรูปภาพรายงาน (.PNG) ลงเครื่องเรียบร้อยแล้ว' 
+      : '📸 กำลังประมวลผลรูปภาพรายงานลงเครื่อง...';
+  }
+
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+
+  // Auto-copy text
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareText).catch(e => {});
+  }
+
+  showLineShareToast(false, imageSaved);
+}
+
+function closeLineShareModal() {
+  const modal = document.getElementById('line-share-preview-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function copyLineShareText() {
+  const textarea = document.getElementById('line-share-textarea');
+  const text = textarea ? textarea.value : '';
+  if (!text) return;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showLineShareToast(false, false);
+      const btn = event?.target;
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✓ คัดลอกสำเร็จ!';
+        setTimeout(() => btn.innerHTML = orig, 1500);
+      }
+    }).catch(e => {});
   }
 }
 
-function showLineShareToast(isMobile) {
+function openDirectLineApp() {
+  const textarea = document.getElementById('line-share-textarea');
+  const text = textarea ? textarea.value : '';
+  if (!text) return;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(e => {});
+  }
+
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '') || (window.innerWidth <= 768);
+  const lineWebShareUrl = `https://social-plugins.line.me/lineit/share?text=${encodeURIComponent(text)}`;
+  const lineSchemeUrl = `line://msg/text/${encodeURIComponent(text)}`;
+  const lineDirectUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+
+  if (isMobile) {
+    window.location.href = lineDirectUrl;
+  } else {
+    // 1. Try launching local LINE Desktop App protocol
+    const link = document.createElement('a');
+    link.href = lineSchemeUrl;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // 2. Also open LINE official share picker popup
+    setTimeout(() => {
+      const shareWin = window.open(lineWebShareUrl, 'LineSharePopup', 'width=580,height=680,menubar=no,toolbar=no,location=no,status=no');
+      if (!shareWin || shareWin.closed || typeof shareWin.closed === 'undefined') {
+        window.open(lineDirectUrl, '_blank');
+      }
+    }, 300);
+  }
+}
+
+function showLineShareToast(isMobile, imageSaved = true) {
   let toast = document.getElementById('line-share-toast');
   if (!toast) {
     toast = document.createElement('div');
@@ -3978,23 +4136,28 @@ function showLineShareToast(isMobile) {
     document.body.appendChild(toast);
   }
 
-  const title = isMobile 
-    ? '💬 กำลังเปิดแอปพลิเคชัน LINE เพื่อแชร์...' 
-    : '💬 สั่งเปิดโปรแกรม LINE PC และคัดลอกข้อความแล้ว!';
-  const desc = isMobile
-    ? 'คัดลอกข้อความสรุปสำรองไว้ในคลิปบอร์ดเรียบร้อยแล้ว'
-    : 'สามารถกด Paste (Ctrl + V) ส่งในแชท LINE ได้ทันที';
+  const title = imageSaved 
+    ? '📸 บันทึกรูปภาพลงเครื่องแล้ว + 💬 พร้อมส่ง LINE!' 
+    : (isMobile ? '💬 กำลังเปิด LINE เพื่อแชร์...' : '💬 คัดลอกข้อความสรุปและเปิด LINE แล้ว!');
+    
+  const desc = imageSaved
+    ? (isMobile 
+        ? 'ดาวน์โหลดรูปรายงานลงเครื่องแล้ว & คัดลอกข้อความสรุปพร้อมส่งใน LINE' 
+        : 'ดาวน์โหลดไฟล์รูปภาพ .PNG แล้ว และคัดลอกข้อความลงคลิปบอร์ด กด Paste (Ctrl+V) ได้ทันที')
+    : (isMobile 
+        ? 'คัดลอกข้อความสรุปสำรองไว้ในคลิปบอร์ดเรียบร้อยแล้ว' 
+        : 'สามารถกด Paste (Ctrl + V) ส่งในแชท LINE ได้ทันที');
 
   toast.innerHTML = `
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <div style="background: #06C755; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(6,199,85,0.4);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="background: #06C755; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px rgba(6,199,85,0.5);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF">
           <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.587.39.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.589-3.843 2.589-5.973z"/>
         </svg>
       </div>
       <div>
-        <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF;">${title}</div>
-        <div style="font-size: 0.78rem; color: #DCFCE7; margin-top: 2px;">${desc}</div>
+        <div style="font-weight: 800; font-size: 0.95rem; color: #FFFFFF;">${title}</div>
+        <div style="font-size: 0.8rem; color: #DCFCE7; margin-top: 3px; line-height: 1.35;">${desc}</div>
       </div>
     </div>
   `;
@@ -4004,10 +4167,10 @@ function showLineShareToast(isMobile) {
     right: 24px;
     background: linear-gradient(135deg, #064E3B 0%, #065F46 100%);
     color: #FFFFFF;
-    padding: 12px 20px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    z-index: 999999;
+    padding: 14px 22px;
+    border-radius: 14px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+    z-index: 9999999;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -4025,13 +4188,17 @@ function showLineShareToast(isMobile) {
   setTimeout(() => {
     toast.style.opacity = '0';
     toast.style.transform = 'translateY(20px)';
-  }, 4000);
+  }, 4500);
 }
 
 if (typeof window !== 'undefined') {
   window.openCompanyProjectsModal = openCompanyProjectsModal;
   window.shareCompanyToLine = shareCompanyToLine;
   window.showLineShareToast = showLineShareToast;
+  window.openLineShareModal = openLineShareModal;
+  window.closeLineShareModal = closeLineShareModal;
+  window.copyLineShareText = copyLineShareText;
+  window.openDirectLineApp = openDirectLineApp;
 }
 
 // ==========================================

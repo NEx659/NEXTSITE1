@@ -130,33 +130,102 @@
       transform: translateY(-1px);
     }
 
-    /* Company Select Pill */
+    /* Company Select Pill (Combobox Searchable) */
     .company-select-pill {
       background: #FFFFFF;
       border: 1.5px solid #CBD5E1;
-      border-radius: 10px;
-      padding: 8px 14px;
+      border-radius: 12px;
+      padding: 6px 14px;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      position: relative;
+      z-index: 1000;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .company-select-pill select {
-      background: transparent;
-      border: none;
-      color: #0F172A;
-      font-size: 0.92rem;
-      font-weight: 800;
-      outline: none;
-      cursor: pointer;
-      font-family: inherit;
-      max-width: 320px;
-    }
-
-    .company-select-pill select option {
+    .company-select-pill:focus-within {
       background: #FFFFFF;
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25), 0 6px 16px rgba(0, 0, 0, 0.12);
+      transform: translateY(-1px);
+      z-index: 99999;
+    }
+
+    .company-search-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 380px;
+      width: max-content;
+      max-width: min(520px, 92vw);
+      max-height: 380px;
+      overflow-y: auto;
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 14px;
+      box-shadow: 0 20px 50px -6px rgba(15, 23, 42, 0.4), 0 10px 25px rgba(0, 0, 0, 0.15);
+      z-index: 9999999;
+      padding: 6px;
+      animation: dropdownSlideIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes dropdownSlideIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .company-dropdown-item {
+      padding: 9px 12px;
+      border-radius: 9px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      transition: all 0.15s ease;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .company-dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .company-dropdown-item:hover,
+    .company-dropdown-item.is-focused {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+    }
+
+    .company-dropdown-item.is-selected {
+      background: #F0FDF4;
+      border-left: 4px solid #22C55E;
+    }
+
+    .company-dropdown-item-name {
+      font-size: 0.88rem;
+      font-weight: 800;
       color: #0F172A;
+      line-height: 1.3;
+    }
+
+    .company-dropdown-item-meta {
+      font-size: 0.72rem;
+      color: #64748B;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .company-dropdown-highlight {
+      background: #FEF08A;
+      color: #854D0E;
+      padding: 0 2px;
+      border-radius: 3px;
+      font-weight: 900;
     }
 
     .dealer-header-right {
@@ -1025,18 +1094,17 @@
             <option value="นครราชสีมา">จ.นครราชสีมา (Korat)</option>
           </select>
         </div>
-        <div id="dealer-cloud-sync-status-pill" style="background: #F0FDF4; border: 1.5px solid #86EFAC; color: #15803D; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);" title="ระบบเชื่อมต่อฐานข้อมูล Cloud แบบ Real-time ทั่วโลก">
-          <span style="width: 8px; height: 8px; background: #22C55E; border-radius: 50%; box-shadow: 0 0 6px #22C55E; display: inline-block; animation: pulseLiveDot 2s infinite;"></span>
-          <span>Cloud Live 🟢</span>
-        </div>
-        <button type="button" id="btn-save-dealer-cloud" onclick="handleSaveDealerReportCloud()" class="dealer-save-btn" title="บันทึกข้อมูลขึ้น Cloud">
-          <span>💾</span>
+        <button type="button" id="btn-dealer-top-share-line" onclick="handleDealerSendLineMessage()" class="dealer-top-line-btn" style="background: #06C755; color: #FFFFFF; border: 1.5px solid #00B900; border-radius: 9999px; padding: 5px 16px; font-size: 0.82rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(6,199,85,0.4); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.background='#05b34c'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#06C755'; this.style.transform='none';" title="ส่งข้อมูลบริษัทเป้าหมายนี้เข้า LINE ทันที">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF" style="flex-shrink: 0;">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.587.39.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.589-3.843 2.589-5.973z"/>
+          </svg>
+          <span>ส่งข้อมูลเข้า LINE</span>
         </button>
       </div>
     </div>
 
     <!-- Main Header Section matching Mockup -->
-    <div class="dealer-header-section" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; width: 100%;">
+    <div class="dealer-header-section" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; width: 100%; position: relative; z-index: 9999;">
       <!-- Left: Title with Red Accent Line -->
       <div style="display: flex; align-items: center; gap: 14px;">
         <h1 class="dealer-main-title" style="margin-bottom: 0;">
@@ -1047,12 +1115,34 @@
 
       <!-- Right: Company Selector & Target Dealer Capsule side-by-side -->
       <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-        <!-- Company Selector Pill -->
-        <div class="company-select-pill">
-          <span style="font-size: 0.78rem; color: #475569; font-weight: 800; white-space: nowrap;">🏢 เลือกบริษัท:</span>
-          <select id="dealer-company-select" onchange="handleSelectDealerCompany(this.value)">
+        <!-- Searchable Company Selector Combobox Pill -->
+        <div class="company-select-pill" id="company-combobox-wrapper" style="position: relative;">
+          <span style="font-size: 0.78rem; color: #475569; font-weight: 800; white-space: nowrap; display: flex; align-items: center; gap: 4px;">
+            <span>🏢</span> <span>เลือกบริษัท:</span>
+          </span>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="text" id="dealer-company-search-input" 
+              placeholder="พิมพ์ชื่อบริษัทเพื่อค้นหา..." 
+              autocomplete="off"
+              onfocus="openCompanyDropdown()"
+              onclick="openCompanyDropdown()"
+              oninput="handleCompanySearchInput(this.value)"
+              onkeydown="handleCompanySearchKeydown(event)"
+              style="background: transparent; border: none; outline: none; color: #0F172A; font-size: 0.92rem; font-weight: 800; font-family: inherit; width: 285px; text-overflow: ellipsis; padding-right: 40px;"
+            >
+            <div style="position: absolute; right: 0; display: flex; align-items: center; gap: 2px;">
+              <button type="button" id="dealer-company-clear-btn" onclick="clearCompanySearch(event)" style="display: none; background: #E2E8F0; border: none; border-radius: 50%; color: #64748B; width: 18px; height: 18px; font-size: 0.7rem; font-weight: 800; line-height: 1; cursor: pointer; align-items: center; justify-content: center; padding: 0;" title="ล้างข้อความค้นหา">✕</button>
+              <button type="button" onclick="toggleCompanyDropdown(event)" style="background: none; border: none; color: #64748B; cursor: pointer; font-size: 0.75rem; padding: 2px 4px; line-height: 1;" title="คลิกเพื่อดูรายชื่อทั้งหมด">▼</button>
+            </div>
+          </div>
+          <select id="dealer-company-select" style="display: none;" onchange="handleSelectDealerCompany(this.value)">
             <!-- Injected dynamically via JS -->
           </select>
+
+          <!-- Floating Dropdown Suggestions Menu -->
+          <div id="dealer-company-dropdown" class="company-search-dropdown-menu" style="display: none;">
+            <!-- Rendered by JS -->
+          </div>
         </div>
 
         <!-- White Capsule Input: "ร้านที่ชี้เป้า" -->
@@ -1435,10 +1525,13 @@
       populateDealerCompanySelect();
     }
 
+    let isCompanyDropdownOpen = false;
+    let focusedDropdownIndex = -1;
+    let currentFilteredCompanyList = [];
+
     function populateDealerCompanySelect(preferredCompId = null) {
       const select = document.getElementById('dealer-company-select');
-      if (!select) return;
-
+      const searchInput = document.getElementById('dealer-company-search-input');
       const list = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies : [];
       if (list.length === 0) return;
 
@@ -1448,17 +1541,21 @@
       }
 
       if (filtered.length === 0) {
-        select.innerHTML = '<option value="">-- ไม่พบบริษัทในจังหวัดที่เลือก --</option>';
+        if (select) select.innerHTML = '<option value="">-- ไม่พบบริษัทในจังหวัดที่เลือก --</option>';
+        if (searchInput) searchInput.value = '';
         showDealerToast(`ℹ️ ไม่พบบริษัทใน จ.${selectedProvinceFilter}`, 'ℹ️');
+        renderSearchableCompanyDropdown('');
         return;
       }
 
-      select.innerHTML = filtered.map(c => {
-        const cName = (typeof cleanThaiText === 'function') ? cleanThaiText(c.name) : c.name;
-        const pCount = (c.projects && c.projects.length) ? c.projects.length : (c.totalProjects || 0);
-        const provTag = (selectedProvinceFilter === 'all' && c.province) ? ` [จ.${c.province}]` : '';
-        return `<option value="${c.id}">${cName} (${pCount} ไซต์)${provTag}</option>`;
-      }).join('');
+      if (select) {
+        select.innerHTML = filtered.map(c => {
+          const cName = (typeof cleanThaiText === 'function') ? cleanThaiText(c.name) : c.name;
+          const pCount = (c.projects && c.projects.length) ? c.projects.length : (c.totalProjects || 0);
+          const provTag = (selectedProvinceFilter === 'all' && c.province) ? ` [จ.${c.province}]` : '';
+          return `<option value="${c.id}">${cName} (${pCount} ไซต์)${provTag}</option>`;
+        }).join('');
+      }
 
       let targetComp = null;
       if (preferredCompId) {
@@ -1468,17 +1565,270 @@
         targetComp = filtered[0];
       }
 
-      select.value = targetComp.id;
+      if (select) select.value = targetComp.id;
+      if (searchInput) {
+        const cleanName = (typeof cleanThaiText === 'function') ? cleanThaiText(targetComp.name) : targetComp.name;
+        searchInput.value = cleanName;
+        updateCompanyClearBtnVisibility();
+      }
+
       renderDealerCompanyDetails(targetComp);
+      renderSearchableCompanyDropdown('');
     }
 
     function handleSelectDealerCompany(compId) {
       if (!compId || typeof allCompanies === 'undefined') return;
       const comp = allCompanies.find(c => c.id === compId);
       if (comp) {
+        const select = document.getElementById('dealer-company-select');
+        const searchInput = document.getElementById('dealer-company-search-input');
+        if (select) select.value = comp.id;
+        if (searchInput) {
+          searchInput.value = (typeof cleanThaiText === 'function') ? cleanThaiText(comp.name) : comp.name;
+          updateCompanyClearBtnVisibility();
+        }
         renderDealerCompanyDetails(comp);
       }
     }
+
+    function openCompanyDropdown() {
+      const dropdown = document.getElementById('dealer-company-dropdown');
+      if (!dropdown) return;
+      dropdown.style.display = 'block';
+      isCompanyDropdownOpen = true;
+      focusedDropdownIndex = -1;
+      const wrapper = document.getElementById('company-combobox-wrapper');
+      if (wrapper) wrapper.style.zIndex = '99999';
+      const header = document.querySelector('.dealer-header-section');
+      if (header) header.style.zIndex = '99999';
+      const searchInput = document.getElementById('dealer-company-search-input');
+      const val = searchInput ? searchInput.value.trim() : '';
+      renderSearchableCompanyDropdown(val);
+      if (searchInput) searchInput.select();
+    }
+
+    function closeCompanyDropdown() {
+      const dropdown = document.getElementById('dealer-company-dropdown');
+      if (!dropdown) return;
+      dropdown.style.display = 'none';
+      isCompanyDropdownOpen = false;
+      focusedDropdownIndex = -1;
+      const wrapper = document.getElementById('company-combobox-wrapper');
+      if (wrapper) wrapper.style.zIndex = '1000';
+      const header = document.querySelector('.dealer-header-section');
+      if (header) header.style.zIndex = '9999';
+
+      // Reset text to current company if search text doesn't match an exact selection
+      const searchInput = document.getElementById('dealer-company-search-input');
+      if (searchInput && currentDealerCompany) {
+        const cleanName = (typeof cleanThaiText === 'function') ? cleanThaiText(currentDealerCompany.name) : currentDealerCompany.name;
+        searchInput.value = cleanName;
+        updateCompanyClearBtnVisibility();
+      }
+    }
+
+    function toggleCompanyDropdown(event) {
+      if (event) event.stopPropagation();
+      if (isCompanyDropdownOpen) {
+        closeCompanyDropdown();
+      } else {
+        openCompanyDropdown();
+      }
+    }
+
+    function handleCompanySearchInput(val) {
+      updateCompanyClearBtnVisibility();
+      if (!isCompanyDropdownOpen) {
+        const dropdown = document.getElementById('dealer-company-dropdown');
+        if (dropdown) dropdown.style.display = 'block';
+        isCompanyDropdownOpen = true;
+      }
+      focusedDropdownIndex = -1;
+      renderSearchableCompanyDropdown(val);
+    }
+
+    function clearCompanySearch(event) {
+      if (event) event.stopPropagation();
+      const searchInput = document.getElementById('dealer-company-search-input');
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+      }
+      updateCompanyClearBtnVisibility();
+      renderSearchableCompanyDropdown('');
+    }
+
+    function updateCompanyClearBtnVisibility() {
+      const searchInput = document.getElementById('dealer-company-search-input');
+      const clearBtn = document.getElementById('dealer-company-clear-btn');
+      if (clearBtn && searchInput) {
+        clearBtn.style.display = (searchInput.value.trim().length > 0) ? 'inline-flex' : 'none';
+      }
+    }
+
+    function renderSearchableCompanyDropdown(query = '') {
+      const dropdown = document.getElementById('dealer-company-dropdown');
+      if (!dropdown) return;
+
+      const list = (typeof allCompanies !== 'undefined' && Array.isArray(allCompanies)) ? allCompanies : [];
+      let filtered = list;
+      if (selectedProvinceFilter && selectedProvinceFilter !== 'all') {
+        filtered = list.filter(c => (c.province || 'อุดรธานี').includes(selectedProvinceFilter));
+      }
+
+      const q = (query || '').trim().toLowerCase();
+      if (q) {
+        filtered = filtered.filter(c => {
+          const cName = (typeof cleanThaiText === 'function') ? cleanThaiText(c.name) : c.name;
+          const origName = c.name || '';
+          const phone = c.phone || '';
+          const district = c.district || '';
+          const prov = c.province || '';
+          const dbd = c.dbdNumber || c.dbd || '';
+          return cName.toLowerCase().includes(q) || 
+                 origName.toLowerCase().includes(q) || 
+                 phone.includes(q) || 
+                 district.toLowerCase().includes(q) || 
+                 prov.toLowerCase().includes(q) ||
+                 dbd.includes(q);
+        });
+      }
+
+      currentFilteredCompanyList = filtered;
+      const currentCompId = currentDealerCompany ? currentDealerCompany.id : '';
+
+      if (filtered.length === 0) {
+        dropdown.innerHTML = `
+          <div style="padding: 16px; text-align: center; color: #64748B; font-size: 0.82rem;">
+            <div style="font-size: 1.4rem; margin-bottom: 4px;">🔍</div>
+            <div style="font-weight: 800; color: #1E293B;">ไม่พบบริษัทที่ตรงกับ "${escapeHtml(query)}"</div>
+            <div style="font-size: 0.74rem; color: #94A3B8; margin-top: 2px;">ลองพิมพ์ชื่อสั้นลง หรือเลือกพื้นที่อื่น</div>
+          </div>
+        `;
+        return;
+      }
+
+      function highlightText(text, term) {
+        if (!term) return escapeHtml(text);
+        const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(${escapedTerm})`, 'gi');
+        return escapeHtml(text).replace(regex, '<span class="company-dropdown-highlight">$1</span>');
+      }
+
+      function escapeHtml(str) {
+        return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      dropdown.innerHTML = filtered.map((c, idx) => {
+        const cName = (typeof cleanThaiText === 'function') ? cleanThaiText(c.name) : c.name;
+        const pCount = (c.projects && c.projects.length) ? c.projects.length : (c.totalProjects || 0);
+        const isCurrent = c.id === currentCompId;
+        const isFocused = idx === focusedDropdownIndex;
+        const highlightedName = highlightText(cName, q);
+        const district = c.district || 'เมือง';
+        const prov = c.province || 'อุดรธานี';
+        const phone = c.phone ? ` • 📞 ${c.phone}` : '';
+        
+        // Pointing status
+        const savedStore = localStorage.getItem(`dealer_target_store_${c.id}`) || '';
+        const pointBadge = savedStore 
+          ? `<span style="background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; font-size: 0.65rem; font-weight: 800; padding: 1px 6px; border-radius: 9999px;">✅ ${escapeHtml(savedStore)}</span>`
+          : `<span style="background: #F1F5F9; color: #64748B; font-size: 0.65rem; font-weight: 700; padding: 1px 6px; border-radius: 9999px;">⏳ รอชี้เป้า</span>`;
+
+        return `
+          <div class="company-dropdown-item ${isCurrent ? 'is-selected' : ''} ${isFocused ? 'is-focused' : ''}" 
+            data-index="${idx}" 
+            data-id="${c.id}" 
+            onclick="selectCompanyFromDropdown('${c.id}')"
+            onmouseenter="setDropdownFocusIndex(${idx})"
+          >
+            <div style="flex: 1; min-width: 0;">
+              <div class="company-dropdown-item-name">
+                ${highlightedName}
+                ${isCurrent ? '<span style="background: #2563EB; color: #FFF; font-size: 0.62rem; padding: 1px 5px; border-radius: 4px; margin-left: 4px;">กำลังดู</span>' : ''}
+              </div>
+              <div class="company-dropdown-item-meta">
+                <span>อ.${district} จ.${prov}${phone}</span>
+                <span style="background: #E2E8F0; color: #1E293B; padding: 1px 5px; border-radius: 4px; font-weight: 800;">🏗️ ${pCount} ไซต์</span>
+              </div>
+            </div>
+            <div style="flex-shrink: 0; text-align: right;">
+              ${pointBadge}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setDropdownFocusIndex(idx) {
+      focusedDropdownIndex = idx;
+      const items = document.querySelectorAll('.company-dropdown-item');
+      items.forEach((item, i) => {
+        if (i === idx) item.classList.add('is-focused');
+        else item.classList.remove('is-focused');
+      });
+    }
+
+    function selectCompanyFromDropdown(compId) {
+      if (!compId || typeof allCompanies === 'undefined') return;
+      const comp = allCompanies.find(c => c.id === compId);
+      if (comp) {
+        handleSelectDealerCompany(compId);
+        closeCompanyDropdown();
+        showDealerToast(`🚀 สลับไปยัง "${comp.name}" เรียบร้อยแล้ว`, '🏢');
+      }
+    }
+
+    function handleCompanySearchKeydown(e) {
+      if (!isCompanyDropdownOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter')) {
+        openCompanyDropdown();
+        return;
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (currentFilteredCompanyList.length > 0) {
+          focusedDropdownIndex = (focusedDropdownIndex + 1) % currentFilteredCompanyList.length;
+          setDropdownFocusIndex(focusedDropdownIndex);
+          scrollFocusedDropdownItemIntoView();
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentFilteredCompanyList.length > 0) {
+          focusedDropdownIndex = (focusedDropdownIndex - 1 + currentFilteredCompanyList.length) % currentFilteredCompanyList.length;
+          setDropdownFocusIndex(focusedDropdownIndex);
+          scrollFocusedDropdownItemIntoView();
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (focusedDropdownIndex >= 0 && currentFilteredCompanyList[focusedDropdownIndex]) {
+          selectCompanyFromDropdown(currentFilteredCompanyList[focusedDropdownIndex].id);
+        } else if (currentFilteredCompanyList.length > 0) {
+          selectCompanyFromDropdown(currentFilteredCompanyList[0].id);
+        }
+      } else if (e.key === 'Escape') {
+        closeCompanyDropdown();
+        const searchInput = document.getElementById('dealer-company-search-input');
+        if (searchInput) searchInput.blur();
+      }
+    }
+
+    function scrollFocusedDropdownItemIntoView() {
+      const focusedItem = document.querySelector('.company-dropdown-item.is-focused');
+      if (focusedItem) {
+        focusedItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    // Global listener to close dropdown on click outside
+    document.addEventListener('click', (e) => {
+      const wrapper = document.getElementById('company-combobox-wrapper');
+      if (wrapper && !wrapper.contains(e.target)) {
+        if (isCompanyDropdownOpen) {
+          closeCompanyDropdown();
+        }
+      }
+    });
 
     function renderDealerCompanyDetails(comp) {
       if (!comp) return;
@@ -2364,6 +2714,193 @@
       }, 500);
     }
 
+    function handleDealerSendLineMessage() {
+      const comp = currentDealerCompany;
+      if (!comp) {
+        showDealerToast('⚠️ ไม่พบข้อมูลบริษัทที่เลือก', '⚠️');
+        return;
+      }
+
+      const compName = (typeof cleanThaiText === 'function' ? cleanThaiText(comp.name) : comp.name) || comp.name || '';
+
+      // 1. Google Maps URL
+      let mapsUrl = (typeof COMPANY_MAPS_MASTER !== 'undefined' && COMPANY_MAPS_MASTER[comp.id]) || comp.googleMapsUrl || comp.gmaps;
+      if (!mapsUrl && comp.coordinates && comp.coordinates.length === 2 && comp.coordinates[0]) {
+        mapsUrl = `https://www.google.com/maps?q=${comp.coordinates[0]},${comp.coordinates[1]}`;
+      } else if (!mapsUrl) {
+        mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((comp.name || '') + ' ' + (comp.address || comp.district || 'อุดรธานี'))}`;
+      }
+
+      // 2. SCG Sales History
+      const s25 = Number(comp.sales2025) || 0;
+      const s26 = Number(comp.sales2026) || 0;
+      let salesText = '';
+      if (s25 > 0 && s26 > 0) {
+        salesText = `มีประวัติยอดซื้อ SCG ปี 2025และปี2026`;
+      } else if (s25 > 0) {
+        salesText = `มีประวัติยอดซื้อ SCG ปี 2025`;
+      } else if (s26 > 0) {
+        salesText = `มีประวัติยอดซื้อ SCG ปี 2026`;
+      } else {
+        salesText = `ยังไม่มีประวัติยอดซื้อ SCG`;
+      }
+
+      // 3. Projects Count & Stage Breakdown
+      const projects = (comp.projects && Array.isArray(comp.projects)) ? comp.projects : [];
+      const projectCount = projects.length || comp.totalProjects || 0;
+
+      let stageSummary = [];
+      if (comp.stageBreakdown) {
+        if (comp.stageBreakdown.groundbreak) stageSummary.push(`ยกเสาเอก ${comp.stageBreakdown.groundbreak}`);
+        if (comp.stageBreakdown.foundation) stageSummary.push(`ฐานราก ${comp.stageBreakdown.foundation}`);
+        if (comp.stageBreakdown.structure) stageSummary.push(`งานโครงสร้าง ${comp.stageBreakdown.structure}`);
+        if (comp.stageBreakdown.finishing) stageSummary.push(`สถาปัตย์/ตกแต่ง ${comp.stageBreakdown.finishing}`);
+      }
+      if (stageSummary.length === 0 && projects.length > 0) {
+        let sCount = 0, fCount = 0, gCount = 0, finCount = 0;
+        projects.forEach(p => {
+          const k = (p.stageKey || p.stage || '').toLowerCase();
+          if (k.includes('structure') || k.includes('โครงสร้าง')) sCount++;
+          else if (k.includes('foundation') || k.includes('ฐานราก')) fCount++;
+          else if (k.includes('groundbreak') || k.includes('เสาเอก')) gCount++;
+          else if (k.includes('finish') || k.includes('ตกแต่ง')) finCount++;
+          else sCount++;
+        });
+        if (gCount) stageSummary.push(`ยกเสาเอก ${gCount}`);
+        if (fCount) stageSummary.push(`ฐานราก ${fCount}`);
+        if (sCount) stageSummary.push(`งานโครงสร้าง ${sCount}`);
+        if (finCount) stageSummary.push(`สถาปัตย์/ตกแต่ง ${finCount}`);
+      }
+      const stageDesc = stageSummary.length > 0 ? stageSummary.join(', ') : 'รอตรวจสอบไซต์งาน';
+
+      // 4. Reference Facebook Post URLs
+      let postLines = [];
+      if (projects.length > 0) {
+        projects.forEach(p => {
+          if (p.postUrl && !postLines.includes(`อ้างอิงโพส : ${p.postUrl}`)) {
+            postLines.push(`อ้างอิงโพส : ${p.postUrl}`);
+          }
+        });
+      }
+      if (postLines.length === 0 && comp.facebookUrl) {
+        postLines.push(`อ้างอิงเพจ : ${comp.facebookUrl}`);
+      }
+      const postsBlock = postLines.join('\n\n');
+
+      // 5. Product Opportunities
+      const recInput = document.getElementById('card-recommended-products-input');
+      let productOpportunities = (recInput && recInput.value.trim()) ? recInput.value.trim() : 'ปูนซีเมนต์ไฮดรอลิก SCG, คอนกรีตผสมเสร็จ CPAC';
+      
+      // 6. Contact Phone
+      const phone = comp.phone || '-';
+
+      // 7. DBD Tax ID
+      const dbdData = (typeof getCompanyDbdData === 'function') ? getCompanyDbdData(comp) : null;
+      const taxId = (dbdData && dbdData.taxId) ? dbdData.taxId : (comp.taxId || '-');
+
+      // Assemble full text matching user's requested template
+      const lines = [
+        `🏗️ [ข้อมูลบริษัทเป้าหมาย - NEXTSITE]`,
+        `━━━━━━━━━━━━━━━━━━━━`,
+        `🏢 บริษัท: ${compName}`,
+        `📍 พิกัด: ${mapsUrl}`,
+        `📊 ${salesText}`,
+        ` 🏠 ไซต์งานกำลังสร้าง: ${projectCount} ไซต์ (${stageDesc})`
+      ];
+
+      if (postsBlock) {
+        lines.push(``);
+        lines.push(postsBlock);
+      }
+
+      lines.push(``);
+      lines.push(`💡 โอกาสล็อกสเปก: ${productOpportunities}`);
+      lines.push(`📞 เบอร์ติดต่อ: ${phone}`);
+      lines.push(`เลขทะเบียนนิติบุคคล: ${taxId}`);
+      lines.push(`━━━━━━━━━━━━━━━━━━━━`);
+
+      const shareText = lines.join('\n');
+
+      // 1. Copy to clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareText).catch(e => {});
+      }
+
+      // 2. Open LINE Preview Modal on screen
+      openDealerLineShareModal(comp, shareText);
+
+      // 3. Trigger LINE direct share scheme
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '') || (window.innerWidth <= 768);
+      const lineDirectUrl = `https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`;
+
+      if (isMobile) {
+        window.location.href = lineDirectUrl;
+      }
+    }
+
+    function openDealerLineShareModal(comp, shareText) {
+      const modal = document.getElementById('dealer-line-share-modal');
+      const textarea = document.getElementById('dealer-line-share-textarea');
+      const subtitle = document.getElementById('dealer-line-modal-subtitle');
+
+      if (textarea) textarea.value = shareText;
+      if (subtitle) subtitle.textContent = `บริษัท: ${comp ? comp.name : '-'}`;
+
+      if (modal) modal.style.display = 'flex';
+      showDealerToast('💬 คัดลอกข้อความสรุป & เตรียมส่งเข้า LINE แล้ว!', '💬');
+    }
+
+    function closeDealerLineShareModal() {
+      const modal = document.getElementById('dealer-line-share-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function copyDealerLineShareText() {
+      const textarea = document.getElementById('dealer-line-share-textarea');
+      const text = textarea ? textarea.value : '';
+      if (!text) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showDealerToast('📋 คัดลอกข้อความสำเร็จ!', '📋');
+        }).catch(e => {});
+      }
+    }
+
+    function openDealerDirectLineApp() {
+      const textarea = document.getElementById('dealer-line-share-textarea');
+      const text = textarea ? textarea.value : '';
+      if (!text) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(e => {});
+      }
+
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '') || (window.innerWidth <= 768);
+      const lineWebShareUrl = `https://social-plugins.line.me/lineit/share?text=${encodeURIComponent(text)}`;
+      const lineSchemeUrl = `line://msg/text/${encodeURIComponent(text)}`;
+      const lineDirectUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+
+      if (isMobile) {
+        window.location.href = lineDirectUrl;
+      } else {
+        // Try launching local LINE Desktop App protocol
+        const link = document.createElement('a');
+        link.href = lineSchemeUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Also open LINE web share popup
+        setTimeout(() => {
+          const shareWin = window.open(lineWebShareUrl, 'LineSharePopup', 'width=580,height=680,menubar=no,toolbar=no,location=no,status=no');
+          if (!shareWin || shareWin.closed || typeof shareWin.closed === 'undefined') {
+            window.open(lineDirectUrl, '_blank');
+          }
+        }, 300);
+      }
+    }
+
     function openTargetDealersModal() {
       const modal = document.getElementById('target-dealers-modal');
       if (modal) modal.style.display = 'flex';
@@ -2638,7 +3175,12 @@
         populateDealerCompanySelect(compId);
       } else {
         const compSelect = document.getElementById('dealer-company-select');
+        const searchInput = document.getElementById('dealer-company-search-input');
         if (compSelect) compSelect.value = compId;
+        if (searchInput) {
+          searchInput.value = (typeof cleanThaiText === 'function') ? cleanThaiText(comp.name) : comp.name;
+          updateCompanyClearBtnVisibility();
+        }
         renderDealerCompanyDetails(comp);
       }
 
@@ -2814,6 +3356,47 @@
         <button type="button" onclick="closeDealerImagePreview()" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: none; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">✕</button>
       </div>
       <img id="preview-modal-img" src="" alt="Site Photo" style="max-width: 88vw; max-height: 80vh; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.2);">
+    </div>
+  </div>
+
+  <!-- LINE Share Preview Modal for Dealer Page -->
+  <div id="dealer-line-share-modal" class="dealer-modal-overlay" style="display: none; z-index: 100000; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px);" onclick="if(event.target === this) closeDealerLineShareModal()">
+    <div style="max-width: 680px; width: 95%; background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.35); border: 1px solid #CBD5E1;" onclick="event.stopPropagation()">
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #064E3B 0%, #065F46 100%); color: #FFFFFF; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="background: #06C755; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px rgba(6,199,85,0.5);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF">
+              <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.587.39.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.589-3.843 2.589-5.973z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; font-weight: 800; color: #FFFFFF;">💬 ส่งข้อมูลชี้เป้าเข้า LINE ร้านค้าดีลเลอร์</h3>
+            <div id="dealer-line-modal-subtitle" style="font-size: 0.8rem; color: #A7F3D0; margin-top: 2px;">บริษัท: -</div>
+          </div>
+        </div>
+        <button type="button" onclick="closeDealerLineShareModal()" style="background: rgba(255,255,255,0.15); border: none; color: #FFFFFF; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">✕</button>
+      </div>
+
+      <!-- Body -->
+      <div style="padding: 20px 24px; background: #F8FAFC;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #1E293B;">📝 ข้อความสรุปรายงานชี้เป้า (พร้อมส่งใน LINE):</label>
+          <span style="font-size: 0.75rem; color: #059669; font-weight: 600;">✓ คัดลอกลงคลิปบอร์ดแล้ว</span>
+        </div>
+        <textarea id="dealer-line-share-textarea" rows="12" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.55; color: #0F172A; background: #FFFFFF; font-family: 'Prompt', -apple-system, sans-serif; resize: vertical; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></textarea>
+      </div>
+
+      <!-- Footer Action Buttons -->
+      <div style="background: #FFFFFF; padding: 16px 24px; border-top: 1px solid #E2E8F0; display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <button type="button" onclick="copyDealerLineShareText()" style="background: #F1F5F9; color: #334155; border: 1px solid #CBD5E1; padding: 9px 18px; border-radius: 9px; font-weight: 700; font-size: 0.86rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'">
+          📋 คัดลอกข้อความ
+        </button>
+        <button type="button" onclick="openDealerDirectLineApp()" style="background: #06C755; color: #FFFFFF; border: none; padding: 10px 22px; border-radius: 9px; font-weight: 800; font-size: 0.92rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(6,199,85,0.45); transition: all 0.15s;" onmouseover="this.style.background='#05b34c'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#06C755'; this.style.transform='none'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.019 9.587.39.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.589-3.843 2.589-5.973z"/></svg>
+          🟢 เปิดส่งใน LINE ทันที
+        </button>
+      </div>
     </div>
   </div>
 
