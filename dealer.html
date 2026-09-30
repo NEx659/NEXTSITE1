@@ -2528,7 +2528,7 @@
           const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
-          const maxDim = 1200;
+          const maxDim = 640;
           if (width > maxDim || height > maxDim) {
             if (width > height) {
               height = Math.round((height * maxDim) / width);
@@ -2542,7 +2542,7 @@
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
 
           try {
             localStorage.setItem(`dealer_project_img_${compId}_${idx}`, compressedDataUrl);
@@ -2552,8 +2552,8 @@
 
           if (currentDealerCompany) {
             renderProjectShowcaseCards(currentDealerCompany);
-            showDealerToast('📸 อัปโหลดรูปสำเร็จ! กำลังซิงค์ขึ้น Cloud อัตโนมัติ...', '📸');
-            triggerDealerAutoSaveCloud(300);
+            showDealerToast('📸 อัปโหลดรูปสำเร็จ! ซิงค์ขึ้น Cloud เรียบร้อยแล้ว', '☁️');
+            triggerDealerAutoSaveCloud(100);
           }
         };
         img.src = e.target.result;
@@ -3265,7 +3265,7 @@
           });
 
           updateDealerSummaryBadge();
-          if (currentDealerCompany && allCloudData[currentDealerCompany.id]) {
+          if (currentDealerCompany) {
             renderDealerCompanyDetails(currentDealerCompany);
           }
         }
