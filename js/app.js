@@ -2749,6 +2749,7 @@ function renderTable() {
     tr.style.cursor = 'pointer';
     tr.onclick = (e) => {
       if (['INPUT', 'BUTTON', 'A', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+      if (e.target.closest && (e.target.closest('.photo-thumbnail-cell') || e.target.closest('.inline-tag-selector') || e.target.closest('select') || e.target.closest('button'))) return;
       openCompanyProjectsModal(company);
     };
 
@@ -2976,11 +2977,10 @@ function renderTable() {
         })()}
       </td>
 
-      <!-- 7. รูปหน้างานที่เข้าติดตามจริง (จากหน้าโน้ตของเซลส์) -->
-      <td style="vertical-align: middle; text-align: center; padding: 6px 8px;">
+      <!-- 7. รูปหน้างานที่เข้าติดตามจริง (จากหน้าโน้ตของเซลส์ & หน้ารายงานดีลเลอร์) -->
+      <td class="photo-thumbnail-cell" onclick="event.stopPropagation();" style="vertical-align: middle; text-align: center; padding: 6px 8px;">
         ${(() => {
-          const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(company.id) : {};
-          const photos = Array.isArray(log.photos) ? log.photos : [];
+          const photos = (typeof getAllCompanyPhotos === 'function') ? getAllCompanyPhotos(company.id) : [];
           
           if (photos.length === 0) {
             return `
@@ -2994,13 +2994,12 @@ function renderTable() {
           // If 1 photo: show preview thumbnail
           if (photos.length === 1) {
             const p = photos[0];
-            const safeName = (company.name || '').replace(/'/g, "\\'");
             return `
-              <div style="display: inline-flex; align-items: center; gap: 6px;">
-                <div onclick="event.stopPropagation(); openImageLightbox('${p.dataUrl}', '${safeName} • รูปหน้างาน')" title="คลิกเพื่อดูรูปขยายเต็มจอ" style="position: relative; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 1.5px solid #3B82F6; box-shadow: 0 2px 4px rgba(59,130,246,0.2); background: #0F172A; cursor: pointer; transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='none';">
-                  <img src="${p.dataUrl}" alt="Site Photo" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="display: inline-flex; align-items: center; gap: 6px;" onclick="event.stopPropagation();">
+                <div onclick="showCompanyPhotoLightbox('${company.id}', 0, event)" title="🔍 คลิกเพื่อดูรูปขยายเต็มจอ" style="position: relative; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 1.5px solid #3B82F6; box-shadow: 0 2px 6px rgba(59,130,246,0.25); background: #0F172A; cursor: pointer; transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='none';">
+                  <img src="${p.dataUrl}" alt="Site Photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.style.background='#1E293B'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94A3B8;font-size:16px;\'>📷</div>';">
                 </div>
-                <div onclick="openCompanyProjectsModal('${company.id}')" title="คลิกเพื่อเปิดดูในหน้าโน้ต" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; cursor: pointer;">
+                <div onclick="showCompanyPhotoLightbox('${company.id}', 0, event)" title="🔍 คลิกเพื่อเปิดดูรูปขนาดใหญ่" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; cursor: pointer; transition: all 0.15s ease;" onmouseover="this.style.background='#DBEAFE'" onmouseout="this.style.background='#EFF6FF'">
                   1 รูป
                 </div>
               </div>
@@ -3010,18 +3009,17 @@ function renderTable() {
           // If multiple photos: show stacked preview thumbnails with count
           const p1 = photos[0];
           const p2 = photos[1];
-          const safeName = (company.name || '').replace(/'/g, "\\'");
           return `
-            <div style="display: inline-flex; align-items: center; gap: 6px;">
+            <div style="display: inline-flex; align-items: center; gap: 6px;" onclick="event.stopPropagation();">
               <div style="display: flex; align-items: center; position: relative;">
-                <div onclick="event.stopPropagation(); openImageLightbox('${p1.dataUrl}', '${safeName} • รูปหน้างาน 1/${photos.length}')" title="คลิกเพื่อดูรูปขยายเต็มจอ" style="width: 38px; height: 38px; border-radius: 8px; overflow: hidden; border: 1.5px solid #3B82F6; box-shadow: 0 2px 4px rgba(0,0,0,0.15); background: #0F172A; cursor: pointer; transition: transform 0.15s ease; z-index: 2;" onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex=5;" onmouseout="this.style.transform='none'; this.style.zIndex=2;">
-                  <img src="${p1.dataUrl}" alt="Site Photo 1" style="width: 100%; height: 100%; object-fit: cover;">
+                <div onclick="showCompanyPhotoLightbox('${company.id}', 0, event)" title="🔍 คลิกเพื่อดูรูปขยายเต็มจอ (รูปที่ 1)" style="width: 38px; height: 38px; border-radius: 8px; overflow: hidden; border: 1.5px solid #3B82F6; box-shadow: 0 2px 5px rgba(0,0,0,0.18); background: #0F172A; cursor: pointer; transition: transform 0.15s ease; z-index: 2;" onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex=5;" onmouseout="this.style.transform='none'; this.style.zIndex=2;">
+                  <img src="${p1.dataUrl}" alt="Site Photo 1" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.style.background='#1E293B'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94A3B8;font-size:14px;\'>📷</div>';">
                 </div>
-                <div onclick="event.stopPropagation(); openImageLightbox('${p2.dataUrl}', '${safeName} • รูปหน้างาน 2/${photos.length}')" title="คลิกเพื่อดูรูปขยายเต็มจอ" style="width: 38px; height: 38px; border-radius: 8px; overflow: hidden; border: 1.5px solid #60A5FA; box-shadow: 0 2px 4px rgba(0,0,0,0.15); background: #0F172A; cursor: pointer; transition: transform 0.15s ease; margin-left: -14px; z-index: 1;" onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex=5;" onmouseout="this.style.transform='none'; this.style.zIndex=1;">
-                  <img src="${p2.dataUrl}" alt="Site Photo 2" style="width: 100%; height: 100%; object-fit: cover;">
+                <div onclick="showCompanyPhotoLightbox('${company.id}', 1, event)" title="🔍 คลิกเพื่อดูรูปขยายเต็มจอ (รูปที่ 2)" style="width: 38px; height: 38px; border-radius: 8px; overflow: hidden; border: 1.5px solid #60A5FA; box-shadow: 0 2px 5px rgba(0,0,0,0.18); background: #0F172A; cursor: pointer; transition: transform 0.15s ease; margin-left: -14px; z-index: 1;" onmouseover="this.style.transform='scale(1.15)'; this.style.zIndex=5;" onmouseout="this.style.transform='none'; this.style.zIndex=1;">
+                  <img src="${p2.dataUrl}" alt="Site Photo 2" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.style.background='#1E293B'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94A3B8;font-size:14px;\'>📷</div>';">
                 </div>
               </div>
-              <div onclick="openCompanyProjectsModal('${company.id}')" title="คลิกเพื่อเปิดดูทั้งหมดในหน้าโน้ต" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; cursor: pointer;" onmouseover="this.style.background='#DBEAFE'" onmouseout="this.style.background='#EFF6FF'">
+              <div onclick="showCompanyPhotoLightbox('${company.id}', 0, event)" title="🔍 คลิกเพื่อเปิดดูรูปทั้งหมด (${photos.length} รูป)" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; cursor: pointer; transition: all 0.15s ease;" onmouseover="this.style.background='#DBEAFE'" onmouseout="this.style.background='#EFF6FF'">
                 ${photos.length} รูป ↗
               </div>
             </div>
@@ -4646,7 +4644,7 @@ function renderCompanyPhotosGallery(companyId) {
     const safeCaption = (p.name || `หลักฐานลงพื้นที่ - ${activeSelectedCompany ? activeSelectedCompany.name : ''}`).replace(/"/g, '&quot;');
     const uploaderInfo = p.uploaderName ? ` • โดย ${p.uploaderName}` : '';
     return `
-      <div style="position: relative; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; border: 1.5px solid #CBD5E1; box-shadow: 0 2px 5px rgba(15,23,42,0.08); background: #0F172A; cursor: pointer; flex-shrink: 0;" onclick="openImageLightbox('${p.dataUrl}', '${safeCaption} • ${timeStr}${uploaderInfo}')">
+      <div style="position: relative; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; border: 1.5px solid #CBD5E1; box-shadow: 0 2px 5px rgba(15,23,42,0.08); background: #0F172A; cursor: pointer; flex-shrink: 0;" onclick="showCompanyPhotoLightbox('${companyId}', ${idx}, event)">
         <img src="${p.dataUrl}" alt="Site visit photo" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,0.78); color: #FFFFFF; font-size: 0.60rem; font-weight: 700; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
           ${timeStr}
@@ -4719,15 +4717,124 @@ function deleteCompanyPhoto(photoId) {
   showStatusToast('ลบรูปภาพเรียบร้อย');
 }
 
-function openImageLightbox(src, caption) {
+function isValidCompanyImageUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  const clean = url.trim();
+  if (clean.startsWith('data:image/')) return true;
+  // Exclude Facebook post permalinks, videos, stories, shares
+  if (/facebook\.com\/(permalink|story|share|watch|groups|pages|profile|\?|photo\.php)/i.test(clean) && !clean.includes('fbcdn.net')) {
+    return false;
+  }
+  if (clean.startsWith('http://') || clean.startsWith('https://') || clean.startsWith('/') || clean.startsWith('./')) {
+    return true;
+  }
+  return false;
+}
+
+function getAllCompanyPhotos(companyId) {
+  if (!companyId) return [];
+  const log = (typeof getCompanyCrmLog === 'function') ? getCompanyCrmLog(companyId) : {};
+  let photos = [];
+
+  // Strictly from Sales CRM log (uploaded via '+ อัปโหลดรูปภาพหน้างาน')
+  if (Array.isArray(log.photos)) {
+    log.photos.forEach((p, idx) => {
+      const u = p ? (p.dataUrl || p.url || p.src) : null;
+      if (isValidCompanyImageUrl(u)) {
+        photos.push({
+          dataUrl: u,
+          name: p.name || `รูปหลักฐานลงพื้นที่ ${idx + 1}`,
+          timestamp: p.timestamp || null,
+          uploaderName: p.uploaderName || null,
+          id: p.id || null
+        });
+      }
+    });
+  }
+
+  return photos;
+}
+
+let currentLightboxPhotos = [];
+let currentLightboxIndex = 0;
+let currentLightboxCompanyId = null;
+
+function showCompanyPhotoLightbox(companyId, photoIndex = 0, event = null) {
+  if (event && event.stopPropagation) event.stopPropagation();
+  
+  const photos = getAllCompanyPhotos(companyId);
+  if (!photos || photos.length === 0) {
+    if (typeof openCompanyProjectsModal === 'function') {
+      openCompanyProjectsModal(companyId);
+    }
+    return;
+  }
+
+  currentLightboxPhotos = photos;
+  currentLightboxIndex = Math.max(0, Math.min(photoIndex, photos.length - 1));
+  currentLightboxCompanyId = companyId;
+
+  const modal = document.getElementById('image-lightbox-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  renderActiveLightboxPhoto();
+}
+
+function renderActiveLightboxPhoto() {
   const modal = document.getElementById('image-lightbox-modal');
   const img = document.getElementById('lightbox-img');
   const cap = document.getElementById('lightbox-caption');
-  if (modal && img) {
-    img.src = src;
-    if (cap) cap.textContent = caption || '';
-    modal.style.display = 'flex';
+  const counter = document.getElementById('lightbox-counter');
+  const prevBtn = document.getElementById('lightbox-prev-btn');
+  const nextBtn = document.getElementById('lightbox-next-btn');
+
+  if (!modal || !img || !currentLightboxPhotos || currentLightboxPhotos.length === 0) return;
+
+  const p = currentLightboxPhotos[currentLightboxIndex];
+  img.src = p.dataUrl;
+
+  const comp = (typeof allCompanies !== 'undefined') ? allCompanies.find(c => c.id === currentLightboxCompanyId) : null;
+  const compName = comp ? (typeof cleanThaiText === 'function' ? cleanThaiText(comp.name) : comp.name) : '';
+
+  const total = currentLightboxPhotos.length;
+  const currentNum = currentLightboxIndex + 1;
+
+  if (counter) {
+    counter.textContent = `${currentNum} / ${total}`;
+    counter.style.display = total > 1 ? 'inline-block' : 'none';
   }
+
+  if (prevBtn) prevBtn.style.display = total > 1 ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = total > 1 ? 'flex' : 'none';
+
+  if (cap) {
+    const timeStr = p.timestamp ? ` • 📅 ${p.timestamp}` : '';
+    const uploader = p.uploaderName ? ` • โดย ${p.uploaderName}` : '';
+    cap.innerHTML = `
+      <div style="font-size: 1.05rem; font-weight: 800; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">${compName}</div>
+      <div style="font-size: 0.84rem; color: #93C5FD; font-weight: 700; margin-top: 3px;">
+        🏗️ ${p.name || 'รูปหน้างานจริง'}${timeStr}${uploader}
+      </div>
+    `;
+  }
+}
+
+function navigateLightboxPhoto(step, event = null) {
+  if (event && event.stopPropagation) event.stopPropagation();
+  if (!currentLightboxPhotos || currentLightboxPhotos.length <= 1) return;
+
+  currentLightboxIndex = (currentLightboxIndex + step + currentLightboxPhotos.length) % currentLightboxPhotos.length;
+  renderActiveLightboxPhoto();
+}
+
+function openImageLightbox(src, caption) {
+  currentLightboxPhotos = [{ dataUrl: src, name: caption || 'รูปหน้างาน' }];
+  currentLightboxIndex = 0;
+  currentLightboxCompanyId = null;
+  renderActiveLightboxPhoto();
 }
 
 function closeImageLightbox() {
@@ -4735,7 +4842,22 @@ function closeImageLightbox() {
   if (modal) {
     modal.style.display = 'none';
   }
+  document.body.style.overflow = '';
 }
+
+// Global keyboard navigation for image lightbox
+document.addEventListener('keydown', (e) => {
+  const modal = document.getElementById('image-lightbox-modal');
+  if (modal && modal.style.display === 'flex') {
+    if (e.key === 'Escape') {
+      closeImageLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      navigateLightboxPhoto(-1);
+    } else if (e.key === 'ArrowRight') {
+      navigateLightboxPhoto(1);
+    }
+  }
+});
 
 function filterModalProjects(stageKey) {
   activeModalProjectStageFilter = stageKey;
