@@ -183,7 +183,8 @@ const DBD_COMPANY_REVENUE_DB = [
   { taxId: "0413567000639", name: "ห้างหุ้นส่วนจำกัด เอสดี เฮ้าส์ ดีไซน์", revenue: 1363520.85 },
   { taxId: "0415567001301", name: "บริษัท มารีญาก่อสร้าง จำกัด", revenue: 52104.00 },
   { taxId: "0413560001494", name: "ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง", revenue: 7164528.08 },
-  { taxId: "0415567000941", name: "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด", revenue: 1736653.09 }
+  { taxId: "0415567000941", name: "บริษัท อีเฮาส์ คอนสตรัคชั่น แอนด์ ดีไซน์ จำกัด", revenue: 1736653.09 },
+  { taxId: "0325568000121", name: "บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)", revenue: 654271374.57 }
 ];
 
 function normalizeThaiName(str) {
@@ -198,8 +199,8 @@ function normalizeThaiName(str) {
 function getCompanyDbdData(comp) {
   if (!comp) return null;
   
-  // 1. ตรวจสอบ taxId โดยตรงจาก verificationStatus / taxId / dbdId
-  const compTax = (comp.taxId || comp.dbdId || (comp.verificationStatus && comp.verificationStatus.evidenceSource) || '');
+  // 1. ตรวจสอบ taxId โดยตรงจาก verificationStatus / taxId / dbdId / scgCode
+  const compTax = (comp.taxId || comp.dbdId || comp.scgCode || (comp.verificationStatus && comp.verificationStatus.evidenceSource) || '');
   for (const item of DBD_COMPANY_REVENUE_DB) {
     if (compTax.includes(item.taxId)) {
       return item;
@@ -221,6 +222,16 @@ function getCompanyDbdData(comp) {
     if (normComp && normItem && (normComp.includes(normItem) || normItem.includes(normComp))) {
       return item;
     }
+  }
+
+  // 4. ตรวจสอบจาก verificationStatus.dbdProfit หรือ dbdNumber ถ้ามี
+  if (comp.verificationStatus && (comp.verificationStatus.dbdProfit || comp.verificationStatus.dbdNumber)) {
+    const rev = Number(String(comp.verificationStatus.dbdProfit || '').replace(/[^0-9\.]/g, '')) || 0;
+    return {
+      taxId: comp.verificationStatus.dbdNumber || comp.scgCode || '-',
+      name: comp.name,
+      revenue: rev
+    };
   }
 
   return null;

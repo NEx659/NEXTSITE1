@@ -7788,8 +7788,8 @@ var UDON_COMPANIES = [
     {
         "id":  "comp-udon-26",
         "name":  "บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)",
-        "engName":  "Kittisak Construction \u0026 Design (Office Baansuan)",
-        "category":  "รับสร้างบ้านและงานสถาปัตยกรรม (TSIC 41001)",
+        "engName":  "Kittisak Construction & Design (Office Baansuan)",
+        "category":  "รับสร้างบ้านและงานสถาปัตยกรรม (TSIC 41001 / DBD: 0325568000121)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
         "address":  "เมืองอุดรธานี จ.อุดรธานี",
@@ -7798,12 +7798,12 @@ var UDON_COMPANIES = [
         "totalProjects":  0,
         "newProjectsThisMonth":  0,
         "totalValueMillion":  0,
-        "growthRate":  40,
-        "areaExpansion":  "เมืองอุดรธานี",
+        "growthRate":  50,
+        "areaExpansion":  "เมืองอุดรธานี และพื้นที่ภาคอีสาน",
         "verificationStatus":  {
                                    "isVerified":  true,
                                    "confidence":  "100%",
-                                   "evidenceSource":  "Facebook Page | DBD: 0415563022345",
+                                   "evidenceSource":  "Facebook Page | DBD: 0325568000121 (กำไรสุทธิ 654,271,374.57 บาท)",
                                    "permitStatus":  "TSIC 41001"
                                },
         "stageBreakdown":  {
@@ -7813,7 +7813,7 @@ var UDON_COMPANIES = [
                                "finishing":  0
                            },
         "latestTimelineStage":  "groundbreak",
-        "revenuePotentialText":  "฿0.0M - ฿0.0M",
+        "revenuePotentialText":  "฿654.3M (DBD)",
         "coordinates":  [
                             17.438,
                             102.812
@@ -7824,27 +7824,42 @@ var UDON_COMPANIES = [
         "facebookSignal":  {
                                "postDate":  "-",
                                "pageName":  "บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)",
-                               "caption":  "รอรับข้อมูลจาก Apify Facebook Posts Scraper",
+                               "caption":  "บริษัทขนาดใหญ่ กำไรใน DBD 654,271,374.57 บาท มียอดสั่งซื้อ SCG สม่ำเสมอ 1,000,000 บาท (2025 & 2026)",
                                "likes":  0,
                                "comments":  0,
                                "shares":  0,
                                "detectedKeywords":  [
-
+                                                        "กิตติศักดิ์การก่อสร้าง",
+                                                        "ออฟฟิศบ้านสวน",
+                                                        "0325568000121"
                                                     ]
                            },
         "projects":  [
 
                      ],
-        "aiShortRec":  "รอสแกน Apify (0 โครงการ)",
-        "aiRecommendation":  "ยังไม่พบโพสต์ที่ตรงกับเพจของบริษัทนี้ในไฟล์ JSON",
+        "aiShortRec":  "บริษัทขนาดใหญ่ กำไร DBD 654.27M / มียอดซื้อ SCG ต่อเนื่อง 1.0M บาท (2025 & 2026)",
+        "aiRecommendation":  "บริษัทมีความมั่นคงทางการเงินสูงมาก (กำไรใน DBD 654,271,374.57 บาท) และมียอดซื้อสินค้า SCG สม่ำเสมอ 1,000,000 บาททั้งปี 2025 และ 2026 แนะนำให้ทีมขายเข้าพบผู้บริหารเพื่อทำข้อตกลงความร่วมมือระดับ Strategic Partner และนำเสนอสินค้าพรีเมียมครบวงจร",
         "salesActionPlan":  [
-
+                                {
+                                    "step":  1,
+                                    "title":  "เข้าพบผู้บริหารและฝ่ายจัดซื้อ บริษัทกิตติศักดิ์การก่อสร้างฯ",
+                                    "desc":  "นัดหมายเข้าพบ ณ ออฟฟิศบ้านสวน เพื่อกระชับความสัมพันธ์คู่ค้ารายใหญ่ (กำไร DBD 654.27M) และขอบคุณยอดซื้อ 1.0M บาทต่อเนื่อง",
+                                    "channel":  "โทรศัพท์ 081 595 9437 / เข้าพบออฟฟิศบ้านสวน",
+                                    "targetDate":  "ภายใน 3-5 วันทำการ"
+                                },
+                                {
+                                    "step":  2,
+                                    "title":  "นำเสนอแพ็กเกจ Strategic Partner & VIP Rebate",
+                                    "desc":  "จัดทำข้อตกลงราคาโครงการพิเศษสำหรับโครงการใหม่ และนำเสนอโซลูชันวัสดุก่อสร้าง SCG ครบวงจรเพื่อขยายยอดสั่งซื้อให้เติบโตยิ่งขึ้น",
+                                    "channel":  "เอกสารข้อเสนอโครงการ / ทีมขายและวิศวกร SCG",
+                                    "targetDate":  "ภายใน 7 วันทำการ"
+                                }
                             ],
-        "opportunityScore":  15,
-        "scgCode":  null,
-        "sales2025":  0,
-        "sales2026":  0,
-        "tag":  "prospect"
+        "opportunityScore":  92,
+        "scgCode":  "0325568000121",
+        "sales2025":  1000000,
+        "sales2026":  1000000,
+        "tag":  "strategic"
     },
     {
         "id":  "comp-udon-33",

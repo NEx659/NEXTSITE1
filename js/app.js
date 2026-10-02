@@ -682,7 +682,8 @@ const SCG_CUSTOMER_SALES_LIST = [
   { code: '10740013', name: 'PP HOUSE CONSTRUCTION & DESIGN', sales2025: 2447190, sales2026: 1406667, keys: ['pp house', 'พีพี เฮ้าส์', 'pphouse', 'pp house construction'] },
   { code: '10740015', name: 'ศูนย์รับสร้างบ้านอุดรธานี โฟร เอสเตท 4ESTATE', sales2025: 500000, sales2026: 200000, keys: ['4estate', 'โฟร เอสเตท', 'โฟร์ เอสเตท', '4 estate', 'โฟรเอสเตท'] },
   { code: '10740025', name: 'ห้างหุ้นส่วนจำกัด บ้านรักษ์อุดรธานี', sales2025: 700000, sales2026: 700000, keys: ['บ้านรักษ์', 'บ้านรักษ์อุดรธานี', 'baan rak', 'baanrak', 'บ้านรักษ์อุดร'] },
-  { code: '10740036', name: 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง', sales2025: 769000, sales2026: 1040000, keys: ['เอ็น.พี.โฮมส์', 'เอ็นพีโฮมส์', 'เอ็น.พี. โฮมส์', 'เอ็นพีโฮม', 'np home', 'n.p. home', 'n.p.home', 'nphome'] }
+  { code: '10740036', name: 'ห้างหุ้นส่วนจำกัด เอ็น.พี.โฮมส์ เอ็นจิเนียริ่ง', sales2025: 769000, sales2026: 1040000, keys: ['เอ็น.พี.โฮมส์', 'เอ็นพีโฮมส์', 'เอ็น.พี. โฮมส์', 'เอ็นพีโฮม', 'np home', 'n.p. home', 'n.p.home', 'nphome'] },
+  { code: '0325568000121', name: 'บริษัทกิตติศักดิ์การก่อสร้าง แอนด์ดีไซน์ สาขาอุดรธานี (ออฟฟิศบ้านสวน)', sales2025: 1000000, sales2026: 1000000, keys: ['กิตติศักดิ์', 'กิตติศักดิ์การก่อสร้าง', 'ออฟฟิศบ้านสวน', 'kittisak'] }
 ];
 
 const COMPANY_MAPS_MASTER = {
@@ -2872,6 +2873,13 @@ function renderTable() {
                 <span>ยอดซื้อเพิ่มขึ้น</span>
               </div>
             `;
+          } else if (s26 === s25 && s26 > 0) {
+            return `
+              <div title="ยอดซื้อปี 2026: ${fmt26} บาท (ยอดซื้อต่อเนื่องเท่ากับปี 2025)" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: #F0FDF4; border: 1.5px solid #86EFAC; padding: 3px 9px; border-radius: 9999px; font-weight: 800; font-size: 0.74rem; color: #15803D; cursor: pointer; transition: transform 0.15s ease; white-space: nowrap;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="color: #16A34A; font-size: 0.85rem; line-height: 1;">●</span>
+                <span>เคยซื้อกับ SCG</span>
+              </div>
+            `;
           } else if (s26 < s25 && s26 > 0) {
             const dropPct = Math.round(((s25 - s26) / s25) * 100);
             return `
@@ -3438,6 +3446,20 @@ function renderModalScoreOrSalesIntelligence(comp) {
       recommendations = [
         `<strong>ติดตามผลการใช้งานหลังส่งมอบ:</strong> ตรวจเช็กความพึงพอใจการใช้งานสินค้าเพื่อสร้างความประทับใจ`,
         `<strong>ขยายรายการสินค้าไปยังกลุ่มอื่น (Cross-sell):</strong> แนะนำสมาร์ทบอร์ด Q-CON และเคมีภัณฑ์ก่อสร้างเพิ่มเติม`
+      ];
+    } else if (sales2026 === sales2025 && sales2025 > 0) {
+      badgeText = `🟢 ยอดซื้อต่อเนื่องคงที่ (ลูกค้าสม่ำเสมอ)`;
+      badgeStyle = 'background: #F0FDF4; color: #16A34A; border: 1px solid #86EFAC;';
+      diffText = `0% (คงที่ ฿${sales2026.toLocaleString()})`;
+      diffColor = '#16A34A';
+      diagnosticBg = '#F0FDF4';
+      diagnosticBorder = '#BBF7D0';
+      diagnosticTitleColor = '#166534';
+      diagnosticText = `ลูกค้ารายนี้มียอดสั่งซื้อ SCG ต่อเนื่องสม่ำเสมอ โดยปี 2026 มียอดซื้อ <strong>฿${sales2026.toLocaleString()}</strong> เท่ากับปี 2025 มีความภักดีต่อแบรนด์ SCG และสั่งซื้ออย่างต่อเนื่อง`;
+      recommendations = [
+        `<strong>รักษาความสัมพันธ์และบริการต่อเนื่อง:</strong> ดูแลความต่อเนื่องในการส่งมอบสินค้าและประสานงานหน้างาน`,
+        `<strong>นำเสนอโปรโมชันต่อยอด (Cross-sell / Up-sell):</strong> แนะนำสินค้านวัตกรรมใหม่และกลุ่มสินค้าเคมีภัณฑ์/ตกแต่งเพิ่มเติมเพื่อเพิ่มยอดซื้อ`,
+        `<strong>จัดทำสัญญาพันธมิตรโครงการ:</strong> มอบสิทธิประโยชน์พิเศษเพื่อเพิ่มส่วนแบ่งยอดซื้อให้เติบโตยิ่งขึ้น`
       ];
     } else {
       badgeText = `ประวัติซื้อขาย SCG ปกติ`;
@@ -5464,16 +5486,20 @@ function exportCompanyPdfReport(companyOrId) {
               ? `${projCount > 0 ? `AI ตรวจพบข้อมูลภายนอกบน Facebook ว่าบริษัทมีงานจริง ${projCount} โครงการ แต่มียอดซื้อ SCG ปี 2026 เป็น 0 บาท (เปลี่ยนไปสั่งซื้อแบรนด์คู่แข่งทั้งหมด)<br><strong>🚨 มีความเสี่ยงสูญเสียรายได้ ฿${sales2025.toLocaleString()} บาท ควรเข้าพบด่วนภายใน 3-7 วัน</strong>` : `เคยเป็นลูกค้าหลักปี 2025 (฿${sales2025.toLocaleString()}) แต่ปี 2026 ขาดการสั่งซื้อ เสี่ยงสูญเสียรายได้ ฿${sales2025.toLocaleString()} บาท ควรเข้าพบภายใน 7 วัน`}`
               : sales2025 > sales2026 
                 ? `${projCount > 0 ? `AI ตรวจพบข้อมูลภายนอกบน Facebook ว่าบริษัทมีโครงการใหม่ ${projCount} โครงการ<br><strong>สรุปวิเคราะห์:</strong> “บริษัทยังเติบโตและมีงานต่อเนื่อง แต่ยอดซื้อ SCG ลดลงผิดปกติ (-${Math.round(((sales2025 - sales2026)/sales2025)*100)}%)”<br><strong>⚠️ มีความเสี่ยงสูญเสียรายได้ ฿${(sales2025 - sales2026).toLocaleString()} บาท ควรเข้าพบภายใน 7 วัน</strong>` : `ยอดซื้อปี 2026 ลดลงเหลือ ฿${sales2026.toLocaleString()} (-${Math.round(((sales2025 - sales2026)/sales2025)*100)}% YoY) เสี่ยงสูญเสียรายได้ ฿${(sales2025 - sales2026).toLocaleString()} บาท ควรเข้าพบภายใน 7 วัน`}`
-                : `ยอดซื้อเติบโตต่อเนื่องเป็น <strong>฿${sales2026.toLocaleString()}</strong> (+${sales2025 > 0 ? Math.round(((sales2026-sales2025)/sales2025)*100) : 100}% YoY) มีความเชื่อมั่นในสินค้า SCG สูงมาก`
+                : sales2026 === sales2025 && sales2025 > 0
+                  ? `มียอดสั่งซื้อ SCG สม่ำเสมอต่อเนื่อง โดยปี 2026 มียอดซื้อ <strong>฿${sales2026.toLocaleString()}</strong> เท่ากับปี 2025 (คงที่ 0% YoY) มีความภักดีต่อแบรนด์ SCG`
+                  : `ยอดซื้อเติบโตต่อเนื่องเป็น <strong>฿${sales2026.toLocaleString()}</strong> (+${sales2025 > 0 ? Math.round(((sales2026-sales2025)/sales2025)*100) : 100}% YoY) มีความเชื่อมั่นในสินค้า SCG สูงมาก`
             }
           </div>
           <div style="font-size: 9.5px; font-weight: 800; color: #1E40AF; margin-bottom: 2px;">
             💡 คำแนะนำเชิงกลยุทธ์ (Actionable Sales Strategy):
           </div>
           <div style="font-size: 9px; color: #1E293B; line-height: 1.3;">
-            ${sales2025 >= sales2026 
+            ${sales2025 > sales2026 
               ? `• นัดหมายผู้บริหาร/จัดซื้อ (ภายใน 7 วัน) เพื่อรีเช็กข้อเสนอราคาเปรียบเทียบกับคู่แข่ง<br>• นำเสนอแพ็กเกจราคาโครงการ (Project Rebate) เหมารวมโครงสร้าง เพื่อดึง Share of Wallet ฿${(sales2025 - sales2026).toLocaleString()} บาท คืนมา<br>• จับคู่เสนอวัสดุ SCG ให้ตรงกับสเตจไซต์งานที่ตรวจพบล่าสุด`
-              : `• เสนอ Upsell วัสดุกลุ่มพรีเมียม (กระเบื้องหลังคา Excella / Prestige, ไม้สังเคราะห์ SCG D-COR)<br>• ล็อกสัญญาคู่ค้าประจำปีเพื่อป้องกันคู่แข่งเข้ามาแทรก`
+              : sales2025 === sales2026 && sales2025 > 0
+                ? `• รักษาความสัมพันธ์และดูแลความต่อเนื่องในการส่งมอบสินค้าหน้างาน<br>• นำเสนอสินค้าใหม่/เคมีภัณฑ์ก่อสร้าง (Cross-sell) เพื่อต่อยอดการเติบโต`
+                : `• เสนอ Upsell วัสดุกลุ่มพรีเมียม (กระเบื้องหลังคา Excella / Prestige, ไม้สังเคราะห์ SCG D-COR)<br>• ล็อกสัญญาคู่ค้าประจำปีเพื่อป้องกันคู่แข่งเข้ามาแทรก`
             }
           </div>
         </div>
