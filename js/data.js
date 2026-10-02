@@ -10059,9 +10059,10 @@ var UDON_COMPANIES = [
         "newProjectsThisMonth":  3,
         "totalValueMillion":  12.5,
         "growthRate":  75,
-        "sales2025":  0,
-        "sales2026":  0,
-        "salesStatus":  "ยังไม่มียอดขาย (โอกาสทองในการเปิดตลาด)",
+        "sales2025":  1000000,
+        "sales2026":  1000000,
+        "scgCode":  "0473565001107",
+        "salesStatus":  "เคยซื้อกับ SCG (ยอดซื้อต่อเนื่อง 1.0M บาท)",
         "dbdNumber":  "0473565001107",
         "dbdProfit":  9760429.16,
         "dbdProfitText":  "9,760,429.16 บาท",
@@ -10069,8 +10070,10 @@ var UDON_COMPANIES = [
         "verificationStatus":  {
                                    "isVerified":  true,
                                    "confidence":  "100%",
-                                   "evidenceSource":  "Facebook Page: SYC.House2022 | DBD: 0473565001107 (กำไร 9.76M)",
-                                   "permitStatus":  "TSIC 41001"
+                                   "evidenceSource":  "Facebook Page: SYC.House2022 | DBD: 0473565001107 (กำไร 9.76M บาท)",
+                                   "permitStatus":  "TSIC 41001",
+                                   "dbdProfit":  "9,760,429.16 บาท",
+                                   "dbdNumber":  "0473565001107"
                                },
         "stageBreakdown":  {
                                "groundbreak":  1,
@@ -10079,7 +10082,7 @@ var UDON_COMPANIES = [
                                "finishing":  0
                            },
         "latestTimelineStage":  "structure",
-        "revenuePotentialText":  "฿3.5M",
+        "revenuePotentialText":  "฿9.76M (DBD)",
         "coordinates":  [
                             17.4138,
                             102.7872
