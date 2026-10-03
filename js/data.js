@@ -8635,651 +8635,187 @@ var UDON_COMPANIES = [
         "id":  "comp-udon-14",
         "name":  "รับสร้างบ้านอุดรธานี By Concept Engineering",
         "engName":  "Concept Engineering Udon Thani",
-        "category":  "รับสร้างบ้าน ควบคุมงานโดยวิศวกร (TSIC 41001)",
+        "category":  "รับสร้างบ้าน ออกแบบและควบคุมงานโดยวิศวกร (TSIC 41001)",
         "province":  "อุดรธานี",
         "district":  "เมืองอุดรธานี",
-        "address":  "เมืองอุดรธานี จ.อุดรธานี",
+        "address":  "อ.เมืองอุดรธานี จ.อุดรธานี",
         "phone":  "090 850 8889",
-        "contactPerson":  "รับสร้างบ้านอุดรธานี By Concept Engineering",
-        "totalProjects":  15,
-        "newProjectsThisMonth":  3,
-        "totalValueMillion":  16.5,
+        "contactPerson":  "คุณเอก / ทีมวิศวกร Concept Engineering (090-850-8889)",
+        "totalProjects":  3,
+        "newProjectsThisMonth":  2,
+        "totalValueMillion":  7.15,
         "growthRate":  40,
-        "areaExpansion":  "เมืองอุดรธานี",
+        "areaExpansion":  "เพ็ญ, เมืองอุดรธานี, บ้านผือ",
         "verificationStatus":  {
                                    "isVerified":  true,
                                    "confidence":  "100%",
-                                   "evidenceSource":  "Facebook Page | DBD: 0415563010123",
+                                   "evidenceSource":  "Facebook Page: รับสร้างบ้านอุดรธานี By Concept Engineering",
                                    "permitStatus":  "TSIC 41001"
                                },
         "stageBreakdown":  {
                                "groundbreak":  0,
                                "foundation":  0,
-                               "structure":  14,
-                               "finishing":  0
+                               "structure":  2,
+                               "finishing":  1
                            },
-        "latestTimelineStage":  "groundbreak",
-        "revenuePotentialText":  "฿1.5M",
+        "latestTimelineStage":  "structure",
+        "revenuePotentialText":  "฿7.15M",
         "coordinates":  [
-                            17.41,
-                            102.82
+                            17.4135,
+                            102.7872
                         ],
         "googleMapsUrl":  "https://maps.app.goo.gl/mEK2YhfSVGFHKcat9",
         "gmaps":  "https://maps.app.goo.gl/mEK2YhfSVGFHKcat9",
         "facebookUrl":  "https://www.facebook.com/profile.php?id=100063894943820",
         "facebookSignal":  {
-                               "postDate":  "2026-09-27T07:08:52.000Z",
-                               "pageName":  "คนสร้างบ้าน อุดรธานี Udon Home Works",
-                               "caption":  "อัปเดตหน้างานภูเขียว ⚡🏠\nวันนี้เดินหน้าต่อกับ งานเดินท่อไฟภายในบ้าน วางแนวท่อให้เป็นระเบียบตามจุดใช้งาน พร้อมตรวจเช็กตำแหน่งต่าง ๆ ให้พร้อมสำหรับงานระบบไฟในขั้นตอนต่อไป\nเก็บรายละเอียดทุกจุด เพื่อให้บ้านออกมาสวย เรียบร้อย และใช้งานได้อย่างมั่นใจครับ 🔧✨\n\nคนสร้างบ้านอุดรธานี — ใส่ใจทุกขั้นตอน เพราะบ้านที่ดี เริ่มจากงานระบบที่ดี\nคนสร้างบ้าน อุดรธานี Udon Home Works",
-                               "likes":  19,
-                               "comments":  0,
-                               "shares":  0,
+                               "postDate":  "2026-02-15T02:00:14.000Z",
+                               "pageName":  "รับสร้างบ้านอุดรธานี By Concept Engineering",
+                               "caption":  "โครงการบ้านพักอาศัย ต.เตาไห อ.เพ็ญ (285 ตร.ม.), ส่งมอบรีโนเวทอาคาร CE344 อ.เมือง และบ้านพักอาศัย ต.เมืองพาน อ.บ้านผือ จ.อุดรธานี",
+                               "likes":  25,
+                               "comments":  3,
+                               "shares":  2,
                                "detectedKeywords":  [
                                                         "อุดรธานี",
-                                                        "ก่อสร้างจริง"
+                                                        "สร้างบ้าน",
+                                                        "วิศวกร",
+                                                        "เทคอนกรีต",
+                                                        "รีโนเวท"
                                                     ]
                            },
         "projects":  [
                          {
                              "projectId":  "comp-udon-14-1",
-                             "name":  "อัปเดตหน้างานภูเขียว ⚡🏠",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                             "name":  "โครงการบ้านพักอาศัย 2 ชั้น พื้นที่ 285 ตร.ม. ต.เตาไห อ.เพ็ญ จ.อุดรธานี",
+                             "location":  "ต.เตาไห อ.เพ็ญ จ.อุดรธานี",
                              "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
+                             "district":  "เพ็ญ",
                              "gps":  [
-                                         17.41,
-                                         102.82
+                                         17.5935,
+                                         102.9852
                                      ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
+                             "stage":  "งานโครงสร้าง ค.ส.ล. เทคอนกรีต 280 ksc และวางระบบท่อกำจัดปลวก (35%)",
                              "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "อัปเดตหน้างานภูเขียว ⚡🏠\nวันนี้เดินหน้าต่อกับ งานเดินท่อไฟภายในบ้าน วางแนวท่อให้เป็นระเบียบตามจุดใช้งาน พร้อมตรวจเช็กตำแหน่งต่าง ๆ ให้พร้อมสำหรับงานระบบไฟในขั้นตอนต่อไป\nเก็บรายละเอียดทุกจุด เพื่อให้บ้านออกมาสวย เรียบร้อย และใช้งานได้อย่างมั่นใจครับ 🔧✨\n\nคนสร้างบ้านอุดรธานี — ใส่ใจทุกขั้นตอน เพราะบ้านที่ดี เริ่มจากงานระบบที่ดี\nคนสร้างบ้าน อุดรธานี Udon Home Works",
-                             "postedTime":  "2026-09-27T07:08:52.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid0yt6jidfqcQqr2jDCctaBfkadjKzr5mfa9NwShawNW6bzTFn8bGqkNt6JALqWNDsNl",
+                             "trackingStatus":  "active",
+                             "progressPercent":  35,
+                             "estValue":  "3.85 ล้านบาท",
+                             "buildingType":  "บ้านพักอาศัย 2 ชั้น ค.ส.ล. (5 ห้องนอน 5 ห้องน้ำ)",
+                             "caption":  "โครงการก่อสร้างบ้านพักอาศัย 2 ชั้น พื้นที่ใช้สอย 285 ตร.ม. (5 ห้องนอน 5 ห้องน้ำ) หน้างาน ต.เตาไห อ.เพ็ญ จ.อุดรธานี เทคอนกรีตโครงสร้าง 280 ksc พร้อมเดินระบบท่อกำจัดปลวกมาตรฐาน",
+                             "postedTime":  "2026-02-15T02:00:14.000Z",
+                             "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid031paGfHA2QuCQiLtu1WvvJRFjbaBTm7CtAVjuucWAajvuUxDD6jKxHpnYu5K6sReZl&id=100063894943820",
                              "boq":  [
                                          {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "คอนกรีตผสมเสร็จ CPAC 280 ksc Cylinder",
+                                             "qty":  "45 คิว",
+                                             "estCost":  "฿94,500",
+                                             "urgency":  "พร้อมสั่งซื้อทันที"
                                          },
                                          {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "เหล็กเส้นข้ออ้อย SD40 มอก. (DB12, DB16, DB20)",
+                                             "qty":  "6.5 ตัน",
+                                             "estCost":  "฿162,500",
+                                             "urgency":  "พร้อมสั่งซื้อทันที"
                                          },
                                          {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
+                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม. พร้อมปูนก่อ-ฉาบ",
+                                             "qty":  "2,400 ก้อน",
+                                             "estCost":  "฿64,800",
                                              "urgency":  "เตรียมสั่งซื้อ"
                                          }
                                      ]
                          },
                          {
                              "projectId":  "comp-udon-14-2",
-                             "name":  "บ้านในฝัน ให้คนสร้างบ้านอุดรธานีดูแลนะครับ @แฟนตัวยง คนสร้างบ้าน อุดรธานี Udon Home Wor...",
+                             "name":  "โครงการรีโนเวทอาคาร รหัส CE344 อ.เมืองอุดรธานี จ.อุดรธานี",
                              "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
                              "province":  "อุดรธานี",
                              "district":  "เมืองอุดรธานี",
                              "gps":  [
-                                         17.41,
-                                         102.82
+                                         17.4135,
+                                         102.7872
                                      ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "บ้านในฝัน ให้คนสร้างบ้านอุดรธานีดูแลนะครับ @แฟนตัวยง คนสร้างบ้าน อุดรธานี Udon Home Works ชุติเดช กิจดลวรโชติ #บ้านในฝัน #บ้าน #บ้าน #บ้านสวย #บ้านใหม่",
-                             "postedTime":  "2026-09-27T05:27:14.000Z",
-                             "postUrl":  "https://www.facebook.com/reel/2607269033052678/",
+                             "stage":  "งานเก็บรายละเอียดสถาปัตยกรรม งานสี และส่งมอบงาน (95%)",
+                             "stageKey":  "finishing",
+                             "trackingStatus":  "active",
+                             "progressPercent":  95,
+                             "estValue":  "1.45 ล้านบาท",
+                             "buildingType":  "งานรีโนเวทอาคารและสถาปัตยกรรม (CE344)",
+                             "caption":  "โครงการรีโนเวทอาคาร รหัส CE344 อ.เมืองอุดรธานี จ.อุดรธานี ดำเนินการงานเก็บรายละเอียดสถาปัตยกรรมและพร้อมส่งมอบงานให้เจ้าของอาคาร",
+                             "postedTime":  "2026-01-19T02:00:09.000Z",
+                             "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid0TzpFMDHDUCkmyu1UEiYCqyWDV1rSTJ7TyVuRWTqKe1B3L3WY7PLa8vMEKPaBFF1Ml&id=100063894943820",
                              "boq":  [
                                          {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
+                                             "sku":  "สีทาอาคารภายนอก/ภายในเกรดพรีเมียม TOA / Beger",
+                                             "qty":  "24 ถัง",
+                                             "estCost":  "฿52,800",
+                                             "urgency":  "พร้อมส่งมอบ"
+                                         },
+                                         {
+                                             "sku":  "กระเบื้องปูพื้นแกรนิตโต้ 60x60 ซม. พร้อมยาแนว",
+                                             "qty":  "180 ตร.ม.",
                                              "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "urgency":  "ส่งมอบงาน"
                                          },
                                          {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "อุปกรณ์สุขภัณฑ์และฟิตติ้งห้องน้ำ Cotto/SCG",
+                                             "qty":  "3 ชุด",
+                                             "estCost":  "฿32,000",
+                                             "urgency":  "ส่งมอบงาน"
                                          }
                                      ]
                          },
                          {
                              "projectId":  "comp-udon-14-3",
-                             "name":  "🏠 อัปเดตหน้างานคุณจ้ะ บัวลาย",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
+                             "name":  "โครงการบ้านพักอาศัย 1 ชั้น พื้นที่ 121 ตร.ม. ต.เมืองพาน อ.บ้านผือ จ.อุดรธานี",
+                             "location":  "ต.เมืองพาน อ.บ้านผือ จ.อุดรธานี",
                              "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
+                             "district":  "บ้านผือ",
                              "gps":  [
-                                         17.41,
-                                         102.82
+                                         17.6989,
+                                         102.4042
                                      ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
+                             "stage":  "งานโครงสร้าง ค.ส.ล. วางแผ่นพื้นสำเร็จรูป และขึ้นโครงหลังคา (45%)",
                              "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "🏠 อัปเดตหน้างานคุณจ้ะ บัวลาย\n\nอีกหนึ่งหน้างานที่เรายังคงติดตามและดูแลกันอย่างต่อเนื่อง ทุกขั้นตอนเดินหน้าอย่างเป็นระบบ ใส่ใจตั้งแต่งานโครงสร้างไปจนถึงรายละเอียดเล็ก ๆ เพื่อให้บ้านออกมาตรงตามแบบและได้มาตรฐานที่วางไว้\n\nเพราะสำหรับเรา…บ้านหนึ่งหลังไม่ใช่แค่การก่อสร้าง แต่คือความตั้งใจที่ต้องดูแลให้ดีที่สุดในทุกขั้นตอนครับ 🛠️✨",
-                             "postedTime":  "2026-09-25T08:31:37.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid02CsebdohfXFrdjoGwVLasu8LbBgK9DSQDRoJDgYfgA4iEep6Zzg9xtbiSE9xW2Jayl",
+                             "trackingStatus":  "active",
+                             "progressPercent":  45,
+                             "estValue":  "1.85 ล้านบาท",
+                             "buildingType":  "บ้านพักอาศัย 1 ชั้น ค.ส.ล. (3 ห้องนอน 2 ห้องน้ำ)",
+                             "caption":  "โครงการบ้านพักอาศัย 1 ชั้น พื้นที่ใช้สอย 121 ตร.ม. (3 ห้องนอน 2 ห้องน้ำ 1 รับแขก 1 ครัว) ต.เมืองพาน อ.บ้านผือ จ.อุดรธานี งานโครงสร้าง ค.ส.ล. วางแผ่นพื้นและขึ้นโครงหลังคา",
+                             "postedTime":  "2025-12-28T17:21:57.000Z",
+                             "postUrl":  "https://www.facebook.com/permalink.php?story_fbid=pfbid02Co3y7eeiPCw52uysWNAeT5vFJHPnxd3zNW2D7fYM1Zq6W3gCJhrEzHtD3EGJsETVl&id=100063894943820",
                              "boq":  [
                                          {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "แผ่นพื้นคอนกรีตสำเร็จรูป CPAC ท้องเรียบ",
+                                             "qty":  "120 ตร.ม.",
+                                             "estCost":  "฿36,000",
+                                             "urgency":  "พร้อมสั่งซื้อทันที"
                                          },
                                          {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
+                                             "sku":  "โครงหลังคาเหล็กกัลวาไนซ์ / แปสำเร็จรูป",
+                                             "qty":  "150 ตร.ม.",
+                                             "estCost":  "฿58,500",
+                                             "urgency":  "พร้อมสั่งซื้อทันที"
                                          },
                                          {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-4",
-                             "name":  "สนใจสอบถามได้ครับ ผลงานคนสร้างบ้านอุดร",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "สนใจสอบถามได้ครับ ผลงานคนสร้างบ้านอุดร",
-                             "postedTime":  "2026-09-25T05:11:21.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid02XSu1cvQaxmqWypvGNbVtzELALYLt2KUy6J4K4Mza9GcVTJn3Zd52R6Ta3rmYzbNxl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-5",
-                             "name":  "🏗️ อัปเดตหน้างานภูเขียว จ.ชัยภูมิ",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "🏗️ อัปเดตหน้างานภูเขียว จ.ชัยภูมิ\n\nอีกหนึ่งขั้นตอนสำคัญที่เราตั้งใจเก็บรายละเอียดให้เรียบร้อยในทุกจุด เดินงานตามลำดับ ตรวจสอบความเรียบร้อยอย่างต่อเนื่อง เพื่อให้งานออกมาสวย แข็งแรง และได้มาตรฐานในแบบที่ลูกค้าตั้งใจไว้ครับ 🏠✨\n\n#คนสร้างบ้านอุดรธานี #UdonHomeWorks #อัปเดตหน้างาน #ภูเขียวชัยภูมิ",
-                             "postedTime":  "2026-09-24T08:39:35.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid0nPGCK9FxzLS6qtstugRgxkTSX46Mku4BGS5NHKe1CinF2pcSXZ3qVXSMXbSffGqEl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-6",
-                             "name":  "ตรวจบ้านรอบสุดท้ายก่อนส่งมอบบ้านในฝันให้กับลูกค้า ที่บ้าน อ.สีชมพู จ.ขอนแก่น",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "ส่งมอบงาน / เสร็จสมบูรณ์",
-                             "stageKey":  "completed",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  100,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "ตรวจบ้านรอบสุดท้ายก่อนส่งมอบบ้านในฝันให้กับลูกค้า ที่บ้าน อ.สีชมพู จ.ขอนแก่น",
-                             "postedTime":  "2026-09-24T06:09:56.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/videos/1812952733209766/",
-                             "boq":  [
-                                         {
-                                             "sku":  "บริการตรวจเช็กและดูแลระบบบ้าน SCG",
-                                             "qty":  "1 งาน",
-                                             "estCost":  "฿15,000",
-                                             "urgency":  "ตามกำหนด"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-7",
-                             "name":  "🏠 อัปเดตหน้างานคุณต้อม โนนขมิ้น อุดรธานี",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "🏠 อัปเดตหน้างานคุณต้อม โนนขมิ้น อุดรธานี\n\nเดินหน้าต่อเนื่องกับงาน ปาดฝังบล็อกและเดินท่อร้อยสายไฟ เก็บรายละเอียดงานระบบให้เป็นระเบียบและได้มาตรฐาน ก่อนเข้าสู่ขั้นตอนถัดไป\n\nทุกขั้นตอนเราใส่ใจตั้งแต่งานโครงสร้างจนถึงรายละเอียดเล็ก ๆ เพื่อให้บ้านออกมาสวย แข็งแรง และตรงตามแบบครับ 🔨✨\n\nคนสร้างบ้าน อุดรธานี Udon Home Works",
-                             "postedTime":  "2026-09-23T08:35:47.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid0CGA58PxB5NQZ8sfPAFLWQL1JrY1ihmFNV831DsjSmWTNoJJkWk24iQZhsAJsxEYcl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-8",
-                             "name":  "อัปเดตหน้างานบ้านคุณแอร์ ดงคำ 🏡✨",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "อัปเดตหน้างานบ้านคุณแอร์ ดงคำ 🏡✨\nวันนี้เดินหน้างานกระเบื้อง เก็บงานอย่างพิถีพิถัน เน้นความเรียบร้อยและความสวยงามในทุกจุด เพื่อให้งานออกมาตรงตามแบบและได้มาตรฐานครับ",
-                             "postedTime":  "2026-09-22T09:02:49.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid033FFsKaUwBMnQpNj6QjoiCjhTzvoY7t3amhzXgSRVCBXT8XuiMYGtTVoHBJbipoyVl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-9",
-                             "name":  "อัปเดตและตรวจสอบงานกระเบื้อง บ้านกุดหมากไฟ อ.หนองวัวซอ จ.อุดรธานี",
-                             "location":  "อ.หนองวัวซอ จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "หนองวัวซอ",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "อัปเดตและตรวจสอบงานกระเบื้อง บ้านกุดหมากไฟ อ.หนองวัวซอ จ.อุดรธานี",
-                             "postedTime":  "2026-09-21T03:00:58.000Z",
-                             "postUrl":  "https://www.facebook.com/reel/855192760956991/",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-10",
-                             "name":  "🏠บริษัทเล็กหรือใหญ่ไม่สำคัญ ราคาเหมาะสมกับเนื้องาน ถูกใจเจ้าของบ้านสั่งของได้เลย #เฮีย...",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "🏠บริษัทเล็กหรือใหญ่ไม่สำคัญ ราคาเหมาะสมกับเนื้องาน ถูกใจเจ้าของบ้านสั่งของได้เลย #เฮียเฟิร์ส คนสร้างบ้าน อุดรธานี Udon Home Works",
-                             "postedTime":  "2026-09-20T09:42:47.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid0k5oo6FLGgXqo9g8Kr3PhoV66JomJccM9S2hb3zpYEuYnkd2xYkEmYNQyAzSvq6P3l",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-11",
-                             "name":  "ตรวจสอบความเรียบร้อยของบ้าน  หน้างาน ต.นางิ้ว อ.สังคม จ.หนองคาย",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "ตรวจสอบความเรียบร้อยของบ้าน  หน้างาน ต.นางิ้ว อ.สังคม จ.หนองคาย",
-                             "postedTime":  "2026-09-20T03:00:56.000Z",
-                             "postUrl":  "https://www.facebook.com/reel/1637101264746911/",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-12",
-                             "name":  "🏠 อัปเดตหน้างานคุณเปา รัตนวาปี",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "🏠 อัปเดตหน้างานคุณเปา รัตนวาปี\n\nเดินหน้าก่อสร้างอย่างต่อเนื่อง เก็บรายละเอียดแต่ละขั้นตอนอย่างพิถีพิถัน เพื่อให้งานออกมาสวย เรียบร้อย และได้มาตรฐานในทุกจุดครับ 🔨🏡\n\nคนสร้างบ้าน อุดรธานี Udon Home Works",
-                             "postedTime":  "2026-09-17T03:29:36.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid02hu1mcxpsFTYdhHNJQq3PCmfSGsrxfDAf5rHrDtaZtCvzEsyUZMwdkMpgQJsPf7VDl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-13",
-                             "name":  "🏠 อัปเดตหน้างานบ้านคุณต้อม โนนขมิ้น อุดรธานี",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "🏠 อัปเดตหน้างานบ้านคุณต้อม โนนขมิ้น อุดรธานี\n\nวันนี้เดินหน้างานต่อเนื่องกับ งานปาดฝังบล็อก พร้อมเดินท่อร้อยสายไฟ เก็บรายละเอียดงานระบบให้เป็นระเบียบและได้มาตรฐาน ก่อนเข้าสู่ขั้นตอนถัดไปครับ 🔧⚡\n\nทุกขั้นตอนใส่ใจในรายละเอียด เพื่อให้บ้านออกมาสวยและใช้งานได้อย่างมั่นใจ\n\n#คนสร้างบ้านอุดรธานี\n#รับสร้างบ้านทั่วภาคอีสาน",
-                             "postedTime":  "2026-09-17T03:25:04.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid02tcCbaW7qyhNtB6rhpFDXcaUXxcxthNop2rSGP6UFFXZTtAiCvP7pcSRh6z7rNbekl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-14",
-                             "name":  "ฝนกำลังจะหมด",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "ฝนกำลังจะหมด\nหนาวกำลังจะมา\nคิวงานเริ่มทยอยมาเรื่อยๆ\nอยากได้วันดีก็ปรึกษาผมได้นะครับ 🤍✅🏠",
-                             "postedTime":  "2026-09-15T07:18:13.000Z",
-                             "postUrl":  "https://www.facebook.com/firstlandtown/posts/pfbid0Zi4RqYk5NCZRydExVkYNFVoCSiaAmWi6zcUVnLW4wfUwEtwh4SEro3QBMcGVqouGl",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         }
-                                     ]
-                         },
-                         {
-                             "projectId":  "comp-udon-14-15",
-                             "name":  "ตรวจสอบความเรียบร้อยของงานสี หน้างาน อ.สีชมพู จ.ขอนแก่น",
-                             "location":  "อ.เมืองอุดรธานี จ.อุดรธานี",
-                             "province":  "อุดรธานี",
-                             "district":  "เมืองอุดรธานี",
-                             "gps":  [
-                                         17.41,
-                                         102.82
-                                     ],
-                             "stage":  "งานโครงสร้าง ค.ส.ล. ก่อผนัง และมุงหลังคา",
-                             "stageKey":  "structure",
-                             "trackingStatus":  "pending",
-                             "progressPercent":  50,
-                             "estValue":  "3.5 ล้านบาท",
-                             "buildingType":  "บ้านพักอาศัย ค.ส.ล.",
-                             "caption":  "ตรวจสอบความเรียบร้อยของงานสี หน้างาน อ.สีชมพู จ.ขอนแก่น",
-                             "postedTime":  "2026-09-15T07:00:56.000Z",
-                             "postUrl":  "https://www.facebook.com/reel/1830016121504512/",
-                             "boq":  [
-                                         {
-                                             "sku":  "อิฐมวลเบา Q-CON ขนาด 7.5 ซม.",
-                                             "qty":  "1,800 ก้อน",
-                                             "estCost":  "฿48,600",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย",
-                                             "qty":  "1,400 แผ่น",
-                                             "estCost":  "฿56,000",
-                                             "urgency":  "เตรียมสั่งซื้อ"
-                                         },
-                                         {
-                                             "sku":  "ปูนเสือ มอร์ตาร์ งานก่อ-ฉาบ",
-                                             "qty":  "180 ถุง",
-                                             "estCost":  "฿21,600",
+                                             "sku":  "กระเบื้องหลังคาคอนกรีต SCG ซีแพคโมเนีย พร้อมอุปกรณ์",
+                                             "qty":  "1,350 แผ่น",
+                                             "estCost":  "฿54,000",
                                              "urgency":  "เตรียมสั่งซื้อ"
                                          }
                                      ]
                          }
                      ],
-        "aiShortRec":  "พบ 3 ไซต์งานก่อสร้างจริงใน จ.อุดรธานี (เสาเอก: 0, ฐานราก: 0, โครงสร้าง: 3)",
-        "aiRecommendation":  "มีไซต์งานก่อสร้างจริงตรวจพบจาก Facebook แนะนำติดต่อเข้าล็อกสเปกปูน SCG และคอนกรีต CPAC ด่วน",
+        "aiShortRec":  "พบ 3 ไซต์งานก่อสร้างและรีโนเวทจริงใน จ.อุดรธานี (โครงสร้าง: 2, ตกแต่ง/ส่งมอบ: 1)",
+        "aiRecommendation":  "ตรวจพบงานโครงสร้าง 2 หลัง (อ.เพ็ญ และ อ.บ้านผือ) แนะนำฝ่ายขายเข้าเสนอปูน SCG คอนกรีตผสมเสร็จ CPAC และกระเบื้องหลังคาด่วน",
         "salesActionPlan":  [
 
                             ],
-        "opportunityScore":  70,
+        "opportunityScore":  85,
         "scgCode":  null,
         "sales2025":  0,
         "sales2026":  0,
         "tag":  "prospect"
     },
+
     {
         "id":  "comp-udon-23",
         "name":  "อภิญญา ก่อสร้าง Apinya Construction",
